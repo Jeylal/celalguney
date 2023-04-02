@@ -2,6 +2,7 @@
 title: "Inikori about Slavery and the Industrial Revolution"
 format: html
 editor: visual
+image: inikori.JPG
 ---
 
 # Book Review Africans and the Industrial Revolution in England: A Study in International Trade and Economic Development. By JOSEPH E. INIKORI. Cambridge: Cambridge University Press, 2002. 576 p.
