@@ -19,7 +19,9 @@ about:
       href: https://celalguney.shinyapps.io/Projet_Data_Science/?_ga=2.255792968.1974330428.1680436983-1453518093.1673880491 
 ---
 
-My name is Celâl and I am a master student in the Political Economy of Capitalism in the University of Geneva. My research interests are comparative capitalism, institutional economics, the political economy of socio-political cleavages/conflicts and economic history. 
+My name is Celâl and I am a master student in the Political Economy of Capitalism in the University of Geneva. My research interests are comparative capitalism, institutional economics, the history of economic thought and economic measures, the political economy of socio-political cleavages and conflicts, and economic history. You can have a look to my [CV](https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf) here or to my blog [posts](https://jeylal.github.io/myblog/) where I publish stuff related to my studies, readings and research interests.
+
+My current project at the moment is my master thesis, which will surely be about the political economy of political cleavages in Switzerland. You can have a look to my master thesis proposal [here](), which will be subject to frequent improvements.
 
 ## Education
 
