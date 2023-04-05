@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Wed, 05 Apr 2023 18:11:04 GMT</lastBuildDate>
+<lastBuildDate>Wed, 05 Apr 2023 19:04:25 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <pubDate>Wed, 05 Apr 2023 19:04:25 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <pubDate>Wed, 05 Apr 2023 19:04:25 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -142,7 +142,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <pubDate>Wed, 05 Apr 2023 19:04:25 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/antigua.PNG" medium="image"/>
 </item>
 <item>
@@ -211,7 +211,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </table>
 </div>
 </div>
-<p>Some observations can already be stressed with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird “peak” in the income graph. Indeed, about 7.5% declared having an income superior than 15’000, which seems rather bizarre at least to me and I still have no explanation for this.</p>
+<p>Some observations can already be made with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird “peak” in the income graph. Indeed, about 7.5% declared having an income superior than 15’000, which seems rather bizarre at least to me and I still have no explanation for this.</p>
 </section>
 <section id="first-model-binary-logistic-regression" class="level2">
 <h2 class="anchored" data-anchor-id="first-model-binary-logistic-regression">First model: binary logistic regression</h2>
@@ -357,9 +357,22 @@ Akaike Inf. Crit.
 </tr>
 
 </tbody></table>
-<p>Here is an odds ratios plot to have a better visualization:</p>
+<p>Here is an odd ratios plot to have a better visualization:</p>
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>Here is what this coefficient plot tells: the odds that a Swiss voter vote for a left-wing party for the National Council election of 2015 are linked negatively with income (odd ratio below 1) and positively with education (odd ratio &gt; 1). The coefficients are statistically significant at the one percent level, which is not a surprise because the sample is rather large with 7’594 observations. Inference will become more of a problem when I consider education or even income as a factor/qualitative variable (income here is coded in brackets, so it is rather an ordinal variable, and there is to my knowledge to way to solve this problem).</p>
+<p>Odd ratios are known to be rather difficult to interpret. In effect, odd ratios are not what the literature calls “quantity of interest”, that is to say, the quantity of the dependent variable which is the most easy to interpret. I this model, the quantity of interest is the probability to vote for a left wing party and not the odds. A lot of economists and social scientists prefer to have a look directly at the marginal effects and predicted probability to have a better view of the relationships between the variables and of the quantity of interest.</p>
+<p>I first plot simple graphs of the estimated curves:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Probability of voting left - curves from estimated coefficients</figcaption><p></p>
+</figure>
+</div>
+</div>
 </div>
 
 
@@ -375,7 +388,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <pubDate>Wed, 05 Apr 2023 19:04:25 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

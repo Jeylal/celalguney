@@ -26,6 +26,9 @@ library(sjlabelled)
 library(knitr)
 library(gridExtra)
 library(stargazer)
+library(marginaleffects)
+library(arm)
+library(plot3logit)
 options(scipen = 999)
 ```
 
@@ -33,6 +36,7 @@ options(scipen = 999)
 #| warning: false
 #| message: false
 #| echo: false
+
 rm(list = ls())
 
 panel2019 <- read_sav("panel2019.sav")
@@ -55,8 +59,8 @@ panel2019$vote.left <- ifelse(panel2019$W1_f10850rec %in% c(30, 50, 130, 140), 1
 
 panel2019$gender <- factor(panel2019$gender, levels = c(0,1), labels = c("Male", "Female"))
 
-datareg <- panel2019 %>% 
-  select("vote.left", "education.level", "Education.level", "Gross.monthly.hh.income", "religion", "gender" )
+datareg <- panel2019 %>% dplyr::select("vote.left", "education.level", "Education.level", "Gross.monthly.hh.income", "religion", "gender")
+
 ```
 
 To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "f10300" which asked for which party the respondent voted in the 2015 election. From this variable, I create a dummy variable taking value one if the respondant voted for either the socialist party (PS), the green (PES), solidarité or Swiss labor party (PST-POP). Note that those choices can be controversial and a matter of debate because I don't include the Social-christian party and I include the greens. This is a matter of debate if those parties can be classified as left or not, but I will not go further about this.
@@ -77,7 +81,6 @@ datareg %>% count(as_label(Education.level)) %>%
   geom_col()+
   ylab("")+
   theme_bw()
-
 ```
 
 ```{r}
@@ -108,7 +111,7 @@ datareg %>% count(vote.left) %>%
   mutate(prop = n/sum(n)) %>% kable(caption = "1 = vote for a left-wing party")
 ```
 
-Some observations can already be stressed with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird "peak" in the income graph. Indeed, about 7.5% declared having an income superior than 15'000, which seems rather bizarre at least to me and I still have no explanation for this.
+Some observations can already be made with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird "peak" in the income graph. Indeed, about 7.5% declared having an income superior than 15'000, which seems rather bizarre at least to me and I still have no explanation for this.
 
 ## First model: binary logistic regression
 
@@ -135,7 +138,7 @@ stargazer(reg, type = "html", title = "Model 1: binary logit regression (odd rat
 
 ```
 
-Here is an odds ratios plot to have a better visualization:
+Here is an odd ratios plot to have a better visualization:
 
 ```{r}
 #| warning: false
@@ -148,11 +151,43 @@ ggcoef_model(reg, exponentiate = TRUE)
 
 ```
 
+Here is what this coefficient plot tells: the odds that a Swiss voter vote for a left-wing party for the National Council election of 2015 are linked negatively with income (odd ratio below 1) and positively with education (odd ratio > 1). The coefficients are statistically significant at the one percent level, which is not a surprise because the sample is rather large with 7'594 observations. Inference will become more of a problem when I consider education or even income as a factor/qualitative variable (income here is coded in brackets, so it is rather an ordinal variable, and there is to my knowledge to way to solve this problem).
+
+Odd ratios are known to be rather difficult to interpret. In effect, odd ratios are not what the literature calls "quantity of interest", that is to say, the quantity of the dependent variable which is the most easy to interpret. I this model, the quantity of interest is the probability to vote for a left wing party and not the odds. A lot of economists and social scientists prefer to have a look directly at the marginal effects and predicted probability to have a better view of the relationships between the variables and of the quantity of interest.
 
 
+I first plot simple graphs of the estimated curves:
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| fig-cap: Probability of voting left - curves from estimated coefficients
 
 
+x = 1:15
+ggplot()+
+  xlim(1, 15)+
+  ylim(0, 1)+
+  geom_line(aes(x = x, y = invlogit(coef(reg)[1] + coef(reg)[2]*x)))+
+  geom_point(aes(x = jitter(Gross.monthly.hh.income), y = vote.left), data = datareg)+
+  theme_bw()+
+  ylab("probability")+
+  xlab("Gross monthly household income group") -> prob.plot.income
 
+x = 1:14
+
+ggplot()+
+  xlim(1,14)+
+  ylim(0,1)+
+  geom_line(aes(x = x, y = invlogit(coef(reg)[1] + coef(reg)[3]*x)))+
+  geom_point(aes(x = jitter(Education.level), y = vote.left), data = datareg)+
+  theme_bw()+
+  ylab("")+
+  xlab("Education level") -> prob.plot.educ
+
+
+cowplot::plot_grid(prob.plot.income, prob.plot.educ)
+```
 
 
 
