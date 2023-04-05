@@ -4,7 +4,7 @@ author: ""
 format: html
 editor: visual
 bibliography: bibliosugarcochineal.bib
-image: antigua.PNG
+image: antigua.png
 execute: 
   freeze: true
 ---

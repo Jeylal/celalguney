@@ -161,7 +161,7 @@ I first plot simple graphs of the estimated curves:
 #| warning: false
 #| message: false
 #| echo: false
-#| fig-cap: Probability of voting left - curves from estimated coefficients
+#| fig-cap: Probability of voting for the left - curves from estimated coefficients
 
 
 x = 1:15
