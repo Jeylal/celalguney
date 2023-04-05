@@ -215,7 +215,7 @@ div.csl-indent {
 <p>Let’s first start with a logistic regression. I simply regress the vote for the left with income and education. I leave education and income coded as numerical variables for now, since they have enough categories this is not big problem. Of course, that would have been better if I had directly the income of each individual and not brackets. Moreover, I could still do a Pareto interpolation, but I can’t due to lack of information: I don’t have the average income (total and per bracket) of the sample.</p>
 <p>The model is thus:</p>
 <p><span class="math display">\[
-Log(\frac{P(left)}{1 - P(left)}) = \beta_0 + \beta_1income + \beta_2educ
+Log(\frac{P(left)}{1 - P(left)}) = \beta_0 + \beta_1income_i + \beta_2educ_i + \epsilon_i
 \]</span> Note that this is a very first step, I will step by step complexify this model.</p>
 <p>Here is the regression table:</p>
 

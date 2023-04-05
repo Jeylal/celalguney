@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Celâl Güney</title>
+<link>https://jeylal.github.io/myblog/index.html</link>
+<atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.2.335</generator>
+<lastBuildDate>Wed, 05 Apr 2023 18:11:04 GMT</lastBuildDate>
+<item>
+  <title>Crises &amp; cycles</title>
+  <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="crises-cycles" class="level1">
+<h1>Crises &amp; cycles</h1>
+<p>One of the most striking phenomena in capitalist mode of production is certainly the recurring and systematic outbreak of financial and economic crises. Since the emergence of capitalism as a mode production in England during the 18th century and its progressive spread in Europe in the 19th and then in the world in the 20th and 21th centuries, the economy of capitalist countries must endure what economists call “business cycles”, that is to say, cyclical appearances of economic booms in production, employment and prices and busts (decline in production, employment and prices).</p>
+<p>However, the acknowledgement of business cycles as such took a long and tedious path. The first main broad examination of economic crisis can be found at the beginning of the 19th century during the famous “General Glut Controversy” which involved famous economists such as Say, Ricardo and Malthus. Say, for example, argued that long-term deep economic crisis could not occur because of what will be afterwards called “Say’s law”, that is, the fact that there can be no overall overproduction crisis since production creates its own demand. It creates its own demand mainly because it generates products which can be directly exchanged for other ones. For example, If I produce coffee beans and sell it, all the value I got through selling will be in return my demand for other commodities by the same amount of value. Marx, who can be considered as a pioneer in crisis and business cycles theory, made his critic of Say’s law a point of departure of his bold thoughts on crisis.</p>
+<section id="marxists-theories-of-crisis" class="level2">
+<h2 class="anchored" data-anchor-id="marxists-theories-of-crisis">Marxists theories of crisis</h2>
+<p>As Foley argues, there is no precise, consistent and modelled theory of crisis in Marx’ writings. In fact, he had diverse and dispersed analysis of different types of economic crisis that Marxists reconstructed and developed afterwards. Nonetheless, Marx’ main point on crisis is the following paradox he underlined: the capitalist system is characterized by an abundance of products (use values) due to tremendous developed productive forces and, at the same time, unfulfilled desires on the part of the working class. According to Marx, the main reason lies in the fact that production is carried under capitalism not to fulfill needs (produce use-value to satisfy needs and desires), but to accumulate profits (or, in Marxist terms, surplus value). Marxists reconstructed then three main theories of crisis: disproportionality crisis, underconsumption crisis and crisis due to the falling rate of profit.</p>
+<p>Firstly, in Capital Volume 2, Marx sets up a model of capital circulation through two department: department I (production of means of production) and II (production of means of consumption). For those two sectors to have balanced growth, there should be a balanced investment level between the two, such that there can be no overproduction in one department and/or not a lack of production in the other. The problem is that it is rarely the case, since capitalist allocate their capital not in order to balance the two department, but to accumulate surplus value. This type of crisis is called “disproportionality crisis”.</p>
+<p>Secondly, the underconsumption theory underlines the striking feature of the inability, under capitalism, to sell all the produced commodities. Since workers only receive a part of the value they produce in the form of wages, aggregate demand has a tendency to be always lower than the supply. Hence, their purchasing power will always be lower than the value of the produced commodities which need to be absorbed. This leaves an excess supply in the market and crisis follows. Foley argues that this version of the underconsumption theory is simplistic, because that part of the value that the worker does not get goes as income to the capitalist, who can also support additional demand for output (through consumption, or through investment, a point whom which Marx was aware of). At this precise point, Rosa Luxemburg had an important and rather unorthodox analysis. She argued that capitalist economy is structurally incapable of generating enough aggregate demand. Her argument is that even if capitalists have enough money and the willingness to invest (which would normally support aggregate demand), they cannot invest ad infinitum. In effect, the purpose of investment is in fine also to produce consumption goods (it is also its justification), one cannot invest only to accumulate means of production per se. Foley underlines the fact that this analysis by Luxemburg is strikingly un-Marxist, since Marx himself argued that the ultimate goal of capitalist production is accumulation of surplus value.</p>
+<p>Thirdly Foley explains two versions of the falling rate of profit theory, the first being the “profit squeeze” theory and the second the tendency of falling profit rate: 1) The expansion phase of the business cycle leads to higher employment, the workers’ bargaining power rises and thus wages rise. That leads to a fall of the profit rate and this leads to a crisis since capitalists do not invest further until production and employment fall enough to decrease workers’ bargaining power so that wages decrease and profit rate can go up. 2) Pressured by competition and the search for profit to innovate, the capitalists tend to replace more and more labor by capital, that is, mainly machinery and equipment goods. In Marxist terms, there is a rise of the organic composition of capital (c/v with c=constant capital: machinery, equipment; and v the variable capital: wages) which leads to a fall of the profit rate (defined as p=s/(c+v) = (s/v)/(c/v+1) with s the surplus value).</p>
+</section>
+<section id="from-crises-to-business-cycles" class="level2">
+<h2 class="anchored" data-anchor-id="from-crises-to-business-cycles">From crises to Business cycles</h2>
+<p>Apart from Marx and Marxists scholars, another trend emerged in the end of the 19th and in the first half the of 20th century: economists who became increasingly interested in the measurement and analysis of business cycles. The biggest impetus in that matter can surely be accredited to Wesley Clair Mitchell (1874-1948) who was the first director of the National Bureau of Economic Research (founded in 1920) and conducted tremendous research on the measurement and analysis of business cycles. Influenced by Thorstein Veblen and his critic of neoclassical economics, Mitchell sought a new way of conducting economic analysis and research, mainly through historical and empirical data analysis. He was convinced that his empirical and inductive approach (constructing new theories from empirical evidence) would make older economic theories obsolete: “quantitative analysis” would produce more robust economic reasonings than “qualitative analysis”, that is, neoclassical deductive approach. Conclusions Mitchell drew from his work are remarkably similar to Marx’: business cycles are chiefly driven by the incessant pursuit for profit. Assuredly, Mitchell’s work paved the way to a golden age of statistical and quantitative analysis of business cycles in the 1920s, so much that even economists hitherto not interested in that domain sought to bring their own contribution to business cycle analysis. A striking example is surely Irving Fisher (1867-1947) and his debt-deflation theory. Fisher, who recognized that he was a newcomer on the subject, made a distinction between “forced cycles”, cycles determined and driven by external factors (Fisher gives the example of the sun spot theory which sought to explain economic cycles through astronomical cycles) and “free cycles”, namely, cycles whose prime movers are not external, but inherent and intrinsic to the cycle. It is to this latter case, the free cycles, that Fisher wants to explain taking what he calls a “economic science” point of departure as opposed to economic history which only describe business cycles. Fisher wants to identify relations and tendencies that drive the cycles. His main idea is that the main two factors are (1) over-indebtedness and (2) deflation, the former being more important than the latter. The state of over-indebtedness leads to worries on the part of either debtors and/or creditors. As debtors try to sell their assets to pay back their debts, the quantity of money in circulation and the velocity of money decline (agents consume less to save). This leads to a fall in price level and a paradoxical situation where the more economic agents try to get rid of their debts, the more its value in real terms rise: “the more the debtors pay, the more they owe” (Fisher 1933: 54). The fall in general price level leads to a fall of profit rate and hence to a decline of production and employment. This leads to general pessimism, loss of confidence and hoarding, the value of money rises even more, prices decline further and the real interest rate rises. Fisher argues it would be insane not to intervene through economic policy and that the economy should not be left to natural market forces: reflation policy becomes necessary. However, it would not be sufficient, since the main problem of the tendency towards over-indebtedness remains. This leads Fisher to explore some of the reasons which drive the economy towards this state of over-borrowing and over-indebtedness. He argues, finally, that the mains factors are the new investments opportunities associated with great profit expectations (because it will encourage agents to borrow to invest). Those new investments opportunities are, in return, created by new inventions and technological breakthrough and progress.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/myblog/posts/About cycles and crises/babsonchart.jpg" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Babson presenting one of his famous babsoncharts on business cycles</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>To sum up, analysis of business cycles began first with inquiries and reflections around market gluts and economic crises. As we saw, Marx and Marxists scholars can be considered as pioneers in the analysis of crises and business cycles. Outside Marxism, it was W.C. Mitchell who gave the greater impetus into business cycles analysis. As stated above, Mitchell and Marx analysis of business cycles as profit driven are similar. Nonetheless, I think Marx’ investigation goes one step further, as he also sought to explain the origins of profit through exploitation and the extraction of surplus value. Notwithstanding, Mitchell’s contribution improved greatly the quantitative measurement and analysis of business cycles in such a way that it even drew a mainstream neoclassical economist such as Irving Fisher to elaborate a bold economic theory regarding business cycles. However, if Fisher’s debt-deflation theory provides insights into the economic mechanisms of economic crises and cycles, it is limited by the fact that it neglects the political economy/ political aspects which have an important role in business cycles (one could also argue that Mitchell also omits this fact, as many business cycles economists did). In conclusion, I would like to acknowledge the important works of Kalecki, who, in that matter, successfully incorporated a political economy dimension into business cycle analysis, an analysis I find particularly valuable (this theory is briefly explained in Foley’s article). In his political business cycle theory, Kalecki argues that cycles are characterized by shifting class alliances between the working class, the business class and the rentiers: during a crisis, the business class pressures the state to revive the economy, aligning thus its class interests with those of the working class. As production and employment rise thanks to state intervention, the business side becomes progressively more reluctant to it, because it loses bargaining power (jobs are secured and workers do not fear unemployment and sacks). As employment and inflation rise, the capitalists have incentive to pressure the state to conduct more orthodox economic policy: this puts an end to the expansion phase of the political business cycle until the economy slumbers once again in a crisis in which state intervention is once again required and so on and so forth. Foley argues that Kalecki’s political business cycle model is a recent underconsumptionist theory, because it stresses the incapacity/unwillingness of a capitalist-dominated society to tolerate a high level of aggregate demand for too long.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
+  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
+</item>
+<item>
+  <title>Inikori about Slavery and the Industrial Revolution</title>
+  <link>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="book-review-africans-and-the-industrial-revolution-in-england-a-study-in-international-trade-and-economic-development.-by-joseph-e.-inikori.-cambridge-cambridge-university-press-2002.-576-p." class="level1">
+<h1>Book Review Africans and the Industrial Revolution in England: A Study in International Trade and Economic Development. By JOSEPH E. INIKORI. Cambridge: Cambridge University Press, 2002. 576 p.</h1>
+<p>Africans and the Industrial Revolution in England written and published in 2002 by Joseph Inikori is certainly one of the major contributions on the role of Africans and international trade in England’s industrialization and long run economic development. Joseph Inikori is an Anglo-Nigerian historian currently professor in the university of Rochester and conducting research in Atlantic World Economic History. He has published several articles on Atlantic slave trade and its impact on England economic development, the culmination of his work and research being Africans and the Industrial Revolution in England which received the Association of African Studies Best Book Prize in 2003, one year after publication. This illustrates the importance of Inikori’s book for African scholars and researchers who are eager to demonstrate the historical importance of Africa and slavery of Africans in the rise of Western Europe (but mostly here England) modernity, economic supremacy and development.</p>
+<p>The present book has hence established itself as a reference and magnus opus on the causal links between African slavery and the Industrial Revolution in England in the 18th century. It is interesting to note that there are only few economic history books which stress with so much focus and insistence on this causal link between African slaves, Atlantic trade and Industrial Revolution. As Inikori argues in his book, the only major contribution on that matter before him was Eric Williams’ Capitalism and Slavery (1944) which explained that slave trade and production directly contributed to the Industrial Revolution thanks to huge amounts of profits made by British merchants and slavers who then re-invested in the productive sectors which were the basis of the Industrial Revolution. In other words, the accumulation of capital made through African slavery allowed for England’s industrial financial investment at the dawn of the Industrial Revolution. However, Williams’ profit-based argument was heavily criticized, the main critics being about the final use of those slavery-based profits (were they really invested in the Industrial Revolution?); the fact that Britain industrialization required no so much profits and that the funds mainly came from England’s own domestic resources. Inikori is aware of those matters and argues that Williams’ thesis is not so well suited anymore to explain England’s industrialization. He also tries to explain Williams’ focus on profits because of the influence of Keynesianism (in which profits play a great role for investments and growth and Williams wrote and published in the Keynesian Era) but adds that Keynesian theory is valid for already well-developed economies and not so much for pre-industrial England (p.&nbsp;5-6).</p>
+<p>One could thus consider Inikori’s book as an attempt to go beyond Williams’ argument and “modernize” the explanations of the links between African slavery, Atlantic commerce and England’s development. To reach this goal, Inikori is heavily influenced by development economics’ conceptual framework. He draws inspirations and insights from prominent development economists such as Albert Otto Hirschman (1915-2012) and Hollis Chenery (1918-1994). The main contribution Inikori draws from development economics is the famous industrialization through import substitution model (ISI), for he argues that Industrial Revolution in England was “the first successful case of import substitution industrialization” (p.10). But what are the links between ISI, African slavery, Atlantic international trade and the Industrial Revolution? Inikori has to prove two mechanisms to support his thesis on the causal links between enslavement and exploitation of Africans, the rise of Atlantic commerce and the Industrial Revolution in England. The first mechanism is the causal link between Atlantic commerce and England’s Industrial Revolution (the former causing the latter). The second is the fact that growing Atlantic international trade and commerce were based on African slave labor in the Americas. We will see that the second mechanism is rather obvious and easily proved and that the first one is the main contentious part of the argument.</p>
+<p>Inikori argues that during the Middle Ages onwards (roughly 1086-1660 which is the focus of chapter 2) England developed progressively, from 1086 to 1300 and then from 1475 to 1660, an economy specialized in woolen textile industry and that this industry was mostly export led. This specialization in woolen textile manufactures was England’s first successful ISI accomplished in the 16th century and, along with steady improvements in agriculture, made South England relatively rich. Thus, from 1086 to 1660 England moved from agricultural subsistence production to production for market exchange (p.43). However, market demand reached a limit and England could develop its industry further only through new expanding market demand. Inikori makes an important difference between two types of ISIs: both consist in an economy initially producing primary goods for export which then tries to substitute its imports by import-replacing manufactures thanks to state policies (fist for consumer goods, then for intermediate and capital goods). The distinction between the two models is that the first rely exclusively on internal autonomous forces and the second starts to open at some point to international trade and manufactured exports take a central place. All of Inikori’s argument is to show that England’s success corresponds to the second model (p.&nbsp;150).</p>
+<p>New markets for British products were thus found thanks to Atlantic trade and commerce (America’s and Africa’s market demand) which were based on Africans slave labor. After constructing an impressive navy and establishing military dominance in Atlantic Sea in the late 16th century (for example after defeating the Invincible Armada in 1588) and therefore acquiring colonies in America, England obtained access to huge market outlets. However, Inikori does not elaborate further on England’s military dominance of Atlantic Sea and this decisive factor lacks an explanation in the author’s work: why was England in the end militarily superior to the Spanish or the Dutch? The book does not provide a precise answer and Inikori only focuses on shipping in chapter 6 to argue that England’s growing shipping industry was stimulated by rising demand for ships due to overseas trade.</p>
+<p>Regardless, it was the access to new markets in Africa and in America’s colonies which enabled England to further its industrialization through import substitution strategies. Imports of cotton textile from India, for instance, gave impetus to local English entrepreneurs to try to venture into cotton textile manufacturing. Protectionist policies, access to outlets in British American colonies and Africa and raw cotton provided by American colonies where production in plantations were based on Africans slaves labor permitted England to successfully achieve import substitution in the cotton industry which is recognized as one of the most crucial sectors of the Industrial Revolution. The reader could be surprised of the relatively few pages focusing on cotton industry in chapter 9 (about 20 pages: pp.427-451) since the Industrial Revolution mostly began with the cotton industry and its technological improvements, but Inikori is right when he argues that this industry developed under the impetus of access to overseas African and American markets and based on raw cotton provided by slave labor in British American colonies. Nonetheless, I think we could also consider the possibility of counterfactual although it may sound speculative: could have England developed its revolutionary cotton industry without African slave labor? This question is a matter of substitutability degree of labor and imports: one could argue that the specialization of Egypt in raw cotton production in the middle of the 19th shows that imports of raw cotton was perhaps more flexible than what Inikori seems to consider.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://en.wikipedia.org/wiki/Atlantic_slave_trade#/media/File:Slaves_resting_by_Rugendas_01.jpg"><img src="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/slavery.jpg" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Recently bought slaves in Brazil on their way to the farms of the landowners who bought them c.&nbsp;1830 (credit: wikipedia)</figcaption><p></p>
+</figure>
+</div>
+<p>Regardless, Inikori’s methodological work is impressive: it offers vast amounts of quantitative data in table form as well as qualitative data through archival researches of a great varieties of historical reports and records. His quantitative and qualitative archival research and evidence allow the author to provide critical reviews of the existing literature on the subject and even to re-evaluate some estimations for example in chapter 5 in which he discusses the measurement of the importance of slave trading between 1600-1850. However, Inikori’s data analysis seems sometimes futile and can blur his main argument as well as confusing and overwhelming the reader. For instance, the author spends pages of digression discussing in vain population and GDP estimates of Domesday England in chapter 2 or Africa and America population estimates before Atlantic trade’s emergence in chapter 4.</p>
+<p>Perhaps the book’s boldest argument and examination to prove the link between Atlantic trade and England’s Industrial Revolution lies in its regional analysis of pre-industrial England. In fact, the regions which started the Industrial Revolution: Lancashire, Yorkshire and the West Midlands (but mostly Lancashire), were the poorest regions of England at the time with relatively low population, low wages and poor overall wealth. As soon as those regions connected to overseas markets, industry, wages and population grew. Inikori carefully shows that population growth was autonomous in those regions (no migration from agriculturally productive and wealthy South regions), that industry growth was not led by internal demand since there was no national market yet until railroads construction in the 19th century and finally that technological innovations took place in those regions and were thus stimulated by high overseas demand. The only reason left to explain North West England industrial growth is thus the access to overseas markets in America and Africa. This is the central argument of the book and I think the most important, since proving that Atlantic trade was based on Africans’ slave labor is rather indisputable, obvious and largely admitted in the literature.</p>
+<p>In the end, Africans and the Industrial Revolution in England definitely shows that African slave labor significantly contributed to England’s Industrial Revolution. Notwithstanding, its precise form of contribution, whether it was the decisive and unique causal factor or a factor among many remains a contentious matter. Inikori seems to consider that it was the decisive and unique factor, taking thus, in my opinion, an excessive straightforward position. Economic history phenomenon can rarely be explained through unique factors and when one focuses too much on one possible factor, other important causes can easily be overlooked. Other research exploring the role of colonization of America by England in the Industrial Revolution without taking such exaggerated straightforward perspective can be found for example in Pomeranz’ Great Divergence (2000) which combines multiple factors such as access to overseas markets and lands through colonization of North America (joining thus partly Inikori’s argument) and access to coal to explain England’s Industrial Revolution and which is, I think, a good complement to Inikori’s work. I also believe that Inikori attributes excessive importance on Atlantic trade, discounting the important role of trade with India and China which were also crucial (as we saw, cotton textiles imported by the English East India Company which stimulated ISI strategy in this sector came from India and another example is China’s demand for silver which made America’s silver mines profitable for decades).</p>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
+  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
+</item>
+<item>
+  <title>Sugar, Cochineal and power</title>
+  <link>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="comments-on-sidney-mintzs-sweetness-and-power-and-carlos-marichals-mexican-cochineal-and-the-european-demand-for-american-dyes-1550-1850" class="level2">
+<h2 class="anchored" data-anchor-id="comments-on-sidney-mintzs-sweetness-and-power-and-carlos-marichals-mexican-cochineal-and-the-european-demand-for-american-dyes-1550-1850">Comments on Sidney Mintz’s “Sweetness and Power” and Carlos Marichal’s “Mexican Cochineal and the European Demand for American Dyes, 1550-1850”</h2>
+<p>“The wealth of societies in which the capitalist mode of production prevails appears as an ‘immense collection of commodities’ […] Our investigation therefore begins with the analysis of the commodity” <span class="citation" data-cites="marx_capital_1990">(Marx 1990, 124)</span>. So is the incipit of one of the most famous and important books in political economy. If Marx saw in the commodity the most crucial and elementary unit of abstraction in the capitalist mode of production, so much that he spent the first and most tedious pages of his magnus opus dedicated to its analysis and decortication, the commodity per se, that is, as a focus of historical and economic analysis, is rather rare in economics and economic history. For instance, mainstream economics reduces commodities to any objects or services bringing utility to consumers, abstracting from its historical and political dimensions.</p>
+<p>Nonetheless, the two texts I will review in this critical summary are attempts to fill this gap and put the commodity back into the heart of not only economics, but also of social and historical analysis. These two texts share indeed a common characteristic: they both focus on a single commodity. Mintz’ book chapter Power (from Sweetness and Power, The Place of Sugar in Modern History <span class="citation" data-cites="mintz_power_1985">(1985)</span>) focuses on sugar from an anthropological perspective whereas Marichal’s book chapter Mexican Cochineal and the European Demand for American Dyes, 1550-1850 <span class="citation" data-cites="marichal_mexican_2006">(2006)</span> concentrates on cochineal from an economic history point of view. Another peculiar common characteristic of the two papers is that sugar and cochineal, a dyestuff product which is used for its crimson color, are both important inputs for a great number of final products: they are both illustrative examples of intermediary goods constituting a great part of global value chains.</p>
+<p>In this critical summary, I will first summarize those two texts by outlining their main hypotheses and arguments in a comparative approach. I will then make some critical remarks and comments on what I believe are the positive aspects and chief contributions as well as the flaws and weaknesses of those two papers.</p>
+<section id="tracing-back-sugar-and-cochineal-the-role-of-demand" class="level3">
+<h3 class="anchored" data-anchor-id="tracing-back-sugar-and-cochineal-the-role-of-demand">Tracing back sugar and cochineal: the role of demand</h3>
+<p>Marichal’s analysis of the rise and decline of cochineal production and trade rests upon three main hypotheses. The first one is that the prosperity of cochineal production and trade in Oaxaca, the main farming region of cochineal in Mexico, from the 16th century on was demand led. He advances two reasons for this strong demand, mostly driven by the upper classes of Europe, namely the Church, the nobility, and other elites. One reason is cultural and symbolic: cochineals produce a particularly magnificent crimson color that the nobility and the church associated with symbols of prestige and power. The other reason is physical: cochineal has physical properties which make it materially more advantageous compared to its competitors (kermes for example). This strong demand thus made cochineal highly profitable. Trade, production, and prices thus boomed from the 16th until the late 18th century which marked the start of a long run decline. Mintz’ analysis of how sugar became such an essential and highly demanded commodity is more nuanced. In fact, Mintz’s text is an attempt to answer the following question: how and why did sugar become one of the most widespread and consumed commodities in British society? An obvious and straightforward answer would be, as Marichal argues in the cochineal’s case, that humans are naturally inclined to accept sugar in their consumption habits because of its physical properties. As an anthropologist, Mintz knows that there is nothing natural in the growth of sugar demand. More elaborated answers would be for instance that sugar’s consumption habits spread from the upper classes to the lower classes through imitation (what Mintz calls “intensification”), or the constant tendency of sugar prices to fall. None of these answers are convincing enough for Mintz, whose argument is that the structural transformations of the working conditions and schedules of the British workers, during a transition process from an agricultural economy to an industrial one from circa the 16th century to the 19th century, were the real reason behind sugar’s tremendous prosperity as an essential commodity with strong meaning and signification for its consumers. Mintz explores the dual “meaning” of sugar. On the one hand, sugar replaced honey as a signification of sweetness, happiness, endearment, and tenderness (the “inside meaning” of sugar in anthropological terms) for the common British people. On the other hand, sugar became a symbol of power and prosperity for the imperialistic British ruling classes which had an interest in sugar production and trading made possible by the exploitation of African slaves in the Caribbean plantations. This represents the “outside meaning” of sugar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/antigua.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A sugarcane plantation on Antigua in 1823. Credit: Wikimedia Commons</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="making-sugar-and-cochineal-available-imperialism-colonization-and-slavery" class="level3">
+<h3 class="anchored" data-anchor-id="making-sugar-and-cochineal-available-imperialism-colonization-and-slavery">Making sugar and cochineal available: imperialism, colonization and slavery</h3>
+<p>Secondly, Marichal argues that the stability and success of cochineal’s mode of production were the results of the repartimiento system. The latter was the product of active Spanish colonial policy and merchants’ activity: local Oaxaca bureaucrats obtained funds from Mexican merchants and lent those funds to indigenous cochineal farmers. Indigenous farmers had then to produce cochineals and pay back the functionaries in kind. Marichal argues that the end of the repartimiento system was one of the main reasons for the decline of cochineal production after the late 18th century, which as further exacerbated by the invention of synthetic dyes during the second industrial revolution during the 19th century. This is the third and last hypothesis of Marichal. For Mintz, the availability of sugar was also the product of deliberate British imperialistic policy and is linked to the “outside meaning” explained above. However, the anthropologist argues that sugar demand itself was a product of British government policy: demand on the side of the British masses had to be planned, constructed and stimulated as well. The introduction of rum in the British army, of sugar in almshouses and the abolition of tariffs and duties are example of this active policy so that both “outside” and “inside” meanings of sugar could become unified. Critics and comments</p>
+<p>These two texts are both instructive and captivating. They offer an enlightening history of sugar and cochineal, giving a lot of data and information on the economic history, modes of production and demand formation processes of those two commodities. The heuristic approach of taking a commodity as a unit of analysis is certainly the most interesting aspect of the two papers.</p>
+<p>For instance, by focusing on cochineal production in Oaxaca, Marichal deconstructs some prevalent commonplaces of Spanish colonial history and mercantilist policy. One learns that Spaniards were not only interested in silver and gold, which is a widespread cliché in economic history , and that they in fact also sought to capture and exploit other profitable businesses as the market for dyes. The description of the repartimiento system and of its functional role in the stability of cochineal production are convincing and show to what extent Spanish colonization, traditionally considered as mercantilist, was capitalist regarding some sectors (here cochineal production and exchange). However, his argument has some blind spots. First, he totally neglects the importance of class struggle within the repartimiento system and seems to consider the Mexican Revolution of 1820 only as an exogenous shock to the system, without considering the possibility that the fall of the repartimiento system could have been the result of its own contradictions and could have been (this is only a hypothetical possibility) somehow linked to internal class struggle, social movements and uprisings or even the Mexican Revolution. Second, the history of cochineal production and use in Latin America prior to colonialism and how it became monopolized by the Spaniards are overlooked. Finally, it would have been interesting to grant some attention to the resilience of cochineal production despite its decline after the second industrial revolution, since the product is still used today and somehow managed to escape its demise to some extent.</p>
+<p>Mintz, however, offers an even more insightful analysis and it is not by chance that the book from which this chapter is taken from has become a classic, giving rise to an entire new field in anthropology, namely the anthropology of food. The argument is explained through a wide variety of anthropological concepts (intensification, extensification, outside and inside meanings…) which are interesting when applied to an economic subject such as the sugar commodity. The most powerful aspect of this text is its confrontation to some classical evidence that are omnipresent and taken for granted in economics and economic history: the naturality of sugar demand which is generally considered as given and self-evident, the important role given to price fluctuation and even to free choice and individual agency. The role of prices, meanings, demand, individual choices and liberty are carefully examined and put into question.</p>
+<p>Unfortunately, Mintz does not support his own thesis. He even admits at the end that his hypothesis, the success of sugar in British society as a result of structural changes in schedule, working conditions and daily life of the British workers, is “difficult or impossible to prove” (p.&nbsp;186) and he regresses his argument stating that the nature of sugar must also have played a role in its success. Such contradictions are present throughout the text and tend to make difficult any attempt to clearly grasp Mintz’ arguments and positions. Another example of such contradictions is the distinctive place of sugar between “intensification” (explained above) and “extensification”, when meanings and habits are indigenous to a specific group or class and spread without imitation. Mintz states that sugar was particular in its high degree of extensification among the British masses and that the latter developed meanings towards sugar independently from the upper classes. However, Mintz does not develop further this interesting idea and his description of sugar’s meanings through literature is not sufficient and convincing enough to explain what sugar meant to the working class.</p>
+</section>
+</section>
+<section id="summing-up" class="level2">
+<h2 class="anchored" data-anchor-id="summing-up">Summing up</h2>
+<p>To sum up, Marichal’s book chapter on the cochineal is part of a wider project destined to put commodities back into the heart of economics and economic history. The author has three main hypothesis covering cochineal’s economic history. First, the tremendous growth in production and trade of this commodity was led by the demand of European upper classes. Second, the stability of the production process in Oaxaca was based on the repartimiento system. Finally, the decline of cochineal production and trade was the consequence of the second industrial revolution thanks to the invention of synthetic dies. Whereas cochineal is nowadays more of a relic from the past despite some relative resilience that should deserve some further attention (cochineal’s carminic acid is still used in some final products like syrup for example), sugar represents today the paroxysm of consumption under capitalism and is perhaps the most emblematic and embodiment of the commodity, as a crucial input in value chains as well as a final product. Mintz’ Sweetness and Power has since become a classic in anthropology, laying the foundation of a new field focused around the anthropology of food. I tried through this critic to show that Mintz’ argument is more than just a link between British demand for sugar and the exploitation of African slaves in the Caribbean plantations. Mintz’ analysis provides deeper investigations of the role of meanings attributed to sugar as well as for the role of both demand and supply, the political and power interests in the rise of one of nowadays’ most consumed, omnipresent, and controversial commodity.</p>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-marichal_mexican_2006" class="csl-entry">
+Marichal, Carlos. 2006. <span>“Mexican Cochineal and the European Demand for American Dyes, 1550-1850.”</span> In <em>From Silver to Cocaine : Latin American Commodity Chains and the Building of the World Economy, 1500-2000</em>. Duke University Press.
+</div>
+<div id="ref-marx_capital_1990" class="csl-entry">
+Marx, Karl. 1990. <em>Capital: A Critic of Political Economy Volume 1</em>. Penguin Classics.
+</div>
+<div id="ref-mintz_power_1985" class="csl-entry">
+Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The Place of Sugar in Modern History</em>, 151–86. Viking.
+</div>
+</div></section></div> ]]></description>
+  <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
+  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/antigua.PNG" medium="image"/>
+</item>
+<item>
+  <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
+  <link>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="note-this-post-is-not-finished-and-still-in-progress" class="level2">
+<h2 class="anchored" data-anchor-id="note-this-post-is-not-finished-and-still-in-progress">Note: this post is not finished and still in progress</h2>
+<p>Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its <a href="https://wpid.world/resources/">online database</a> got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a “educational” or, in Inglehart terms, a “postmaterial” or “cultural” cleavage <span class="citation" data-cites="gethin_political_2021">(Gethin, Martinez-Toledano, and Piketty 2021)</span> <span class="citation" data-cites="inglehart_silent_1971">(Inglehart 1971)</span>. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.</p>
+<p>This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found <a href="https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview">here</a>. I will test if the support for the left is linked positively with the education level and negatively with income.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<p>To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable “f10300” which asked for which party the respondent voted in the 2015 election. From this variable, I create a dummy variable taking value one if the respondant voted for either the socialist party (PS), the green (PES), solidarité or Swiss labor party (PST-POP). Note that those choices can be controversial and a matter of debate because I don’t include the Social-christian party and I include the greens. This is a matter of debate if those parties can be classified as left or not, but I will not go further about this.</p>
+<p>Regarding the independ variables, the variable “f28910” asks the gross monthly houshold income of the individual and the variable has 15 income brackets (we thus do not have directly the income of the respondant). For education, “f21310” asks the highest level of achieved education. Here is below descriptive statistics for these variables:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Education level</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Gross monthly houshold income</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>1 = vote for a left-wing party</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">vote.left</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">prop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5873</td>
+<td style="text-align: right;">0.7397657</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2066</td>
+<td style="text-align: right;">0.2602343</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Some observations can already be stressed with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird “peak” in the income graph. Indeed, about 7.5% declared having an income superior than 15’000, which seems rather bizarre at least to me and I still have no explanation for this.</p>
+</section>
+<section id="first-model-binary-logistic-regression" class="level2">
+<h2 class="anchored" data-anchor-id="first-model-binary-logistic-regression">First model: binary logistic regression</h2>
+<p>Let’s first start with a logistic regression. I simply regress the vote for the left with income and education. I leave education and income coded as numerical variables for now, since they have enough categories this is not big problem. Of course, that would have been better if I had directly the income of each individual and not brackets. Moreover, I could still do a Pareto interpolation, but I can’t due to lack of information: I don’t have the average income (total and per bracket) of the sample.</p>
+<p>The model is thus:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ALog(%5Cfrac%7BP(left)%7D%7B1%20-%20P(left)%7D)%20=%20%5Cbeta_0%20+%20%5Cbeta_1income_i%20+%20%5Cbeta_2educ_i%20+%20%5Cepsilon_i%0A"> Note that this is a very first step, I will step by step complexify this model.</p>
+<p>Here is the regression table:</p>
+
+<table style="text-align:center">
+<caption>
+<strong>Model 1: binary logit regression (odd ratios)</strong>
+</caption>
+<tbody><tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+vote.left
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Gross.monthly.hh.income
+</td>
+<td>
+0.953<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.007)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Education.level
+</td>
+<td>
+1.114<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.008)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.199<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.078)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+7,594
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-4,311.174
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+8,628.349
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<p>Here is an odds ratios plot to have a better visualization:</p>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-gethin_political_2021" class="csl-entry">
+Gethin, Armory, Clara Martinez-Toledano, and Thomas Piketty. 2021. <em>Political Cleavages and Social Inequalities a Study of Fifty Democracies, 1948–2020</em>. Harvard Univeristy Press.
+</div>
+<div id="ref-inglehart_silent_1971" class="csl-entry">
+Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerational Change in Post-Industrial Societies.”</span> <em>The American Political Science Review</em> 65 (4): 991–1017. <a href="https://www.jstor.org/stable/1953494">https://www.jstor.org/stable/1953494</a>.
+</div>
+</div></section></div> ]]></description>
+  <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
+  <pubDate>Wed, 05 Apr 2023 18:11:04 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
+</item>
+</channel>
+</rss>

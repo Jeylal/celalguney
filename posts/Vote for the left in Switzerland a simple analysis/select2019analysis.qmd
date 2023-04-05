@@ -117,7 +117,7 @@ Let's first start with a logistic regression. I simply regress the vote for the 
 The model is thus:
 
 $$
-Log(\frac{P(left)}{1 - P(left)}) = \beta_0 + \beta_1income + \beta_2educ
+Log(\frac{P(left)}{1 - P(left)}) = \beta_0 + \beta_1income_i + \beta_2educ_i + \epsilon_i
 $$
 Note that this is a very first step, I will step by step complexify this model.
 
