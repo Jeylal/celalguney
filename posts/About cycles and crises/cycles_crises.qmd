@@ -3,6 +3,8 @@ title: "Crises & cycles"
 format: html
 editor: visual
 image: crises_cycles.JPG
+execute: 
+  freeze: true
 ---
 
 # Crises & cycles

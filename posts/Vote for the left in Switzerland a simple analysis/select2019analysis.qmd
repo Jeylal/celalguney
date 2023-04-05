@@ -1,0 +1,167 @@
+---
+title: "The vote for the left in the 2015 Swiss National Council Election: a short analysis"
+format: html
+editor: visual
+bibliography: biblio.bib
+image: image.png
+execute: 
+  freeze: true
+---
+
+## Note: this post is not finished and still in progress
+
+Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its [online database](https://wpid.world/resources/) got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a "educational" or, in Inglehart terms, a "postmaterial" or "cultural" cleavage [@gethin_political_2021] [@inglehart_silent_1971]. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.
+
+This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income.
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+setwd("F:/myblog/posts/Vote for the left in Switzerland a simple analysis")
+library(tidyverse)
+library(nnet)
+library(haven)
+library(sjlabelled)
+library(knitr)
+library(gridExtra)
+library(stargazer)
+options(scipen = 999)
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+rm(list = ls())
+
+panel2019 <- read_sav("panel2019.sav")
+names(panel2019)[which(colnames(panel2019) == "W1_4_f28910")] <- "Gross.monthly.hh.income"
+names(panel2019)[137] <- "Education.level"
+
+panel2019$religion <- ifelse(panel2019$W1_f20750 == 1, 1,
+                             ifelse(panel2019$W1_f20750 == 2, 0, NA))
+
+panel2019$gender <- ifelse(panel2019$W1_sex == 1, 0, 1)
+
+panel2019$education.level <- ifelse(panel2019$Education.level %in% c(1, 2, 3, 48), 1,
+                                            ifelse(panel2019$Education.level %in% c(4, 5, 6, 7), 2,
+                                                   ifelse(panel2019$Education.level %in% c(9:11), 3,
+                                                          ifelse(panel2019$Education.level %in% c(12, 13), 4, NA))))
+
+
+
+panel2019$vote.left <- ifelse(panel2019$W1_f10850rec %in% c(30, 50, 130, 140), 1, 0)
+
+panel2019$gender <- factor(panel2019$gender, levels = c(0,1), labels = c("Male", "Female"))
+
+datareg <- panel2019 %>% 
+  select("vote.left", "education.level", "Education.level", "Gross.monthly.hh.income", "religion", "gender" )
+```
+
+To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "f10300" which asked for which party the respondent voted in the 2015 election. From this variable, I create a dummy variable taking value one if the respondant voted for either the socialist party (PS), the green (PES), solidarité or Swiss labor party (PST-POP). Note that those choices can be controversial and a matter of debate because I don't include the Social-christian party and I include the greens. This is a matter of debate if those parties can be classified as left or not, but I will not go further about this.
+
+Regarding the independ variables, the variable "f28910" asks the gross monthly houshold income of the individual and the variable has 15 income brackets (we thus do not have directly the income of the respondant). For education, "f21310" asks the highest level of achieved education. Here is below descriptive statistics for these variables:
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| fig-cap: Education level
+
+
+datareg %>% count(as_label(Education.level)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ggplot()+
+  aes(y = reorder(`as_label(Education.level)`, -prop), prop)+
+  geom_col()+
+  ylab("")+
+  theme_bw()
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: Gross monthly houshold income
+
+datareg %>% count(as_label(Gross.monthly.hh.income)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ggplot()+
+  aes(x = `as_label(Gross.monthly.hh.income)`, y = prop) %>% 
+  geom_col()+
+  theme_bw()+
+  xlab("")+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+
+```
+
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+
+datareg %>% count(vote.left) %>% 
+  mutate(prop = n/sum(n)) %>% kable(caption = "1 = vote for a left-wing party")
+```
+
+Some observations can already be stressed with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird "peak" in the income graph. Indeed, about 7.5% declared having an income superior than 15'000, which seems rather bizarre at least to me and I still have no explanation for this.
+
+## First model: binary logistic regression
+
+Let's first start with a logistic regression. I simply regress the vote for the left with income and education. I leave education and income coded as numerical variables for now, since they have enough categories this is not big problem. Of course, that would have been better if I had directly the income of each individual and not brackets. Moreover, I could still do a Pareto interpolation, but I can't due to lack of information: I don't have the average income (total and per bracket) of the sample.
+
+The model is thus:
+
+$$
+Log(\frac{P(left)}{1 - P(left)}) = \beta_0 + \beta_1income + \beta_2educ
+$$
+Note that this is a very first step, I will step by step complexify this model.
+
+Here is the regression table:
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| results: asis
+
+reg <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level, family = "binomial")
+
+
+stargazer(reg, type = "html", title = "Model 1: binary logit regression (odd ratios)", apply.coef = exp)
+
+```
+
+Here is an odds ratios plot to have a better visualization:
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| results: asis
+library(GGally)
+
+ggcoef_model(reg, exponentiate = TRUE)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

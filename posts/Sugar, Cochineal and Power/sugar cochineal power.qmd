@@ -5,6 +5,8 @@ format: html
 editor: visual
 bibliography: bibliosugarcochineal.bib
 image: antigua.PNG
+execute: 
+  freeze: true
 ---
 
 ## Comments on Sidney Mintz's "Sweetness and Power" and Carlos Marichal's "Mexican Cochineal and the European Demand for American Dyes, 1550-1850"
