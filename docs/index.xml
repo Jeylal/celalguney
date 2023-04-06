@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Wed, 05 Apr 2023 20:43:51 GMT</lastBuildDate>
+<lastBuildDate>Thu, 06 Apr 2023 08:14:23 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Wed, 05 Apr 2023 20:43:51 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Wed, 05 Apr 2023 20:43:51 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -95,14 +95,14 @@
 
 
 
-<p>What follows is a short demonstration on how to do chloropleth map in R studio. What follows was part a bonus task of a practical of one of my master’s courses on applied methods with R. I tried to do some maps and the result was good despite the fact that It can take a long time to figure out how to do. This post is thus for anyone who wants to see how maps can be done on R studio without wasting too much time.</p>
+<p>What follows is a short demonstration on how to do choropleth map in R studio and was part of a bonus task of a practical of one of my master’s courses on applied methods with R. I tried to do some maps and the result was good despite the fact that It can take a long time to figure out how to do. This post is thus for anyone who wants to see how maps can be done on R studio without wasting too much time.</p>
 <section id="description-of-some-variables-of-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="description-of-some-variables-of-the-dataset">Description of some variables of the dataset</h2>
 <table class="table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 26%">
-<col style="width: 65%">
+<col style="width: 20%">
+<col style="width: 21%">
+<col style="width: 57%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -215,8 +215,8 @@
 </tbody>
 </table>
 </section>
-<section id="chloropleth-maps" class="level1">
-<h1>Chloropleth maps</h1>
+<section id="choropleth-maps" class="level1">
+<h1>Choropleth maps</h1>
 <p>Let’s try to do some maps to visualize some of the dataset variables</p>
 <p>I first load the packages required to do maps on r.</p>
 <div class="cell">
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Wed, 05 Apr 2023 20:43:51 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Wed, 05 Apr 2023 20:43:51 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -754,7 +754,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Wed, 05 Apr 2023 20:43:51 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

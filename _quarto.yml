@@ -13,6 +13,8 @@ website:
         href: https://github.com/
       - icon: twitter
         href: https://twitter.com
+      - icon: envelope-fill
+        href: mailto:celal.gueney@etu.unige.ch
 format:
   html:
     theme: darkly
