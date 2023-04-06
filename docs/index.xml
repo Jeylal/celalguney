@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Thu, 06 Apr 2023 08:14:23 GMT</lastBuildDate>
+<lastBuildDate>Thu, 06 Apr 2023 15:50:20 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 15:50:20 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 15:50:20 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 15:50:20 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 15:50:20 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -551,39 +551,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<caption>1 = vote for a left-wing party</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">vote.left</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">prop</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">5873</td>
-<td style="text-align: right;">0.7397657</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2066</td>
-<td style="text-align: right;">0.2602343</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/http:/127.0.0.1:40085/chunk_output/E2665063b75fc19f/65970EB7/ckve2j4e42tvi/000010.png" class="img-fluid"></p>
 <p>Some observations can already be made with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird “peak” in the income graph. Indeed, about 7.5% declared having an income superior than 15’000, which seems rather bizarre at least to me and I still have no explanation for this.</p>
 </section>
 <section id="first-model-binary-logistic-regression" class="level2">
 <h2 class="anchored" data-anchor-id="first-model-binary-logistic-regression">First model: binary logistic regression</h2>
 <p>Let’s first start with a logistic regression. I simply regress the vote for the left with income and education. I leave education and income coded as numerical variables for now, since they have enough categories this is not big problem. Of course, that would have been better if I had directly the income of each individual and not brackets. Moreover, I could still do a Pareto interpolation, but I can’t due to lack of information: I don’t have the average income (total and per bracket) of the sample.</p>
 <p>The model is thus:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0ALog(%5Cfrac%7BP(left)%7D%7B1%20-%20P(left)%7D)%20=%20%5Cbeta_0%20+%20%5Cbeta_1income_i%20+%20%5Cbeta_2educ_i%20+%20%5Cepsilon_i%0A"> Note that this is a very first step, I will step by step complexify this model.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ALog(%5Cfrac%7BP(left)%7D%7B1%20-%20P(left)%7D)%20=%20%5Cbeta_0%20+%20%5Cbeta_1income_i%20+%20%5Cbeta_2educ_i%20+%20%5Cepsilon_i%0A"></p>
+<p>Note that this is a very first step, I will step by step complexify this model.</p>
 <p>Here is the regression table:</p>
 
 <table style="text-align:center">
@@ -740,6 +716,127 @@ Akaike Inf. Crit.
 </div>
 </div>
 </div>
+<p>We can see that the slope of the education level curve is steeper than the one for income: this means that the positive link between the level of education and the probability to vote for the left is greater than the negative with income. But let’s have a look directly at the marginal effects.</p>
+<p>There are a lot of different ways to compute marginal effects, which make the latter sometimes confusing because we don’t know which type of marginal effects are represented. I will here consider one type of marginal effects:</p>
+<ul>
+<li>Group-average marginal effects: slope estimates are produced for each row of the dataset used in computing the model. Then, the estimates can be grouped by the values of one of the regressor and the average for each group is computed.</li>
+</ul>
+<p>A first step in group-average marginal effects in R is to use the function “slopes” which calculate estimates of the slopes (marginal effects) for each observation used to compute the model in the first place. The term “variables” is for the variable for which the slopes are estimated and “by” the argument for</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">marginaleffectseduc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">slopes</span>(reg, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Education.level"</span>)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">head</span>(marginaleffectseduc)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+            Term Estimate Std. Error    z Pr(&gt;|z|)  2.5 % 97.5 %
+ Education.level   0.0185    0.00138 13.4   &lt;0.001 0.0158 0.0212
+ Education.level   0.0254    0.00223 11.4   &lt;0.001 0.0210 0.0298
+ Education.level   0.0222    0.00191 11.7   &lt;0.001 0.0185 0.0260
+ Education.level   0.0232    0.00204 11.4   &lt;0.001 0.0192 0.0272
+ Education.level   0.0217    0.00173 12.6   &lt;0.001 0.0183 0.0251
+ Education.level   0.0191    0.00150 12.7   &lt;0.001 0.0162 0.0221
+
+Columns: rowid, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vote.left, Gross.monthly.hh.income, Education.level </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">dim</span>(marginaleffectseduc)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7594   14</code></pre>
+</div>
+</div>
+<p>The dataframe has 7594 rows which is the same number of observation used in the model. We can then used the different values of income level (from 1 to 15) as grouped within which estimates are averaged:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">marginaleffectseduc <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;">group_by</span>(Gross.monthly.hh.income) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;">summarise</span>(<span class="at" style="color: #657422;">mean.slopes.educ =</span> <span class="fu" style="color: #4758AB;">mean</span>(estimate),</span>
+<span id="cb5-4">            <span class="at" style="color: #657422;">conf.high =</span> <span class="fu" style="color: #4758AB;">mean</span>(conf.high), <span class="do" style="color: #5E5E5E;
+font-style: italic;">## this is the same for the confidence interval</span></span>
+<span id="cb5-5">            <span class="at" style="color: #657422;">conf.low =</span> <span class="fu" style="color: #4758AB;">mean</span>(conf.low)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="ot" style="color: #003B4F;">-&gt;</span> game.educ</span>
+<span id="cb5-7"><span class="fu" style="color: #4758AB;">head</span>(game.educ)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  Gross.monthly.hh.income mean.slopes.educ conf.high conf.low
+  &lt;dbl+lbl&gt;                          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 1 [Less than 2'000 CHF]           0.0218    0.0251   0.0184
+2 2 [2'001-3'000 CHF]               0.0211    0.0243   0.0180
+3 3 [3'001-4'000 CHF]               0.0209    0.0240   0.0178
+4 4 [4'001-5'000 CHF]               0.0205    0.0236   0.0175
+5 5 [5'001-6'000 CHF]               0.0207    0.0238   0.0177
+6 6 [6'001-7'000 CHF]               0.0208    0.0239   0.0177</code></pre>
+</div>
+</div>
+<p>A plot can then be made to have a better view of the average marginal effects/slopes of education for each group of income:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">game.educ <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> Gross.monthly.hh.income, <span class="at" style="color: #657422;">y =</span> mean.slopes.educ)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;">geom_line</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;">geom_ribbon</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">ymin =</span> conf.low, <span class="at" style="color: #657422;">ymax =</span> conf.high), <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.5</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-7">  <span class="fu" style="color: #4758AB;">theme_bw</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-8">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Group-average marginal effect of education"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The slope of education level decreases on average with higher values of income group. This means that even if the probability to vote for the left is linked positively with education level, this link is weaker for higher income groups. However, it is not so much weaker because even though th line is downward slopping, it remains rather flat.</p>
+<p>Normally, the function plot_slope should produce the same graph:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;">plot_slopes</span>(reg, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Education.level"</span>, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Let’s do the same for income:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">marginaleffectsinc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">slopes</span>(reg, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>)</span>
+<span id="cb9-2">game.inc <span class="ot" style="color: #003B4F;">&lt;-</span> marginaleffectsinc <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-3">  <span class="fu" style="color: #4758AB;">group_by</span>(Education.level) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;">summarise</span>(<span class="at" style="color: #657422;">mean.slopes.inc =</span> <span class="fu" style="color: #4758AB;">mean</span>(estimate),</span>
+<span id="cb9-5">            <span class="at" style="color: #657422;">conf.high =</span> <span class="fu" style="color: #4758AB;">mean</span>(conf.high),</span>
+<span id="cb9-6">            <span class="at" style="color: #657422;">conf.low =</span> <span class="fu" style="color: #4758AB;">mean</span>(conf.low)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-7">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="ot" style="color: #003B4F;">-&gt;</span> game.inc</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">game.inc <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb10-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> Education.level, <span class="at" style="color: #657422;">y =</span> mean.slopes.inc)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-4">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-5">  <span class="fu" style="color: #4758AB;">geom_line</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-6">  <span class="fu" style="color: #4758AB;">geom_ribbon</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">ymin =</span> conf.low, <span class="at" style="color: #657422;">ymax =</span> conf.high), <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.5</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-7">  <span class="fu" style="color: #4758AB;">theme_bw</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-8">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Group-average marginal effects of income"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here the result is more interesting: the average marginal slope of income is negative for each education level but this average decreases significantly for higher level of education. This implies that the probability to vote for the left is linked negatively with income group and that this negative link is strengthened by higher level of education. Rich and highly educated people have thus a very low probability to vote for the left.</p>
+<p>Another way to look at the effect of the two independent variable on the probability to vote for the left is to look at the predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">predictionseduc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">predictions</span>(reg, <span class="at" style="color: #657422;">variables =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>))</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;">plot_predictions</span>(reg, <span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-2">  <span class="fu" style="color: #4758AB;">scale_color_brewer</span>(<span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-3">  <span class="fu" style="color: #4758AB;">scale_fill_brewer</span>(<span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-4">  <span class="fu" style="color: #4758AB;">theme_bw</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-5">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="fl" style="color: #AD0000;">0.5</span>, <span class="fl" style="color: #AD0000;">0.7</span>),</span>
+<span id="cb12-6">        <span class="at" style="color: #657422;">legend.background =</span> <span class="fu" style="color: #4758AB;">element_blank</span>()) <span class="ot" style="color: #003B4F;">-&gt;</span>plotpredicteduc</span>
+<span id="cb12-7"></span>
+<span id="cb12-8"><span class="fu" style="color: #4758AB;">plot_predictions</span>(reg, <span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="st" style="color: #20794D;">"Education.level"</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-9">  <span class="fu" style="color: #4758AB;">scale_color_brewer</span>(<span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-10">  <span class="fu" style="color: #4758AB;">scale_fill_brewer</span>(<span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-11">  <span class="fu" style="color: #4758AB;">theme_bw</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-12">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.position =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="fl" style="color: #AD0000;">0.8</span>, <span class="fl" style="color: #AD0000;">0.8</span>),</span>
+<span id="cb12-13">        <span class="at" style="color: #657422;">legend.background =</span> <span class="fu" style="color: #4758AB;">element_blank</span>())<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb12-14">  <span class="fu" style="color: #4758AB;">ylab</span>(<span class="st" style="color: #20794D;">""</span>) <span class="ot" style="color: #003B4F;">-&gt;</span> plotpredictincome</span>
+<span id="cb12-15"></span>
+<span id="cb12-16">cowplot<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">plot_grid</span>(plotpredicteduc, plotpredictincome)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
 
@@ -754,7 +851,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Thu, 06 Apr 2023 08:14:23 GMT</pubDate>
+  <pubDate>Thu, 06 Apr 2023 15:50:20 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

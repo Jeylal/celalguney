@@ -12,7 +12,7 @@ execute:
 
 Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its [online database](https://wpid.world/resources/) got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a "educational" or, in Inglehart terms, a "postmaterial" or "cultural" cleavage [@gethin_political_2021] [@inglehart_silent_1971]. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.
 
-This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income.
+This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income. 
 
 ```{r}
 #| warning: false
@@ -29,6 +29,7 @@ library(stargazer)
 library(marginaleffects)
 library(arm)
 library(plot3logit)
+library(RColorBrewer)
 options(scipen = 999)
 ```
 
@@ -101,15 +102,33 @@ datareg %>% count(as_label(Gross.monthly.hh.income)) %>%
 
 ```
 
-
 ```{r}
 #| warning: false
 #| message: false
 #| echo: false
+#| out-width: 100%
+#| include: false
 
-datareg %>% count(vote.left) %>% 
-  mutate(prop = n/sum(n)) %>% kable(caption = "1 = vote for a left-wing party")
+    color <- colorRampPalette(brewer.pal(8, "Set1"))(length(unique(panel2019$W1_f10850rec)))
+
+    panel2019 %>% 
+      ggplot()+
+      aes(y = as_label(W1_f10850rec), fill = as_label(W1_f10850rec))+
+      geom_bar()+
+      theme_minimal()+
+      theme(axis.ticks = element_blank(),
+            axis.text.y = element_blank())+
+      xlab("")+
+      scale_fill_manual(values = color)+
+      labs(title = "Results of the 2015 Swiss National Council election")+
+      theme(
+            legend.key.size = unit(0.2, "cm"))
+
+    datareg %>% count(vote.left) %>% 
+      mutate(prop = n/sum(n)) %>% kable(caption = "1 = vote for a left-wing party")
 ```
+
+![](http://127.0.0.1:40085/chunk_output/E2665063b75fc19f/65970EB7/ckve2j4e42tvi/000010.png)
 
 Some observations can already be made with the descriptive statistics. First, the left gathered relatively few vote with only about 26% of voters. This attests the weakness of left-wing parties in Switzerland. Second, about 30% of the individuals in the sample did vocational training and this is rather coherent since in Switzerland most people follows vocational training and apprenticeship. Third, there is a weird "peak" in the income graph. Indeed, about 7.5% declared having an income superior than 15'000, which seems rather bizarre at least to me and I still have no explanation for this.
 
@@ -122,9 +141,11 @@ The model is thus:
 $$
 Log(\frac{P(left)}{1 - P(left)}) = \beta_0 + \beta_1income_i + \beta_2educ_i + \epsilon_i
 $$
+
 Note that this is a very first step, I will step by step complexify this model.
 
 Here is the regression table:
+
 ```{r}
 #| warning: false
 #| message: false
@@ -151,12 +172,12 @@ ggcoef_model(reg, exponentiate = TRUE)
 
 ```
 
-Here is what this coefficient plot tells: the odds that a Swiss voter vote for a left-wing party for the National Council election of 2015 are linked negatively with income (odd ratio below 1) and positively with education (odd ratio > 1). The coefficients are statistically significant at the one percent level, which is not a surprise because the sample is rather large with 7'594 observations. Inference will become more of a problem when I consider education or even income as a factor/qualitative variable (income here is coded in brackets, so it is rather an ordinal variable, and there is to my knowledge to way to solve this problem).
+Here is what this coefficient plot tells: the odds that a Swiss voter vote for a left-wing party for the National Council election of 2015 are linked negatively with income (odd ratio below 1) and positively with education (odd ratio \> 1). The coefficients are statistically significant at the one percent level, which is not a surprise because the sample is rather large with 7'594 observations. Inference will become more of a problem when I consider education or even income as a factor/qualitative variable (income here is coded in brackets, so it is rather an ordinal variable, and there is to my knowledge to way to solve this problem).
 
 Odd ratios are known to be rather difficult to interpret. In effect, odd ratios are not what the literature calls "quantity of interest", that is to say, the quantity of the dependent variable which is the most easy to interpret. I this model, the quantity of interest is the probability to vote for a left wing party and not the odds. A lot of economists and social scientists prefer to have a look directly at the marginal effects and predicted probability to have a better view of the relationships between the variables and of the quantity of interest.
 
-
 I first plot simple graphs of the estimated curves:
+
 ```{r}
 #| warning: false
 #| message: false
@@ -188,6 +209,121 @@ ggplot()+
 
 cowplot::plot_grid(prob.plot.income, prob.plot.educ)
 ```
+
+We can see that the slope of the education level curve is steeper than the one for income: this means that the positive link between the level of education and the probability to vote for the left is greater than the negative with income. But let's have a look directly at the marginal effects.
+
+There are a lot of different ways to compute marginal effects, which make the latter sometimes confusing because we don't know which type of marginal effects are represented. I will here consider one type of marginal effects:
+
+- Group-average marginal effects: slope estimates are produced for each row of the dataset used in computing the model. Then, the estimates can be grouped by the values of one of the regressor and the average for each group is computed.
+
+A first step in group-average marginal effects in R is to use the function "slopes" which calculate estimates of the slopes (marginal effects) for each observation used to compute the model in the first place. The term "variables" is for the variable for which the slopes are estimated and "by" the argument for 
+```{r}
+#| warning: false
+#| message: false
+marginaleffectseduc <- slopes(reg, variables = "Education.level")
+head(marginaleffectseduc)
+```
+```{r}
+dim(marginaleffectseduc)
+```
+
+The dataframe has 7594 rows which is the same number of observation used in the model. We can then used the different values of income level (from 1 to 15) as grouped within which estimates are averaged:
+
+
+```{r}
+#| warning: false
+#| message: false
+marginaleffectseduc %>% 
+  group_by(Gross.monthly.hh.income) %>% 
+  summarise(mean.slopes.educ = mean(estimate),
+            conf.high = mean(conf.high), ## this is the same for the confidence interval
+            conf.low = mean(conf.low)) %>% 
+  ungroup() -> game.educ
+head(game.educ)
+```
+A plot can then be made to have a better view of the average marginal effects/slopes of education for each group of income:
+
+```{r}
+#| warning: false
+#| message: false
+game.educ %>% 
+  ggplot()+
+  aes(x = Gross.monthly.hh.income, y = mean.slopes.educ)+
+  geom_point()+
+  geom_line()+
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.5)+
+  theme_bw()+
+  labs(title = "Group-average marginal effect of education")
+```
+
+The slope of education level decreases on average with higher values of income group. This means that even if the probability to vote for the left is linked positively with education level, this link is weaker for higher income groups. However, it is not so much weaker because even though th line is downward slopping, it remains rather flat.
+
+Normally, the function plot_slope should produce the same graph:
+
+```{r}
+#| warning: false
+#| message: false
+plot_slopes(reg, variables = "Education.level", by = "Gross.monthly.hh.income")
+```
+
+Let's do the same for income:
+
+```{r}
+#| message: false
+#| warning: false
+
+marginaleffectsinc <- slopes(reg, variables = "Gross.monthly.hh.income")
+game.inc <- marginaleffectsinc %>% 
+  group_by(Education.level) %>% 
+  summarise(mean.slopes.inc = mean(estimate),
+            conf.high = mean(conf.high),
+            conf.low = mean(conf.low)) %>% 
+  ungroup() -> game.inc
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+game.inc %>% 
+  ggplot()+
+  aes(x = Education.level, y = mean.slopes.inc)+
+  geom_point()+
+  geom_line()+
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.5)+
+  theme_bw()+
+  labs(title = "Group-average marginal effects of income")
+```
+Here the result is more interesting: the average marginal slope of income is negative for each education level but this average decreases significantly for higher level of education. This implies that the probability to vote for the left is linked negatively with income group and that this negative link is strengthened by higher level of education. Rich and highly educated people have thus a very low probability to vote for the left.
+
+Another way to look at the effect of the two independent variable on the probability to vote for the left is to look at the predictions.
+
+```{r}
+predictionseduc <- predictions(reg, variables = c("Education.level", "Gross.monthly.hh.income"))
+```
+
+```{r}
+plot_predictions(reg, condition = c("Education.level", "Gross.monthly.hh.income"))+
+  scale_color_brewer(palette = "Set1")+
+  scale_fill_brewer(palette = "Set1")+
+  theme_bw()+
+  theme(legend.position = c(0.5, 0.7),
+        legend.background = element_blank()) ->plotpredicteduc
+
+plot_predictions(reg, condition = c("Gross.monthly.hh.income", "Education.level"))+
+  scale_color_brewer(palette = "Set1")+
+  scale_fill_brewer(palette = "Set1")+
+  theme_bw()+
+  theme(legend.position = c(0.8, 0.8),
+        legend.background = element_blank())+
+  ylab("") -> plotpredictincome
+
+cowplot::plot_grid(plotpredicteduc, plotpredictincome)
+```
+
+
+
+
 
 
 
