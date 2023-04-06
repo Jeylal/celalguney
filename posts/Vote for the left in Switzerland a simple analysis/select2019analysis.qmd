@@ -300,6 +300,7 @@ Another way to look at the effect of the two independent variable on the probabi
 
 ```{r}
 predictionseduc <- predictions(reg, variables = c("Education.level", "Gross.monthly.hh.income"))
+predictionseduc <- predictions(reg, by = c("Education.level", "Gross.monthly.hh.income"))
 ```
 
 ```{r}
