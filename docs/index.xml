@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Fri, 07 Apr 2023 19:26:28 GMT</lastBuildDate>
+<lastBuildDate>Fri, 07 Apr 2023 20:28:02 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Fri, 07 Apr 2023 19:26:28 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 20:28:02 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Fri, 07 Apr 2023 19:26:28 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 20:28:02 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Fri, 07 Apr 2023 19:26:28 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 20:28:02 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,149 +508,8 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Fri, 07 Apr 2023 19:26:28 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 20:28:02 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Notes on the methodology of the WPID</title>
-  <link>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="cell">
-
-</div>
-<section id="how-far-can-we-go-with-income-brackets" class="level2">
-<h2 class="anchored" data-anchor-id="how-far-can-we-go-with-income-brackets">How far can we go with income brackets?</h2>
-<p>To build their database on <a href="https://wpid.world/">World political cleavages and inequality</a>, Piketty and his team had to use electoral survey data. One problem with these sources is that they collect income data through brackets, without reporting the overall income average of the sample or the average per bracket. This Thus poses the question of how far one can go in terms of statistical analysis with only income brackets as a source of information for income. I will here explore what can be done with such a variable as well as the <a href="https://wid.world/document/building-the-world-political-cleavages-and-inequality-database-a-new-dataset-on-electoral-behaviors-in-50-democracies-1948-2020-world-inequality-lab-technical-note-2021-01/">technical note</a> that Piketty et al.&nbsp;(2021) provides to explain how they computed the vote share for income and education decile, which they claim is one of their main contributions on political cleavages and inequality.</p>
-<section id="a-first-look-on-the-wpid-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="a-first-look-on-the-wpid-dataset">A first look on the WPID dataset</h3>
-<p>The wpid is based on an impressive <a href="https://wpid.world/resources/en/zip/wpid-micro.zip">dataset</a> compiling electoral survey data of 500 elections since 1948. Since the technical note takes Canada’s 2015 election as an example, I will use the latter here.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">ca <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_dta</span>(<span class="st" style="color: #20794D;">"ca.dta"</span>)</span>
-<span id="cb1-2">ca2015 <span class="ot" style="color: #003B4F;">&lt;-</span> ca <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-3">  <span class="fu" style="color: #4758AB;">filter</span>(year <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">2015</span>)</span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;">rm</span>(ca)</span></code></pre></div>
-</div>
-<p>Note that there is already something weird here: in the dataset, the variable income has 20 brackets/categories here whereas it has 18 in the technical note. Since this is not so much of an issue, I will still work with this dataset and we just won’t have the same results as in Piketty &amp; al’s example.</p>
-<p>A first step in analyzing such a variable is to compute the frequency, relative frequency and the cumulative frequency and relative frequency:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">income <span class="ot" style="color: #003B4F;">&lt;-</span> ca2015 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-2">  <span class="fu" style="color: #4758AB;">count</span>(inc) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-3">  <span class="fu" style="color: #4758AB;">drop_na</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-4">  <span class="fu" style="color: #4758AB;">mutate</span>(</span>
-<span id="cb2-5">    <span class="at" style="color: #657422;">cumfreq =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(n),</span>
-<span id="cb2-6">    <span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n),</span>
-<span id="cb2-7">    <span class="at" style="color: #657422;">cumrelfreq =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(prop))</span>
-<span id="cb2-8"></span>
-<span id="cb2-9"><span class="fu" style="color: #4758AB;">head</span>(income)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-    inc     n cumfreq   prop cumrelfreq
-  &lt;dbl&gt; &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1     1   211     211 0.0538     0.0538
-2     2   327     538 0.0834     0.137 
-3     3    79     617 0.0201     0.157 
-4     4   210     827 0.0535     0.211 
-5     5   199    1026 0.0507     0.262 
-6     6   184    1210 0.0469     0.309 </code></pre>
-</div>
-</div>
-<p>The decile can be added to the dataset with the function ntile():</p>
-<div class="cell" data-hash="technical-note-piketty-2021_cache/html/unnamed-chunk-4_77c868459d3203db4492125be9de2738">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">income <span class="ot" style="color: #003B4F;">&lt;-</span> income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb4-2">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">decile =</span> <span class="fu" style="color: #4758AB;">ntile</span>(inc, <span class="dv" style="color: #AD0000;">10</span>))</span>
-<span id="cb4-3"></span>
-<span id="cb4-4"><span class="fu" style="color: #4758AB;">head</span>(income)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-    inc     n cumfreq   prop cumrelfreq decile
-  &lt;dbl&gt; &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;int&gt;
-1     1   211     211 0.0538     0.0538      1
-2     2   327     538 0.0834     0.137       1
-3     3    79     617 0.0201     0.157       2
-4     4   210     827 0.0535     0.211       2
-5     5   199    1026 0.0507     0.262       3
-6     6   184    1210 0.0469     0.309       3</code></pre>
-</div>
-</div>
-<p>According to the table, the first and second brackets belong to the first decile. This is correct for the first bracket, but only partially correct for the second. In fact, the relative frequency range of the second bracket is [0.0538; 0.137]; for this bracket to be only considered as belonging to the first decile, it should be distributed between [0; 0.1] like the first bracket ([0; 0.0538]). However, there is a part of the second bracket that belongs to the second decile. The wpid technical note explains how to deal with this:</p>
-<p>Let’s make the assumption that the distribution within each bracket is uniform. If I want to know which proportion of the second bracket belongs to the first decile, I assume that <img src="https://latex.codecogs.com/png.latex?X%20%5Csim%20U%5B0.0538,%200.137%5D"> with X the individual of bracket 2. I want to compute <img src="https://latex.codecogs.com/png.latex?p(x)%20%5Cin%20U%5B0;0.1%5D">, that is to say, the probability that the observation of bracket 2 are between 0 and 0.1: the first decile. The solution is thus:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Ap(0%20%5Cleq%20x%20%5Cleq%200.1)%20=%20p(x%20%5Cleq%200.1)%20=%20%5Cfrac%7B0.1-0.0538%7D%7B0.137-0.0538%7D%20=%20%200.555%0A"> In R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.1</span>, <span class="at" style="color: #657422;">min =</span> <span class="fl" style="color: #AD0000;">0.0538</span>, <span class="at" style="color: #657422;">max =</span> <span class="fl" style="color: #AD0000;">0.137</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5552885</code></pre>
-</div>
-</div>
-<p>This means that 55% of the second bracket belongs to the first decile and 45% to the rest. A weighted average can then be computed to regroup the first decile: we take the proportion of bracket one multiplied by its weight (prop of it belonging to the first decile, which is one) and the proportion of bracket two multiplied by its weight (proportion of bracket two belonging to the first decile).</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B0.0537*1%20+%200.083*0.55%7D%7B1+0.55%7D%20=%200.06409677%0A"></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;">weighted.mean</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="fl" style="color: #AD0000;">0.0537</span>, <span class="fl" style="color: #AD0000;">0.083</span>), <span class="at" style="color: #657422;">w =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="fl" style="color: #AD0000;">0.55</span>))<span class="sc" style="color: #5E5E5E;">*</span><span class="dv" style="color: #AD0000;">100</span></span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6.409677</code></pre>
-</div>
-</div>
-<p>6.409 percent of total individuals belong to the first decile.</p>
-<p>Let’s do the same for the third bracket. Its distribution is also assumed uniform <img src="https://latex.codecogs.com/png.latex?U%5B0.13;%200.15%5D">, it is pretty straightforward that all of it belongs to the second decile since its upper limit does not cross 0.2. The upper limit of the fourth bracket does however cross 0.2: <img src="https://latex.codecogs.com/png.latex?U%5B0.157;%200.211%5D"></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.2</span>, <span class="at" style="color: #657422;">min =</span> <span class="fl" style="color: #AD0000;">0.157</span>, <span class="at" style="color: #657422;">max =</span> <span class="fl" style="color: #AD0000;">0.211</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7962963</code></pre>
-</div>
-</div>
-<p>79.6% of the fourth bracket belong to the second decile.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;">weighted.mean</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="fl" style="color: #AD0000;">0.02</span>, <span class="fl" style="color: #AD0000;">0.0535</span>), <span class="at" style="color: #657422;">w =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="fl" style="color: #AD0000;">0.079</span>))</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.02245273</code></pre>
-</div>
-</div>
-<p>2.2 percent of total observations belong to the second decile.</p>
-<p>All the steps directly with R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;">weighted.mean</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">c</span>(income<span class="sc" style="color: #5E5E5E;">$</span>prop[<span class="dv" style="color: #AD0000;">3</span>], income<span class="sc" style="color: #5E5E5E;">$</span>prop[<span class="dv" style="color: #AD0000;">4</span>]), <span class="at" style="color: #657422;">w =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.2</span>, <span class="at" style="color: #657422;">min =</span> income<span class="sc" style="color: #5E5E5E;">$</span>cumrelfreq[<span class="dv" style="color: #AD0000;">3</span>], <span class="at" style="color: #657422;">max =</span> income<span class="sc" style="color: #5E5E5E;">$</span>cumrelfreq[<span class="dv" style="color: #AD0000;">4</span>])))</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03495832</code></pre>
-</div>
-</div>
-<p>There is some discrepancy due to the different rounding.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;">weighted.mean</span>(<span class="fu" style="color: #4758AB;">c</span>(income<span class="sc" style="color: #5E5E5E;">$</span>prop[<span class="dv" style="color: #AD0000;">5</span>], income<span class="sc" style="color: #5E5E5E;">$</span>prop[<span class="dv" style="color: #AD0000;">6</span>]), <span class="at" style="color: #657422;">w =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.3</span>, <span class="at" style="color: #657422;">min =</span> income<span class="sc" style="color: #5E5E5E;">$</span>cumrelfreq[<span class="dv" style="color: #AD0000;">5</span>], <span class="at" style="color: #657422;">max =</span> income<span class="sc" style="color: #5E5E5E;">$</span>cumrelfreq[<span class="dv" style="color: #AD0000;">6</span>])))</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.04901802</code></pre>
-</div>
-</div>
-<p>This would be tedious to go all the way up to the tenth decile. There is to my knowledge no function in R that will do this automatically and Piketty and his team use Stata so I can’t take their code here. Indeed, a R function that would compute the correct relative frequencies for each decile from whatever income bracket would be really useful. But since I will perhaps go back to this in the future, let’s see what can be done further with those income brackets.</p>
-<p>I will finish this post by trying to plot a “Pareto line”, that is, to plot the relationship <img src="https://latex.codecogs.com/png.latex?log(N)%20=%20A%20-%20log(x)"> with N the number of individuals earning more than income level x. This can be done simply by plotting on the y axis the inverse of the relative cumulative distribution function and the log of income brackets on the x axis.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb18-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb18-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">log</span>(inc), <span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">log</span>(<span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)))<span class="sc" style="color: #5E5E5E;">+</span> <span class="co" style="color: #5E5E5E;">#rev() to reverse the values to get the inverse of the relative cdf</span></span>
-<span id="cb18-4">  <span class="fu" style="color: #4758AB;">geom_smooth</span>(<span class="at" style="color: #657422;">method =</span> <span class="st" style="color: #20794D;">"lm"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb18-5">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb18-6">  <span class="fu" style="color: #4758AB;">theme_bw</span>()</span></code></pre></div>
-<div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">coef</span>(<span class="fu" style="color: #4758AB;">lm</span>(<span class="at" style="color: #657422;">data =</span> income, <span class="fu" style="color: #4758AB;">log</span>(<span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)) <span class="sc" style="color: #5E5E5E;">~</span> <span class="fu" style="color: #4758AB;">log</span>(inc)))</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>(Intercept)    log(inc) 
-  0.7227530  -0.7369497 </code></pre>
-</div>
-</div>
-<p>We can see that the Pareto line does not fit the data very well, it would fit better only if the line was drawn for the top of the distribution</p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Fri, 07 Apr 2023 19:26:28 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/paretoline.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
@@ -992,7 +851,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Fri, 07 Apr 2023 19:26:28 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 20:28:02 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
