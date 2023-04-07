@@ -116,7 +116,7 @@ weighted.mean(c(income$prop[5], income$prop[6]), w = c(1, punif(0.3, min = incom
 
 This would be tedious to go all the way up to the tenth decile. There is to my knowledge no function in R that will do this automatically and Piketty and his team use Stata so I can't take their code here. Indeed, a R function that would compute the correct relative frequencies for each decile from whatever income bracket would be really useful. But since I will perhaps go back to this in the future, let's see what can be done further with those income brackets. 
 
-I will finish this post by trying to plot a "Pareto line", that is, to plot the relationship $log(N) = A - log(x)$ with N the number of individuals earning more than income level x. This can be done simply by plotting on the y axis the inverse of the relative cumulative distribution function and the income brackets on the x axis.
+I will finish this post by trying to plot a "Pareto line", that is, to plot the relationship $log(N) = A - log(x)$ with N the number of individuals earning more than income level x. This can be done simply by plotting on the y axis the inverse of the relative cumulative distribution function and the log of income brackets on the x axis.
 
 ```{r}
 #| warning: false
@@ -124,14 +124,14 @@ I will finish this post by trying to plot a "Pareto line", that is, to plot the 
 
 income %>% 
   ggplot()+
-  aes(x = inc, y = -cumrelfreq)+
-  geom_smooth()+
+  aes(x = log(inc), y = log(rev(cumrelfreq)))+ #rev() to reverse the values to get the inverse of the relative cdf
+  geom_smooth(method = "lm")+
   geom_point()+
   theme_bw()
 
-coef(lm(data = income, -cumrelfreq ~ inc))
+coef(lm(data = income, log(rev(cumrelfreq)) ~ log(inc)))
 ```
-
+We can see that the Pareto line does not fit the data very well, it would fit better only if the line was drawn for the top of the distribution
 
 
 

@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Fri, 07 Apr 2023 17:42:01 GMT</lastBuildDate>
+<lastBuildDate>Fri, 07 Apr 2023 19:21:03 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Fri, 07 Apr 2023 17:42:01 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 19:21:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Fri, 07 Apr 2023 17:42:01 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 19:21:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Fri, 07 Apr 2023 17:42:01 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 19:21:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Fri, 07 Apr 2023 17:42:01 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 19:21:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -624,23 +624,24 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div>
 <p>This would be tedious to go all the way up to the tenth decile. There is to my knowledge no function in R that will do this automatically and Piketty and his team use Stata so I can’t take their code here. Indeed, a R function that would compute the correct relative frequencies for each decile from whatever income bracket would be really useful. But since I will perhaps go back to this in the future, let’s see what can be done further with those income brackets.</p>
-<p>I will finish this post by trying to plot a “Pareto line”, that is, to plot the relationship <img src="https://latex.codecogs.com/png.latex?log(N)%20=%20A%20-%20log(x)"> with N the number of individuals earning more than income level x. This can be done simply by plotting on the y axis the inverse of the relative cumulative distribution function and the income brackets on the x axis.</p>
+<p>I will finish this post by trying to plot a “Pareto line”, that is, to plot the relationship <img src="https://latex.codecogs.com/png.latex?log(N)%20=%20A%20-%20log(x)"> with N the number of individuals earning more than income level x. This can be done simply by plotting on the y axis the inverse of the relative cumulative distribution function and the log of income brackets on the x axis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb18-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb18-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> inc, <span class="at" style="color: #657422;">y =</span> <span class="sc" style="color: #5E5E5E;">-</span>cumrelfreq)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb18-4">  <span class="fu" style="color: #4758AB;">geom_smooth</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb18-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">log</span>(inc), <span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">log</span>(<span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)))<span class="sc" style="color: #5E5E5E;">+</span> <span class="co" style="color: #5E5E5E;">#rev() to reverse the values to get the inverse of the relative cdf</span></span>
+<span id="cb18-4">  <span class="fu" style="color: #4758AB;">geom_smooth</span>(<span class="at" style="color: #657422;">method =</span> <span class="st" style="color: #20794D;">"lm"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb18-5">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb18-6">  <span class="fu" style="color: #4758AB;">theme_bw</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">coef</span>(<span class="fu" style="color: #4758AB;">lm</span>(<span class="at" style="color: #657422;">data =</span> income, <span class="sc" style="color: #5E5E5E;">-</span>cumrelfreq <span class="sc" style="color: #5E5E5E;">~</span> inc))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">coef</span>(<span class="fu" style="color: #4758AB;">lm</span>(<span class="at" style="color: #657422;">data =</span> income, <span class="fu" style="color: #4758AB;">log</span>(<span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)) <span class="sc" style="color: #5E5E5E;">~</span> <span class="fu" style="color: #4758AB;">log</span>(inc)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>(Intercept)         inc 
--0.02018872 -0.04952872 </code></pre>
+<pre><code>(Intercept)    log(inc) 
+  0.7227530  -0.7369497 </code></pre>
 </div>
 </div>
+<p>We can see that the Pareto line does not fit the data very well, it would fit better only if the line was drawn for the top of the distribution</p>
 
 
 </section>
@@ -648,7 +649,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Fri, 07 Apr 2023 17:42:01 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 19:21:03 GMT</pubDate>
 </item>
 <item>
   <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
@@ -990,7 +991,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Fri, 07 Apr 2023 17:42:01 GMT</pubDate>
+  <pubDate>Fri, 07 Apr 2023 19:21:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
