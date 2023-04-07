@@ -2,6 +2,7 @@
 title: "Notes on the methodology of the WPID"
 format: html
 editor: visual
+image: paretoline.png
 ---
 
 ```{r}
