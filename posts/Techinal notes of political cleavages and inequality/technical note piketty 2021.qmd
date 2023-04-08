@@ -1,0 +1,176 @@
+---
+title: "Notes on the methodology of the WPID"
+format: html
+editor: visual
+image: plot.png
+---
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+
+
+library(tidyverse)
+library(haven)
+library(gt)
+library(lorenz)
+library(REAT)
+library(cowplot)
+setwd("F:/myblog/posts/Techinal notes of political cleavages and inequality")
+```
+
+## How far can we go with income brackets?
+
+To build their database on [World political cleavages and inequality](https://wpid.world/), Piketty and his team had to use electoral survey data. One problem with these sources is that they collect income data through brackets, without reporting the overall income average of the sample or the average per bracket. This Thus poses the question of how far one can go in terms of statistical analysis with only income brackets as a source of information for income. I will here explore what can be done with such a variable as well as the [technical note](https://wid.world/document/building-the-world-political-cleavages-and-inequality-database-a-new-dataset-on-electoral-behaviors-in-50-democracies-1948-2020-world-inequality-lab-technical-note-2021-01/) that Piketty et al. (2021) provides to explain how they computed the vote share for income and education decile, which they claim is one of their main contributions on political cleavages and inequality.
+
+### A first look on the WPID dataset
+
+The wpid is based on an impressive [dataset](https://wpid.world/resources/en/zip/wpid-micro.zip) compiling electoral survey data of 500 elections since 1948. Since the technical note takes Canada's 2015 election as an example, I will use the latter here.
+
+```{r}
+#| warning: false
+#| message: false
+ca <- read_dta("ca.dta")
+ca2015 <- ca %>% 
+  filter(year == 2015)
+rm(ca)
+```
+
+Note that there is already something weird here: in the dataset, the variable income has 20 brackets/categories here whereas it has 18 in the technical note. Since this is not so much of an issue, I will still work with this dataset and we just won't have the same results as in Piketty & al's example.
+
+A first step in analyzing such a variable is to compute the frequency, relative frequency and the cumulative frequencies. Note that I only take the individuals who vote the the New Democratic Party (NDP) as in the technical note's example:
+
+```{r}
+#| warning: false
+#| message: false
+
+
+ca2015 %>% filter(votendp == 1) %>% 
+  count(inc) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(
+    cum.n = cumsum(n),
+    prop = n/sum(n),
+    cumrelfreqN = cumsum(prop),
+    cumrelfreqInc = cumsum(inc/sum(inc))) -> table.income
+
+table.income %>% 
+  gt(caption = "Distribution of income groups")
+```
+
+We can then plot income groups against their proportion
+
+```{r}
+#| fig-cap: "Distribution of Income groups: Canadian 2015 election survey"
+#| fig-cap-location: top
+
+table.income %>% 
+  ggplot()+
+  aes(x = factor(inc), y = prop)+
+  geom_col()+
+  theme_bw()+
+  xlab("Income group") -> income.group.plot
+
+income.group.plot
+```
+
+If we plot the income group against the relative cumulative frequency, we obtain the cumulative distribution of income groups. The cumulative distribution can also be directly plotted with plot(ecdf()):
+
+```{r}
+table.income %>% 
+  ggplot()+
+  aes(x = factor(inc), y = cumrelfreqN)+
+  geom_point()+
+  theme_bw()+
+  xlab("Income group")+
+  labs(title = "Cumulative distribution of Income group: 2015 Canadian election survey")
+
+```
+
+If we plot this relative cumulative distribution of observation against the one for income, we get the Lorenz curve:
+
+```{r}
+table.income %>% 
+  ggplot()+
+  aes(x = cumrelfreqN, y = cumrelfreqInc)+
+  geom_point()+
+  geom_line()+
+  geom_abline(intercept = 0, slope = 1, color = "blue")+
+  theme_bw()+
+  labs("Lorenz curve")
+```
+
+What makes Piketty's team approach special and interesting is their systematic analysis in terms of quantile groups. This is, according to them, their main contribution and this approach has the advantage to allow for systematic comparison accross space and time. We will try to reproduce here their conversion of income group into quantiles.
+
+In R, the decile for each observation can be added to the dataset with the function ntile():
+
+```{r}
+ca2015 <- ca2015 %>% 
+  mutate(
+  decile = ntile(inc, 10)
+)
+```
+
+Now, the last column of ca2015 is the decile for each observation in the dataset.
+
+```{r}
+ca2015 %>% filter(votendp == 1) %>% 
+  group_by(decile) %>% 
+  count(votendp) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(prop = n/sum(n),
+         cumsumprop = cumsum(prop)) -> table.income.vote
+
+table.income.vote %>% gt(caption = "Proportion of vote for the NDP per income decile")
+```
+
+```{r}
+#| fig-cap: "Proportion of NDP voters per income groups (left) and decile (right)"
+#| fig-cap-location: top
+
+table.income.vote %>% 
+  ggplot()+
+  aes(x = factor(decile), y = prop)+
+  geom_col()+
+  theme_bw()+
+  xlab("decile") +
+  ylab("")-> decile.plot
+
+cowplot::plot_grid(income.group.plot, decile.plot)
+```
+
+The figure here tried to reproduce figure 1 of Piketty & al.'s technical note. This not the exact same graph because the income variable in the technical note has 18 brackets whereas it has 20 here. But the result, if the methodology employed here is correct, is pretty much the same.
+
+Finally, one can also try to fit a "Pareto line" to the income bracket data. Vilfredo Pareto (1848-1923) is well-known for being one of the first economist to have computed inequality indices (his famous alpha coefficient) directly from personal income distribution data. His relationship $log(N) = A-\alpha log(x)$, with N the number of people earning more than income level x, is a famous relationship and almost every course on income inequality measurement starts with it.
+
+First, a table need to be constructed from the data, we count the number of observation per income bracket and compute the inverse of the cumulative relative frequencies, which is the same as N is Pareto's equation.
+
+```{r}
+ca2015 %>% 
+  count(inc) %>% 
+  mutate(prop = n/sum(n),
+         cumrelfreq = cumsum(prop),
+         inverse_rcdf = rev(cumrelfreq)) -> paretotable
+
+paretotable %>% 
+  gt()
+
+```
+
+Finally, one can plot the log of the inverse of the relative cumulative distribution function against the log of the income groups:
+
+```{r}
+#| warning: false
+#| message: false
+paretotable %>% 
+  ggplot()+
+  aes(x = log(inc), y = log(rev(cumrelfreq)))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  theme_bw()
+```
+
+We can see that the line does not fit the data very well. As explained by [Milanovic](https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1), the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic's blog post.

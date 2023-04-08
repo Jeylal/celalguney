@@ -215,117 +215,1692 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(ca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that there is already something weird here: in the dataset, the variable income has 20 brackets/categories here whereas it has 18 in the technical note. Since this is not so much of an issue, I will still work with this dataset and we just won’t have the same results as in Piketty &amp; al’s example.</p>
-<p>A first step in analyzing such a variable is to compute the frequency, relative frequency and the cumulative frequency and relative frequency:</p>
+<p>A first step in analyzing such a variable is to compute the frequency, relative frequency and the cumulative frequencies. Note that I only take the individuals who vote the the New Democratic Party (NDP) as in the technical note’s example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>income <span class="ot">&lt;-</span> ca2015 <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(votendp <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(inc) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumfreq =</span> <span class="fu">cumsum</span>(n),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumrelfreq =</span> <span class="fu">cumsum</span>(prop))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-    inc     n cumfreq   prop cumrelfreq
-  &lt;dbl&gt; &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1     1   211     211 0.0538     0.0538
-2     2   327     538 0.0834     0.137 
-3     3    79     617 0.0201     0.157 
-4     4   210     827 0.0535     0.211 
-5     5   199    1026 0.0507     0.262 
-6     6   184    1210 0.0469     0.309 </code></pre>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cum.n =</span> <span class="fu">cumsum</span>(n),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumrelfreqN =</span> <span class="fu">cumsum</span>(prop),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumrelfreqInc =</span> <span class="fu">cumsum</span>(inc<span class="sc">/</span><span class="fu">sum</span>(inc))) <span class="ot">-&gt;</span> table.income</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">caption =</span> <span class="st">"Distribution of income groups"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="lzyqohuimd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#lzyqohuimd) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#lzyqohuimd) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#lzyqohuimd) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#lzyqohuimd) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#lzyqohuimd) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#lzyqohuimd) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#lzyqohuimd) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#lzyqohuimd) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#lzyqohuimd) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#lzyqohuimd) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#lzyqohuimd) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#lzyqohuimd) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#lzyqohuimd) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#lzyqohuimd) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lzyqohuimd) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#lzyqohuimd) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#lzyqohuimd) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lzyqohuimd) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#lzyqohuimd) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lzyqohuimd) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#lzyqohuimd) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lzyqohuimd) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lzyqohuimd) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lzyqohuimd) .gt_left {
+  text-align: left;
+}
+
+:where(#lzyqohuimd) .gt_center {
+  text-align: center;
+}
+
+:where(#lzyqohuimd) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#lzyqohuimd) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#lzyqohuimd) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#lzyqohuimd) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#lzyqohuimd) .gt_super {
+  font-size: 65%;
+}
+
+:where(#lzyqohuimd) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#lzyqohuimd) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#lzyqohuimd) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#lzyqohuimd) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#lzyqohuimd) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#lzyqohuimd) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#lzyqohuimd) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <caption>Distribution of income groups</caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="inc">inc</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cum.n">cum.n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prop">prop</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqN">cumrelfreqN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqInc">cumrelfreqInc</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="inc" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">53</td>
+<td headers="cum.n" class="gt_row gt_right">53</td>
+<td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.07230559</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.004975124</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">2</td>
+<td headers="n" class="gt_row gt_right">56</td>
+<td headers="cum.n" class="gt_row gt_right">109</td>
+<td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.14870396</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.014925373</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">3</td>
+<td headers="n" class="gt_row gt_right">15</td>
+<td headers="cum.n" class="gt_row gt_right">124</td>
+<td headers="prop" class="gt_row gt_right">0.02046385</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.16916780</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.029850746</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">4</td>
+<td headers="n" class="gt_row gt_right">35</td>
+<td headers="cum.n" class="gt_row gt_right">159</td>
+<td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.21691678</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.049751244</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">5</td>
+<td headers="n" class="gt_row gt_right">53</td>
+<td headers="cum.n" class="gt_row gt_right">212</td>
+<td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.28922237</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.074626866</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">6</td>
+<td headers="n" class="gt_row gt_right">47</td>
+<td headers="cum.n" class="gt_row gt_right">259</td>
+<td headers="prop" class="gt_row gt_right">0.06412005</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.35334243</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.104477612</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">7</td>
+<td headers="n" class="gt_row gt_right">44</td>
+<td headers="cum.n" class="gt_row gt_right">303</td>
+<td headers="prop" class="gt_row gt_right">0.06002729</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.41336971</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.139303483</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">8</td>
+<td headers="n" class="gt_row gt_right">71</td>
+<td headers="cum.n" class="gt_row gt_right">374</td>
+<td headers="prop" class="gt_row gt_right">0.09686221</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.51023192</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.179104478</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">10</td>
+<td headers="n" class="gt_row gt_right">34</td>
+<td headers="cum.n" class="gt_row gt_right">408</td>
+<td headers="prop" class="gt_row gt_right">0.04638472</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.55661664</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.228855721</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">11</td>
+<td headers="n" class="gt_row gt_right">35</td>
+<td headers="cum.n" class="gt_row gt_right">443</td>
+<td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.60436562</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.283582090</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">12</td>
+<td headers="n" class="gt_row gt_right">50</td>
+<td headers="cum.n" class="gt_row gt_right">493</td>
+<td headers="prop" class="gt_row gt_right">0.06821282</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.67257844</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.343283582</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">13</td>
+<td headers="n" class="gt_row gt_right">28</td>
+<td headers="cum.n" class="gt_row gt_right">521</td>
+<td headers="prop" class="gt_row gt_right">0.03819918</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.71077763</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.407960199</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">14</td>
+<td headers="n" class="gt_row gt_right">56</td>
+<td headers="cum.n" class="gt_row gt_right">577</td>
+<td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.78717599</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.477611940</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">15</td>
+<td headers="n" class="gt_row gt_right">19</td>
+<td headers="cum.n" class="gt_row gt_right">596</td>
+<td headers="prop" class="gt_row gt_right">0.02592087</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.81309686</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.552238806</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">16</td>
+<td headers="n" class="gt_row gt_right">26</td>
+<td headers="cum.n" class="gt_row gt_right">622</td>
+<td headers="prop" class="gt_row gt_right">0.03547067</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.84856753</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.631840796</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">17</td>
+<td headers="n" class="gt_row gt_right">35</td>
+<td headers="cum.n" class="gt_row gt_right">657</td>
+<td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.89631651</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.716417910</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">18</td>
+<td headers="n" class="gt_row gt_right">23</td>
+<td headers="cum.n" class="gt_row gt_right">680</td>
+<td headers="prop" class="gt_row gt_right">0.03137790</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.92769441</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.805970149</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">19</td>
+<td headers="n" class="gt_row gt_right">32</td>
+<td headers="cum.n" class="gt_row gt_right">712</td>
+<td headers="prop" class="gt_row gt_right">0.04365621</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">0.97135061</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">0.900497512</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">20</td>
+<td headers="n" class="gt_row gt_right">21</td>
+<td headers="cum.n" class="gt_row gt_right">733</td>
+<td headers="prop" class="gt_row gt_right">0.02864939</td>
+<td headers="cumrelfreqN" class="gt_row gt_right">1.00000000</td>
+<td headers="cumrelfreqInc" class="gt_row gt_right">1.000000000</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
 </div>
-<p>The decile can be added to the dataset with the function ntile():</p>
-<div class="cell" data-hash="technical-note-piketty-2021_cache/html/unnamed-chunk-4_77c868459d3203db4492125be9de2738">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>income <span class="ot">&lt;-</span> income <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">decile =</span> <span class="fu">ntile</span>(inc, <span class="dv">10</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-    inc     n cumfreq   prop cumrelfreq decile
-  &lt;dbl&gt; &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;int&gt;
-1     1   211     211 0.0538     0.0538      1
-2     2   327     538 0.0834     0.137       1
-3     3    79     617 0.0201     0.157       2
-4     4   210     827 0.0535     0.211       2
-5     5   199    1026 0.0507     0.262       3
-6     6   184    1210 0.0469     0.309       3</code></pre>
+</div>
+<p>We can then plot income groups against their proportion</p>
+<div class="cell fig-cap-location-top">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(inc), <span class="at">y =</span> prop)<span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Income group"</span>) <span class="ot">-&gt;</span> income.group.plot</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>income.group.plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="technical-note-piketty-2021_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Distribution of Income groups: Canadian 2015 election survey</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>According to the table, the first and second brackets belong to the first decile. This is correct for the first bracket, but only partially correct for the second. In fact, the relative frequency range of the second bracket is [0.0538; 0.137]; for this bracket to be only considered as belonging to the first decile, it should be distributed between [0; 0.1] like the first bracket ([0; 0.0538]). However, there is a part of the second bracket that belongs to the second decile. The wpid technical note explains how to deal with this:</p>
-<p>Let’s make the assumption that the distribution within each bracket is uniform. If I want to know which proportion of the second bracket belongs to the first decile, I assume that <span class="math inline">\(X \sim U[0.0538, 0.137]\)</span> with X the individual of bracket 2. I want to compute <span class="math inline">\(p(x) \in U[0;0.1]\)</span>, that is to say, the probability that the observation of bracket 2 are between 0 and 0.1: the first decile. The solution is thus:</p>
-<p><span class="math display">\[
-p(0 \leq x \leq 0.1) = p(x \leq 0.1) = \frac{0.1-0.0538}{0.137-0.0538} =  0.555
-\]</span> In R:</p>
+</div>
+<p>If we plot the income group against the relative cumulative frequency, we obtain the cumulative distribution of income groups. The cumulative distribution can also be directly plotted with plot(ecdf()):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">0.1</span>, <span class="at">min =</span> <span class="fl">0.0538</span>, <span class="at">max =</span> <span class="fl">0.137</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5552885</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(inc), <span class="at">y =</span> cumrelfreqN)<span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Income group"</span>)<span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cumulative distribution of Income group: 2015 Canadian election survey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="technical-note-piketty-2021_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>This means that 55% of the second bracket belongs to the first decile and 45% to the rest. A weighted average can then be computed to regroup the first decile: we take the proportion of bracket one multiplied by its weight (prop of it belonging to the first decile, which is one) and the proportion of bracket two multiplied by its weight (proportion of bracket two belonging to the first decile).</p>
-<p><span class="math display">\[
-\frac{0.0537*1 + 0.083*0.55}{1+0.55} = 0.06409677
-\]</span></p>
+<p>If we plot this relative cumulative distribution of observation against the one for income, we get the Lorenz curve:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fl">0.0537</span>, <span class="fl">0.083</span>), <span class="at">w =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.55</span>))<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6.409677</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> cumrelfreqN, <span class="at">y =</span> cumrelfreqInc)<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>)<span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="st">"Lorenz curve"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="technical-note-piketty-2021_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>6.409 percent of total individuals belong to the first decile.</p>
-<p>Let’s do the same for the third bracket. Its distribution is also assumed uniform <span class="math inline">\(U[0.13; 0.15]\)</span>, it is pretty straightforward that all of it belongs to the second decile since its upper limit does not cross 0.2. The upper limit of the fourth bracket does however cross 0.2: <span class="math inline">\(U[0.157; 0.211]\)</span></p>
+<p>What makes Piketty’s team approach special and interesting is their systematic analysis in terms of quantile groups. This is, according to them, their main contribution and this approach has the advantage to allow for systematic comparison accross space and time. We will try to reproduce here their conversion of income group into quantiles.</p>
+<p>In R, the decile for each observation can be added to the dataset with the function ntile():</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">0.2</span>, <span class="at">min =</span> <span class="fl">0.157</span>, <span class="at">max =</span> <span class="fl">0.211</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7962963</code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="ot">&lt;-</span> ca2015 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">decile =</span> <span class="fu">ntile</span>(inc, <span class="dv">10</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>79.6% of the fourth bracket belong to the second decile.</p>
+<p>Now, the last column of ca2015 is the decile for each observation in the dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.0535</span>), <span class="at">w =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.079</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.02245273</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(votendp <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(decile) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(votendp) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">cumsumprop =</span> <span class="fu">cumsum</span>(prop)) <span class="ot">-&gt;</span> table.income.vote</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>table.income.vote <span class="sc">%&gt;%</span> <span class="fu">gt</span>(<span class="at">caption =</span> <span class="st">"Proportion of vote for the NDP per income decile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="unltzwltkv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#unltzwltkv) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#unltzwltkv) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#unltzwltkv) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#unltzwltkv) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#unltzwltkv) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#unltzwltkv) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#unltzwltkv) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#unltzwltkv) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#unltzwltkv) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#unltzwltkv) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#unltzwltkv) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#unltzwltkv) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#unltzwltkv) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#unltzwltkv) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#unltzwltkv) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#unltzwltkv) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#unltzwltkv) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#unltzwltkv) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#unltzwltkv) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#unltzwltkv) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#unltzwltkv) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#unltzwltkv) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#unltzwltkv) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#unltzwltkv) .gt_left {
+  text-align: left;
+}
+
+:where(#unltzwltkv) .gt_center {
+  text-align: center;
+}
+
+:where(#unltzwltkv) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#unltzwltkv) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#unltzwltkv) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#unltzwltkv) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#unltzwltkv) .gt_super {
+  font-size: 65%;
+}
+
+:where(#unltzwltkv) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#unltzwltkv) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#unltzwltkv) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#unltzwltkv) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#unltzwltkv) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#unltzwltkv) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#unltzwltkv) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <caption>Proportion of vote for the NDP per income decile</caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="decile">decile</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="votendp">votendp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prop">prop</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumsumprop">cumsumprop</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="decile" class="gt_row gt_right">1</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">76</td>
+<td headers="prop" class="gt_row gt_right">0.10368349</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.1036835</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">2</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">70</td>
+<td headers="prop" class="gt_row gt_right">0.09549795</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.1991814</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">3</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">106</td>
+<td headers="prop" class="gt_row gt_right">0.14461119</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.3437926</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">4</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">81</td>
+<td headers="prop" class="gt_row gt_right">0.11050477</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.4542974</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">5</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">57</td>
+<td headers="prop" class="gt_row gt_right">0.07776262</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.5320600</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">6</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">88</td>
+<td headers="prop" class="gt_row gt_right">0.12005457</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.6521146</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">7</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">70</td>
+<td headers="prop" class="gt_row gt_right">0.09549795</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.7476126</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">8</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">67</td>
+<td headers="prop" class="gt_row gt_right">0.09140518</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.8390177</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">9</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">63</td>
+<td headers="prop" class="gt_row gt_right">0.08594816</td>
+<td headers="cumsumprop" class="gt_row gt_right">0.9249659</td></tr>
+    <tr><td headers="decile" class="gt_row gt_right">10</td>
+<td headers="votendp" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">55</td>
+<td headers="prop" class="gt_row gt_right">0.07503411</td>
+<td headers="cumsumprop" class="gt_row gt_right">1.0000000</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
 </div>
-<p>2.2 percent of total observations belong to the second decile.</p>
-<p>All the steps directly with R:</p>
+</div>
+<div class="cell fig-cap-location-top">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table.income.vote <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(decile), <span class="at">y =</span> prop)<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"decile"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)<span class="ot">-&gt;</span> decile.plot</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(income.group.plot, decile.plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="technical-note-piketty-2021_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Proportion of NDP voters per income groups (left) and decile (right)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure here tried to reproduce figure 1 of Piketty &amp; al.’s technical note. This not the exact same graph because the income variable in the technical note has 18 brackets whereas it has 20 here. But the result, if the methodology employed here is correct, is pretty much the same.</p>
+<p>Finally, one can also try to fit a “Pareto line” to the income bracket data. Vilfredo Pareto (1848-1923) is well-known for being one of the first economist to have computed inequality indices (his famous alpha coefficient) directly from personal income distribution data. His relationship <span class="math inline">\(log(N) = A-\alpha log(x)\)</span>, with N the number of people earning more than income level x, is a famous relationship and almost every course on income inequality measurement starts with it.</p>
+<p>First, a table need to be constructed from the data, we count the number of observation per income bracket and compute the inverse of the cumulative relative frequencies, which is the same as N is Pareto’s equation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(income<span class="sc">$</span>prop[<span class="dv">3</span>], income<span class="sc">$</span>prop[<span class="dv">4</span>]), <span class="at">w =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">punif</span>(<span class="fl">0.2</span>, <span class="at">min =</span> income<span class="sc">$</span>cumrelfreq[<span class="dv">3</span>], <span class="at">max =</span> income<span class="sc">$</span>cumrelfreq[<span class="dv">4</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03495832</code></pre>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(inc) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cumrelfreq =</span> <span class="fu">cumsum</span>(prop),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">inverse_rcdf =</span> <span class="fu">rev</span>(cumrelfreq)) <span class="ot">-&gt;</span> paretotable</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>paretotable <span class="sc">%&gt;%</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="orwikpjhlo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#orwikpjhlo) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#orwikpjhlo) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#orwikpjhlo) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#orwikpjhlo) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#orwikpjhlo) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#orwikpjhlo) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#orwikpjhlo) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#orwikpjhlo) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#orwikpjhlo) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#orwikpjhlo) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#orwikpjhlo) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#orwikpjhlo) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#orwikpjhlo) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#orwikpjhlo) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#orwikpjhlo) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#orwikpjhlo) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#orwikpjhlo) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#orwikpjhlo) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#orwikpjhlo) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#orwikpjhlo) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#orwikpjhlo) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#orwikpjhlo) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#orwikpjhlo) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#orwikpjhlo) .gt_left {
+  text-align: left;
+}
+
+:where(#orwikpjhlo) .gt_center {
+  text-align: center;
+}
+
+:where(#orwikpjhlo) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#orwikpjhlo) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#orwikpjhlo) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#orwikpjhlo) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#orwikpjhlo) .gt_super {
+  font-size: 65%;
+}
+
+:where(#orwikpjhlo) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#orwikpjhlo) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#orwikpjhlo) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#orwikpjhlo) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#orwikpjhlo) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#orwikpjhlo) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#orwikpjhlo) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="inc">inc</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prop">prop</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreq">cumrelfreq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="inverse_rcdf">inverse_rcdf</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="inc" class="gt_row gt_right">1</td>
+<td headers="n" class="gt_row gt_right">211</td>
+<td headers="prop" class="gt_row gt_right">0.04687847</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.04687847</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">1.00000000</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">2</td>
+<td headers="n" class="gt_row gt_right">327</td>
+<td headers="prop" class="gt_row gt_right">0.07265052</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.11952899</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.87136192</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">3</td>
+<td headers="n" class="gt_row gt_right">79</td>
+<td headers="prop" class="gt_row gt_right">0.01755166</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.13708065</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.82914908</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">4</td>
+<td headers="n" class="gt_row gt_right">210</td>
+<td headers="prop" class="gt_row gt_right">0.04665630</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.18373695</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.78626972</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">5</td>
+<td headers="n" class="gt_row gt_right">199</td>
+<td headers="prop" class="gt_row gt_right">0.04421240</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.22794934</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.75960898</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">6</td>
+<td headers="n" class="gt_row gt_right">184</td>
+<td headers="prop" class="gt_row gt_right">0.04087980</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.26882915</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.70451011</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">7</td>
+<td headers="n" class="gt_row gt_right">188</td>
+<td headers="prop" class="gt_row gt_right">0.04176850</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.31059764</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.66985114</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">8</td>
+<td headers="n" class="gt_row gt_right">421</td>
+<td headers="prop" class="gt_row gt_right">0.09353477</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.40413242</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.64185737</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">10</td>
+<td headers="n" class="gt_row gt_right">205</td>
+<td headers="prop" class="gt_row gt_right">0.04554543</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.44967785</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.57209509</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">11</td>
+<td headers="n" class="gt_row gt_right">166</td>
+<td headers="prop" class="gt_row gt_right">0.03688069</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.48655854</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.53921351</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">12</td>
+<td headers="n" class="gt_row gt_right">237</td>
+<td headers="prop" class="gt_row gt_right">0.05265497</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.53921351</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.48655854</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">13</td>
+<td headers="n" class="gt_row gt_right">148</td>
+<td headers="prop" class="gt_row gt_right">0.03288158</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.57209509</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.44967785</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">14</td>
+<td headers="n" class="gt_row gt_right">314</td>
+<td headers="prop" class="gt_row gt_right">0.06976228</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.64185737</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.40413242</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">15</td>
+<td headers="n" class="gt_row gt_right">126</td>
+<td headers="prop" class="gt_row gt_right">0.02799378</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.66985114</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.31059764</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">16</td>
+<td headers="n" class="gt_row gt_right">156</td>
+<td headers="prop" class="gt_row gt_right">0.03465896</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.70451011</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.26882915</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">17</td>
+<td headers="n" class="gt_row gt_right">248</td>
+<td headers="prop" class="gt_row gt_right">0.05509887</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.75960898</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.22794934</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">18</td>
+<td headers="n" class="gt_row gt_right">120</td>
+<td headers="prop" class="gt_row gt_right">0.02666074</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.78626972</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.18373695</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">19</td>
+<td headers="n" class="gt_row gt_right">193</td>
+<td headers="prop" class="gt_row gt_right">0.04287936</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.82914908</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.13708065</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">20</td>
+<td headers="n" class="gt_row gt_right">190</td>
+<td headers="prop" class="gt_row gt_right">0.04221284</td>
+<td headers="cumrelfreq" class="gt_row gt_right">0.87136192</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.11952899</td></tr>
+    <tr><td headers="inc" class="gt_row gt_right">NA</td>
+<td headers="n" class="gt_row gt_right">579</td>
+<td headers="prop" class="gt_row gt_right">0.12863808</td>
+<td headers="cumrelfreq" class="gt_row gt_right">1.00000000</td>
+<td headers="inverse_rcdf" class="gt_row gt_right">0.04687847</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
 </div>
-<p>There is some discrepancy due to the different rounding.</p>
+</div>
+<p>Finally, one can plot the log of the inverse of the relative cumulative distribution function against the log of the income groups:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="fu">c</span>(income<span class="sc">$</span>prop[<span class="dv">5</span>], income<span class="sc">$</span>prop[<span class="dv">6</span>]), <span class="at">w =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">punif</span>(<span class="fl">0.3</span>, <span class="at">min =</span> income<span class="sc">$</span>cumrelfreq[<span class="dv">5</span>], <span class="at">max =</span> income<span class="sc">$</span>cumrelfreq[<span class="dv">6</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.04901802</code></pre>
-</div>
-</div>
-<p>This would be tedious to go all the way up to the tenth decile. There is to my knowledge no function in R that will do this automatically and Piketty and his team use Stata so I can’t take their code here. Indeed, a R function that would compute the correct relative frequencies for each decile from whatever income bracket would be really useful. But since I will perhaps go back to this in the future, let’s see what can be done further with those income brackets.</p>
-<p>I will finish this post by trying to plot a “Pareto line”, that is, to plot the relationship <span class="math inline">\(log(N) = A - log(x)\)</span> with N the number of individuals earning more than income level x. This can be done simply by plotting on the y axis the inverse of the relative cumulative distribution function and the log of income brackets on the x axis.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>income <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(inc), <span class="at">y =</span> <span class="fu">log</span>(<span class="fu">rev</span>(cumrelfreq)))<span class="sc">+</span> <span class="co">#rev() to reverse the values to get the inverse of the relative cdf</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)<span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>paretotable <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(inc), <span class="at">y =</span> <span class="fu">log</span>(<span class="fu">rev</span>(cumrelfreq)))<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="technical-note-piketty-2021_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(<span class="at">data =</span> income, <span class="fu">log</span>(<span class="fu">rev</span>(cumrelfreq)) <span class="sc">~</span> <span class="fu">log</span>(inc)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>(Intercept)    log(inc) 
-  0.7227530  -0.7369497 </code></pre>
 </div>
-</div>
-<p>We can see that the Pareto line does not fit the data very well, it would fit better only if the line was drawn for the top of the distribution</p>
+<p>We can see that the line does not fit the data very well. As explained by <a href="https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1">Milanovic</a>, the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic’s blog post.</p>
 
 
 </section>
