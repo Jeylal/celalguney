@@ -61,7 +61,7 @@ ca2015 %>% filter(votendp == 1) %>%
   mutate(
     cum.n = cumsum(n),
     prop = n/sum(n),
-    rangeleft = lag(cumsum(prop)),
+    rangeleft = lag(cumsum(prop), default = 0),
     cumrelfreqN = cumsum(prop),
     cumrelfreqInc = cumsum(inc/sum(inc))) -> table.income
 
@@ -184,11 +184,12 @@ I replace the 0 with 1:
 weight <- ifelse(weight == 0, 1, weight)
 
 table.income <- table.income %>% select(-cumrelfreqInc) %>% 
-  mutate(share = weight)
+  mutate(share_decile = weight)
 
-table.income
+table.income %>% 
+  mutate(share_rest = 1 - weight) -> table.income
 
-
+table.income %>% gt()
 ```
 
 There can be mistakes, but the results seem to make sense
@@ -219,11 +220,13 @@ Let's check if the function works
 ```{r}
 weight_share(x = table.income$cumrelfreqN)
 ```
-We are almost done, there is only the weighted average left (in progress).
+We are almost done, there are only the weighted averages for each decile left (in progress).
 
 ```{r}
 table.income %>% 
   gt()
+
+
 ```
 
 
