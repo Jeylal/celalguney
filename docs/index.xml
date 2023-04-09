@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sun, 09 Apr 2023 20:42:05 GMT</lastBuildDate>
+<lastBuildDate>Sun, 09 Apr 2023 21:39:03 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sun, 09 Apr 2023 20:42:05 GMT</pubDate>
+  <pubDate>Sun, 09 Apr 2023 21:39:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sun, 09 Apr 2023 20:42:05 GMT</pubDate>
+  <pubDate>Sun, 09 Apr 2023 21:39:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sun, 09 Apr 2023 20:42:05 GMT</pubDate>
+  <pubDate>Sun, 09 Apr 2023 21:39:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sun, 09 Apr 2023 20:42:05 GMT</pubDate>
+  <pubDate>Sun, 09 Apr 2023 21:39:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -549,19 +549,20 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <span id="cb3-5">  <span class="fu" style="color: #4758AB;">mutate</span>(</span>
 <span id="cb3-6">    <span class="at" style="color: #657422;">cum.n =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(n),</span>
 <span id="cb3-7">    <span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n),</span>
-<span id="cb3-8">    <span class="at" style="color: #657422;">cumrelfreqN =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(prop),</span>
-<span id="cb3-9">    <span class="at" style="color: #657422;">cumrelfreqInc =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(inc<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(inc))) <span class="ot" style="color: #003B4F;">-&gt;</span> table.income</span>
-<span id="cb3-10"></span>
-<span id="cb3-11">table.income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-12">  <span class="fu" style="color: #4758AB;">gt</span>(<span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Distribution of income groups"</span>)</span></code></pre></div>
+<span id="cb3-8">    <span class="at" style="color: #657422;">rangeleft =</span> <span class="fu" style="color: #4758AB;">lag</span>(<span class="fu" style="color: #4758AB;">cumsum</span>(prop)),</span>
+<span id="cb3-9">    <span class="at" style="color: #657422;">cumrelfreqN =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(prop),</span>
+<span id="cb3-10">    <span class="at" style="color: #657422;">cumrelfreqInc =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(inc<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(inc))) <span class="ot" style="color: #003B4F;">-&gt;</span> table.income</span>
+<span id="cb3-11"></span>
+<span id="cb3-12">table.income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb3-13">  <span class="fu" style="color: #4758AB;">gt</span>(<span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Distribution of income groups"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 
-<div id="jfxxvxxntl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ypqrtvmeaf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#jfxxvxxntl) .gt_table {
+:where(#ypqrtvmeaf) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -586,7 +587,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-left-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_heading {
+:where(#ypqrtvmeaf) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -598,12 +599,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_caption {
+:where(#ypqrtvmeaf) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#jfxxvxxntl) .gt_title {
+:where(#ypqrtvmeaf) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -615,7 +616,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-width: 0;
 }
 
-:where(#jfxxvxxntl) .gt_subtitle {
+:where(#ypqrtvmeaf) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -627,13 +628,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-width: 0;
 }
 
-:where(#jfxxvxxntl) .gt_bottom_border {
+:where(#ypqrtvmeaf) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_col_headings {
+:where(#ypqrtvmeaf) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -648,7 +649,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_col_heading {
+:where(#ypqrtvmeaf) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -668,7 +669,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#jfxxvxxntl) .gt_column_spanner_outer {
+:where(#ypqrtvmeaf) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -680,15 +681,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 4px;
 }
 
-:where(#jfxxvxxntl) .gt_column_spanner_outer:first-child {
+:where(#ypqrtvmeaf) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#jfxxvxxntl) .gt_column_spanner_outer:last-child {
+:where(#ypqrtvmeaf) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#jfxxvxxntl) .gt_column_spanner {
+:where(#ypqrtvmeaf) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -700,7 +701,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   width: 100%;
 }
 
-:where(#jfxxvxxntl) .gt_group_heading {
+:where(#ypqrtvmeaf) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -726,7 +727,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   text-align: left;
 }
 
-:where(#jfxxvxxntl) .gt_empty_group_heading {
+:where(#ypqrtvmeaf) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -741,15 +742,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: middle;
 }
 
-:where(#jfxxvxxntl) .gt_from_md > :first-child {
+:where(#ypqrtvmeaf) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#jfxxvxxntl) .gt_from_md > :last-child {
+:where(#ypqrtvmeaf) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#jfxxvxxntl) .gt_row {
+:where(#ypqrtvmeaf) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -768,7 +769,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#jfxxvxxntl) .gt_stub {
+:where(#ypqrtvmeaf) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -781,7 +782,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#jfxxvxxntl) .gt_stub_row_group {
+:where(#ypqrtvmeaf) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -795,11 +796,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: top;
 }
 
-:where(#jfxxvxxntl) .gt_row_group_first td {
+:where(#ypqrtvmeaf) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#jfxxvxxntl) .gt_summary_row {
+:where(#ypqrtvmeaf) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -809,16 +810,16 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#jfxxvxxntl) .gt_first_summary_row {
+:where(#ypqrtvmeaf) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_first_summary_row.thick {
+:where(#ypqrtvmeaf) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#jfxxvxxntl) .gt_last_summary_row {
+:where(#ypqrtvmeaf) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -828,7 +829,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_grand_summary_row {
+:where(#ypqrtvmeaf) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -838,7 +839,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#jfxxvxxntl) .gt_first_grand_summary_row {
+:where(#ypqrtvmeaf) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -848,11 +849,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_striped {
+:where(#ypqrtvmeaf) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#jfxxvxxntl) .gt_table_body {
+:where(#ypqrtvmeaf) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -861,7 +862,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_footnotes {
+:where(#ypqrtvmeaf) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -875,7 +876,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_footnote {
+:where(#ypqrtvmeaf) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -884,7 +885,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#jfxxvxxntl) .gt_sourcenotes {
+:where(#ypqrtvmeaf) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -898,7 +899,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#jfxxvxxntl) .gt_sourcenote {
+:where(#ypqrtvmeaf) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -906,64 +907,64 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#jfxxvxxntl) .gt_left {
+:where(#ypqrtvmeaf) .gt_left {
   text-align: left;
 }
 
-:where(#jfxxvxxntl) .gt_center {
+:where(#ypqrtvmeaf) .gt_center {
   text-align: center;
 }
 
-:where(#jfxxvxxntl) .gt_right {
+:where(#ypqrtvmeaf) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#jfxxvxxntl) .gt_font_normal {
+:where(#ypqrtvmeaf) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#jfxxvxxntl) .gt_font_bold {
+:where(#ypqrtvmeaf) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#jfxxvxxntl) .gt_font_italic {
+:where(#ypqrtvmeaf) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#jfxxvxxntl) .gt_super {
+:where(#ypqrtvmeaf) .gt_super {
   font-size: 65%;
 }
 
-:where(#jfxxvxxntl) .gt_footnote_marks {
+:where(#ypqrtvmeaf) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#jfxxvxxntl) .gt_asterisk {
+:where(#ypqrtvmeaf) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#jfxxvxxntl) .gt_indent_1 {
+:where(#ypqrtvmeaf) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#jfxxvxxntl) .gt_indent_2 {
+:where(#ypqrtvmeaf) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#jfxxvxxntl) .gt_indent_3 {
+:where(#ypqrtvmeaf) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#jfxxvxxntl) .gt_indent_4 {
+:where(#ypqrtvmeaf) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#jfxxvxxntl) .gt_indent_5 {
+:where(#ypqrtvmeaf) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -976,6 +977,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cum.n">cum.n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prop">prop</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rangeleft">rangeleft</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqN">cumrelfreqN</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqInc">cumrelfreqInc</th>
     </tr>
@@ -985,114 +987,133 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">53</td>
 <td headers="cum.n" class="gt_row gt_right">53</td>
 <td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="rangeleft" class="gt_row gt_right">NA</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.07230559</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.004975124</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">2</td>
 <td headers="n" class="gt_row gt_right">56</td>
 <td headers="cum.n" class="gt_row gt_right">109</td>
 <td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="rangeleft" class="gt_row gt_right">0.07230559</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.14870396</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.014925373</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">3</td>
 <td headers="n" class="gt_row gt_right">15</td>
 <td headers="cum.n" class="gt_row gt_right">124</td>
 <td headers="prop" class="gt_row gt_right">0.02046385</td>
+<td headers="rangeleft" class="gt_row gt_right">0.14870396</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.16916780</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.029850746</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">4</td>
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">159</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.16916780</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.21691678</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.049751244</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">5</td>
 <td headers="n" class="gt_row gt_right">53</td>
 <td headers="cum.n" class="gt_row gt_right">212</td>
 <td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="rangeleft" class="gt_row gt_right">0.21691678</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.28922237</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.074626866</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">6</td>
 <td headers="n" class="gt_row gt_right">47</td>
 <td headers="cum.n" class="gt_row gt_right">259</td>
 <td headers="prop" class="gt_row gt_right">0.06412005</td>
+<td headers="rangeleft" class="gt_row gt_right">0.28922237</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.35334243</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.104477612</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">7</td>
 <td headers="n" class="gt_row gt_right">44</td>
 <td headers="cum.n" class="gt_row gt_right">303</td>
 <td headers="prop" class="gt_row gt_right">0.06002729</td>
+<td headers="rangeleft" class="gt_row gt_right">0.35334243</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.41336971</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.139303483</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">8</td>
 <td headers="n" class="gt_row gt_right">71</td>
 <td headers="cum.n" class="gt_row gt_right">374</td>
 <td headers="prop" class="gt_row gt_right">0.09686221</td>
+<td headers="rangeleft" class="gt_row gt_right">0.41336971</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.51023192</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.179104478</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">10</td>
 <td headers="n" class="gt_row gt_right">34</td>
 <td headers="cum.n" class="gt_row gt_right">408</td>
 <td headers="prop" class="gt_row gt_right">0.04638472</td>
+<td headers="rangeleft" class="gt_row gt_right">0.51023192</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.55661664</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.228855721</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">11</td>
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">443</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.55661664</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.60436562</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.283582090</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">12</td>
 <td headers="n" class="gt_row gt_right">50</td>
 <td headers="cum.n" class="gt_row gt_right">493</td>
 <td headers="prop" class="gt_row gt_right">0.06821282</td>
+<td headers="rangeleft" class="gt_row gt_right">0.60436562</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.67257844</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.343283582</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">13</td>
 <td headers="n" class="gt_row gt_right">28</td>
 <td headers="cum.n" class="gt_row gt_right">521</td>
 <td headers="prop" class="gt_row gt_right">0.03819918</td>
+<td headers="rangeleft" class="gt_row gt_right">0.67257844</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.71077763</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.407960199</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">14</td>
 <td headers="n" class="gt_row gt_right">56</td>
 <td headers="cum.n" class="gt_row gt_right">577</td>
 <td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="rangeleft" class="gt_row gt_right">0.71077763</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.78717599</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.477611940</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">15</td>
 <td headers="n" class="gt_row gt_right">19</td>
 <td headers="cum.n" class="gt_row gt_right">596</td>
 <td headers="prop" class="gt_row gt_right">0.02592087</td>
+<td headers="rangeleft" class="gt_row gt_right">0.78717599</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.81309686</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.552238806</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">16</td>
 <td headers="n" class="gt_row gt_right">26</td>
 <td headers="cum.n" class="gt_row gt_right">622</td>
 <td headers="prop" class="gt_row gt_right">0.03547067</td>
+<td headers="rangeleft" class="gt_row gt_right">0.81309686</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.84856753</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.631840796</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">17</td>
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">657</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.84856753</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.89631651</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.716417910</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">18</td>
 <td headers="n" class="gt_row gt_right">23</td>
 <td headers="cum.n" class="gt_row gt_right">680</td>
 <td headers="prop" class="gt_row gt_right">0.03137790</td>
+<td headers="rangeleft" class="gt_row gt_right">0.89631651</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.92769441</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.805970149</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">19</td>
 <td headers="n" class="gt_row gt_right">32</td>
 <td headers="cum.n" class="gt_row gt_right">712</td>
 <td headers="prop" class="gt_row gt_right">0.04365621</td>
+<td headers="rangeleft" class="gt_row gt_right">0.92769441</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.97135061</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.900497512</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">20</td>
 <td headers="n" class="gt_row gt_right">21</td>
 <td headers="cum.n" class="gt_row gt_right">733</td>
 <td headers="prop" class="gt_row gt_right">0.02864939</td>
+<td headers="rangeleft" class="gt_row gt_right">0.97135061</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">1.00000000</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">1.000000000</td></tr>
   </tbody>
@@ -1170,12 +1191,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <span id="cb8-9">table.income.vote <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">gt</span>(<span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Decile and income bracket"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 
-<div id="ybzibvumxs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gngnifbpka" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#ybzibvumxs) .gt_table {
+:where(#gngnifbpka) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1200,7 +1221,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-left-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_heading {
+:where(#gngnifbpka) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1212,12 +1233,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_caption {
+:where(#gngnifbpka) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#ybzibvumxs) .gt_title {
+:where(#gngnifbpka) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1229,7 +1250,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-width: 0;
 }
 
-:where(#ybzibvumxs) .gt_subtitle {
+:where(#gngnifbpka) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1241,13 +1262,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-width: 0;
 }
 
-:where(#ybzibvumxs) .gt_bottom_border {
+:where(#gngnifbpka) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_col_headings {
+:where(#gngnifbpka) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1262,7 +1283,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_col_heading {
+:where(#gngnifbpka) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1282,7 +1303,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#ybzibvumxs) .gt_column_spanner_outer {
+:where(#gngnifbpka) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1294,15 +1315,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 4px;
 }
 
-:where(#ybzibvumxs) .gt_column_spanner_outer:first-child {
+:where(#gngnifbpka) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#ybzibvumxs) .gt_column_spanner_outer:last-child {
+:where(#gngnifbpka) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#ybzibvumxs) .gt_column_spanner {
+:where(#gngnifbpka) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1314,7 +1335,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   width: 100%;
 }
 
-:where(#ybzibvumxs) .gt_group_heading {
+:where(#gngnifbpka) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1340,7 +1361,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   text-align: left;
 }
 
-:where(#ybzibvumxs) .gt_empty_group_heading {
+:where(#gngnifbpka) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1355,15 +1376,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: middle;
 }
 
-:where(#ybzibvumxs) .gt_from_md > :first-child {
+:where(#gngnifbpka) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#ybzibvumxs) .gt_from_md > :last-child {
+:where(#gngnifbpka) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#ybzibvumxs) .gt_row {
+:where(#gngnifbpka) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1382,7 +1403,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#ybzibvumxs) .gt_stub {
+:where(#gngnifbpka) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1395,7 +1416,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#ybzibvumxs) .gt_stub_row_group {
+:where(#gngnifbpka) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1409,11 +1430,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: top;
 }
 
-:where(#ybzibvumxs) .gt_row_group_first td {
+:where(#gngnifbpka) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#ybzibvumxs) .gt_summary_row {
+:where(#gngnifbpka) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1423,16 +1444,16 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#ybzibvumxs) .gt_first_summary_row {
+:where(#gngnifbpka) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_first_summary_row.thick {
+:where(#gngnifbpka) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#ybzibvumxs) .gt_last_summary_row {
+:where(#gngnifbpka) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1442,7 +1463,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_grand_summary_row {
+:where(#gngnifbpka) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1452,7 +1473,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#ybzibvumxs) .gt_first_grand_summary_row {
+:where(#gngnifbpka) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1462,11 +1483,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_striped {
+:where(#gngnifbpka) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#ybzibvumxs) .gt_table_body {
+:where(#gngnifbpka) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1475,7 +1496,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_footnotes {
+:where(#gngnifbpka) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1489,7 +1510,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_footnote {
+:where(#gngnifbpka) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1498,7 +1519,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#ybzibvumxs) .gt_sourcenotes {
+:where(#gngnifbpka) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1512,7 +1533,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#ybzibvumxs) .gt_sourcenote {
+:where(#gngnifbpka) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1520,64 +1541,64 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#ybzibvumxs) .gt_left {
+:where(#gngnifbpka) .gt_left {
   text-align: left;
 }
 
-:where(#ybzibvumxs) .gt_center {
+:where(#gngnifbpka) .gt_center {
   text-align: center;
 }
 
-:where(#ybzibvumxs) .gt_right {
+:where(#gngnifbpka) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#ybzibvumxs) .gt_font_normal {
+:where(#gngnifbpka) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#ybzibvumxs) .gt_font_bold {
+:where(#gngnifbpka) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#ybzibvumxs) .gt_font_italic {
+:where(#gngnifbpka) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#ybzibvumxs) .gt_super {
+:where(#gngnifbpka) .gt_super {
   font-size: 65%;
 }
 
-:where(#ybzibvumxs) .gt_footnote_marks {
+:where(#gngnifbpka) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#ybzibvumxs) .gt_asterisk {
+:where(#gngnifbpka) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#ybzibvumxs) .gt_indent_1 {
+:where(#gngnifbpka) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#ybzibvumxs) .gt_indent_2 {
+:where(#gngnifbpka) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#ybzibvumxs) .gt_indent_3 {
+:where(#gngnifbpka) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#ybzibvumxs) .gt_indent_4 {
+:where(#gngnifbpka) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#ybzibvumxs) .gt_indent_5 {
+:where(#gngnifbpka) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1749,12 +1770,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <span id="cb9-3">  <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
 <div class="cell-output-display">
 
-<div id="dorsjqaqrk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="noyfenzrpr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#dorsjqaqrk) .gt_table {
+:where(#noyfenzrpr) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1779,7 +1800,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-left-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_heading {
+:where(#noyfenzrpr) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1791,12 +1812,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_caption {
+:where(#noyfenzrpr) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#dorsjqaqrk) .gt_title {
+:where(#noyfenzrpr) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1808,7 +1829,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-width: 0;
 }
 
-:where(#dorsjqaqrk) .gt_subtitle {
+:where(#noyfenzrpr) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1820,13 +1841,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-width: 0;
 }
 
-:where(#dorsjqaqrk) .gt_bottom_border {
+:where(#noyfenzrpr) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_col_headings {
+:where(#noyfenzrpr) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1841,7 +1862,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_col_heading {
+:where(#noyfenzrpr) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1861,7 +1882,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#dorsjqaqrk) .gt_column_spanner_outer {
+:where(#noyfenzrpr) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1873,15 +1894,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 4px;
 }
 
-:where(#dorsjqaqrk) .gt_column_spanner_outer:first-child {
+:where(#noyfenzrpr) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#dorsjqaqrk) .gt_column_spanner_outer:last-child {
+:where(#noyfenzrpr) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#dorsjqaqrk) .gt_column_spanner {
+:where(#noyfenzrpr) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1893,7 +1914,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   width: 100%;
 }
 
-:where(#dorsjqaqrk) .gt_group_heading {
+:where(#noyfenzrpr) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1919,7 +1940,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   text-align: left;
 }
 
-:where(#dorsjqaqrk) .gt_empty_group_heading {
+:where(#noyfenzrpr) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1934,15 +1955,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: middle;
 }
 
-:where(#dorsjqaqrk) .gt_from_md > :first-child {
+:where(#noyfenzrpr) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#dorsjqaqrk) .gt_from_md > :last-child {
+:where(#noyfenzrpr) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#dorsjqaqrk) .gt_row {
+:where(#noyfenzrpr) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1961,7 +1982,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#dorsjqaqrk) .gt_stub {
+:where(#noyfenzrpr) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1974,7 +1995,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#dorsjqaqrk) .gt_stub_row_group {
+:where(#noyfenzrpr) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1988,11 +2009,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: top;
 }
 
-:where(#dorsjqaqrk) .gt_row_group_first td {
+:where(#noyfenzrpr) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#dorsjqaqrk) .gt_summary_row {
+:where(#noyfenzrpr) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2002,16 +2023,16 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#dorsjqaqrk) .gt_first_summary_row {
+:where(#noyfenzrpr) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_first_summary_row.thick {
+:where(#noyfenzrpr) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#dorsjqaqrk) .gt_last_summary_row {
+:where(#noyfenzrpr) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2021,7 +2042,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_grand_summary_row {
+:where(#noyfenzrpr) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2031,7 +2052,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#dorsjqaqrk) .gt_first_grand_summary_row {
+:where(#noyfenzrpr) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2041,11 +2062,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_striped {
+:where(#noyfenzrpr) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#dorsjqaqrk) .gt_table_body {
+:where(#noyfenzrpr) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2054,7 +2075,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_footnotes {
+:where(#noyfenzrpr) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2068,7 +2089,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_footnote {
+:where(#noyfenzrpr) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2077,7 +2098,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#dorsjqaqrk) .gt_sourcenotes {
+:where(#noyfenzrpr) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2091,7 +2112,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#dorsjqaqrk) .gt_sourcenote {
+:where(#noyfenzrpr) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2099,64 +2120,64 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#dorsjqaqrk) .gt_left {
+:where(#noyfenzrpr) .gt_left {
   text-align: left;
 }
 
-:where(#dorsjqaqrk) .gt_center {
+:where(#noyfenzrpr) .gt_center {
   text-align: center;
 }
 
-:where(#dorsjqaqrk) .gt_right {
+:where(#noyfenzrpr) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#dorsjqaqrk) .gt_font_normal {
+:where(#noyfenzrpr) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#dorsjqaqrk) .gt_font_bold {
+:where(#noyfenzrpr) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#dorsjqaqrk) .gt_font_italic {
+:where(#noyfenzrpr) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#dorsjqaqrk) .gt_super {
+:where(#noyfenzrpr) .gt_super {
   font-size: 65%;
 }
 
-:where(#dorsjqaqrk) .gt_footnote_marks {
+:where(#noyfenzrpr) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#dorsjqaqrk) .gt_asterisk {
+:where(#noyfenzrpr) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#dorsjqaqrk) .gt_indent_1 {
+:where(#noyfenzrpr) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#dorsjqaqrk) .gt_indent_2 {
+:where(#noyfenzrpr) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#dorsjqaqrk) .gt_indent_3 {
+:where(#noyfenzrpr) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#dorsjqaqrk) .gt_indent_4 {
+:where(#noyfenzrpr) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#dorsjqaqrk) .gt_indent_5 {
+:where(#noyfenzrpr) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2168,6 +2189,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cum.n">cum.n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prop">prop</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rangeleft">rangeleft</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqN">cumrelfreqN</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqInc">cumrelfreqInc</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="id">id</th>
@@ -2178,6 +2200,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">53</td>
 <td headers="cum.n" class="gt_row gt_right">53</td>
 <td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="rangeleft" class="gt_row gt_right">NA</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.07230559</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.004975124</td>
 <td headers="id" class="gt_row gt_right">1</td></tr>
@@ -2185,6 +2208,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">56</td>
 <td headers="cum.n" class="gt_row gt_right">109</td>
 <td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="rangeleft" class="gt_row gt_right">0.07230559</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.14870396</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.014925373</td>
 <td headers="id" class="gt_row gt_right">2</td></tr>
@@ -2192,6 +2216,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">15</td>
 <td headers="cum.n" class="gt_row gt_right">124</td>
 <td headers="prop" class="gt_row gt_right">0.02046385</td>
+<td headers="rangeleft" class="gt_row gt_right">0.14870396</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.16916780</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.029850746</td>
 <td headers="id" class="gt_row gt_right">3</td></tr>
@@ -2199,6 +2224,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">159</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.16916780</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.21691678</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.049751244</td>
 <td headers="id" class="gt_row gt_right">4</td></tr>
@@ -2206,6 +2232,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">53</td>
 <td headers="cum.n" class="gt_row gt_right">212</td>
 <td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="rangeleft" class="gt_row gt_right">0.21691678</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.28922237</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.074626866</td>
 <td headers="id" class="gt_row gt_right">5</td></tr>
@@ -2213,6 +2240,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">47</td>
 <td headers="cum.n" class="gt_row gt_right">259</td>
 <td headers="prop" class="gt_row gt_right">0.06412005</td>
+<td headers="rangeleft" class="gt_row gt_right">0.28922237</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.35334243</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.104477612</td>
 <td headers="id" class="gt_row gt_right">6</td></tr>
@@ -2220,6 +2248,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">44</td>
 <td headers="cum.n" class="gt_row gt_right">303</td>
 <td headers="prop" class="gt_row gt_right">0.06002729</td>
+<td headers="rangeleft" class="gt_row gt_right">0.35334243</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.41336971</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.139303483</td>
 <td headers="id" class="gt_row gt_right">7</td></tr>
@@ -2227,6 +2256,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">71</td>
 <td headers="cum.n" class="gt_row gt_right">374</td>
 <td headers="prop" class="gt_row gt_right">0.09686221</td>
+<td headers="rangeleft" class="gt_row gt_right">0.41336971</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.51023192</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.179104478</td>
 <td headers="id" class="gt_row gt_right">8</td></tr>
@@ -2234,6 +2264,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">34</td>
 <td headers="cum.n" class="gt_row gt_right">408</td>
 <td headers="prop" class="gt_row gt_right">0.04638472</td>
+<td headers="rangeleft" class="gt_row gt_right">0.51023192</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.55661664</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.228855721</td>
 <td headers="id" class="gt_row gt_right">9</td></tr>
@@ -2241,6 +2272,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">443</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.55661664</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.60436562</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.283582090</td>
 <td headers="id" class="gt_row gt_right">10</td></tr>
@@ -2248,6 +2280,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">50</td>
 <td headers="cum.n" class="gt_row gt_right">493</td>
 <td headers="prop" class="gt_row gt_right">0.06821282</td>
+<td headers="rangeleft" class="gt_row gt_right">0.60436562</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.67257844</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.343283582</td>
 <td headers="id" class="gt_row gt_right">11</td></tr>
@@ -2255,6 +2288,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">28</td>
 <td headers="cum.n" class="gt_row gt_right">521</td>
 <td headers="prop" class="gt_row gt_right">0.03819918</td>
+<td headers="rangeleft" class="gt_row gt_right">0.67257844</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.71077763</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.407960199</td>
 <td headers="id" class="gt_row gt_right">12</td></tr>
@@ -2262,6 +2296,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">56</td>
 <td headers="cum.n" class="gt_row gt_right">577</td>
 <td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="rangeleft" class="gt_row gt_right">0.71077763</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.78717599</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.477611940</td>
 <td headers="id" class="gt_row gt_right">13</td></tr>
@@ -2269,6 +2304,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">19</td>
 <td headers="cum.n" class="gt_row gt_right">596</td>
 <td headers="prop" class="gt_row gt_right">0.02592087</td>
+<td headers="rangeleft" class="gt_row gt_right">0.78717599</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.81309686</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.552238806</td>
 <td headers="id" class="gt_row gt_right">14</td></tr>
@@ -2276,6 +2312,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">26</td>
 <td headers="cum.n" class="gt_row gt_right">622</td>
 <td headers="prop" class="gt_row gt_right">0.03547067</td>
+<td headers="rangeleft" class="gt_row gt_right">0.81309686</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.84856753</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.631840796</td>
 <td headers="id" class="gt_row gt_right">15</td></tr>
@@ -2283,6 +2320,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">657</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.84856753</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.89631651</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.716417910</td>
 <td headers="id" class="gt_row gt_right">16</td></tr>
@@ -2290,6 +2328,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">23</td>
 <td headers="cum.n" class="gt_row gt_right">680</td>
 <td headers="prop" class="gt_row gt_right">0.03137790</td>
+<td headers="rangeleft" class="gt_row gt_right">0.89631651</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.92769441</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.805970149</td>
 <td headers="id" class="gt_row gt_right">17</td></tr>
@@ -2297,6 +2336,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">32</td>
 <td headers="cum.n" class="gt_row gt_right">712</td>
 <td headers="prop" class="gt_row gt_right">0.04365621</td>
+<td headers="rangeleft" class="gt_row gt_right">0.92769441</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.97135061</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">0.900497512</td>
 <td headers="id" class="gt_row gt_right">18</td></tr>
@@ -2304,6 +2344,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">21</td>
 <td headers="cum.n" class="gt_row gt_right">733</td>
 <td headers="prop" class="gt_row gt_right">0.02864939</td>
+<td headers="rangeleft" class="gt_row gt_right">0.97135061</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">1.00000000</td>
 <td headers="cumrelfreqInc" class="gt_row gt_right">1.000000000</td>
 <td headers="id" class="gt_row gt_right">19</td></tr>
@@ -2352,15 +2393,74 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <span id="cb14-3">table.income <span class="ot" style="color: #003B4F;">&lt;-</span> table.income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">-</span>cumrelfreqInc) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb14-4">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">share =</span> weight)</span>
 <span id="cb14-5"></span>
-<span id="cb14-6">table.income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
+<span id="cb14-6">table.income</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 7
+     inc     n cum.n   prop rangeleft cumrelfreqN share
+   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1     1    53    53 0.0723   NA           0.0723 1    
+ 2     2    56   109 0.0764    0.0723      0.149  0.363
+ 3     3    15   124 0.0205    0.149       0.169  1    
+ 4     4    35   159 0.0477    0.169       0.217  0.646
+ 5     5    53   212 0.0723    0.217       0.289  1    
+ 6     6    47   259 0.0641    0.289       0.353  0.168
+ 7     7    44   303 0.0600    0.353       0.413  0.777
+ 8     8    71   374 0.0969    0.413       0.510  0.894
+ 9    10    34   408 0.0464    0.510       0.557  1    
+10    11    35   443 0.0477    0.557       0.604  0.909
+11    12    50   493 0.0682    0.604       0.673  1    
+12    13    28   521 0.0382    0.673       0.711  0.718
+13    14    56   577 0.0764    0.711       0.787  1    
+14    15    19   596 0.0259    0.787       0.813  0.495
+15    16    26   622 0.0355    0.813       0.849  1    
+16    17    35   657 0.0477    0.849       0.896  1    
+17    18    23   680 0.0314    0.896       0.928  1    
+18    19    32   712 0.0437    0.928       0.971  1    
+19    20    21   733 0.0286    0.971       1      1    </code></pre>
+</div>
+</div>
+<p>There can be mistakes, but the results seem to make sense</p>
+<p>Since I do not want to ever do this computation again (😅), I put all of this into a function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">weight_share <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x){</span>
+<span id="cb16-2">  weight <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rep</span>(<span class="cn" style="color: #8f5902;">NA</span>, <span class="fu" style="color: #4758AB;">length</span>(x))</span>
+<span id="cb16-3">  </span>
+<span id="cb16-4">  <span class="cf" style="color: #003B4F;">for</span> (i <span class="cf" style="color: #003B4F;">in</span> <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">length</span>(x)) {</span>
+<span id="cb16-5">   weight[i] <span class="ot" style="color: #003B4F;">&lt;-</span>  <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.1</span> <span class="sc" style="color: #5E5E5E;">|</span> x[i] <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">1</span>,</span>
+<span id="cb16-6">                  <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.1</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.2</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.1</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
+<span id="cb16-7">                         <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.2</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.3</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.2</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
+<span id="cb16-8">                                <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.3</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.4</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.3</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
+<span id="cb16-9">                                       <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.4</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.5</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.4</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]), </span>
+<span id="cb16-10">                                              <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.5</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.6</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.5</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]), </span>
+<span id="cb16-11">                                                     <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.6</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.7</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.6</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
+<span id="cb16-12">                                                            <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.7</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.8</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.7</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
+<span id="cb16-13">                                                                   <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.8</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.9</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.8</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]), <span class="dv" style="color: #AD0000;">1</span>)))))))))</span>
+<span id="cb16-14">  }</span>
+<span id="cb16-15">  weight <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ifelse</span>(weight <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">1</span>, weight)</span>
+<span id="cb16-16">  <span class="fu" style="color: #4758AB;">print</span>(weight)</span>
+<span id="cb16-17">}</span></code></pre></div>
+</div>
+<p>Let’s check if the function works</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;">weight_share</span>(<span class="at" style="color: #657422;">x =</span> table.income<span class="sc" style="color: #5E5E5E;">$</span>cumrelfreqN)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1.0000000 0.3625000 1.0000000 0.6457143 1.0000000 0.1680851 0.7772727
+ [8] 0.8943662 1.0000000 0.9085714 1.0000000 0.7178571 1.0000000 0.4947368
+[15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000</code></pre>
+</div>
+</div>
+<p>We are almost done, there is only the weighted average left.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">table.income <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb19-2">  <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
 <div class="cell-output-display">
 
-<div id="omnugdfmiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rdqmtlkici" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#omnugdfmiy) .gt_table {
+:where(#rdqmtlkici) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2385,7 +2485,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-left-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_heading {
+:where(#rdqmtlkici) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2397,12 +2497,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_caption {
+:where(#rdqmtlkici) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#omnugdfmiy) .gt_title {
+:where(#rdqmtlkici) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2414,7 +2514,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-width: 0;
 }
 
-:where(#omnugdfmiy) .gt_subtitle {
+:where(#rdqmtlkici) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2426,13 +2526,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-width: 0;
 }
 
-:where(#omnugdfmiy) .gt_bottom_border {
+:where(#rdqmtlkici) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_col_headings {
+:where(#rdqmtlkici) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2447,7 +2547,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_col_heading {
+:where(#rdqmtlkici) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2467,7 +2567,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#omnugdfmiy) .gt_column_spanner_outer {
+:where(#rdqmtlkici) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2479,15 +2579,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 4px;
 }
 
-:where(#omnugdfmiy) .gt_column_spanner_outer:first-child {
+:where(#rdqmtlkici) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#omnugdfmiy) .gt_column_spanner_outer:last-child {
+:where(#rdqmtlkici) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#omnugdfmiy) .gt_column_spanner {
+:where(#rdqmtlkici) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2499,7 +2599,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   width: 100%;
 }
 
-:where(#omnugdfmiy) .gt_group_heading {
+:where(#rdqmtlkici) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2525,7 +2625,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   text-align: left;
 }
 
-:where(#omnugdfmiy) .gt_empty_group_heading {
+:where(#rdqmtlkici) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2540,15 +2640,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: middle;
 }
 
-:where(#omnugdfmiy) .gt_from_md > :first-child {
+:where(#rdqmtlkici) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#omnugdfmiy) .gt_from_md > :last-child {
+:where(#rdqmtlkici) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#omnugdfmiy) .gt_row {
+:where(#rdqmtlkici) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2567,7 +2667,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#omnugdfmiy) .gt_stub {
+:where(#rdqmtlkici) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2580,7 +2680,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#omnugdfmiy) .gt_stub_row_group {
+:where(#rdqmtlkici) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2594,11 +2694,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: top;
 }
 
-:where(#omnugdfmiy) .gt_row_group_first td {
+:where(#rdqmtlkici) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#omnugdfmiy) .gt_summary_row {
+:where(#rdqmtlkici) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2608,16 +2708,16 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#omnugdfmiy) .gt_first_summary_row {
+:where(#rdqmtlkici) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_first_summary_row.thick {
+:where(#rdqmtlkici) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#omnugdfmiy) .gt_last_summary_row {
+:where(#rdqmtlkici) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2627,7 +2727,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_grand_summary_row {
+:where(#rdqmtlkici) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2637,7 +2737,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#omnugdfmiy) .gt_first_grand_summary_row {
+:where(#rdqmtlkici) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2647,11 +2747,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_striped {
+:where(#rdqmtlkici) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#omnugdfmiy) .gt_table_body {
+:where(#rdqmtlkici) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2660,7 +2760,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_footnotes {
+:where(#rdqmtlkici) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2674,7 +2774,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_footnote {
+:where(#rdqmtlkici) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2683,7 +2783,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#omnugdfmiy) .gt_sourcenotes {
+:where(#rdqmtlkici) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2697,7 +2797,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#omnugdfmiy) .gt_sourcenote {
+:where(#rdqmtlkici) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2705,64 +2805,64 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#omnugdfmiy) .gt_left {
+:where(#rdqmtlkici) .gt_left {
   text-align: left;
 }
 
-:where(#omnugdfmiy) .gt_center {
+:where(#rdqmtlkici) .gt_center {
   text-align: center;
 }
 
-:where(#omnugdfmiy) .gt_right {
+:where(#rdqmtlkici) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#omnugdfmiy) .gt_font_normal {
+:where(#rdqmtlkici) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#omnugdfmiy) .gt_font_bold {
+:where(#rdqmtlkici) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#omnugdfmiy) .gt_font_italic {
+:where(#rdqmtlkici) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#omnugdfmiy) .gt_super {
+:where(#rdqmtlkici) .gt_super {
   font-size: 65%;
 }
 
-:where(#omnugdfmiy) .gt_footnote_marks {
+:where(#rdqmtlkici) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#omnugdfmiy) .gt_asterisk {
+:where(#rdqmtlkici) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#omnugdfmiy) .gt_indent_1 {
+:where(#rdqmtlkici) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#omnugdfmiy) .gt_indent_2 {
+:where(#rdqmtlkici) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#omnugdfmiy) .gt_indent_3 {
+:where(#rdqmtlkici) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#omnugdfmiy) .gt_indent_4 {
+:where(#rdqmtlkici) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#omnugdfmiy) .gt_indent_5 {
+:where(#rdqmtlkici) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2774,6 +2874,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cum.n">cum.n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prop">prop</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rangeleft">rangeleft</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cumrelfreqN">cumrelfreqN</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="share">share</th>
     </tr>
@@ -2783,114 +2884,133 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <td headers="n" class="gt_row gt_right">53</td>
 <td headers="cum.n" class="gt_row gt_right">53</td>
 <td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="rangeleft" class="gt_row gt_right">NA</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.07230559</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">2</td>
 <td headers="n" class="gt_row gt_right">56</td>
 <td headers="cum.n" class="gt_row gt_right">109</td>
 <td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="rangeleft" class="gt_row gt_right">0.07230559</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.14870396</td>
 <td headers="share" class="gt_row gt_right">0.3625000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">3</td>
 <td headers="n" class="gt_row gt_right">15</td>
 <td headers="cum.n" class="gt_row gt_right">124</td>
 <td headers="prop" class="gt_row gt_right">0.02046385</td>
+<td headers="rangeleft" class="gt_row gt_right">0.14870396</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.16916780</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">4</td>
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">159</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.16916780</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.21691678</td>
 <td headers="share" class="gt_row gt_right">0.6457143</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">5</td>
 <td headers="n" class="gt_row gt_right">53</td>
 <td headers="cum.n" class="gt_row gt_right">212</td>
 <td headers="prop" class="gt_row gt_right">0.07230559</td>
+<td headers="rangeleft" class="gt_row gt_right">0.21691678</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.28922237</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">6</td>
 <td headers="n" class="gt_row gt_right">47</td>
 <td headers="cum.n" class="gt_row gt_right">259</td>
 <td headers="prop" class="gt_row gt_right">0.06412005</td>
+<td headers="rangeleft" class="gt_row gt_right">0.28922237</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.35334243</td>
 <td headers="share" class="gt_row gt_right">0.1680851</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">7</td>
 <td headers="n" class="gt_row gt_right">44</td>
 <td headers="cum.n" class="gt_row gt_right">303</td>
 <td headers="prop" class="gt_row gt_right">0.06002729</td>
+<td headers="rangeleft" class="gt_row gt_right">0.35334243</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.41336971</td>
 <td headers="share" class="gt_row gt_right">0.7772727</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">8</td>
 <td headers="n" class="gt_row gt_right">71</td>
 <td headers="cum.n" class="gt_row gt_right">374</td>
 <td headers="prop" class="gt_row gt_right">0.09686221</td>
+<td headers="rangeleft" class="gt_row gt_right">0.41336971</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.51023192</td>
 <td headers="share" class="gt_row gt_right">0.8943662</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">10</td>
 <td headers="n" class="gt_row gt_right">34</td>
 <td headers="cum.n" class="gt_row gt_right">408</td>
 <td headers="prop" class="gt_row gt_right">0.04638472</td>
+<td headers="rangeleft" class="gt_row gt_right">0.51023192</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.55661664</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">11</td>
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">443</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.55661664</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.60436562</td>
 <td headers="share" class="gt_row gt_right">0.9085714</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">12</td>
 <td headers="n" class="gt_row gt_right">50</td>
 <td headers="cum.n" class="gt_row gt_right">493</td>
 <td headers="prop" class="gt_row gt_right">0.06821282</td>
+<td headers="rangeleft" class="gt_row gt_right">0.60436562</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.67257844</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">13</td>
 <td headers="n" class="gt_row gt_right">28</td>
 <td headers="cum.n" class="gt_row gt_right">521</td>
 <td headers="prop" class="gt_row gt_right">0.03819918</td>
+<td headers="rangeleft" class="gt_row gt_right">0.67257844</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.71077763</td>
 <td headers="share" class="gt_row gt_right">0.7178571</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">14</td>
 <td headers="n" class="gt_row gt_right">56</td>
 <td headers="cum.n" class="gt_row gt_right">577</td>
 <td headers="prop" class="gt_row gt_right">0.07639836</td>
+<td headers="rangeleft" class="gt_row gt_right">0.71077763</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.78717599</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">15</td>
 <td headers="n" class="gt_row gt_right">19</td>
 <td headers="cum.n" class="gt_row gt_right">596</td>
 <td headers="prop" class="gt_row gt_right">0.02592087</td>
+<td headers="rangeleft" class="gt_row gt_right">0.78717599</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.81309686</td>
 <td headers="share" class="gt_row gt_right">0.4947368</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">16</td>
 <td headers="n" class="gt_row gt_right">26</td>
 <td headers="cum.n" class="gt_row gt_right">622</td>
 <td headers="prop" class="gt_row gt_right">0.03547067</td>
+<td headers="rangeleft" class="gt_row gt_right">0.81309686</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.84856753</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">17</td>
 <td headers="n" class="gt_row gt_right">35</td>
 <td headers="cum.n" class="gt_row gt_right">657</td>
 <td headers="prop" class="gt_row gt_right">0.04774898</td>
+<td headers="rangeleft" class="gt_row gt_right">0.84856753</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.89631651</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">18</td>
 <td headers="n" class="gt_row gt_right">23</td>
 <td headers="cum.n" class="gt_row gt_right">680</td>
 <td headers="prop" class="gt_row gt_right">0.03137790</td>
+<td headers="rangeleft" class="gt_row gt_right">0.89631651</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.92769441</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">19</td>
 <td headers="n" class="gt_row gt_right">32</td>
 <td headers="cum.n" class="gt_row gt_right">712</td>
 <td headers="prop" class="gt_row gt_right">0.04365621</td>
+<td headers="rangeleft" class="gt_row gt_right">0.92769441</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">0.97135061</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
     <tr><td headers="inc" class="gt_row gt_right">20</td>
 <td headers="n" class="gt_row gt_right">21</td>
 <td headers="cum.n" class="gt_row gt_right">733</td>
 <td headers="prop" class="gt_row gt_right">0.02864939</td>
+<td headers="rangeleft" class="gt_row gt_right">0.97135061</td>
 <td headers="cumrelfreqN" class="gt_row gt_right">1.00000000</td>
 <td headers="share" class="gt_row gt_right">1.0000000</td></tr>
   </tbody>
@@ -2900,55 +3020,25 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div>
 </div>
-<p>There can be mistakes, but the results seem to make sense</p>
-<p>Since I do not want to ever do this computation again (😅), I put all of this into a function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">weight_share <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x){</span>
-<span id="cb15-2">  weight <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rep</span>(<span class="cn" style="color: #8f5902;">NA</span>, <span class="fu" style="color: #4758AB;">length</span>(x))</span>
-<span id="cb15-3">  </span>
-<span id="cb15-4">  <span class="cf" style="color: #003B4F;">for</span> (i <span class="cf" style="color: #003B4F;">in</span> <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">length</span>(x)) {</span>
-<span id="cb15-5">   weight[i] <span class="ot" style="color: #003B4F;">&lt;-</span>  <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.1</span> <span class="sc" style="color: #5E5E5E;">|</span> x[i] <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">1</span>,</span>
-<span id="cb15-6">                  <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.1</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.2</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.1</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
-<span id="cb15-7">                         <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.2</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.3</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.2</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
-<span id="cb15-8">                                <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.3</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.4</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.3</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
-<span id="cb15-9">                                       <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.4</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.5</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.4</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]), </span>
-<span id="cb15-10">                                              <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.5</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.6</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.5</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]), </span>
-<span id="cb15-11">                                                     <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.6</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.7</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.6</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
-<span id="cb15-12">                                                            <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.7</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.8</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.7</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]),</span>
-<span id="cb15-13">                                                                   <span class="fu" style="color: #4758AB;">ifelse</span>(x[i] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fl" style="color: #AD0000;">0.8</span> <span class="sc" style="color: #5E5E5E;">&amp;</span> x[i] <span class="sc" style="color: #5E5E5E;">&lt;</span> <span class="fl" style="color: #AD0000;">0.9</span>, <span class="fu" style="color: #4758AB;">punif</span>(<span class="fl" style="color: #AD0000;">0.8</span>, <span class="at" style="color: #657422;">min =</span> x[i<span class="dv" style="color: #AD0000;">-1</span>], <span class="at" style="color: #657422;">max =</span> x[i]), <span class="dv" style="color: #AD0000;">1</span>)))))))))</span>
-<span id="cb15-14">  }</span>
-<span id="cb15-15">  </span>
-<span id="cb15-16">  <span class="fu" style="color: #4758AB;">print</span>(weight)</span>
-<span id="cb15-17">}</span></code></pre></div>
-</div>
-<p>Let’s check if the function works</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;">weight_share</span>(<span class="at" style="color: #657422;">x =</span> table.income<span class="sc" style="color: #5E5E5E;">$</span>cumrelfreqN)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 1.0000000 0.3625000 0.0000000 0.6457143 0.0000000 0.1680851 0.7772727
- [8] 0.8943662 0.0000000 0.9085714 0.0000000 0.7178571 0.0000000 0.4947368
-[15] 0.0000000 0.0000000 1.0000000 1.0000000 1.0000000</code></pre>
-</div>
-</div>
 <p>Finally, one can also try to fit a “Pareto line” to the income bracket data. Vilfredo Pareto (1848-1923) is well-known for being one of the first economist to have computed inequality indices (his famous alpha coefficient) directly from personal income distribution data. His relationship <img src="https://latex.codecogs.com/png.latex?log(N)%20=%20A-%5Calpha%20log(x)">, with N the number of people earning more than income level x, is a famous relationship and almost every course on income inequality measurement starts with it.</p>
 <p>First, a table need to be constructed from the data, we count the number of observation per income bracket and compute the inverse of the cumulative relative frequencies, which is the same as N is Pareto’s equation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">ca2015 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb18-2">  <span class="fu" style="color: #4758AB;">count</span>(inc) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb18-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n),</span>
-<span id="cb18-4">         <span class="at" style="color: #657422;">cumrelfreq =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(prop),</span>
-<span id="cb18-5">         <span class="at" style="color: #657422;">inverse_rcdf =</span> <span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)) <span class="ot" style="color: #003B4F;">-&gt;</span> paretotable</span>
-<span id="cb18-6"></span>
-<span id="cb18-7">paretotable <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb18-8">  <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">ca2015 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb20-2">  <span class="fu" style="color: #4758AB;">count</span>(inc) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb20-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n),</span>
+<span id="cb20-4">         <span class="at" style="color: #657422;">cumrelfreq =</span> <span class="fu" style="color: #4758AB;">cumsum</span>(prop),</span>
+<span id="cb20-5">         <span class="at" style="color: #657422;">inverse_rcdf =</span> <span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)) <span class="ot" style="color: #003B4F;">-&gt;</span> paretotable</span>
+<span id="cb20-6"></span>
+<span id="cb20-7">paretotable <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb20-8">  <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
 <div class="cell-output-display">
 
-<div id="fhimjfkvdm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="zmquzcjvet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#fhimjfkvdm) .gt_table {
+:where(#zmquzcjvet) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2973,7 +3063,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-left-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_heading {
+:where(#zmquzcjvet) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2985,12 +3075,12 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_caption {
+:where(#zmquzcjvet) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#fhimjfkvdm) .gt_title {
+:where(#zmquzcjvet) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3002,7 +3092,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-width: 0;
 }
 
-:where(#fhimjfkvdm) .gt_subtitle {
+:where(#zmquzcjvet) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3014,13 +3104,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-width: 0;
 }
 
-:where(#fhimjfkvdm) .gt_bottom_border {
+:where(#zmquzcjvet) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_col_headings {
+:where(#zmquzcjvet) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3035,7 +3125,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_col_heading {
+:where(#zmquzcjvet) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3055,7 +3145,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#fhimjfkvdm) .gt_column_spanner_outer {
+:where(#zmquzcjvet) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3067,15 +3157,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 4px;
 }
 
-:where(#fhimjfkvdm) .gt_column_spanner_outer:first-child {
+:where(#zmquzcjvet) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#fhimjfkvdm) .gt_column_spanner_outer:last-child {
+:where(#zmquzcjvet) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#fhimjfkvdm) .gt_column_spanner {
+:where(#zmquzcjvet) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3087,7 +3177,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   width: 100%;
 }
 
-:where(#fhimjfkvdm) .gt_group_heading {
+:where(#zmquzcjvet) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3113,7 +3203,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   text-align: left;
 }
 
-:where(#fhimjfkvdm) .gt_empty_group_heading {
+:where(#zmquzcjvet) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3128,15 +3218,15 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: middle;
 }
 
-:where(#fhimjfkvdm) .gt_from_md > :first-child {
+:where(#zmquzcjvet) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#fhimjfkvdm) .gt_from_md > :last-child {
+:where(#zmquzcjvet) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#fhimjfkvdm) .gt_row {
+:where(#zmquzcjvet) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3155,7 +3245,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   overflow-x: hidden;
 }
 
-:where(#fhimjfkvdm) .gt_stub {
+:where(#zmquzcjvet) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3168,7 +3258,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#fhimjfkvdm) .gt_stub_row_group {
+:where(#zmquzcjvet) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3182,11 +3272,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   vertical-align: top;
 }
 
-:where(#fhimjfkvdm) .gt_row_group_first td {
+:where(#zmquzcjvet) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#fhimjfkvdm) .gt_summary_row {
+:where(#zmquzcjvet) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3196,16 +3286,16 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#fhimjfkvdm) .gt_first_summary_row {
+:where(#zmquzcjvet) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_first_summary_row.thick {
+:where(#zmquzcjvet) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#fhimjfkvdm) .gt_last_summary_row {
+:where(#zmquzcjvet) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3215,7 +3305,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_grand_summary_row {
+:where(#zmquzcjvet) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3225,7 +3315,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#fhimjfkvdm) .gt_first_grand_summary_row {
+:where(#zmquzcjvet) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3235,11 +3325,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-top-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_striped {
+:where(#zmquzcjvet) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#fhimjfkvdm) .gt_table_body {
+:where(#zmquzcjvet) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3248,7 +3338,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-bottom-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_footnotes {
+:where(#zmquzcjvet) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3262,7 +3352,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_footnote {
+:where(#zmquzcjvet) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -3271,7 +3361,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#fhimjfkvdm) .gt_sourcenotes {
+:where(#zmquzcjvet) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3285,7 +3375,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   border-right-color: #D3D3D3;
 }
 
-:where(#fhimjfkvdm) .gt_sourcenote {
+:where(#zmquzcjvet) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3293,64 +3383,64 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   padding-right: 5px;
 }
 
-:where(#fhimjfkvdm) .gt_left {
+:where(#zmquzcjvet) .gt_left {
   text-align: left;
 }
 
-:where(#fhimjfkvdm) .gt_center {
+:where(#zmquzcjvet) .gt_center {
   text-align: center;
 }
 
-:where(#fhimjfkvdm) .gt_right {
+:where(#zmquzcjvet) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#fhimjfkvdm) .gt_font_normal {
+:where(#zmquzcjvet) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#fhimjfkvdm) .gt_font_bold {
+:where(#zmquzcjvet) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#fhimjfkvdm) .gt_font_italic {
+:where(#zmquzcjvet) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#fhimjfkvdm) .gt_super {
+:where(#zmquzcjvet) .gt_super {
   font-size: 65%;
 }
 
-:where(#fhimjfkvdm) .gt_footnote_marks {
+:where(#zmquzcjvet) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#fhimjfkvdm) .gt_asterisk {
+:where(#zmquzcjvet) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#fhimjfkvdm) .gt_indent_1 {
+:where(#zmquzcjvet) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#fhimjfkvdm) .gt_indent_2 {
+:where(#zmquzcjvet) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#fhimjfkvdm) .gt_indent_3 {
+:where(#zmquzcjvet) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#fhimjfkvdm) .gt_indent_4 {
+:where(#zmquzcjvet) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#fhimjfkvdm) .gt_indent_5 {
+:where(#zmquzcjvet) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3475,14 +3565,14 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 <p>Finally, one can plot the log of the inverse of the relative cumulative distribution function against the log of the income groups:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">paretotable <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb19-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb19-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">log</span>(inc), <span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">log</span>(<span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb19-4">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb19-5">  <span class="fu" style="color: #4758AB;">geom_smooth</span>(<span class="at" style="color: #657422;">method =</span> <span class="st" style="color: #20794D;">"lm"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb19-6">  <span class="fu" style="color: #4758AB;">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">paretotable <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb21-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb21-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">log</span>(inc), <span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">log</span>(<span class="fu" style="color: #4758AB;">rev</span>(cumrelfreq)))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb21-4">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb21-5">  <span class="fu" style="color: #4758AB;">geom_smooth</span>(<span class="at" style="color: #657422;">method =</span> <span class="st" style="color: #20794D;">"lm"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb21-6">  <span class="fu" style="color: #4758AB;">theme_bw</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can see that the line does not fit the data very well. As explained by <a href="https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1">Milanovic</a>, the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic’s blog post.</p>
@@ -3496,7 +3586,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sun, 09 Apr 2023 20:42:05 GMT</pubDate>
+  <pubDate>Sun, 09 Apr 2023 21:39:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/plot.png" medium="image" type="image/png" height="89" width="144"/>
 </item>
 <item>
@@ -3839,7 +3929,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sun, 09 Apr 2023 20:42:05 GMT</pubDate>
+  <pubDate>Sun, 09 Apr 2023 21:39:03 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

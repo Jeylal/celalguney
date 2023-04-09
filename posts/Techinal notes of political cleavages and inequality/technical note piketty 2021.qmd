@@ -61,6 +61,7 @@ ca2015 %>% filter(votendp == 1) %>%
   mutate(
     cum.n = cumsum(n),
     prop = n/sum(n),
+    rangeleft = lag(cumsum(prop)),
     cumrelfreqN = cumsum(prop),
     cumrelfreqInc = cumsum(inc/sum(inc))) -> table.income
 
@@ -185,7 +186,7 @@ weight <- ifelse(weight == 0, 1, weight)
 table.income <- table.income %>% select(-cumrelfreqInc) %>% 
   mutate(share = weight)
 
-table.income %>% gt()
+table.income
 
 
 ```
@@ -209,7 +210,7 @@ weight_share <- function(x){
                                                             ifelse(x[i] > 0.7 & x[i] < 0.8, punif(0.7, min = x[i-1], max = x[i]),
                                                                    ifelse(x[i] > 0.8 & x[i] < 0.9, punif(0.8, min = x[i-1], max = x[i]), 1)))))))))
   }
-  
+  weight <- ifelse(weight == 0, 1, weight)
   print(weight)
 }
 ```
@@ -218,6 +219,24 @@ Let's check if the function works
 ```{r}
 weight_share(x = table.income$cumrelfreqN)
 ```
+We are almost done, there is only the weighted average left (in progress).
+
+```{r}
+table.income %>% 
+  gt()
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Finally, one can also try to fit a "Pareto line" to the income bracket data. Vilfredo Pareto (1848-1923) is well-known for being one of the first economist to have computed inequality indices (his famous alpha coefficient) directly from personal income distribution data. His relationship $log(N) = A-\alpha log(x)$, with N the number of people earning more than income level x, is a famous relationship and almost every course on income inequality measurement starts with it.
