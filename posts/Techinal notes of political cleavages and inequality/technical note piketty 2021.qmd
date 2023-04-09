@@ -17,10 +17,15 @@ library(gt)
 library(lorenz)
 library(REAT)
 library(cowplot)
+library(plot3logit)
+library(arm)
+library(marginaleffects)
+library(gtsummary)
 setwd("F:/myblog/posts/Techinal notes of political cleavages and inequality")
+options(scipen = 999)
 ```
 
-## How far can we go with income brackets?
+## How far can we go with income brackets? (in progress)
 
 To build their database on [World political cleavages and inequality](https://wpid.world/), Piketty and his team had to use electoral survey data. One problem with these sources is that they collect income data through brackets, without reporting the overall income average of the sample or the average per bracket. This Thus poses the question of how far one can go in terms of statistical analysis with only income brackets as a source of information for income. I will here explore what can be done with such a variable as well as the [technical note](https://wid.world/document/building-the-world-political-cleavages-and-inequality-database-a-new-dataset-on-electoral-behaviors-in-50-democracies-1948-2020-world-inequality-lab-technical-note-2021-01/) that Piketty et al. (2021) provides to explain how they computed the vote share for income and education decile, which they claim is one of their main contributions on political cleavages and inequality.
 
@@ -35,9 +40,12 @@ ca <- read_dta("ca.dta")
 ca2015 <- ca %>% 
   filter(year == 2015)
 rm(ca)
+
+sort(unique(ca2015$inc))
+
 ```
 
-Note that there is already something weird here: in the dataset, the variable income has 20 brackets/categories here whereas it has 18 in the technical note. Since this is not so much of an issue, I will still work with this dataset and we just won't have the same results as in Piketty & al's example.
+Note that there is already something going on here: in the dataset, the variable income has 19 brackets/categories here whereas it has 18 in the technical note. Furthermore, income brackets "jump" from 8 to 10. I will ignore these issues and still work with this dataset, we just won't have the same results as in Piketty & al's example.
 
 A first step in analyzing such a variable is to compute the frequency, relative frequency and the cumulative frequencies. Note that I only take the individuals who vote the the New Democratic Party (NDP) as in the technical note's example:
 
@@ -102,6 +110,8 @@ table.income %>%
   labs("Lorenz curve")
 ```
 
+However, doing such graphs and computations directly from income brakcets has many flaws as we will see below.
+
 What makes Piketty's team approach special and interesting is their systematic analysis in terms of quantile groups. This is, according to them, their main contribution and this approach has the advantage to allow for systematic comparison accross space and time. We will try to reproduce here their conversion of income group into quantiles.
 
 In R, the decile for each observation can be added to the dataset with the function ntile():
@@ -117,32 +127,98 @@ Now, the last column of ca2015 is the decile for each observation in the dataset
 
 ```{r}
 ca2015 %>% filter(votendp == 1) %>% 
-  group_by(decile) %>% 
-  count(votendp) %>% 
+  group_by(inc) %>% 
+  count(decile) %>% 
   drop_na() %>% 
   ungroup() %>% 
   mutate(prop = n/sum(n),
          cumsumprop = cumsum(prop)) -> table.income.vote
 
-table.income.vote %>% gt(caption = "Proportion of vote for the NDP per income decile")
+table.income.vote %>% gt(caption = "Decile and income bracket")
 ```
+
+However, it is straightforward to see that the ntile() function is not perfect in computing decile. More generally, computing income decile when the income variable is in brackets seems complicated, but the technical note proposes a re-weighting average approach to partially solve this problem.
+
+To see how the re-weighing approach works, let's go back to the first table:
 
 ```{r}
-#| fig-cap: "Proportion of NDP voters per income groups (left) and decile (right)"
-#| fig-cap-location: top
-
-table.income.vote %>% 
-  ggplot()+
-  aes(x = factor(decile), y = prop)+
-  geom_col()+
-  theme_bw()+
-  xlab("decile") +
-  ylab("")-> decile.plot
-
-cowplot::plot_grid(income.group.plot, decile.plot)
+table.income %>%
+  mutate(id = 1:length(table.income$inc)) %>% 
+  gt()
 ```
 
-The figure here tried to reproduce figure 1 of Piketty & al.'s technical note. This not the exact same graph because the income variable in the technical note has 18 brackets whereas it has 20 here. But the result, if the methodology employed here is correct, is pretty much the same.
+We can directly see the problem posed by income brackets: for example, we can observe that all of income bracket one belongs to the first decile since its relative range is between 0 and 0.0723. However, the relative range of bracket two is \[0.0723 - 0.1487\]. Some part of it belong to the first decile (\[0 - 0.1\]), but some belong to the second (\[0 - 0.2\]). The approach to compute the proportion of observations belonging to the any given decile is to compute the share of each income bracket belonging to this decile and then compute a weighted average. For example, if I want to compute the share of observation of the first decile (D10), I already know that 100% of income bracket one belongs to D10 but I need to know the share of bracket 2 (B2) belonging to D10.
+
+To estimate this, let's assume the distribution of B2 is uniform $x \sim U[0.0723; 0.1487]$, with x the observation within this range. We want to know $P(x<0.1)$, that is to say, the probability that x belongs to the first decile. We use the uniform cumulative distribution function with parameters min = 0.073 and max = 0.1487: $P(x<0.1) = \frac{0.1-0.0723}{0.1487-0.0723} = 0.3626$. This means that 36.26% of B2 belongs to D10. Then, the weighted average for the proportion of observation within D10: $\frac{1*0.0723+0.3626*0.0764}{1+0.3626} = 0.0734$. 7.34% of total observations belong to the first decile.
+
+Here is the computation in R
+
+```{r}
+punif(0.1, table.income$cumrelfreqN[1], table.income$cumrelfreqN[2])
+```
+
+Unfortunately, there is to my knowledge no function in R that will compute the shares automatically. I can nonetheless compute them through a tedious for loop:
+
+```{r}
+weight <- rep(NA, length(table.income$inc))
+
+for (i in 1:length(table.income$inc)) {
+  weight[i] <- ifelse(table.income$cumrelfreqN[i] < 0.1 | table.income$cumrelfreqN[i] == 1, 1,
+                  ifelse(table.income$cumrelfreqN[i] > 0.1 & table.income$cumrelfreqN[i] < 0.2, punif(0.1, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
+                         ifelse(table.income$cumrelfreqN[i] > 0.2 & table.income$cumrelfreqN[i] < 0.3, punif(0.2, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
+                                ifelse(table.income$cumrelfreqN[i] > 0.3 & table.income$cumrelfreqN[i] < 0.4, punif(0.3, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
+                                       ifelse(table.income$cumrelfreqN[i] > 0.4 & table.income$cumrelfreqN[i] < 0.5, punif(0.4, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 
+                                              ifelse(table.income$cumrelfreqN[i] > 0.5 & table.income$cumrelfreqN[i] < 0.6, punif(0.5, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 
+                                                     ifelse(table.income$cumrelfreqN[i] > 0.6 & table.income$cumrelfreqN[i] < 0.7, punif(0.6, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
+                                                            ifelse(table.income$cumrelfreqN[i] > 0.7 & table.income$cumrelfreqN[i] < 0.8, punif(0.7, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
+                                                                   ifelse(table.income$cumrelfreqN[i] > 0.8 & table.income$cumrelfreqN[i] < 0.9, punif(0.8, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 1)))))))))
+}
+weight
+
+```
+
+I replace the 0 with 1:
+
+```{r}
+weight <- ifelse(weight == 0, 1, weight)
+
+table.income <- table.income %>% select(-cumrelfreqInc) %>% 
+  mutate(share = weight)
+
+table.income %>% gt()
+
+
+```
+
+There can be mistakes, but the results seem to make sense
+
+Since I do not want to ever do this computation again (😅), I put all of this into a function:
+
+```{r}
+weight_share <- function(x){
+  weight <- rep(NA, length(x))
+  
+  for (i in 1:length(x)) {
+   weight[i] <-  ifelse(x[i] < 0.1 | x[i] == 1, 1,
+                  ifelse(x[i] > 0.1 & x[i] < 0.2, punif(0.1, min = x[i-1], max = x[i]),
+                         ifelse(x[i] > 0.2 & x[i] < 0.3, punif(0.2, min = x[i-1], max = x[i]),
+                                ifelse(x[i] > 0.3 & x[i] < 0.4, punif(0.3, min = x[i-1], max = x[i]),
+                                       ifelse(x[i] > 0.4 & x[i] < 0.5, punif(0.4, min = x[i-1], max = x[i]), 
+                                              ifelse(x[i] > 0.5 & x[i] < 0.6, punif(0.5, min = x[i-1], max = x[i]), 
+                                                     ifelse(x[i] > 0.6 & x[i] < 0.7, punif(0.6, min = x[i-1], max = x[i]),
+                                                            ifelse(x[i] > 0.7 & x[i] < 0.8, punif(0.7, min = x[i-1], max = x[i]),
+                                                                   ifelse(x[i] > 0.8 & x[i] < 0.9, punif(0.8, min = x[i-1], max = x[i]), 1)))))))))
+  }
+  
+  print(weight)
+}
+```
+
+Let's check if the function works
+```{r}
+weight_share(x = table.income$cumrelfreqN)
+```
+
 
 Finally, one can also try to fit a "Pareto line" to the income bracket data. Vilfredo Pareto (1848-1923) is well-known for being one of the first economist to have computed inequality indices (his famous alpha coefficient) directly from personal income distribution data. His relationship $log(N) = A-\alpha log(x)$, with N the number of people earning more than income level x, is a famous relationship and almost every course on income inequality measurement starts with it.
 
@@ -174,3 +250,5 @@ paretotable %>%
 ```
 
 We can see that the line does not fit the data very well. As explained by [Milanovic](https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1), the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic's blog post.
+
+## Reproducing WPID results: France (in progress)
