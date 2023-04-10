@@ -21,6 +21,8 @@ library(plot3logit)
 library(arm)
 library(marginaleffects)
 library(gtsummary)
+library(DescTools)
+library(weights)
 setwd("F:/myblog/posts/Techinal notes of political cleavages and inequality")
 options(scipen = 999)
 ```
@@ -36,6 +38,8 @@ The wpid is based on an impressive [dataset](https://wpid.world/resources/en/zip
 ```{r}
 #| warning: false
 #| message: false
+
+rm(list = ls())
 ca <- read_dta("ca.dta")
 ca2015 <- ca %>% 
   filter(year == 2015)
@@ -217,28 +221,147 @@ weight_share <- function(x){
 ```
 
 Let's check if the function works
+
 ```{r}
 weight_share(x = table.income$cumrelfreqN)
 ```
-We are almost done, there are only the weighted averages for each decile left (in progress).
+
+We are almost done, there are only the weighted averages for each decile left (in progress). One further step is to compute dummy variables to show to which decile income brackets belong to. This will produce a table close to the one from the technical note.
 
 ```{r}
+
 table.income %>% 
-  gt()
+  mutate(d1 = ifelse(table.income$rangeleft >= 0 & table.income$rangeleft < 0.1, 1, 0),
+         d2 = ifelse(table.income$rangeleft %[]% c(0.1, 0.2) | table.income$cumrelfreqN %[]% c(0.1, 0.2), 1, 0),  # the %[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d3 = ifelse(table.income$rangeleft %[]% c(0.2, 0.3) | table.income$cumrelfreqN %[]% c(0.2, 0.3), 1, 0),
+         d4 = ifelse(table.income$rangeleft %[]% c(0.3, 0.4) | table.income$cumrelfreqN %[]% c(0.3, 0.4), 1, 0),
+         d5 = ifelse(table.income$rangeleft %[]% c(0.4, 0.5) | table.income$cumrelfreqN %[]% c(0.4, 0.5), 1, 0),
+         d6 = ifelse(table.income$rangeleft %[]% c(0.5, 0.6) | table.income$cumrelfreqN %[]% c(0.5, 0.6), 1, 0),
+         d7 = ifelse(table.income$rangeleft %[]% c(0.6, 0.7) | table.income$cumrelfreqN %[]% c(0.6, 0.7), 1, 0),
+         d8 = ifelse(table.income$rangeleft %[]% c(0.7, 0.8) | table.income$cumrelfreqN %[]% c(0.7, 0.8), 1, 0),
+         d9 = ifelse(table.income$rangeleft %[]% c(0.8, 0.9) | table.income$cumrelfreqN %[]% c(0.8, 0.9), 1, 0),
+         d10 = ifelse(table.income$rangeleft %[]% c(0.9, 1) | table.income$cumrelfreqN %[]% c(0.9, 1), 1, 0)) -> table.income
 
-
+table.income %>% gt()
 ```
 
 
 
+```{r}
+weighted.mean(x = table.income$prop[table.income$d1 == 1], w = table.income$share_decile[table.income$d1 == 1]) # d1
+```
+
+This compute the proportion of the first decile directly from the table above
+
+Let's try to compute the 3 first decile in a way that can then be put into a for loop or even into a function later
+```{r}
+# for d_i
+
+weighted.mean(x = c(table.income$prop[table.income[,9] == 1]),
+              w = c(table.income$share_decile[table.income[,9] == 1])) #d1
+
+weighted.mean(x = c(table.income$prop[table.income[,10] == 1]),
+              w = c(table.income$share_rest[table.income[,9] == 1 & table.income[, 10] == 1],
+                    table.income$share_decile[table.income[,9] == 0 & table.income[,10] == 1])) #d2
+
+weighted.mean(x = c(table.income$prop[table.income[,11] == 1]),
+              w = c(table.income$share_rest[table.income[,11-1] == 1 & table.income[, 11] == 1], #d3
+                    table.income$share_decile[table.income[11-1] == 0 & table.income[,11] == 1]))
 
 
+```
 
+Let's try the for loop
 
+```{r}
+decile_vec <- rep(NA, 10)
+decile <- c()
+#9:18 are the decile dummies columns in the dataset
+decile_vec <- capture.output(for (i in 9:18) {
 
+  if(i == 9){
+    
+  decile =  c(weighted.mean(x = c(table.income$prop[table.income[,i] == 1]),
+              w = c(table.income$share_decile[table.income[,i] == 1])))
+  }else{
+    
+   decile = c(weighted.mean(x = c(table.income$prop[table.income[,i] == 1]),
+              w = c(table.income$share_rest[table.income[,i-1] == 1 & table.income[, i] == 1], 
+                    table.income$share_decile[table.income[i-1] == 0 & table.income[,i] == 1])))
+  }
+ 
+cat(decile,"\n")
+})
 
+decile_vec <- as.numeric(decile_vec)
+decile <- data.frame(decile = 1:10,
+                         prop = decile_vec)
+decile
 
+```
+This seems to work, the 3 first values are the same as the ones computed above
 
+Normally, the vector should sum to one:
+```{r}
+sum(decile$prop)
+decile %>% 
+  ggplot()+
+  aes(x = factor(decile), y = prop)+
+  geom_col()
+```
+The decile vector does not sum to one, is it due to a mistake?
+
+For now, let's put the for loop into a function: this function would require the decile dummies columns, the columns for the proportion, the column for decile share and the column for the rest's share:
+
+```{r}
+decile_vec <- function(data, columns, prop, share_decile, share_rest){
+  
+  decile_vec <- rep(NA, 10)
+decile <- c()
+
+decile_vec <- capture.output(for (i in min(columns):max(columns)) {
+
+  if(i == min(columns)){
+    
+  decile =  c(weighted.mean(x = c(data$prop[data[,i] == 1]),
+              w = c(data$share_decile[data[,i] == 1])))
+  }else{
+    
+   decile = c(weighted.mean(x = c(data$prop[data[,i] == 1]),
+              w = c(data$share_rest[data[,i-1] == 1 & data[, i] == 1], 
+                    data$share_decile[data[i-1] == 0 & data[,i] == 1])))
+  }
+ 
+cat(decile,"\n")
+})
+
+decile_vec <- as.numeric(decile_vec)
+decile <- data.frame(decile = 1:10,
+                         prop = decile_vec)
+decile
+}
+```
+
+```{r}
+decile_vec(data = table.income, columns = 9:18, prop = table.income$prop, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
+```
+The function seems to work, but requires a specific dataframe (formatted as table.income).
+
+To check if those operations are correct, let's compare with WPID"s dataset:
+
+```{r}
+cainc <- read_dta("ca-inc.dta")
+unique(cainc$inc[cainc$year == 2015])
+```
+
+```{r}
+cainc %>% filter(year == 2015 & votendp == 1) %>% 
+  group_by(dinc) %>% 
+  count(votendp) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(prop = n/sum(n))
+```
 
 
 
