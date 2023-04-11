@@ -33,7 +33,7 @@ options(scipen = 999)
 
 To build their database on [World political cleavages and inequality](https://wpid.world/), Piketty and his team had to use electoral survey data. One problem with these sources is that they collect income data through brackets, without reporting the overall income average of the sample or the average per bracket. This Thus poses the question of how far one can go in terms of statistical analysis with only income brackets as a source of information for income. I will here explore what can be done with such a variable as well as the [technical note](https://wid.world/document/building-the-world-political-cleavages-and-inequality-database-a-new-dataset-on-electoral-behaviors-in-50-democracies-1948-2020-world-inequality-lab-technical-note-2021-01/) that Piketty et al. (2021) provides to explain how they computed the vote share for income and education decile, which they claim is one of their main contributions on political cleavages and inequality.
 
-### A first look on the WPID dataset
+### From brackets to decile
 
 The wpid is based on an impressive [dataset](https://wpid.world/resources/en/zip/wpid-micro.zip) compiling electoral survey data of 500 elections since 1948. Since the technical note takes Canada's 2015 election as an example, I will use the latter here.
 
