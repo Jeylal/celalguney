@@ -59,7 +59,6 @@ A first step in analyzing such a variable is to compute the frequency, relative 
 #| warning: false
 #| message: false
 
-
 ca2015 %>%
   group_by(inc) %>% 
   count(votendp) %>% 
@@ -115,9 +114,8 @@ cowplot::plot_grid(income.group.plot, income.group.plot2)
 
 On the left, we have a graph very similar to the one of the technical note. The right-sided graph is different, because the proportion are for the overall NPD's voters whereas the left-sided graph represents the proportion within the income group. For example, 30% of income bracket 1 voted for the NDP, but they represent about 7.4% of total NDP's voters.
 
-If we plot the income group against the relative cumulative frequency, we obtain the cumulative distribution of income groups. The cumulative distribution can also be directly plotted with plot(ecdf()):
-
 ```{r}
+#| include: false
 table.income %>% 
   ggplot()+
   aes(x = factor(inc), y = cumrelfreqN)+
@@ -129,9 +127,9 @@ table.income %>%
 
 ```
 
-If we plot this relative cumulative distribution of observation against the one for income, we get the Lorenz curve:
 
 ```{r}
+#| include: false
 table.income %>% 
   ggplot()+
   aes(x = cumrelfreqN, y = cumrelfreqInc)+
@@ -141,8 +139,6 @@ table.income %>%
   theme_bw()+
   labs("Lorenz curve")
 ```
-
-However, doing such graphs and computations directly from income brakcets has many flaws as we will see below.
 
 What makes Piketty's team approach special and interesting is their systematic analysis in terms of quantile groups. This is, according to them, their main contribution and this approach has the advantage to allow for systematic comparison accross space and time. We will try to reproduce here their conversion of income group into quantiles.
 
@@ -306,7 +302,7 @@ Let's try the for loop
 ```{r}
 decile_vec <- rep(NA, 10)
 decile <- c()
-#9:18 are the decile dummies columns in the dataset
+#11:20 are the decile dummies columns in the dataset
 decile_vec <- capture.output(for (i in 11:20) {
 
   if(i == 11){
@@ -337,17 +333,18 @@ This seems to work, the 3 first values are the same as the ones computed above
 decile %>% 
   ggplot()+
   aes(x = factor(decile), y = prop)+
-  geom_col()
+  geom_col()+
+  theme_bw()
 ```
 
-This graph is very close to the one from the techinal note (figure one, right-sided graph)
+This graph is very close to the one from the techninal note (figure one, right-sided graph)
 
 ![](graph1.png){fig-align="center"}
 
 For now, let's put the for loop into a function: this function would require the decile dummies columns, the columns for the proportion, the column for decile share and the column for the rest's share:
 
 ```{r}
-decile_vec <- function(data, columns, prop_vote, share_decile, share_rest){
+decile_vec <- function(data, columns, prop, share_decile, share_rest){
   
   decile_vec <- rep(NA, 10)
 decile <- c()
@@ -356,13 +353,13 @@ decile_vec <- capture.output(for (i in min(columns):max(columns)) {
 
   if(i == min(columns)){
     
-  decile =  c(weighted.mean(x = c(data$prop_vote[data[,i] == 1]),
-              w = c(data$share_decile[data[,i] == 1])))
+  decile =  c(weighted.mean(x = c(prop[data[,i] == 1]),
+              w = c(share_decile[data[,i] == 1])))
   }else{
     
-   decile = c(weighted.mean(x = c(data$prop_vote[data[,i] == 1]),
-              w = c(data$share_rest[data[,i-1] == 1 & data[, i] == 1], 
-                    data$share_decile[data[i-1] == 0 & data[,i] == 1])))
+   decile = c(weighted.mean(x = c(prop[data[,i] == 1]),
+              w = c(share_rest[data[,i-1] == 1 & data[, i] == 1], 
+                    share_decile[data[i-1] == 0 & data[,i] == 1])))
   }
  
 cat(decile,"\n")
@@ -376,7 +373,7 @@ decile
 ```
 
 ```{r}
-decile_vec(data = table.income, columns = 11:20, prop_vote = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
+decile_vec(data = table.income, columns = 11:20, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
 ```
 
 The function seems to work, but requires a specific dataframe (formatted as table.income).
@@ -414,4 +411,70 @@ paretotable %>%
 ```
 
 We can see that the line does not fit the data very well. As explained by [Milanovic](https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1), the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic's blog post.
+
+
+```{r}
+#| include: false
+ca2015 %>% 
+  count(inc) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n),
+         rangeleft = lag(cumsum(prop), default = 0),
+         rangeright = cumsum(prop)) -> data
+data %>% gt()
+```
+
+
+```{r}
+#| include: false
+weight_share(x = data$rangeright)
+```
+
+```{r}
+#| include: false
+data %>% 
+  mutate(share_decile = weight_share(x = data$rangeright),
+         share_rest = 1-weight_share(x = data$rangeright)) -> data
+```
+
+
+```{r}
+#| include: false
+data %>% 
+  mutate(d1 = ifelse(data$rangeleft >= 0 & data$rangeright < 0.1, 1, 0),
+         d2 = ifelse(data$rangeleft %[]% c(0.1, 0.2) | data$rangeright %[]% c(0.1, 0.2), 1, 0),  # the %[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d3 = ifelse(data$rangeleft %[]% c(0.2, 0.3) | data$rangeright %[]% c(0.2, 0.3), 1, 0),
+         d4 = ifelse(data$rangeleft %[]% c(0.3, 0.4) | data$rangeright %[]% c(0.3, 0.4), 1, 0),
+         d5 = ifelse(data$rangeleft %[]% c(0.4, 0.5) | data$rangeright %[]% c(0.4, 0.5), 1, 0),
+         d6 = ifelse(data$rangeleft %[]% c(0.5, 0.6) | data$rangeright %[]% c(0.5, 0.6), 1, 0),
+         d7 = ifelse(data$rangeleft %[]% c(0.6, 0.7) | data$rangeright %[]% c(0.6, 0.7), 1, 0),
+         d8 = ifelse(data$rangeleft %[]% c(0.7, 0.8) | data$rangeright %[]% c(0.7, 0.8), 1, 0),
+         d9 = ifelse(data$rangeleft %[]% c(0.8, 0.9) | data$rangeright %[]% c(0.8, 0.9), 1, 0),
+         d10 = ifelse(data$rangeleft %[]% c(0.9, 1) | data$rangeright %[]% c(0.9, 1), 1, 0)) -> data
+
+data %>% gt()
+```
+
+
+```{r}
+#| include: false
+decile_vec(data = data, columns = 8:17, prop = data$prop, share_decile = data$share_decile, share_rest = data$share_rest) -> data_decile
+```
+
+```{r}
+#| include: false
+data_decile %>% 
+  ggplot()+
+  aes(x = factor(decile), y = prop)+
+  geom_col()+
+  theme_bw()
+```
+
+
+
+
+
+
+
+
 
