@@ -12,13 +12,16 @@ execute:
 
 Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its [online database](https://wpid.world/resources/) got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a "educational" or, in Inglehart terms, a "postmaterial" or "cultural" cleavage [@gethin_political_2021] [@inglehart_silent_1971]. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.
 
-This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income. 
+This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income.
 
 ```{r}
 #| warning: false
 #| message: false
 #| echo: false
 setwd("F:/myblog/posts/Vote for the left in Switzerland a simple analysis")
+load("F:/myblog/posts/Techinal notes of political cleavages and inequality/decile.rda")
+load("F:/myblog/posts/Techinal notes of political cleavages and inequality/weightshare.rda")
+load("F:/myblog/posts/Techinal notes of political cleavages and inequality/deciledummies.rda")
 library(tidyverse)
 library(nnet)
 library(haven)
@@ -30,6 +33,8 @@ library(marginaleffects)
 library(arm)
 library(plot3logit)
 library(RColorBrewer)
+library(DescTools)
+library(splitstackshape)
 options(scipen = 999)
 ```
 
@@ -38,7 +43,6 @@ options(scipen = 999)
 #| message: false
 #| echo: false
 
-rm(list = ls())
 
 panel2019 <- read_sav("panel2019.sav")
 names(panel2019)[which(colnames(panel2019) == "W1_4_f28910")] <- "Gross.monthly.hh.income"
@@ -67,6 +71,85 @@ datareg <- panel2019 %>% dplyr::select("vote.left", "education.level", "Educatio
 To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "f10300" which asked for which party the respondent voted in the 2015 election. From this variable, I create a dummy variable taking value one if the respondant voted for either the socialist party (PS), the green (PES), solidarité or Swiss labor party (PST-POP). Note that those choices can be controversial and a matter of debate because I don't include the Social-christian party and I include the greens. This is a matter of debate if those parties can be classified as left or not, but I will not go further about this.
 
 Regarding the independ variables, the variable "f28910" asks the gross monthly houshold income of the individual and the variable has 15 income brackets (we thus do not have directly the income of the respondant). For education, "f21310" asks the highest level of achieved education. Here is below descriptive statistics for these variables:
+
+
+
+```{r}
+#| include: false
+
+table_incomeprop <- datareg %>% 
+  group_by(Gross.monthly.hh.income) %>% 
+  count(vote.left) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup()
+
+table_incomeprop
+
+table_income <- datareg %>% 
+  filter(vote.left == 1) %>% 
+  group_by(Gross.monthly.hh.income) %>% 
+  count(vote.left) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(prop_vote = table_incomeprop$prop[table_incomeprop$vote.left == 1],
+         prop = n/sum(n),
+         rangeleft = lag(cumsum(n/sum(n)), default = 0),
+         rangeright = cumsum(n/sum(n)))
+
+table_income
+```
+
+```{r}
+#| include: false
+table_income$d_share <- weight_share(x = table_income$rangeright)
+table_income$r_share <- 1-weight_share(x = table_income$rangeright)
+```
+
+
+```{r}
+#| include: false
+table_income <- decile_dummies(data = table_income, rangeleft = rangeleft, rangeright = rangeright)
+```
+
+```{r}
+#| include: false
+decile <- decile(data = table_income, columns = 10:19, prop = table_income$prop_vote, share_decile = table_income$d_share, share_rest = table_income$r_share)
+```
+
+```{r}
+#| include: false
+datareg <- datareg %>% mutate(id = 1:nrow(datareg))
+```
+
+```{r}
+#| include: false
+join <- datareg %>% left_join(table_income, by = "Gross.monthly.hh.income")
+```
+
+
+```{r}
+#| include: false
+join[rep(1:nrow(join), 10),] -> dataregexpand
+
+```
+
+
+
+```{r}
+#| include: false
+decile %>% 
+  ggplot()+
+  aes(x = factor(decile), y = prop)+
+  geom_col()
+
+table_income %>% 
+  ggplot()+
+  aes(x = factor(Gross.monthly.hh.income), y = prop_vote)+
+  geom_col()
+```
+
+
 
 ```{r}
 #| warning: false
@@ -214,21 +297,22 @@ We can see that the slope of the education level curve is steeper than the one f
 
 There are a lot of different ways to compute marginal effects, which make the latter sometimes confusing because we don't know which type of marginal effects are represented. I will here consider one type of marginal effects:
 
-- Group-average marginal effects: slope estimates are produced for each row of the dataset used in computing the model. Then, the estimates can be grouped by the values of one of the regressor and the average for each group is computed.
+-   Group-average marginal effects: slope estimates are produced for each row of the dataset used in computing the model. Then, the estimates can be grouped by the values of one of the regressor and the average for each group is computed.
 
-A first step in group-average marginal effects in R is to use the function "slopes" which calculate estimates of the slopes (marginal effects) for each observation used to compute the model in the first place. The term "variables" is for the variable for which the slopes are estimated and "by" the argument for 
+A first step in group-average marginal effects in R is to use the function "slopes" which calculate estimates of the slopes (marginal effects) for each observation used to compute the model in the first place. The term "variables" is for the variable for which the slopes are estimated and "by" the argument for
+
 ```{r}
 #| warning: false
 #| message: false
 marginaleffectseduc <- slopes(reg, variables = "Education.level")
 head(marginaleffectseduc)
 ```
+
 ```{r}
 dim(marginaleffectseduc)
 ```
 
 The dataframe has 7594 rows which is the same number of observation used in the model. We can then used the different values of income level (from 1 to 15) as grouped within which estimates are averaged:
-
 
 ```{r}
 #| warning: false
@@ -241,6 +325,7 @@ marginaleffectseduc %>%
   ungroup() -> game.educ
 head(game.educ)
 ```
+
 A plot can then be made to have a better view of the average marginal effects/slopes of education for each group of income:
 
 ```{r}
@@ -294,6 +379,7 @@ game.inc %>%
   theme_bw()+
   labs(title = "Group-average marginal effects of income")
 ```
+
 Here the result is more interesting: the average marginal slope of income is negative for each education level but this average decreases significantly for higher level of education. This implies that the probability to vote for the left is linked negatively with income group and that this negative link is strengthened by higher level of education. Rich and highly educated people have thus a very low probability to vote for the left.
 
 Another way to look at the effect of the two independent variable on the probability to vote for the left is to look at the predictions.
@@ -321,19 +407,3 @@ plot_predictions(reg, condition = c("Gross.monthly.hh.income", "Education.level"
 
 cowplot::plot_grid(plotpredicteduc, plotpredictincome)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

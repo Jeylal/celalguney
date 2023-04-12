@@ -12,6 +12,7 @@ execute:
 #| message: false
 #| echo: false
 
+
 library(tidyverse)
 library(haven)
 library(gt)
@@ -129,7 +130,6 @@ table.income %>%
 
 ```
 
-
 ```{r}
 #| include: false
 table.income %>% 
@@ -202,22 +202,19 @@ for (i in 1:length(table.income$inc)) {
                                               ifelse(table.income$cumrelfreqN[i] > 0.5 & table.income$cumrelfreqN[i] < 0.6, punif(0.5, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 
                                                      ifelse(table.income$cumrelfreqN[i] > 0.6 & table.income$cumrelfreqN[i] < 0.7, punif(0.6, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
                                                             ifelse(table.income$cumrelfreqN[i] > 0.7 & table.income$cumrelfreqN[i] < 0.8, punif(0.7, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]),
-                                                                   ifelse(table.income$cumrelfreqN[i] > 0.8 & table.income$cumrelfreqN[i] < 0.9, punif(0.8, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 1)))))))))
+                                                                   ifelse(table.income$cumrelfreqN[i] > 0.8 & table.income$cumrelfreqN[i] < 0.9, punif(0.8, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 
+                                                                          ifelse(table.income$cumrelfreqN[i] > 0.9 & table.income$cumrelfreqN[i] < 1, punif(0.9, min = table.income$cumrelfreqN[i-1], max = table.income$cumrelfreqN[i]), 1))))))))))
 }
 weight
 
 ```
-
-
-
-
 
 I replace the 0 with 1:
 
 ```{r}
 weight <- ifelse(weight == 0, 1, weight)
 
-table.income <- table.income %>% select(-cumrelfreqInc) %>% 
+table.income <- table.income %>% 
   mutate(share_decile = weight)
 
 table.income %>% 
@@ -245,7 +242,8 @@ weight_share <- function(x){
                                               ifelse(x[i] > 0.5 & x[i] < 0.6, punif(0.5, min = x[i-1], max = x[i]), 
                                                      ifelse(x[i] > 0.6 & x[i] < 0.7, punif(0.6, min = x[i-1], max = x[i]),
                                                             ifelse(x[i] > 0.7 & x[i] < 0.8, punif(0.7, min = x[i-1], max = x[i]),
-                                                                   ifelse(x[i] > 0.8 & x[i] < 0.9, punif(0.8, min = x[i-1], max = x[i]), 1)))))))))
+                                                                   ifelse(x[i] > 0.8 & x[i] < 0.9, punif(0.8, min = x[i-1], max = x[i]),
+                                                                                                         ifelse(x[i] > 0.9 & x[i] < 1, punif(0.9, min = x[i-1], max = x[i]), 1))))))))))
   }
   weight <- ifelse(weight == 0, 1, weight)
   print(weight)
@@ -256,6 +254,7 @@ Let's check if the function works
 
 ```{r}
 weight_share(x = table.income$cumrelfreqN)
+
 ```
 
 We are almost done, there are only the weighted averages for each decile left to calculate. One further step is to compute dummy variables to show to which decile income brackets belong to. This will produce a table close to the one from the technical note.
@@ -278,6 +277,7 @@ table.income %>% gt()
 ```
 
 Tu put the code above into a function:
+
 ```{r}
 decile_dummies <- function(data, rangeleft, rangeright){
 
@@ -296,7 +296,6 @@ data %>%
 }
 ```
 
-
 This compute the proportion of the first decile directly from the table above:
 
 ```{r}
@@ -308,16 +307,16 @@ Let's try to compute the 3 first decile in a way that can then be put into a for
 ```{r}
 # for d_i
 
-weighted.mean(x = c(table.income$prop_vote[table.income[,11] == 1]),
-              w = c(table.income$share_decile[table.income[,11] == 1])) #d1: take columns 11 (D1) and the values of prop vote and share decile for which D11 == 1
-
 weighted.mean(x = c(table.income$prop_vote[table.income[,12] == 1]),
-              w = c(table.income$share_rest[table.income[,11] == 1 & table.income[, 12] == 1],
-                    table.income$share_decile[table.income[,11] == 0 & table.income[,12] == 1])) #d2
+              w = c(table.income$share_decile[table.income[,12] == 1])) #d1: take columns 11 (D1) and the values of prop vote and share decile for which D11 == 1
 
 weighted.mean(x = c(table.income$prop_vote[table.income[,13] == 1]),
-              w = c(table.income$share_rest[table.income[,13-1] == 1 & table.income[, 13] == 1], #d3
-                    table.income$share_decile[table.income[13-1] == 0 & table.income[,13] == 1]))
+              w = c(table.income$share_rest[table.income[,12] == 1 & table.income[, 13] == 1],
+                    table.income$share_decile[table.income[,12] == 0 & table.income[,13] == 1])) #d2
+
+weighted.mean(x = c(table.income$prop_vote[table.income[,14] == 1]),
+              w = c(table.income$share_rest[table.income[,14-1] == 1 & table.income[, 14] == 1], #d3
+                    table.income$share_decile[table.income[14-1] == 0 & table.income[,14] == 1]))
 
 
 ```
@@ -328,9 +327,9 @@ Let's try the for loop
 decile_vec <- rep(NA, 10)
 decile <- c()
 #11:20 are the decile dummies columns in the dataset
-decile_vec <- capture.output(for (i in 11:20) {
+decile_vec <- capture.output(for (i in 12:21) {
 
-  if(i == 11){
+  if(i == 12){
     
   decile =  c(weighted.mean(x = c(table.income$prop_vote[table.income[,i] == 1]),
               w = c(table.income$share_decile[table.income[,i] == 1])))
@@ -398,11 +397,10 @@ decile
 ```
 
 ```{r}
-decile(data = table.income, columns = 11:20, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
+decile(data = table.income, columns = 12:21, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
 ```
 
 The function seems to work, but requires a specific dataframe (formatted as table.income).
-
 
 ## Sidenote: fitting a Pareto line to income brackets
 
@@ -437,7 +435,6 @@ paretotable %>%
 
 We can see that the line does not fit the data very well. As explained by [Milanovic](https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1), the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic's blog post.
 
-
 ```{r}
 #| include: false
 ca2015 %>% 
@@ -448,7 +445,6 @@ ca2015 %>%
          rangeright = cumsum(prop)) -> data
 data %>% gt()
 ```
-
 
 ```{r}
 #| include: false
@@ -461,7 +457,6 @@ data %>%
   mutate(share_decile = weight_share(x = data$rangeright),
          share_rest = 1-weight_share(x = data$rangeright)) -> data
 ```
-
 
 ```{r}
 #| include: false
@@ -480,7 +475,6 @@ data %>%
 data %>% gt()
 ```
 
-
 ```{r}
 #| include: false
 decile(data = data, columns = 8:17, prop = data$prop, share_decile = data$share_decile, share_rest = data$share_rest) -> data_decile
@@ -494,10 +488,3 @@ data_decile %>%
   geom_col()+
   theme_bw()
 ```
-
-
-
-
-
-
-
