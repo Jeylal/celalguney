@@ -12,7 +12,6 @@ execute:
 #| message: false
 #| echo: false
 
-
 library(tidyverse)
 library(haven)
 library(gt)
@@ -26,6 +25,7 @@ library(gtsummary)
 library(DescTools)
 library(weights)
 setwd("F:/myblog/posts/Techinal notes of political cleavages and inequality")
+
 options(scipen = 999)
 ```
 
@@ -85,6 +85,8 @@ table.income.pervote %>%
 
 table.income %>% 
   gt(caption =  "Distribution of income group among NDP's voters")
+
+
 ```
 
 We can then plot income groups against their proportion
@@ -154,24 +156,23 @@ ca2015 <- ca2015 %>%
 Now, the last column of ca2015 is the decile for each observation in the dataset.
 
 ```{r}
-ca2015 %>% filter(votendp == 1) %>% 
-  group_by(inc) %>% 
-  count(decile) %>% 
+ca2015 %>% 
+  group_by(decile) %>% 
+  count(votendp) %>% 
+  filter(votendp == 1) %>% 
   drop_na() %>% 
   ungroup() %>% 
-  mutate(prop = n/sum(n),
-         cumsumprop = cumsum(prop)) -> table.income.vote
+  mutate(prop = n/sum(n)) -> table.income.vote
 
 table.income.vote %>% gt(caption = "Decile and income bracket")
 ```
 
-However, it is straightforward to see that the ntile() function is not perfect in computing decile. More generally, computing income decile when the income variable is in brackets seems complicated, but the technical note proposes a re-weighting average approach to partially solve this problem.
+However, it is straightforward to see that the ntile() function has flaws in decile computing. More generally, computing income decile when the income variable is in brackets seems complicated, but the technical note proposes a re-weighting average approach to partially solve this problem.
 
 To see how the re-weighing approach works, let's go back to the first table:
 
 ```{r}
 table.income %>%
-  mutate(id = 1:length(table.income$inc)) %>% 
   gt()
 ```
 
@@ -206,6 +207,10 @@ for (i in 1:length(table.income$inc)) {
 weight
 
 ```
+
+
+
+
 
 I replace the 0 with 1:
 
@@ -271,6 +276,26 @@ table.income %>%
 
 table.income %>% gt()
 ```
+
+Tu put the code above into a function:
+```{r}
+decile_dummies <- function(data, rangeleft, rangeright){
+
+data %>% 
+  mutate(d1 = ifelse({{rangeleft}} >= 0 & {{rangeleft}} < 0.1, 1, 0),
+         d2 = ifelse({{rangeleft}} %[]% c(0.1, 0.2) | {{rangeright}} %[]% c(0.1, 0.2), 1, 0),  #%[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d3 = ifelse({{rangeleft}} %[]% c(0.2, 0.3) | {{rangeright}} %[]% c(0.2, 0.3), 1, 0),
+         d4 = ifelse({{rangeleft}} %[]% c(0.3, 0.4) | {{rangeright}} %[]% c(0.3, 0.4), 1, 0),
+         d5 = ifelse({{rangeleft}} %[]% c(0.4, 0.5) | {{rangeright}} %[]% c(0.4, 0.5), 1, 0),
+         d6 = ifelse({{rangeleft}} %[]% c(0.5, 0.6) | {{rangeright}} %[]% c(0.5, 0.6), 1, 0),
+         d7 = ifelse({{rangeleft}} %[]% c(0.6, 0.7) | {{rangeright}} %[]% c(0.6, 0.7), 1, 0),
+         d8 = ifelse({{rangeleft}} %[]% c(0.7, 0.8) | {{rangeright}} %[]% c(0.7, 0.8), 1, 0),
+         d9 = ifelse({{rangeleft}} %[]% c(0.8, 0.9) | {{rangeright}} %[]% c(0.8, 0.9), 1, 0),
+         d10 = ifelse({{rangeleft}} %[]% c(0.9, 1) | {{rangeright}} %[]% c(0.9, 1), 1, 0))
+  
+}
+```
+
 
 This compute the proportion of the first decile directly from the table above:
 
@@ -344,7 +369,7 @@ This graph is very close to the one from the techninal note (figure one, right-s
 For now, let's put the for loop into a function: this function would require the decile dummies columns, the columns for the proportion, the column for decile share and the column for the rest's share:
 
 ```{r}
-decile_vec <- function(data, columns, prop, share_decile, share_rest){
+decile <- function(data, columns, prop, share_decile, share_rest){
   
   decile_vec <- rep(NA, 10)
 decile <- c()
@@ -373,7 +398,7 @@ decile
 ```
 
 ```{r}
-decile_vec(data = table.income, columns = 11:20, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
+decile(data = table.income, columns = 11:20, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
 ```
 
 The function seems to work, but requires a specific dataframe (formatted as table.income).
@@ -458,7 +483,7 @@ data %>% gt()
 
 ```{r}
 #| include: false
-decile_vec(data = data, columns = 8:17, prop = data$prop, share_decile = data$share_decile, share_rest = data$share_rest) -> data_decile
+decile(data = data, columns = 8:17, prop = data$prop, share_decile = data$share_decile, share_rest = data$share_rest) -> data_decile
 ```
 
 ```{r}
@@ -469,8 +494,6 @@ data_decile %>%
   geom_col()+
   theme_bw()
 ```
-
-
 
 
 
