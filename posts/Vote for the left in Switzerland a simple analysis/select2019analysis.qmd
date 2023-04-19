@@ -35,6 +35,7 @@ library(plot3logit)
 library(RColorBrewer)
 library(DescTools)
 library(splitstackshape)
+library(rockchalk)
 options(scipen = 999)
 ```
 
@@ -64,15 +65,18 @@ panel2019$vote.left <- ifelse(panel2019$W1_f10850rec %in% c(30, 50, 130, 140), 1
 
 panel2019$gender <- factor(panel2019$gender, levels = c(0,1), labels = c("Male", "Female"))
 
-datareg <- panel2019 %>% dplyr::select("vote.left", "education.level", "Education.level", "Gross.monthly.hh.income", "religion", "gender")
+datareg <- panel2019 %>% dplyr::select("vote.left", "education.level", "Education.level", "Gross.monthly.hh.income", "religion", "gender", "W1_f10000", "W1_f20900", "W1_age")
+
+datareg <- datareg %>% 
+  rename(region = "W1_f10000",
+         nonreligious = "W1_f20900", 
+         age = "W1_age")
 
 ```
 
 To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "f10300" which asked for which party the respondent voted in the 2015 election. From this variable, I create a dummy variable taking value one if the respondant voted for either the socialist party (PS), the green (PES), solidarité or Swiss labor party (PST-POP). Note that those choices can be controversial and a matter of debate because I don't include the Social-christian party and I include the greens. This is a matter of debate if those parties can be classified as left or not, but I will not go further about this.
 
 Regarding the independ variables, the variable "f28910" asks the gross monthly houshold income of the individual and the variable has 15 income brackets (we thus do not have directly the income of the respondant). For education, "f21310" asks the highest level of achieved education. Here is below descriptive statistics for these variables:
-
-
 
 ```{r}
 #| include: false
@@ -106,7 +110,6 @@ table_income$d_share <- weight_share(x = table_income$rangeright)
 table_income$r_share <- 1-weight_share(x = table_income$rangeright)
 ```
 
-
 ```{r}
 #| include: false
 table_income <- decile_dummies(data = table_income, rangeleft = rangeleft, rangeright = rangeright)
@@ -127,14 +130,11 @@ datareg <- datareg %>% mutate(id = 1:nrow(datareg))
 join <- datareg %>% left_join(table_income, by = "Gross.monthly.hh.income")
 ```
 
-
 ```{r}
 #| include: false
 join[rep(1:nrow(join), 10),] -> dataregexpand
 
 ```
-
-
 
 ```{r}
 #| include: false
@@ -148,8 +148,6 @@ table_income %>%
   aes(x = factor(Gross.monthly.hh.income), y = prop_vote)+
   geom_col()
 ```
-
-
 
 ```{r}
 #| warning: false
@@ -259,7 +257,7 @@ Here is what this coefficient plot tells: the odds that a Swiss voter vote for a
 
 Odd ratios are known to be rather difficult to interpret. In effect, odd ratios are not what the literature calls "quantity of interest", that is to say, the quantity of the dependent variable which is the most easy to interpret. I this model, the quantity of interest is the probability to vote for a left wing party and not the odds. A lot of economists and social scientists prefer to have a look directly at the marginal effects and predicted probability to have a better view of the relationships between the variables and of the quantity of interest.
 
-I first plot simple graphs of the estimated curves:
+I first plot simple graphs of the estimated curves. To do so, I use the function Invlogit from the plot3logit package and put the estimated coefficient into this function. To do such graphs, one has to make the explanatory variable on the x axis to vary while the other explanatory variables are held constant. A choice has thus to be made about which fixed value of the other factors (of Income for the education level plot and conversely), I decided to choose the median value.
 
 ```{r}
 #| warning: false
@@ -268,22 +266,22 @@ I first plot simple graphs of the estimated curves:
 #| fig-cap: Probability of voting for the left - curves from estimated coefficients
 
 
-x = 1:15
+GHI = 1:15
 ggplot()+
   xlim(1, 15)+
   ylim(0, 1)+
-  geom_line(aes(x = x, y = invlogit(coef(reg)[1] + coef(reg)[2]*x)))+
+  geom_line(aes(x = GHI, y = invlogit(coef(reg)[1] + coef(reg)[2]*GHI + coef(reg)[3]*median(datareg$Education.level, na.rm = TRUE))))+
   geom_point(aes(x = jitter(Gross.monthly.hh.income), y = vote.left), data = datareg)+
   theme_bw()+
   ylab("probability")+
   xlab("Gross monthly household income group") -> prob.plot.income
 
-x = 1:14
+EL = 1:14
 
 ggplot()+
   xlim(1,14)+
   ylim(0,1)+
-  geom_line(aes(x = x, y = invlogit(coef(reg)[1] + coef(reg)[3]*x)))+
+  geom_line(aes(x = EL, y = invlogit(coef(reg)[1] + coef(reg)[2]*median(datareg$Gross.monthly.hh.income, na.rm = TRUE) + coef(reg)[3]*EL)))+
   geom_point(aes(x = jitter(Education.level), y = vote.left), data = datareg)+
   theme_bw()+
   ylab("")+
@@ -293,9 +291,9 @@ ggplot()+
 cowplot::plot_grid(prob.plot.income, prob.plot.educ)
 ```
 
-We can see that the slope of the education level curve is steeper than the one for income: this means that the positive link between the level of education and the probability to vote for the left is greater than the negative with income. But let's have a look directly at the marginal effects.
+We can see that the slope of the education level curve is steeper than the one for income: this means that the positive link between the level of education and the probability to vote for the left is greater than the negative one for income. But let's have a look directly at the marginal effects.
 
-There are a lot of different ways to compute marginal effects, which make the latter sometimes confusing because we don't know which type of marginal effects are represented. I will here consider one type of marginal effects:
+There are a lot of different ways to compute marginal effects, which make the latter sometimes confusing because we don't know which type of marginal effects we are talking about. I will here consider one type of marginal effects:
 
 -   Group-average marginal effects: slope estimates are produced for each row of the dataset used in computing the model. Then, the estimates can be grouped by the values of one of the regressor and the average for each group is computed.
 
@@ -338,7 +336,8 @@ game.educ %>%
   geom_line()+
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.5)+
   theme_bw()+
-  labs(title = "Group-average marginal effect of education")
+  labs(title = "Group-average marginal effect of education for each level of income group")+
+  ylab("Slopes education")
 ```
 
 The slope of education level decreases on average with higher values of income group. This means that even if the probability to vote for the left is linked positively with education level, this link is weaker for higher income groups. However, it is not so much weaker because even though th line is downward slopping, it remains rather flat.
@@ -377,7 +376,8 @@ game.inc %>%
   geom_line()+
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.5)+
   theme_bw()+
-  labs(title = "Group-average marginal effects of income")
+  labs(title = "Group-average marginal effects of income for each level of education")+
+  ylab("Slopes income")
 ```
 
 Here the result is more interesting: the average marginal slope of income is negative for each education level but this average decreases significantly for higher level of education. This implies that the probability to vote for the left is linked negatively with income group and that this negative link is strengthened by higher level of education. Rich and highly educated people have thus a very low probability to vote for the left.
@@ -395,7 +395,8 @@ plot_predictions(reg, condition = c("Education.level", "Gross.monthly.hh.income"
   scale_fill_brewer(palette = "Set1")+
   theme_bw()+
   theme(legend.position = c(0.5, 0.7),
-        legend.background = element_blank()) ->plotpredicteduc
+        legend.background = element_blank())+
+  ylab("probability vote left") -> plotpredicteduc
 
 plot_predictions(reg, condition = c("Gross.monthly.hh.income", "Education.level"))+
   scale_color_brewer(palette = "Set1")+
@@ -407,3 +408,64 @@ plot_predictions(reg, condition = c("Gross.monthly.hh.income", "Education.level"
 
 cowplot::plot_grid(plotpredicteduc, plotpredictincome)
 ```
+Those plots are essentially the same the first one, but with the confidence interval and for different values of the regressor considered fixed for certain values.
+
+## Complexifying the model
+
+### Adding control variables
+
+Let's now add some control variables to the model. The simple model above is flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.
+
+I expand the first model by including a dummy for gender (1= female, 0 = male), age and nonreligiosity (takes value 1 to 7, 1 is for going to the church a lot, 7 is for never at all)
+
+```{r}
+#| results: asis
+
+reg2 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + age + nonreligious + gender, family=binomial(link="logit"))
+stargazer(reg, reg2, type = "html", title = "Model 2: include control variables | log(odds)")
+```
+
+
+The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age is very close to 0 while non religiosity is linked positively. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left.
+It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other's values:
+
+```{r}
+#| results: asis
+
+reg3 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + age + nonreligious + gender + Gross.monthly.hh.income:education.level, family=binomial(link="logit"))
+
+stargazer(reg, reg2, reg3, type = "html", title = "Model 3: include control variables & interaction | log(odds)")
+
+```
+
+It is interesting to see how the coefficient for income and education have changed. Income now has a lower higher coefficient (in absolute value) and education a lower one. However, those coefficients do not tell anything alone: the interaction term of 0.025 must now be taken into account to assess the link with the dependent variable. This positive interaction term implies that for higher values/levels of education, the slope (coefficient) for income will increase.$\frac{\delta log(odds left)}{\delta income} = -0.12 + 0.025Education$, it even becomes positive for value higher than $\frac{\delta log(odds left)}{\delta income} = 0 \leftrightarrow 0.12/0.025 = 4.8$ of education.
+
+
+### Graphical representation of this more complex model
+
+```{r}
+#| include: false
+reg3effect <- slopes(reg3, variables = c("Gross.monthly.hh.income"))
+```
+
+
+```{r}
+#| include: false
+plot_slopes(reg3, variables = "Education.level", by = "Gross.monthly.hh.income")
+plot_slopes(reg3, variables = "Gross.monthly.hh.income", by = "Education.level")
+
+reg3 %>% plot_predictions(condition = c("Gross.monthly.hh.income", "Education.level")) + facet_wrap(~Education.level)
+
+reg3 %>% plot_predictions(condition = c("Education.level", "Gross.monthly.hh.income")) + facet_wrap(~Gross.monthly.hh.income)
+
+```
+
+
+
+
+
+
+
+
+
+
