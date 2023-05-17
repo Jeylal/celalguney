@@ -23,9 +23,9 @@ about:
 
 # Welcome !
 
-My name is Celâl and I am a master student in the Political Economy of Capitalism in the University of Geneva. You can have a look to my [CV](https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf) or to my blog [posts](https://jeylal.github.io/myblog/) where I publish stuff related to my studies, readings and research interests.
+My name is Celâl and I am a master student in the Political Economy of Capitalism at the University of Geneva. You can have a look to my [CV](https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf) or to my blog [posts](https://jeylal.github.io/myblog/) where I publish stuff related to my studies, readings and research interests.
 
-My current project at the moment is my master thesis, which will surely be about the political economy of political cleavages in Switzerland. You can have a look to the first draft of my master thesis proposal [here](https://github.com/Jeylal/myblog/raw/master/master%20thesis%20proposal%20celal%20guney.pdf), which will be subject to frequent improvements.
+My current project at the moment is my master thesis, which will be about the political economy of political cleavages in Switzerland. You can have a look to the first draft of my master thesis proposal [here](https://github.com/Jeylal/myblog/raw/master/master%20thesis%20proposal%20celal%20guney.pdf), which will be subject to frequent improvements.
 
 ## Education
 
