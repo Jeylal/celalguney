@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Wed, 17 May 2023 15:45:27 GMT</lastBuildDate>
+<lastBuildDate>Fri, 02 Jun 2023 23:18:42 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Wed, 17 May 2023 15:45:27 GMT</pubDate>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Wed, 17 May 2023 15:45:27 GMT</pubDate>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Wed, 17 May 2023 15:45:27 GMT</pubDate>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Wed, 17 May 2023 15:45:27 GMT</pubDate>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,8 +5238,116 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Wed, 17 May 2023 15:45:27 GMT</pubDate>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>How did the trust in institutions evolve in Switzerland in the last decades? An analysis of political stability and trust</title>
+  <link>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the first in a wide variety of living standard measures such as the human development index, GDP per capita and so on. As a result, the analysis trust in institutions in Switzerland is rather poorly studied, because it is expected that the good performances of the country implies political stability and that trust in institutions can be taken as granted. If one tries therefore to assess the evolution of trust in institutions, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in swiss people’s trust in institutions <span class="citation" data-cites="brunner_crise_1997">(Brunner and Sgier 1997)</span>. For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini <span class="citation" data-cites="amable2005 amable_neorealist_2008">(2005; 2008)</span>, which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland’s trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy <span class="citation" data-cites="amable_bloc_2014 amable_illusion_2018">(Bruno Amable and Palombarini 2014, 2018)</span>. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are however really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and modern history that Italy and France underwent political crises, and data on these facts only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a neorealist approach.</p>
+<p>This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy.</p>
+<p>To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.</p>
+<div class="cell">
+
+</div>
+<p>This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of “trust in political institutions” variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>name</th>
+<th>values</th>
+<th>Years</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>trust1</td>
+<td>trust in federal council</td>
+<td>0 (no trust) to 10 (full trust) with decimal values</td>
+<td>not 1979, 2015, 2019</td>
+</tr>
+<tr class="even">
+<td>trust2</td>
+<td>trust in national parliament</td>
+<td>0 (no trust) to 10 (full trust) with decimal values</td>
+<td>1991, 1995, 1999, 2003, 2007, 2011</td>
+</tr>
+<tr class="odd">
+<td>trust3</td>
+<td>trust in cantonal authorities</td>
+<td>0 (no trust) to 10 (full trust) with decimal values</td>
+<td>1995, 1999, 2003, 2007, 2011</td>
+</tr>
+<tr class="even">
+<td>trust5</td>
+<td>trust in national political parties</td>
+<td>0 (no trust) to 10 (full trust) with decimal values</td>
+<td>1999, 2003, 2007, 2011</td>
+</tr>
+<tr class="odd">
+<td>eps1</td>
+<td>evaluation: political system/democracy</td>
+<td>scale from 0 to 1, with decimal values</td>
+<td>1971, 1979, 1995, 1999, 2003, 2007, 2011, 2015, 2019</td>
+</tr>
+</tbody>
+</table>
+<section id="trust-in-federal-council" class="level2">
+<h2 class="anchored" data-anchor-id="trust-in-federal-council">Trust in Federal Council</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">ses <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-2">  <span class="fu" style="color: #4758AB;">group_by</span>(year) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-3">  <span class="fu" style="color: #4758AB;">count</span>(trust1) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-4">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-5">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-6">  <span class="fu" style="color: #4758AB;">filter</span>(<span class="sc" style="color: #5E5E5E;">!</span>year <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1979</span>, <span class="dv" style="color: #AD0000;">2015</span>, <span class="dv" style="color: #AD0000;">2019</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-7">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-8">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> trust1, <span class="at" style="color: #657422;">y =</span> prop)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-9">  <span class="fu" style="color: #4758AB;">geom_col</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>year)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values (`position_stack()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-amable_neorealist_2008" class="csl-entry">
+Amable, B., and S. Palombarini. 2008. <span>“A Neorealist Approach to Institutional Change and the Diversity of Capitalism.”</span> <em>Socio-Economic Review</em> 7 (1): 123–43. <a href="https://doi.org/10.1093/ser/mwn018">https://doi.org/10.1093/ser/mwn018</a>.
+</div>
+<div id="ref-amable2005" class="csl-entry">
+Amable, Bruno, and Stefano Palombarini. 2005. <em>L<span>’</span>économie Politique n<span>’</span>est Pas Une Science Morale</em>. Raisons d’Agir. Paris.
+</div>
+<div id="ref-amable_bloc_2014" class="csl-entry">
+———. 2014. <span>“The Bloc Bourgeois in France and Italy.”</span> In <em>Economic Crises and Policy Regimes</em>, Edward Elgar Publishing, 177–216.
+</div>
+<div id="ref-amable_illusion_2018" class="csl-entry">
+———. 2018. <em>L’illusion Du Bloc Bourgeois: Alliances Sociales Et Avenir Du Modèle Français</em>. Raisons d’agir. Paris.
+</div>
+<div id="ref-brunner_crise_1997" class="csl-entry">
+Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Institutions Politiques Suisses? Quelques Résultats d’une Enquête d’opinion.”</span> <em>Swiss Political Science Review</em> 3 (1): 1–113.
+</div>
+</div></section></div> ]]></description>
+  <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
 </item>
 <item>
   <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
@@ -6388,7 +6496,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Wed, 17 May 2023 15:45:27 GMT</pubDate>
+  <pubDate>Fri, 02 Jun 2023 23:18:42 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

@@ -1,0 +1,74 @@
+---
+title: "How did the trust in institutions evolve in Switzerland in the last decades? An analysis of political stability and trust"
+format: html
+editor: visual
+bibliography: biblio.bib
+---
+
+Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the first in a wide variety of living standard measures such as the human development index, GDP per capita and so on. As a result, the analysis trust in institutions in Switzerland is rather poorly studied, because it is expected that the good performances of the country implies political stability and that trust in institutions can be taken as granted. If one tries therefore to assess the evolution of trust in institutions, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in swiss people's trust in institutions [@brunner_crise_1997]. For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are however really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and modern history that Italy and France underwent political crises, and data on these facts only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a neorealist approach.
+
+This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy.
+
+To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(devtools)
+library(hdr)
+library(tidyverse)
+library(sjlabelled)
+library(haven)
+library(WDI)
+theme_set(theme_bw())
+
+ses <- read_sav("swiss election study.sav")
+```
+
+This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of "trust in political institutions" variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table
+
+| Code 	| name 	| values 	| Years 	|
+|---	|---	|---	|---	|
+| trust1 	| trust in federal council 	| 0 (no trust) to 10 (full trust) with decimal values 	| not 1979, 2015, 2019 	|
+| trust2 	| trust in national parliament 	| 0 (no trust) to 10 (full trust) with decimal values 	| 1991, 1995, 1999, 2003, 2007, 2011 	|
+| trust3 	| trust in cantonal authorities 	| 0 (no trust) to 10 (full trust) with decimal values 	| 1995, 1999, 2003, 2007, 2011 	|
+| trust5 	| trust in national political parties 	| 0 (no trust) to 10 (full trust) with decimal values 	| 1999, 2003, 2007, 2011 	|
+| eps1 	| evaluation: political system/democracy 	| scale from 0 to 1, with decimal values 	| 1971, 1979, 1995, 1999, 2003, 2007, 2011, 2015, 2019 	|
+
+
+## Trust in Federal Council
+
+```{r}
+#| message: false
+#| error: false
+
+ses %>% 
+  group_by(year) %>% 
+  count(trust1) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(!year %in% c(1979, 2015, 2019)) %>% 
+  ggplot()+
+  aes(x = trust1, y = prop)+
+  geom_col()+
+  facet_wrap(~year)
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
