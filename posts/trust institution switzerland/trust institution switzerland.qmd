@@ -21,6 +21,7 @@ library(tidyverse)
 library(sjlabelled)
 library(haven)
 library(WDI)
+library(Rtools)
 theme_set(theme_bw())
 
 ses <- read_sav("swiss election study.sav")
@@ -42,6 +43,8 @@ This dataset is in fact a harmonized dataset of all the successive post-electora
 ```{r}
 #| message: false
 #| error: false
+#| fig-width: 15
+#| fig-height: 8
 
 ses %>% 
   group_by(year) %>% 
@@ -59,31 +62,21 @@ ses %>%
               vjust = -0.5,    # nudge above top of bar
               size = 3)
 
-
-
-```
-Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.
-
-```{r}
-#| message: false
-#| error: false
+ses$trust1d <- if_else(between(ses$trust1, 5, 10), 1, 0)
 
 ses %>% 
   group_by(year) %>% 
-  count(trust2) %>% 
+  count(trust1d) %>% 
   drop_na() %>% 
   mutate(prop = n/sum(n)) %>% 
-  ungroup() %>% 
-  filter(year %in% c(1991, 1995, 1999, 2003, 2007, 2011)) %>% 
-  ggplot()+
-  aes(x = factor(trust2), y = prop)+
-  geom_col()+
-  labs(title = "Trust in National Parliament")+
-  facet_wrap(~year)+
-  theme()
-
+  filter(trust1d == 1)
 
 ```
+
+
+Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.
+
+
 
 
 

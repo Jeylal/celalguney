@@ -290,20 +290,20 @@ div.csl-indent {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,    <span class="co"># nudge above top of bar</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="1440"></p>
 </div>
 </div>
 <p>Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ses <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(trust2) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(eps1) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1991</span>, <span class="dv">1995</span>, <span class="dv">1999</span>, <span class="dv">2003</span>, <span class="dv">2007</span>, <span class="dv">2011</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1971</span>, <span class="dv">1979</span>, <span class="dv">1995</span>, <span class="dv">1999</span>, <span class="dv">2003</span>, <span class="dv">2007</span>, <span class="dv">2011</span>, <span class="dv">2015</span>, <span class="dv">2019</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(trust2), <span class="at">y =</span> prop)<span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(eps1), <span class="at">y =</span> prop)<span class="sc">+</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Trust in National Parliament"</span>)<span class="sc">+</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year)<span class="sc">+</span></span>

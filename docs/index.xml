@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sat, 03 Jun 2023 20:54:59 GMT</lastBuildDate>
+<lastBuildDate>Sat, 03 Jun 2023 21:14:17 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5323,20 +5323,20 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <span id="cb1-14">              <span class="at" style="color: #657422;">vjust =</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="fl" style="color: #AD0000;">0.5</span>,    <span class="co" style="color: #5E5E5E;"># nudge above top of bar</span></span>
 <span id="cb1-15">              <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">3</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="1440"></p>
 </div>
 </div>
 <p>Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">ses <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb2-2">  <span class="fu" style="color: #4758AB;">group_by</span>(year) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-3">  <span class="fu" style="color: #4758AB;">count</span>(trust2) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;">count</span>(eps1) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb2-4">  <span class="fu" style="color: #4758AB;">drop_na</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb2-5">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb2-6">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-7">  <span class="fu" style="color: #4758AB;">filter</span>(year <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1991</span>, <span class="dv" style="color: #AD0000;">1995</span>, <span class="dv" style="color: #AD0000;">1999</span>, <span class="dv" style="color: #AD0000;">2003</span>, <span class="dv" style="color: #AD0000;">2007</span>, <span class="dv" style="color: #AD0000;">2011</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;">filter</span>(year <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1971</span>, <span class="dv" style="color: #AD0000;">1979</span>, <span class="dv" style="color: #AD0000;">1995</span>, <span class="dv" style="color: #AD0000;">1999</span>, <span class="dv" style="color: #AD0000;">2003</span>, <span class="dv" style="color: #AD0000;">2007</span>, <span class="dv" style="color: #AD0000;">2011</span>, <span class="dv" style="color: #AD0000;">2015</span>, <span class="dv" style="color: #AD0000;">2019</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb2-8">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-9">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">factor</span>(trust2), <span class="at" style="color: #657422;">y =</span> prop)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb2-9">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">factor</span>(eps1), <span class="at" style="color: #657422;">y =</span> prop)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb2-10">  <span class="fu" style="color: #4758AB;">geom_col</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb2-11">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Trust in National Parliament"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb2-12">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>year)<span class="sc" style="color: #5E5E5E;">+</span></span>
@@ -5368,7 +5368,7 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
 </item>
 <item>
   <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
@@ -6517,7 +6517,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sat, 03 Jun 2023 20:54:59 GMT</pubDate>
+  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
