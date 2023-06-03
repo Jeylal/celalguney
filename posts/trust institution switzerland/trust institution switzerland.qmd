@@ -5,7 +5,7 @@ editor: visual
 bibliography: biblio.bib
 ---
 
-Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the first in a wide variety of living standard measures such as the human development index, GDP per capita and so on. As a result, the trust in institutions in Switzerland is rather poorly studied, because it is expected that the good performances of the country implies political stability and that trust in institutions can be taken as granted. If one tries therefore to assess the evolution of trust in institutions, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in swiss people's trust in institutions [@brunner_crise_1997]. For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are however really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and modern history that Italy and France underwent political crises, and data on these facts only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a neorealist approach.
+Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. As a result, trust in institution is rather poorly studied in Switzerland, because it is assumed that the good performances of the country imply political stability and that trust in institutions can be taken as granted. If one tries therefore to assess the evolution of trust in institutions, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions [@brunner_crise_1997]. For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data on these facts only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.
 
 This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy.
 
@@ -51,13 +51,40 @@ ses %>%
   ungroup() %>% 
   filter(!year %in% c(1979, 2015, 2019)) %>% 
   ggplot()+
-  aes(x = trust1, y = prop)+
+  aes(x = trust1, y = prop, label = scales::percent(round(prop, 3)))+
   geom_col()+
-  facet_wrap(~year)
+  labs(title = "Trust in Federal Council 1971-2011")+
+  facet_wrap(~year)+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = -0.5,    # nudge above top of bar
+              size = 3)
 
 
 
 ```
+Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.
+
+```{r}
+#| message: false
+#| error: false
+
+ses %>% 
+  group_by(year) %>% 
+  count(trust2) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(year %in% c(1991, 1995, 1999, 2003, 2007, 2011)) %>% 
+  ggplot()+
+  aes(x = factor(trust2), y = prop)+
+  geom_col()+
+  labs(title = "Trust in National Parliament")+
+  facet_wrap(~year)+
+  theme()
+
+
+```
+
 
 
 
