@@ -556,6 +556,45 @@ Columns: rowid, term, estimate, std.error, statistic, p.value, conf.low, conf.hi
 </div>
 </div>
 <p>Those plots are essentially the same the first one, but with the confidence interval and for different values of the regressor considered fixed for certain values.</p>
+<p>Another way is to compute directly the average marginal effects without grouping:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>marginaleffectsinc <span class="ot">&lt;-</span> <span class="fu">slopes</span>(reg, <span class="at">variables =</span> <span class="st">"Gross.monthly.hh.income"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>marginaleffectseduc <span class="ot">&lt;-</span> <span class="fu">slopes</span>(reg, <span class="at">variables =</span> <span class="st">"Education.level"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>avg_effect_summary_reg <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">summary</span>(marginaleffectsinc), <span class="fu">summary</span>(marginaleffectseduc))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>avg_effect_summary_reg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                    Term    Contrast Estimate Std. Error     z Pr(&gt;|z|)   2.5 %
+ Gross.monthly.hh.income mean(dY/dX)  -0.0171    0.00166 -10.3   &lt;0.001 -0.0204
+ Education.level         mean(dY/dX)   0.0262    0.00195  13.4   &lt;0.001  0.0224
+  97.5 %
+ -0.0139
+  0.0300
+
+Columns: term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high </code></pre>
+</div>
+</div>
+<p>Here is a nice way to visualize the table above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>avg_effect_summary_reg <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate<span class="sc">*</span><span class="dv">100</span>, <span class="at">y =</span> term)<span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> conf.low<span class="sc">*</span><span class="dv">100</span>, <span class="at">xmax =</span> conf.high<span class="sc">*</span><span class="dv">100</span>))<span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Average marginal effects (percentage points)"</span>)<span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)<span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(estimate<span class="sc">*</span><span class="dv">100</span>, <span class="dv">3</span>)), <span class="at">nudge_y =</span> <span class="fl">0.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="select2019analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The advantage of average marginal effects is the fact that they give information on the quantity of interest (here the probability to vote for the left) instead of odd ratio or log odds. The probability to vote for the left decreases on average by -1.715 percentage points if we compare two units which only differs by one income group level. Conversely, the probability increases on average by 2.6 percentage points if we compare two units which only differs by one level of education.</p>
 </section>
 <section id="complexifying-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="complexifying-the-model">Complexifying the model</h2>
@@ -570,7 +609,7 @@ Columns: rowid, term, estimate, std.error, statistic, p.value, conf.low, conf.hi
 <p>In the present analysis, I will consider a partial pooling model in which the slopes and intercepts for income and education can vary. In R, partial pooling models can be estimated with the function lmer() from the lme4 package.</p>
 <p>The results of this model can be then represented through a table with tab_model()</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(glmer1, <span class="at">transform =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Partial Pooling model"</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(glmer1, <span class="at">transform =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Partial Pooling model"</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
@@ -655,16 +694,16 @@ Columns: rowid, term, estimate, std.error, statistic, p.value, conf.low, conf.hi
 <p>The random effects coefficients at the cantons level for income and education are 0, which implies that there is very low variation between cantons. Furthermore, the fixed effect coefficients are almost the same than the previous model: this new model is thus not a big improvement and shows that including cantons as a group does not change the model a lot.</p>
 <p>However, it is still interesting to plot predicted probabilities to have a better overview:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(glmer1, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"Education.level"</span>, <span class="st">"Gross.monthly.hh.income"</span>, <span class="st">"W1_3_canton_sample"</span>))<span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>W1_3_canton_sample)<span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">linetype =</span> Gross.monthly.hh.income)<span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)<span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probabilités prédites selon le niveau d'éducation, pour chaque canton et pour différent niveau de revenu"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Election Conseil National 2015"</span>)<span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_predictions</span>(glmer1, <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"Education.level"</span>, <span class="st">"Gross.monthly.hh.income"</span>, <span class="st">"W1_3_canton_sample"</span>))<span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>W1_3_canton_sample)<span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">linetype =</span> Gross.monthly.hh.income)<span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)<span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probabilités prédites selon le niveau d'éducation, pour chaque canton et pour différent niveau de revenu"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Election Conseil National 2015"</span>)<span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="select2019analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="select2019analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -675,8 +714,8 @@ Columns: rowid, term, estimate, std.error, statistic, p.value, conf.low, conf.hi
 <h3 class="anchored" data-anchor-id="adding-control-variables">Adding control variables</h3>
 <p>Let’s now add some control variables to the model. The models above are flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.</p>
 <p>I expand the first model by including a dummy for gender (1= female, 0 = male), age and nonreligiosity (takes value 1 to 7, 1 is for going to the church a lot, 7 is for never at all)</p>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>reg2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> datareg, vote.left <span class="sc">~</span> Gross.monthly.hh.income <span class="sc">+</span> Education.level <span class="sc">+</span> age <span class="sc">+</span> nonreligious <span class="sc">+</span> gender, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg, reg2, <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">title =</span> <span class="st">"Model 2: include control variables | log(odds)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>reg2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> datareg, vote.left <span class="sc">~</span> Gross.monthly.hh.income <span class="sc">+</span> Education.level <span class="sc">+</span> W1_agecat <span class="sc">+</span> nonreligious <span class="sc">+</span> gender, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg, reg2, <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">title =</span> <span class="st">"Model 2: include control variables | log(odds)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <table style="text-align:center">
 <caption>
@@ -780,12 +819,12 @@ Education.level
 </tr>
 <tr>
 <td style="text-align:left">
-age
+W1_agecat
 </td>
 <td>
 </td>
 <td>
-0.004<sup>*</sup>
+0.042<sup>*</sup>
 </td>
 </tr>
 <tr>
@@ -794,7 +833,7 @@ age
 <td>
 </td>
 <td>
-(0.002)
+(0.022)
 </td>
 </tr>
 <tr>
@@ -867,7 +906,7 @@ Constant
 -1.049<sup>***</sup>
 </td>
 <td>
--2.683<sup>***</sup>
+-2.642<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -877,7 +916,7 @@ Constant
 (0.083)
 </td>
 <td>
-(0.233)
+(0.218)
 </td>
 </tr>
 <tr>
@@ -911,7 +950,7 @@ Log Likelihood
 -3,559.022
 </td>
 <td>
--2,190.916
+-2,190.866
 </td>
 </tr>
 <tr>
@@ -922,7 +961,7 @@ Akaike Inf. Crit.
 7,124.044
 </td>
 <td>
-4,393.831
+4,393.731
 </td>
 </tr>
 <tr>
@@ -939,10 +978,10 @@ Akaike Inf. Crit.
 </tr>
 
 </tbody></table>
-<p>The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age is very close to 0 while non religiosity is linked positively. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other’s values:</p>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>reg3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> datareg, vote.left <span class="sc">~</span> Gross.monthly.hh.income <span class="sc">+</span> Education.level <span class="sc">+</span> age <span class="sc">+</span> nonreligious <span class="sc">+</span> gender <span class="sc">+</span> Gross.monthly.hh.income<span class="sc">:</span>Education.level, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg, reg2, reg3, <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">title =</span> <span class="st">"Model 3: include control variables &amp; interaction | log(odds)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age category is linked positively with the vote for the left. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other’s values:</p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>reg3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> datareg, vote.left <span class="sc">~</span> Gross.monthly.hh.income <span class="sc">+</span> Education.level <span class="sc">+</span> W1_agecat <span class="sc">+</span> nonreligious <span class="sc">+</span> gender <span class="sc">+</span> Gross.monthly.hh.income<span class="sc">:</span>Education.level, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg, reg2, reg3, <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">title =</span> <span class="st">"Model 3: include control variables &amp; interaction | log(odds)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <table style="text-align:center">
 <caption>
@@ -1000,7 +1039,7 @@ Gross.monthly.hh.income
 -0.060<sup>***</sup>
 </td>
 <td>
--0.090<sup>***</sup>
+-0.091<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1037,7 +1076,7 @@ Education.level
 0.117<sup>***</sup>
 </td>
 <td>
-0.096<sup>***</sup>
+0.095<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1065,15 +1104,15 @@ Education.level
 </tr>
 <tr>
 <td style="text-align:left">
-age
+W1_agecat
 </td>
 <td>
 </td>
 <td>
-0.004<sup>*</sup>
+0.042<sup>*</sup>
 </td>
 <td>
-0.004<sup>*</sup>
+0.041<sup>*</sup>
 </td>
 </tr>
 <tr>
@@ -1082,10 +1121,10 @@ age
 <td>
 </td>
 <td>
-(0.002)
+(0.022)
 </td>
 <td>
-(0.002)
+(0.022)
 </td>
 </tr>
 <tr>
@@ -1209,10 +1248,10 @@ Constant
 -1.049<sup>***</sup>
 </td>
 <td>
--2.683<sup>***</sup>
+-2.642<sup>***</sup>
 </td>
 <td>
--2.496<sup>***</sup>
+-2.455<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1222,10 +1261,10 @@ Constant
 (0.083)
 </td>
 <td>
-(0.233)
+(0.218)
 </td>
 <td>
-(0.286)
+(0.273)
 </td>
 </tr>
 <tr>
@@ -1264,10 +1303,10 @@ Log Likelihood
 -3,559.022
 </td>
 <td>
--2,190.916
+-2,190.866
 </td>
 <td>
--2,190.294
+-2,190.235
 </td>
 </tr>
 <tr>
@@ -1278,10 +1317,10 @@ Akaike Inf. Crit.
 7,124.044
 </td>
 <td>
-4,393.831
+4,393.731
 </td>
 <td>
-4,394.589
+4,394.470
 </td>
 </tr>
 <tr>
@@ -1302,39 +1341,19 @@ Akaike Inf. Crit.
 <section id="vizualizations" class="level3">
 <h3 class="anchored" data-anchor-id="vizualizations">Vizualizations</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_slopes</span>(reg3, <span class="at">variables =</span> <span class="st">"Education.level"</span>, <span class="at">by =</span> <span class="st">"Gross.monthly.hh.income"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Don't know how to automatically pick scale for object of type
-&lt;haven_labelled/vctrs_vctr/double&gt;. Defaulting to continuous.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>reg3 <span class="sc">%&gt;%</span> <span class="fu">plot_predictions</span>(<span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"Gross.monthly.hh.income"</span>, <span class="st">"Education.level"</span>, <span class="st">"gender"</span>)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Education.level <span class="sc">+</span> gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="select2019analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="select2019analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_slopes</span>(reg3, <span class="at">variables =</span> <span class="st">"Gross.monthly.hh.income"</span>, <span class="at">by =</span> <span class="st">"Education.level"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>reg3 <span class="sc">%&gt;%</span> <span class="fu">plot_predictions</span>(<span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"Education.level"</span>, <span class="st">"Gross.monthly.hh.income"</span>, <span class="st">"gender"</span>)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Gross.monthly.hh.income <span class="sc">+</span> gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="select2019analysis_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>reg3 <span class="sc">%&gt;%</span> <span class="fu">plot_predictions</span>(<span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"Gross.monthly.hh.income"</span>, <span class="st">"Education.level"</span>)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Education.level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="select2019analysis_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>reg3 <span class="sc">%&gt;%</span> <span class="fu">plot_predictions</span>(<span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"Education.level"</span>, <span class="st">"Gross.monthly.hh.income"</span>)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Gross.monthly.hh.income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="select2019analysis_files/figure-html/unnamed-chunk-23-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="select2019analysis_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

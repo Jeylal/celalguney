@@ -44,6 +44,7 @@ library(modelsummary)
 library(viridis)
 library(brms)
 library(lme4)
+library(margins)
 options(scipen = 999)
 ```
 
@@ -69,7 +70,7 @@ panel2019$vote.left <- ifelse(panel2019$W1_f10850rec %in% c(30, 50, 130, 140), 1
 
 panel2019$gender <- factor(panel2019$gender, levels = c(0,1), labels = c("Male", "Female"))
 
-datareg <- panel2019 %>% dplyr::select("vote.left", "Education.level", "Gross.monthly.hh.income", "religion", "gender", "W1_f10000", "W1_f20900", "W1_age", "W1_f10250", "W1_3_smt9", "W1_3_canton_sample")
+datareg <- panel2019 %>% dplyr::select("vote.left", "Education.level", "Gross.monthly.hh.income", "religion", "gender", "W1_f10000", "W1_f20900", "W1_age", "W1_f10250", "W1_3_smt9", "W1_3_canton_sample", "W1_agecat")
 
 datareg$W1_3_canton_sample <- as_label(datareg$W1_3_canton_sample)
 
@@ -314,6 +315,33 @@ cowplot::plot_grid(plotpredicteduc, plotpredictincome)
 
 Those plots are essentially the same the first one, but with the confidence interval and for different values of the regressor considered fixed for certain values.
 
+Another way is to compute directly the average marginal effects without grouping:
+
+```{r}
+marginaleffectsinc <- slopes(reg, variables = "Gross.monthly.hh.income")
+marginaleffectseduc <- slopes(reg, variables = "Education.level")
+avg_effect_summary_reg <- rbind(summary(marginaleffectsinc), summary(marginaleffectseduc))
+
+avg_effect_summary_reg
+
+```
+Here is a nice way to visualize the table above:
+```{r}
+avg_effect_summary_reg %>% 
+  ggplot()+
+  aes(x = estimate*100, y = term)+
+  geom_vline(xintercept = 0, color = "red")+
+  geom_pointrange(aes(xmin = conf.low*100, xmax = conf.high*100))+
+  theme_bw()+
+  xlab("Average marginal effects (percentage points)")+
+  ylab("")+
+  geom_label(aes(label = round(estimate*100, 3)), nudge_y = 0.15)
+```
+The advantage of average marginal effects is the fact that they give information on the quantity of interest (here the probability to vote for the left) instead of odd ratio or log odds. The probability to vote for the left decreases on average by -1.715 percentage points if we compare two units which only differs by one income group level. Conversely, the probability increases on average by 2.6 percentage points if we compare two units which only differs by one level of education.
+
+
+
+
 ## Complexifying the model
 
 ### Hierarchical model
@@ -375,16 +403,16 @@ I expand the first model by including a dummy for gender (1= female, 0 = male), 
 ```{r}
 #| results: asis
 
-reg2 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + age + nonreligious + gender, family=binomial(link="logit"))
+reg2 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + W1_agecat + nonreligious + gender, family=binomial(link="logit"))
 stargazer(reg, reg2, type = "html", title = "Model 2: include control variables | log(odds)")
 ```
 
-The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age is very close to 0 while non religiosity is linked positively. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other's values:
+The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age category is linked positively with the vote for the left. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other's values:
 
 ```{r}
 #| results: asis
 
-reg3 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + age + nonreligious + gender + Gross.monthly.hh.income:Education.level, family=binomial(link="logit"))
+reg3 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + W1_agecat + nonreligious + gender + Gross.monthly.hh.income:Education.level, family=binomial(link="logit"))
 
 stargazer(reg, reg2, reg3, type = "html", title = "Model 3: include control variables & interaction | log(odds)")
 
@@ -395,17 +423,18 @@ stargazer(reg, reg2, reg3, type = "html", title = "Model 3: include control vari
 ```{r}
 #| include: false
 reg3effect <- slopes(reg3, variables = c("Gross.monthly.hh.income"))
+avg_slopes(reg3, variables = c("Gross.monthly.hh.income"), by = "Education.level")
+margins(reg3)
+reg3effect %>% 
+  group_by(term) %>% 
+  summarise(avg_marginal_effect = mean(estimate)) %>% 
+  ungroup()
 ```
 
 ```{r}
 
-plot_slopes(reg3, variables = "Education.level", by = "Gross.monthly.hh.income")
-plot_slopes(reg3, variables = "Gross.monthly.hh.income", by = "Education.level")
+reg3 %>% plot_predictions(condition = c("Gross.monthly.hh.income", "Education.level", "gender")) + facet_wrap(~Education.level + gender)
 
-reg3 %>% plot_predictions(condition = c("Gross.monthly.hh.income", "Education.level")) + facet_wrap(~Education.level)
-
-reg3 %>% plot_predictions(condition = c("Education.level", "Gross.monthly.hh.income")) + facet_wrap(~Gross.monthly.hh.income)
-
-
+reg3 %>% plot_predictions(condition = c("Education.level", "Gross.monthly.hh.income", "gender")) + facet_wrap(~Gross.monthly.hh.income + gender)
 
 ```

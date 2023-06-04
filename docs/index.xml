@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sat, 03 Jun 2023 21:14:17 GMT</lastBuildDate>
+<lastBuildDate>Sun, 04 Jun 2023 13:57:54 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5368,7 +5368,7 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
 </item>
 <item>
   <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
@@ -5716,6 +5716,45 @@ font-style: italic;">## this is the same for the confidence interval</span></spa
 </div>
 </div>
 <p>Those plots are essentially the same the first one, but with the confidence interval and for different values of the regressor considered fixed for certain values.</p>
+<p>Another way is to compute directly the average marginal effects without grouping:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">marginaleffectsinc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">slopes</span>(reg, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>)</span>
+<span id="cb13-2">marginaleffectseduc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">slopes</span>(reg, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Education.level"</span>)</span>
+<span id="cb13-3">avg_effect_summary_reg <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rbind</span>(<span class="fu" style="color: #4758AB;">summary</span>(marginaleffectsinc), <span class="fu" style="color: #4758AB;">summary</span>(marginaleffectseduc))</span>
+<span id="cb13-4"></span>
+<span id="cb13-5">avg_effect_summary_reg</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                    Term    Contrast Estimate Std. Error     z Pr(&gt;|z|)   2.5 %
+ Gross.monthly.hh.income mean(dY/dX)  -0.0171    0.00166 -10.3   &lt;0.001 -0.0204
+ Education.level         mean(dY/dX)   0.0262    0.00195  13.4   &lt;0.001  0.0224
+  97.5 %
+ -0.0139
+  0.0300
+
+Columns: term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high </code></pre>
+</div>
+</div>
+<p>Here is a nice way to visualize the table above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">avg_effect_summary_reg <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb15-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> estimate<span class="sc" style="color: #5E5E5E;">*</span><span class="dv" style="color: #AD0000;">100</span>, <span class="at" style="color: #657422;">y =</span> term)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-4">  <span class="fu" style="color: #4758AB;">geom_vline</span>(<span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"red"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-5">  <span class="fu" style="color: #4758AB;">geom_pointrange</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> conf.low<span class="sc" style="color: #5E5E5E;">*</span><span class="dv" style="color: #AD0000;">100</span>, <span class="at" style="color: #657422;">xmax =</span> conf.high<span class="sc" style="color: #5E5E5E;">*</span><span class="dv" style="color: #AD0000;">100</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-6">  <span class="fu" style="color: #4758AB;">theme_bw</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-7">  <span class="fu" style="color: #4758AB;">xlab</span>(<span class="st" style="color: #20794D;">"Average marginal effects (percentage points)"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-8">  <span class="fu" style="color: #4758AB;">ylab</span>(<span class="st" style="color: #20794D;">""</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb15-9">  <span class="fu" style="color: #4758AB;">geom_label</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> <span class="fu" style="color: #4758AB;">round</span>(estimate<span class="sc" style="color: #5E5E5E;">*</span><span class="dv" style="color: #AD0000;">100</span>, <span class="dv" style="color: #AD0000;">3</span>)), <span class="at" style="color: #657422;">nudge_y =</span> <span class="fl" style="color: #AD0000;">0.15</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The advantage of average marginal effects is the fact that they give information on the quantity of interest (here the probability to vote for the left) instead of odd ratio or log odds. The probability to vote for the left decreases on average by -1.715 percentage points if we compare two units which only differs by one income group level. Conversely, the probability increases on average by 2.6 percentage points if we compare two units which only differs by one level of education.</p>
 </section>
 <section id="complexifying-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="complexifying-the-model">Complexifying the model</h2>
@@ -5730,7 +5769,7 @@ font-style: italic;">## this is the same for the confidence interval</span></spa
 <p>In the present analysis, I will consider a partial pooling model in which the slopes and intercepts for income and education can vary. In R, partial pooling models can be estimated with the function lmer() from the lme4 package.</p>
 <p>The results of this model can be then represented through a table with tab_model()</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;">tab_model</span>(glmer1, <span class="at" style="color: #657422;">transform =</span> <span class="cn" style="color: #8f5902;">NULL</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Partial Pooling model"</span>, <span class="at" style="color: #657422;">digits =</span> <span class="dv" style="color: #AD0000;">3</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;">tab_model</span>(glmer1, <span class="at" style="color: #657422;">transform =</span> <span class="cn" style="color: #8f5902;">NULL</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Partial Pooling model"</span>, <span class="at" style="color: #657422;">digits =</span> <span class="dv" style="color: #AD0000;">3</span>)</span></code></pre></div>
 <div class="cell-output-display">
 
 <table style="border-collapse:collapse; border:none;">
@@ -5815,16 +5854,16 @@ font-style: italic;">## this is the same for the confidence interval</span></spa
 <p>The random effects coefficients at the cantons level for income and education are 0, which implies that there is very low variation between cantons. Furthermore, the fixed effect coefficients are almost the same than the previous model: this new model is thus not a big improvement and shows that including cantons as a group does not change the model a lot.</p>
 <p>However, it is still interesting to plot predicted probabilities to have a better overview:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;">plot_predictions</span>(glmer1, <span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="st" style="color: #20794D;">"W1_3_canton_sample"</span>))<span class="sc" style="color: #5E5E5E;">+</span><span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>W1_3_canton_sample)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb14-2">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">linetype =</span> Gross.monthly.hh.income)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb14-3">  <span class="fu" style="color: #4758AB;">scale_colour_brewer</span>(<span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb14-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Probabilités prédites selon le niveau d'éducation, pour chaque canton et pour différent niveau de revenu"</span>,</span>
-<span id="cb14-5">       <span class="at" style="color: #657422;">subtitle =</span> <span class="st" style="color: #20794D;">"Election Conseil National 2015"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb14-6">  <span class="fu" style="color: #4758AB;">geom_hline</span>(<span class="at" style="color: #657422;">yintercept =</span> <span class="fl" style="color: #AD0000;">0.5</span>, <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.8</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;">plot_predictions</span>(glmer1, <span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="st" style="color: #20794D;">"W1_3_canton_sample"</span>))<span class="sc" style="color: #5E5E5E;">+</span><span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>W1_3_canton_sample)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb17-2">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">linetype =</span> Gross.monthly.hh.income)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb17-3">  <span class="fu" style="color: #4758AB;">scale_colour_brewer</span>(<span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb17-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Probabilités prédites selon le niveau d'éducation, pour chaque canton et pour différent niveau de revenu"</span>,</span>
+<span id="cb17-5">       <span class="at" style="color: #657422;">subtitle =</span> <span class="st" style="color: #20794D;">"Election Conseil National 2015"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb17-6">  <span class="fu" style="color: #4758AB;">geom_hline</span>(<span class="at" style="color: #657422;">yintercept =</span> <span class="fl" style="color: #AD0000;">0.5</span>, <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.8</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -5835,8 +5874,8 @@ font-style: italic;">## this is the same for the confidence interval</span></spa
 <h3 class="anchored" data-anchor-id="adding-control-variables">Adding control variables</h3>
 <p>Let’s now add some control variables to the model. The models above are flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.</p>
 <p>I expand the first model by including a dummy for gender (1= female, 0 = male), age and nonreligiosity (takes value 1 to 7, 1 is for going to the church a lot, 7 is for never at all)</p>
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">reg2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote.left <span class="sc" style="color: #5E5E5E;">~</span> Gross.monthly.hh.income <span class="sc" style="color: #5E5E5E;">+</span> Education.level <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> gender, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
-<span id="cb15-2"><span class="fu" style="color: #4758AB;">stargazer</span>(reg, reg2, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"html"</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Model 2: include control variables | log(odds)"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">reg2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote.left <span class="sc" style="color: #5E5E5E;">~</span> Gross.monthly.hh.income <span class="sc" style="color: #5E5E5E;">+</span> Education.level <span class="sc" style="color: #5E5E5E;">+</span> W1_agecat <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> gender, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb18-2"><span class="fu" style="color: #4758AB;">stargazer</span>(reg, reg2, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"html"</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Model 2: include control variables | log(odds)"</span>)</span></code></pre></div>
 
 <table style="text-align:center">
 <caption>
@@ -5940,12 +5979,12 @@ Education.level
 </tr>
 <tr>
 <td style="text-align:left">
-age
+W1_agecat
 </td>
 <td>
 </td>
 <td>
-0.004<sup>*</sup>
+0.042<sup>*</sup>
 </td>
 </tr>
 <tr>
@@ -5954,7 +5993,7 @@ age
 <td>
 </td>
 <td>
-(0.002)
+(0.022)
 </td>
 </tr>
 <tr>
@@ -6027,7 +6066,7 @@ Constant
 -1.049<sup>***</sup>
 </td>
 <td>
--2.683<sup>***</sup>
+-2.642<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6037,7 +6076,7 @@ Constant
 (0.083)
 </td>
 <td>
-(0.233)
+(0.218)
 </td>
 </tr>
 <tr>
@@ -6071,7 +6110,7 @@ Log Likelihood
 -3,559.022
 </td>
 <td>
--2,190.916
+-2,190.866
 </td>
 </tr>
 <tr>
@@ -6082,7 +6121,7 @@ Akaike Inf. Crit.
 7,124.044
 </td>
 <td>
-4,393.831
+4,393.731
 </td>
 </tr>
 <tr>
@@ -6099,10 +6138,10 @@ Akaike Inf. Crit.
 </tr>
 
 </tbody></table>
-<p>The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age is very close to 0 while non religiosity is linked positively. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other’s values:</p>
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">reg3 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote.left <span class="sc" style="color: #5E5E5E;">~</span> Gross.monthly.hh.income <span class="sc" style="color: #5E5E5E;">+</span> Education.level <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> Gross.monthly.hh.income<span class="sc" style="color: #5E5E5E;">:</span>Education.level, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
-<span id="cb16-2"></span>
-<span id="cb16-3"><span class="fu" style="color: #4758AB;">stargazer</span>(reg, reg2, reg3, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"html"</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Model 3: include control variables &amp; interaction | log(odds)"</span>)</span></code></pre></div>
+<p>The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age category is linked positively with the vote for the left. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other’s values:</p>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">reg3 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote.left <span class="sc" style="color: #5E5E5E;">~</span> Gross.monthly.hh.income <span class="sc" style="color: #5E5E5E;">+</span> Education.level <span class="sc" style="color: #5E5E5E;">+</span> W1_agecat <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> Gross.monthly.hh.income<span class="sc" style="color: #5E5E5E;">:</span>Education.level, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb19-2"></span>
+<span id="cb19-3"><span class="fu" style="color: #4758AB;">stargazer</span>(reg, reg2, reg3, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"html"</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Model 3: include control variables &amp; interaction | log(odds)"</span>)</span></code></pre></div>
 
 <table style="text-align:center">
 <caption>
@@ -6160,7 +6199,7 @@ Gross.monthly.hh.income
 -0.060<sup>***</sup>
 </td>
 <td>
--0.090<sup>***</sup>
+-0.091<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6197,7 +6236,7 @@ Education.level
 0.117<sup>***</sup>
 </td>
 <td>
-0.096<sup>***</sup>
+0.095<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6225,15 +6264,15 @@ Education.level
 </tr>
 <tr>
 <td style="text-align:left">
-age
+W1_agecat
 </td>
 <td>
 </td>
 <td>
-0.004<sup>*</sup>
+0.042<sup>*</sup>
 </td>
 <td>
-0.004<sup>*</sup>
+0.041<sup>*</sup>
 </td>
 </tr>
 <tr>
@@ -6242,10 +6281,10 @@ age
 <td>
 </td>
 <td>
-(0.002)
+(0.022)
 </td>
 <td>
-(0.002)
+(0.022)
 </td>
 </tr>
 <tr>
@@ -6369,10 +6408,10 @@ Constant
 -1.049<sup>***</sup>
 </td>
 <td>
--2.683<sup>***</sup>
+-2.642<sup>***</sup>
 </td>
 <td>
--2.496<sup>***</sup>
+-2.455<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6382,10 +6421,10 @@ Constant
 (0.083)
 </td>
 <td>
-(0.233)
+(0.218)
 </td>
 <td>
-(0.286)
+(0.273)
 </td>
 </tr>
 <tr>
@@ -6424,10 +6463,10 @@ Log Likelihood
 -3,559.022
 </td>
 <td>
--2,190.916
+-2,190.866
 </td>
 <td>
--2,190.294
+-2,190.235
 </td>
 </tr>
 <tr>
@@ -6438,10 +6477,10 @@ Akaike Inf. Crit.
 7,124.044
 </td>
 <td>
-4,393.831
+4,393.731
 </td>
 <td>
-4,394.589
+4,394.470
 </td>
 </tr>
 <tr>
@@ -6462,39 +6501,19 @@ Akaike Inf. Crit.
 <section id="vizualizations" class="level3">
 <h3 class="anchored" data-anchor-id="vizualizations">Vizualizations</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;">plot_slopes</span>(reg3, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Education.level"</span>, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Don't know how to automatically pick scale for object of type
-&lt;haven_labelled/vctrs_vctr/double&gt;. Defaulting to continuous.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">reg3 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">plot_predictions</span>(<span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"gender"</span>)) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>Education.level <span class="sc" style="color: #5E5E5E;">+</span> gender)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">plot_slopes</span>(reg3, <span class="at" style="color: #657422;">variables =</span> <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"Education.level"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">reg3 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">plot_predictions</span>(<span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="st" style="color: #20794D;">"gender"</span>)) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>Gross.monthly.hh.income <span class="sc" style="color: #5E5E5E;">+</span> gender)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">reg3 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">plot_predictions</span>(<span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>, <span class="st" style="color: #20794D;">"Education.level"</span>)) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>Education.level)</span></code></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">reg3 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">plot_predictions</span>(<span class="at" style="color: #657422;">condition =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Education.level"</span>, <span class="st" style="color: #20794D;">"Gross.monthly.hh.income"</span>)) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>Gross.monthly.hh.income)</span></code></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-23-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6517,7 +6536,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sat, 03 Jun 2023 21:14:17 GMT</pubDate>
+  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
