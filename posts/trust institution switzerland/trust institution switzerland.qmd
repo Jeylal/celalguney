@@ -5,9 +5,19 @@ editor: visual
 bibliography: biblio.bib
 ---
 
-Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. As a result, trust in institution is rather poorly studied in Switzerland, because it is assumed that the good performances of the country imply political stability and that trust in institutions can be taken as granted. If one tries therefore to assess the evolution of trust in institutions, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions [@brunner_crise_1997]. For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data on these facts only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.
+Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. Along with the good performances of the economy, one expects that Swiss people also have more trust in their institutions compared with other countries. If one looks at, for instance, the data provided by the OECD on the confidence in government and other institutions, Switzerland is indeed one of the countries with the highest level of trust:
 
-This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy.
+[![Source: OECD (Government at Glance, 2021)](graph_ocde2.png){fig-align="center"}](https://www.oecd.org/gov/government-at-a-glance-22214399.htm)
+
+In Switzerland, the confidence in national government in 2020 was the highest among OECD countries with a level of 85%. Other countries like France and Italy have a level of confidence lower than the average.
+
+[![Source: OECD (Government at Glance, 2021)](graph_ocde.png){fig-align="center"}](https://www.oecd.org/gov/government-at-a-glance-22214399.htm)
+
+If one looks at other data provided by the OECD, Switzerland still ranks among the highest. In the graph above, Swiss people show a great deal of confidence in the police (about 85%), parliament (60%) and government (70%). This stands in sharp contrast with France, Italy and the US (which shows very low level of confidence in parliament with 15%). If one tries therefore to assess the evolution of trust in institutions in Switzerland, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions [@brunner_crise_1997].
+
+But why is the evolution of trust in institutions importance? For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data like the ones above only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.
+
+This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which also allow to see the temporal evolution.
 
 To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.
 
@@ -21,7 +31,7 @@ library(tidyverse)
 library(sjlabelled)
 library(haven)
 library(WDI)
-library(Rtools)
+library(scales)
 theme_set(theme_bw())
 
 ses <- read_sav("swiss election study.sav")
@@ -29,14 +39,13 @@ ses <- read_sav("swiss election study.sav")
 
 This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of "trust in political institutions" variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table
 
-| Code 	| name 	| values 	| Years 	|
-|---	|---	|---	|---	|
-| trust1 	| trust in federal council 	| 0 (no trust) to 10 (full trust) with decimal values 	| not 1979, 2015, 2019 	|
-| trust2 	| trust in national parliament 	| 0 (no trust) to 10 (full trust) with decimal values 	| 1991, 1995, 1999, 2003, 2007, 2011 	|
-| trust3 	| trust in cantonal authorities 	| 0 (no trust) to 10 (full trust) with decimal values 	| 1995, 1999, 2003, 2007, 2011 	|
-| trust5 	| trust in national political parties 	| 0 (no trust) to 10 (full trust) with decimal values 	| 1999, 2003, 2007, 2011 	|
-| eps1 	| evaluation: political system/democracy 	| scale from 0 to 1, with decimal values 	| 1971, 1979, 1995, 1999, 2003, 2007, 2011, 2015, 2019 	|
-
+| Code   | name                                   | values                                              | Years                                                |
+|-----------------|-----------------|-------------------|--------------------|
+| trust1 | trust in federal council               | 0 (no trust) to 10 (full trust) with decimal values | not 1979, 2015, 2019                                 |
+| trust2 | trust in national parliament           | 0 (no trust) to 10 (full trust) with decimal values | 1991, 1995, 1999, 2003, 2007, 2011                   |
+| trust3 | trust in cantonal authorities          | 0 (no trust) to 10 (full trust) with decimal values | 1995, 1999, 2003, 2007, 2011                         |
+| trust5 | trust in national political parties    | 0 (no trust) to 10 (full trust) with decimal values | 1999, 2003, 2007, 2011                               |
+| eps1   | evaluation: political system/democracy | scale from 0 to 1, with decimal values              | 1971, 1979, 1995, 1999, 2003, 2007, 2011, 2015, 2019 |
 
 ## Trust in Federal Council
 
@@ -45,6 +54,8 @@ This dataset is in fact a harmonized dataset of all the successive post-electora
 #| error: false
 #| fig-width: 15
 #| fig-height: 8
+#| echo: false
+#| warning: false
 
 ses %>% 
   group_by(year) %>% 
@@ -61,34 +72,158 @@ ses %>%
   geom_text(position = position_dodge(width = .9),    # move to center of bars
               vjust = -0.5,    # nudge above top of bar
               size = 3)
+```
 
-ses$trust1d <- if_else(between(ses$trust1, 5, 10), 1, 0)
+Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive. However, since the graph above is rather difficult to interpret due to the fact that it carries too much information and the scales change through the years, I will create an indicator variable to simplify the information. The dummy variable will take value 1 if the respondent takes a value higher than 5 (the middle point level of indifference), and 0 otherwise.
 
+```{r trust1 dummy}
+#| echo: false
+#| warning: false
+ses$trust1d <- if_else(ses$trust1 %>% between(5.1, 10), 1,
+                       if_else(is.na(ses$trust1), NA, 0))
+```
+
+```{r trust1 dummy descriptive}
+#| echo: false
+#| warning: false
 ses %>% 
   group_by(year) %>% 
   count(trust1d) %>% 
   drop_na() %>% 
   mutate(prop = n/sum(n)) %>% 
-  filter(trust1d == 1)
+  ungroup() %>% 
+  filter(trust1d == 1) -> table_trust1d
+
+table_trust1d %>% 
+  ggplot()+
+  aes(x = factor(year), y = prop, label = scales::percent(round(prop, 3)))+
+  geom_col()+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = -0.5,    # nudge above top of bar
+              size = 3)+
+  ylab("")+
+  xlab("")+
+  labs(title = "Trust in Federal Council: 1971-2011",
+       caption = "Source: Swiss Election Studies,
+       Note: percentage of respondents who declared to trust 
+       (at least) the federal council most of the time")
 
 ```
 
+The graph above represents the percentage of respondents who declared to always or most of the time trust the federal council. The only period this trust declined was between 1975 and 1991. However, one should be cautious with the strong decline in 1991, because the scale (number of values the ordinal variable can take) changes for the first time for this year (see the precedent graph above). In fact, the strong decline in 1991 is surely due to the fact that the scale, by including more response choices in the survey (from 4 to 7 points scale), perhaps induced more middle-point responses (the middle answer is the mode for 1991). From 1995 to 2011, the trust in federal council shows a great stability, and even increases between 2007 and 2011. Nonetheless, the variable does include years after 2011, which is unfortunate. Fortunately, there are other variables which cover a bigger time frame. In this regard, the variable on the evaluation of the Swiss democracy/political system (eps1) is interesting:
 
-Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.
+```{r evaluation democracy}
+#| echo: false
+#| warning: false
+
+###eps1 is coded from 0 to 1, with different scales depending on the year, so I create a indicator variable of good evaluation of political system and democracy: 1 if eps1 is between 0.67-1, 0 otherwise. 0.67 represents the "acceptable" or "fairly satisfied" threshold ==> threshold from which the respondent is satisfied with democracy/political system
+
+ses$eps1d <- if_else(ses$year == 1995 & ses$eps1 %>% between(0.49, 1), 1,
+                     if_else(ses$eps1 %>% between(0.55, 1), 1,
+                            if_else(is.na(ses$eps1), NA, 0)))
+
+ses$eps1d <- set_labels(ses$eps1d, labels = c("Acceptable or not satisfied", "at least fairly satisfied"))
+
+```
+
+```{r}
+#| warning: false
+#| echo: false
+
+ses %>% 
+  group_by(year) %>% 
+  count(eps1d) %>% 
+  filter(!is.na(eps1d)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() -> table_eps1d
+
+table_eps1d %>% 
+  filter(eps1d == 1) %>% 
+  ggplot()+
+  aes(x = factor(year), y = prop, label = scales::percent(round(prop, 3)))+ 
+  geom_col()+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = -0.5,    # nudge above top of bar
+              size = 3)+
+  ylab("")+
+  xlab("")+
+  labs(title = "Evaluation: political system/democracy",
+       caption = "Source: Swiss Election Studies,
+       Note: percentage of respondents declaring to be satisfied (at least) with the political system/democracy")
+
+```
+The graph above shows how strong trust in institutions is in Switzerland and that the latter has even increased in the last years until 2019. Note that the data for 1995 have the same problem as for the year 1991 in the previous graph (change in the variable's number of categories). I can thus conclude that the trust in institutions is not only stable in Switzerland, but even increasing.
+One further step, however, is to look at how trust changes if one takes education and income levels into account: do poorer people and less educated people have less trust in institutions in Switzerland? We will see that the picture is slightly more contrasted trust is analyzed for each income level.
+
+
+```{r eps1d trust and income quintiles}
+#| warning: false
+#| echo: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 8
+
+ses %>% 
+  filter(!year %in% c(1975, 1987, 1991)) %>% 
+  group_by(year, income_hh) %>% 
+  count(eps1d) %>% 
+  filter(!is.na(eps1d), !is.na(income_hh)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(eps1d == 1) %>% 
+  ggplot()+
+  aes(x = as_label(income_hh), y = prop, label = scales::percent(round(prop, 3)))+
+  geom_col()+
+  facet_wrap(~year)+
+  theme(axis.text.x=element_text(angle = -30, hjust = 0))+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = 2,    # nudge above top of bar
+              size = 3,
+            color = "white")+
+  xlab("")+
+  ylab("")+
+  labs(title = "Evaluation: political system/democracy",
+       subtitle = "By income quintiles, 1995-2019",
+       caption = "Source: Swiss Election Studies")
+  
+
+```
+Taking into account income quintiles offer a slightly more contrasted results, but trust is high even for low income levels. There is no strong differences in trust if we compare the lowest quintile with the highest (with still somme difference in each year), but one can see that trust increases with income group: richer Swiss people (in terms of income) have more confidence in the political system/democracy in this sample.
+
+
+Since the dataset also gives the education group, one can do the same graph above with education:
+```{r eps1 and education group}
+#| warning: false
+#| echo: false
+#| message: false
+#| fig-width: 13
+#| fig-height: 10
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ses %>% 
+  filter(!year %in% c(1975, 1987, 1991)) %>% 
+  group_by(year, educ) %>% 
+  count(eps1d) %>% 
+  filter(!is.na(eps1d), !is.na(educ)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(eps1d == 1) %>% 
+  ggplot()+
+  aes(x = as_label(educ), y = prop, label = scales::percent(round(prop, 3)))+
+  geom_col()+
+  facet_wrap(~year)+
+  theme(axis.text.x=element_text(angle = -30, hjust = 0))+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = 2,    # nudge above top of bar
+              size = 3,
+            color = "white")+
+  ylab("")+
+  xlab("")
+```
+There is overall a positive association between education level and trust in democracy/political system, even though trust is high and systematically above 50% in each year (with one exception for 1979).
 

@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sun, 04 Jun 2023 13:57:54 GMT</lastBuildDate>
+<lastBuildDate>Mon, 12 Jun 2023 18:53:13 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5249,8 +5249,23 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
 
 
-<p>Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. As a result, trust in institution is rather poorly studied in Switzerland, because it is assumed that the good performances of the country imply political stability and that trust in institutions can be taken as granted. If one tries therefore to assess the evolution of trust in institutions, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions <span class="citation" data-cites="brunner_crise_1997">(Brunner and Sgier 1997)</span>. For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini <span class="citation" data-cites="amable2005 amable_neorealist_2008">(2005; 2008)</span>, which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland’s trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy <span class="citation" data-cites="amable_bloc_2014 amable_illusion_2018">(Bruno Amable and Palombarini 2014, 2018)</span>. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data on these facts only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.</p>
-<p>This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy.</p>
+<p>Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. Along with the good performances of the economy, one expects that Swiss people also have more trust in their institutions compared with other countries. If one looks at, for instance, the data provided by the OECD on the confidence in government and other institutions, Switzerland is indeed one of the countries with the highest level of trust:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption><p></p>
+</figure>
+</div>
+<p>In Switzerland, the confidence in national government in 2020 was the highest among OECD countries with a level of 85%. Other countries like France and Italy have a level of confidence lower than the average.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption><p></p>
+</figure>
+</div>
+<p>If one looks at other data provided by the OECD, Switzerland still ranks among the highest. In the graph above, Swiss people show a great deal of confidence in the police (about 85%), parliament (60%) and government (70%). This stands in sharp contrast with France, Italy and the US (which shows very low level of confidence in parliament with 15%). If one tries therefore to assess the evolution of trust in institutions in Switzerland, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions <span class="citation" data-cites="brunner_crise_1997">(Brunner and Sgier 1997)</span>.</p>
+<p>But why is the evolution of trust in institutions importance? For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini <span class="citation" data-cites="amable2005 amable_neorealist_2008">(2005; 2008)</span>, which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland’s trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy <span class="citation" data-cites="amable_bloc_2014 amable_illusion_2018">(Bruno Amable and Palombarini 2014, 2018)</span>. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data like the ones above only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.</p>
+<p>This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which also allow to see the temporal evolution.</p>
 <p>To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.</p>
 <div class="cell">
 
@@ -5258,10 +5273,10 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of “trust in political institutions” variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table</p>
 <table class="table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -5307,44 +5322,42 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <section id="trust-in-federal-council" class="level2">
 <h2 class="anchored" data-anchor-id="trust-in-federal-council">Trust in Federal Council</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">ses <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-2">  <span class="fu" style="color: #4758AB;">group_by</span>(year) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-3">  <span class="fu" style="color: #4758AB;">count</span>(trust1) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-4">  <span class="fu" style="color: #4758AB;">drop_na</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-5">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-6">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-7">  <span class="fu" style="color: #4758AB;">filter</span>(<span class="sc" style="color: #5E5E5E;">!</span>year <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1979</span>, <span class="dv" style="color: #AD0000;">2015</span>, <span class="dv" style="color: #AD0000;">2019</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb1-8">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb1-9">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> trust1, <span class="at" style="color: #657422;">y =</span> prop, <span class="at" style="color: #657422;">label =</span> scales<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">percent</span>(<span class="fu" style="color: #4758AB;">round</span>(prop, <span class="dv" style="color: #AD0000;">3</span>)))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb1-10">  <span class="fu" style="color: #4758AB;">geom_col</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb1-11">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Trust in Federal Council 1971-2011"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb1-12">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>year)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb1-13">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="at" style="color: #657422;">position =</span> <span class="fu" style="color: #4758AB;">position_dodge</span>(<span class="at" style="color: #657422;">width =</span> .<span class="dv" style="color: #AD0000;">9</span>),    <span class="co" style="color: #5E5E5E;"># move to center of bars</span></span>
-<span id="cb1-14">              <span class="at" style="color: #657422;">vjust =</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="fl" style="color: #AD0000;">0.5</span>,    <span class="co" style="color: #5E5E5E;"># nudge above top of bar</span></span>
-<span id="cb1-15">              <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">3</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="1440"></p>
 </div>
 </div>
-<p>Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive.</p>
+<p>Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems positive. However, since the graph above is rather difficult to interpret due to the fact that it carries too much information and the scales change through the years, I will create an indicator variable to simplify the information. The dummy variable will take value 1 if the respondent takes a value higher than 5 (the middle point level of indifference), and 0 otherwise.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">ses <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-2">  <span class="fu" style="color: #4758AB;">group_by</span>(year) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-3">  <span class="fu" style="color: #4758AB;">count</span>(eps1) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-4">  <span class="fu" style="color: #4758AB;">drop_na</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-5">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-6">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-7">  <span class="fu" style="color: #4758AB;">filter</span>(year <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1971</span>, <span class="dv" style="color: #AD0000;">1979</span>, <span class="dv" style="color: #AD0000;">1995</span>, <span class="dv" style="color: #AD0000;">1999</span>, <span class="dv" style="color: #AD0000;">2003</span>, <span class="dv" style="color: #AD0000;">2007</span>, <span class="dv" style="color: #AD0000;">2011</span>, <span class="dv" style="color: #AD0000;">2015</span>, <span class="dv" style="color: #AD0000;">2019</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-8">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-9">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fu" style="color: #4758AB;">factor</span>(eps1), <span class="at" style="color: #657422;">y =</span> prop)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-10">  <span class="fu" style="color: #4758AB;">geom_col</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-11">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Trust in National Parliament"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-12">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>year)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-13">  <span class="fu" style="color: #4758AB;">theme</span>()</span></code></pre></div>
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/trust1 dummy descriptive-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The graph above represents the percentage of respondents who declared to always or most of the time trust the federal council. The only period this trust declined was between 1975 and 1991. However, one should be cautious with the strong decline in 1991, because the scale (number of values the ordinal variable can take) changes for the first time for this year (see the precedent graph above). In fact, the strong decline in 1991 is surely due to the fact that the scale, by including more response choices in the survey (from 4 to 7 points scale), perhaps induced more middle-point responses (the middle answer is the mode for 1991). From 1995 to 2011, the trust in federal council shows a great stability, and even increases between 2007 and 2011. Nonetheless, the variable does include years after 2011, which is unfortunate. Fortunately, there are other variables which cover a bigger time frame. In this regard, the variable on the evaluation of the Swiss democracy/political system (eps1) is interesting:</p>
+<div class="cell">
+
+</div>
+<div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The graph above shows how strong trust in institutions is in Switzerland and that the latter has even increased in the last years until 2019. Note that the data for 1995 have the same problem as for the year 1991 in the previous graph (change in the variable’s number of categories). I can thus conclude that the trust in institutions is not only stable in Switzerland, but even increasing. One further step, however, is to look at how trust changes if one takes education and income levels into account: do poorer people and less educated people have less trust in institutions in Switzerland? We will see that the picture is slightly more contrasted trust is analyzed for each income level.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/eps1d trust and income quintiles-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>Taking into account income quintiles offer a slightly more contrasted results, but trust is high even for low income levels. There is no strong differences in trust if we compare the lowest quintile with the highest (with still somme difference in each year), but one can see that trust increases with income group: richer Swiss people (in terms of income) have more confidence in the political system/democracy in this sample.</p>
+<p>Since the dataset also gives the education group, one can do the same graph above with education:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/eps1 and education group-1.png" class="img-fluid" width="1248"></p>
+</div>
+</div>
+<p>There is overall a positive association between education level and trust in democracy/political system, even though trust is high and systematically above 50% in each year (with one exception for 1979).</p>
 
 
 
@@ -5368,7 +5381,8 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" medium="image" type="image/png" height="93" width="144"/>
 </item>
 <item>
   <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
@@ -6536,7 +6550,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sun, 04 Jun 2023 13:57:54 GMT</pubDate>
+  <pubDate>Mon, 12 Jun 2023 18:53:13 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
