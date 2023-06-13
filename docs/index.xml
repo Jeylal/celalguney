@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Tue, 13 Jun 2023 17:39:37 GMT</lastBuildDate>
+<lastBuildDate>Tue, 13 Jun 2023 21:36:26 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5277,10 +5277,10 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of “trust in political institutions” variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 26%">
+<col style="width: 5%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -5369,9 +5369,9 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>It is often necessary to run similar analysis on different data sources to check whether the results obtained are robust. To do so, I will now analyse the swiss trust in institutions using ESS data. Since the ESS does not provide a cumulative dataset, I will simply analyse the first available (2002) and the most recent one (2020).</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 6%">
+<col style="width: 35%">
+<col style="width: 57%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -5446,6 +5446,18 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust in instit blog post switzerland.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
+<p>If one considers trust in politicians as a good indicator of political stability, Switzerland shows a great and increasing level of stability and it would be difficult to say that the country has known any deep political crisis in the last years. The political stability of Switzerland is even more striking when compared with countries which have known instability and systemic crises such as Italy and France:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust_pol_parties_ess.png" class="img-fluid figure-img" width="679"></p>
+</figure>
+</div>
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust_natio_gov_ess.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust_pol_ess.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 
 
 
@@ -5470,7 +5482,7 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" medium="image" type="image/png" height="93" width="144"/>
 </item>
 <item>
@@ -6639,7 +6651,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 21:36:26 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
