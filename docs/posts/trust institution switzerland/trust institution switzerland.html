@@ -181,10 +181,10 @@ div.csl-indent {
 <p>This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of “trust in political institutions” variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table</p>
 <table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
 <col style="width: 26%">
-<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -332,20 +332,21 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects has changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without the problems of the Selects data I had above.</p>
+<p>An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects have changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without facing the problems I had with Selects data.</p>
 <div class="cell">
 
 </div>
+<p>Let’s first have a look at how the variable is distributed for a given year, for instance 2020:</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="trust-institution-switzerland_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="cell-output-display">
-<p><img src="trust-institution-switzerland_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="cell-output-display">
-<p><img src="trust-institution-switzerland_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
-</div>
+<p>The graph is coherent with all the previous data we saw: most Swiss people have confidence and trust in the politicians of their country in 2020. What about the evolution of this trust if one looks at all the rounds provided by ESS since 2002? To have a look a this, I load all the ESS rounds, create an indicator variable (still fromthe same variable, trstplt) taking value 1 if the respondent takes at least value 5 and plot the proportion for each year:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="trust in instit blog post ess.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 
 

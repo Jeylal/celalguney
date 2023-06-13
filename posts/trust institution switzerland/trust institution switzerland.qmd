@@ -21,7 +21,7 @@ But why is the evolution of trust in institutions importance? For my research, I
 
 This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which also allow to see the temporal evolution.
 
-### Assessing political stability in Switzerland with post-electoral surveys 
+### Assessing political stability in Switzerland with post-electoral surveys
 
 To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.
 
@@ -44,7 +44,7 @@ ses <- read_sav("swiss election study.sav")
 This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of "trust in political institutions" variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table
 
 | Code   | name                                   | values                                              | Years                                                |
-|-----------------|-----------------|-------------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 | trust1 | trust in federal council               | 0 (no trust) to 10 (full trust) with decimal values | not 1979, 2015, 2019                                 |
 | trust2 | trust in national parliament           | 0 (no trust) to 10 (full trust) with decimal values | 1991, 1995, 1999, 2003, 2007, 2011                   |
 | trust3 | trust in cantonal authorities          | 0 (no trust) to 10 (full trust) with decimal values | 1995, 1999, 2003, 2007, 2011                         |
@@ -158,9 +158,8 @@ table_eps1d %>%
        Note: percentage of respondents declaring to be satisfied (at least) with the political system/democracy")
 
 ```
-The graph above shows how strong trust in institutions is in Switzerland and that the latter has even increased in the last years until 2019. Note that the data for 1995 have the same problem as for the year 1991 in the previous graph (change in the variable's number of categories). I can thus conclude that the trust in institutions is not only stable in Switzerland, but even increasing.
-One further step, however, is to look at how trust changes if one takes education and income levels into account: do poorer people and less educated people have less trust in institutions in Switzerland? We will see that the picture is slightly more contrasted trust is analyzed for each income level.
 
+The graph above shows how strong trust in institutions is in Switzerland and that the latter has even increased in the last years until 2019. Note that the data for 1995 have the same problem as for the year 1991 in the previous graph (change in the variable's number of categories). I can thus conclude that the trust in institutions is not only stable in Switzerland, but even increasing. One further step, however, is to look at how trust changes if one takes education and income levels into account: do poorer people and less educated people have less trust in institutions in Switzerland? We will see that the picture is slightly more contrasted trust is analyzed for each income level.
 
 ```{r eps1d trust and income quintiles}
 #| warning: false
@@ -195,10 +194,11 @@ ses %>%
   
 
 ```
+
 Taking into account income quintiles offer a slightly more contrasted results, but trust is high even for low income levels. There is no strong differences in trust if we compare the lowest quintile with the highest (with still somme difference in each year), but one can see that trust increases with income group: richer Swiss people (in terms of income) have more confidence in the political system/democracy in this sample.
 
-
 Since the dataset also gives the education group, one can do the same graph above with education:
+
 ```{r eps1 and education group}
 #| warning: false
 #| echo: false
@@ -229,70 +229,36 @@ ses %>%
   ylab("")+
   xlab("")
 ```
-There is overall a positive association between education level and trust in democracy/political system, even though trust is high and systematically above 50% in each year (with one exception for 1979).
 
+There is overall a positive association between education level and trust in democracy/political system, even though trust is high and systematically above 50% in each year (with one exception for 1979).
 
 ### Alternative data source: the European Social Survey (ESS)
 
 It is often necessary to run similar analysis on different data sources to check whether the results obtained are robust. To do so, I will now analyse the swiss trust in institutions using ESS data. Since the ESS does not provide a cumulative dataset, I will simply analyse the first available (2002) and the most recent one (2020).
 
+| variable | name                                                   | scale                                                                                    |
+|------------------------|------------------------|------------------------|
+| trstplt  | trust in politician                                    | 0 = no trust, 10 = complete trust (discrete scale)                                       |
+| trstprl  | Trust in country's parliament                          | 0 = no trust, 10 = complete trust (discrete scale)                                       |
+| stfeco   | How satisfied with present state of economy in country | 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale)                     |
+| stfgov   | How satisfied with the national government             | 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale)                     |
+| stfdem   | How satisfied with the way democracy works in country  | 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale)                     |
+| agea     | Age of respondent, calculated                          |                                                                                          |
+| edulvla  | Highest level of education                             | 0 = not possible to harmonize, 1 = less than secondary, 5 = tertiary education completed |
+| edlvch   | Highest level of education (Switzerland)               | 1 = incomplete compulsory school, 15 = university, 16 = other (discrete scale)           |
+| hinctnt  | Household's total net income, all sources              |                                                                                          |
 
-| variable 	| name 	| scale 	|
-|---	|---	|---	|
-| trstplt 	| trust in politician 	| 0 = no trust, 10 = complete trust (discrete scale) 	|
-| trstprl 	| Trust in country's parliament 	| 0 = no trust, 10 = complete trust (discrete scale) 	|
-| stfeco 	| How satisfied with present state of economy in country 	| 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale) 	|
-| stfgov 	| How satisfied with the national government 	| 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale) 	|
-| stfdem 	| How satisfied with the way democracy works in country 	| 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale) 	|
-| agea 	| Age of respondent, calculated 	|  	|
-| edulvla 	| Highest level of education 	| 0 = not possible to harmonize, 1 = less than secondary, 5 = tertiary education completed 	|
-| edlvch 	| Highest level of education (Switzerland) 	| 1 = incomplete compulsory school, 15 = university, 16 = other (discrete scale) 	|
-| hinctnt 	| Household's total net income, all sources 	|  	|
-
-
-An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects has changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without the problems of the Selects data I had above.
-
+An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects have changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without facing the problems I had with Selects data.
 
 ```{r ess1 and ess10 import}
 #| echo: false
-ess1 <- read.csv("ESS1.csv")
 ess10 <- read.csv("ESS10.csv")
-ess7 <- read.csv("ess7_2014.csv")
 ```
 
-
+Let's first have a look at how the variable is distributed for a given year, for instance 2020:
 
 ```{r}
 #| echo: false
-
-
-ess1 %>% 
-  filter(cntry == "CH") %>% 
-  count(trstplt) %>% 
-  filter(!trstplt %in% c(77, 88)) %>% 
-  mutate(prop = n/sum(n)) %>% 
-  ggplot()+
-  aes(x = factor(trstplt), y = prop, label = scales::percent(prop))+
-  geom_col()+
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
-  geom_text(position = position_dodge(width = .9),    # move to center of bars
-              vjust = 2,    # nudge above top of bar
-              size = 3,
-            color = "white")
-
-ess7 %>% 
-  filter(cntry == "CH") %>% 
-  count(trstplt) %>% 
-  filter(!trstplt %in% c(77, 88)) %>% 
-  mutate(prop = n/sum(n)) %>% 
-  ggplot()+
-  aes(x = factor(trstplt), y = prop, label = scales::percent(prop))+
-  geom_col()+
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
-  geom_text(position = position_dodge(width = .9),    # move to center of bars
-              vjust = 2,    # nudge above top of bar
-              size = 3,
-            color = "white")
 
 ess10 %>% 
   filter(cntry == "CH") %>% 
@@ -306,30 +272,17 @@ ess10 %>%
   geom_text(position = position_dodge(width = .9),    # move to center of bars
               vjust = 2,    # nudge above top of bar
               size = 3,
-            color = "white")
-
+            color = "white")+
+  labs(title = "Trust in Politicians",
+       subtitle = "Switzerland, 2020", 
+       caption = "Source: ESS round 10,
+       0 = no trust, 10 = full trust")+
+  xlab("")+
+  ylab("")
 
 
 ```
 
+The graph is coherent with all the previous data we saw: most Swiss people have confidence and trust in the politicians of their country in 2020. What about the evolution of this trust if one looks at all the rounds provided by ESS since 2002? To have a look a this, I load all the ESS rounds, create an indicator variable (still fromthe same variable, trstplt) taking value 1 if the respondent takes at least value 5 and plot the proportion for each year:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![](trust%20in%20instit%20blog%20post%20ess.png){fig-align="center"}
