@@ -5,6 +5,8 @@ editor: visual
 bibliography: biblio.bib
 ---
 
+## Political stability and crisis in Switzerland
+
 Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. Along with the good performances of the economy, one expects that Swiss people also have more trust in their institutions compared with other countries. If one looks at, for instance, the data provided by the OECD on the confidence in government and other institutions, Switzerland is indeed one of the countries with the highest level of trust:
 
 [![Source: OECD (Government at Glance, 2021)](graph_ocde2.png){fig-align="center"}](https://www.oecd.org/gov/government-at-a-glance-22214399.htm)
@@ -18,6 +20,8 @@ If one looks at other data provided by the OECD, Switzerland still ranks among t
 But why is the evolution of trust in institutions importance? For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data like the ones above only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.
 
 This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which also allow to see the temporal evolution.
+
+### Assessing political stability in Switzerland with post-electoral surveys 
 
 To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.
 
@@ -226,4 +230,28 @@ ses %>%
   xlab("")
 ```
 There is overall a positive association between education level and trust in democracy/political system, even though trust is high and systematically above 50% in each year (with one exception for 1979).
+
+
+### Alternative data source: the European Social Survey (ESS)
+
+It is often necessary to run similar analysis on different data sources to check whether the results obtained are robust. To do so, I will now analyse the swiss trust in institutions using ESS data. Since the ESS does not provide a cumulative dataset, I will simply analyse the first available (2002) and the most recent one (2020).
+
+
+| variable 	| name 	| scale 	|
+|---	|---	|---	|
+| trstplt 	| trust in politician 	| 0 = no trust, 10 = complete trust (discrete scale) 	|
+| trstprl 	| Trust in country's parliament 	| 0 = no trust, 10 = complete trust (discrete scale) 	|
+| stfeco 	| How satisfied with present state of economy in country 	| 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale) 	|
+| stfgov 	| How satisfied with the national government 	| 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale) 	|
+| stfdem 	| How satisfied with the way democracy works in country 	| 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale) 	|
+| agea 	| Age of respondent, calculated 	|  	|
+| edulvla 	| Highest level of education 	| 0 = not possible to harmonize, 1 = less than secondary, 5 = tertiary education completed 	|
+| edlvch 	| Highest level of education (Switzerland) 	| 1 = incomplete compulsory school, 15 = university, 16 = other (discrete scale) 	|
+| hinctnt 	| Household's total net income, all sources 	|  	|
+
+
+
+
+
+
 
