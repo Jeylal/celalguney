@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Tue, 13 Jun 2023 17:09:52 GMT</lastBuildDate>
+<lastBuildDate>Tue, 13 Jun 2023 17:39:37 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5430,7 +5430,9 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </table>
 <p>An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects have changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without facing the problems I had with Selects data.</p>
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: le package 'naniar' a été compilé avec la version R 4.2.3</code></pre>
+</div>
 </div>
 <p>Let’s first have a look at how the variable is distributed for a given year, for instance 2020:</p>
 <div class="cell">
@@ -5441,7 +5443,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>The graph is coherent with all the previous data we saw: most Swiss people have confidence and trust in the politicians of their country in 2020. What about the evolution of this trust if one looks at all the rounds provided by ESS since 2002? To have a look a this, I load all the ESS rounds, create an indicator variable (still fromthe same variable, trstplt) taking value 1 if the respondent takes at least value 5 and plot the proportion for each year:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust in instit blog post ess.png" class="img-fluid figure-img"></p>
+<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust in instit blog post switzerland.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 
@@ -5468,7 +5470,7 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" medium="image" type="image/png" height="93" width="144"/>
 </item>
 <item>
@@ -6637,7 +6639,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Tue, 13 Jun 2023 17:09:52 GMT</pubDate>
+  <pubDate>Tue, 13 Jun 2023 17:39:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

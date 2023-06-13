@@ -252,7 +252,12 @@ An advantage of the ESS data compared with Selects is the comparability of the t
 
 ```{r ess1 and ess10 import}
 #| echo: false
+#| message: false
+
+library(naniar)
 ess10 <- read.csv("ESS10.csv")
+
+ess10 <- ess10 %>% replace_with_na(replace = list(trstplt = c(77, 88)))
 ```
 
 Let's first have a look at how the variable is distributed for a given year, for instance 2020:
@@ -263,7 +268,7 @@ Let's first have a look at how the variable is distributed for a given year, for
 ess10 %>% 
   filter(cntry == "CH") %>% 
   count(trstplt) %>% 
-  filter(!trstplt %in% c(77, 88)) %>% 
+  drop_na(trstplt) %>% 
   mutate(prop = n/sum(n)) %>% 
   ggplot()+
   aes(x = factor(trstplt), y = prop, label = scales::percent(prop))+
@@ -285,4 +290,4 @@ ess10 %>%
 
 The graph is coherent with all the previous data we saw: most Swiss people have confidence and trust in the politicians of their country in 2020. What about the evolution of this trust if one looks at all the rounds provided by ESS since 2002? To have a look a this, I load all the ESS rounds, create an indicator variable (still fromthe same variable, trstplt) taking value 1 if the respondent takes at least value 5 and plot the proportion for each year:
 
-![](trust%20in%20instit%20blog%20post%20ess.png){fig-align="center"}
+![](trust%20in%20instit%20blog%20post%20switzerland.png){fig-align="center"}

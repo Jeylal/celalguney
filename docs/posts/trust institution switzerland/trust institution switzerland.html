@@ -334,7 +334,9 @@ div.csl-indent {
 </table>
 <p>An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects have changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without facing the problems I had with Selects data.</p>
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: le package 'naniar' a été compilé avec la version R 4.2.3</code></pre>
+</div>
 </div>
 <p>Let’s first have a look at how the variable is distributed for a given year, for instance 2020:</p>
 <div class="cell">
@@ -345,7 +347,7 @@ div.csl-indent {
 <p>The graph is coherent with all the previous data we saw: most Swiss people have confidence and trust in the politicians of their country in 2020. What about the evolution of this trust if one looks at all the rounds provided by ESS since 2002? To have a look a this, I load all the ESS rounds, create an indicator variable (still fromthe same variable, trstplt) taking value 1 if the respondent takes at least value 5 and plot the proportion for each year:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="trust in instit blog post ess.png" class="img-fluid figure-img"></p>
+<p><img src="trust in instit blog post switzerland.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 
