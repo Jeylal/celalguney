@@ -250,6 +250,84 @@ It is often necessary to run similar analysis on different data sources to check
 | hinctnt 	| Household's total net income, all sources 	|  	|
 
 
+An advantage of the ESS data compared with Selects is the comparability of the trust in institutions variables. As we saw in the first graphs, Selects has changed the scale of their variables through the years, which makes comparison difficult even with a cumulative and harmonized dataset. ESS variables (see table above) do not change their scale, so one can compare data from 2002 and 2020 without the problems of the Selects data I had above.
+
+
+```{r ess1 and ess10 import}
+#| echo: false
+ess1 <- read.csv("ESS1.csv")
+ess10 <- read.csv("ESS10.csv")
+ess7 <- read.csv("ess7_2014.csv")
+```
+
+
+
+```{r}
+#| echo: false
+
+
+ess1 %>% 
+  filter(cntry == "CH") %>% 
+  count(trstplt) %>% 
+  filter(!trstplt %in% c(77, 88)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ggplot()+
+  aes(x = factor(trstplt), y = prop, label = scales::percent(prop))+
+  geom_col()+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = 2,    # nudge above top of bar
+              size = 3,
+            color = "white")
+
+ess7 %>% 
+  filter(cntry == "CH") %>% 
+  count(trstplt) %>% 
+  filter(!trstplt %in% c(77, 88)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ggplot()+
+  aes(x = factor(trstplt), y = prop, label = scales::percent(prop))+
+  geom_col()+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = 2,    # nudge above top of bar
+              size = 3,
+            color = "white")
+
+ess10 %>% 
+  filter(cntry == "CH") %>% 
+  count(trstplt) %>% 
+  filter(!trstplt %in% c(77, 88)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ggplot()+
+  aes(x = factor(trstplt), y = prop, label = scales::percent(prop))+
+  geom_col()+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  geom_text(position = position_dodge(width = .9),    # move to center of bars
+              vjust = 2,    # nudge above top of bar
+              size = 3,
+            color = "white")
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
