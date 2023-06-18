@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sun, 18 Jun 2023 17:25:36 GMT</lastBuildDate>
+<lastBuildDate>Sun, 18 Jun 2023 21:05:32 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5482,11 +5482,11 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" medium="image" type="image/png" height="93" width="144"/>
 </item>
 <item>
-  <title>The vote for the left in the 2015 Swiss National Council Election: a short analysis</title>
+  <title>Income, education and voting outcome: a cross-sectional analysis of voting outcome in Switzerland</title>
   <link>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</link>
   <description><![CDATA[ 
 
@@ -5496,7 +5496,7 @@ Brunner, Matthias, and Lea Sgier. 1997. <span>“Crise de Confiance Dans Les Ins
 <section id="note-this-post-is-not-finished-and-still-in-progress" class="level2">
 <h2 class="anchored" data-anchor-id="note-this-post-is-not-finished-and-still-in-progress">Note: this post is not finished and still in progress</h2>
 <p>Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its <a href="https://wpid.world/resources/">online database</a> got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a “educational” or, in Inglehart terms, a “postmaterial” or “cultural” cleavage <span class="citation" data-cites="gethin_political_2021">(Gethin, Martinez-Toledano, and Piketty 2021)</span> <span class="citation" data-cites="inglehart_silent_1971">(Inglehart 1971)</span>. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.</p>
-<p>This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found <a href="https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview">here</a>. I will test if the support for the left is linked positively with the education level and negatively with income.</p>
+<p>This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2019. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found <a href="https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview">here</a>. I will test if the support for the left is linked positively with the education level and negatively with income.</p>
 <div class="cell">
 
 </div>
@@ -5979,38 +5979,40 @@ Columns: term, contrast, estimate, std.error, statistic, p.value, conf.low, conf
 <h3 class="anchored" data-anchor-id="adding-control-variables">Adding control variables</h3>
 <p>Let’s now add some control variables to the model. The models above are flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.</p>
 <p>For the second model, I include gender (dummy with female = 1), age (in categories), religiosity (the higher, the less religious is the respondent), a variable indicating whether the respondent has a full-time job (full_time), whether the respondent works in the public sector (public) and marital status. I a third model which include variables on issue position related to socio-economic issues such as EU integration, taxation and attitude towards foreigners (each one of these variables are ordinal on a 1-5 scale). I also run the same final model for the other parties as dependent variables.</p>
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">reg2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_left <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> full_time <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">reg2 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_left <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious  <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
 <span id="cb18-2"></span>
-<span id="cb18-3">reg3 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_left <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> full_time <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb18-3">reg3 <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_left <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
 <span id="cb18-4"></span>
-<span id="cb18-5">regudc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_udc <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> full_time <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb18-5">regudc <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_udc <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
 <span id="cb18-6"></span>
-<span id="cb18-7">regplr <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_plr <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> full_time <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb18-7">regcd <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_christ_dem <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
 <span id="cb18-8"></span>
-<span id="cb18-9">reggreen <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_greens <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> full_time <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb18-9">regplr <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_plr <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
 <span id="cb18-10"></span>
-<span id="cb18-11">reggreenlib <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_greens_lib <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> full_time <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span></code></pre></div>
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">stargazer</span>(reg, reg2, reg3, regudc, regplr, reggreen, reggreenlib, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"html"</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Vote for political parties: log(odds)"</span>)</span></code></pre></div>
+<span id="cb18-11">reggreen <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_greens <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span>
+<span id="cb18-12"></span>
+<span id="cb18-13">reggreenlib <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">glm</span>(<span class="at" style="color: #657422;">data =</span> datareg, vote_greens_lib <span class="sc" style="color: #5E5E5E;">~</span> education <span class="sc" style="color: #5E5E5E;">+</span> income <span class="sc" style="color: #5E5E5E;">+</span> age <span class="sc" style="color: #5E5E5E;">+</span> nonreligious <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">as_label</span>(work_situation) <span class="sc" style="color: #5E5E5E;">+</span> public <span class="sc" style="color: #5E5E5E;">+</span> married <span class="sc" style="color: #5E5E5E;">+</span> gender <span class="sc" style="color: #5E5E5E;">+</span> against_immigr_limit <span class="sc" style="color: #5E5E5E;">+</span> against_eu_membership <span class="sc" style="color: #5E5E5E;">+</span> state_or_freemarket, <span class="at" style="color: #657422;">family=</span><span class="fu" style="color: #4758AB;">binomial</span>(<span class="at" style="color: #657422;">link=</span><span class="st" style="color: #20794D;">"logit"</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">stargazer</span>(reg, reg2, reg3, regudc, regcd, regplr, reggreen, reggreenlib, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"html"</span>, <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Vote for political parties: log(odds)"</span>)</span></code></pre></div>
 
 <table style="text-align:center">
 <caption>
 <strong>Vote for political parties: log(odds)</strong>
 </caption>
 <tbody><tr>
-<td colspan="8" style="border-bottom: 1px solid black">
+<td colspan="9" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
-<td colspan="7">
+<td colspan="8">
 <em>Dependent variable:</em>
 </td>
 </tr>
 <tr>
 <td>
 </td>
-<td colspan="7" style="border-bottom: 1px solid black">
+<td colspan="8" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
@@ -6021,6 +6023,9 @@ vote_left
 </td>
 <td>
 vote_udc
+</td>
+<td>
+vote_christ_dem
 </td>
 <td>
 vote_plr
@@ -6056,9 +6061,12 @@ vote_greens_lib
 <td>
 (7)
 </td>
+<td>
+(8)
+</td>
 </tr>
 <tr>
-<td colspan="8" style="border-bottom: 1px solid black">
+<td colspan="9" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
@@ -6069,22 +6077,25 @@ income
 -0.075<sup>***</sup>
 </td>
 <td>
--0.050<sup>***</sup>
+-0.046<sup>***</sup>
 </td>
 <td>
--0.051<sup>***</sup>
+-0.047<sup>***</sup>
 </td>
 <td>
--0.043<sup>***</sup>
+-0.046<sup>***</sup>
 </td>
 <td>
-0.070<sup>***</sup>
+-0.009
 </td>
 <td>
--0.025
+0.073<sup>***</sup>
 </td>
 <td>
-0.059<sup>***</sup>
+-0.024
+</td>
+<td>
+0.055<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6098,6 +6109,9 @@ income
 </td>
 <td>
 (0.011)
+</td>
+<td>
+(0.014)
 </td>
 <td>
 (0.014)
@@ -6129,6 +6143,8 @@ income
 </td>
 <td>
 </td>
+<td>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -6137,22 +6153,25 @@ age
 <td>
 </td>
 <td>
-0.021
+0.067<sup>**</sup>
 </td>
 <td>
-0.027
+0.037
 </td>
 <td>
--0.044
+-0.034
 </td>
 <td>
-0.077<sup>***</sup>
+0.002
 </td>
 <td>
--0.011
+0.010
 </td>
 <td>
--0.018
+0.020
+</td>
+<td>
+0.024
 </td>
 </tr>
 <tr>
@@ -6161,26 +6180,31 @@ age
 <td>
 </td>
 <td>
-(0.022)
+(0.032)
 </td>
 <td>
-(0.026)
+(0.038)
 </td>
 <td>
-(0.030)
+(0.043)
 </td>
 <td>
-(0.028)
+(0.048)
 </td>
 <td>
-(0.035)
+(0.040)
 </td>
 <td>
-(0.035)
+(0.050)
+</td>
+<td>
+(0.050)
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -6204,16 +6228,19 @@ nonreligious
 <td>
 </td>
 <td>
-0.122<sup>***</sup>
+0.124<sup>***</sup>
 </td>
 <td>
-0.160<sup>***</sup>
+0.161<sup>***</sup>
 </td>
 <td>
-0.093<sup>***</sup>
+0.085<sup>***</sup>
 </td>
 <td>
-0.094<sup>***</sup>
+-0.299<sup>***</sup>
+</td>
+<td>
+0.101<sup>***</sup>
 </td>
 <td>
 0.108<sup>***</sup>
@@ -6237,7 +6264,10 @@ nonreligious
 (0.032)
 </td>
 <td>
-(0.028)
+(0.031)
+</td>
+<td>
+(0.029)
 </td>
 <td>
 (0.036)
@@ -6263,58 +6293,518 @@ nonreligious
 </td>
 <td>
 </td>
-</tr>
-<tr>
-<td style="text-align:left">
-full_time
-</td>
 <td>
-</td>
-<td>
--0.562<sup>***</sup>
-</td>
-<td>
--0.405<sup>***</sup>
-</td>
-<td>
-0.519<sup>***</sup>
-</td>
-<td>
--0.077
-</td>
-<td>
--0.238<sup>**</sup>
-</td>
-<td>
--0.225<sup>**</sup>
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+as_label(work_situation)Part time (5-39 hrs per week)
 </td>
 <td>
 </td>
 <td>
-(0.077)
+0.342<sup>***</sup>
 </td>
 <td>
-(0.087)
+0.237<sup>**</sup>
 </td>
 <td>
-(0.099)
+-0.284<sup>**</sup>
 </td>
 <td>
-(0.089)
+-0.174
 </td>
 <td>
-(0.116)
+-0.147
 </td>
 <td>
-(0.112)
+0.191
+</td>
+<td>
+0.385<sup>***</sup>
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.096)
+</td>
+<td>
+(0.110)
+</td>
+<td>
+(0.136)
+</td>
+<td>
+(0.142)
+</td>
+<td>
+(0.121)
+</td>
+<td>
+(0.140)
+</td>
+<td>
+(0.140)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+as_label(work_situation)In training (apprentice, student)
+</td>
+<td>
+</td>
+<td>
+0.702<sup>***</sup>
+</td>
+<td>
+0.380<sup>**</sup>
+</td>
+<td>
+-0.703<sup>***</sup>
+</td>
+<td>
+-0.091
+</td>
+<td>
+0.231
+</td>
+<td>
+-0.048
+</td>
+<td>
+0.446<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.167)
+</td>
+<td>
+(0.193)
+</td>
+<td>
+(0.242)
+</td>
+<td>
+(0.253)
+</td>
+<td>
+(0.210)
+</td>
+<td>
+(0.262)
+</td>
+<td>
+(0.246)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+as_label(work_situation)Homemaker
+</td>
+<td>
+</td>
+<td>
+0.006
+</td>
+<td>
+-0.008
+</td>
+<td>
+-0.415<sup>*</sup>
+</td>
+<td>
+0.182
+</td>
+<td>
+0.348<sup>*</sup>
+</td>
+<td>
+0.015
+</td>
+<td>
+-0.038
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.195)
+</td>
+<td>
+(0.218)
+</td>
+<td>
+(0.241)
+</td>
+<td>
+(0.240)
+</td>
+<td>
+(0.209)
+</td>
+<td>
+(0.297)
+</td>
+<td>
+(0.322)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+as_label(work_situation)Retired (AHV)
+</td>
+<td>
+</td>
+<td>
+0.328<sup>**</sup>
+</td>
+<td>
+0.329<sup>**</sup>
+</td>
+<td>
+-0.596<sup>***</sup>
+</td>
+<td>
+-0.212
+</td>
+<td>
+0.434<sup>***</sup>
+</td>
+<td>
+0.001
+</td>
+<td>
+0.037
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.130)
+</td>
+<td>
+(0.148)
+</td>
+<td>
+(0.170)
+</td>
+<td>
+(0.185)
+</td>
+<td>
+(0.148)
+</td>
+<td>
+(0.201)
+</td>
+<td>
+(0.195)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+as_label(work_situation)Person receiving invalidity insurance or other benefits
+</td>
+<td>
+</td>
+<td>
+0.419
+</td>
+<td>
+0.398
+</td>
+<td>
+-0.174
+</td>
+<td>
+-0.702
+</td>
+<td>
+0.211
+</td>
+<td>
+-0.478
+</td>
+<td>
+0.040
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.278)
+</td>
+<td>
+(0.316)
+</td>
+<td>
+(0.358)
+</td>
+<td>
+(0.534)
+</td>
+<td>
+(0.328)
+</td>
+<td>
+(0.547)
+</td>
+<td>
+(0.451)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+as_label(work_situation)Unemployed
+</td>
+<td>
+</td>
+<td>
+0.988<sup>***</sup>
+</td>
+<td>
+0.690<sup>*</sup>
+</td>
+<td>
+-0.252
+</td>
+<td>
+-0.382
+</td>
+<td>
+-0.170
+</td>
+<td>
+0.624
+</td>
+<td>
+-0.668
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.335)
+</td>
+<td>
+(0.386)
+</td>
+<td>
+(0.480)
+</td>
+<td>
+(0.616)
+</td>
+<td>
+(0.467)
+</td>
+<td>
+(0.454)
+</td>
+<td>
+(0.736)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+as_label(work_situation)Other (e.g., further training, sabbatical)
+</td>
+<td>
+</td>
+<td>
+0.817<sup>***</sup>
+</td>
+<td>
+0.658<sup>**</sup>
+</td>
+<td>
+0.015
+</td>
+<td>
+-0.621
+</td>
+<td>
+-0.710
+</td>
+<td>
+0.218
+</td>
+<td>
+0.032
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.251)
+</td>
+<td>
+(0.293)
+</td>
+<td>
+(0.370)
+</td>
+<td>
+(0.481)
+</td>
+<td>
+(0.443)
+</td>
+<td>
+(0.370)
+</td>
+<td>
+(0.446)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -6338,22 +6828,25 @@ public
 <td>
 </td>
 <td>
-0.636<sup>***</sup>
+0.599<sup>***</sup>
 </td>
 <td>
-0.437<sup>***</sup>
+0.419<sup>***</sup>
 </td>
 <td>
--0.182
+-0.210
 </td>
 <td>
--0.508<sup>***</sup>
+0.200
 </td>
 <td>
-0.247<sup>**</sup>
+-0.372<sup>***</sup>
 </td>
 <td>
--0.017
+0.137
+</td>
+<td>
+-0.075
 </td>
 </tr>
 <tr>
@@ -6362,26 +6855,31 @@ public
 <td>
 </td>
 <td>
-(0.084)
+(0.091)
 </td>
 <td>
-(0.096)
+(0.104)
 </td>
 <td>
-(0.129)
+(0.134)
 </td>
 <td>
-(0.117)
+(0.132)
 </td>
 <td>
-(0.121)
+(0.124)
 </td>
 <td>
-(0.130)
+(0.131)
+</td>
+<td>
+(0.138)
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -6405,22 +6903,25 @@ married
 <td>
 </td>
 <td>
--0.199<sup>***</sup>
+-0.140<sup>*</sup>
 </td>
 <td>
--0.159<sup>*</sup>
+-0.116
 </td>
 <td>
-0.035
+-0.013
 </td>
 <td>
-0.012
+0.138
 </td>
 <td>
-0.093
+0.063
 </td>
 <td>
--0.127
+0.073
+</td>
+<td>
+-0.129
 </td>
 </tr>
 <tr>
@@ -6429,26 +6930,106 @@ married
 <td>
 </td>
 <td>
-(0.077)
+(0.080)
 </td>
 <td>
-(0.088)
+(0.091)
 </td>
 <td>
-(0.103)
-</td>
-<td>
-(0.092)
+(0.107)
 </td>
 <td>
 (0.119)
 </td>
 <td>
-(0.117)
+(0.097)
+</td>
+<td>
+(0.122)
+</td>
+<td>
+(0.122)
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+gender
+</td>
+<td>
+</td>
+<td>
+0.411<sup>***</sup>
+</td>
+<td>
+0.303<sup>***</sup>
+</td>
+<td>
+-0.259<sup>**</sup>
+</td>
+<td>
+0.035
+</td>
+<td>
+-0.017
+</td>
+<td>
+0.308<sup>***</sup>
+</td>
+<td>
+-0.135
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.076)
+</td>
+<td>
+(0.087)
+</td>
+<td>
+(0.106)
+</td>
+<td>
+(0.114)
+</td>
+<td>
+(0.092)
+</td>
+<td>
+(0.116)
+</td>
+<td>
+(0.116)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -6474,19 +7055,22 @@ against_immigr_limit
 <td>
 </td>
 <td>
-0.574<sup>***</sup>
+0.568<sup>***</sup>
 </td>
 <td>
--0.999<sup>***</sup>
+-0.996<sup>***</sup>
 </td>
 <td>
--0.142<sup>***</sup>
+0.025
 </td>
 <td>
-0.323<sup>***</sup>
+-0.141<sup>***</sup>
 </td>
 <td>
-0.228<sup>***</sup>
+0.317<sup>***</sup>
+</td>
+<td>
+0.227<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6501,6 +7085,9 @@ against_immigr_limit
 </td>
 <td>
 (0.057)
+</td>
+<td>
+(0.046)
 </td>
 <td>
 (0.039)
@@ -6529,6 +7116,8 @@ against_immigr_limit
 </td>
 <td>
 </td>
+<td>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -6539,19 +7128,22 @@ against_eu_membership
 <td>
 </td>
 <td>
--0.372<sup>***</sup>
+-0.368<sup>***</sup>
 </td>
 <td>
-0.732<sup>***</sup>
+0.729<sup>***</sup>
 </td>
 <td>
--0.024
+0.077
 </td>
 <td>
--0.113<sup>**</sup>
+-0.026
 </td>
 <td>
 -0.112<sup>**</sup>
+</td>
+<td>
+-0.114<sup>**</sup>
 </td>
 </tr>
 <tr>
@@ -6562,13 +7154,16 @@ against_eu_membership
 <td>
 </td>
 <td>
-(0.037)
+(0.038)
 </td>
 <td>
 (0.061)
 </td>
 <td>
-(0.041)
+(0.051)
+</td>
+<td>
+(0.042)
 </td>
 <td>
 (0.050)
@@ -6579,6 +7174,8 @@ against_eu_membership
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -6607,10 +7204,13 @@ state_or_freemarket
 -0.603<sup>***</sup>
 </td>
 <td>
-0.151<sup>***</sup>
+0.154<sup>***</sup>
 </td>
 <td>
-0.534<sup>***</sup>
+-0.024
+</td>
+<td>
+0.533<sup>***</sup>
 </td>
 <td>
 -0.539<sup>***</sup>
@@ -6631,6 +7231,9 @@ state_or_freemarket
 </td>
 <td>
 (0.048)
+</td>
+<td>
+(0.051)
 </td>
 <td>
 (0.045)
@@ -6659,6 +7262,8 @@ state_or_freemarket
 </td>
 <td>
 </td>
+<td>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -6668,22 +7273,25 @@ education
 0.111<sup>***</sup>
 </td>
 <td>
-0.091<sup>***</sup>
+0.094<sup>***</sup>
 </td>
 <td>
-0.026<sup>**</sup>
+0.028<sup>**</sup>
 </td>
 <td>
--0.109<sup>***</sup>
+-0.114<sup>***</sup>
 </td>
 <td>
-0.043<sup>***</sup>
+-0.020
 </td>
 <td>
-0.078<sup>***</sup>
+0.047<sup>***</sup>
 </td>
 <td>
-0.039<sup>**</sup>
+0.081<sup>***</sup>
+</td>
+<td>
+0.036<sup>**</sup>
 </td>
 </tr>
 <tr>
@@ -6702,10 +7310,13 @@ education
 (0.016)
 </td>
 <td>
-(0.013)
+(0.016)
 </td>
 <td>
-(0.017)
+(0.014)
+</td>
+<td>
+(0.018)
 </td>
 <td>
 (0.017)
@@ -6713,6 +7324,8 @@ education
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -6737,22 +7350,25 @@ Constant
 -1.033<sup>***</sup>
 </td>
 <td>
--1.762<sup>***</sup>
+-2.705<sup>***</sup>
 </td>
 <td>
-0.268
+-0.337
 </td>
 <td>
--2.258<sup>***</sup>
+-1.582<sup>***</sup>
 </td>
 <td>
--4.414<sup>***</sup>
+-0.761<sup>*</sup>
 </td>
 <td>
--1.987<sup>***</sup>
+-4.385<sup>***</sup>
 </td>
 <td>
--4.512<sup>***</sup>
+-2.411<sup>***</sup>
+</td>
+<td>
+-4.760<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -6762,22 +7378,25 @@ Constant
 (0.075)
 </td>
 <td>
-(0.186)
+(0.216)
 </td>
 <td>
-(0.317)
+(0.342)
 </td>
 <td>
-(0.422)
+(0.446)
 </td>
 <td>
-(0.355)
+(0.435)
 </td>
 <td>
-(0.436)
+(0.380)
 </td>
 <td>
-(0.450)
+(0.467)
+</td>
+<td>
+(0.481)
 </td>
 </tr>
 <tr>
@@ -6797,9 +7416,11 @@ Constant
 </td>
 <td>
 </td>
+<td>
+</td>
 </tr>
 <tr>
-<td colspan="8" style="border-bottom: 1px solid black">
+<td colspan="9" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
@@ -6827,6 +7448,9 @@ Observations
 <td>
 4,434
 </td>
+<td>
+4,434
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -6836,22 +7460,25 @@ Log Likelihood
 -4,342.283
 </td>
 <td>
--2,652.764
+-2,634.018
 </td>
 <td>
--2,127.152
+-2,119.472
 </td>
 <td>
--1,566.950
+-1,560.840
 </td>
 <td>
--2,039.716
+-1,507.845
 </td>
 <td>
--1,353.108
+-2,027.539
 </td>
 <td>
--1,394.208
+-1,346.769
+</td>
+<td>
+-1,390.188
 </td>
 </tr>
 <tr>
@@ -6862,33 +7489,36 @@ Akaike Inf. Crit.
 8,690.566
 </td>
 <td>
-5,321.529
+5,298.036
 </td>
 <td>
-4,276.304
+4,274.943
 </td>
 <td>
-3,155.899
+3,157.681
 </td>
 <td>
-4,101.433
+3,051.689
 </td>
 <td>
-2,728.215
+4,091.079
 </td>
 <td>
-2,810.416
+2,729.538
+</td>
+<td>
+2,816.376
 </td>
 </tr>
 <tr>
-<td colspan="8" style="border-bottom: 1px solid black">
+<td colspan="9" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 <em>Note:</em>
 </td>
-<td colspan="7" style="text-align:right">
+<td colspan="8" style="text-align:right">
 <sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
 </td>
 </tr>
@@ -6912,7 +7542,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sun, 18 Jun 2023 17:25:36 GMT</pubDate>
+  <pubDate>Sun, 18 Jun 2023 21:05:32 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>

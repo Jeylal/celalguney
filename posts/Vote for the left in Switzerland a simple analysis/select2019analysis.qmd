@@ -1,5 +1,5 @@
 ---
-title: "The vote for the left in the 2015 Swiss National Council Election: a short analysis"
+title: "Income, education and voting outcome: a cross-sectional analysis of voting outcome in Switzerland "
 format: html
 editor: visual
 bibliography: biblio.bib
@@ -12,7 +12,7 @@ execute:
 
 Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its [online database](https://wpid.world/resources/) got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a "educational" or, in Inglehart terms, a "postmaterial" or "cultural" cleavage [@gethin_political_2021] [@inglehart_silent_1971]. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.
 
-This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2015. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income.
+This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2019. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found [here](https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview). I will test if the support for the left is linked positively with the education level and negatively with income.
 
 ```{r}
 #| warning: false
@@ -93,8 +93,11 @@ panel2019$vote_plr <- ifelse(panel2019$W1_f1085_90 == 10, 1,
 panel2019$vote_liberal <- ifelse(panel2019$W1_f1085_90 %in% c(10, 20, 60, 70), 1,
                        ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
 
+panel2019$vote_christ_dem <- ifelse(panel2019$W1_f1085_90 == 20, 1,
+                   ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
+
 ############################################################
-####dummies for unemployed and retired ############
+####dummies for socdem characteristics ############
 
 panel2019$W1_f21500 <- panel2019$W1_f21500 %>% replace_na(0) ### replace na with 0 for position in current work
 
@@ -116,6 +119,16 @@ panel2019$public <- panel2019$public %>% replace_na(0) ## since most NA are due 
 
 panel2019$married <- ifelse(panel2019$W1_3_marital_sample == 1, 1, 0)
 
+panel2019$religion <- ifelse(is.na(panel2019$W1_f20760), replace_na(panel2019$W1_f20760[panel2019$W1_f20750 == 2], 0), panel2019$W1_f20760) ## replace NA values of the respondents who declared not belonging to any religion with 0
+
+panel2019$religion <- labelled(panel2019$religion, c("no religion" = 0,
+                               "protestant" = 1,
+                               "catholic" = 2,
+                               "jewish" = 3,
+                               "muslim" = 4,
+                               "other religion" = 5,
+                               "other christian religion" = 6))
+
 
 ########## opinions and issue position variables ############
 panel2019 <- panel2019 %>% 
@@ -134,12 +147,13 @@ panel2019 <- panel2019 %>%
 
 ############################################################
 
-datareg <- panel2019 %>% dplyr::select("vote_left", "vote_plr", "vote_greens", "vote_greens_lib", "vote_udc", "vote_liberal", "income", "education", "age", "nonreligious", "unempl", "retired", "public", "full_time", "excutive_superviser_selfemployed", "married", "against_immigr_limit", "against_eu_agreements", "against_eu_membership", "state_or_freemarket", "against_eq_opport_foreigners", "against_taxes_high_income", "for_social_spending", "foreigners_share", "W1_3_canton_sample")
+datareg <- panel2019 %>% dplyr::select("vote_left", "vote_plr", "vote_greens", "vote_greens_lib", "vote_udc", "vote_liberal", "vote_christ_dem", "income", "education", "age", "gender", "nonreligious", "religion", "unempl", "retired", "public", "full_time", "W1_f21400", "excutive_superviser_selfemployed", "married", "against_immigr_limit", "against_eu_agreements", "against_eu_membership", "state_or_freemarket", "against_eq_opport_foreigners", "against_taxes_high_income", "for_social_spending", "foreigners_share", "W1_3_canton_sample")
 
 datareg$W1_3_canton_sample <- as_label(datareg$W1_3_canton_sample)
 
 datareg <- datareg %>% 
-  rename(region = "W1_3_canton_sample")
+  rename(region = "W1_3_canton_sample",
+         work_situation = "W1_f21400")
 ```
 
 To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "W1_f1085_90" which asked for which party the respondent is going to vote for in the 2019 national council election. The indicator variable is equal to 1 if the respondent declared voting for the socialist party, the greens, the christian socialist party or for far left parties (swiss labour party, solidarités, ensemble à gauche...)
@@ -468,17 +482,19 @@ For the second model, I include gender (dummy with female = 1), age (in categori
 #| message: false
 
 
-reg2 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + full_time + public + married, family=binomial(link="logit"))
+reg2 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious  + as_label(work_situation) + public + married + gender, family=binomial(link="logit"))
 
-reg3 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+reg3 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-regudc <- glm(data = datareg, vote_udc ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+regudc <- glm(data = datareg, vote_udc ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-regplr <- glm(data = datareg, vote_plr ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+regcd <- glm(data = datareg, vote_christ_dem ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-reggreen <- glm(data = datareg, vote_greens ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+regplr <- glm(data = datareg, vote_plr ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-reggreenlib <- glm(data = datareg, vote_greens_lib ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+reggreen <- glm(data = datareg, vote_greens ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+
+reggreenlib <- glm(data = datareg, vote_greens_lib ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 ```
 
 
@@ -488,7 +504,7 @@ reggreenlib <- glm(data = datareg, vote_greens_lib ~ education + income + age + 
 #| message: false
 
 
-stargazer(reg, reg2, reg3, regudc, regplr, reggreen, reggreenlib, type = "html", title = "Vote for political parties: log(odds)")
+stargazer(reg, reg2, reg3, regudc, regcd, regplr, reggreen, reggreenlib, type = "html", title = "Vote for political parties: log(odds)")
 ```
 
 
