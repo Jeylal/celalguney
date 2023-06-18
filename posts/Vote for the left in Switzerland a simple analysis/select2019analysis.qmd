@@ -45,6 +45,10 @@ library(viridis)
 library(brms)
 library(lme4)
 library(margins)
+library(brms)
+library(coda)
+library(bayesplot)
+library(BayesPostEst)
 options(scipen = 999)
 ```
 
@@ -53,34 +57,92 @@ options(scipen = 999)
 #| message: false
 #| echo: false
 #| include: false
-
+rm(list = ls())
 panel2019 <- read_sav("panel2019.sav")
-names(panel2019)[which(colnames(panel2019) == "W1_4_f28910")] <- "Gross.monthly.hh.income"
-names(panel2019)[137] <- "Education.level"
+names(panel2019)[which(colnames(panel2019) == "W1_4_f28910")] <- "income"
+names(panel2019)[which(colnames(panel2019) == "W1_f20900")] <- "nonreligious"
+names(panel2019)[137] <- "education"
 
-panel2019$Education.level <- ifelse(panel2019$Education.level == 14, NA, panel2019$Education.level)
+panel2019$education <- ifelse(panel2019$education == 14, NA, panel2019$education)
 
-panel2019$religion <- ifelse(panel2019$W1_f20750 == 1, 1,
-                             ifelse(panel2019$W1_f20750 == 2, 0, NA))
+panel2019$gender <- ifelse(panel2019$W1_sex == 1, 0, 
+                           ifelse(is.na(panel2019$W1_sex), NA, 1))
 
-panel2019$gender <- ifelse(panel2019$W1_sex == 1, 0, 1)
+### dummy variable for the vote for the left. 
+### The left includes the socialist party, ecologists, christian social party, far left parties (ensemble a gauche, solidarites, swiss party of labour)
+panel2019$vote_left <- ifelse(panel2019$W1_f1085_90 %in% c(30, 50, 100, 130, 140), 1, 
+                    ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
 
-panel2019$vote.left <- ifelse(panel2019$W1_f10850rec %in% c(30, 50, 130, 140), 1,
-                              ifelse(is.na(panel2019$W1_f10850rec), NA, 0))
+####### dummy for vote for the greens ########
+panel2019$vote_greens <- ifelse(panel2019$W1_f1085_90 == 50, 1,
+                      ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
 
-panel2019$gender <- factor(panel2019$gender, levels = c(0,1), labels = c("Male", "Female"))
+panel2019$vote_greens_lib <- ifelse(panel2019$W1_f1085_90 == 60, 1,
+                          ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
 
-datareg <- panel2019 %>% dplyr::select("vote.left", "Education.level", "Gross.monthly.hh.income", "religion", "gender", "W1_f10000", "W1_f20900", "W1_age", "W1_f10250", "W1_3_smt9", "W1_3_canton_sample", "W1_agecat")
+### dummy for udc###
+
+panel2019$vote_udc <- ifelse(panel2019$W1_f1085_90 == 40, 1,
+                   ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
+
+### dummy for liberal parties ###
+
+panel2019$vote_plr <- ifelse(panel2019$W1_f1085_90 == 10, 1,
+                   ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
+
+panel2019$vote_liberal <- ifelse(panel2019$W1_f1085_90 %in% c(10, 20, 60, 70), 1,
+                       ifelse(is.na(panel2019$W1_f1085_90), NA, 0))
+
+############################################################
+####dummies for unemployed and retired ############
+
+panel2019$W1_f21500 <- panel2019$W1_f21500 %>% replace_na(0) ### replace na with 0 for position in current work
+
+panel2019$excutive_superviser_selfemployed <- ifelse(panel2019$W1_f21500 %in% c(1,2,4), 1, 0)
+
+
+panel2019$full_time <- ifelse(panel2019$W1_f21400 == 1, 1, 
+                 ifelse(is.na(panel2019$W1_f21400), NA, 0))
+
+panel2019$unempl <- ifelse(panel2019$W1_f21400 == 7, 1, 
+                 ifelse(is.na(panel2019$W1_f21400), NA, 0))
+
+panel2019$retired <- ifelse(panel2019$W1_f21400 == 5, 1, 
+                 ifelse(is.na(panel2019$W1_f21400), NA, 0))
+
+panel2019$public <- ifelse(panel2019$W1_f21700 == 2, 1, 0)
+
+panel2019$public <- panel2019$public %>% replace_na(0) ## since most NA are due to the fact that the respondent was not working (and thus the question not asked), we can consider NA as actual 0
+
+panel2019$married <- ifelse(panel2019$W1_3_marital_sample == 1, 1, 0)
+
+
+########## opinions and issue position variables ############
+panel2019 <- panel2019 %>% 
+  rename(against_immigr_limit = "W1_f15340b", # 1 = strongly in favour of immigration limitation
+         against_eu_agreements = "W1_f15340a", # same scale
+         against_eu_membership = "W1_f15430", # 1 = strongly for eu membership, 5 = staying outside
+         state_or_freemarket = "W1_f15435", # 1 = strongly for state intervention, 5 = for free market
+         against_eq_opport_foreigners = "W1_f15440", #1 = for equal opportunities, 5 = swiss first
+         against_taxes_high_income = "W1_f15480", #1 = for increase, 5 for reduction
+         for_social_spending = "W1_f15420",
+         age = "W1_agecat",
+         foreigners_share = "W1_3_foreigners"
+         )
+
+
+
+############################################################
+
+datareg <- panel2019 %>% dplyr::select("vote_left", "vote_plr", "vote_greens", "vote_greens_lib", "vote_udc", "vote_liberal", "income", "education", "age", "nonreligious", "unempl", "retired", "public", "full_time", "excutive_superviser_selfemployed", "married", "against_immigr_limit", "against_eu_agreements", "against_eu_membership", "state_or_freemarket", "against_eq_opport_foreigners", "against_taxes_high_income", "for_social_spending", "foreigners_share", "W1_3_canton_sample")
 
 datareg$W1_3_canton_sample <- as_label(datareg$W1_3_canton_sample)
 
 datareg <- datareg %>% 
-  rename(region = "W1_f10000",
-         nonreligious = "W1_f20900", 
-         age = "W1_age")
+  rename(region = "W1_3_canton_sample")
 ```
 
-To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "f10300" which asked for which party the respondent voted in the 2015 election. From this variable, I create a dummy variable taking value one if the respondant voted for either the socialist party (PS), the green (PES), solidarité or Swiss labor party (PST-POP). Note that those choices can be controversial and a matter of debate because I don't include the Social-christian party and I include the greens. This is a matter of debate if those parties can be classified as left or not, but I will not go further about this.
+To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable "W1_f1085_90" which asked for which party the respondent is going to vote for in the 2019 national council election. The indicator variable is equal to 1 if the respondent declared voting for the socialist party, the greens, the christian socialist party or for far left parties (swiss labour party, solidarités, ensemble à gauche...)
 
 Regarding the independ variables, the variable "f28910" asks the gross monthly houshold income of the individual and the variable has 15 income brackets (we thus do not have directly the income of the respondant). For education, "f21310" asks the highest level of achieved education. Here is below descriptive statistics for these variables:
 
@@ -91,10 +153,10 @@ Regarding the independ variables, the variable "f28910" asks the gross monthly h
 #| fig-cap: Education level
 
 datareg %>% 
-  count(Education.level) %>% 
+  count(education) %>% 
   mutate(prop = n/sum(n)) %>% 
   ggplot()+
-  aes(x = as.factor(Education.level), y = prop)+
+  aes(x = as.factor(education), y = prop)+
   geom_col()+
   xlab("Education level")
 ```
@@ -105,10 +167,10 @@ datareg %>%
 #| message: false
 #| fig-cap: Gross monthly houshold income
 
-datareg %>% count(as_label(Gross.monthly.hh.income)) %>% 
+datareg %>% count(as_label(income)) %>% 
   mutate(prop = n/sum(n)) %>% 
   ggplot()+
-  aes(x = `as_label(Gross.monthly.hh.income)`, y = prop) %>% 
+  aes(x = `as_label(income)`, y = prop) %>% 
   geom_col()+
   theme_bw()+
   xlab("")+
@@ -137,10 +199,10 @@ Here is the regression table:
 #| echo: false
 #| results: asis
 
-reg <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level, family = "binomial")
+reg <- glm(data = datareg, vote_left ~ income + education, family = binomial(link = "logit"))
 
 
-stargazer(reg, type = "html", title = "Model 1: binary logit regression (odd ratios)", apply.coef = exp)
+stargazer(reg, type = "html")
 
 ```
 
@@ -157,7 +219,7 @@ ggcoef_model(reg, exponentiate = TRUE)
 
 ```
 
-Here is what this coefficient plot tells: the odds that a Swiss voter vote for a left-wing party for the National Council election of 2015 are linked negatively with income (odd ratio below 1) and positively with education (odd ratio \> 1). The coefficients are statistically significant at the one percent level, which is not a surprise because the sample is rather large. Inference will become more of a problem when I consider education or even income as a factor/qualitative variable (income here is coded in brackets, so it is rather an ordinal variable, and there is to my knowledge to way to solve this problem).
+Here is what this coefficient plot tells: the odds that a Swiss voter vote for a left-wing party for the National Council election in 2019 are linked negatively with income (odd ratio below 1) and positively with education (odd ratio \> 1). The coefficients are statistically significant at the one percent level, which is not a surprise because the sample is rather large.
 
 Odd ratios are known to be rather difficult to interpret. In effect, odd ratios are not what the literature calls "quantity of interest", that is to say, the quantity of the dependent variable which is the most easy to interpret. I this model, the quantity of interest is the probability to vote for a left wing party and not the odds. A lot of economists and social scientists prefer to have a look directly at the marginal effects and predicted probability to have a better view of the relationships between the variables and of the quantity of interest.
 
@@ -174,8 +236,8 @@ GHI = 1:15
 ggplot()+
   xlim(1, 15)+
   ylim(0, 1)+
-  geom_line(aes(x = GHI, y = invlogit(coef(reg)[1] + coef(reg)[2]*GHI + coef(reg)[3]*median(datareg$Education.level, na.rm = TRUE))))+
-  geom_point(aes(x = jitter(Gross.monthly.hh.income), y = vote.left), data = datareg)+
+  geom_line(aes(x = GHI, y = invlogit(coef(reg)[1] + coef(reg)[2]*GHI + coef(reg)[3]*median(datareg$education, na.rm = TRUE))))+
+  geom_point(aes(x = jitter(income), y = vote_left), data = datareg)+
   theme_bw()+
   ylab("probability")+
   xlab("Gross monthly household income group") -> prob.plot.income
@@ -185,8 +247,8 @@ EL = 1:14
 ggplot()+
   xlim(1,14)+
   ylim(0,1)+
-  geom_line(aes(x = EL, y = invlogit(coef(reg)[1] + coef(reg)[2]*median(datareg$Gross.monthly.hh.income, na.rm = TRUE) + coef(reg)[3]*EL)))+
-  geom_point(aes(x = jitter(Education.level), y = vote.left), data = datareg)+
+  geom_line(aes(x = EL, y = invlogit(coef(reg)[1] + coef(reg)[2]*median(datareg$income, na.rm = TRUE) + coef(reg)[3]*EL)))+
+  geom_point(aes(x = jitter(education), y = vote_left), data = datareg)+
   theme_bw()+
   ylab("")+
   xlab("Education level") -> prob.plot.educ
@@ -206,7 +268,7 @@ A first step in group-average marginal effects in R is to use the function "slop
 ```{r}
 #| warning: false
 #| message: false
-marginaleffectseduc <- slopes(reg, variables = "Education.level")
+marginaleffectseduc <- slopes(reg, variables = "education")
 head(marginaleffectseduc)
 ```
 
@@ -220,7 +282,7 @@ The dataframe has 5607 rows which is the same number of observation used in the 
 #| warning: false
 #| message: false
 marginaleffectseduc %>% 
-  group_by(Gross.monthly.hh.income) %>% 
+  group_by(income) %>% 
   summarise(mean.slopes.educ = mean(estimate),
             conf.high = mean(conf.high), ## this is the same for the confidence interval
             conf.low = mean(conf.low)) %>% 
@@ -235,7 +297,7 @@ A plot can then be made to have a better view of the average marginal effects/sl
 #| message: false
 game.educ %>% 
   ggplot()+
-  aes(x = Gross.monthly.hh.income, y = mean.slopes.educ)+
+  aes(x = income, y = mean.slopes.educ)+
   geom_point()+
   geom_line()+
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.5)+
@@ -251,7 +313,7 @@ Normally, the function plot_slope should produce the same graph:
 ```{r}
 #| warning: false
 #| message: false
-plot_slopes(reg, variables = "Education.level", by = "Gross.monthly.hh.income")
+plot_slopes(reg, variables = "education", by = "income")
 ```
 
 Let's do the same for income:
@@ -260,9 +322,9 @@ Let's do the same for income:
 #| message: false
 #| warning: false
 
-marginaleffectsinc <- slopes(reg, variables = "Gross.monthly.hh.income")
+marginaleffectsinc <- slopes(reg, variables = "income")
 game.inc <- marginaleffectsinc %>% 
-  group_by(Education.level) %>% 
+  group_by(education) %>% 
   summarise(mean.slopes.inc = mean(estimate),
             conf.high = mean(conf.high),
             conf.low = mean(conf.low)) %>% 
@@ -275,7 +337,7 @@ game.inc <- marginaleffectsinc %>%
 #| warning: false
 game.inc %>% 
   ggplot()+
-  aes(x = Education.level, y = mean.slopes.inc)+
+  aes(x = education, y = mean.slopes.inc)+
   geom_point()+
   geom_line()+
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.5)+
@@ -289,12 +351,12 @@ Here the result is more interesting: the average marginal slope of income is neg
 Another way to look at the effect of the two independent variable on the probability to vote for the left is to look at the predictions.
 
 ```{r}
-predictionseduc <- predictions(reg, variables = c("Education.level", "Gross.monthly.hh.income"))
-predictionseduc <- predictions(reg, by = c("Education.level", "Gross.monthly.hh.income"))
+predictionseduc <- predictions(reg, variables = c("education", "income"))
+predictionseduc <- predictions(reg, by = c("education", "income"))
 ```
 
 ```{r}
-plot_predictions(reg, condition = c("Education.level", "Gross.monthly.hh.income"))+
+plot_predictions(reg, condition = c("education", "income"))+
   scale_color_brewer(palette = "Set1")+
   scale_fill_brewer(palette = "Set1")+
   theme_bw()+
@@ -302,7 +364,7 @@ plot_predictions(reg, condition = c("Education.level", "Gross.monthly.hh.income"
         legend.background = element_blank())+
   ylab("probability vote left") -> plotpredicteduc
 
-plot_predictions(reg, condition = c("Gross.monthly.hh.income", "Education.level"))+
+plot_predictions(reg, condition = c("income", "education"))+
   scale_color_brewer(palette = "Set1")+
   scale_fill_brewer(palette = "Set1")+
   theme_bw()+
@@ -318,14 +380,16 @@ Those plots are essentially the same the first one, but with the confidence inte
 Another way is to compute directly the average marginal effects without grouping:
 
 ```{r}
-marginaleffectsinc <- slopes(reg, variables = "Gross.monthly.hh.income")
-marginaleffectseduc <- slopes(reg, variables = "Education.level")
+marginaleffectsinc <- slopes(reg, variables = "income")
+marginaleffectseduc <- slopes(reg, variables = "education")
 avg_effect_summary_reg <- rbind(summary(marginaleffectsinc), summary(marginaleffectseduc))
 
 avg_effect_summary_reg
 
 ```
+
 Here is a nice way to visualize the table above:
+
 ```{r}
 avg_effect_summary_reg %>% 
   ggplot()+
@@ -337,10 +401,8 @@ avg_effect_summary_reg %>%
   ylab("")+
   geom_label(aes(label = round(estimate*100, 3)), nudge_y = 0.15)
 ```
-The advantage of average marginal effects is the fact that they give information on the quantity of interest (here the probability to vote for the left) instead of odd ratio or log odds. The probability to vote for the left decreases on average by -1.715 percentage points if we compare two units which only differs by one income group level. Conversely, the probability increases on average by 2.6 percentage points if we compare two units which only differs by one level of education.
 
-
-
+The advantage of average marginal effects is the fact that they give information on the quantity of interest (here the probability to vote for the left) instead of odd ratio or log odds. The probability to vote for the left decreases on average by -1.6 percentage points if we compare two units which only differs by one income group level. Conversely, the probability increases on average by 2.5 percentage points if we compare two units which only differs by one level of education.
 
 ## Complexifying the model
 
@@ -362,7 +424,7 @@ In the present analysis, I will consider a partial pooling model in which the sl
 #| message: false
 
 
-glmer1 <- glmer(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + (1 + Education.level + Gross.monthly.hh.income | W1_3_canton_sample), family=binomial(link="logit"))
+glmer1 <- glmer(data = datareg, vote_left ~ income + education + (1 + education + income | region), family=binomial(link="logit"))
 ```
 
 The results of this model can be then represented through a table with tab_model()
@@ -384,8 +446,8 @@ However, it is still interesting to plot predicted probabilities to have a bette
 
 
 
-plot_predictions(glmer1, condition = c("Education.level", "Gross.monthly.hh.income", "W1_3_canton_sample"))+facet_wrap(~W1_3_canton_sample)+
-  aes(linetype = Gross.monthly.hh.income)+
+plot_predictions(glmer1, condition = c("education", "income", "region"))+facet_wrap(~region)+
+  aes(linetype = income)+
   scale_colour_brewer(palette = "Set1")+
   labs(title = "Probabilités prédites selon le niveau d'éducation, pour chaque canton et pour différent niveau de revenu",
        subtitle = "Election Conseil National 2015")+
@@ -398,43 +460,62 @@ The relationship between the predicted probabilities to vote for the left and ed
 
 Let's now add some control variables to the model. The models above are flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.
 
-I expand the first model by including a dummy for gender (1= female, 0 = male), age and nonreligiosity (takes value 1 to 7, 1 is for going to the church a lot, 7 is for never at all)
+For the second model, I include gender (dummy with female = 1), age (in categories), religiosity (the higher, the less religious is the respondent), a variable indicating whether the respondent has a full-time job (full_time), whether the respondent works in the public sector (public) and marital status. I a third model which include variables on issue position related to socio-economic issues such as EU integration, taxation and attitude towards foreigners (each one of these variables are ordinal on a 1-5 scale). I also run the same final model for the other parties as dependent variables.
 
 ```{r}
 #| results: asis
+#| warning: false
+#| message: false
 
-reg2 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + W1_agecat + nonreligious + gender, family=binomial(link="logit"))
-stargazer(reg, reg2, type = "html", title = "Model 2: include control variables | log(odds)")
+
+reg2 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + full_time + public + married, family=binomial(link="logit"))
+
+reg3 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+
+regudc <- glm(data = datareg, vote_udc ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+
+regplr <- glm(data = datareg, vote_plr ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+
+reggreen <- glm(data = datareg, vote_greens ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+
+reggreenlib <- glm(data = datareg, vote_greens_lib ~ education + income + age + nonreligious + full_time + public + married + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 ```
 
-The estimated income coefficient is even closer to zero after controls, suggesting an even lower link between income group and the probability to vote for the left. However, the coefficient for education level has increased. Age category is linked positively with the vote for the left. The coefficient for gender implies that, ceteris paribus, women vote on probabiliy 0.43 more than men for the left. It would be interesting to see how the model changes if an interaction term between education and income is included. This interaction would allow the the slope for education and income to vary according to each other's values:
 
 ```{r}
 #| results: asis
+#| warning: false
+#| message: false
 
-reg3 <- glm(data = datareg, vote.left ~ Gross.monthly.hh.income + Education.level + W1_agecat + nonreligious + gender + Gross.monthly.hh.income:Education.level, family=binomial(link="logit"))
 
-stargazer(reg, reg2, reg3, type = "html", title = "Model 3: include control variables & interaction | log(odds)")
-
+stargazer(reg, reg2, reg3, regudc, regplr, reggreen, reggreenlib, type = "html", title = "Vote for political parties: log(odds)")
 ```
 
-### Vizualizations
 
-```{r}
-#| include: false
-reg3effect <- slopes(reg3, variables = c("Gross.monthly.hh.income"))
-avg_slopes(reg3, variables = c("Gross.monthly.hh.income"), by = "Education.level")
-margins(reg3)
-reg3effect %>% 
-  group_by(term) %>% 
-  summarise(avg_marginal_effect = mean(estimate)) %>% 
-  ungroup()
-```
 
-```{r}
 
-reg3 %>% plot_predictions(condition = c("Gross.monthly.hh.income", "Education.level", "gender")) + facet_wrap(~Education.level + gender)
 
-reg3 %>% plot_predictions(condition = c("Education.level", "Gross.monthly.hh.income", "gender")) + facet_wrap(~Gross.monthly.hh.income + gender)
 
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
