@@ -400,6 +400,7 @@ avg_effect_summary_reg <- rbind(summary(marginaleffectsinc), summary(marginaleff
 
 avg_effect_summary_reg
 
+margins_summary(reg)
 ```
 
 Here is a nice way to visualize the table above:
@@ -470,68 +471,84 @@ plot_predictions(glmer1, condition = c("education", "income", "region"))+facet_w
 
 The relationship between the predicted probabilities to vote for the left and education is positive for every cantons. There are a lot of cantons that show similar relationships and curves and whose predicted probabilities, despite the positive link with education, do not go above 0.5 (with some exception such as Aargau, Thurgau, Tessin, Valais, Glarus...). The cantons which show different patterns are Basel-Stadt, Geneva, Jura, Vaud and Neuchâtel with higher predicted probabilities.
 
-### Adding control variables
+### Adding variables to the model
 
 Let's now add some control variables to the model. The models above are flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.
 
-For the second model, I include gender (dummy with female = 1), age (in categories), religiosity (the higher, the less religious is the respondent), a variable indicating whether the respondent has a full-time job (full_time), whether the respondent works in the public sector (public) and marital status. I a third model which include variables on issue position related to socio-economic issues such as EU integration, taxation and attitude towards foreigners (each one of these variables are ordinal on a 1-5 scale). I also run the same final model for the other parties as dependent variables.
+For the second model, I include gender (dummy with female = 1), age (in categories), religiosity (the higher, the less religious is the respondent), a variable indicating whether the respondent has a full-time job (full_time), whether the respondent works in the public sector (public) and marital status. I also include variables on issue position related to socio-economic issues such as EU integration, taxation and attitude towards foreigners (each one of these variables are ordinal on a 1-5 scale). Finally, I run the same model for the other main parties in Switzerland: the liberal radical party (center-right, plr), the Swiss people's party (far-right, udc) and the two greens party (the greens, the liberal greens).
+
+```{r}
+#| echo: false
+
+
+datareg$work_situationf <- factor(datareg$work_situation) ###margins summary does not support labelled data
+```
 
 ```{r}
 #| results: asis
 #| warning: false
 #| message: false
+#| echo: false
 
 
-reg2 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious  + as_label(work_situation) + public + married + gender, family=binomial(link="logit"))
+reg2 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious  + work_situationf + public + married + gender, family=binomial(link="logit"))
 
-reg3 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+reg3 <- glm(data = datareg, vote_left ~ education + income + age + nonreligious + work_situationf + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-regudc <- glm(data = datareg, vote_udc ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-regcd <- glm(data = datareg, vote_christ_dem ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+regudc <- glm(data = datareg, vote_udc ~ education + income + age + nonreligious + work_situationf + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-regplr <- glm(data = datareg, vote_plr ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+regcd <- glm(data = datareg, vote_christ_dem ~ education + income + age + nonreligious + work_situationf + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-reggreen <- glm(data = datareg, vote_greens ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+regplr <- glm(data = datareg, vote_plr ~ education + income + age + nonreligious + work_situationf + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 
-reggreenlib <- glm(data = datareg, vote_greens_lib ~ education + income + age + nonreligious + as_label(work_situation) + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+reggreen <- glm(data = datareg, vote_greens ~ education + income + age + nonreligious + work_situationf + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
+
+reggreenlib <- glm(data = datareg, vote_greens_lib ~ education + income + age + nonreligious + work_situationf + public + married + gender + against_immigr_limit + against_eu_membership + state_or_freemarket, family=binomial(link="logit"))
 ```
 
+```{r average marginal effects}
+#| echo: false
+
+
+marginsreg3 <- margins_summary(reg3) %>% 
+  mutate(party = "left")
+marginsreg3$factor[11:17] <- get_labels(datareg$work_situation)[3:9]
+
+marginsregudc <- margins_summary(regudc) %>% 
+  mutate(party = "udc")
+marginsregudc$factor[11:17] <- get_labels(datareg$work_situation)[3:9]
+
+marginsregplr <- margins_summary(regplr) %>% 
+  mutate(party = "plr")
+marginsregplr$factor[11:17] <- get_labels(datareg$work_situation)[3:9]
+
+marginsreggreen <- margins_summary(reggreen) %>% 
+  mutate(party = "greens")
+marginsreggreen$factor[11:17] <- get_labels(datareg$work_situation)[3:9]
+
+marginsreggreenlib <- margins_summary(reggreenlib) %>% 
+  mutate(party = "greenslib")
+marginsreggreenlib$factor[11:17] <- get_labels(datareg$work_situation)[3:9]
+
+marginsfull <- rbind(marginsreg3, marginsregudc, marginsregplr, marginsreggreen, marginsreggreenlib)
+
+```
 
 ```{r}
-#| results: asis
-#| warning: false
-#| message: false
+#| fig-width: 10
+#| fig-height: 10
 
-
-stargazer(reg, reg2, reg3, regudc, regcd, regplr, reggreen, reggreenlib, type = "html", title = "Vote for political parties: log(odds)")
+marginsfull %>% 
+  ggplot()+
+  aes(x = AME*100, y = factor, color = party, group = party)+
+  geom_vline(xintercept = 0, color = "red")+
+  geom_pointrange(aes(xmin = lower*100, xmax = upper*100))+
+  theme_bw()+
+  xlab("Average marginal effects (percentage points)")+
+  ylab("")+
+  labs(title = "2019 Swiss national council election") + 
+  facet_wrap(~party)+
+  theme(legend.position = "none",
+        )
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
