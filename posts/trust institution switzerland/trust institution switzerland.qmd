@@ -3,6 +3,7 @@ title: "Political stability and political crises in Switzerland: empirical evide
 format: html
 editor: visual
 bibliography: biblio.bib
+image: vox_trust_gov.png
 ---
 
 ## Political stability and crisis in Switzerland
