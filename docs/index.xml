@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sat, 24 Jun 2023 17:21:44 GMT</lastBuildDate>
+<lastBuildDate>Sat, 24 Jun 2023 17:39:08 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,7 +5238,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
@@ -5266,7 +5266,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </figure>
 </div>
 <p>If one looks at other data provided by the OECD, Switzerland still ranks among the highest. In the graph above, Swiss people show a great deal of confidence in the police (about 85%), parliament (60%) and government (70%). This stands in sharp contrast with France, Italy and the US (which shows very low level of confidence in parliament with 15%). If one tries therefore to assess the evolution of trust in institutions in Switzerland, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions <span class="citation" data-cites="brunner_crise_1997">(Brunner and Sgier 1997)</span>.</p>
-<p>But why is the evolution of trust in institutions importance? For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini <span class="citation" data-cites="amable2005 amable_neorealist_2008">(<strong>amable2005?</strong>; 2008)</span>, which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland’s trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy <span class="citation" data-cites="amable_bloc_2014 amable_illusion_2018">(Bruno Amable and Palombarini 2014, 2018)</span>. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data like the ones above only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.</p>
+<p>But why is the evolution of trust in institutions importance? For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini <span class="citation" data-cites="amable_leconomie_2005 amable_neorealist_2008">(2005; 2008)</span>, which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland’s trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy <span class="citation" data-cites="amable_bloc_2014 amable_illusion_2018">(Bruno Amable and Palombarini 2014, 2018)</span>. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data like the ones above only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.</p>
 <p>This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which could also allow to see the temporal evolution and thus identify the periods of political stability and crisis in Switzerland.</p>
 <section id="assessing-political-stability-in-switzerland-with-selects-data" class="level3">
 <h3 class="anchored" data-anchor-id="assessing-political-stability-in-switzerland-with-selects-data">Assessing political stability in Switzerland with Selects data</h3>
@@ -5468,7 +5468,8 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/vox_trust_gov.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>This last graph is the one I am the most satisfied with: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in governments, which leads to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1980s: the percentage of people having confidence in government fell from 65% in 1998 to 38.9% in 1995.</p>
+<p>This last graph is the one I am the most satisfied with: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in government, which leads to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1980s: the percentage of people having confidence in government fell from 65% in 1998 to 38.9% in 1995.</p>
+<p>Confidence in government then fell a for second time from 2001 (64%) to 2005 (38.4%).</p>
 
 
 
@@ -5479,8 +5480,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <div id="ref-amable_neorealist_2008" class="csl-entry">
 Amable, B., and S. Palombarini. 2008. <span>“A Neorealist Approach to Institutional Change and the Diversity of Capitalism.”</span> <em>Socio-Economic Review</em> 7 (1): 123–43. <a href="https://doi.org/10.1093/ser/mwn018">https://doi.org/10.1093/ser/mwn018</a>.
 </div>
+<div id="ref-amable_leconomie_2005" class="csl-entry">
+Amable, Bruno, and Stefano Palombarini. 2005. <em>L’économie Politique n’est Pas Une Science Morale</em>. Raisons d’Agir. Paris.
+</div>
 <div id="ref-amable_bloc_2014" class="csl-entry">
-Amable, Bruno, and Stefano Palombarini. 2014. <span>“The Bloc Bourgeois in France and Italy.”</span> In <em>Economic Crises and Policy Regimes</em>, Edward Elgar Publishing, 177–216.
+———. 2014. <span>“The Bloc Bourgeois in France and Italy.”</span> In <em>Economic Crises and Policy Regimes</em>, Edward Elgar Publishing, 177–216.
 </div>
 <div id="ref-amable_illusion_2018" class="csl-entry">
 ———. 2018. <em>L’illusion Du Bloc Bourgeois: Alliances Sociales Et Avenir Du Modèle Français</em>. Raisons d’agir. Paris.
@@ -5493,7 +5497,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" medium="image" type="image/png" height="93" width="144"/>
 </item>
 <item>
@@ -6040,7 +6044,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:21:44 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
