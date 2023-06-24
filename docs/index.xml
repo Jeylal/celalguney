@@ -10,7 +10,7 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sat, 24 Jun 2023 17:39:08 GMT</lastBuildDate>
+<lastBuildDate>Sat, 24 Jun 2023 17:45:37 GMT</lastBuildDate>
 <item>
   <title>Crises &amp; cycles</title>
   <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
@@ -50,7 +50,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
@@ -84,7 +84,7 @@
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 <item>
@@ -450,7 +450,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
@@ -508,7 +508,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -5238,11 +5238,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
  ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
-  <title>How did the trust in institutions evolve in Switzerland in the last decades? An analysis of political stability and trust</title>
+  <title>Political stability and political crises in Switzerland: empirical evidence</title>
   <link>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</link>
   <description><![CDATA[ 
 
@@ -5468,8 +5468,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/vox_trust_gov.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>This last graph is the one I am the most satisfied with: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in government, which leads to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1980s: the percentage of people having confidence in government fell from 65% in 1998 to 38.9% in 1995.</p>
-<p>Confidence in government then fell a for second time from 2001 (64%) to 2005 (38.4%).</p>
+<p>This last graph is the one I am the most satisfied with: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in government, which lead to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1990s: the percentage of people who declared having confidence in government fell from 65% in 1998 to 38.9% in 1995. Confidence in government then fell a for second time from 2001 (64%) to 2005 (38.4%), a period which can thus be considered as a second political crisis due to the very low level of confidence in 2005.</p>
 
 
 
@@ -5497,7 +5496,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" medium="image" type="image/png" height="93" width="144"/>
 </item>
 <item>
@@ -6044,7 +6043,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div>
 </div></section></div> ]]></description>
   <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
-  <pubDate>Sat, 24 Jun 2023 17:39:08 GMT</pubDate>
+  <pubDate>Sat, 24 Jun 2023 17:45:37 GMT</pubDate>
   <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 </channel>
