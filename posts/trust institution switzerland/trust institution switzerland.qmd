@@ -19,11 +19,11 @@ If one looks at other data provided by the OECD, Switzerland still ranks among t
 
 But why is the evolution of trust in institutions importance? For my research, I am interested in social conflict, political cleavages and institutional change. The Neorealism approach developped by Amable and Palombarini [-@amable2005; -@amable_neorealist_2008], which is dedicated to the analysis of those topics, offers insightful concepts and methods that I will mobilize here in assessing the evolution of Switzerland's trust in its institutions in the last decades. Until now, Neorealism has been first and foremost mobilized by its founders to analyse France and Italy [@amable_bloc_2014; @amable_illusion_2018]. In their work, they typically start with the fact that Italy and France went under periods of deep political crises. Leaving their conceptual definitions of crisis (which are really interesting) aside and focusing only on how they identify it empirically, they typically expose data on trust in politicians, institutions, government and in political turnover. However, it is rather straightforward to anyone interested in politics and contemporary history that Italy and France underwent political crises, and data like the ones above only serve to describe a well-known fact. The situation is totally different for Switzerland, which is why it is interesting to study this country in a Neorealist approach.
 
-This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which also allow to see the temporal evolution.
+This post will hence be an attempt to periodize, analyse and assess the evolution of trust in institutions in Switzerland. The goal here is, by using post-electoral survey, to identify the trends in trust in institutions and assess whether Switzerland can be characterized as a politically stable country, as opposed to France and Italy. The figures above already show that Switzerland is characterized with a relatively high level of trust, so the objective here is to explore other data which could also allow to see the temporal evolution and thus identify the periods of political stability and crisis in Switzerland.
 
-### Assessing political stability in Switzerland with post-electoral surveys
+### Assessing political stability in Switzerland with Selects data
 
-To do so, I will analyse post-electoral survey data. The Swiss Election Studies (SELECTS) offers a cumulative dataset which is of particular interest.
+Let's first see what Selects data offers. The Swiss Election Studies (SELECTS) contains a cumulative dataset which is of particular interest.
 
 ```{r}
 #| echo: false
@@ -44,7 +44,7 @@ ses <- read_sav("swiss election study.sav")
 This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of "trust in political institutions" variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table
 
 | Code   | name                                   | values                                              | Years                                                |
-|---------------|---------------|---------------------|----------------------|
+|------------------|------------------|------------------|-------------------|
 | trust1 | trust in federal council               | 0 (no trust) to 10 (full trust) with decimal values | not 1979, 2015, 2019                                 |
 | trust2 | trust in national parliament           | 0 (no trust) to 10 (full trust) with decimal values | 1991, 1995, 1999, 2003, 2007, 2011                   |
 | trust3 | trust in cantonal authorities          | 0 (no trust) to 10 (full trust) with decimal values | 1995, 1999, 2003, 2007, 2011                         |
@@ -115,7 +115,7 @@ table_trust1d %>%
 
 ```
 
-The graph above represents the percentage of respondents who declared to always or most of the time trust the federal council. The only period this trust declined was between 1975 and 1991. However, one should be cautious with the strong decline in 1991, because the scale (number of values the ordinal variable can take) changes for the first time for this year (see the precedent graph above). In fact, the strong decline in 1991 is surely due to the fact that the scale, by including more response choices in the survey (from 4 to 7 points scale), perhaps induced more middle-point responses (the middle answer is the mode for 1991). From 1995 to 2011, the trust in federal council shows a great stability, and even increases between 2007 and 2011. Nonetheless, the variable does include years after 2011, which is unfortunate. Fortunately, there are other variables which cover a bigger time frame. In this regard, the variable on the evaluation of the Swiss democracy/political system (eps1) is interesting:
+The graph above represents the percentage of respondents who declared to always or most of the time trust the federal council. The only period this trust declined was between 1975 and 1991. However, one should be cautious with the strong decline in 1991, because the scale (number of values the ordinal variable can take) changes for the first time for this year (see the precedent graph above). In fact, the strong decline in 1991 is surely due to the fact that the scale, by including more response choices in the survey (from 4 to 7 points scale), perhaps induced more "middle-point" responses (the middle answer is the mode for 1991). From 1995 to 2011, the trust in federal council shows a great stability, and even increases between 2007 and 2011. Nonetheless, the variable does include years after 2011, which is unfortunate. Fortunately, there are other variables which cover a bigger time frame. In this regard, the variable on the evaluation of the Swiss democracy/political system (eps1) is interesting:
 
 ```{r evaluation democracy}
 #| echo: false
@@ -234,10 +234,10 @@ There is overall a positive association between education level and trust in dem
 
 ### Alternative data source: the European Social Survey (ESS)
 
-It is often necessary to run similar analysis on different data sources to check whether the results obtained are robust. To do so, I will now analyse the swiss trust in institutions using ESS data. Since the ESS does not provide a cumulative dataset, I will simply analyse the first available (2002) and the most recent one (2020).
+As we have seen, Selects data have some shortcomings which prevent to conduct a serious evaluation of the evolution of trust in institutions. One thus has to look at other data. To do so, I will now analyse the Swiss trust in institutions using ESS data.
 
 | variable | name                                                   | scale                                                                                    |
-|--------------|----------------------|-------------------------------------|
+|------------------|---------------------|---------------------------------|
 | trstplt  | trust in politician                                    | 0 = no trust, 10 = complete trust (discrete scale)                                       |
 | trstprl  | Trust in country's parliament                          | 0 = no trust, 10 = complete trust (discrete scale)                                       |
 | stfeco   | How satisfied with present state of economy in country | 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale)                     |
@@ -301,3 +301,13 @@ If one considers trust in politicians as a good indicator of political stability
 ![](trust_natio_gov_ess.png)
 
 ![](trust_pol_ess.png){fig-align="center"}
+
+However, ESS data are rather limited with respect to the time frame: only data from 2002 to 2020 are available. Ideally, I would like to have data which come back at least to the 1980s.
+
+### Last data source: Vox data
+
+A final and last alternative data source to assess the temporal evolution of trust in institutions in Switzerland (and thus its period of political stability/crises) are the Vox post-electoral studies, which are conducted for each Swiss referendum ("votation populaire" in French) since 1981. Kriesi, Brunner and Lorétan compiled and standardized every Vox studies from 1981 up to 2016 to create a cumulative dataset [@kriesi_enquetes_2017]. This dataset has a variable of interest, "a22 (confidence in government)", which is a binary variable (either confidence of mistrust in government). The graph below plots the percentage of respondents having confidence in government for each year:
+
+![](vox_trust_gov.png){fig-align="center"}
+
+This last graph is the one I am the most satisfied with: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in governments, which leads to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1980s: the percentage of people having confidence in government fell from 65% in 1998 to 38.9% in 1995.
