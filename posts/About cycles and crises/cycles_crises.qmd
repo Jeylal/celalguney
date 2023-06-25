@@ -3,8 +3,10 @@ title: "Crises & cycles"
 format: html
 editor: visual
 image: crises_cycles.JPG
+date: "December 2022"
 execute: 
   freeze: true
+categories: [Political Economy, Economic History]
 ---
 
 # Crises & cycles

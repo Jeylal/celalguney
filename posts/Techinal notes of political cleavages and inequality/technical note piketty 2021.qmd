@@ -3,8 +3,10 @@ title: "From income brackets to income decile"
 format: html
 editor: visual
 image: graph1.png
+date: "17 April 2023"
 execute: 
   freeze: true
+categories: [Political Economy, Stats, Coding]
 ---
 
 ```{r}

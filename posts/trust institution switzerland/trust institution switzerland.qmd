@@ -4,6 +4,8 @@ format: html
 editor: visual
 bibliography: biblio.bib
 image: vox_trust_gov.png
+date: "25 June 2023"
+categories: [Political Economy, Stats]
 ---
 
 ## Political stability and crisis in Switzerland

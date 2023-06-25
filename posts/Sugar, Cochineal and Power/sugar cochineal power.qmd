@@ -3,10 +3,12 @@ title: "Sugar, Cochineal and power"
 author: ""
 format: html
 editor: visual
+date: "10 December 2022"
 bibliography: bibliosugarcochineal.bib
 image: colonialsugarmanufacturing.jpg
 execute: 
   freeze: true
+categories: [Economic History]
 ---
 
 ## Comments on Sidney Mintz's "Sweetness and Power" and Carlos Marichal's "Mexican Cochineal and the European Demand for American Dyes, 1550-1850"

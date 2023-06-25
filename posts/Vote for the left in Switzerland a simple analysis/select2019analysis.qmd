@@ -3,9 +3,11 @@ title: "Income, education and voting outcome: a cross-sectional analysis of voti
 format: html
 editor: visual
 bibliography: biblio.bib
+date: "10 May 2023"
 image: image.png
 execute: 
   freeze: true
+categories: [Political Economy, Stats]
 ---
 
 ## Note: this post is not finished and still in progress

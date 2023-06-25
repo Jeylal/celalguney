@@ -3,8 +3,10 @@ title: "How to do maps with R studio"
 format: html 
 editor: visual
 image: map.png
+date: "Novemer 2022"
 execute: 
   freeze: true
+categories: [Stats, Coding]
 ---
 
 What follows is a short demonstration on how to do choropleth map in R studio and was part of a bonus task of a practical of one of my master's courses on applied methods with R. I tried to do some maps and the result was good despite the fact that It can take a long time to figure out how to do. This post is thus for anyone who wants to see how maps can be done on R studio without wasting too much time.
@@ -27,7 +29,7 @@ data_qog <- read_csv("2022-10-31-T412006-assignment2-data.csv")
 ## Description of some variables of the dataset
 
 | Variable name     | Short description                                          | Information                                                                                                                                         |
-|-------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------|----------------|------------------------------------------|
 | ccode             | Country code                                               | Country code with the ISO-3166-1 standard                                                                                                           |
 | cname             | Country name                                               | Country name                                                                                                                                        |
 | year              | Year                                                       |                                                                                                                                                     |
