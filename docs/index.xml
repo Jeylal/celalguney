@@ -70,9 +70,12 @@ $y
 <h3 class="anchored" data-anchor-id="the-three-assumptions">The three assumptions</h3>
 <p>Consumer theory makes important assumptions, which are the foundation of the theory:</p>
 <ol type="1">
-<li><p>Completeness: consumers have complete knowledge about the goods and services they can potentially consume, they have clear preferences about these goods and services and can rank all of them (like a descending list where we would have the most preferred goods and services at the top and utility associated with goods and services would decrease as we go down in the list)</p></li>
-<li><p>Transitivity: Preferences regarding goods and services are transitive. That means that if a consumer prefers A to B and B to C, A is better than C.</p></li>
-<li><p>More is better than less (non satiety assumption): Goods and services are always desirable. For example, if someone gives you one apple, then two, then three, then twenty, and then one thousands, you would always accept those apples, because you are still better off even if one gives you too many apples.</p></li>
+<li><p><strong>Completeness</strong>:</p>
+<p>consumers have complete knowledge about the goods and services they can potentially consume, they have clear preferences about these goods and services and can rank all of them (like a descending list where we would have the most preferred goods and services at the top and utility associated with goods and services would decrease as we go down in the list)</p></li>
+<li><p><strong>Transitivity</strong>:</p>
+<p>Preferences regarding goods and services are transitive. That means that if a consumer prefers A to B and B to C, A is better than C.</p></li>
+<li><p><strong>More is better than less</strong></p>
+<p>(non satiety assumption): Goods and services are always desirable. For example, if someone gives you one apple, then two, then three, then twenty, and then one thousands, you would always accept those apples, because you are still better off even if one gives you too many apples.</p></li>
 </ol>
 </section>
 <section id="utility-function-marginal-utility" class="level3">
@@ -116,7 +119,7 @@ $y
 <p>In the indifference curve graph above, the consumer can choose any combination of apples and watches on the line, and those combinations would bring the same utility U = 10. However, one important element was not taken into account yet. This element is the fact that consumers are limited in their consumption decisions by their income. Neoclassical theory calls this <strong>budget constraint</strong>. For instance, let’s say that our consumer has an income of 600 francs. The price of one apple is 4 francs (one bag of apples to be more realistic) whereas the price of a watch is 200 francs. The budget constraint can be written as:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AIncome%20=%20P_%7Bapple%7D*Q_%7Bapple%7D%20+%20P_%7Bwatch%7D*Q_%7Bwatch%7D%0A%5C%5C%0A600%20=%204*apple%20+%20200*watch%0A%5Cend%7Baligned%7D%0A"></p>
 <p>To include this budget constraint into the previous graph, we have to rearrange this equation to have the quantity of apples as a function of the quantity of books:</p>
-$$
+<p>$$</p>
 <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A600%20=%204*apple%20+%20200*watch%0A%5C%5C%0A4apple%20=%20600%20-%20200watch%0A%5C%5C%0Aapple%20=%20600/4%20-%20200/4*watch%0A%5C%5C%0Aapple%20=%20150%20-%2050*watch%0A%0A%5Cend%7Baligned%7D">
 <p>$$ More generally, the budget function can also be written as</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0AQ_1%20=%20%5Cfrac%7BIncome%7D%7BP_1%7D%20-%20%5Cfrac%7BP_2%7D%7BP_1%7DQ_2%0A"></p>
@@ -141,7 +144,7 @@ $$
 </div>
 <p>Then, we set the marginal rate of substitution equal to the slope of the budget line:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A2%5Cfrac%7By%7D%7Bx%7D%20=%2050%0A%5C%5C%0Ay%20=%2025x%0A%5Cend%7Baligned%7D%0A"> We can then substitute y with 25x in the budget equation</p>
-$$
+<p>$$</p>
 <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0Ay%20=%20150%20-%2050*x%0A%5C%5C%0A25x%20=%20150%20-50x%0A%5C%5C%0Ax%20=%20150/75%20=%202%0A%5C%5C%0Ax%20=%202%0A%0A%5Cend%7Baligned%7D">
 <p>$$</p>
 <p>The optimal solution for x (quantity of watch) is thus 2, the consumer will choose 2 watches. Now that know the quantity of watches, we can obtain the quantity of apples as well as how much utility this combination of apples and watches will bring to the consumer.</p>
@@ -199,7 +202,27 @@ $$
 <p><img src="https://jeylal.github.io/myblog/posts/mainstream econ guide/Mainstream-econ-guide_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>At the new equilibrium level, utility has decreased to 9, apple consumption remains unchanged and the quantity of watches has decreased to one. This is how microeconomics derive the demand curve. The converse would happen if the price of watch had decreased.</p>
+<p>At the new equilibrium level, utility has decreased to 9, apple consumption remains unchanged and the quantity of watches has decreased to one. Note that there are two important mechanisms behind the graph above:</p>
+<ol type="1">
+<li><p><strong>Income effect</strong> Income effect relates to how the demand for a good change when income changes. If the demand increases when income increases, micro talks about <em>positive income effect</em> (and conversely negative income effect). In our example, the consumer’s income has not changed (600 francs), but the real income has decreased, because the price of one the good has increased. The consumer has thus a lower (real) income, which led to a decrease in the quantity demanded for the good whose price increased.</p></li>
+<li><p><strong>Substitution effect</strong> Substitution effect refers to how the demand for a good change when the relative price of the good changes.</p></li>
+</ol>
+<p>Income and substitution effects depend on the type of the good. There are indeed different types of goods, depending on how demand changes when price changes:</p>
+<ol type="1">
+<li><p><strong>Normal good</strong></p>
+<p>A good is normal when demand increases when its price decreases vice and versa</p></li>
+<li><p><strong>Inferior good</strong></p>
+<p>A good is inferior when the demand decreases as income increases or the price increases</p></li>
+<li><p><strong>Giffen good</strong></p>
+<p>A Giffen good refers to goods whose demand increases when price increases. The logic behind this are the goods which are very essential to every day living (for example staple food): an increase in the price of very essential food can lead to the consumer’s decision of reducing the consumption of other goods to still afford consuming the essential good.</p></li>
+</ol>
+<p>The table below is a good summary of how income and substitution effect:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://analystnotes.com/cfa-study-notes-compare-substitution-and-income-effects-and-distinguish-between-normal-goods-and-inferior-goods.html"><img src="https://jeylal.github.io/myblog/posts/mainstream econ guide/income_substitution.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>This is how microeconomics derive the demand curve. We will see below that the supply curve is also derived with the same logic, the steps being almost the same as we saw here, but by replacing the utility function with a production function and replacing the two goods by capital and labour, which are the factors of production of any firm.</p>
 
 
 </section>

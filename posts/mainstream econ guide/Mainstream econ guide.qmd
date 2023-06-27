@@ -34,7 +34,7 @@ Let's directly take an example: suppose that the demand for grain follows a nega
 
 $Q_{demand} = 7-0.5p$
 
-That means that the quantity demanded for grains decreases if the price for grain increases and vice and versa. 
+That means that the quantity demanded for grains decreases if the price for grain increases and vice and versa.
 
 Moreover, let's say that the quantity supplied for grains is a positive linear function of prices for grain: the higher the price, the more are firms willing to supply grains.
 
@@ -111,15 +111,17 @@ Mainstream consumer choice theory has for ambition to explain consumers' decisio
 
 Consumer theory makes important assumptions, which are the foundation of the theory:
 
-1. Completeness: 
-consumers have complete knowledge about the goods and services they can potentially consume, they have clear preferences about these goods and services and can rank all of them (like a descending list where we would have the most preferred goods and services at the top and utility associated with goods and services would decrease as we go down in the list)
+1.  **Completeness**:
 
-2. Transitivity: 
-Preferences regarding goods and services are transitive. That means that if a consumer prefers A to B and B to C, A is better than C.
+    consumers have complete knowledge about the goods and services they can potentially consume, they have clear preferences about these goods and services and can rank all of them (like a descending list where we would have the most preferred goods and services at the top and utility associated with goods and services would decrease as we go down in the list)
 
-3. More is better than less (non satiety assumption):
-Goods and services are always desirable. For example, if someone gives you one apple, then two, then three, then twenty, and then one thousands, you would always accept those apples, because you are still better off even if one gives you too many apples.
+2.  **Transitivity**:
 
+    Preferences regarding goods and services are transitive. That means that if a consumer prefers A to B and B to C, A is better than C.
+
+3.  **More is better than less**
+
+    (non satiety assumption): Goods and services are always desirable. For example, if someone gives you one apple, then two, then three, then twenty, and then one thousands, you would always accept those apples, because you are still better off even if one gives you too many apples.
 
 ### Utility function, marginal utility
 
@@ -129,7 +131,6 @@ Consumer theory then illustrates any choice between two goods with the help of t
 #| echo: false
 utility_apple <- function(q) q^0.15
 ```
-
 
 ```{r}
 #| echo: false
@@ -158,9 +159,7 @@ $$
 \begin{aligned}
 U(x,y)=x^20.18y
 \end{aligned}
-$$
-With x and y two different goods, apples and watches for example.
-To get the indifference curve function, we fix utility U at any positive value, and rearrange the function above to get y as a function of x and U:
+$$ With x and y two different goods, apples and watches for example. To get the indifference curve function, we fix utility U at any positive value, and rearrange the function above to get y as a function of x and U:
 
 $$
 \begin{aligned}
@@ -193,7 +192,6 @@ utility_y <- function(my_x, my_U){
 }
 ```
 
-
 ```{r}
 #| echo: false
 #| message: false
@@ -219,10 +217,11 @@ Income = P_{apple}*Q_{apple} + P_{watch}*Q_{watch}
 \end{aligned}
 $$
 
-
 To include this budget constraint into the previous graph, we have to rearrange this equation to have the quantity of apples as a function of the quantity of books:
 
-$$
+\$\$
+
+```{=tex}
 \begin{aligned}
 600 = 4*apple + 200*watch
 \\
@@ -233,8 +232,8 @@ apple = 600/4 - 200/4*watch
 apple = 150 - 50*watch
 
 \end{aligned}
-$$
-More generally, the budget function can also be written as 
+```
+\$\$ More generally, the budget function can also be written as
 
 $$
 Q_1 = \frac{Income}{P_1} - \frac{P_2}{P_1}Q_2
@@ -267,11 +266,11 @@ ggplot()+
   labs(x = "watches", y = "apples")
 ```
 
-The budget line represents all the combination of apples and watches that the consumer can afford with his income. This implies that is final choice has to be on this line. The consumer cannot afford to be on the U = 90 indifference curve because its income is not large enough. Also, he will not choose any point on U = 10 because the latter's majority of point are on the left of the budget line (the assumption of more is better than less would not be respected if the consumer for instance chooses 1 watch and 50 apples, because he can afford more of the two goods). 
+The budget line represents all the combination of apples and watches that the consumer can afford with his income. This implies that is final choice has to be on this line. The consumer cannot afford to be on the U = 90 indifference curve because its income is not large enough. Also, he will not choose any point on U = 10 because the latter's majority of point are on the left of the budget line (the assumption of more is better than less would not be respected if the consumer for instance chooses 1 watch and 50 apples, because he can afford more of the two goods).
 
 So what will be the consumer's final choice? He will choose the point at which the budget constraint line is tangent to one of his indifference curve.
 
-Mathematically, this means that the quantity of apples and watches the consumer will choose is the point at which the slope of the budget line $\frac{P_{watch}}{P_{apples}}$ is equal to the slope of the indifference curve, which microeconomics call the **marginal rate of substitution**. Marginal rate of substitution shows how much of a good (here apples) the consumer can give up in exchange of one unit of the other good (here a watch). Using algebra, we can find the slope of the budget line and of the indifference curve by computing their derivatives. 
+Mathematically, this means that the quantity of apples and watches the consumer will choose is the point at which the slope of the budget line $\frac{P_{watch}}{P_{apples}}$ is equal to the slope of the indifference curve, which microeconomics call the **marginal rate of substitution**. Marginal rate of substitution shows how much of a good (here apples) the consumer can give up in exchange of one unit of the other good (here a watch). Using algebra, we can find the slope of the budget line and of the indifference curve by computing their derivatives.
 
 $$
 \begin{aligned}
@@ -284,7 +283,6 @@ $$
 
 Note that finding the marginal rate of substitution is a bit trickier than for the budget line. To find the MRS, we have to compute the derivative with respect to the first good (x which are apples here) and then for the second one (y the watches). Then, the MRS is the ratio between the two marginal utilities $\frac{\frac{\partial{U}}{\partial{x}}}{\frac{\partial{U}}{\partial{y}}}$
 
-
 $$
 \begin{aligned}
 U = x^20.18y
@@ -293,22 +291,20 @@ U = x^20.18y
 \\
 \frac{\partial{U}}{\partial{y}} = 0.18*x^2 
 \end{aligned}
-$$
-Thus 
-
+$$ Thus
 
 $$
 \begin{aligned}
 MRS = \frac{0.36xy}{0.18x^2} = 2\frac{y}{x}
 \end{aligned}
-$$
-Here is how to compute this in R
+$$ Here is how to compute this in R
 
 ```{r}
 #| echo: false
 mu_x <- deriv(utility_u(x, y), x) 
 mu_y <- deriv(utility_u(x, y), y) 
 ```
+
 Then, we set the marginal rate of substitution equal to the slope of the budget line:
 
 $$
@@ -317,10 +313,11 @@ $$
 \\
 y = 25x
 \end{aligned}
-$$
-We can then substitute y with 25x in the budget equation
+$$ We can then substitute y with 25x in the budget equation
 
-$$
+\$\$
+
+```{=tex}
 \begin{aligned}
 y = 150 - 50*x
 \\
@@ -331,14 +328,15 @@ x = 150/75 = 2
 x = 2
 
 \end{aligned}
-$$
+```
+\$\$
 
 The optimal solution for x (quantity of watch) is thus 2, the consumer will choose 2 watches. Now that know the quantity of watches, we can obtain the quantity of apples as well as how much utility this combination of apples and watches will bring to the consumer.
 
 To get the number of apples, we simply replace x by 6 in the budget constraint equation $y = 150-50*2 = 50$, $U = 2^2*50*0.18 = 36$
 
+R can check the results
 
-R can check the results 
 ```{r}
 price_x = 200
 price_y = 4
@@ -401,12 +399,11 @@ ggplot()+
   labs(x = "watches", y = "apples")
 ```
 
-
 ### Deriving the downward slopping demand curve from indifference curve and budget constrain
 
 The final step to grasp why micro theory draws downwards slopping demand curve is to see how a change in relative prices $\frac{P_2}{P_1}$ changes the consumer's optimal choice for a good (the equilibrium point in the last graph). In our example, the optimal quantity choice of watch for the consumer was 2 (2 watches costing 200 francs each). What happends in the graph above if the price of watch increases?
 
-The budget constraint will change. Initially we have 
+The budget constraint will change. Initially we have
 
 $apple = 150 - 50watch$
 
@@ -427,7 +424,6 @@ $$
 
 new_budget <- function(x) 150 - 100*x
 ```
-
 
 ```{r}
 #| echo: false
@@ -456,10 +452,28 @@ ggplot()+
   labs(x = "watches", y = "apples")
 ```
 
+At the new equilibrium level, utility has decreased to 9, apple consumption remains unchanged and the quantity of watches has decreased to one. Note that there are two important mechanisms behind the graph above:
 
-At the new equilibrium level, utility has decreased to 9, apple consumption remains unchanged and the quantity of watches has decreased to one. This is how microeconomics derive the demand curve. The converse would happen if the price of watch had decreased.
+1.  **Income effect** Income effect relates to how the demand for a good change when income changes. If the demand increases when income increases, micro talks about *positive income effect* (and conversely negative income effect). In our example, the consumer's income has not changed (600 francs), but the real income has decreased, because the price of one the good has increased. The consumer has thus a lower (real) income, which led to a decrease in the quantity demanded for the good whose price increased.
 
+2.  **Substitution effect** Substitution effect refers to how the demand for a good change when the relative price of the good changes.
 
+Income and substitution effects depend on the type of the good. There are indeed different types of goods, depending on how demand changes when price changes:
 
+1.  **Normal good**
 
+    A good is normal when demand increases when its price decreases vice and versa
 
+2.  **Inferior good**
+
+    A good is inferior when the demand decreases as income increases or the price increases
+
+3.  **Giffen good**
+
+    A Giffen good refers to goods whose demand increases when price increases. The logic behind this are the goods which are very essential to every day living (for example staple food): an increase in the price of very essential food can lead to the consumer's decision of reducing the consumption of other goods to still afford consuming the essential good.
+
+The table below is a good summary of how income and substitution effect:
+
+[![](income_substitution.png){fig-align="center"}](https://analystnotes.com/cfa-study-notes-compare-substitution-and-income-effects-and-distinguish-between-normal-goods-and-inferior-goods.html)
+
+This is how microeconomics derive the demand curve. We will see below that the supply curve is also derived with the same logic, the steps being almost the same as we saw here, but by replacing the utility function with a production function and replacing the two goods by capital and labour, which are the factors of production of any firm.
