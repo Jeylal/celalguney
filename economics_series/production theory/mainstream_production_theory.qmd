@@ -57,7 +57,8 @@ a1 = Sym("a1")
 y = Sym("y")
 Y = Sym("Y")
 
-neo_prod_fun <- function(l, k) (2 * k^0.3) * (l^0.7) 
+neo_prod_fun <- function(l, k) (2*k^0.3)*(l^0.7)
+
 
 ```
 
@@ -92,11 +93,11 @@ If we fix the amount of capital to any value, 10 and 25 for instance, we can plo
 
 ggplot(data = tibble(x = 0:15), aes(x = x))+
   geom_function(fun = neo_prod_fun, args = list(k = 10), color = "darkred", linewidth = 1.2)+
-  annotate(geom = "label", label = "K = 10", x = 14, y = neo_prod_fun(k = 10, l = 15), color = "darkred")+
+  annotate(geom = "label", label = "K = 10", x = 1000, y = neo_prod_fun(k = 10, l = 1000), color = "darkred")+
   geom_function(fun = neo_prod_fun, args = list(k = 25), color = "darkred", linewidth = 1.2, linetype = "dashed")+
-  annotate(geom = "label", label = "K = 25", x = 14, y = neo_prod_fun(k = 25, l = 15), color = "darkred")+
-  ylim(0,40)+
-  xlim(0, 15)+
+  annotate(geom = "label", label = "K = 25", x = 1000, y = neo_prod_fun(k = 25, l = 1000), color = "darkred")+
+  ylim(0,1000)+
+  xlim(0, 1000)+
   labs(y = "output", x = "Labour",
        title = "Marginal Product of labour",
        subtitle = "Positive but decreasing")
@@ -132,6 +133,97 @@ In neoclassical production theory, there is an optimal choice of output, capital
 ## Isoquant and Isocost
 
 Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve.
+If we go back to our production function curve $Y = 2k^{0.3}L^{0.7}$, we have to isolate k to draw isoquants for this function, and then choose any value of output (Y):
+
+$K = \frac{Y^{3.33}}{6.667L^{2.33}}$
+
+```{r}
+#| echo: false
+neo_prod_fun_k <- function(l, y) (y^3.33)/(6.66*(l^2.33))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+ggplot(data = tibble(l = 0:15), aes(x = l))+
+  geom_function(fun = neo_prod_fun_k, args = list(y = 10), color = "darkgreen", linewidth = 1.2)+
+  annotate(geom = "label", x = 10, y = neo_prod_fun_k(l = 11, y = 11), label = "Y = 10", color = "darkgreen")+
+  geom_function(fun = neo_prod_fun_k, args = list(y = 20), color = "darkred", linewidth = 1.2)+
+  annotate(geom = "label", x = 9, y = neo_prod_fun_k(l = 9.5, y = 22.2), label = "Y = 20", color = "darkred")+
+   geom_function(fun = neo_prod_fun_k, args = list(y = 40), color = "darkblue", linewidth = 1.2)+
+  annotate(geom = "label", x = 35, y = neo_prod_fun_k(l = 31, y = 41), label = "Y = 40", color = "darkblue")+
+  xlim(0, 40)+
+  ylim(0, 25)+
+  labs(y = "capital", x = "labour",
+       title = "Isoquants")
+```
+
+As in consumer theory, firms cannot choose any combination of capital and labour they want because, as consumers face a budget constraint, firms also face a constraint: their total cost. The isocost line, which shows all possible combinations of labour and capital that the firm can purchase with its current budget, hence total cost. Isocost is for the firm what the budget constraint line is to consumers.
+
+The isocost function can be written as:
+
+$TC = wl +rK$
+
+With TC the total cost being equal to the wage (rate) w times labour L and r the rental cost of capital K. r includes the depreciation cost of capital and the lost interest rate (if the capital was invested somewhere else).
+
+Isocost can then be rearranged to:
+
+$K = TC/r - (w/r)/L$
+
+For example, let's say that the total cost over rental cost of capital (TC/r) is equal to 20 and the wage rate - rental rate is equal to 1 (w/r = 1). The function becomes $K = 10 - 1L$
+
+```{r}
+isocost <- function(l) 20 - l
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+ggplot(data = tibble(l = 0:20), aes(x = l))+
+  geom_function(fun = neo_prod_fun_k, args = list(y = 10), color = "darkgreen", linewidth = 1.2)+
+  annotate(geom = "label", x = 10, y = neo_prod_fun_k(l = 11, y = 11), label = "Y = 10", color = "darkgreen")+
+  geom_function(fun = neo_prod_fun_k, args = list(y = 20), color = "darkred", linewidth = 1.2)+
+  annotate(geom = "label", x = 9, y = neo_prod_fun_k(l = 9.5, y = 22.2), label = "Y = 20", color = "darkred")+
+   geom_function(fun = neo_prod_fun_k, args = list(y = 40), color = "darkblue", linewidth = 1.2)+
+  annotate(geom = "label", x = 35, y = neo_prod_fun_k(l = 31, y = 41), label = "Y = 40", color = "darkblue")+
+  geom_function(fun = isocost, linewidth = 1.2)+
+  annotate(geom = "label", x = 1, y = isocost(l = 1), label = "isocost")+
+  xlim(0, 40)+
+  ylim(0, 25)+
+  labs(y = "capital", x = "labour",
+       title = "Isoquants and Isocost")
+```
+
+The steps to derive the optimal choice of output, capital and labor is the same than for consumer theory: here the slope of the isoquant is called the marginal rate of technical substitution (MRTS). Setting the latter equal to the slope of the isocost, which is w/r (1 in our example) and solving for K, Y and L. In our example, the equilibrium level of output is 19.18.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+ggplot(data = tibble(l = 0:20), aes(x = l))+
+  geom_function(fun = neo_prod_fun_k, args = list(y = 10), color = "darkgreen", linewidth = 1.2)+
+  annotate(geom = "label", x = 10, y = neo_prod_fun_k(l = 11, y = 11), label = "Y = 10", color = "darkgreen")+
+  geom_function(fun = neo_prod_fun_k, args = list(y = 19.18), color = "darkred", linewidth = 1.2)+
+  annotate(geom = "label", x = 9, y = neo_prod_fun_k(l = 9.5, y = 22.2), label = "Y = 20", color = "darkred")+
+   geom_function(fun = neo_prod_fun_k, args = list(y = 40), color = "darkblue", linewidth = 1.2)+
+  annotate(geom = "label", x = 35, y = neo_prod_fun_k(l = 31, y = 41), label = "Y = 40", color = "darkblue")+
+  stat_function(fun = isocost, linewidth = 1.2)+
+  annotate(geom = "label", x = 1, y = isocost(l = 1), label = "isocost")+
+  xlim(0, 40)+
+  ylim(0, 25)+
+  labs(y = "capital", x = "labour",
+       title = "Isoquants and Isocost")
+```
+
+
+
+
+
+
 
 
 

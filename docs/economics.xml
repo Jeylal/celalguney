@@ -42,7 +42,7 @@
 <span id="cb1-5">y <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"y"</span>)</span>
 <span id="cb1-6">Y <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"Y"</span>)</span>
 <span id="cb1-7"></span>
-<span id="cb1-8">neo_prod_fun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(l, k) (<span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">*</span> k<span class="sc" style="color: #5E5E5E;">^</span><span class="fl" style="color: #AD0000;">0.3</span>) <span class="sc" style="color: #5E5E5E;">*</span> (l<span class="sc" style="color: #5E5E5E;">^</span><span class="fl" style="color: #AD0000;">0.7</span>) </span></code></pre></div>
+<span id="cb1-8">neo_prod_fun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(l, k) (<span class="dv" style="color: #AD0000;">2</span><span class="sc" style="color: #5E5E5E;">*</span>k<span class="sc" style="color: #5E5E5E;">^</span><span class="fl" style="color: #AD0000;">0.3</span>)<span class="sc" style="color: #5E5E5E;">*</span>(l<span class="sc" style="color: #5E5E5E;">^</span><span class="fl" style="color: #AD0000;">0.7</span>)</span></code></pre></div>
 </div>
 <p>The neoclassical production function rests on important assumptions which illustrate how neoclassical theory conceive the production process:</p>
 <ol type="1">
@@ -88,7 +88,37 @@
 </section>
 <section id="isoquant-and-isocost" class="level2">
 <h2 class="anchored" data-anchor-id="isoquant-and-isocost">Isoquant and Isocost</h2>
-<p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve.</p>
+<p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve. If we go back to our production function curve <img src="https://latex.codecogs.com/png.latex?Y%20=%202k%5E%7B0.3%7DL%5E%7B0.7%7D">, we have to isolate k to draw isoquants for this function, and then choose any value of output (Y):</p>
+<p><img src="https://latex.codecogs.com/png.latex?K%20=%20%5Cfrac%7BY%5E%7B3.33%7D%7D%7B6.667L%5E%7B2.33%7D%7D"></p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As in consumer theory, firms cannot choose any combination of capital and labour they want because, as consumers face a budget constraint, firms also face a constraint: their total cost. The isocost line, which shows all possible combinations of labour and capital that the firm can purchase with its current budget, hence total cost. Isocost is for the firm what the budget constraint line is to consumers.</p>
+<p>The isocost function can be written as:</p>
+<p><img src="https://latex.codecogs.com/png.latex?TC%20=%20wl%20+rK"></p>
+<p>With TC the total cost being equal to the wage (rate) w times labour L and r the rental cost of capital K. r includes the depreciation cost of capital and the lost interest rate (if the capital was invested somewhere else).</p>
+<p>Isocost can then be rearranged to:</p>
+<p><img src="https://latex.codecogs.com/png.latex?K%20=%20TC/r%20-%20(w/r)/L"></p>
+<p>For example, let’s say that the total cost over rental cost of capital (TC/r) is equal to 20 and the wage rate - rental rate is equal to 1 (w/r = 1). The function becomes <img src="https://latex.codecogs.com/png.latex?K%20=%2010%20-%201L"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">isocost <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(l) <span class="dv" style="color: #AD0000;">20</span> <span class="sc" style="color: #5E5E5E;">-</span> l</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The steps to derive the optimal choice of output, capital and labor is the same than for consumer theory: here the slope of the isoquant is called the marginal rate of technical substitution (MRTS). Setting the latter equal to the slope of the isocost, which is w/r (1 in our example) and solving for K, Y and L. In our example, the equilibrium level of output is 19.18.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
 </section>
