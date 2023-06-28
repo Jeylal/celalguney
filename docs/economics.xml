@@ -10,7 +10,29 @@
 <atom:link href="https://jeylal.github.io/myblog/economics.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sun, 25 Jun 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 27 Jun 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Mainstream Production Theory</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>As I explained in the <a href="https://jeylal.github.io/myblog/economics_series/consumer%20theory/consumer%20theory.html">consumer theory post</a>, the most important element of mainstream neoclassical theory is the concept of market equilibrium under perfect competition. In the consumer theory post, I explained how mainstream economists derive the market equilibrium downwards slopping demand curve. Here, the objective is to understand how the other curve, the upward slopping supply curve, is derived. To understand why mainstream economics arrived to this result, one needs to understand mainstream production theory, which is the goal of this post.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Economics</category>
+  <category>Microeconomics</category>
+  <guid>https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory.html</guid>
+  <pubDate>Tue, 27 Jun 2023 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Consumer Theory</title>
   <dc:creator>Celâl Güney</dc:creator>

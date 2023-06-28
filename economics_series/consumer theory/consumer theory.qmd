@@ -1,5 +1,5 @@
 ---
-title: "Consumer Theory"
+title: "Mainstream Consumer Theory"
 author: "Celâl Güney"
 format: html
 editor: visual

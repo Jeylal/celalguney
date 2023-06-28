@@ -1,0 +1,22 @@
+---
+title: "Mainstream Production Theory"
+author: "Celâl Güney"
+format: html
+editor: visual
+date: "28 June 2023"
+categories: [Economics, Microeconomics]
+---
+
+## Intro
+
+As I explained in the [consumer theory post](https://jeylal.github.io/myblog/economics_series/consumer%20theory/consumer%20theory.html), the most important element of mainstream neoclassical theory is the concept of market equilibrium under perfect competition. In the consumer theory post, I explained how mainstream economists derive the market equilibrium downwards slopping demand curve. Here, the objective is to understand how the other curve, the upward slopping supply curve, is derived. To understand why mainstream economics arrived to this result, one needs to understand mainstream production theory, which is the goal of this post.
+
+### How firms produce in neoclassical-mainstream theory
+
+
+
+
+
+
+
+

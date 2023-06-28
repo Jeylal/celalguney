@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeylal.github.io/myblog/about.html</loc>
-    <lastmod>2023-06-28T10:51:24.312Z</lastmod>
+    <lastmod>2023-06-28T11:20:36.167Z</lastmod>
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/index.html</loc>
-    <lastmod>2023-06-28T11:12:35.875Z</lastmod>
+    <lastmod>2023-06-28T11:19:48.664Z</lastmod>
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</loc>
@@ -62,10 +62,14 @@
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/economics.html</loc>
-    <lastmod>2023-06-28T11:13:06.736Z</lastmod>
+    <lastmod>2023-06-28T11:28:31.240Z</lastmod>
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/economics_series/consumer theory/consumer theory.html</loc>
-    <lastmod>2023-06-28T11:12:47.431Z</lastmod>
+    <lastmod>2023-06-28T11:19:44.548Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory.html</loc>
+    <lastmod>2023-06-28T11:28:21.342Z</lastmod>
   </url>
 </urlset>
