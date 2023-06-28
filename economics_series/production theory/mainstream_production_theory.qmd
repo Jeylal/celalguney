@@ -208,7 +208,7 @@ ggplot(data = tibble(l = 0:20), aes(x = l))+
   geom_function(fun = neo_prod_fun_k, args = list(y = 10), color = "darkgreen", linewidth = 1.2)+
   annotate(geom = "label", x = 10, y = neo_prod_fun_k(l = 11, y = 11), label = "Y = 10", color = "darkgreen")+
   geom_function(fun = neo_prod_fun_k, args = list(y = 19.18), color = "darkred", linewidth = 1.2)+
-  annotate(geom = "label", x = 9, y = neo_prod_fun_k(l = 9.5, y = 22.2), label = "Y = 20", color = "darkred")+
+  annotate(geom = "label", x = 9, y = neo_prod_fun_k(l = 9.5, y = 22.2), label = "Y = 19.18", color = "darkred")+
    geom_function(fun = neo_prod_fun_k, args = list(y = 40), color = "darkblue", linewidth = 1.2)+
   annotate(geom = "label", x = 35, y = neo_prod_fun_k(l = 31, y = 41), label = "Y = 40", color = "darkblue")+
   stat_function(fun = isocost, linewidth = 1.2)+
