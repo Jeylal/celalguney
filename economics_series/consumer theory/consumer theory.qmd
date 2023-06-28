@@ -1,5 +1,5 @@
 ---
-title: "Neoclassical model of perfect competition"
+title: "Consumer Theory"
 author: "Celâl Güney"
 format: html
 editor: visual

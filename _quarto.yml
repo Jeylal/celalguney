@@ -15,6 +15,11 @@ website:
         href: https://twitter.com
       - icon: envelope-fill
         href: mailto:celal.gueney@etu.unige.ch
+      - text: "Post"
+        file: index.qmd
+      - text: "Economics"
+        file: economics.qmd
+        
 format:
   html:
     theme: darkly

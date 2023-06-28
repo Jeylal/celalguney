@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Celâl Güney</title>
+<link>https://jeylal.github.io/myblog/economics.html</link>
+<atom:link href="https://jeylal.github.io/myblog/economics.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.2.335</generator>
+<lastBuildDate>Sun, 25 Jun 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Consumer Theory</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/economics_series/consumer theory/consumer theory.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+
+</div>
+<p>What follows is a summary of the neoclassical market equilibrium model under perfect competition. This summary was inspired and constructed from my notes of my microeconomics classes.</p>
+<section id="market-equilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="market-equilibrium">Market equilibrium</h2>
+<p>Market equilibrium is perhaps the most important element of neoclassical theory. Stated simply, market equilibrium tells what will be the price of any object or service, as long as the latters are commodified. Market equilibrium explains not only the equilirbium level of prices and commodities of any good or service, but also the change in prices resulting from exogenous shocks (change in income, confidence, technology…)</p>
+<p>Let’s directly take an example: suppose that the demand for grain follows a negative linear function.</p>
+<p><img src="https://latex.codecogs.com/png.latex?Q_%7Bdemand%7D%20=%207-0.5p"></p>
+<p>That means that the quantity demanded for grains decreases if the price for grain increases and vice and versa.</p>
+<p>Moreover, let’s say that the quantity supplied for grains is a positive linear function of prices for grain: the higher the price, the more are firms willing to supply grains.</p>
+<p><img src="https://latex.codecogs.com/png.latex?Q_%7Bsupply%7D%20=%201+0.6p"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">demand <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(p) <span class="dv" style="color: #AD0000;">7</span> <span class="sc" style="color: #5E5E5E;">-</span> (<span class="fl" style="color: #AD0000;">0.5</span><span class="sc" style="color: #5E5E5E;">*</span>p)</span>
+<span id="cb1-2">supply <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(p) <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="fl" style="color: #AD0000;">0.6</span><span class="sc" style="color: #5E5E5E;">*</span>p</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>To find the equilibrium price and quantity, we equate the demand and supply functions and solve for q:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0Aq_%7Bdemand%7D%20=%207-%200.5*p%0A%5C%5C%0Aq_%7Bsupply%7D%20=%201%20+%200.6*p%0A%5C%5C%0Aq_%7Bdemand%7D%20=%20q_%7Bsupply%7D%0A%5C%5C%0A7%20-%200.5*p%20=%201%20+%200.6*p%0A%5C%5C%0A6-0.11p%20=%200%0A%5C%5C%0Ap%5E*%20=%206/1.1%20=%205.45%0A%5Cend%7Baligned%7D%0A"></p>
+<p>The equilibrium price level is thus <img src="https://latex.codecogs.com/png.latex?p%5E*%20=%205.45">. To find the equilibrium quantity, we simple put the value of the equilibrium price (5.45) into either the supply or demand function: <img src="https://latex.codecogs.com/png.latex?7-0.5*5.45%20=%204.275%20=%20p%5E*"></p>
+<p>It is easy to check directly if the computation is correct in r:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">equilibrium <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">curve_intersect</span>(demand, supply, <span class="at" style="color: #657422;">empirical =</span> <span class="cn" style="color: #8f5902;">FALSE</span>, <span class="at" style="color: #657422;">domain =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">10</span>))</span>
+<span id="cb2-2">equilibrium</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] 5.454545
+
+$y
+[1] 4.272727</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>But how did neoclassical theory arrive to this kind of model of equilibrium price and quantity determination? To understand better this model, we need to know why we have this positive supply curve and this negative demand curve. We will first investigate consumer choice theory, which is behind the negative demand curve, and then production-side theory, which is behind the positive supply curve</p>
+</section>
+<section id="neoclassical-mainstream-consumer-choice-theory" class="level2">
+<h2 class="anchored" data-anchor-id="neoclassical-mainstream-consumer-choice-theory">Neoclassical-mainstream consumer choice theory</h2>
+<p>Mainstream consumer choice theory has for ambition to explain consumers’ decision, that is to say, the choices consumers make between consuming one good or another.</p>
+<section id="the-three-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-assumptions">The three assumptions</h3>
+<p>Consumer theory makes important assumptions, which are the foundation of the theory:</p>
+<ol type="1">
+<li><p><strong>Completeness</strong>:</p>
+<p>consumers have complete knowledge about the goods and services they can potentially consume, they have clear preferences about these goods and services and can rank all of them (like a descending list where we would have the most preferred goods and services at the top and utility associated with goods and services would decrease as we go down in the list)</p></li>
+<li><p><strong>Transitivity</strong>:</p>
+<p>Preferences regarding goods and services are transitive. That means that if a consumer prefers A to B and B to C, A is better than C.</p></li>
+<li><p><strong>More is better than less</strong></p>
+<p>(non satiety assumption): Goods and services are always desirable. For example, if someone gives you one apple, then two, then three, then twenty, and then one thousands, you would always accept those apples, because you are still better off even if one gives you too many apples.</p></li>
+</ol>
+</section>
+<section id="utility-function-marginal-utility" class="level3">
+<h3 class="anchored" data-anchor-id="utility-function-marginal-utility">Utility function, marginal utility</h3>
+<p>Consumer theory then illustrates any choice between two goods with the help of the famous indifference curves , which show the relation between the demand for one good against the demand for another good (for example food and clothes, cars and bikes…). Indifference curves are based on <strong>utility functions</strong> whose really important property and assumption is the decreasing marginal utility principle. Decreasing marginal utility means that for every one additional unit of a given good a consumer get, the utility for this consumer increases less than the previous additional unit. Let’s say, for instance, that you don’t have food at the moment and you are hungry: if i give you one apple, you will be a lot better off and your utility will increase a lot when I give you this one apple. Then, if I give you another apple, your utility will still increase, but by less than when I gave you the first apple. Finally, after I give you an additional apple for the fifteenth time, your additional utility will still be positive, but by far more less than when I gave you the first apple.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<p>Decreasing marginal utility is an important assumption which explains the shape of the indifference curves. The latter, if the two goods are substitutes (but not perfect substitute) and not perfect complements, are convex-shaped. If, for instance, we consider an indifference curve for the choice between units of apples and bikes, the line of the indifference curve represents all the possible combination of the two goods which give the same utility for the consumer.</p>
+</section>
+<section id="indifference-curve" class="level3">
+<h3 class="anchored" data-anchor-id="indifference-curve">Indifference curve</h3>
+<p>Indifference curves are based on utility functions. An utility function can be for example:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AU(x,y)=x%5E20.18y%0A%5Cend%7Baligned%7D%0A"> With x and y two different goods, apples and watches for example. To get the indifference curve function, we fix utility U at any positive value, and rearrange the function above to get y as a function of x and U:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AU%20=%20x%5E20.18y%0A%5C%5C%0Ay%20=%20%5Cfrac%7BU%7D%7B0.18*x%5E2%7D%0A%5Cend%7Baligned%7D%0A"></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Yacas vector:
+[1] y == U/(0.18 * x^2)</code></pre>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="budget-constraint" class="level3">
+<h3 class="anchored" data-anchor-id="budget-constraint">Budget constraint</h3>
+<p>In the indifference curve graph above, the consumer can choose any combination of apples and watches on the line, and those combinations would bring the same utility U = 10. However, one important element was not taken into account yet. This element is the fact that consumers are limited in their consumption decisions by their income. Neoclassical theory calls this <strong>budget constraint</strong>. For instance, let’s say that our consumer has an income of 600 francs. The price of one apple is 4 francs (one bag of apples to be more realistic) whereas the price of a watch is 200 francs. The budget constraint can be written as:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AIncome%20=%20P_%7Bapple%7D*Q_%7Bapple%7D%20+%20P_%7Bwatch%7D*Q_%7Bwatch%7D%0A%5C%5C%0A600%20=%204*apple%20+%20200*watch%0A%5Cend%7Baligned%7D%0A"></p>
+<p>To include this budget constraint into the previous graph, we have to rearrange this equation to have the quantity of apples as a function of the quantity of books:</p>
+<p>$$</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A600%20=%204*apple%20+%20200*watch%0A%5C%5C%0A4apple%20=%20600%20-%20200watch%0A%5C%5C%0Aapple%20=%20600/4%20-%20200/4*watch%0A%5C%5C%0Aapple%20=%20150%20-%2050*watch%0A%0A%5Cend%7Baligned%7D">
+<p>$$ More generally, the budget function can also be written as</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AQ_1%20=%20%5Cfrac%7BIncome%7D%7BP_1%7D%20-%20%5Cfrac%7BP_2%7D%7BP_1%7DQ_2%0A"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">budget <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x) <span class="dv" style="color: #AD0000;">150</span> <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">50</span><span class="sc" style="color: #5E5E5E;">*</span>x</span></code></pre></div>
+</div>
+<p>Now we can plot both the indifference curves and the budget constraint:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The budget line represents all the combination of apples and watches that the consumer can afford with his income. This implies that is final choice has to be on this line. The consumer cannot afford to be on the U = 90 indifference curve because its income is not large enough. Also, he will not choose any point on U = 10 because the latter’s majority of point are on the left of the budget line (the assumption of more is better than less would not be respected if the consumer for instance chooses 1 watch and 50 apples, because he can afford more of the two goods).</p>
+<p>So what will be the consumer’s final choice? He will choose the point at which the budget constraint line is tangent to one of his indifference curve.</p>
+<p>Mathematically, this means that the quantity of apples and watches the consumer will choose is the point at which the slope of the budget line <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BP_%7Bwatch%7D%7D%7BP_%7Bapples%7D%7D"> is equal to the slope of the indifference curve, which microeconomics call the <strong>marginal rate of substitution</strong>. Marginal rate of substitution shows how much of a good (here apples) the consumer can give up in exchange of one unit of the other good (here a watch). Using algebra, we can find the slope of the budget line and of the indifference curve by computing their derivatives.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0Aapple%20=%20150%20-%2050*watch%0A%5C%5C%0A%5Cfrac%7B%5Cpartial%7Bapple%7D%7D%7B%5Cpartial%7Bwatch%7D%7D%20=%20-50%0A%5C%5C%0A%5Cend%7Baligned%7D%0A"></p>
+<p>Note that finding the marginal rate of substitution is a bit trickier than for the budget line. To find the MRS, we have to compute the derivative with respect to the first good (x which are apples here) and then for the second one (y the watches). Then, the MRS is the ratio between the two marginal utilities <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7Bx%7D%7D%7D%7B%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7By%7D%7D%7D"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AU%20=%20x%5E20.18y%0A%5C%5C%0A%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7Bx%7D%7D%20=%200.36xy%0A%5C%5C%0A%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7By%7D%7D%20=%200.18*x%5E2%0A%5Cend%7Baligned%7D%0A"> Thus</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AMRS%20=%20%5Cfrac%7B0.36xy%7D%7B0.18x%5E2%7D%20=%202%5Cfrac%7By%7D%7Bx%7D%0A%5Cend%7Baligned%7D%0A"> Here is how to compute this in R</p>
+<div class="cell">
+
+</div>
+<p>Then, we set the marginal rate of substitution equal to the slope of the budget line:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A2%5Cfrac%7By%7D%7Bx%7D%20=%2050%0A%5C%5C%0Ay%20=%2025x%0A%5Cend%7Baligned%7D%0A"> We can then substitute y with 25x in the budget equation</p>
+<p>$$</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0Ay%20=%20150%20-%2050*x%0A%5C%5C%0A25x%20=%20150%20-50x%0A%5C%5C%0Ax%20=%20150/75%20=%202%0A%5C%5C%0Ax%20=%202%0A%0A%5Cend%7Baligned%7D">
+<p>$$</p>
+<p>The optimal solution for x (quantity of watch) is thus 2, the consumer will choose 2 watches. Now that know the quantity of watches, we can obtain the quantity of apples as well as how much utility this combination of apples and watches will bring to the consumer.</p>
+<p>To get the number of apples, we simply replace x by 6 in the budget constraint equation <img src="https://latex.codecogs.com/png.latex?y%20=%20150-50*2%20=%2050">, <img src="https://latex.codecogs.com/png.latex?U%20=%202%5E2*50*0.18%20=%2036"></p>
+<p>R can check the results</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">price_x <span class="ot" style="color: #003B4F;">=</span> <span class="dv" style="color: #AD0000;">200</span></span>
+<span id="cb6-2">price_y <span class="ot" style="color: #003B4F;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb6-3"><span class="fu" style="color: #4758AB;">Solve</span>(<span class="fu" style="color: #4758AB;">paste</span>(<span class="fu" style="color: #4758AB;">Simplify</span>(mu_x <span class="sc" style="color: #5E5E5E;">/</span> mu_y), <span class="st" style="color: #20794D;">"=="</span>, price_x, <span class="st" style="color: #20794D;">"/"</span>, price_y), y)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Yacas vector:
+[1] y == -(-9 * x/0.36)</code></pre>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">optimal_x <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">uniroot</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">budget</span>(x) <span class="sc" style="color: #5E5E5E;">-</span> <span class="fu" style="color: #4758AB;">marginal_utility</span>(x), <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">100</span>))<span class="sc" style="color: #5E5E5E;">$</span>root</span>
+<span id="cb8-2">optimal_y <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">budget</span>(optimal_x)</span>
+<span id="cb8-3">optimal_u <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">utility_u</span>(optimal_x, optimal_y)</span>
+<span id="cb8-4"></span>
+<span id="cb8-5"></span>
+<span id="cb8-6">optimal_x</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">optimal_y</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">optimal_u</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="deriving-the-downward-slopping-demand-curve-from-indifference-curve-and-budget-constrain" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-downward-slopping-demand-curve-from-indifference-curve-and-budget-constrain">Deriving the downward slopping demand curve from indifference curve and budget constrain</h3>
+<p>The final step to grasp why micro theory draws downwards slopping demand curve is to see how a change in relative prices <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BP_2%7D%7BP_1%7D"> changes the consumer’s optimal choice for a good (the equilibrium point in the last graph). In our example, the optimal quantity choice of watch for the consumer was 2 (2 watches costing 200 francs each). What happends in the graph above if the price of watch increases?</p>
+<p>The budget constraint will change. Initially we have</p>
+<p><img src="https://latex.codecogs.com/png.latex?apple%20=%20150%20-%2050watch"></p>
+<p>And now, the price of watch increases up to 400, income is unchanged (Income = 600) as well as the price of apples (4):</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A600%20=%204*apple%20+%20400watch%0A%5C%5C%0A4apple%20=%20600-400watch%0A%5C%5C%0Aapple%20=%20150%20-%20100watch%0A%5Cend%7Baligned%7D%0A"></p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>At the new equilibrium level, utility has decreased to 9, apple consumption remains unchanged and the quantity of watches has decreased to one. Note that there are two important mechanisms behind the graph above:</p>
+<ol type="1">
+<li><p><strong>Income effect</strong> Income effect relates to how the demand for a good change when income changes. If the demand increases when income increases, micro talks about <em>positive income effect</em> (and conversely negative income effect). In our example, the consumer’s income has not changed (600 francs), but the real income has decreased, because the price of one the good has increased. The consumer has thus a lower (real) income, which led to a decrease in the quantity demanded for the good whose price increased.</p></li>
+<li><p><strong>Substitution effect</strong> Substitution effect refers to how the demand for a good change when the relative price of the good changes.</p></li>
+</ol>
+<p>Income and substitution effects depend on the type of the good. There are indeed different types of goods, depending on how demand changes when price changes:</p>
+<ol type="1">
+<li><p><strong>Normal good</strong></p>
+<p>A good is normal when demand increases when its price decreases vice and versa</p></li>
+<li><p><strong>Inferior good</strong></p>
+<p>A good is inferior when the demand decreases as income increases or the price increases</p></li>
+<li><p><strong>Giffen good</strong></p>
+<p>A Giffen good refers to goods whose demand increases when price increases. The logic behind this are the goods which are very essential to every day living (for example staple food): an increase in the price of very essential food can lead to the consumer’s decision of reducing the consumption of other goods to still afford consuming the essential good.</p></li>
+</ol>
+<p>The table below is a good summary of how income and substitution effect:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://analystnotes.com/cfa-study-notes-compare-substitution-and-income-effects-and-distinguish-between-normal-goods-and-inferior-goods.html"><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/income_substitution.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>This is how microeconomics derive the demand curve. We will see below that the supply curve is also derived with the same logic, the steps being almost the same as we saw here, but by replacing the utility function with a production function and replacing the two goods by capital and labour, which are the factors of production of any firm.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Economics</category>
+  <category>Microeconomics</category>
+  <guid>https://jeylal.github.io/myblog/economics_series/consumer theory/consumer theory.html</guid>
+  <pubDate>Sun, 25 Jun 2023 22:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/economics_series/consumer theory/image.png" medium="image" type="image/png" height="103" width="144"/>
+</item>
+</channel>
+</rss>
