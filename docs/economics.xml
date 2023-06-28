@@ -20,9 +20,75 @@
 
 
 
+<div class="cell">
+
+</div>
 <section id="intro" class="level2">
 <h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>As I explained in the <a href="https://jeylal.github.io/myblog/economics_series/consumer%20theory/consumer%20theory.html">consumer theory post</a>, the most important element of mainstream neoclassical theory is the concept of market equilibrium under perfect competition. In the consumer theory post, I explained how mainstream economists derive the market equilibrium downwards slopping demand curve. Here, the objective is to understand how the other curve, the upward slopping supply curve, is derived. To understand why mainstream economics arrived to this result, one needs to understand mainstream production theory, which is the goal of this post.</p>
+</section>
+<section id="how-firms-produce-in-neoclassical-mainstream-theory" class="level2">
+<h2 class="anchored" data-anchor-id="how-firms-produce-in-neoclassical-mainstream-theory">How firms produce in neoclassical-mainstream theory</h2>
+<p>Neoclassical production theory has a very specific way to conceive production. In fact, the theory considers that production, how firms or productive units transform inputs (of labour, raw materials or other intermediary inputs/materials/services) into output (final goods or services produced), can be modeled as what is now famously known as the <strong>neoclassical production function</strong>. The latter is written as:</p>
+<p><img src="https://latex.codecogs.com/png.latex?Y%20=%20F(K,L)"></p>
+<p>With Y the output, the quantity produced, K the quantity of capital used and L the quantity of labour employed. From now on, we will work with the following neoclassical production function as an example:</p>
+<p><img src="https://latex.codecogs.com/png.latex?Y%20=%202K%5E%7B0.3%7DL%5E%7B0.7%7D"></p>
+<p>Here is how to write this function in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">l <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"l"</span>)</span>
+<span id="cb1-2">k <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"k"</span>)</span>
+<span id="cb1-3">a0 <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"a0"</span>)</span>
+<span id="cb1-4">a1 <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"a1"</span>)</span>
+<span id="cb1-5">y <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"y"</span>)</span>
+<span id="cb1-6">Y <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">Sym</span>(<span class="st" style="color: #20794D;">"Y"</span>)</span>
+<span id="cb1-7"></span>
+<span id="cb1-8">neo_prod_fun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(l, k) (<span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">*</span> k<span class="sc" style="color: #5E5E5E;">^</span><span class="fl" style="color: #AD0000;">0.3</span>) <span class="sc" style="color: #5E5E5E;">*</span> (l<span class="sc" style="color: #5E5E5E;">^</span><span class="fl" style="color: #AD0000;">0.7</span>) </span></code></pre></div>
+</div>
+<p>The neoclassical production function rests on important assumptions which illustrate how neoclassical theory conceive the production process:</p>
+<ol type="1">
+<li><p><strong>Constant returns to scale</strong></p>
+<p>Constant returns to scale means that quantities produced increase proportionally with the quantity of inputs. For instance, if the quantities of inputs (capital and labour) are doubled, output will double.</p></li>
+<li><p><strong>Positive but diminishing marginal returns</strong></p>
+<p>Also called diminishing marginal products, or decreasing marginal productivity. This means that all factors of production (capital and labor) show positive but diminishing marginal returns: when we increase one of the inputs by one, with all the other inputs fixed, output will increase, but by less than the previous additional input. For example, the quantity of capital is often considered fixed in the short run, making labor the only variable input in the short run. Labor is assumed to have a decreasing marginal productivity (or marginal returns): with capital fixed, each time a firm employs an additional laborer, output will increase, but by less than when the previous additional laborer was employed. In our example, marginal product of labour is the first derivative with respect to labour:</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cfrac%7B%5Cpartial%7BY%7D%7D%7B%5Cpartial%7BL%7D%7D%20=%202*0.7K%5E%7B0.7%7DL%5E%7B0.7-1%7D%0A%5C%5C%0A=%201.4K%5E%7B0.7%7DL%5E%7B-0.3%7D%0A%5Cend%7Baligned%7D%0A"> Here is how to find the marginal productivity of labor function of our example in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">MPL <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">Deriv</span>(neo_prod_fun, <span class="st" style="color: #20794D;">"l"</span>)</span>
+<span id="cb2-2">MPL</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (l, k) 
+1.4 * (k^0.3/l^0.3)</code></pre>
+</div>
+</div>
+<p>If we fix the amount of capital to any value, 10 and 25 for instance, we can plot the marginal productivity of labour to better illustrate the principle of diminishing marginal returns:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="3" type="1">
+<li><p><strong>Substitutability of factors/inputs</strong></p>
+<p>This third assumption implies that there is an infinite choice bewteen capital and labour for each level of output. For example, to produce 20 units of output, firms have an infinite choice to combine labour and capital. This is a strong assumption and as we will see the “rival” of the neoclassical production function is the Leontief production function, which is also called the “fixed-proportion” production function, because it assumes that for each level of output, there is only one possible combination of capital and labour.</p></li>
+</ol>
+<p>Note that in the standard neoclassical production model, firms operate under perfect competition: there is a great number of competitive firms and a great number of consumers. Perfect competition implies that neither firms nor consumers can influence the price, and the latter is thus considered as <em>given</em>. There is also no barrier to entry (free entry and exit in the market for any potential firm).</p>
+</section>
+<section id="short-run-and-long-run" class="level2">
+<h2 class="anchored" data-anchor-id="short-run-and-long-run">Short run and long run</h2>
+<p>Neoclassical production theory makes an important distinction between the short run and the long run, with direct implication on how to manipulate the production function:</p>
+<ol type="1">
+<li><p>Short run</p>
+<p>We talk about short run when not all factors of production can be changed. Capital is typically considered as a fixed factor in the short run, whereas labour can still be changed. Thus, in the short run, capital is fixed and labour is variable.</p></li>
+<li><p>Long run</p>
+<p>We talk about long run when all factors can be changed. This is the amount of time needed to make all inputs variable.</p></li>
+</ol>
+</section>
+<section id="optimal-choice-of-output-capital-and-labour" class="level2">
+<h2 class="anchored" data-anchor-id="optimal-choice-of-output-capital-and-labour">Optimal choice of output, capital and labour</h2>
+<p>In neoclassical production theory, there is an optimal choice of output, capital and labour, which implies that there is an ideal size for a firm. This is a strong assessment, because this implies that each firm has an optimal size at which they grow and then stop growing once they reach this optimal size.</p>
+</section>
+<section id="isoquant-and-isocost" class="level2">
+<h2 class="anchored" data-anchor-id="isoquant-and-isocost">Isoquant and Isocost</h2>
+<p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve.</p>
 
 
 </section>

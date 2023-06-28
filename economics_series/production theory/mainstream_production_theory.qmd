@@ -7,11 +7,133 @@ date: "28 June 2023"
 categories: [Economics, Microeconomics]
 ---
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(Deriv)
+library(tidyverse)
+library(pander)
+library(matlib)
+library(readxl)
+library(mosaic)
+library(reconPlots)
+library(Ryacas0)
+theme_set(theme_light())
+```
+
+```{r}
+#| echo: false
+#| include: false
+
+leon_prod_fun <- function(l, k, a0, a1) (min(c(l/a0, k/a1))) # a0 = l/y=1, a1 = k/y=1, meaning that a0 is how much labor is need to produce one unit of output, same for capital with a1
+leon_prod_fun(l = 9, k = 4, a0 = 3/1, a1 = 1)
+
+
+```
+
 ## Intro
 
 As I explained in the [consumer theory post](https://jeylal.github.io/myblog/economics_series/consumer%20theory/consumer%20theory.html), the most important element of mainstream neoclassical theory is the concept of market equilibrium under perfect competition. In the consumer theory post, I explained how mainstream economists derive the market equilibrium downwards slopping demand curve. Here, the objective is to understand how the other curve, the upward slopping supply curve, is derived. To understand why mainstream economics arrived to this result, one needs to understand mainstream production theory, which is the goal of this post.
 
-### How firms produce in neoclassical-mainstream theory
+## How firms produce in neoclassical-mainstream theory
+
+Neoclassical production theory has a very specific way to conceive production. In fact, the theory considers that production, how firms or productive units transform inputs (of labour, raw materials or other intermediary inputs/materials/services) into output (final goods or services produced), can be modeled as what is now famously known as the **neoclassical production function**. The latter is written as:
+
+$Y = F(K,L)$
+
+With Y the output, the quantity produced, K the quantity of capital used and L the quantity of labour employed. From now on, we will work with the following neoclassical production function as an example:
+
+$Y = 2K^{0.3}L^{0.7}$
+
+Here is how to write this function in R:
+
+```{r}
+l = Sym("l")
+k = Sym("k")
+a0 = Sym("a0")
+a1 = Sym("a1")
+y = Sym("y")
+Y = Sym("Y")
+
+neo_prod_fun <- function(l, k) (2 * k^0.3) * (l^0.7) 
+
+```
+
+
+The neoclassical production function rests on important assumptions which illustrate how neoclassical theory conceive the production process:
+
+1.  **Constant returns to scale**
+
+    Constant returns to scale means that quantities produced increase proportionally with the quantity of inputs. For instance, if the quantities of inputs (capital and labour) are doubled, output will double.
+
+2.  **Positive but diminishing marginal returns**
+
+    Also called diminishing marginal products, or decreasing marginal productivity. This means that all factors of production (capital and labor) show positive but diminishing marginal returns: when we increase one of the inputs by one, with all the other inputs fixed, output will increase, but by less than the previous additional input. For example, the quantity of capital is often considered fixed in the short run, making labor the only variable input in the short run. Labor is assumed to have a decreasing marginal productivity (or marginal returns): with capital fixed, each time a firm employs an additional laborer, output will increase, but by less than when the previous additional laborer was employed.
+    In our example, marginal product of labour is the first derivative with respect to labour:
+
+$$
+\begin{aligned}
+\frac{\partial{Y}}{\partial{L}} = 2*0.7K^{0.7}L^{0.7-1}
+\\
+= 1.4K^{0.7}L^{-0.3}
+\end{aligned}
+$$
+Here is how to find the marginal productivity of labor function of our example in R:
+```{r}
+MPL <- Deriv(neo_prod_fun, "l")
+MPL
+```
+If we fix the amount of capital to any value, 10 and 25 for instance, we can plot the marginal productivity of labour to better illustrate the principle of diminishing marginal returns:
+
+```{r}
+#| echo: false
+
+ggplot(data = tibble(x = 0:15), aes(x = x))+
+  geom_function(fun = neo_prod_fun, args = list(k = 10), color = "darkred", linewidth = 1.2)+
+  annotate(geom = "label", label = "K = 10", x = 14, y = neo_prod_fun(k = 10, l = 15), color = "darkred")+
+  geom_function(fun = neo_prod_fun, args = list(k = 25), color = "darkred", linewidth = 1.2, linetype = "dashed")+
+  annotate(geom = "label", label = "K = 25", x = 14, y = neo_prod_fun(k = 25, l = 15), color = "darkred")+
+  ylim(0,40)+
+  xlim(0, 15)+
+  labs(y = "output", x = "Labour",
+       title = "Marginal Product of labour",
+       subtitle = "Positive but decreasing")
+  
+```
+
+3. **Substitutability of factors/inputs**
+
+    This third assumption implies that there is an infinite choice bewteen capital and labour for each level of output. For example, to produce 20 units of output, firms have an infinite choice to combine labour and capital. This is a strong assumption and as we will see the "rival" of the neoclassical production function is the Leontief production function, which is also called the "fixed-proportion" production function, because it assumes that for each level of output, there is only one possible combination of capital and labour.
+    
+Note that in the standard neoclassical production model, firms operate under perfect competition: there is a great number of competitive firms and a great number of consumers. Perfect competition implies that neither firms nor consumers can influence the price, and the latter is thus considered as *given*. There is also no barrier to entry (free entry and exit in the market for any potential firm).
+
+## Short run and long run
+
+Neoclassical production theory makes an important distinction between the short run and the long run, with direct implication on how to manipulate the production function:
+
+1. Short run
+
+    We talk about short run when not all factors of production can be changed. Capital is typically considered as a fixed factor in the short run, whereas labour can still be changed. Thus, in the short run, capital is fixed and labour is variable.
+    
+2. Long run
+
+    We talk about long run when all factors can be changed. This is the amount of time needed to make all inputs variable.
+
+
+
+
+
+## Optimal choice of output, capital and labour
+
+In neoclassical production theory, there is an optimal choice of output, capital and labour, which implies that there is an ideal size for a firm. This is a strong assessment, because this implies that each firm has an optimal size at which they grow and then stop growing once they reach this optimal size.
+
+## Isoquant and Isocost
+
+Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve.
+
+
 
 
 
