@@ -5,6 +5,9 @@ format: html
 editor: visual
 date: "28 June 2023"
 categories: [Economics, Microeconomics]
+execute: 
+  freeze: true
+image: prod_image.png
 ---
 
 ```{r}

@@ -2,6 +2,8 @@
 title: "Political stability and political crises in Switzerland: empirical evidence"
 format: html
 editor: visual
+execute: 
+  freeze: true
 bibliography: biblio.bib
 image: vox_trust_gov.png
 date: "25 June 2023"
@@ -47,7 +49,7 @@ ses <- read_sav("swiss election study.sav")
 This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of "trust in political institutions" variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table:
 
 | Code   | name                                   | values                                              | Years                                                |
-|--------|----------------------------------------|-----------------------------------------------------|------------------------------------------------------|
+|---------------|---------------|---------------------|----------------------|
 | trust1 | trust in federal council               | 0 (no trust) to 10 (full trust) with decimal values | not 1979, 2015, 2019                                 |
 | trust2 | trust in national parliament           | 0 (no trust) to 10 (full trust) with decimal values | 1991, 1995, 1999, 2003, 2007, 2011                   |
 | trust3 | trust in cantonal authorities          | 0 (no trust) to 10 (full trust) with decimal values | 1995, 1999, 2003, 2007, 2011                         |
@@ -240,7 +242,7 @@ There is overall a positive association between education level and trust in dem
 As we have seen, Selects data have some shortcomings which prevent to conduct a serious evaluation of the evolution of trust in institutions. One thus has to look at other data. To do so, I will now analyse the Swiss trust in institutions using ESS data.
 
 | variable | name                                                   | scale                                                                                    |
-|----------|--------------------------------------------------------|------------------------------------------------------------------------------------------|
+|--------------|----------------------|------------------------------------|
 | trstplt  | trust in politician                                    | 0 = no trust, 10 = complete trust (discrete scale)                                       |
 | trstprl  | Trust in country's parliament                          | 0 = no trust, 10 = complete trust (discrete scale)                                       |
 | stfeco   | How satisfied with present state of economy in country | 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale)                     |

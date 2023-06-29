@@ -6,6 +6,8 @@ editor: visual
 date: "26 June 2023"
 categories: [Economics, Microeconomics]
 image: image.png
+execute: 
+  freeze: true
 ---
 
 ```{r}
