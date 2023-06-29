@@ -301,7 +301,7 @@ ggplot(data = tibble(x = 0:20), aes(x = x))+
 
 When will firms decide to supply a good at a given price? And why the quantities supplied increase with the price of the good?
 
-Micro theory tells that the supply curve are all the combinations of price and output (quantity of the good supplied) in which the price is higher than the average variable cost. If the market price is below the average variable cost (AVC), supplying the good would not be profitable. If the price is higher than AVC, it is profitable for the firm to produce (and the firm will supply the quantity at which its marginal revenue, the price, is equal to the marginal cost). Then, if price increases, marginal revenue increases, andfirms can increase production and quantity supplied until marginal revenue is again equal to the marginal cost. 
+Micro theory tells that the supply curve represents all the combinations of price and output (quantity of the good supplied) in which the price is higher than the average variable cost. If the market price is below the average variable cost (AVC), supplying the good would not be profitable. If the price is higher than AVC, it is profitable for the firm to produce (and the firm will supply the quantity at which its marginal revenue, the price, is equal to the marginal cost). Then, if price increases, marginal revenue increases, and firms can increase production and quantity supplied until marginal revenue is again equal to the marginal cost. 
 
 
 
