@@ -236,17 +236,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Neoclassical production theory has a very specific way to conceive production. In fact, the theory considers that production, how firms or productive units transform inputs (of labour, raw materials or other intermediary inputs/materials/services) into output (final goods or services produced), can be modeled as what is now famously known as the <strong>neoclassical production function</strong>. The latter is written as:</p>
 <p><span class="math inline">\(Y = F(K,L)\)</span></p>
 <p>With Y the output, the quantity produced, K the quantity of capital used and L the quantity of labour employed. From now on, we will work with the following neoclassical production function as an example:</p>
-<p><span class="math inline">\(Y = 2K^{0.3}L^{0.7}\)</span></p>
+<p><span class="math inline">\(Y = K^{1/2}L^{1/2}\)</span></p>
 <p>Here is how to write this function in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">=</span> <span class="fu">Sym</span>(<span class="st">"l"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="fu">Sym</span>(<span class="st">"k"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a0 <span class="ot">=</span> <span class="fu">Sym</span>(<span class="st">"a0"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">=</span> <span class="fu">Sym</span>(<span class="st">"a1"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">Sym</span>(<span class="st">"y"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="fu">Sym</span>(<span class="st">"Y"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>neo_prod_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(l, k) (<span class="dv">2</span><span class="sc">*</span>k<span class="sc">^</span><span class="fl">0.3</span>)<span class="sc">*</span>(l<span class="sc">^</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>neo_prod_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(l, k) (l<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)) <span class="sc">*</span> (k<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The neoclassical production function rests on important assumptions which illustrate how neoclassical theory conceive the production process:</p>
 <ol type="1">
@@ -257,9 +253,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{\partial{Y}}{\partial{L}} = 2*0.7K^{0.7}L^{0.7-1}
+\frac{\partial{Y}}{\partial{L}} = 0.5K^{0.5}L^{0.5-1}
 \\
-= 1.4K^{0.7}L^{-0.3}
+= 0.5K^{0.5}L^{-0.5}
 \end{aligned}
 \]</span> Here is how to find the marginal productivity of labor function of our example in R:</p>
 <div class="cell">
@@ -267,20 +263,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>MPL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (l, k) 
-1.4 * (k^0.3/l^0.3)</code></pre>
+0.5 * (sqrt(k)/sqrt(l))</code></pre>
 </div>
 </div>
 <p>If we fix the amount of capital to any value, 10 and 25 for instance, we can plot the marginal productivity of labour to better illustrate the principle of diminishing marginal returns:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <ol start="3" type="1">
 <li><p><strong>Substitutability of factors/inputs</strong></p>
 <p>This third assumption implies that there is an infinite choice bewteen capital and labour for each level of output. For example, to produce 20 units of output, firms have an infinite choice to combine labour and capital. This is a strong assumption and as we will see the “rival” of the neoclassical production function is the Leontief production function, which is also called the “fixed-proportion” production function, because it assumes that for each level of output, there is only one possible combination of capital and labour.</p></li>
 </ol>
-<p>Note that in the standard neoclassical production model, firms operate under perfect competition: there is a great number of competitive firms and a great number of consumers. Perfect competition implies that neither firms nor consumers can influence the price, and the latter is thus considered as <em>given</em>. There is also no barrier to entry (free entry and exit in the market for any potential firm).</p>
+<p>Note that in the standard neoclassical production model makes the assumption that firm operate under perfect competition: perfect competition has three important characteristics:</p>
+<ol type="1">
+<li><p><strong>Price taking</strong></p>
+<p>Since there are a lot of consumers and firms in the market, firms have not impact on the price, they cannot manipulate the latter. Price is thus exogenous and given.</p></li>
+<li><p><strong>Product homogeneity</strong></p>
+<p>The good produced in the market by the firms is the same, it is homogenous.</p></li>
+<li><p><strong>Free entry and exit</strong></p>
+<p>There are no special costs associated with the entry in the market for any potential firm nor costs associated with exit (a firm that would want to exit the market).</p></li>
+</ol>
 </section>
 <section id="short-run-and-long-run" class="level2">
 <h2 class="anchored" data-anchor-id="short-run-and-long-run">Short run and long run</h2>
@@ -298,14 +302,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="isoquant-and-isocost" class="level2">
 <h2 class="anchored" data-anchor-id="isoquant-and-isocost">Isoquant and Isocost</h2>
-<p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve. If we go back to our production function curve <span class="math inline">\(Y = 2k^{0.3}L^{0.7}\)</span>, we have to isolate k to draw isoquants for this function, and then choose any value of output (Y):</p>
-<p><span class="math inline">\(K = \frac{Y^{3.33}}{6.667L^{2.33}}\)</span></p>
+<p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve. If we go back to our production function curve <span class="math inline">\(Y = k^{0.5}L^{0.5}\)</span>, we have to isolate k to draw isoquants for this function, and then choose any value of output (Y):</p>
+<p><span class="math inline">\(K = \frac{Y^{2}}{L}\)</span></p>
 <div class="cell">
 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>As in consumer theory, firms cannot choose any combination of capital and labour they want because, as consumers face a budget constraint, firms also face a constraint: their total cost. The isocost line, which shows all possible combinations of labour and capital that the firm can purchase with its current budget, hence total cost. Isocost is for the firm what the budget constraint line is to consumers.</p>
@@ -314,21 +318,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With TC the total cost being equal to the wage (rate) w times labour L and r the rental cost of capital K. r includes the depreciation cost of capital and the lost interest rate (if the capital was invested somewhere else).</p>
 <p>Isocost can then be rearranged to:</p>
 <p><span class="math inline">\(K = TC/r - (w/r)/L\)</span></p>
-<p>For example, let’s say that the total cost over rental cost of capital (TC/r) is equal to 20 and the wage rate - rental rate is equal to 1 (w/r = 1). The function becomes <span class="math inline">\(K = 10 - 1L\)</span></p>
+<p>For example, let’s say that the total cost over rental cost of capital (TC/r) is equal to 40 and the wage rate - rental rate is equal to 2 (w/r = 2). The function becomes <span class="math inline">\(K = 10 - 2L\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>isocost <span class="ot">&lt;-</span> <span class="cf">function</span>(l) <span class="dv">20</span> <span class="sc">-</span> l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>isocost <span class="ot">&lt;-</span> <span class="cf">function</span>(l) <span class="dv">40</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>The steps to derive the optimal choice of output, capital and labor is the same than for consumer theory: here the slope of the isoquant is called the marginal rate of technical substitution (MRTS). Setting the latter equal to the slope of the isocost, which is w/r (1 in our example) and solving for K, Y and L. In our example, the equilibrium level of output is 19.18.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The steps to derive the optimal choice of output, capital and labor is the same than for consumer theory: here the slope of the isoquant is called the marginal rate of technical substitution (MRTS). Setting the latter equal to the slope of the isocost, which is w/r (1 in our example) and solving for K, Y and L. In our example, the equilibrium level of output is 14.14, with K = 20 and L = 10.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="profit-equation-and-profit-maximisation" class="level2">
+<h2 class="anchored" data-anchor-id="profit-equation-and-profit-maximisation">Profit equation and profit maximisation</h2>
+<p>The neoclassical production function we saw above is not only important because it models how neoclassical firms produce, but also because it is part of the profit equation that firms want to maximize (in neoclassical theory, firms maximize their profits as consumers maximize their utility). The profit equation is written as:</p>
+<p><span class="math inline">\(\pi = PQ - TC\)</span></p>
+<p>or more generally</p>
+<p><span class="math inline">\(\pi(q) = R(q) - TC(q)\)</span></p>
+<p>With <span class="math inline">\(\pi\)</span> the profits of the firm, <span class="math inline">\(PQ\)</span> the price P multiplied by the quantity produced Q, minus the total cost TC. We saw above that total cost was equal to <span class="math inline">\(TC = wL -rK\)</span>, but micro manuals sometimes simplify this by just stating that total cost is equal to variable cost and fixed cost (in the short run, because in the long run all factors are variable).</p>
+<p>Two important concepts are linked to this profit equation: marginal revenue and marginal cost.</p>
+<ul>
+<li><p><strong>Marginal revenue</strong> is the change in revenue resulting from from a one-unit increase in output.</p></li>
+<li><p><strong>Marginal cost</strong> is the change in cost associated with a one-unit increase in output</p></li>
+</ul>
+<p>In perfect competition, marginal revenue is determined outside the firm, the latter having no influence on it because it has no power to manipulate the price. Marginal revenue is in fact the market price of the good produced by the firm and it is exogenous in a perfectly competitive market. On the other hand, marginal cost is inherent to the firm because it depends on the level of output chosen by the firm.</p>
+<p>Mathematically, marginal revenue is the derivative of the total revenue of the firm <span class="math inline">\(P*Q\)</span> and is equal to the market price <span class="math inline">\(P\)</span>. Marginal cost is the derivative of total cost, but marginal cost is not the same whether we are in the short of the long run. In the short run, only labour is variable, so the marginal cost is the additional increase in cost associated with a one-unit labour increase (an additional labourer)</p>
+<p><span class="math inline">\(MC = \frac{\Delta{VC}}{\Delta{}{}Q} = \frac{w\Delta{}{}L}{\Delta{Q}}\)</span></p>
+<p>But in the long run, marginal cost is the additional cost resulting from an additional increase of any input <span class="math inline">\(MC = \frac{\Delta{TC}}{\Delta{Q}}\)</span>. Algebraically, marginal cost is the derivative of total cost (long run) or variable cost (short run).</p>
+<p>Then, neoclassical production theory explains that the profit equation <span class="math inline">\(\pi = PQ - TC\)</span> has a concave form. The logic behind this is the fact that the theory considers that firms have increasing economies of scale at low level of production and, as output increases, economies of scale will gradually decrease and become negative (economies of scale at the beginning and the diseconomies of scale at some point).</p>
+<ul>
+<li><p><strong>Economies of scales</strong></p>
+<p>When output can be increased for less than proportionnaly increasing the cost. For instance if output is doubled, cost less than double. Neoclassical theory typically considers that for low level of output (small firms), economies of scale are more likely because of productivity gains due to</p>
+<ul>
+<li>specialization,</li>
+<li>reorganization of the production process and</li>
+<li>bargaining power for some intermediary inputs (advantage of buying in bulk).</li>
+</ul></li>
+<li><p><strong>Diseconomies of scales</strong></p>
+<p>When output is increased, cost more than proportionnaly increase. For instance, if output is doubled, cost more than double. Neoclassical theory considers that diseconomies of scale arrive at some point for high level of ouput because of:</p>
+<ul>
+<li>Lack of space in the factory/working place ==&gt; more difficult to do the job</li>
+<li>Increasing number of tasks ==&gt; management becomes more difficult due to increasing complexity of tasks</li>
+<li>The advantage of buying in bulk disappears when certain quantity level is reached.</li>
+</ul></li>
+</ul>
+<p>Those factors explain why the profit equation is concave. This has strong implications, because that means there is an optimal size for the firm associated with an optimal level of output which maximise profits.</p>
+<div class="cell">
+
+</div>
+<p>Then, we can show that profit maximization under all of those conditions lead to the marginal cost being equal to marginal revenue</p>
+<p><span class="math inline">\((\pi)' = 0\)</span> (()’ meaning derivative)</p>
+<p><span class="math inline">\(0 =(PQ)' - (TC)'\)</span> the derivative of total revenue is the marginal revenue, and the derivative of the total cost is the marginal cost</p>
+<p><span class="math inline">\(0 =MR - MC\)</span></p>
+<p><span class="math inline">\(MR = MC\)</span></p>
+<p>Graphically, the profit equation has a negative-concave shape, and optimal level of output is set where profits are at their maximum:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="deriving-the-supply-curve" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-the-supply-curve">Deriving the supply curve</h2>
+<p>When will firms decide to supply a good at a given price? And why the quantities supplied increase with the price of the good?</p>
+<p>Micro theory tells that the supply curve are all the combinations of price and output (quantity of the good supplied) in which the price is higher than the average variable cost. If the market price is below the average variable cost (AVC), supplying the good would not be profitable. If the price is higher than AVC, it is profitable for the firm to produce (and the firm will supply the quantity at which its marginal revenue, the price, is equal to the marginal cost). Then, if price increases, marginal revenue increases, andfirms can increase production and quantity supplied until marginal revenue is again equal to the marginal cost.</p>
 
 
 </section>
