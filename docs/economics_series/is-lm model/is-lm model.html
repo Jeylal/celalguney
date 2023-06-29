@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Celâl Güney">
+<meta name="dcterms.date" content="2023-06-29">
+
+<title>Celâl Güney - IS-LM Model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Celâl Güney</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:celal.gueney@etu.unige.ch"><i class="bi bi-envelope-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Post</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../economics.html">
+ <span class="menu-text">Economics</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">IS-LM Model</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Economics</div>
+                <div class="quarto-category">Macroeconomics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Celâl Güney </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 29, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="cell">
+
+</div>
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>The main objective of macroeconomics is to describe and explain the relationship between important economic variables such as unemployment, inflation, production and growth or the interest rate. Questions macroeconomics typically tries to answer are “how can long run growth be sustained?” “how can unemployment be reduced?”. Macroeconomics also takes into account economic policy and the role of the government: how can the government reduce unemployment, increase output and maintain low level of inflation?</p>
+<p>Those are all questions most of macro models try to answer. In this blog post, I will explain one of the most famous and widespread macro model, which is the <strong>Investment-Savings - Liquidity-Money</strong> model (IS-LM model).</p>
+</section>
+<section id="production-as-gross-national-product-gdp" class="level2">
+<h2 class="anchored" data-anchor-id="production-as-gross-national-product-gdp">Production as Gross National Product (GDP)</h2>
+<p>The main feature of the model is a graph, which show the relationship between output and the interest rate. But first, we have to define what is actually output (production) in macro theory.</p>
+<section id="the-three-approach-to-gdp" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-approach-to-gdp">The three approach to GDP</h3>
+<p>Production is defined as the sum of value added within an economy (can be a nation, a region, or the world taken as a whole) during a period of time (a year, month, semester, quarter…). There are three equivalent ways to define and compute GDP:</p>
+<ol type="1">
+<li><p><strong>Production approach</strong></p>
+<p>GDP is equal to the value (measured in price) of all final goods and services sold minus the value of all intermediary inputs used in the production process</p></li>
+</ol>
+<p><span class="math inline">\(GDP \equiv value\: output\: sold - cost\: intermediary\: inputs\)</span></p>
+<ol start="2" type="1">
+<li><p><strong>Income approach</strong></p>
+<p>GDP is equal to the income of all agents in the economy</p></li>
+</ol>
+<p><span class="math inline">\(GDP \equiv salaries\:of\:workers + profits\:of\:capital\:owners\)</span></p>
+<ol start="3" type="1">
+<li><p><strong>Expenditure approach</strong></p>
+<p>Finally, and this is the most famous definition of GDP, GDP is equal to the total expenditure in the economy, which can be decomposed into the private expenditures of housholds on goods and services C, private expenditure of firms, investment I, and public expenditure G.</p></li>
+</ol>
+<p><span class="math inline">\(GDP \equiv C + I + G\)</span></p>
+<p>If we take into account the fact that the economy is trading with the rest of the world, we must include the expenditure on imported goods M (imports) and expenditure from the rest of the world for national goods and services X (exports).</p>
+<p><span class="math inline">\(GDP \equiv C + I + G + (X-I)\)</span></p>
+<p>Those three approaches are equivalent. Take for example the income and expenditure methods: it makes sense that any expenditure someone makes has to be a revenue for someone else.</p>
+</section>
+<section id="investment-savings-curve-is" class="level3">
+<h3 class="anchored" data-anchor-id="investment-savings-curve-is">Investment-savings curve (IS)</h3>
+<p>The objective of the IS curve is to describe the relationship between the interest rate and output, which is determined by demand in the short run.</p>
+<p>The first step is to model demand and the equilibrium on the goods and services market. This can be done from the expenditure method to GDP, since expenditure is kind of the same way to say demand.</p>
+<p>The total demand in a (closed) economy is thus</p>
+<p><span class="math inline">\(Y \equiv GDP \equiv C + I + G\)</span></p>
+<section id="consumption-c" class="level4">
+<h4 class="anchored" data-anchor-id="consumption-c">Consumption C</h4>
+<p>But what determines private consumption C? IS-LM model considers that consumption as a positive function of income <span class="math inline">\(Y\)</span></p>
+<p><span class="math inline">\(C = C_{0}+C_{1}Y\)</span></p>
+<p>With <span class="math inline">\(C_{0}\)</span> the minimum level of consumption if income is zero, <span class="math inline">\(C_{1}\)</span> the marginal propsentity to consume (the additional consumption resulting from one-unit increase in income Y) and <span class="math inline">\(Y\)</span> the income. Note that income <span class="math inline">\(Y\)</span> is the <em>disposable</em> income, that is, income after tax T: <span class="math inline">\(Y_d = Y-T\)</span>. Taxes T can be written as a proportion taken from income <span class="math inline">\(T = tY\)</span> with <span class="math inline">\(t\)</span> the tax rate on income.</p>
+<p>The consumption function can thus be rewritten:</p>
+<p><span class="math display">\[
+\begin{aligned}
+C = C_{0}+C_{1}Y
+\\
+C = C_{0} + C_{1}(Y-tY)
+\\
+C = C_{0} + C_{1}Y(1-t)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="investment-i" class="level4">
+<h4 class="anchored" data-anchor-id="investment-i">Investment I</h4>
+<p>Regarding investment, the latter is considered as a decreasing function of the interest rate i:</p>
+<p><span class="math inline">\(I = I_{0} -iI_{1}\)</span></p>
+<p>The logic behind a negative relationship between investment and the interest rate is the following: the interest rate is the cost of borrowing. The higher the i, the higher it is to finance investment through borrowing. Conversely, at low i borrowing is cheaper, making firms more likely to borrow in order to invest.</p>
+</section>
+<section id="public-spending-g" class="level4">
+<h4 class="anchored" data-anchor-id="public-spending-g">Public spending G</h4>
+<p>Government spending is considered as exogenous in the is-lm model. This means that G is determined by government decisions which is determined outside the model.</p>
+</section>
+<section id="final-output-equation" class="level4">
+<h4 class="anchored" data-anchor-id="final-output-equation">Final output equation</h4>
+<p>The formula <span class="math inline">\(Y \equiv GDP \equiv C + I + G\)</span> can thus take its final IS form:</p>
+<p><span class="math inline">\(Y = [C_{0} + C_{1}Y(1-t)] + [I_{0} - iI_{1}] + \bar{G}\)</span></p>
+<p>We can see in this equation that ouput Y is negatively related to the interest rate i: the IS curve as thus a negative linear shape.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

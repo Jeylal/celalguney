@@ -10,7 +10,90 @@
 <atom:link href="https://jeylal.github.io/myblog/economics.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Tue, 27 Jun 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 28 Jun 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>IS-LM Model</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/economics_series/is-lm model/is-lm model.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+
+</div>
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>The main objective of macroeconomics is to describe and explain the relationship between important economic variables such as unemployment, inflation, production and growth or the interest rate. Questions macroeconomics typically tries to answer are “how can long run growth be sustained?” “how can unemployment be reduced?”. Macroeconomics also takes into account economic policy and the role of the government: how can the government reduce unemployment, increase output and maintain low level of inflation?</p>
+<p>Those are all questions most of macro models try to answer. In this blog post, I will explain one of the most famous and widespread macro model, which is the <strong>Investment-Savings - Liquidity-Money</strong> model (IS-LM model).</p>
+</section>
+<section id="production-as-gross-national-product-gdp" class="level2">
+<h2 class="anchored" data-anchor-id="production-as-gross-national-product-gdp">Production as Gross National Product (GDP)</h2>
+<p>The main feature of the model is a graph, which show the relationship between output and the interest rate. But first, we have to define what is actually output (production) in macro theory.</p>
+<section id="the-three-approach-to-gdp" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-approach-to-gdp">The three approach to GDP</h3>
+<p>Production is defined as the sum of value added within an economy (can be a nation, a region, or the world taken as a whole) during a period of time (a year, month, semester, quarter…). There are three equivalent ways to define and compute GDP:</p>
+<ol type="1">
+<li><p><strong>Production approach</strong></p>
+<p>GDP is equal to the value (measured in price) of all final goods and services sold minus the value of all intermediary inputs used in the production process</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?GDP%20%5Cequiv%20value%5C:%20output%5C:%20sold%20-%20cost%5C:%20intermediary%5C:%20inputs"></p>
+<ol start="2" type="1">
+<li><p><strong>Income approach</strong></p>
+<p>GDP is equal to the income of all agents in the economy</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?GDP%20%5Cequiv%20salaries%5C:of%5C:workers%20+%20profits%5C:of%5C:capital%5C:owners"></p>
+<ol start="3" type="1">
+<li><p><strong>Expenditure approach</strong></p>
+<p>Finally, and this is the most famous definition of GDP, GDP is equal to the total expenditure in the economy, which can be decomposed into the private expenditures of housholds on goods and services C, private expenditure of firms, investment I, and public expenditure G.</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?GDP%20%5Cequiv%20C%20+%20I%20+%20G"></p>
+<p>If we take into account the fact that the economy is trading with the rest of the world, we must include the expenditure on imported goods M (imports) and expenditure from the rest of the world for national goods and services X (exports).</p>
+<p><img src="https://latex.codecogs.com/png.latex?GDP%20%5Cequiv%20C%20+%20I%20+%20G%20+%20(X-I)"></p>
+<p>Those three approaches are equivalent. Take for example the income and expenditure methods: it makes sense that any expenditure someone makes has to be a revenue for someone else.</p>
+</section>
+<section id="investment-savings-curve-is" class="level3">
+<h3 class="anchored" data-anchor-id="investment-savings-curve-is">Investment-savings curve (IS)</h3>
+<p>The objective of the IS curve is to describe the relationship between the interest rate and output, which is determined by demand in the short run.</p>
+<p>The first step is to model demand and the equilibrium on the goods and services market. This can be done from the expenditure method to GDP, since expenditure is kind of the same way to say demand.</p>
+<p>The total demand in a (closed) economy is thus</p>
+<p><img src="https://latex.codecogs.com/png.latex?Y%20%5Cequiv%20GDP%20%5Cequiv%20C%20+%20I%20+%20G"></p>
+<section id="consumption-c" class="level4">
+<h4 class="anchored" data-anchor-id="consumption-c">Consumption C</h4>
+<p>But what determines private consumption C? IS-LM model considers that consumption as a positive function of income <img src="https://latex.codecogs.com/png.latex?Y"></p>
+<p><img src="https://latex.codecogs.com/png.latex?C%20=%20C_%7B0%7D+C_%7B1%7DY"></p>
+<p>With <img src="https://latex.codecogs.com/png.latex?C_%7B0%7D"> the minimum level of consumption if income is zero, <img src="https://latex.codecogs.com/png.latex?C_%7B1%7D"> the marginal propsentity to consume (the additional consumption resulting from one-unit increase in income Y) and <img src="https://latex.codecogs.com/png.latex?Y"> the income. Note that income <img src="https://latex.codecogs.com/png.latex?Y"> is the <em>disposable</em> income, that is, income after tax T: <img src="https://latex.codecogs.com/png.latex?Y_d%20=%20Y-T">. Taxes T can be written as a proportion taken from income <img src="https://latex.codecogs.com/png.latex?T%20=%20tY"> with <img src="https://latex.codecogs.com/png.latex?t"> the tax rate on income.</p>
+<p>The consumption function can thus be rewritten:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AC%20=%20C_%7B0%7D+C_%7B1%7DY%0A%5C%5C%0AC%20=%20C_%7B0%7D%20+%20C_%7B1%7D(Y-tY)%0A%5C%5C%0AC%20=%20C_%7B0%7D%20+%20C_%7B1%7DY(1-t)%0A%5Cend%7Baligned%7D%0A"></p>
+</section>
+<section id="investment-i" class="level4">
+<h4 class="anchored" data-anchor-id="investment-i">Investment I</h4>
+<p>Regarding investment, the latter is considered as a decreasing function of the interest rate i:</p>
+<p><img src="https://latex.codecogs.com/png.latex?I%20=%20I_%7B0%7D%20-iI_%7B1%7D"></p>
+<p>The logic behind a negative relationship between investment and the interest rate is the following: the interest rate is the cost of borrowing. The higher the i, the higher it is to finance investment through borrowing. Conversely, at low i borrowing is cheaper, making firms more likely to borrow in order to invest.</p>
+</section>
+<section id="public-spending-g" class="level4">
+<h4 class="anchored" data-anchor-id="public-spending-g">Public spending G</h4>
+<p>Government spending is considered as exogenous in the is-lm model. This means that G is determined by government decisions which is determined outside the model.</p>
+</section>
+<section id="final-output-equation" class="level4">
+<h4 class="anchored" data-anchor-id="final-output-equation">Final output equation</h4>
+<p>The formula <img src="https://latex.codecogs.com/png.latex?Y%20%5Cequiv%20GDP%20%5Cequiv%20C%20+%20I%20+%20G"> can thus take its final IS form:</p>
+<p><img src="https://latex.codecogs.com/png.latex?Y%20=%20%5BC_%7B0%7D%20+%20C_%7B1%7DY(1-t)%5D%20+%20%5BI_%7B0%7D%20-%20iI_%7B1%7D%5D%20+%20%5Cbar%7BG%7D"></p>
+<p>We can see in this equation that ouput Y is negatively related to the interest rate i: the IS curve as thus a negative linear shape.</p>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>Economics</category>
+  <category>Macroeconomics</category>
+  <guid>https://jeylal.github.io/myblog/economics_series/is-lm model/is-lm model.html</guid>
+  <pubDate>Wed, 28 Jun 2023 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Mainstream Production Theory</title>
   <dc:creator>Celâl Güney</dc:creator>
