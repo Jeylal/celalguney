@@ -10,7 +10,1113 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Sat, 24 Jun 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 03 Jul 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Web Scraping with R</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/posts/web scraping/web_scraping.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="an-introduction-to-web-scraping-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="an-introduction-to-web-scraping-in-r">An introduction to web scraping in R</h2>
+<p>Web scraping is nowadays rife in statistics and data science. This data collection method has become fashionable not only in computer and data science, but also in economics, sociology and social sciences in general. The reasons for the success of web scraping need hardly to be told at length: the usefulness of web scrapping, extracting data from whatever website we visit, is self-evident. Go to any Wikipedia page, and you can extract whatever data table in contains into your favorite statistical software. The potential of web scraping is huge and will be increasingly used in social sciences.</p>
+<p>The main goal of this post is to show the basics of web scraping using R and the package rvest. To do so, I draw extensively on Paul C. Bauer’s <a href="https://bookdown.org/paul/2021_computational_social_science/data-collection-web-screen-scraping.html">Computational Social Sciences manual</a>, which explains in depth how to do web scraping in R.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="getting-data-videogame-prices" class="level2">
+<h2 class="anchored" data-anchor-id="getting-data-videogame-prices">Getting data: videogame prices</h2>
+<p>I will here use web scraping to get video-game prices in Switzerland. The first step of web scraping is to find a webpage from which you want to collect data. To collect the prices of video-games, I need a web page from for instance a chain stores. In Switzerland, MediaMarkt is a famous chain stores selling consumer electronics and most Swiss people who still buy or order physical copy of their favorite video-games go to or order from MediaMarkt.</p>
+<p>For the anecdote, at the time and for many years (at least until I was 18 in the 2010s), MediaMarkt used to sell video-games slightly below market prices and some stores in Geneva even sometimes sold copies before the release date. The situation has much changed since and the stores are now barely able to sell and distribute physical copies day one (it was the case this year at least for Wo Long and Dead Space 2 remake).</p>
+<p>I search then, on MediaMarkt website, the webpage dedicated to video-games. The webpages are separated by video-games platforms/consoles, so I choose to focus on Playstation 5 games. I store the <a href="https://www.mediamarkt.ch/fr/category/_jeux-ps5-772119.html">link</a> in an object called url. Then, the web page can be read in R using read_html():</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"https://www.mediamarkt.ch/fr/category/_jeux-ps5-772119.html?searchParams=&amp;sort=&amp;view=PRODUCTGRID&amp;page=1"</span></span>
+<span id="cb1-2">mediamarkt <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_html</span>(url)</span></code></pre></div>
+</div>
+<p>The next step is to search and select each videogame price as well as the videogame’s titles using the chrome extension selectorgadget. This step is a bit tricky and is a pain because selectorgadget is a chrome-only extension. So if you don’t have chrome, you have to install it and then add selector gadget on it. To use selectorgadget, just click on what you want to collect on the webpage and then copy the css selector which is on the left of the selectorgadget bar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/posts/web scraping/imagemediamarkt.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Using selectorgadget</figcaption><p></p>
+</figure>
+</div>
+<p>Then, you just have to paste it into the html_nodes function (here .info-wrapper for the price, then .product-link for the title).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">price <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">html_nodes</span>(mediamarkt, <span class="st" style="color: #20794D;">".info-wrapper"</span>)</span>
+<span id="cb2-2">game <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">html_nodes</span>(mediamarkt, <span class="st" style="color: #20794D;">".product-link"</span>)</span></code></pre></div>
+</div>
+<p>Then, html_text() will extract the information we want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">price <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">html_text</span>(price, <span class="at" style="color: #657422;">trim =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span>
+<span id="cb3-2">game <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">html_text</span>(game, <span class="at" style="color: #657422;">trim =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span>
+<span id="cb3-3"><span class="fu" style="color: #4758AB;">head</span>(price)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "274.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-"
+[2] "72.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[3] "34.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[4] "94.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[5] "72.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[6] "62.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">head</span>(game)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Marvel's Spider-Man 2: Édition Collector (CiaB) - PlayStation 5 - Allemand, Français, Italien"
+[2] "F1 23 - PlayStation 5 - Allemand, Français, Italien"                                          
+[3] "FIFA 23 - PlayStation 5 - Allemand, Français, Italien"                                        
+[4] "Final Fantasy XVI : Édition Deluxe - PlayStation 5 - Français"                                
+[5] "Final Fantasy XVI - PlayStation 5 - Français"                                                 
+[6] "Diablo IV - PlayStation 5 - Allemand"                                                         </code></pre>
+</div>
+</div>
+<p>It worked well for the game titles (even if they could be simplified), but not so much for prices. We need to extract the latter from the text in the price object. This can be done using function gsub() and some Regex manipulation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">price_final <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as.numeric</span>(<span class="fu" style="color: #4758AB;">gsub</span>(<span class="st" style="color: #20794D;">"([0.001-9]+).*$"</span>, <span class="st" style="color: #20794D;">"</span><span class="sc" style="color: #5E5E5E;">\\</span><span class="st" style="color: #20794D;">1"</span>, price))</span>
+<span id="cb7-2"><span class="co" style="color: #5E5E5E;">#"([0.001-9]+).*$" means: "keep only characters from 0.001 to 9 multiple times" it will thus extract the number from the character list we got with html_text()</span></span>
+<span id="cb7-3">price_final</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 274.95  72.95  34.95  94.95  72.95  62.95  42.95  72.95  54.95  82.95
+[11]  54.00  62.95  99.95  77.95  74.95  69.95  54.95  69.95  34.95  62.95
+[21]  62.95  32.00  25.95  34.95</code></pre>
+</div>
+</div>
+<p>Similarly, the video-game titles can be simplified using some Regex:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">game_final <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">gsub</span>(<span class="st" style="color: #20794D;">"- PlayStation 5 - Allemand.*"</span>, <span class="st" style="color: #20794D;">""</span>, game)</span></code></pre></div>
+</div>
+<p>And finally, prices and titles can be combined in a dataframe</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">data.frame</span>(game_final, price_final)</span>
+<span id="cb10-2">data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">gt</span>()</span></code></pre></div>
+<div class="cell-output-display">
+
+<div id="myqkghiqeo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#myqkghiqeo) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#myqkghiqeo) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#myqkghiqeo) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#myqkghiqeo) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#myqkghiqeo) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#myqkghiqeo) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#myqkghiqeo) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#myqkghiqeo) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#myqkghiqeo) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#myqkghiqeo) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#myqkghiqeo) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#myqkghiqeo) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#myqkghiqeo) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#myqkghiqeo) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#myqkghiqeo) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#myqkghiqeo) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#myqkghiqeo) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#myqkghiqeo) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#myqkghiqeo) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#myqkghiqeo) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#myqkghiqeo) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#myqkghiqeo) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#myqkghiqeo) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#myqkghiqeo) .gt_left {
+  text-align: left;
+}
+
+:where(#myqkghiqeo) .gt_center {
+  text-align: center;
+}
+
+:where(#myqkghiqeo) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#myqkghiqeo) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#myqkghiqeo) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#myqkghiqeo) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#myqkghiqeo) .gt_super {
+  font-size: 65%;
+}
+
+:where(#myqkghiqeo) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#myqkghiqeo) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#myqkghiqeo) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#myqkghiqeo) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#myqkghiqeo) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#myqkghiqeo) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#myqkghiqeo) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="game_final">game_final</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="price_final">price_final</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="game_final" class="gt_row gt_left">Marvel's Spider-Man 2: Édition Collector (CiaB) </td>
+<td headers="price_final" class="gt_row gt_right">274.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">F1 23 </td>
+<td headers="price_final" class="gt_row gt_right">72.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">FIFA 23 </td>
+<td headers="price_final" class="gt_row gt_right">34.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI : Édition Deluxe - PlayStation 5 - Français</td>
+<td headers="price_final" class="gt_row gt_right">94.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI - PlayStation 5 - Français</td>
+<td headers="price_final" class="gt_row gt_right">72.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Diablo IV </td>
+<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Marvel’s Spider-Man: Miles Morales </td>
+<td headers="price_final" class="gt_row gt_right">42.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI </td>
+<td headers="price_final" class="gt_row gt_right">72.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Ratchet &amp; Clank : Rift Apart </td>
+<td headers="price_final" class="gt_row gt_right">54.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Gran Turismo 7 </td>
+<td headers="price_final" class="gt_row gt_right">82.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">STAR WARS Jedi : Survivor </td>
+<td headers="price_final" class="gt_row gt_right">54.00</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Diablo IV - PlayStation 5 - Français</td>
+<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI: Deluxe Edition </td>
+<td headers="price_final" class="gt_row gt_right">99.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Sackboy: A Big Adventure </td>
+<td headers="price_final" class="gt_row gt_right">77.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Marvel's Spider-Man 2 </td>
+<td headers="price_final" class="gt_row gt_right">74.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Horizon Forbidden West </td>
+<td headers="price_final" class="gt_row gt_right">69.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">The Last of Us Part I </td>
+<td headers="price_final" class="gt_row gt_right">54.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Street Fighter 6 </td>
+<td headers="price_final" class="gt_row gt_right">69.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Uncharted : Legacy of Thieves Collection </td>
+<td headers="price_final" class="gt_row gt_right">34.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Hogwarts Legacy </td>
+<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Diablo IV - PlayStation 5 - Italien</td>
+<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Need for Speed Unbound </td>
+<td headers="price_final" class="gt_row gt_right">32.00</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">NBA 2K22 - PlayStation 5 - Français</td>
+<td headers="price_final" class="gt_row gt_right">25.95</td></tr>
+    <tr><td headers="game_final" class="gt_row gt_left">Grand Theft Auto V </td>
+<td headers="price_final" class="gt_row gt_right">34.95</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>We have thus collected every game’s title and price on the first page of MediaMarkt Playstation 5 games.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-2">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb11-3">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">reorder</span>(game_final, <span class="sc" style="color: #5E5E5E;">-</span>price_final), <span class="at" style="color: #657422;">x =</span> price_final)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb11-4">  <span class="fu" style="color: #4758AB;">geom_col</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb11-5">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> price_final), <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">3</span>, <span class="at" style="color: #657422;">hjust =</span> <span class="fl" style="color: #AD0000;">1.4</span>, <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"white"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb11-6">  <span class="fu" style="color: #4758AB;">theme_minimal</span>(<span class="at" style="color: #657422;">base_size =</span> <span class="dv" style="color: #AD0000;">11</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb11-7">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Playstation 5 games"</span>,</span>
+<span id="cb11-8">    <span class="at" style="color: #657422;">y =</span> <span class="st" style="color: #20794D;">""</span>, <span class="at" style="color: #657422;">x =</span> <span class="st" style="color: #20794D;">"price in swiss francs"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="getting-data-on-all-pages" class="level2">
+<h2 class="anchored" data-anchor-id="getting-data-on-all-pages">Getting data on all pages</h2>
+<p>We have until now collected data only the first page of the website, but ideally we want to be able to collect data on all pages automatically. This can be done as follow:</p>
+<p>First, create a function which will automatically most of the steps: reading the url (read_html), the css nodes found with the chrome extension SelectorGadget and extracting the information of interest:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">scrape_website <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(url){</span>
+<span id="cb12-2">  </span>
+<span id="cb12-3">  website <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_html</span>(url)</span>
+<span id="cb12-4">  </span>
+<span id="cb12-5">  title <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">html_nodes</span>(website, <span class="st" style="color: #20794D;">".product-link"</span>)</span>
+<span id="cb12-6">  price <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">html_nodes</span>(website, <span class="st" style="color: #20794D;">".info-wrapper"</span>)</span>
+<span id="cb12-7">  </span>
+<span id="cb12-8">  </span>
+<span id="cb12-9">  df <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">data.frame</span>(<span class="at" style="color: #657422;">game =</span> <span class="fu" style="color: #4758AB;">gsub</span>(<span class="st" style="color: #20794D;">"- PlayStation 5 - Allemand.*"</span>, <span class="st" style="color: #20794D;">""</span>, <span class="fu" style="color: #4758AB;">html_text</span>(title, <span class="at" style="color: #657422;">trim =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)),</span>
+<span id="cb12-10">                   <span class="at" style="color: #657422;">price =</span> <span class="fu" style="color: #4758AB;">as.numeric</span>(<span class="fu" style="color: #4758AB;">gsub</span>(<span class="st" style="color: #20794D;">"([0.005-9]+).*$"</span>, <span class="st" style="color: #20794D;">"</span><span class="sc" style="color: #5E5E5E;">\\</span><span class="st" style="color: #20794D;">1"</span>, <span class="fu" style="color: #4758AB;">html_text</span>(price, <span class="at" style="color: #657422;">trim =</span> <span class="cn" style="color: #8f5902;">TRUE</span>))))</span>
+<span id="cb12-11">  </span>
+<span id="cb12-12">  <span class="fu" style="color: #4758AB;">return</span>(df)</span>
+<span id="cb12-13">}</span></code></pre></div>
+</div>
+<p>But what about the url? In our example, there are 21 pages in total, resulting in 21 different url. Fortunately, since those pages are in fact a list of products, their patterns are very similar. The only difference between the pages are the “page=#” at the end, with # the number of the page. We can thus define base_url as the recurring url pattern common to all the 21 pages and then number of each particular page (pages object):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">base_url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"https://www.mediamarkt.ch/fr/category/_jeux-ps5-772119.html?searchParams=&amp;sort=&amp;view=PRODUCTGRID&amp;page="</span></span>
+<span id="cb13-2"></span>
+<span id="cb13-3">pages <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">seq</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">21</span>, <span class="at" style="color: #657422;">by =</span> <span class="dv" style="color: #AD0000;">1</span>)</span></code></pre></div>
+</div>
+<p>This is an example on how to extract data using the function for the first page:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">url <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">paste</span>(base_url, pages[<span class="dv" style="color: #AD0000;">1</span>], <span class="at" style="color: #657422;">sep =</span> <span class="st" style="color: #20794D;">""</span>)</span>
+<span id="cb14-2">datasets <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">list</span>()</span>
+<span id="cb14-3">datasets[[<span class="dv" style="color: #AD0000;">1</span>]] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">scrape_website</span>(<span class="at" style="color: #657422;">url =</span> url)</span></code></pre></div>
+</div>
+<p>Finally, to perform web scrapping on all the pages, Paul Bauer proposes the following for loop code</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">datasets <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">list</span>()</span>
+<span id="cb15-2"><span class="cf" style="color: #003B4F;">for</span> (i <span class="cf" style="color: #003B4F;">in</span> <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">length</span>(pages)){</span>
+<span id="cb15-3">  </span>
+<span id="cb15-4">    <span class="co" style="color: #5E5E5E;"># informative message about progress of loop</span></span>
+<span id="cb15-5">      <span class="fu" style="color: #4758AB;">message</span>(i, <span class="st" style="color: #20794D;">'/'</span>, <span class="fu" style="color: #4758AB;">length</span>(pages))</span>
+<span id="cb15-6">  </span>
+<span id="cb15-7">    <span class="co" style="color: #5E5E5E;"># prepare URL</span></span>
+<span id="cb15-8">      url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">paste</span>(base_url, pages[i], <span class="at" style="color: #657422;">sep=</span><span class="st" style="color: #20794D;">""</span>)</span>
+<span id="cb15-9">      </span>
+<span id="cb15-10">    <span class="co" style="color: #5E5E5E;"># scrape website</span></span>
+<span id="cb15-11">      datasets[[i<span class="sc" style="color: #5E5E5E;">+</span><span class="dv" style="color: #AD0000;">1</span>]] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">scrape_website</span>(url)</span>
+<span id="cb15-12">      </span>
+<span id="cb15-13">    <span class="co" style="color: #5E5E5E;"># wait a couple of seconds between URL calls</span></span>
+<span id="cb15-14">      <span class="fu" style="color: #4758AB;">Sys.sleep</span>(<span class="fl" style="color: #AD0000;">0.2</span>)</span>
+<span id="cb15-15">}</span></code></pre></div>
+</div>
+<p>However, I propose to simplify the code by using the map() function from the purrr package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">paste</span>(base_url, pages[<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">21</span>], <span class="at" style="color: #657422;">sep =</span> <span class="st" style="color: #20794D;">""</span>) <span class="co" style="color: #5E5E5E;">#create a vector with all the pages url</span></span>
+<span id="cb16-2"></span>
+<span id="cb16-3">dataset <span class="ot" style="color: #003B4F;">&lt;-</span> url <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb16-4">  <span class="fu" style="color: #4758AB;">map</span>(scrape_website) <span class="co" style="color: #5E5E5E;">#apply the scrape_website function for each element of the url vector</span></span></code></pre></div>
+</div>
+<p>Since the for loop above produce a list, we convert the latter into a dataframe using bind_rows():</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">bind_rows</span>(dataset)</span></code></pre></div>
+</div>
+<p>We thus have all the data we wanted! Let’s now have a quick look at what we collected.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb18-2">  <span class="fu" style="color: #4758AB;">summarise</span>(<span class="at" style="color: #657422;">mean =</span> <span class="fu" style="color: #4758AB;">mean</span>(price, <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb18-3">            <span class="at" style="color: #657422;">median =</span> <span class="fu" style="color: #4758AB;">median</span>(price, <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb18-4">            <span class="at" style="color: #657422;">sd =</span> <span class="fu" style="color: #4758AB;">sd</span>(price, <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb18-5">            <span class="at" style="color: #657422;">min =</span> <span class="fu" style="color: #4758AB;">min</span>(price, <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb18-6">            <span class="at" style="color: #657422;">max =</span> <span class="fu" style="color: #4758AB;">max</span>(price, <span class="at" style="color: #657422;">na.rm =</span> <span class="cn" style="color: #8f5902;">TRUE</span>),</span>
+<span id="cb18-7">            ) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb18-8">  <span class="fu" style="color: #4758AB;">gt</span>(<span class="at" style="color: #657422;">caption =</span> <span class="st" style="color: #20794D;">"Video-games summary statistics (CHF)"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+
+<div id="uxfjayykmy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#uxfjayykmy) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#uxfjayykmy) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#uxfjayykmy) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#uxfjayykmy) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#uxfjayykmy) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#uxfjayykmy) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#uxfjayykmy) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#uxfjayykmy) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#uxfjayykmy) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#uxfjayykmy) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#uxfjayykmy) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#uxfjayykmy) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#uxfjayykmy) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#uxfjayykmy) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#uxfjayykmy) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#uxfjayykmy) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#uxfjayykmy) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#uxfjayykmy) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#uxfjayykmy) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#uxfjayykmy) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#uxfjayykmy) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#uxfjayykmy) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#uxfjayykmy) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#uxfjayykmy) .gt_left {
+  text-align: left;
+}
+
+:where(#uxfjayykmy) .gt_center {
+  text-align: center;
+}
+
+:where(#uxfjayykmy) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#uxfjayykmy) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#uxfjayykmy) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#uxfjayykmy) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#uxfjayykmy) .gt_super {
+  font-size: 65%;
+}
+
+:where(#uxfjayykmy) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#uxfjayykmy) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#uxfjayykmy) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#uxfjayykmy) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#uxfjayykmy) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#uxfjayykmy) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#uxfjayykmy) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <caption>Video-games summary statistics (CHF)</caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="median">median</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd">sd</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="min">min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max">max</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="mean" class="gt_row gt_right">35.84458</td>
+<td headers="median" class="gt_row gt_right">34.95</td>
+<td headers="sd" class="gt_row gt_right">23.95498</td>
+<td headers="min" class="gt_row gt_right">5</td>
+<td headers="max" class="gt_row gt_right">299.95</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb19-2">  <span class="fu" style="color: #4758AB;">filter</span>(price <span class="sc" style="color: #5E5E5E;">&lt;=</span> <span class="dv" style="color: #AD0000;">90</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb19-3">  <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-4">  <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> price) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb19-5">  <span class="fu" style="color: #4758AB;">geom_histogram</span>(<span class="at" style="color: #657422;">binwidth =</span> <span class="dv" style="color: #AD0000;">9</span>, <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"white"</span>, <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"darkblue"</span>, <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.8</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-6">  <span class="fu" style="color: #4758AB;">scale_x_continuous</span>(<span class="at" style="color: #657422;">breaks =</span> <span class="fu" style="color: #4758AB;">seq</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">90</span>, <span class="at" style="color: #657422;">by =</span> <span class="dv" style="color: #AD0000;">5</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-7">  <span class="fu" style="color: #4758AB;">theme_minimal</span>(<span class="at" style="color: #657422;">base_size =</span> <span class="dv" style="color: #AD0000;">13</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb19-8">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Video-game price"</span>,</span>
+<span id="cb19-9">       <span class="at" style="color: #657422;">subtitle =</span> <span class="st" style="color: #20794D;">"Switzerland, Playstation 5 games, July 2023"</span>,</span>
+<span id="cb19-10">       <span class="at" style="color: #657422;">y =</span> <span class="st" style="color: #20794D;">""</span>, <span class="at" style="color: #657422;">x =</span> <span class="st" style="color: #20794D;">"Swiss Francs (CHF)"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>web scraping</category>
+  <category>data science</category>
+  <guid>https://jeylal.github.io/myblog/posts/web scraping/web_scraping.html</guid>
+  <pubDate>Mon, 03 Jul 2023 22:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/posts/web scraping/image.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Political stability and political crises in Switzerland: empirical evidence</title>
   <link>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</link>
