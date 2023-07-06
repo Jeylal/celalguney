@@ -7,7 +7,7 @@ date: "4 July 2023"
 categories: [web scraping, data science]
 execute: 
   freeze: true
-image: image.jpg
+image: imagemediamarkt.png
 ---
 
 ## An introduction to web scraping in R
