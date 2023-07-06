@@ -35,6 +35,7 @@ library(progress)
 library(gt)
 library(knitr)
 library(ggrepel)
+library(xml2)
 ```
 
 ## Getting data: videogame prices
@@ -170,16 +171,11 @@ However, I propose to simplify the code by using the map() function from the pur
 ```{r}
 url <- paste(base_url, pages[1:21], sep = "") #create a vector with all the pages url
 
-dataset <- url %>% 
-  map(scrape_website) #apply the scrape_website function for each element of the url vector
+data <- url %>% 
+  map_df(scrape_website) #apply the scrape_website function for each element of the url vector and store into a dataframe
 
 ```
 
-Since the for loop above produce a list, we convert the latter into a dataframe using bind_rows():
-
-```{r}
-data <- bind_rows(dataset)
-```
 
 We thus have all the data we wanted! Let's now have a quick look at what we collected.
 
@@ -206,3 +202,60 @@ data %>%
        subtitle = "Switzerland, Playstation 5 games, July 2023",
        y = "", x = "Swiss Francs (CHF)")
 ```
+
+## Getting data from a table
+
+When browsing the internet, it often happens that we come across tables but without any possibility to export this table. Web scraping allows to easily read those tables into R.
+
+I will here import data from a table on the results of the famous 1992 Swiss voting on the adhesion to the European Economic Area. The Swiss government website provides a table [here](https://www.bk.admin.ch/ch/f/pore/va/19921206/can388.html). I am almost certain that the Swiss government provides an excel or csv file on this but since I am too lazy to search for it (for my defense, the website page should allow to export directly the table into csv or excel), I will use web scraping to read this table in R and then extract the data into a dataframe.
+
+
+The first step is the same as above: read the url to import the html code into R:
+```{r}
+url <- "https://www.bk.admin.ch/ch/f/pore/va/19921206/can388.html"
+page <- read_html(url)
+```
+
+Then, html_table() can directly import the table information
+```{r}
+table <- html_table(page, header = TRUE)
+
+data <- table[[1]] #extract the table dataframe from the list
+head(data) %>% 
+  gt()
+```
+
+There is one problem here: the numbers either contain "'" or "%". As a result, R read them as characters and it will not be possible to convert those number into numeric format unless all the ' and % are deleted.
+
+
+```{r}
+data2 <- as_tibble(lapply(data, function(x) {gsub("'|%", "", x)})) # collapse all ' and % in the values to transform them into numeric
+
+data2 <- data %>% 
+  map_df(function(x) {gsub("'|%", "", x)}) # same using map_df from dplyr
+```
+
+All the ' and % symbols are now removed. The last step is to convert the values into numeric values:
+
+```{r}
+data2[,-1] <- data2[,-1] %>% 
+            map_df(as.numeric) ## convert all columns into numeric except for canton (first column)
+
+str(data2)
+```
+
+```{r}
+#| echo: false
+
+data2 %>% 
+  ggplot()+
+  aes(y = forcats::fct_reorder(Canton, `% Oui`), x = `% Oui`)+
+  geom_col()+
+  theme_minimal(base_size = 12)+
+  geom_vline(xintercept = 50)+
+  labs(y = "",
+       title = "1992 Swiss Voting: Adhesion to the EEA")
+```
+
+
+
