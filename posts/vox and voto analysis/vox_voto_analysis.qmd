@@ -31,7 +31,7 @@ library(prediction)
 library(marginaleffects)
 library(ggeffects)
 library(ordinal)
-vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Projets_15_121_F.sav")
+
 
 theme_set(theme_bw())
 ```
@@ -40,9 +40,7 @@ theme_set(theme_bw())
 #| echo: false
 #| warning: false
 #| message: false
-
-vox <- readRDS("vox.rds")
-voto <- readRDS("voto.rds")
+vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Projets_15_121_F.sav")
 ```
 
 
