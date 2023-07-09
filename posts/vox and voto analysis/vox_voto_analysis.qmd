@@ -1,0 +1,522 @@
+---
+title: "Social blocs and political cleavages in Switzerland"
+format: html
+editor: visual
+execute: 
+  freeze: true
+categories: [Political Economy, Statistics]
+author: "Celâl Güney"
+date: "9 July 2023"
+draft: true
+---
+
+```{r set up}
+#| echo: false
+#| warning: false
+#| message: false
+rm(list = ls())
+library(haven)
+library(sjlabelled)
+library(tidyverse)
+library(viridis)
+library(stargazer)
+library(gtsummary)
+library(gt)
+library(brms)
+library(ggrepel)
+library(cowplot)
+library(ggpubr)
+library(lme4)
+library(prediction)
+library(marginaleffects)
+library(ggeffects)
+library(ordinal)
+vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Projets_15_121_F.sav")
+
+theme_set(theme_bw())
+```
+
+```{r loading data}
+#| echo: false
+#| warning: false
+#| message: false
+
+vox <- readRDS("vox.rds")
+voto <- readRDS("voto.rds")
+```
+
+
+```{r party dummies and income variable}
+#| echo: false
+#| warning: false
+#| message: false
+vox <- vox %>% 
+  mutate(income = if_else(revenu == 1 & is.na(nivmena), 4,
+                          if_else(revenu == 2 & is.na(nivmena), 3,
+                                  if_else(revenu %in% c(3,4) & is.na(nivmena), 2,
+                                          if_else(revenu == 5 & is.na(nivmena), 1,
+                                                  if_else(is.na(revenu) & annee <= 1993, nivmena, NA))))))
+
+         
+vox$income <- ifelse(vox$income == 4, 1,
+                    ifelse(vox$income == 3, 2,
+                        ifelse(vox$income == 2, 3,
+                          ifelse(vox$income == 1, 4, NA))))
+
+vox$pss <- ifelse(vox$p02 == 12, 1,
+                  ifelse(is.na(vox$p02), NA, 0))
+
+vox$udc <- ifelse(vox$p02 == 13, 1,
+                  ifelse(is.na(vox$p02), NA, 0))
+
+vox$plr <- ifelse(vox$p02 == 20, 1, ### le parti radical democratique fusionne avec le parti liberal en 2009
+                  ifelse(vox$p02 == 4, 1,
+                  ifelse(is.na(vox$p02), NA, 0)))
+
+
+vox$annee_f <- as.factor(vox$annee)
+```
+
+
+```{r missing value check function}
+#| echo: false
+#| warning: false
+#| message: false
+missing_values <- function(data, variable, group) { 
+  
+   table <- data %>% 
+     group_by({{group}}) %>% 
+     count({{variable}}) %>% 
+     mutate(prop = n/sum(n)) %>% 
+     filter(is.na({{variable}})) %>% 
+     ungroup()
+  
+   plot <- 
+     ggplot(data = table, aes(x = {{group}}, y = prop))+
+     geom_col()+
+     geom_label(aes(x = {{group}}, y = prop, label = {{group}}))
+   
+   print(plot)
+  
+}
+
+```
+
+```{r missing values plot check}
+#| echo: false
+#| warning: false
+#| message: false
+vox %>% missing_values(variable = plr, group = annee)+labs(title = "income")
+vox %>% missing_values(variable = educ, group = annee)+labs(title = "educ")
+```
+```{r}
+vox %>% 
+  count(educ) %>% 
+  mutate(prop = n/sum(n), 
+         label = as_character(educ)) %>% 
+  gt()
+
+
+vox %>% 
+  count(val11) %>% 
+  mutate(prop = n/sum(n), 
+         label = as_character(val11)) %>% 
+  gt()
+```
+
+
+```{r trust in government by income group}
+#| echo: false
+#| warning: false
+#| message: false
+trust_gov_inc <- 
+  vox %>% 
+  group_by(annee, income) %>% 
+  count(a22) %>% 
+  mutate(prop = n/sum(n),
+         se = sqrt(prop*(1-prop)/n),
+         lower = prop - qnorm(.975)*se,
+         upper = prop + qnorm(.975)*se,
+         d2001 = if_else(annee >= 2001, 1, 0))%>% 
+  ungroup() %>% 
+  filter(a22 == 1) %>% 
+  drop_na()
+
+plot1981_2000 <- 
+trust_gov_inc %>% 
+  filter(annee <= 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_vline(xintercept = 0.5, alpha = 0.7, linetype = "dashed")+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  theme(legend.position = "none")+
+  labs(x = "", y = "")
+
+plot2001_2016 <- 
+trust_gov_inc %>% 
+  filter(annee > 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_vline(xintercept = 0.5, alpha = 0.7, linetype = "dashed")+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(color = "income group", shape = "income group",
+       y = "", x = "")+
+  theme(legend.position = c(0.8,0.35),
+        legend.background = element_blank())
+
+
+
+
+
+
+title <- ggdraw() + 
+  draw_label(
+    "Trust in Swiss Government",
+    fontface = 'bold',
+    x = 0,
+    hjust = 0
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+
+```
+
+
+```{r plot grid trust gov}
+#| echo: false
+#| warning: false
+#| message: false
+plotgrid <- plot_grid(plot1981_2000, plot2001_2016)
+
+
+
+cowplot::plot_grid(title, plotgrid, ncol = 1, rel_heights = c(0.1, 1))
+```
+
+```{r vote for the left by income group}
+#| echo: false
+#| warning: false
+#| message: false
+support_pss <- 
+  vox %>% 
+  group_by(annee, income) %>% 
+  count(pss) %>% 
+  mutate(prop = n/sum(n),
+         se = sqrt(prop*(1-prop)/n),
+         lower = prop - qnorm(.975)*se,
+         upper = prop + qnorm(.975)*se) %>% 
+  ungroup() %>% 
+  filter(pss == 1) %>% 
+  group_by(annee) %>% 
+  mutate(mean_prop = mean(prop)) %>% 
+  ungroup() %>% 
+  drop_na()
+
+
+supportpssplot1 <- 
+support_pss %>% 
+  filter(annee <= 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  theme(legend.position = "none")+
+  labs(x = "", y = "")
+
+supportpssplot2 <- 
+support_pss  %>% 
+  filter(annee > 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(color = "income group", shape = "income group",
+       y = "", x = "")+
+  theme(legend.position = "top")
+
+
+
+title_pss <- ggdraw() + 
+  draw_label(
+    "Support for Swiss Socialist Party",
+    fontface = 'bold',
+    x = 0,
+    hjust = 0
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+
+plotgridpss <- plot_grid(supportpssplot1, supportpssplot2)
+
+
+
+cowplot::plot_grid(title_pss, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
+
+```
+
+```{r support plr by income group}
+#| echo: false
+#| warning: false
+#| message: false
+support_plr <- 
+  vox %>% 
+  group_by(annee, income) %>% 
+  count(plr) %>% 
+  mutate(prop = n/sum(n),
+         se = sqrt(prop*(1-prop)/n),
+         lower = prop - qnorm(.975)*se,
+         upper = prop + qnorm(.975)*se,
+         d2001 = if_else(annee >= 2001, 1, 0))%>% 
+  ungroup() %>% 
+  filter(plr == 1) %>% 
+  group_by(annee) %>% 
+  mutate(mean_prop = mean(prop)) %>% 
+  ungroup() %>% 
+  drop_na()
+
+supportplrplot1 <- 
+support_plr %>% 
+  filter(annee <= 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  theme(legend.position = "none")+
+  labs(x = "", y = "")
+
+supportplrplot2 <- 
+support_plr  %>% 
+  filter(annee > 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(color = "income group", shape = "income group",
+       y = "", x = "")+
+  theme(legend.position = "top",
+        legend.background = element_blank())
+
+
+
+
+
+
+title_plr <- ggdraw() + 
+  draw_label(
+    "Support for radical/liberal Party",
+    fontface = 'bold',
+    x = 0,
+    hjust = 0
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+
+plotgridpss <- plot_grid(supportplrplot1, supportplrplot2)
+
+
+
+cowplot::plot_grid(title_plr, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
+```
+
+```{r support udc by income group}
+#| echo: false
+#| warning: false
+#| message: false
+
+support_udc <- 
+  vox %>% 
+  group_by(annee, income) %>% 
+  count(udc) %>% 
+  mutate(prop = n/sum(n),
+         se = sqrt(prop*(1-prop)/n),
+         lower = prop - qnorm(.975)*se,
+         upper = prop + qnorm(.975)*se,
+         d2001 = if_else(annee >= 2001, 1, 0))%>% 
+  ungroup() %>% 
+  filter(udc == 1) %>% 
+  group_by(annee) %>% 
+  mutate(mean_prop = mean(prop)) %>% 
+  ungroup() %>% 
+  drop_na()
+
+supportudcplot1 <- 
+support_udc %>% 
+  filter(annee <= 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  theme(legend.position = "none")+
+  labs(x = "", y = "")
+
+supportudcplot2 <- 
+support_udc  %>% 
+  filter(annee > 2000) %>% 
+  ggplot()+
+  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  geom_line(aes(group = factor(annee)))+
+  geom_point(size = 2.2)+
+  scale_color_brewer(palette = "Set1")+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(color = "income group", shape = "income group",
+       y = "", x = "")+
+  theme(legend.position = "top",
+        legend.background = element_blank())
+
+
+
+
+
+
+title_udc <- ggdraw() + 
+  draw_label(
+    "Support for Swiss People's Party",
+    fontface = 'bold',
+    x = 0,
+    hjust = 0
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+
+plotgridpss <- plot_grid(supportudcplot1, supportudcplot2)
+
+
+
+cowplot::plot_grid(title_udc, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
+
+
+```
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+vox$incomef <- relevel(factor(vox$income), ref = 1)
+```
+
+
+```{r binary logit regression 1}
+#| echo: false
+#| warning: false
+#| message: false
+
+glmerlogit <- glmer(data = vox,
+                formula = pss ~ income + educ + (income + educ | annee),
+                family = binomial(link = "logit"))
+
+
+```
+
+
+
+
+```{r create coefficient dataframe}
+#| echo: false
+#| warning: false
+#| message: false
+pred_glmerinc <- slopes(glmerlogit, variables = "income")
+pred_glmereduc <- slopes(glmerlogit, variables = "educ")
+```
+
+```{r ame income}
+#| echo: false
+#| warning: false
+#| message: false
+ame_inc <- pred_glmerinc %>% 
+  group_by(annee) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup()
+
+ame_educ <- pred_glmereduc %>% 
+  group_by(annee) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup()
+
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+breaks_inc <- seq(min(ame_inc$ame), max = max(ame_inc$ame), by = 0.01)
+ame_inc %>% 
+  ggplot()+
+  aes(x = annee, y = ame)+
+  geom_hline(yintercept = 0, color = "red")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(breaks = breaks_inc,
+                     labels = scales::percent_format())+
+  labs(title = "Effect of income on the probability 
+to vote for the Swiss Socialist Party",
+       x = "Average Marginal Effect (% points)",y = "")
+```
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+breaks_educ <- seq(0, max = max(ame_educ$ame), by = 0.01)
+ame_educ %>% 
+  ggplot()+
+  aes(x = annee, y = ame)+
+  geom_hline(yintercept = 0, color = "red")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(breaks = breaks_educ,
+                     labels = scales::percent_format())+
+  labs(title = "Effect of education on the probability 
+to vote for the Swiss Socialist Party",
+       x = "Average Marginal Effect (% points)",y = "")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

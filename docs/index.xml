@@ -10,7 +10,65 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Mon, 03 Jul 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 08 Jul 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Social blocs and political cleavages in Switzerland</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/missing values plot check-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot grid trust gov-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/vote for the left by income group-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/support plr by income group-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/support udc by income group-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>Political Economy</category>
+  <category>Statistics</category>
+  <guid>https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis.html</guid>
+  <pubDate>Sat, 08 Jul 2023 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Web Scraping with R</title>
   <dc:creator>Celâl Güney</dc:creator>
