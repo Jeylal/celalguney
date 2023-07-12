@@ -41,6 +41,7 @@ theme_set(theme_bw())
 #| warning: false
 #| message: false
 vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Projets_15_121_F.sav")
+
 ```
 
 
@@ -73,10 +74,14 @@ vox$plr <- ifelse(vox$p02 == 20, 1, ### le parti radical democratique fusionne a
 
 
 
-vox$gender <- factor(vox$sexe, levels = c(1, 2), labels = c("men", "women"))
+vox$gender <- factor(vox$sexe, levels = c(1, 2), labels = c("male", "female"))
 vox$annee_f <- factor(vox$annee)
 vox$married <- ifelse(vox$etatciv == 2, 1,
                       ifelse(is.na(vox$etatciv), NA, 0))
+
+vox$regionL <- as_character(vox$regiling)
+vox$religion <- relevel(factor(as_character(vox$confess)), ref = "Catholique romain")
+
 
 ```
 
@@ -109,14 +114,16 @@ missing_values <- function(data, variable, group) {
 #| echo: false
 #| warning: false
 #| message: false
-#| include: false
-vox %>% missing_values(variable = plr, group = annee)+labs(title = "income")
-vox %>% missing_values(variable = educ, group = annee)+labs(title = "educ")
-vox %>% missing_values(variable = etatciv, group = annee)
+
+vox %>% missing_values(variable = confess, group = annee)
+vox %>% missing_values(variable = cult, group = annee)
 ```
 
 
-```{r}
+```{r descriptive stats educ and income}
+#| echo: false
+#| warning: false
+#| message: false
 vox %>% 
   count(educ) %>% 
   mutate(prop = n/sum(n), 
@@ -422,17 +429,10 @@ cowplot::plot_grid(title_udc, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
 
 ```
 
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-vox$incomef <- relevel(factor(vox$income), ref = 1)
-```
 
 
-
-```{r}
-regressions_vox <- 
+```{r no pooling repeated cross section (nprcs) regression vote for ssp}
+nprcs_ssp <- 
 vox %>%
   split(.$annee_f) %>% 
   map(~ glm(pss ~ income + educ, data = .x, family = binomial(link = "logit")))
@@ -440,28 +440,29 @@ vox %>%
 year <- data.frame(year = 1981:2016)
 
 
-regressions_vox %>% 
+nprcs_ssp %>% 
   map_df(tidy) %>% 
   mutate(year = year[rep(seq_len(nrow(year)), each = 3),],
          test = if_else(p.value <= 0.05, TRUE, FALSE),
          lower = estimate - 1.96*std.error,
-         upper = estimate + 1.96*std.error) -> cpooling_results
+         upper = estimate + 1.96*std.error) -> nprcs_ssp_results
 
 
-cpooling_results %>% 
+nprcs_ssp_results %>% 
   filter(term != "(Intercept)") %>% 
   ggplot()+
   aes(x = estimate, y = factor(year), group = term, color = term)+
   geom_vline(xintercept = 0, linetype = "dashed")+
   geom_pointrange(aes(xmin = lower, xmax = upper))+
-  facet_wrap(~term)
+  facet_wrap(~term)+
+  labs(title = "Vote for SSP, log(odds)")
 
 ```
 
-```{r ame each year}
+```{r average marginal effect nprcs ssp}
 # computing average marginal effect for each year
-ame_income <- 
-regressions_vox %>% 
+ame_income_nprcrs_ssp <- 
+nprcs_ssp %>% 
   map(~slopes(.x ,variables = "income")) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
@@ -469,8 +470,8 @@ regressions_vox %>%
            mutate(year = 1981:2016,
                   variable = "income")
 
-ame_educ <- 
-regressions_vox %>% 
+ame_educ_nprcrs_ssp <- 
+nprcs_ssp %>% 
   map(~slopes(.x ,variables = "educ")) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
@@ -479,68 +480,115 @@ regressions_vox %>%
                   variable = "educ")
 
 
-ame_full <- rbind(ame_income, ame_educ)
+ame_nprcrs_ssp <- rbind(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)
 ```
 
-```{r plot ame income}
-
-ame_full %>% 
+```{r plot ame nprcs ssp}
+plot_ame_ssp <- 
+ame_nprcrs_ssp %>% 
   ggplot()+
   aes(y = ame, x = year, color = variable, shape = variable)+
   geom_hline(yintercept = 0, linetype = "dashed")+
   geom_point()+
+  geom_line()+
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
-  labs(title = "",
+  labs(title = "Probability to vote for SSP",
+       subtitle = "Repeated cross-section",
        y = "", x = "Average Marginal Effect")
+plot_ame_ssp
 ```
 
 
-```{r same but with controls}
+```{r nprcs ssp with controls}
 
 
 
 
-regressions_vox_controls <- 
+nprcs_ssp_controls <- 
 vox %>%
   split(.$annee_f) %>% 
-  map(~ glm(pss ~ income + educ + gender, data = .x, family = binomial(link = "logit")))
+  map(~ glm(pss ~ income + educ + gender + married + regionL + religion, data = .x, family = binomial(link = "logit")))
 
-year <- data.frame(year = 1981:2016)
-
-cpooling_control_results <- 
-regressions_vox_controls %>% 
+nprcs_ssp_controls_results <- 
+nprcs_ssp_controls %>% 
   map_df(tidy) %>% 
-  mutate(year = year[rep(seq_len(nrow(year)), each = 4),],
+  mutate(
          test = if_else(p.value <= 0.05, TRUE, FALSE),
          lower = estimate - 1.96*std.error,
          upper = estimate + 1.96*std.error)
 
 
+ame_income_nprcs_ssp_controls <- 
+nprcs_ssp_controls %>% 
+  map(~slopes(.x ,variables = "income")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income")
+
+ame_education_nprcs_ssp_controls <- 
+nprcs_ssp_controls %>% 
+  map(~slopes(.x ,variables = "educ")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "educ")
+
+
+ame_nprcs_ssp_controls <- rbind(ame_income_nprcs_ssp_controls, ame_education_nprcs_ssp_controls)
+
 ```
 
 
+```{r plot ame ssp full}
+
+plot_ame_nprcs_ssp_controls <- 
+ame_nprcs_ssp_controls %>% 
+  ggplot()+
+  aes(y = ame, x = year, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Probability to vote for SSP",
+       subtitle = "No pooling model, after controls",
+       y = "", x = "Average Marginal Effect")
+
+cowplot::plot_grid(plot_ame_ssp, plot_ame_nprcs_ssp_controls)
+```
 
 
-```{r}
+```{r vote ssp partial pooling glmer}
+#| warning: false
+#| echo: false
+#| eval: false
+
 glmerlogit <- glmer(data = vox,
                 formula = pss ~ income + educ + (income + educ | annee),
                 family = binomial(link = "logit"))
 ```
 
 
-```{r}
+```{r vote ssp partial pooling slopes ame}
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
+
 pred_glmerinc <- slopes(glmerlogit, variables = "income")
 pred_glmereduc <- slopes(glmerlogit, variables = "educ")
 ```
 
-```{r ame income}
+```{r vote ssp partial pooling ame}
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
+
 ame_inc <- pred_glmerinc %>% 
   group_by(annee) %>% 
   summarise(ame = mean(estimate),
@@ -560,10 +608,12 @@ ame_educ <- pred_glmereduc %>%
 ame_pp <- rbind(ame_inc, ame_educ)
 ```
 
-```{r}
+```{r vote ssp partial pooling plot}
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
+
 breaks_cp <- seq(min(ame_full$ame), max = max(ame_full$ame), by = 0.02)
 ame_full %>% 
   ggplot()+
@@ -595,43 +645,35 @@ ame_pp %>%
 ```
 
 
-```{r regression for svp}
-regressions_vox_udc <- 
+```{r svp nprcs}
+#| echo: false
+#| message: false
+#| warning: false
+nprcs_udc <- 
 vox %>%
   split(.$annee_f) %>% 
   map(~ glm(udc ~ income + educ, data = .x, family = binomial(link = "logit")))
 
 year <- data.frame(year = 1981:2016)
 
-cpooling_results_udc <- 
-regressions_vox_udc %>% 
+nprcs_udc_results_udc <- 
+nprcs_udc %>% 
   map_df(tidy) %>% 
   mutate(year = year[rep(seq_len(nrow(year)), each = 3),],
          test = if_else(p.value <= 0.05, TRUE, FALSE),
          lower = estimate - 1.96*std.error,
          upper = estimate + 1.96*std.error)
 
-
-cpooling_results_udc %>% 
-  filter(term != "(Intercept)") %>% 
-  ggplot()+
-  aes(x = estimate, y = factor(year), group = term, color = term)+
-  geom_vline(xintercept = 0, linetype = "dashed")+
-  geom_pointrange(aes(xmin = lower, xmax = upper))+
-  facet_wrap(~term)
-
-
-
-
-
-
 ```
 
 
-```{r ame each year udc np}
+```{r nprcs udc ame}
+#| echo: false
+#| message: false
+#| warning: false
 # computing average marginal effect for each year
-ame_income_udc <- 
-regressions_vox_udc %>% 
+ame_nprcs_income_udc <- 
+nprcs_udc %>% 
   map(~slopes(.x ,variables = "income")) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
@@ -639,8 +681,8 @@ regressions_vox_udc %>%
            mutate(year = 1981:2016,
                   variable = "income")
 
-ame_educ_udc <- 
-regressions_vox_udc %>% 
+ame_nprcs_educ_udc <- 
+nprcs_udc %>% 
   map(~slopes(.x ,variables = "educ")) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
@@ -649,12 +691,15 @@ regressions_vox_udc %>%
                   variable = "educ")
 
 
-ame_full_udc <- rbind(ame_income_udc, ame_educ_udc)
+ame_nprcs_udc <- rbind(ame_nprcs_income_udc, ame_nprcs_educ_udc)
 
 ```
 
 ```{r}
-ame_full_udc %>% 
+#| echo: false
+#| message: false
+#| warning: false
+ame_nprcs_udc %>% 
   ggplot()+
   aes(y = ame, x = year, color = variable, shape = variable)+
   geom_hline(yintercept = 0, linetype = "dashed")+
@@ -663,7 +708,7 @@ ame_full_udc %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SVP",
-       subtitle = "No pooling model",
+       subtitle = "No pooling model, repeated cross-sectional logit regression",
        y = "", x = "Average Marginal Effect")
 ```
 
@@ -672,7 +717,11 @@ ame_full_udc %>%
 
 
 
-```{r}
+```{r partial pooling udc}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 glmerlogit_udc <- glmer(data = vox,
                 formula = udc ~ income + educ + (income + educ | annee),
                 family = binomial(link = "logit"))
@@ -680,7 +729,8 @@ glmerlogit_udc <- glmer(data = vox,
 
 
 
-```{r create coefficient dataframe udc}
+```{r partial pooling udc create coefficient dataframe udc}
+#| eval: false
 #| echo: false
 #| warning: false
 #| message: false
@@ -707,7 +757,11 @@ ame_educ_udc <- pred_glmereduc_udc %>%
 ame_pp_udc <- rbind(ame_inc_udc, ame_educ_udc)
 ```
 
-```{r}
+```{r plot partial pooling udc}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 ame_pp_udc %>% 
   ggplot()+
   aes(y = ame, x = annee, color = variable, shape = variable)+
@@ -722,7 +776,11 @@ ame_pp_udc %>%
 ```
 
 
-```{r}
+```{r partial pooling plr}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 glmerlogit_plr <- glmer(data = vox,
                 formula = plr ~ income + educ + (income + educ | annee),
                 family = binomial(link = "logit"))
@@ -730,7 +788,8 @@ glmerlogit_plr <- glmer(data = vox,
 
 
 
-```{r create coefficient dataframe plr}
+```{r partial pooling plr create coefficient dataframe plr}
+#| eval: false
 #| echo: false
 #| warning: false
 #| message: false
@@ -757,7 +816,11 @@ ame_educ_plr <- pred_glmereduc_plr %>%
 ame_pp_plr <- rbind(ame_inc_plr, ame_educ_plr)
 ```
 
-```{r}
+```{r plot partial pooling plr}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 ame_pp_plr %>% 
   ggplot()+
   aes(y = ame, x = annee, color = variable, shape = variable)+
