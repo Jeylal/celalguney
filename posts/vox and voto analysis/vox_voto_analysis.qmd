@@ -31,7 +31,7 @@ library(prediction)
 library(marginaleffects)
 library(ggeffects)
 library(ordinal)
-
+library(broom)
 
 theme_set(theme_bw())
 ```
@@ -72,7 +72,12 @@ vox$plr <- ifelse(vox$p02 == 20, 1, ### le parti radical democratique fusionne a
                   ifelse(is.na(vox$p02), NA, 0)))
 
 
-vox$annee_f <- as.factor(vox$annee)
+
+vox$gender <- factor(vox$sexe, levels = c(1, 2), labels = c("men", "women"))
+vox$annee_f <- factor(vox$annee)
+vox$married <- ifelse(vox$etatciv == 2, 1,
+                      ifelse(is.na(vox$etatciv), NA, 0))
+
 ```
 
 
@@ -104,9 +109,13 @@ missing_values <- function(data, variable, group) {
 #| echo: false
 #| warning: false
 #| message: false
+#| include: false
 vox %>% missing_values(variable = plr, group = annee)+labs(title = "income")
 vox %>% missing_values(variable = educ, group = annee)+labs(title = "educ")
+vox %>% missing_values(variable = etatciv, group = annee)
 ```
+
+
 ```{r}
 vox %>% 
   count(educ) %>% 
@@ -412,6 +421,7 @@ cowplot::plot_grid(title_udc, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
 
 
 ```
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -420,14 +430,91 @@ vox$incomef <- relevel(factor(vox$income), ref = 1)
 ```
 
 
-```{r binary logit regression 1}
-#| echo: false
-#| warning: false
-#| message: false
 
-glmerlogit <- glmer(data = vox,
-                formula = pss ~ income + educ + (income + educ | annee),
-                family = binomial(link = "logit"))
+```{r}
+regressions_vox <- 
+vox %>%
+  split(.$annee_f) %>% 
+  map(~ glm(pss ~ income + educ, data = .x, family = binomial(link = "logit")))
+
+year <- data.frame(year = 1981:2016)
+
+
+regressions_vox %>% 
+  map_df(tidy) %>% 
+  mutate(year = year[rep(seq_len(nrow(year)), each = 3),],
+         test = if_else(p.value <= 0.05, TRUE, FALSE),
+         lower = estimate - 1.96*std.error,
+         upper = estimate + 1.96*std.error) -> cpooling_results
+
+
+cpooling_results %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot()+
+  aes(x = estimate, y = factor(year), group = term, color = term)+
+  geom_vline(xintercept = 0, linetype = "dashed")+
+  geom_pointrange(aes(xmin = lower, xmax = upper))+
+  facet_wrap(~term)
+
+```
+
+```{r ame each year}
+# computing average marginal effect for each year
+ame_income <- 
+regressions_vox %>% 
+  map(~slopes(.x ,variables = "income")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income")
+
+ame_educ <- 
+regressions_vox %>% 
+  map(~slopes(.x ,variables = "educ")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016, 
+                  variable = "educ")
+
+
+ame_full <- rbind(ame_income, ame_educ)
+```
+
+```{r plot ame income}
+
+ame_full %>% 
+  ggplot()+
+  aes(y = ame, x = year, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "",
+       y = "", x = "Average Marginal Effect")
+```
+
+
+```{r same but with controls}
+
+
+
+
+regressions_vox_controls <- 
+vox %>%
+  split(.$annee_f) %>% 
+  map(~ glm(pss ~ income + educ + gender, data = .x, family = binomial(link = "logit")))
+
+year <- data.frame(year = 1981:2016)
+
+cpooling_control_results <- 
+regressions_vox_controls %>% 
+  map_df(tidy) %>% 
+  mutate(year = year[rep(seq_len(nrow(year)), each = 4),],
+         test = if_else(p.value <= 0.05, TRUE, FALSE),
+         lower = estimate - 1.96*std.error,
+         upper = estimate + 1.96*std.error)
 
 
 ```
@@ -435,7 +522,14 @@ glmerlogit <- glmer(data = vox,
 
 
 
-```{r create coefficient dataframe}
+```{r}
+glmerlogit <- glmer(data = vox,
+                formula = pss ~ income + educ + (income + educ | annee),
+                family = binomial(link = "logit"))
+```
+
+
+```{r}
 #| echo: false
 #| warning: false
 #| message: false
@@ -452,66 +546,230 @@ ame_inc <- pred_glmerinc %>%
   summarise(ame = mean(estimate),
             high = mean(conf.high),
             low = mean(conf.low)) %>% 
-  ungroup()
+  ungroup() %>% 
+  mutate(variable = "income")
 
 ame_educ <- pred_glmereduc %>% 
   group_by(annee) %>% 
   summarise(ame = mean(estimate),
             high = mean(conf.high),
             low = mean(conf.low)) %>% 
-  ungroup()
+  ungroup() %>% 
+  mutate(variable = "education")
 
-
+ame_pp <- rbind(ame_inc, ame_educ)
 ```
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
-breaks_inc <- seq(min(ame_inc$ame), max = max(ame_inc$ame), by = 0.01)
-ame_inc %>% 
+breaks_cp <- seq(min(ame_full$ame), max = max(ame_full$ame), by = 0.02)
+ame_full %>% 
   ggplot()+
-  aes(x = annee, y = ame)+
+  aes(y = ame, x = year, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+    scale_y_continuous(breaks = breaks_cp,
+                     labels = scales::percent_format())+
+  labs(title = "",
+       y = "", x = "Average Marginal Effect")
+
+
+breaks_pp <- seq(min(ame_inc$ame), max = max(ame_inc$ame), by = 0.01)
+ame_pp %>% 
+  ggplot()+
+  aes(x = annee, y = ame, color = variable)+
   geom_hline(yintercept = 0, color = "red")+
   geom_point()+
   geom_line()+
   geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(breaks = breaks_inc,
+  scale_y_continuous(breaks = breaks_pp,
                      labels = scales::percent_format())+
-  labs(title = "Effect of income on the probability 
-to vote for the Swiss Socialist Party",
+  labs(title = "Probability to vote for SSP",
+       subtitle = "Partial pooling model",
        x = "Average Marginal Effect (% points)",y = "")
+```
+
+
+```{r regression for svp}
+regressions_vox_udc <- 
+vox %>%
+  split(.$annee_f) %>% 
+  map(~ glm(udc ~ income + educ, data = .x, family = binomial(link = "logit")))
+
+year <- data.frame(year = 1981:2016)
+
+cpooling_results_udc <- 
+regressions_vox_udc %>% 
+  map_df(tidy) %>% 
+  mutate(year = year[rep(seq_len(nrow(year)), each = 3),],
+         test = if_else(p.value <= 0.05, TRUE, FALSE),
+         lower = estimate - 1.96*std.error,
+         upper = estimate + 1.96*std.error)
+
+
+cpooling_results_udc %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot()+
+  aes(x = estimate, y = factor(year), group = term, color = term)+
+  geom_vline(xintercept = 0, linetype = "dashed")+
+  geom_pointrange(aes(xmin = lower, xmax = upper))+
+  facet_wrap(~term)
+
+
+
+
+
+
+```
+
+
+```{r ame each year udc np}
+# computing average marginal effect for each year
+ame_income_udc <- 
+regressions_vox_udc %>% 
+  map(~slopes(.x ,variables = "income")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income")
+
+ame_educ_udc <- 
+regressions_vox_udc %>% 
+  map(~slopes(.x ,variables = "educ")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016, 
+                  variable = "educ")
+
+
+ame_full_udc <- rbind(ame_income_udc, ame_educ_udc)
+
+```
+
+```{r}
+ame_full_udc %>% 
+  ggplot()+
+  aes(y = ame, x = year, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Probability to vote for SVP",
+       subtitle = "No pooling model",
+       y = "", x = "Average Marginal Effect")
+```
+
+
+
+
+
+
+```{r}
+glmerlogit_udc <- glmer(data = vox,
+                formula = udc ~ income + educ + (income + educ | annee),
+                family = binomial(link = "logit"))
+```
+
+
+
+```{r create coefficient dataframe udc}
+#| echo: false
+#| warning: false
+#| message: false
+pred_glmerinc_udc <- slopes(glmerlogit_udc, variables = "income")
+pred_glmereduc_udc <- slopes(glmerlogit_udc, variables = "educ")
+
+
+ame_inc_udc <- pred_glmerinc_udc %>% 
+  group_by(annee) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup() %>% 
+  mutate(variable = "income")
+
+ame_educ_udc <- pred_glmereduc_udc %>% 
+  group_by(annee) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup() %>% 
+  mutate(variable = "education")
+
+ame_pp_udc <- rbind(ame_inc_udc, ame_educ_udc)
+```
+
+```{r}
+ame_pp_udc %>% 
+  ggplot()+
+  aes(y = ame, x = annee, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Probability to vote for SVP",
+       subtitle = "Partial Pooling (glmer) model",
+       y = "", x = "Average Marginal Effect")
 ```
 
 
 ```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-breaks_educ <- seq(0, max = max(ame_educ$ame), by = 0.01)
-ame_educ %>% 
-  ggplot()+
-  aes(x = annee, y = ame)+
-  geom_hline(yintercept = 0, color = "red")+
-  geom_point()+
-  geom_line()+
-  geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(breaks = breaks_educ,
-                     labels = scales::percent_format())+
-  labs(title = "Effect of education on the probability 
-to vote for the Swiss Socialist Party",
-       x = "Average Marginal Effect (% points)",y = "")
+glmerlogit_plr <- glmer(data = vox,
+                formula = plr ~ income + educ + (income + educ | annee),
+                family = binomial(link = "logit"))
 ```
 
 
 
+```{r create coefficient dataframe plr}
+#| echo: false
+#| warning: false
+#| message: false
+pred_glmerinc_plr <- slopes(glmerlogit_plr, variables = "income")
+pred_glmereduc_plr <- slopes(glmerlogit_plr, variables = "educ")
 
 
+ame_inc_plr <- pred_glmerinc_plr %>% 
+  group_by(annee) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup() %>% 
+  mutate(variable = "income")
 
+ame_educ_plr <- pred_glmereduc_plr %>% 
+  group_by(annee) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup() %>% 
+  mutate(variable = "education")
 
+ame_pp_plr <- rbind(ame_inc_plr, ame_educ_plr)
+```
 
-
+```{r}
+ame_pp_plr %>% 
+  ggplot()+
+  aes(y = ame, x = annee, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Probability to vote for radical/liberal party",
+       subtitle = "Partial Pooling (glmer) model",
+       y = "", x = "Average Marginal Effect")
+```
 
 
 
