@@ -1,5 +1,5 @@
 ---
-title: "Social blocs and political cleavages in Switzerland"
+title: "Political Conflict and Inequality in Switzerland"
 format: html
 editor: visual
 execute: 
@@ -8,6 +8,7 @@ categories: [Political Economy, Statistics]
 author: "Celâl Güney"
 date: "9 July 2023"
 draft: true
+bibliography: vox_biblio.bib
 ---
 
 ```{r set up}
@@ -32,9 +33,72 @@ library(marginaleffects)
 library(ggeffects)
 library(ordinal)
 library(broom)
+library(knitr)
 
 theme_set(theme_bw())
 ```
+
+# Political Cleavages and inequality
+
+## Introduction and Problématique
+
+How does income inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This interest, whose origin can be traced back to Piketty's last book [-@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database ([WPID](https://wpid.world/)) and to a book, which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [-@gethin_political_2021]. Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter have evolved and can disturb political and economic stability and how they can be reduced to make society more equal and just for everybody. However, whereas the solutions and basic facts are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not a technical problem, but a political one and that inequality analysis musts thus take politics into account.
+
+It is interesting to note how the same reasoning can be applied to ecology. Ecologists face indeed the same issue: global warming becomes increasingly more threatening, and scholars know how it could be stopped or at least reduced, but there is paradoxically no political outcome and no serious political measure which has been taken despite the emergency.
+
+The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus "classist" in the sense that the political positioning of an individual was mainly determined by his position in the economic structure.
+
+The situation changed around the 1970s and 1980s: the support for the left has become positively correlated with education whereas the support for the right is still linked positively with income and education. Political cleavages have thus become "multidimensional" by combining an economic cleavage (degree of income and wealth), which has become relatively less salient, with a growing "cultural" cleavage due to the increase in average educational level.
+
+The left has thus become the "brahmin left" because supported by high education voter. The right remains "merchant" because it still is supported by the rich. Finally, a new bloc, the "social-nativist" bloc, gathers voters with low income and low educational level [@piketty_capital_2019].
+
+Amable and Darcillon [-@amable_brahmin_2022] offer more contrasted results. Income levels are found to be still an important factor in the formation of political preferences in the classic left-right divide. They identify the possible alliance between the most educated and rich groups, giving rise to a bourgeois bloc.
+
+## Political cleavages, political conflict and inequality in Switzerland
+
+Switzerland is considered by this literature as the country in which those transformations have been one of the most important. For instance, Durrer de la Sota et al. explain that "Switzerland is the country where the shift of the higher educated towards the left has been the most dramatic" [@durrer_de_la_sota_party_2021, p.4]. Switzerland is infamous for being the home of one of the most successful social-nativist party, the SVP which now the first political party in Switzerland. Green parties have also become an important force and they are separated between the liberal ecologists and social ecologists. The important elements of the WPID's analysis of Switzerland are the following:
+
+-   The authors used the Swiss Election Studies (*Selects*) data, which are data collected after each parliamentary election.
+
+-   The educational shift happened in the late 80s, the period 1983-7 being the last class-based period. Switzerland's political landscape is now a multi-polar and multi-elite one: the support for the greens and socialists is linked positively with education, the rich still support radical/liberal parties and the SVP represents the social-nativist bloc gathering the low income and low education voters.
+
+-   The traditional parties, the Socialists (Swiss Socialist Party SSP), the Liberals and Radicals, and the Christian Democrats are in a declining trend, if not collapsing.
+
+-   The Greens are radical right are the new strong emergent parties, the latter being the most important bloc.
+
+### Research questions, hypotheses and empirical strategy
+
+### Research question
+
+The present article will test Piketty's Brahmin left vs Merchant right divide as well as the WPID's findings on Switzerland. The objective is to explore the following research question:
+
+-   To what extent is the support for the left linked positively with the level of education and negatively with the level of income
+
+-   To what extent is the support for right parties linked positively with the level of income
+
+-   Are there parties for which the support increase with both the level of income and education?
+
+### Hypothese
+
+These research questions can be given temporary hypothetical answers:
+
+-   Brahmin left hypothesis:
+
+    -   The support for left-wing parties (mostly SSP and the Greens) is linked positively with the level of education, with no clear link with the level of income.
+
+-   Merchant right hypothesis:
+
+    -   The support for traditional right-wing parties (Liberal-Radicals, Christian Democrats which have become recenty "the center") is linked positively with the level of income.
+
+-   Bourgeois bloc hypothesis
+
+    -   The support for right-wing parties is linked positively with both the level of income and education.
+
+### Data
+
+As previously mentioned, the WPID's findings for Switzerland are based on Selects data. Since using Selects data would not make great sense, unless a very different and specific methodology is used, I tried my best to find another data source. I have thus found an interesting dataset, the standardized Voxlt surveys, which are post-electoral survey data that were collected after each referendum voting from 1981 to 2016. In those surveys, not only referendum voting decisions were collected, but also information on party identification, left-right positioning and various soc-dem characteristics.
+
+Party identification will obviously be the dependent variable. I create a dummy variable for each party support.
 
 ```{r loading data}
 #| echo: false
@@ -44,11 +108,80 @@ vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumu
 
 ```
 
-
-```{r party dummies and income variable}
+```{r}
 #| echo: false
 #| warning: false
 #| message: false
+vox %>% 
+  count(p02) %>% 
+  mutate(prop = n/sum(n),
+         label = as_character(p02)) %>% 
+  kable(caption = "Party identification")
+```
+
+The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable "educ" which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each level is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation very hard and tedious.
+
+On the other hand, the dataset offers two variables for income: "nivmena" and "revenu".
+```{r descriptive stats educ}
+#| echo: false
+#| warning: false
+#| message: false
+vox %>% 
+  count(educ) %>% 
+  mutate(prop = n/sum(n), 
+         label = as_character(educ)) %>% 
+  kable(caption = "Educational group")
+```
+
+
+```{r missing value check function}
+#| echo: false
+#| warning: false
+#| message: false
+missing_values <- function(data, variable, group) { 
+  
+   table <- data %>% 
+     group_by({{group}}) %>% 
+     count({{variable}}) %>% 
+     mutate(prop = n/sum(n)) %>% 
+     filter(is.na({{variable}})) %>% 
+     ungroup()
+  
+   plot <- 
+     ggplot(data = table, aes(x = {{group}}, y = prop))+
+     geom_col()+
+     geom_label(aes(x = {{group}}, y = prop, label = {{group}}))
+   print(plot)
+  
+}
+
+```
+
+On the other hand, the dataset offers two variables for income: "nivmena" and "revenu". Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable. 
+
+
+```{r descriptive stats income}
+vox %>% 
+  count(nivmena) %>% 
+  mutate(prop = n/sum(n), 
+         label = as_character(nivmena)) %>% 
+  kable(caption = "Household income level")
+
+vox %>% 
+  count(revenu) %>% 
+  mutate(prop = n/sum(n), 
+         label = as_character(revenu)) %>% 
+  kable(caption = "Income level")
+```
+
+I made the choice to merge the two variables by recoding the revenu variable so that it fits into the categories of the first variable. I do so by considering the first income bracket as the "low" category, the second as "inferior-middle", the third and fourth as the "upper-middle" category and the fifth as the "upper" category.
+
+```{r create income variable}
+#| warning: false
+#| message: false
+
+
+# Two ways to create the income variable
 vox <- vox %>% 
   mutate(income = if_else(revenu == 1 & is.na(nivmena), 4,
                           if_else(revenu == 2 & is.na(nivmena), 3,
@@ -61,6 +194,13 @@ vox$income <- ifelse(vox$income == 4, 1,
                     ifelse(vox$income == 3, 2,
                         ifelse(vox$income == 2, 3,
                           ifelse(vox$income == 1, 4, NA))))
+```
+
+
+```{r party dummies and other recoding}
+#| warning: false
+#| message: false
+#| echo: false
 
 vox$pss <- ifelse(vox$p02 == 12, 1,
                   ifelse(is.na(vox$p02), NA, 0))
@@ -97,60 +237,7 @@ vox$canton_f <- as_character(vox$canton)
 
 ```
 
-
-```{r missing value check function}
-#| echo: false
-#| warning: false
-#| message: false
-missing_values <- function(data, variable, group) { 
-  
-   table <- data %>% 
-     group_by({{group}}) %>% 
-     count({{variable}}) %>% 
-     mutate(prop = n/sum(n)) %>% 
-     filter(is.na({{variable}})) %>% 
-     ungroup()
-  
-   plot <- 
-     ggplot(data = table, aes(x = {{group}}, y = prop))+
-     geom_col()+
-     geom_label(aes(x = {{group}}, y = prop, label = {{group}}))
-   
-   print(plot)
-  
-}
-
-```
-
-```{r missing values plot check}
-#| echo: false
-#| warning: false
-#| message: false
-#| include: false
-#| eval: false
-vox %>% missing_values(variable = confess, group = annee)
-vox %>% missing_values(variable = canton_f, group = annee)
-```
-
-
-```{r descriptive stats educ and income}
-#| echo: false
-#| warning: false
-#| message: false
-vox %>% 
-  count(educ) %>% 
-  mutate(prop = n/sum(n), 
-         label = as_character(educ)) %>% 
-  gt()
-
-
-vox %>% 
-  count(val11) %>% 
-  mutate(prop = n/sum(n), 
-         label = as_character(val11)) %>% 
-  gt()
-```
-
+## Exploratory Analysis
 
 ```{r trust in government by income group}
 #| echo: false
@@ -217,11 +304,12 @@ title <- ggdraw() +
 
 ```
 
-
 ```{r plot grid trust gov}
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
+#| include: false
 plotgrid <- plot_grid(plot1981_2000, plot2001_2016)
 
 
@@ -257,7 +345,8 @@ support_pss %>%
   geom_line(aes(group = factor(annee)))+
   geom_point(size = 2.2)+
   scale_color_brewer(palette = "Set1")+
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1),
+                     breaks = seq(from = 0, to = 0.5, by = 0.05))+
   theme(legend.position = "none")+
   labs(x = "", y = "")
 
@@ -269,7 +358,8 @@ support_pss  %>%
   geom_line(aes(group = factor(annee)))+
   geom_point(size = 2.2)+
   scale_color_brewer(palette = "Set1")+
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1),
+                     breaks = seq(from = 0, to = 0.5, by = 0.05))+
   labs(color = "income group", shape = "income group",
        y = "", x = "")+
   theme(legend.position = "top")
@@ -442,8 +532,6 @@ cowplot::plot_grid(title_udc, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
 
 ```
 
-
-
 ```{r no pooling repeated cross section (nprcs) regression vote for ssp}
 nprcs_ssp <- 
 vox %>%
@@ -472,7 +560,6 @@ nprcs_ssp_results %>%
 
 ```
 
-
 ```{r average marginal effect nprcs ssp}
 # computing average marginal effect for each year
 ame_income_nprcrs_ssp <- 
@@ -497,8 +584,6 @@ nprcs_ssp %>%
 ame_nprcrs_ssp <- rbind(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)
 ```
 
-
-
 ```{r function for nprcrs}
 nprcrs_ame <- function(regression, variable, sequence){
 
@@ -517,7 +602,6 @@ print(ame)
 }
 ```
 
-
 ```{r plot ame nprcs ssp}
 plot_ame_ssp <- 
 ame_nprcrs_ssp %>% 
@@ -533,7 +617,6 @@ ame_nprcrs_ssp %>%
        y = "", x = "Average Marginal Effect")
 plot_ame_ssp
 ```
-
 
 ```{r nprcs ssp with controls}
 
@@ -577,7 +660,6 @@ ame_nprcs_ssp_controls <- rbind(ame_income_nprcs_ssp_controls, ame_education_npr
 
 ```
 
-
 ```{r plot ame ssp full}
 
 plot_ame_nprcs_ssp_controls <- 
@@ -595,10 +677,6 @@ ame_nprcs_ssp_controls %>%
 
 plot_ame_nprcs_ssp_controls
 ```
-
-
-
-
 
 ```{r svp nprcs}
 #| echo: false
@@ -620,7 +698,6 @@ nprcs_udc %>%
          upper = estimate + 1.96*std.error)
 
 ```
-
 
 ```{r nprcs udc ame}
 #| echo: false
@@ -666,7 +743,6 @@ ame_nprcs_udc %>%
        subtitle = "No pooling model, repeated cross-sectional logit regression",
        y = "", x = "Average Marginal Effect")
 ```
-
 
 ```{r svp nprcs controls}
 #| echo: false
@@ -760,10 +836,6 @@ ame_nprcs_plr_controls %>%
        y = "", x = "Average Marginal Effect")
 ```
 
-
-
-
-
 ### Partial pooling for year
 
 ```{r partial pooling canton pss}
@@ -828,14 +900,11 @@ plot_ame_nprcs_ssp_controls
 plot_ame_glmer_ssp
 ```
 
-
 ```{r partial pooling plr}
 glmer_plr <- glmer(data = vox,
                    formula = plr ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
                    family = binomial(link = "logit"))
 ```
-
-
 
 ```{r}
 #| echo: false
@@ -845,10 +914,6 @@ glmer_plr_income <- table_ame(regression = glmer_plr, variable = "income", group
 glmer_plr_educ <- table_ame(regression = glmer_plr, variable = "educ", group = annee_f)
 ame_glmer_plr <- rbind(glmer_plr_educ, glmer_plr_income)
 ```
-
-
-
-
 
 ```{r}
 #| echo: false
@@ -871,15 +936,3 @@ ame_glmer_plr %>%
 
 plot_ame_glmer_plr
 ```
-
-
-
-
-
-
-
-
-
-
-
-

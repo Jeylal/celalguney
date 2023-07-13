@@ -9,7 +9,7 @@
 <meta name="author" content="Celâl Güney">
 <meta name="dcterms.date" content="2023-07-09">
 
-<title>Celâl Güney - Social blocs and political cleavages in Switzerland</title>
+<title>Celâl Güney - Political Conflict and Inequality in Switzerland</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,7 +56,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -157,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Social blocs and political cleavages in Switzerland</h1>
+      <h1 class="title">Political Conflict and Inequality in Switzerland</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Political Economy</div>
                 <div class="quarto-category">Statistics</div>
@@ -196,964 +215,429 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="political-cleavages-and-inequality" class="level1">
+<h1>Political Cleavages and inequality</h1>
+<section id="introduction-and-problématique" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-problématique">Introduction and Problématique</h2>
+<p>How does income inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This interest, whose origin can be traced back to Piketty’s last book <span class="citation" data-cites="piketty_capital_2019">(<a href="#ref-piketty_capital_2019" role="doc-biblioref">2019</a>)</span>, gave rise to the World Political Cleavages and Inequality Database (<a href="https://wpid.world/">WPID</a>) and to a book, which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries <span class="citation" data-cites="gethin_political_2021">(<a href="#ref-gethin_political_2021" role="doc-biblioref">2021</a>)</span>. Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter have evolved and can disturb political and economic stability and how they can be reduced to make society more equal and just for everybody. However, whereas the solutions and basic facts are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not a technical problem, but a political one and that inequality analysis musts thus take politics into account.</p>
+<p>It is interesting to note how the same reasoning can be applied to ecology. Ecologists face indeed the same issue: global warming becomes increasingly more threatening, and scholars know how it could be stopped or at least reduced, but there is paradoxically no political outcome and no serious political measure which has been taken despite the emergency.</p>
+<p>The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus “classist” in the sense that the political positioning of an individual was mainly determined by his position in the economic structure.</p>
+<p>The situation changed around the 1970s and 1980s: the support for the left has become positively correlated with education whereas the support for the right is still linked positively with income and education. Political cleavages have thus become “multidimensional” by combining an economic cleavage (degree of income and wealth), which has become relatively less salient, with a growing “cultural” cleavage due to the increase in average educational level.</p>
+<p>The left has thus become the “brahmin left” because supported by high education voter. The right remains “merchant” because it still is supported by the rich. Finally, a new bloc, the “social-nativist” bloc, gathers voters with low income and low educational level <span class="citation" data-cites="piketty_capital_2019">(<a href="#ref-piketty_capital_2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>Amable and Darcillon -<span class="citation" data-cites="amable_brahmin_2022">Amable and Darcillon (<a href="#ref-amable_brahmin_2022" role="doc-biblioref">2022</a>)</span> offer more contrasted results. Income levels are found to be still an important factor in the formation of political preferences in the classic left-right divide. They identify the possible alliance between the most educated and rich groups, giving rise to a bourgeois bloc.</p>
+</section>
+<section id="political-cleavages-political-conflict-and-inequality-in-switzerland" class="level2">
+<h2 class="anchored" data-anchor-id="political-cleavages-political-conflict-and-inequality-in-switzerland">Political cleavages, political conflict and inequality in Switzerland</h2>
+<p>Switzerland is considered by this literature as the country in which those transformations have been one of the most important. For instance, Durrer de la Sota et al.&nbsp;explain that “Switzerland is the country where the shift of the higher educated towards the left has been the most dramatic” <span class="citation" data-cites="durrer_de_la_sota_party_2021">(<a href="#ref-durrer_de_la_sota_party_2021" role="doc-biblioref">2021, 4</a>)</span>. Switzerland is infamous for being the home of one of the most successful social-nativist party, the SVP which now the first political party in Switzerland. Green parties have also become an important force and they are separated between the liberal ecologists and social ecologists. The important elements of the WPID’s analysis of Switzerland are the following:</p>
+<ul>
+<li><p>The authors used the Swiss Election Studies (<em>Selects</em>) data, which are data collected after each parliamentary election.</p></li>
+<li><p>The educational shift happened in the late 80s, the period 1983-7 being the last class-based period. Switzerland’s political landscape is now a multi-polar and multi-elite one: the support for the greens and socialists is linked positively with education, the rich still support radical/liberal parties and the SVP represents the social-nativist bloc gathering the low income and low education voters.</p></li>
+<li><p>The traditional parties, the Socialists (Swiss Socialist Party SSP), the Liberals and Radicals, and the Christian Democrats are in a declining trend, if not collapsing.</p></li>
+<li><p>The Greens are radical right are the new strong emergent parties, the latter being the most important bloc.</p></li>
+</ul>
+<section id="research-questions-hypotheses-and-empirical-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="research-questions-hypotheses-and-empirical-strategy">Research questions, hypotheses and empirical strategy</h3>
+</section>
+<section id="research-question" class="level3">
+<h3 class="anchored" data-anchor-id="research-question">Research question</h3>
+<p>The present article will test Piketty’s Brahmin left vs Merchant right divide as well as the WPID’s findings on Switzerland. The objective is to explore the following research question:</p>
+<ul>
+<li><p>To what extent is the support for the left linked positively with the level of education and negatively with the level of income</p></li>
+<li><p>To what extent is the support for right parties linked positively with the level of income</p></li>
+<li><p>Are there parties for which the support increase with both the level of income and education?</p></li>
+</ul>
+</section>
+<section id="hypothese" class="level3">
+<h3 class="anchored" data-anchor-id="hypothese">Hypothese</h3>
+<p>These research questions can be given temporary hypothetical answers:</p>
+<ul>
+<li><p>Brahmin left hypothesis:</p>
+<ul>
+<li>The support for left-wing parties (mostly SSP and the Greens) is linked positively with the level of education, with no clear link with the level of income.</li>
+</ul></li>
+<li><p>Merchant right hypothesis:</p>
+<ul>
+<li>The support for traditional right-wing parties (Liberal-Radicals, Christian Democrats which have become recenty “the center”) is linked positively with the level of income.</li>
+</ul></li>
+<li><p>Bourgeois bloc hypothesis</p>
+<ul>
+<li>The support for right-wing parties is linked positively with both the level of income and education.</li>
+</ul></li>
+</ul>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>As previously mentioned, the WPID’s findings for Switzerland are based on Selects data. Since using Selects data would not make great sense, unless a very different and specific methodology is used, I tried my best to find another data source. I have thus found an interesting dataset, the standardized Voxlt surveys, which are post-electoral survey data that were collected after each referendum voting from 1981 to 2016. In those surveys, not only referendum voting decisions were collected, but also information on party identification, left-right positioning and various soc-dem characteristics.</p>
+<p>Party identification will obviously be the dependent variable. I create a dummy variable for each party support.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="vox_voto_analysis_files/figure-html/missing values plot check-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="vox_voto_analysis_files/figure-html/missing values plot check-2.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="fbyibzuexy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#fbyibzuexy .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#fbyibzuexy .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#fbyibzuexy .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#fbyibzuexy .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#fbyibzuexy .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#fbyibzuexy .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#fbyibzuexy .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#fbyibzuexy .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#fbyibzuexy .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#fbyibzuexy .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#fbyibzuexy .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#fbyibzuexy .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#fbyibzuexy .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#fbyibzuexy .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#fbyibzuexy .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#fbyibzuexy .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#fbyibzuexy .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#fbyibzuexy .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#fbyibzuexy .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#fbyibzuexy .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#fbyibzuexy .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#fbyibzuexy .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#fbyibzuexy .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#fbyibzuexy .gt_left {
-  text-align: left;
-}
-
-#fbyibzuexy .gt_center {
-  text-align: center;
-}
-
-#fbyibzuexy .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#fbyibzuexy .gt_font_normal {
-  font-weight: normal;
-}
-
-#fbyibzuexy .gt_font_bold {
-  font-weight: bold;
-}
-
-#fbyibzuexy .gt_font_italic {
-  font-style: italic;
-}
-
-#fbyibzuexy .gt_super {
-  font-size: 65%;
-}
-
-#fbyibzuexy .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-#fbyibzuexy .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#fbyibzuexy .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#fbyibzuexy .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#fbyibzuexy .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#fbyibzuexy .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#fbyibzuexy .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
-<thead class="gt_col_headings">
+<table class="table table-sm table-striped small">
+<caption>Party identification</caption>
+<thead>
 <tr class="header">
-<th id="educ" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">educ</th>
-<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
-<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">prop</th>
-<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">label</th>
+<th style="text-align: right;">p02</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">prop</th>
+<th style="text-align: left;">label</th>
 </tr>
 </thead>
-<tbody class="gt_table_body">
+<tbody>
 <tr class="odd">
-<td class="gt_row gt_center" headers="educ">1</td>
-<td class="gt_row gt_right" headers="n">44007</td>
-<td class="gt_row gt_right" headers="prop">0.137437265</td>
-<td class="gt_row gt_left" headers="label">Ecole obligatoire</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5209</td>
+<td style="text-align: right;">0.0162681</td>
+<td style="text-align: left;">PDC+PCS groupés</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="educ">2</td>
-<td class="gt_row gt_right" headers="n">147792</td>
-<td class="gt_row gt_right" headers="prop">0.461565849</td>
-<td class="gt_row gt_left" headers="label">Apprentissage</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">760</td>
+<td style="text-align: right;">0.0023735</td>
+<td style="text-align: left;">PCS/CSP</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="educ">3</td>
-<td class="gt_row gt_right" headers="n">29759</td>
-<td class="gt_row gt_right" headers="prop">0.092939659</td>
-<td class="gt_row gt_left" headers="label">Maturité + école normale</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">18345</td>
+<td style="text-align: right;">0.0572929</td>
+<td style="text-align: left;">PDC/CVP</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="educ">4</td>
-<td class="gt_row gt_right" headers="n">31534</td>
-<td class="gt_row gt_right" headers="prop">0.098483121</td>
-<td class="gt_row gt_left" headers="label">Formation prof. supérieure</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2589</td>
+<td style="text-align: right;">0.0080856</td>
+<td style="text-align: left;">PEP/EVP</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="educ">5</td>
-<td class="gt_row gt_right" headers="n">16599</td>
-<td class="gt_row gt_right" headers="prop">0.051839961</td>
-<td class="gt_row gt_left" headers="label">Haute école spécialisée</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">22144</td>
+<td style="text-align: right;">0.0691574</td>
+<td style="text-align: left;">PRD/FDP</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="educ">6</td>
-<td class="gt_row gt_right" headers="n">47681</td>
-<td class="gt_row gt_right" headers="prop">0.148911451</td>
-<td class="gt_row gt_left" headers="label">Université + Polytechnique</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1280</td>
+<td style="text-align: right;">0.0039975</td>
+<td style="text-align: left;">PdL (PA)/FPS (AP)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="educ">NA</td>
-<td class="gt_row gt_right" headers="n">2825</td>
-<td class="gt_row gt_right" headers="prop">0.008822694</td>
-<td class="gt_row gt_left" headers="label">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9563</td>
+<td style="text-align: right;">0.0298660</td>
+<td style="text-align: left;">PES/GPS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2026</td>
+<td style="text-align: right;">0.0063274</td>
+<td style="text-align: left;">AdI/LdU</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1690</td>
+<td style="text-align: right;">0.0052780</td>
+<td style="text-align: left;">Lega</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2839</td>
+<td style="text-align: right;">0.0088664</td>
+<td style="text-align: left;">PLS/LPS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">0.0062680</td>
+<td style="text-align: left;">PdT [POCH, PSA]/PdA [POCH, PSA]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">885</td>
+<td style="text-align: right;">0.0027639</td>
+<td style="text-align: left;">DS (AN)/SD (NA)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">47166</td>
+<td style="text-align: right;">0.1473031</td>
+<td style="text-align: left;">PSS/SPS</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">30156</td>
+<td style="text-align: right;">0.0941795</td>
+<td style="text-align: left;">UDC/SVP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">305</td>
+<td style="text-align: right;">0.0009525</td>
+<td style="text-align: left;">FraP</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">463</td>
+<td style="text-align: right;">0.0014460</td>
+<td style="text-align: left;">AV/GB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.0001530</td>
+<td style="text-align: left;">AdG</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: right;">0.0009994</td>
+<td style="text-align: left;">UDF/EDU</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">1521</td>
+<td style="text-align: right;">0.0047502</td>
+<td style="text-align: left;">PBD/BDP</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2413</td>
+<td style="text-align: right;">0.0075360</td>
+<td style="text-align: left;">Verts Libéraux/GLP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">12601</td>
+<td style="text-align: right;">0.0393539</td>
+<td style="text-align: left;">PLR/FDP Die Liberalen</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">2819</td>
+<td style="text-align: right;">0.0088040</td>
+<td style="text-align: left;">Autre parti</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">12996</td>
+<td style="text-align: right;">0.0405875</td>
+<td style="text-align: left;">Plusieurs partis</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">6033</td>
+<td style="text-align: right;">0.0188415</td>
+<td style="text-align: left;">Pas un parti, mais une personne</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">102205</td>
+<td style="text-align: right;">0.3191941</td>
+<td style="text-align: left;">Aucun parti</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">31813</td>
+<td style="text-align: right;">0.0993545</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
-
 </div>
 </div>
+<p>The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable “educ” which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each level is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation very hard and tedious.</p>
+<p>On the other hand, the dataset offers two variables for income: “nivmena” and “revenu”.</p>
+<div class="cell">
 <div class="cell-output-display">
-
-<div id="judrzzsnzn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#judrzzsnzn .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#judrzzsnzn .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#judrzzsnzn .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#judrzzsnzn .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#judrzzsnzn .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#judrzzsnzn .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#judrzzsnzn .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#judrzzsnzn .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#judrzzsnzn .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#judrzzsnzn .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#judrzzsnzn .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#judrzzsnzn .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#judrzzsnzn .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#judrzzsnzn .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#judrzzsnzn .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#judrzzsnzn .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#judrzzsnzn .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#judrzzsnzn .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#judrzzsnzn .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#judrzzsnzn .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#judrzzsnzn .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#judrzzsnzn .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#judrzzsnzn .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#judrzzsnzn .gt_left {
-  text-align: left;
-}
-
-#judrzzsnzn .gt_center {
-  text-align: center;
-}
-
-#judrzzsnzn .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#judrzzsnzn .gt_font_normal {
-  font-weight: normal;
-}
-
-#judrzzsnzn .gt_font_bold {
-  font-weight: bold;
-}
-
-#judrzzsnzn .gt_font_italic {
-  font-style: italic;
-}
-
-#judrzzsnzn .gt_super {
-  font-size: 65%;
-}
-
-#judrzzsnzn .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-#judrzzsnzn .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#judrzzsnzn .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#judrzzsnzn .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#judrzzsnzn .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#judrzzsnzn .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#judrzzsnzn .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
-<thead class="gt_col_headings">
+<table class="table table-sm table-striped small">
+<caption>Educational group</caption>
+<thead>
 <tr class="header">
-<th id="val11" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">val11</th>
-<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
-<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">prop</th>
-<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">label</th>
+<th style="text-align: right;">educ</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">prop</th>
+<th style="text-align: left;">label</th>
 </tr>
 </thead>
-<tbody class="gt_table_body">
+<tbody>
 <tr class="odd">
-<td class="gt_row gt_center" headers="val11">1</td>
-<td class="gt_row gt_right" headers="n">16413</td>
-<td class="gt_row gt_right" headers="prop">0.05125907</td>
-<td class="gt_row gt_left" headers="label">Intervention de l'état</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">44007</td>
+<td style="text-align: right;">0.1374373</td>
+<td style="text-align: left;">Ecole obligatoire</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="val11">2</td>
-<td class="gt_row gt_right" headers="n">17344</td>
-<td class="gt_row gt_right" headers="prop">0.05416665</td>
-<td class="gt_row gt_left" headers="label">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">147792</td>
+<td style="text-align: right;">0.4615658</td>
+<td style="text-align: left;">Apprentissage</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="val11">3</td>
-<td class="gt_row gt_right" headers="n">42376</td>
-<td class="gt_row gt_right" headers="prop">0.13234353</td>
-<td class="gt_row gt_left" headers="label">NA</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">29759</td>
+<td style="text-align: right;">0.0929397</td>
+<td style="text-align: left;">Maturité + école normale</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="val11">4</td>
-<td class="gt_row gt_right" headers="n">16128</td>
-<td class="gt_row gt_right" headers="prop">0.05036899</td>
-<td class="gt_row gt_left" headers="label">nsp</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">31534</td>
+<td style="text-align: right;">0.0984831</td>
+<td style="text-align: left;">Formation prof. supérieure</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="val11">5</td>
-<td class="gt_row gt_right" headers="n">35656</td>
-<td class="gt_row gt_right" headers="prop">0.11135645</td>
-<td class="gt_row gt_left" headers="label">NA</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">16599</td>
+<td style="text-align: right;">0.0518400</td>
+<td style="text-align: left;">Haute école spécialisée</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="val11">6</td>
-<td class="gt_row gt_right" headers="n">45633</td>
-<td class="gt_row gt_right" headers="prop">0.14251539</td>
-<td class="gt_row gt_left" headers="label">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">47681</td>
+<td style="text-align: right;">0.1489115</td>
+<td style="text-align: left;">Université + Polytechnique</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="val11">7</td>
-<td class="gt_row gt_right" headers="n">63351</td>
-<td class="gt_row gt_right" headers="prop">0.19785007</td>
-<td class="gt_row gt_left" headers="label">Concurrence économique</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="val11">NA</td>
-<td class="gt_row gt_right" headers="n">83296</td>
-<td class="gt_row gt_right" headers="prop">0.26013985</td>
-<td class="gt_row gt_left" headers="label">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2825</td>
+<td style="text-align: right;">0.0088227</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
-
 </div>
 </div>
+<p>On the other hand, the dataset offers two variables for income: “nivmena” and “revenu”. Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nivmena) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">label =</span> <span class="fu">as_character</span>(nivmena)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Household income level"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Household income level</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">nivmena</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">prop</th>
+<th style="text-align: left;">label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5515</td>
+<td style="text-align: right;">0.0172238</td>
+<td style="text-align: left;">Elevé</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">19126</td>
+<td style="text-align: right;">0.0597320</td>
+<td style="text-align: left;">Moyen supérieur</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">35285</td>
+<td style="text-align: right;">0.1101978</td>
+<td style="text-align: left;">Moyen inférieur</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">9292</td>
+<td style="text-align: right;">0.0290196</td>
+<td style="text-align: left;">Bas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">250979</td>
+<td style="text-align: right;">0.7838268</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(revenu) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n), </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">label =</span> <span class="fu">as_character</span>(revenu)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Income level"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Income level</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">revenu</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">prop</th>
+<th style="text-align: left;">label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">23419</td>
+<td style="text-align: right;">0.0731393</td>
+<td style="text-align: left;">3’000.- CHF et moins</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">51879</td>
+<td style="text-align: right;">0.1620221</td>
+<td style="text-align: left;">de 3’001 à 5’000.- CHF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">53038</td>
+<td style="text-align: right;">0.1656418</td>
+<td style="text-align: left;">de 5’001 à 7’000.- CHF</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">34683</td>
+<td style="text-align: right;">0.1083177</td>
+<td style="text-align: left;">de 7’001 à 9’000.- CHF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">35171</td>
+<td style="text-align: right;">0.1098418</td>
+<td style="text-align: left;">9’001.- CHF et plus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">13940</td>
+<td style="text-align: right;">0.0435357</td>
+<td style="text-align: left;">nsp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">108067</td>
+<td style="text-align: right;">0.3375016</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>I made the choice to merge the two variables by recoding the revenu variable so that it fits into the categories of the first variable. I do so by considering the first income bracket as the “low” category, the second as “inferior-middle”, the third and fourth as the “upper-middle” category and the fifth as the “upper” category.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two ways to create the income variable</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vox <span class="ot">&lt;-</span> vox <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">if_else</span>(revenu <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">4</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">if_else</span>(revenu <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">3</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">if_else</span>(revenu <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>) <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">2</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">if_else</span>(revenu <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">1</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                                  <span class="fu">if_else</span>(<span class="fu">is.na</span>(revenu) <span class="sc">&amp;</span> annee <span class="sc">&lt;=</span> <span class="dv">1993</span>, nivmena, <span class="cn">NA</span>))))))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>vox<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">4</span>, <span class="dv">1</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">2</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">3</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">4</span>, <span class="cn">NA</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="vox_voto_analysis_files/figure-html/plot grid trust gov-1.png" class="img-fluid" width="672"></p>
@@ -1175,139 +659,297 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="ot">&lt;-</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>annee_f) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">glm</span>(pss <span class="sc">~</span> income <span class="sc">+</span> educ, <span class="at">data =</span> .x, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="sc">%&gt;%</span> </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(tidy) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> year[<span class="fu">rep</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(year)), <span class="at">each =</span> <span class="dv">3</span>),],</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">test =</span> <span class="fu">if_else</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">upper =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error) <span class="ot">-&gt;</span> nprcs_ssp_results</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_results <span class="sc">%&gt;%</span> </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">"(Intercept)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> <span class="fu">factor</span>(year), <span class="at">group =</span> term, <span class="at">color =</span> term)<span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> lower, <span class="at">xmax =</span> upper))<span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term)<span class="sc">+</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Vote for SSP, log(odds)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>annee_f) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">glm</span>(pss <span class="sc">~</span> income <span class="sc">+</span> educ, <span class="at">data =</span> .x, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(tidy) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> year[<span class="fu">rep</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(year)), <span class="at">each =</span> <span class="dv">3</span>),],</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">test =</span> <span class="fu">if_else</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">upper =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error) <span class="ot">-&gt;</span> nprcs_ssp_results</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_results <span class="sc">%&gt;%</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">"(Intercept)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> <span class="fu">factor</span>(year), <span class="at">group =</span> term, <span class="at">color =</span> term)<span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> lower, <span class="at">xmax =</span> upper))<span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term)<span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Vote for SSP, log(odds)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="vox_voto_analysis_files/figure-html/no pooling repeated cross section (nprcs) regression vote for ssp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># computing average marginal effect for each year</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ame_income_nprcrs_ssp <span class="ot">&lt;-</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"income"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"income"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ame_educ_nprcrs_ssp <span class="ot">&lt;-</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="sc">%&gt;%</span> </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"educ"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>, </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"educ"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ame_nprcrs_ssp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># computing average marginal effect for each year</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ame_income_nprcrs_ssp <span class="ot">&lt;-</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"income"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"income"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ame_educ_nprcrs_ssp <span class="ot">&lt;-</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>nprcs_ssp <span class="sc">%&gt;%</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"educ"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>, </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"educ"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>ame_nprcrs_ssp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_ame_ssp <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ame_nprcrs_ssp <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> ame, <span class="at">x =</span> year, <span class="at">color =</span> variable, <span class="at">shape =</span> variable)<span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high))<span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>())<span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probability to vote for SSP"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Repeated cross-section"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Average Marginal Effect"</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plot_ame_ssp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nprcrs_ame <span class="ot">&lt;-</span> <span class="cf">function</span>(regression, variable, sequence){</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ame <span class="ot">&lt;-</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>regression <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> {{variable}})) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> {{sequence}},</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> {{variable}})</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ame)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_ame_ssp <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ame_nprcrs_ssp <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> ame, <span class="at">x =</span> year, <span class="at">color =</span> variable, <span class="at">shape =</span> variable)<span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high))<span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>())<span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probability to vote for SSP"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Repeated cross-section"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Average Marginal Effect"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plot_ame_ssp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="vox_voto_analysis_files/figure-html/plot ame nprcs ssp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>annee_f) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">glm</span>(pss <span class="sc">~</span> income <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> married <span class="sc">+</span> regionL <span class="sc">+</span> religion, <span class="at">data =</span> .x, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls_results <span class="ot">&lt;-</span> </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(tidy) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">test =</span> <span class="fu">if_else</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">upper =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ame_income_nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"income"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"income"</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ame_education_nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"educ"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>,</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"educ"</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>ame_nprcs_ssp_controls <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ame_income_nprcs_ssp_controls, ame_education_nprcs_ssp_controls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>annee_f) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">glm</span>(pss <span class="sc">~</span> income <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> age_cat <span class="sc">+</span> married <span class="sc">+</span> regionL <span class="sc">+</span> religion, <span class="at">data =</span> .x, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls_results <span class="ot">&lt;-</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(tidy) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">test =</span> <span class="fu">if_else</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>std.error,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">upper =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>std.error)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ame_income_nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"income"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"income"</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>ame_education_nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">slopes</span>(.x ,<span class="at">variables =</span> <span class="st">"educ"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">summarise</span>(.x, <span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low))) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1981</span><span class="sc">:</span><span class="dv">2016</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                  <span class="at">variable =</span> <span class="st">"educ"</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>ame_nprcs_ssp_controls <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ame_income_nprcs_ssp_controls, ame_education_nprcs_ssp_controls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_ame_nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ame_nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> ame, <span class="at">x =</span> year, <span class="at">color =</span> variable, <span class="at">shape =</span> variable)<span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high))<span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>())<span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probability to vote for SSP"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"No pooling model, after controls"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Average Marginal Effect"</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(plot_ame_ssp, plot_ame_nprcs_ssp_controls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_ame_nprcs_ssp_controls <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ame_nprcs_ssp_controls <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> ame, <span class="at">x =</span> year, <span class="at">color =</span> variable, <span class="at">shape =</span> variable)<span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high))<span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>())<span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probability to vote for SSP"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"No pooling model, after controls"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Average Marginal Effect"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plot_ame_nprcs_ssp_controls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="vox_voto_analysis_files/figure-html/plot ame ssp full-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="vox_voto_analysis_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="vox_voto_analysis_files/figure-html/svp plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="vox_voto_analysis_files/figure-html/svp nprcs controls-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="vox_voto_analysis_files/figure-html/plr nprcs controls-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="partial-pooling-for-year" class="level3">
+<h3 class="anchored" data-anchor-id="partial-pooling-for-year">Partial pooling for year</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>glmer_pss <span class="ot">&lt;-</span> <span class="fu">glmer</span>(<span class="at">data =</span> vox,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">formula =</span> pss <span class="sc">~</span> income <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> age_cat <span class="sc">+</span> married <span class="sc">+</span> regionL <span class="sc">+</span> religion <span class="sc">+</span> (income <span class="sc">+</span> educ <span class="sc">|</span> annee_f),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## function to simplify the code</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># table ame is for computing the average marginal effect</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>table_ame <span class="ot">&lt;-</span> <span class="cf">function</span>(variable, regression, group){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>glmer_table <span class="ot">&lt;-</span> <span class="fu">slopes</span>({{regression}}, <span class="at">variables =</span> {{variable}})</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ame <span class="ot">&lt;-</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a> glmer_table  <span class="sc">%&gt;%</span> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>({{group}}) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ame =</span> <span class="fu">mean</span>(estimate),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">mean</span>(conf.high),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">mean</span>(conf.low)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> {{variable}})</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ame)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 5
+   annee_f      ame     high      low variable
+   &lt;fct&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+ 1 1981    -0.0855  -0.0719  -0.0991  income  
+ 2 1982    -0.0899  -0.0763  -0.104   income  
+ 3 1983    -0.0686  -0.0555  -0.0816  income  
+ 4 1984    -0.0606  -0.0481  -0.0732  income  
+ 5 1985    -0.0413  -0.0310  -0.0517  income  
+ 6 1986    -0.0103  -0.00452 -0.0160  income  
+ 7 1987    -0.00389  0.00166 -0.00945 income  
+ 8 1988    -0.0235  -0.0156  -0.0314  income  
+ 9 1989    -0.0197  -0.0130  -0.0265  income  
+10 1990    -0.0258  -0.0185  -0.0331  income  
+# ℹ 26 more rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 5
+   annee_f     ame    high     low variable
+   &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   
+ 1 1981    0.0302  0.0342  0.0261  educ    
+ 2 1982    0.0303  0.0345  0.0261  educ    
+ 3 1983    0.0160  0.0198  0.0122  educ    
+ 4 1984    0.0131  0.0168  0.00938 educ    
+ 5 1985    0.00565 0.00859 0.00272 educ    
+ 6 1986    0.0150  0.0172  0.0129  educ    
+ 7 1987    0.0131  0.0152  0.0109  educ    
+ 8 1988    0.00923 0.0116  0.00689 educ    
+ 9 1989    0.00878 0.0108  0.00677 educ    
+10 1990    0.0155  0.0178  0.0133  educ    
+# ℹ 26 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="vox_voto_analysis_files/figure-html/plot ame partial pooling pss-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="vox_voto_analysis_files/figure-html/plot ame partial pooling pss-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>glmer_plr <span class="ot">&lt;-</span> <span class="fu">glmer</span>(<span class="at">data =</span> vox,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">formula =</span> plr <span class="sc">~</span> income <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> age_cat <span class="sc">+</span> married <span class="sc">+</span> regionL <span class="sc">+</span> religion <span class="sc">+</span> (income <span class="sc">+</span> educ <span class="sc">|</span> annee_f),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 5
+   annee_f    ame   high    low variable
+   &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   
+ 1 1981    0.0743 0.0831 0.0654 income  
+ 2 1982    0.0721 0.0809 0.0633 income  
+ 3 1983    0.0747 0.0837 0.0657 income  
+ 4 1984    0.0699 0.0785 0.0613 income  
+ 5 1985    0.0610 0.0689 0.0531 income  
+ 6 1986    0.0245 0.0291 0.0198 income  
+ 7 1987    0.0367 0.0425 0.0310 income  
+ 8 1988    0.0551 0.0626 0.0476 income  
+ 9 1989    0.0457 0.0524 0.0391 income  
+10 1990    0.0361 0.0419 0.0304 income  
+# ℹ 26 more rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 5
+   annee_f     ame    high       low variable
+   &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   
+ 1 1981    0.00338 0.00800 -0.00124  educ    
+ 2 1982    0.00274 0.00750 -0.00201  educ    
+ 3 1983    0.00700 0.0113   0.00266  educ    
+ 4 1984    0.0248  0.0296   0.0200   educ    
+ 5 1985    0.0175  0.0209   0.0141   educ    
+ 6 1986    0.00741 0.00994  0.00488  educ    
+ 7 1987    0.0119  0.0146   0.00920  educ    
+ 8 1988    0.0107  0.0140   0.00745  educ    
+ 9 1989    0.00204 0.00505 -0.000964 educ    
+10 1990    0.00603 0.00856  0.00349  educ    
+# ℹ 26 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="vox_voto_analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-amable_brahmin_2022" class="csl-entry" role="listitem">
+Amable, Bruno, and Thibault Darcillon. 2022. <span>“Brahmin Left Versus Merchant Right. How Useful Is This Distinction for the Analysis of Political Divides in Western Democracies?”</span> <em>Political Economy Working Papers</em>.
+</div>
+<div id="ref-durrer_de_la_sota_party_2021" class="csl-entry" role="listitem">
+Durrer de la Sota, Carmen, Amory Gethin, and Clara Martinez-Toledano. 2021. <span>“Party System Transformation and the Structure of Political Cleavages in Austria, Belgium, the Netherlands and Switzerland, 1967-2019.”</span> <em>World Inequality Lab – Working Paper</em>, no. 2021. <a href="https://wid.world/wp-content/uploads/2021/03/WorldInequalityLab_WP2021_08_PoliticalCleavages_AustriaBelgiumNLSwitzerland.pdf">https://wid.world/wp-content/uploads/2021/03/WorldInequalityLab_WP2021_08_PoliticalCleavages_AustriaBelgiumNLSwitzerland.pdf</a>.
+</div>
+<div id="ref-gethin_political_2021" class="csl-entry" role="listitem">
+Gethin, Armory, Clara Martinez-Toledano, and Thomas Piketty. 2021. <em>Political Cleavages and Social Inequalities a Study of Fifty Democracies, 1948–2020</em>. Harvard Univeristy Press.
+</div>
+<div id="ref-piketty_capital_2019" class="csl-entry" role="listitem">
+Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
