@@ -7,7 +7,7 @@ execute:
 categories: [Political Economy, Statistics]
 author: "Celâl Güney"
 date: "9 July 2023"
-draft: true
+draft: false
 bibliography: vox_biblio.bib
 ---
 
@@ -42,17 +42,17 @@ theme_set(theme_bw())
 
 ## Introduction and Problématique
 
-How does income inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This interest, whose origin can be traced back to Piketty's last book [-@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database ([WPID](https://wpid.world/)) and to a book, which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [-@gethin_political_2021]. Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter have evolved and can disturb political and economic stability and how they can be reduced to make society more equal and just for everybody. However, whereas the solutions and basic facts are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not a technical problem, but a political one and that inequality analysis musts thus take politics into account.
+How does income inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This interest, whose origin can be traced back to Piketty's last book [@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database ([WPID](https://wpid.world/)) and to a book, which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [@gethin_political_2021]. Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter have evolved and can disturb political and economic stability and how they can be reduced to make society more equal. However, whereas the technical solutions are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not a technical problem, but rather a political one and that inequality analysis musts thus take politics into account.
 
 It is interesting to note how the same reasoning can be applied to ecology. Ecologists face indeed the same issue: global warming becomes increasingly more threatening, and scholars know how it could be stopped or at least reduced, but there is paradoxically no political outcome and no serious political measure which has been taken despite the emergency.
 
-The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus "classist" in the sense that the political positioning of an individual was mainly determined by his position in the economic structure.
+The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus "classist" and bipolar in the sense that the political positioning of an individual on the left-right axis was mainly determined by his position in the economic structure.
 
-The situation changed around the 1970s and 1980s: the support for the left has become positively correlated with education whereas the support for the right is still linked positively with income and education. Political cleavages have thus become "multidimensional" by combining an economic cleavage (degree of income and wealth), which has become relatively less salient, with a growing "cultural" cleavage due to the increase in average educational level.
+The situation changed around the 1970s and 1980s: the support for the left became positively correlated with education whereas the support for the right remained linked positively with income and education. Political cleavages became thus "multipolar" by combining an economic cleavage (degree of income and wealth), which became relatively less salient, with a growing "cultural" cleavage due to the increase in average educational level.
 
-The left has thus become the "brahmin left" because supported by high education voter. The right remains "merchant" because it still is supported by the rich. Finally, a new bloc, the "social-nativist" bloc, gathers voters with low income and low educational level [@piketty_capital_2019].
+The left has thus become "brahmin" because supported by high education voters. The right remains "merchant" because it still is supported by the rich. Finally, a new bloc, the "social-nativist" bloc, gathers voters with low income and low educational level. Piketty shows great concern towards the latter, calling it often the "social-nativist trap" [@piketty_capital_2019].
 
-Amable and Darcillon [-@amable_brahmin_2022] offer more contrasted results. Income levels are found to be still an important factor in the formation of political preferences in the classic left-right divide. They identify the possible alliance between the most educated and rich groups, giving rise to a bourgeois bloc.
+Amable and Darcillon [-@amable_brahmin_2022] offer more contrasted results. Income levels are found to be still an important factor in the formation of political preferences in the classic left-right divide. They identify the possible alliance between the most educated and rich groups, giving rise to a bourgeois bloc. Amable and Palombarini notably described and analyzed how the traditional left and right blocs collapsed in France and how this phenomena allowed the emergence of a bourgeois bloc (led by Macron and his party) gathering the most educated and wealthy voters. In this perspective, the emergence of a bloc bourgeois does not imply the end of class conflict, but rather its reinforcement [@amable_illusion_2018].
 
 ## Political cleavages, political conflict and inequality in Switzerland
 
@@ -96,7 +96,7 @@ These research questions can be given temporary hypothetical answers:
 
 ### Data
 
-As previously mentioned, the WPID's findings for Switzerland are based on Selects data. Since using Selects data would not make great sense, unless a very different and specific methodology is used, I tried my best to find another data source. I have thus found an interesting dataset, the standardized Voxlt surveys, which are post-electoral survey data that were collected after each referendum voting from 1981 to 2016. In those surveys, not only referendum voting decisions were collected, but also information on party identification, left-right positioning and various soc-dem characteristics.
+As mentioned above, the WPID's findings for Switzerland are based on Selects data. Since using Selects data again would not make great sense, unless a very different and specific methodology is used, I tried my best to find another data source. I have thus found an interesting dataset, the standardized Voxlt surveys, which are post-electoral survey data that were collected after each referendum voting from 1981 to 2016. In those surveys, not only referendum voting decisions were collected, but also information on party identification, left-right positioning and various soc-dem characteristics.
 
 Party identification will obviously be the dependent variable. I create a dummy variable for each party support.
 
@@ -119,9 +119,10 @@ vox %>%
   kable(caption = "Party identification")
 ```
 
-The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable "educ" which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each level is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation very hard and tedious.
+The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable "educ" which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each group is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation in R very hard and tedious (especially the glmer function, which can take a long time).
 
 On the other hand, the dataset offers two variables for income: "nivmena" and "revenu".
+
 ```{r descriptive stats educ}
 #| echo: false
 #| warning: false
@@ -132,7 +133,6 @@ vox %>%
          label = as_character(educ)) %>% 
   kable(caption = "Educational group")
 ```
-
 
 ```{r missing value check function}
 #| echo: false
@@ -157,8 +157,7 @@ missing_values <- function(data, variable, group) {
 
 ```
 
-On the other hand, the dataset offers two variables for income: "nivmena" and "revenu". Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable. 
-
+On the other hand, the dataset offers two variables for income: "nivmena" and "revenu". Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable.
 
 ```{r descriptive stats income}
 vox %>% 
@@ -195,7 +194,6 @@ vox$income <- ifelse(vox$income == 4, 1,
                         ifelse(vox$income == 2, 3,
                           ifelse(vox$income == 1, 4, NA))))
 ```
-
 
 ```{r party dummies and other recoding}
 #| warning: false
@@ -243,6 +241,8 @@ vox$canton_f <- as_character(vox$canton)
 #| echo: false
 #| warning: false
 #| message: false
+#| include: false
+#| eval: false
 trust_gov_inc <- 
   vox %>% 
   group_by(annee, income) %>% 
@@ -317,6 +317,8 @@ plotgrid <- plot_grid(plot1981_2000, plot2001_2016)
 cowplot::plot_grid(title, plotgrid, ncol = 1, rel_heights = c(0.1, 1))
 ```
 
+Let's first see how support for the Swiss Socialist Party (SSP) evolved across income groups in the last decades. I expect the lower groups to support the SSP until the 1990s, when the poor have supposedly shifted their support from the SSP to other parties (mainly the SVP) or to abstention.
+
 ```{r vote for the left by income group}
 #| echo: false
 #| warning: false
@@ -337,55 +339,34 @@ support_pss <-
   drop_na()
 
 
-supportpssplot1 <- 
-support_pss %>% 
-  filter(annee <= 2000) %>% 
-  ggplot()+
-  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
-  geom_line(aes(group = factor(annee)))+
-  geom_point(size = 2.2)+
-  scale_color_brewer(palette = "Set1")+
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1),
-                     breaks = seq(from = 0, to = 0.5, by = 0.05))+
-  theme(legend.position = "none")+
-  labs(x = "", y = "")
+breaks_pss <- seq(from = min(support_pss$prop), to = max(support_pss$prop), by = 0.01)
 
-supportpssplot2 <- 
+
+
+supportpssplot <- 
 support_pss  %>% 
-  filter(annee > 2000) %>% 
   ggplot()+
-  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  aes(y = annee, x = prop, color = factor(income), shape = factor(income))+
   geom_line(aes(group = factor(annee)))+
   geom_point(size = 2.2)+
   scale_color_brewer(palette = "Set1")+
   scale_x_continuous(labels = scales::percent_format(accuracy = 1),
-                     breaks = seq(from = 0, to = 0.5, by = 0.05))+
+                     breaks = breaks_pss)+
+    scale_y_continuous(breaks = seq(from = 1981, to = 2016, by = 2))+
   labs(color = "income group", shape = "income group",
-       y = "", x = "")+
-  theme(legend.position = "top")
+       y = "", x = "",
+       title = "Support for the Socialist Party")+
+  theme(legend.position = "bottom")
 
-
-
-title_pss <- ggdraw() + 
-  draw_label(
-    "Support for Swiss Socialist Party",
-    fontface = 'bold',
-    x = 0,
-    hjust = 0
-  ) +
-  theme(
-    # add margin on the left of the drawing canvas,
-    # so title is aligned with left edge of first plot
-    plot.margin = margin(0, 0, 0, 7)
-  )
-
-plotgridpss <- plot_grid(supportpssplot1, supportpssplot2)
-
-
-
-cowplot::plot_grid(title_pss, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
+supportpssplot
 
 ```
+
+The graph above shows well the reversal of the SSP support. From 1981 to around 1992, the lowest income groups (1 and 2) were the groups that supported the SSP the most. The richest group (4) was clearly not supporting the SSP a lot until the middle of the 1990s, when it became the most supportive group!. A reversal has thus clearly happened during the 1990s: the support for SSP declined among the poorest and increased among the upper middle class and the richest.
+
+Let's now see how the support for the radicals/Liberals evolved. The Radicals are surely one of the most important political bloc historically in Switzerland. Radicals literally created modern Switzerland in the middle of the 19th century. Radicals underwent a lot of transformations, fusions and alliances with other parties. From 1984 to 2008, their party was the "radical-democratic party" after having merged with Swiss democrates. In 2009, this party merged again with another, the Swiss Liberal party, to create the Liberal-Radical (PLR) party which is the party which exists until nowadays. The bourgeois element of this bloc has never been a taboo and the PLR can clearly be named a bourgeois party.
+
+The bourgeois dimension of the PLR is also made clear by the graph below:
 
 ```{r support plr by income group}
 #| echo: false
@@ -407,56 +388,28 @@ support_plr <-
   ungroup() %>% 
   drop_na()
 
-supportplrplot1 <- 
+breaks_plr <- seq(from = min(support_plr$prop), to = max(support_plr$prop), by = 0.025)
+
+supportplrplot <- 
 support_plr %>% 
-  filter(annee <= 2000) %>% 
   ggplot()+
-  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  aes(y = annee, x = prop, color = factor(income), shape = factor(income))+
   geom_line(aes(group = factor(annee)))+
   geom_point(size = 2.2)+
   scale_color_brewer(palette = "Set1")+
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
-  theme(legend.position = "none")+
-  labs(x = "", y = "")
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1),
+                     breaks = breaks_plr)+
+  scale_y_continuous(breaks = seq(from = 1981, to = 2016, by = 2))+
+  theme(legend.position = "bottom")+
+  labs(title = "Support for Radicals/Liberals",
+       y = "", x = "", color = "Income", shape = "Income")
 
-supportplrplot2 <- 
-support_plr  %>% 
-  filter(annee > 2000) %>% 
-  ggplot()+
-  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
-  geom_line(aes(group = factor(annee)))+
-  geom_point(size = 2.2)+
-  scale_color_brewer(palette = "Set1")+
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
-  labs(color = "income group", shape = "income group",
-       y = "", x = "")+
-  theme(legend.position = "top",
-        legend.background = element_blank())
-
-
-
-
-
-
-title_plr <- ggdraw() + 
-  draw_label(
-    "Support for radical/liberal Party",
-    fontface = 'bold',
-    x = 0,
-    hjust = 0
-  ) +
-  theme(
-    # add margin on the left of the drawing canvas,
-    # so title is aligned with left edge of first plot
-    plot.margin = margin(0, 0, 0, 7)
-  )
-
-plotgridpss <- plot_grid(supportplrplot1, supportplrplot2)
-
-
-
-cowplot::plot_grid(title_plr, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
+supportplrplot
 ```
+
+We can see that the radical-democrates (from 1981 to 2008) and then PLR (2009-2016) was always mainly supported by the richest income groups. Support among the poorest rarely went beyond the 10%.
+
+Regarding the support for Swiss People's party (SVP), here is the graph below:
 
 ```{r support udc by income group}
 #| echo: false
@@ -479,58 +432,35 @@ support_udc <-
   ungroup() %>% 
   drop_na()
 
-supportudcplot1 <- 
-support_udc %>% 
-  filter(annee <= 2000) %>% 
-  ggplot()+
-  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
-  geom_line(aes(group = factor(annee)))+
-  geom_point(size = 2.2)+
-  scale_color_brewer(palette = "Set1")+
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
-  theme(legend.position = "none")+
-  labs(x = "", y = "")
-
-supportudcplot2 <- 
+supportudcplot <- 
 support_udc  %>% 
-  filter(annee > 2000) %>% 
   ggplot()+
-  aes(y = factor(annee), x = prop, color = factor(income), shape = factor(income))+
+  aes(y = annee, x = prop, color = factor(income), shape = factor(income))+
   geom_line(aes(group = factor(annee)))+
   geom_point(size = 2.2)+
   scale_color_brewer(palette = "Set1")+
   scale_x_continuous(labels = scales::percent_format(accuracy = 1))+
+    scale_y_continuous(breaks = seq(from = 1981, to = 2016, by = 2))+
   labs(color = "income group", shape = "income group",
-       y = "", x = "")+
-  theme(legend.position = "top",
+       y = "", x = "",
+       title = "Support for SVP")+
+  theme(legend.position = "bottom",
         legend.background = element_blank())
 
-
-
-
-
-
-title_udc <- ggdraw() + 
-  draw_label(
-    "Support for Swiss People's Party",
-    fontface = 'bold',
-    x = 0,
-    hjust = 0
-  ) +
-  theme(
-    # add margin on the left of the drawing canvas,
-    # so title is aligned with left edge of first plot
-    plot.margin = margin(0, 0, 0, 7)
-  )
-
-plotgridpss <- plot_grid(supportudcplot1, supportudcplot2)
-
-
-
-cowplot::plot_grid(title_udc, plotgridpss, ncol = 1, rel_heights = c(0.1, 1))
-
-
+supportudcplot
 ```
+
+The graph illustrates well how the avarage support for SVP increased in almost all income groups, except for the highest group. The latter used to support SVP the most until the late 1990s. Moreover, we can see that the common and widespread idea that the SVP is the most successful among the poorest voters is an exaggeration. The support for SVP also increased among the third and second income group. It is interesting to note how a reversal happened in 1992, the year of the voting on the adhesion to the European Economic Area (EEA). Before 1992, the richest group used to be the most supportive of the SVP. After 1992, the support among the richest declined and is the lowest in almost every year.
+
+## Modelling
+
+To analyze the relationship between party support and income and education, let's now run some regressions. I will run separate binary logit regression for each party support dummies with income and education as explanatory variable. Since we have a timeframe which goes from 1981 to 2016, a choice has to be made regarding which regression model to run in order to take years into account. The first and most simple option would be to run separate regressions for each year. This is the repeated cross-sectional regression option. Another option would be to run a multilevel regression with years as a level and with varying slopes for education and income.
+
+The first option is a lot more convenient than the multilevel model, because it is a lot faster to run in R, especially when control variables are added in the model. However, multilevel model is more appropriated and gives more robust results and better inference. Since it would be also interesting to compare the results between the two options, both repeated cross-sectional and multilevel regressions will be run here.
+
+#### Repeated Cross-section: support for SSP
+
+Let's first run binary logit regression separately for each year of the dataset. The package purrr and map() function allows to do this quiet easily:
 
 ```{r no pooling repeated cross section (nprcs) regression vote for ssp}
 nprcs_ssp <- 
@@ -538,8 +468,8 @@ vox %>%
   split(.$annee_f) %>% 
   map(~ glm(pss ~ income + educ, data = .x, family = binomial(link = "logit")))
 
-year <- data.frame(year = 1981:2016)
 
+year <- data.frame(year = 1981:2016)
 
 nprcs_ssp %>% 
   map_df(tidy) %>% 
@@ -559,6 +489,8 @@ nprcs_ssp_results %>%
   labs(title = "Vote for SSP, log(odds)")
 
 ```
+
+Here are the estimated coefficient for each regression. Since the coefficients give information on log(odds), they are not very informative (even if their sign still is). To give more meaningful results, I compute average marginal effects (AME) for each year:
 
 ```{r average marginal effect nprcs ssp}
 # computing average marginal effect for each year
@@ -585,6 +517,8 @@ ame_nprcrs_ssp <- rbind(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)
 ```
 
 ```{r function for nprcrs}
+#| echo: false
+# put the code above into a function to avoid repeating the code
 nprcrs_ame <- function(regression, variable, sequence){
 
 ame <- 
@@ -603,6 +537,7 @@ print(ame)
 ```
 
 ```{r plot ame nprcs ssp}
+## plot the AME for each year
 plot_ame_ssp <- 
 ame_nprcrs_ssp %>% 
   ggplot()+
@@ -613,14 +548,19 @@ ame_nprcrs_ssp %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SSP",
-       subtitle = "Repeated cross-section",
+       subtitle = "Repeated cross-section, no controls",
        y = "", x = "Average Marginal Effect")
 plot_ame_ssp
 ```
 
+This graph offers interesting results. The support for SSP used to be strongly negatively associated with income in 1981-2, but this negative relationship declined a lot during the 80s. It recovered a bit during the 90s but then even became positive in the middle of the 1990s and positive again in the early 2000s. On the other hand, the support for SSP seems to be always linked positively with the level of education. We can thus say that the SSP was and still is indeed a brahmin party, and even endorse the role of a bourgeois party for some years when its support is linked positively with income and education.
+
+To check whether the results above are robust, I run and present a second model which controls for soc-dem characteristics (age, gender, marital status, region):
+
 ```{r nprcs ssp with controls}
-
-
+#| echo: false
+#| warning: false
+#| message: false
 
 
 nprcs_ssp_controls <- 
@@ -672,11 +612,15 @@ ame_nprcs_ssp_controls %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SSP",
-       subtitle = "No pooling model, after controls",
+       subtitle = "Repeated cross-section, after controls",
        y = "", x = "Average Marginal Effect")
 
 plot_ame_nprcs_ssp_controls
 ```
+
+The resutlts seem rather robust and the global picture does not really change after controls
+
+#### Repeated Cross-section: support for SVP
 
 ```{r svp nprcs}
 #| echo: false
@@ -740,14 +684,18 @@ ame_nprcs_udc %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SVP",
-       subtitle = "No pooling model, repeated cross-sectional logit regression",
+       subtitle = "Repeated cross-section",
        y = "", x = "Average Marginal Effect")
 ```
+
+The results show how the support for SVP is clearly linked negatively with educational level. The relationship with income is less clear since a lot of the results are not statistically significant (the confidence interval cross 0 for most years). Here I will not give any conclusion before fitting the multilevel regression.
 
 ```{r svp nprcs controls}
 #| echo: false
 #| message: false
 #| warning: false
+#| include: false
+#| eval: false
 nprcs_udc_controls <- 
 vox %>%
   split(.$annee_f) %>% 
@@ -786,9 +734,11 @@ ame_nprcs_udc_controls %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SVP",
-       subtitle = "No pooling model, repeated cross-sectional logit regression after controls",
+       subtitle = "Repeated cross-section, after controls",
        y = "", x = "Average Marginal Effect")
 ```
+
+#### Repeated Cross-section: support for PLR
 
 ```{r plr nprcs controls}
 #| echo: false
@@ -832,19 +782,27 @@ ame_nprcs_plr_controls %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for radical/liberal party",
-       subtitle = "No pooling model, repeated cross-sectional logit regression after controls",
+       subtitle = "Repeated cross-section, with controls",
        y = "", x = "Average Marginal Effect")
 ```
 
-### Partial pooling for year
+Finally, here are the results for PLR support. We can see that the PLR clearly fits into the bourgeois category with support linked positively with both education and income, the latter being the important factor even if it declined nonetheless.
+
+### Multilevel regression: partial pooling for years
 
 ```{r partial pooling canton pss}
+#| eval: false
+#| warning: false
+#| message: false
 glmer_pss <- glmer(data = vox,
                    formula = pss ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
                    family = binomial(link = "logit"))
 ```
 
 ```{r function ame}
+#| warning: false
+#| message: false
+
 
 ## function to simplify the code
 # table ame is for computing the average marginal effect
@@ -862,7 +820,6 @@ ame <-
   ungroup() %>% 
   mutate(variable = {{variable}})
 
-print(ame)
 
 }
 ```
@@ -871,17 +828,21 @@ print(ame)
 #| echo: false
 #| message: false
 #| warning: false
+#| eval: false
 ame_glmer_pss_inc <- table_ame(regression = glmer_pss, group = annee_f, variable = "income")
 ame_glmer_pss_educ <- table_ame(regression = glmer_pss, group = annee_f, variable = "educ")
 
 ame_glmer_pss_full <- rbind(ame_glmer_pss_inc, ame_glmer_pss_educ)
-  
+save(ame_glmer_pss_full, file = "ame_glmer_pss_full.Rdata")
 ```
 
 ```{r plot ame partial pooling pss}
 #| echo: false
 #| message: false
 #| warning: false
+
+load("ame_glmer_pss_full.Rdata")
+
 plot_ame_glmer_ssp <- 
 ame_glmer_pss_full %>% 
   ggplot()+
@@ -896,29 +857,36 @@ ame_glmer_pss_full %>%
        y = "", x = "Average Marginal Effect")+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-plot_ame_nprcs_ssp_controls
+
 plot_ame_glmer_ssp
 ```
 
 ```{r partial pooling plr}
+#| eval: false
+#| include: false
 glmer_plr <- glmer(data = vox,
                    formula = plr ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
                    family = binomial(link = "logit"))
+
 ```
 
-```{r}
+```{r partial pooling plr ame table}
 #| echo: false
 #| message: false
 #| warning: false
+#| eval: false
 glmer_plr_income <- table_ame(regression = glmer_plr, variable = "income", group = annee_f)
 glmer_plr_educ <- table_ame(regression = glmer_plr, variable = "educ", group = annee_f)
 ame_glmer_plr <- rbind(glmer_plr_educ, glmer_plr_income)
+save(ame_glmer_plr, file = "ame_glmer_plr.Rdata")
 ```
 
-```{r}
+```{r partial pooling plr plot}
 #| echo: false
 #| message: false
 #| warning: false
+
+load("ame_glmer_plr.Rdata")
 plot_ame_glmer_plr <- 
 ame_glmer_plr %>% 
   ggplot()+
@@ -935,4 +903,47 @@ ame_glmer_plr %>%
 
 
 plot_ame_glmer_plr
+```
+
+```{r glmer svp}
+#| eval: false
+glmer_udc <- glmer(data = vox,
+                   formula = udc ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
+                   family = binomial(link = "logit"))
+```
+
+```{r partial pooling udc ame table}
+#| echo: false
+#| message: false
+#| warning: false
+#| eval: false
+
+glmer_udc_income <- table_ame(regression = glmer_udc, variable = "income", group = annee_f)
+glmer_udc_educ <- table_ame(regression = glmer_udc, variable = "educ", group = annee_f)
+ame_glmer_udc <- rbind(glmer_udc_income, glmer_udc_educ)
+```
+
+```{r partial pooling udc plot}
+#| echo: false
+#| message: false
+#| warning: false
+
+load("ame_glmer_udc.Rdata")
+
+plot_ame_glmer_udc <- 
+ame_glmer_udc %>% 
+  ggplot()+
+  aes(y = ame, x = annee_f, color = variable, shape = variable, group = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Probability to vote for SVP",
+       subtitle = "Partial Pooling (glmer) model",
+       y = "", x = "Average Marginal Effect")+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+
+plot_ame_glmer_udc
 ```
