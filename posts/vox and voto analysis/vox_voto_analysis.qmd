@@ -1284,11 +1284,15 @@ save(comparisons_glmer_greens, file = "comparisons_glmer_greens.Rdata")
 ```
 
 
+## Conclusion
 
+#### Brahmin Left hypothesis
 
+This hypothesis is globally confirmed. The Swiss socialist party was clearing gathering the most educated and the lowest income groups in the beginning of the 1980s. Then, the negative association between ssp support and income declined during the 1980s, recovered a bit in the late 80s, then declined further and even became positive in the 90s and the beginning of the 2000s, making the SSP a bourgeois party during this period.
 
+#### Merchant and Bourgeois Bloc hypotheses
 
-
+The Radicals-Liberals represent clearly a bourgeois bloc, gathering the support of the wealthiest and most educated in almost every year of the dataset. The SVP was a merchant right party until 1992. After this period, the SVP gather mainly support from low income and low level of education groups
 
 
 

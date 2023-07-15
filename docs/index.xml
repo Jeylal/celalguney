@@ -974,7 +974,7 @@ font-style: inherit;">"Probability to vote for SSP"</span>,</span>
 background-color: null;
 font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Repeated cross-section, no controls"</span>,</span>
+font-style: inherit;">"Repeated Cross-sectional logit regressions"</span>,</span>
 <span id="cb6-7">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
@@ -1430,10 +1430,21 @@ font-style: inherit;">"logit"</span>))</span></code></pre></div>
 <p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons glmer greens-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-
-
-
 </section>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="brahmin-left-hypothesis" class="level4">
+<h4 class="anchored" data-anchor-id="brahmin-left-hypothesis">Brahmin Left hypothesis</h4>
+<p>This hypothesis is globally confirmed. The Swiss socialist party was clearing gathering the most educated and the lowest income groups in the beginning of the 1980s. Then, the negative association between ssp support and income declined during the 1980s, recovered a bit in the late 80s, then declined further and even became positive in the 90s and the beginning of the 2000s, making the SSP a bourgeois party during this period.</p>
+</section>
+<section id="merchant-and-bourgeois-bloc-hypotheses" class="level4">
+<h4 class="anchored" data-anchor-id="merchant-and-bourgeois-bloc-hypotheses">Merchant and Bourgeois Bloc hypotheses</h4>
+<p>The Radicals-Liberals represent clearly a bourgeois bloc, gathering the support of the wealthiest and most educated in almost every year of the dataset. The SVP was a merchant right party until 1992. After this period, the SVP gather mainly support from low income and low level of education groups</p>
+
+
+
 </section>
 </section>
 </section>
