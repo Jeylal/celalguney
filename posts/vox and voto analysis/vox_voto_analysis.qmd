@@ -633,7 +633,7 @@ plot_ame_ssp <-
 ame_nprcrs_ssp %>% 
   plot_ame()+
   labs(title = "Probability to vote for SSP",
-       subtitle = "Repeated cross-section, no controls",
+       subtitle = "Repeated Cross-sectional logit regressions",
        y = "", x = "Average Marginal Effect")
 plot_ame_ssp
 ```
@@ -1046,7 +1046,7 @@ ame_glmer_pss_full %>%
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SSP",
-       subtitle = "Partial Pooling (glmer) model",
+       subtitle = "Partial Pooling (glmer) logit model",
        y = "Average Marginal Effect", x = "")+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
@@ -1068,7 +1068,7 @@ glmer_comparisons_ssp %>%
   geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Differences in Probability: Support for SSP",
-       subtitle = "Partial Pooling (glmer) model",
+       subtitle = "Partial Pooling (glmer) logit model",
        y = "Average Marginal Effect", x = "")+  
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
   
