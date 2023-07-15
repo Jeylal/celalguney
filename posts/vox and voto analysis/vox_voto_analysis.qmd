@@ -38,17 +38,144 @@ library(knitr)
 theme_set(theme_bw())
 ```
 
+
+```{r functions}
+#| echo: false
+
+## function to plot missing values
+missing_values <- function(data, variable, group) { 
+  
+   table <- data %>% 
+     group_by({{group}}) %>% 
+     count({{variable}}) %>% 
+     mutate(prop = n/sum(n)) %>% 
+     filter(is.na({{variable}})) %>% 
+     ungroup()
+  
+   plot <- 
+     ggplot(data = table, aes(x = {{group}}, y = prop))+
+     geom_col()+
+     geom_label(aes(x = {{group}}, y = prop, label = {{group}}))
+   print(plot)
+  
+}
+
+
+### function to compute average marginal effect table for repeated cross section regression
+nprcrs_ame <- function(regression, variable, sequence){
+
+ame <- 
+regression %>% 
+  map(~slopes(.x ,variables = {{variable}})) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = {{sequence}},
+                  variable = {{variable}})
+
+
+
+}
+
+#### function to plot the marginal effects
+plot_ame <- function(data){
+  
+{{data}} %>% 
+  ggplot()+
+  aes(y = ame, x = year, color = variable, shape = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(y = "", x = "")
+}
+
+#table ame is for computing the average marginal effect for glmer 
+table_ame <- function(variable, regression, group){
+  
+glmer_table <- slopes({{regression}}, variables = {{variable}})
+
+
+ame <- 
+ glmer_table  %>% 
+  group_by({{group}}) %>% 
+  summarise(ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low)) %>% 
+  ungroup() %>% 
+  mutate(variable = {{variable}})
+
+
+}
+
+
+### ame function
+
+slopes_income <- 
+function(data){
+  
+{{data}} %>% 
+    map(~slopes(.x, variables = "income")) %>% 
+    map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income")
+}
+
+
+slopes_educ <- 
+function(data){
+  
+{{data}} %>% 
+    map(~slopes(.x, variables = "educ")) %>% 
+    map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "educ")
+}
+
+### comparisons function
+comparisons_income <- function(data){
+  
+{{data}} %>% 
+    map(~comparisons(.x, variables = list(income = c(1, 4)))) %>% 
+    map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income 4-1")
+}
+
+comparisons_educ <- function(data){
+  
+{{data}} %>% 
+    map(~comparisons(.x, variables = list(educ = c(2, 6)))) %>% 
+    map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "educ 6-2")
+}
+
+```
+
+
 # Political Cleavages and inequality
 
 ## Introduction and Problématique
 
-How does income inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This interest, whose origin can be traced back to Piketty's last book [@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database ([WPID](https://wpid.world/)) and to a book, which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [@gethin_political_2021]. Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter have evolved and can disturb political and economic stability and how they can be reduced to make society more equal. However, whereas the technical solutions are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not a technical problem, but rather a political one and that inequality analysis musts thus take politics into account.
+How does social inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This sudden interest, whose origin can be traced back to Piketty's last book [@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database ([WPID](https://wpid.world/)) and to a book which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [@gethin_political_2021].
+
+Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter has evolved and can disturb political and economic stability and how they can be reduced to make society more equal. However, whereas the technical solutions are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not only technical problem, but also a political one and that inequality analysis musts thus take politics into account.
 
 It is interesting to note how the same reasoning can be applied to ecology. Ecologists face indeed the same issue: global warming becomes increasingly more threatening, and scholars know how it could be stopped or at least reduced, but there is paradoxically no political outcome and no serious political measure which has been taken despite the emergency.
 
 The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus "classist" and bipolar in the sense that the political positioning of an individual on the left-right axis was mainly determined by his position in the economic structure.
 
-The situation changed around the 1970s and 1980s: the support for the left became positively correlated with education whereas the support for the right remained linked positively with income and education. Political cleavages became thus "multipolar" by combining an economic cleavage (degree of income and wealth), which became relatively less salient, with a growing "cultural" cleavage due to the increase in average educational level.
+The situation changed around the 1970s and 1980s: the support for the left became positively correlated with education whereas the support for the right remained linked positively with income and education. Political cleavages became thus "multipolar" by combining an economic cleavage (degree of income and wealth), which became relatively less salient, with a growing "cultural" cleavage due to the increase in average educational level. People who are familiar with political science literature will here recognize that Piketty is simply re-asserting Inglehart's famous "post-materialist" divide over cultural issue, but giving much importance to education as a source of this cleavage.
 
 The left has thus become "brahmin" because supported by high education voters. The right remains "merchant" because it still is supported by the rich. Finally, a new bloc, the "social-nativist" bloc, gathers voters with low income and low educational level. Piketty shows great concern towards the latter, calling it often the "social-nativist trap" [@piketty_capital_2019].
 
@@ -58,13 +185,13 @@ Amable and Darcillon [-@amable_brahmin_2022] offer more contrasted results. Inco
 
 Switzerland is considered by this literature as the country in which those transformations have been one of the most important. For instance, Durrer de la Sota et al. explain that "Switzerland is the country where the shift of the higher educated towards the left has been the most dramatic" [@durrer_de_la_sota_party_2021, p.4]. Switzerland is infamous for being the home of one of the most successful social-nativist party, the SVP which now the first political party in Switzerland. Green parties have also become an important force and they are separated between the liberal ecologists and social ecologists. The important elements of the WPID's analysis of Switzerland are the following:
 
--   The authors used the Swiss Election Studies (*Selects*) data, which are data collected after each parliamentary election.
+-   The authors used Swiss Election Studies (*Selects*) data, which are data collected after each parliamentary election.
 
--   The educational shift happened in the late 80s, the period 1983-7 being the last class-based period. Switzerland's political landscape is now a multi-polar and multi-elite one: the support for the greens and socialists is linked positively with education, the rich still support radical/liberal parties and the SVP represents the social-nativist bloc gathering the low income and low education voters.
+-   The educational shift happened in the late 80s, the period 1983-7 being the last "class-based" period. Switzerland's political landscape is now a multi-polar and multi-elite one: the support for the greens and socialists is linked positively with education, the rich still support radical/liberal parties and the SVP represents the social-nativist bloc gathering the low income and low education voters.
 
 -   The traditional parties, the Socialists (Swiss Socialist Party SSP), the Liberals and Radicals, and the Christian Democrats are in a declining trend, if not collapsing.
 
--   The Greens are radical right are the new strong emergent parties, the latter being the most important bloc.
+-   The Greens andradical right are the new strong emergent parties, the latter being the most important bloc.
 
 ### Research questions, hypotheses and empirical strategy
 
@@ -131,31 +258,9 @@ vox %>%
   count(educ) %>% 
   mutate(prop = n/sum(n), 
          label = as_character(educ)) %>% 
-  kable(caption = "Educational group")
+  kable()
 ```
 
-```{r missing value check function}
-#| echo: false
-#| warning: false
-#| message: false
-missing_values <- function(data, variable, group) { 
-  
-   table <- data %>% 
-     group_by({{group}}) %>% 
-     count({{variable}}) %>% 
-     mutate(prop = n/sum(n)) %>% 
-     filter(is.na({{variable}})) %>% 
-     ungroup()
-  
-   plot <- 
-     ggplot(data = table, aes(x = {{group}}, y = prop))+
-     geom_col()+
-     geom_label(aes(x = {{group}}, y = prop, label = {{group}}))
-   print(plot)
-  
-}
-
-```
 
 On the other hand, the dataset offers two variables for income: "nivmena" and "revenu". Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable.
 
@@ -164,13 +269,13 @@ vox %>%
   count(nivmena) %>% 
   mutate(prop = n/sum(n), 
          label = as_character(nivmena)) %>% 
-  kable(caption = "Household income level")
+  kable()
 
 vox %>% 
   count(revenu) %>% 
   mutate(prop = n/sum(n), 
          label = as_character(revenu)) %>% 
-  kable(caption = "Income level")
+  kable()
 ```
 
 I made the choice to merge the two variables by recoding the revenu variable so that it fits into the categories of the first variable. I do so by considering the first income bracket as the "low" category, the second as "inferior-middle", the third and fourth as the "upper-middle" category and the fifth as the "upper" category.
@@ -209,6 +314,9 @@ vox$udc <- ifelse(vox$p02 == 13, 1,
 vox$plr <- ifelse(vox$p02 == 20, 1, ### le parti radical democratique fusionne avec le parti liberal en 2009
                   ifelse(vox$p02 == 4, 1,
                   ifelse(is.na(vox$p02), NA, 0)))
+
+vox$green <- ifelse(vox$p02 == 6, 1,
+                  ifelse(is.na(vox$p02), NA, 0))
 
 
 
@@ -492,6 +600,8 @@ nprcs_ssp_results %>%
 
 Here are the estimated coefficient for each regression. Since the coefficients give information on log(odds), they are not very informative (even if their sign still is). To give more meaningful results, I compute average marginal effects (AME) for each year:
 
+
+
 ```{r average marginal effect nprcs ssp}
 # computing average marginal effect for each year
 ame_income_nprcrs_ssp <- 
@@ -516,37 +626,12 @@ nprcs_ssp %>%
 ame_nprcrs_ssp <- rbind(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)
 ```
 
-```{r function for nprcrs}
-#| echo: false
-# put the code above into a function to avoid repeating the code
-nprcrs_ame <- function(regression, variable, sequence){
-
-ame <- 
-regression %>% 
-  map(~slopes(.x ,variables = {{variable}})) %>% 
-  map_df(~summarise(.x, ame = mean(estimate),
-            high = mean(conf.high),
-            low = mean(conf.low))) %>% 
-           mutate(year = {{sequence}},
-                  variable = {{variable}})
-
-
-print(ame)
-
-}
-```
 
 ```{r plot ame nprcs ssp}
 ## plot the AME for each year
 plot_ame_ssp <- 
 ame_nprcrs_ssp %>% 
-  ggplot()+
-  aes(y = ame, x = year, color = variable, shape = variable)+
-  geom_hline(yintercept = 0, linetype = "dashed")+
-  geom_point()+
-  geom_line()+
-  geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(labels = scales::percent_format())+
+  plot_ame()+
   labs(title = "Probability to vote for SSP",
        subtitle = "Repeated cross-section, no controls",
        y = "", x = "Average Marginal Effect")
@@ -554,6 +639,46 @@ plot_ame_ssp
 ```
 
 This graph offers interesting results. The support for SSP used to be strongly negatively associated with income in 1981-2, but this negative relationship declined a lot during the 80s. It recovered a bit during the 90s but then even became positive in the middle of the 1990s and positive again in the early 2000s. On the other hand, the support for SSP seems to be always linked positively with the level of education. We can thus say that the SSP was and still is indeed a brahmin party, and even endorse the role of a bourgeois party for some years when its support is linked positively with income and education.
+
+Another way to represent the relationship between support for SSP and income and education is to estimates of probability differences between given values of the predictors using the comparisons() function, which compute (in our case) probability differences between values at certain levels. The graph below show comparisons between the highest and lowest income groups (4-1). For education, I compare the highest level of education (university) not with the lowest level (primary school), but with vocational trainees/apprenticeship because the latter is the most widespread highest achieved level of education in Switzerland, even nowadays.
+```{r nprcs comparisons ssp}
+# how to compute and plot average comparison in R
+ame_income_comparison_ssp <- 
+nprcs_ssp %>% 
+  map(~comparisons(.x, variables = list(income = c(1, 4)))) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income 4-1")
+  
+
+ame_educ_comparison_ssp <- 
+nprcs_ssp %>% 
+  map(~comparisons(.x, variables = list(educ = c(2, 6)))) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "educ 6-2")
+
+
+comparison_npcrs_ssp <- rbind(ame_educ_comparison_ssp, ame_income_comparison_ssp)
+
+comparison_npcrs_ssp %>% 
+  plot_ame()+
+  labs(title = "Difference in Probabilities: SSP Support",
+       subtitle = "Repeated Cross-sectional logit regressions")
+
+
+
+
+
+
+```
+In 1981, an individual of the highest income group was 28% less probable to support the SSP compared with someone from the lowest income income. This difference decreased substantially over the years, and is rather close to zero nowadays. This is not the case for education. In 1981, a highly educated individual from either university of polytechnic school had around 19% more probabilities to support the SSP than someone who completed an apprenticeship. This difference has decreased over the years, but is still quiet high, around 10% in 2016. This show that the SSP was and still is the party of the most educated, but not necessarily of the poorest or the richest.
+
+
 
 To check whether the results above are robust, I run and present a second model which controls for soc-dem characteristics (age, gender, marital status, region):
 
@@ -604,89 +729,65 @@ ame_nprcs_ssp_controls <- rbind(ame_income_nprcs_ssp_controls, ame_education_npr
 
 plot_ame_nprcs_ssp_controls <- 
 ame_nprcs_ssp_controls %>% 
-  ggplot()+
-  aes(y = ame, x = year, color = variable, shape = variable)+
-  geom_hline(yintercept = 0, linetype = "dashed")+
-  geom_point()+
-  geom_line()+
-  geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(labels = scales::percent_format())+
-  labs(title = "Probability to vote for SSP",
-       subtitle = "Repeated cross-section, after controls",
+  plot_ame()+
+  labs(title = "Probability to support the SSP",
+       subtitle = "Repeated Cross-sectional logit regressions, after controls",
        y = "", x = "Average Marginal Effect")
 
 plot_ame_nprcs_ssp_controls
 ```
+The graph above does not imply any change to the broad picture, let's see for comparisons
 
-The resutlts seem rather robust and the global picture does not really change after controls
 
-#### Repeated Cross-section: support for SVP
-
-```{r svp nprcs}
+```{r ame comparison controls ssp}
 #| echo: false
-#| message: false
-#| warning: false
-nprcs_udc <- 
-vox %>%
-  split(.$annee_f) %>% 
-  map(~ glm(udc ~ income + educ, data = .x, family = binomial(link = "logit")))
 
-year <- data.frame(year = 1981:2016)
 
-nprcs_udc_results_udc <- 
-nprcs_udc %>% 
-  map_df(tidy) %>% 
-  mutate(year = year[rep(seq_len(nrow(year)), each = 3),],
-         test = if_else(p.value <= 0.05, TRUE, FALSE),
-         lower = estimate - 1.96*std.error,
-         upper = estimate + 1.96*std.error)
-
-```
-
-```{r nprcs udc ame}
-#| echo: false
-#| message: false
-#| warning: false
-# computing average marginal effect for each year
-ame_nprcs_income_udc <- 
-nprcs_udc %>% 
-  map(~slopes(.x ,variables = "income")) %>% 
+ame_income_comparison_ssp_controls <- 
+nprcs_ssp_controls %>% 
+  map(~comparisons(.x, variables = list(income = c(1, 4)))) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
             low = mean(conf.low))) %>% 
            mutate(year = 1981:2016,
-                  variable = "income")
+                  variable = "income 4-1")
+  
 
-ame_nprcs_educ_udc <- 
-nprcs_udc %>% 
-  map(~slopes(.x ,variables = "educ")) %>% 
+ame_educ_comparison_ssp_controls <- 
+nprcs_ssp_controls %>% 
+  map(~comparisons(.x, variables = list(educ = c(2, 6)))) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
             low = mean(conf.low))) %>% 
-           mutate(year = 1981:2016, 
-                  variable = "educ")
+           mutate(year = 1981:2016,
+                  variable = "educ 6-2")
+
+ame_educ_comparisons_ssp_controls <- rbind(ame_income_comparison_ssp_controls, ame_educ_comparison_ssp_controls)
 
 
-ame_nprcs_udc <- rbind(ame_nprcs_income_udc, ame_nprcs_educ_udc)
+
+comparisons_ssp_educ <- nprcs_ssp_controls %>% 
+  map_df(~avg_comparisons(.x, variables = list(educ = c(2,6))))
+
+
+
+
 
 ```
 
-```{r svp plot}
+```{r plot comparisons ssp controls}
 #| echo: false
-#| message: false
-#| warning: false
-ame_nprcs_udc %>% 
-  ggplot()+
-  aes(y = ame, x = year, color = variable, shape = variable)+
-  geom_hline(yintercept = 0, linetype = "dashed")+
-  geom_point()+
-  geom_line()+
-  geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(labels = scales::percent_format())+
-  labs(title = "Probability to vote for SVP",
-       subtitle = "Repeated cross-section",
-       y = "", x = "Average Marginal Effect")
+
+ame_educ_comparisons_ssp_controls %>% 
+  plot_ame()+
+  labs(title = "Difference in Probability: Support for the SSP",
+       subtitle = "Repeated Cross-sectional logit regressions, with controls")
+
 ```
+The differences in probability have slighlty change, but the conclusions here are in fine the same as the no-control regression.
+
+
+#### Repeated Cross-section: support for SVP
 
 The results show how the support for SVP is clearly linked negatively with educational level. The relationship with income is less clear since a lot of the results are not statistically significant (the confidence interval cross 0 for most years). Here I will not give any conclusion before fitting the multilevel regression.
 
@@ -695,7 +796,6 @@ The results show how the support for SVP is clearly linked negatively with educa
 #| message: false
 #| warning: false
 #| include: false
-#| eval: false
 nprcs_udc_controls <- 
 vox %>%
   split(.$annee_f) %>% 
@@ -726,17 +826,34 @@ ame_nprcs_udc_controls <- rbind(ame_nprcs_income_udc_controls, ame_nprcs_educ_ud
 
 
 ame_nprcs_udc_controls %>% 
-  ggplot()+
-  aes(y = ame, x = year, color = variable, shape = variable)+
-  geom_hline(yintercept = 0, linetype = "dashed")+
-  geom_point()+
-  geom_line()+
-  geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(labels = scales::percent_format())+
-  labs(title = "Probability to vote for SVP",
-       subtitle = "Repeated cross-section, after controls",
+  plot_ame()+
+  labs(title = "Probability to support the SVP",
+       subtitle = "Repeated Cross-sectional logit regressions, after controls",
        y = "", x = "Average Marginal Effect")
 ```
+
+```{r comparisons svp}
+#| echo: false
+#| warning: false
+#| message: false
+
+comparisons_svp_educ <- 
+  nprcs_udc_controls %>% 
+  comparisons_educ()
+
+comparisons_svp_income <- 
+  nprcs_udc_controls %>% 
+  comparisons_income()
+
+comparisons_svp <- rbind(comparisons_svp_educ, comparisons_svp_income)
+
+comparisons_svp %>% 
+  plot_ame()+
+  labs(title = "Differences in Probability: support for SVP",
+       subtitle = "Repeated Cross-sectional logit regressions, with controls")
+```
+
+
 
 #### Repeated Cross-section: support for PLR
 
@@ -753,42 +870,142 @@ vox %>%
 
 ame_nprcs_income_plr_controls <- 
 nprcs_plr_controls %>% 
-  map(~slopes(.x ,variables = "income")) %>% 
-  map_df(~summarise(.x, ame = mean(estimate),
-            high = mean(conf.high),
-            low = mean(conf.low))) %>% 
-           mutate(year = 1981:2016,
-                  variable = "income")
+  slopes_income()
 
 ame_nprcs_educ_plr_controls <- 
 nprcs_plr_controls %>% 
-  map(~slopes(.x ,variables = "educ")) %>% 
-  map_df(~summarise(.x, ame = mean(estimate),
-            high = mean(conf.high),
-            low = mean(conf.low))) %>% 
-           mutate(year = 1981:2016, 
-                  variable = "educ")
+  slopes_educ()
 
 
 ame_nprcs_plr_controls <- rbind(ame_nprcs_income_plr_controls, ame_nprcs_educ_plr_controls)
 
 
 ame_nprcs_plr_controls %>% 
-  ggplot()+
-  aes(y = ame, x = year, color = variable, shape = variable)+
-  geom_hline(yintercept = 0, linetype = "dashed")+
-  geom_point()+
-  geom_line()+
-  geom_pointrange(aes(ymin = low, ymax = high))+
-  scale_y_continuous(labels = scales::percent_format())+
+  plot_ame()+
   labs(title = "Probability to vote for radical/liberal party",
        subtitle = "Repeated cross-section, with controls",
        y = "", x = "Average Marginal Effect")
+  
 ```
+```{r plr comparisons nprcs}
+comparisons_plr_educ <- 
+  nprcs_plr_controls %>% 
+  comparisons_educ()
+
+comparisons_plr_income <- 
+  nprcs_plr_controls %>% 
+  comparisons_income()
+
+
+comparisons_plr <- rbind(comparisons_plr_educ, comparisons_plr_income)
+
+comparisons_plr %>% 
+  plot_ame()+
+  labs(title = "Difference in Predicted Probabilities: vote for radicals/liberals",
+       subtitle = "Repeated Cross-sectional regressions, with controls")
+```
+
+
 
 Finally, here are the results for PLR support. We can see that the PLR clearly fits into the bourgeois category with support linked positively with both education and income, the latter being the important factor even if it declined nonetheless.
 
+Some observations can still be made regarding the comparisons plot. The difference in probability between the richest and poorest in supporting the Radicals/Liberals was highly positive in the 1980s (around 28% in 1981). This difference decreased, but is still high. Most of the time, this difference is also positive between the highest educational group and the second lowest one (apprenticeship).
+
+#### Repeated Cross-section: support for the Greens
+
+```{r nprcs greens}
+#| echo: false
+#| message: false
+#| warning: false
+nprcs_greens <- 
+vox %>%
+  split(.$annee_f) %>% 
+  map(~ glm(green ~ income + educ + gender + age_cat + married + regionL + religion, data = .x, family = binomial(link = "logit")))
+```
+
+```{r ame greens nprcs}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+ame_income_nprcs_greens_controls <- 
+nprcs_greens %>% 
+  slopes_income()
+
+ame_education_nprcs_greens_controls <- 
+nprcs_greens %>% 
+  slopes_educ()
+
+comparisons_greens_income <- 
+nprcs_greens %>% 
+  comparisons_income()
+
+comparisons_greens_educ <- 
+nprcs_greens %>% 
+  comparisons_educ()
+
+ame_nprcs_greens_controls <- rbind(ame_income_nprcs_greens_controls, ame_education_nprcs_greens_controls)
+comparisons_greens <- rbind(comparisons_greens_educ, comparisons_greens_income)
+
+```
+
+
+```{r greens plot}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+ame_nprcs_greens_controls %>% 
+  plot_ame()+
+  labs(title = "Probability to support the Greens",
+       subtitle = "Repeated Cross-sectional logit regressions, after controls",
+       y = "", x = "Average Marginal Effect")
+
+
+comparisons_greens %>% 
+  plot_ame()+
+  labs(title = "Differences Probability: Support for the Greens",
+       subtitle = "Repeated Cross-sectional logit regressions, after controls")
+  
+```
+Regarding the support for the Greens, it is associated positively with education. The relationship with income is not clear, the multilevel model will hopefully give better results.
+
 ### Multilevel regression: partial pooling for years
+
+```{r function glmer comparison and plot}
+#| echo: false
+comparisons_plot_glmer <- 
+  function(data){
+  
+{{data}} %>% 
+  ggplot()+
+  aes(x = annee_f, y = estimate, color = term, shape = term, group = term)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+      labs(x = "", y = "")
+}
+
+dataframe_comparisons_glmer <- 
+  function(regression){
+  glmer_comparisons_ssp_educ <- {{regression}} %>% 
+  avg_comparisons(variables = list(educ = c(2,6)), by = "annee_f")
+
+glmer_comparisons_ssp_income <- {{regression}} %>% 
+  avg_comparisons(variables = list(income = c(1,4)), by = "annee_f") 
+
+glmer_comparisons_ssp <- rbind(glmer_comparisons_ssp_educ, glmer_comparisons_ssp_income)
+}
+```
+
+#### Support for SSP
+
+The multilevel regressions, with years as a level, lead globally to the same conclusions as above.
 
 ```{r partial pooling canton pss}
 #| eval: false
@@ -799,30 +1016,6 @@ glmer_pss <- glmer(data = vox,
                    family = binomial(link = "logit"))
 ```
 
-```{r function ame}
-#| warning: false
-#| message: false
-
-
-## function to simplify the code
-# table ame is for computing the average marginal effect
-table_ame <- function(variable, regression, group){
-  
-glmer_table <- slopes({{regression}}, variables = {{variable}})
-
-
-ame <- 
- glmer_table  %>% 
-  group_by({{group}}) %>% 
-  summarise(ame = mean(estimate),
-            high = mean(conf.high),
-            low = mean(conf.low)) %>% 
-  ungroup() %>% 
-  mutate(variable = {{variable}})
-
-
-}
-```
 
 ```{r ame partial pooling pss}
 #| echo: false
@@ -854,13 +1047,34 @@ ame_glmer_pss_full %>%
   scale_y_continuous(labels = scales::percent_format())+
   labs(title = "Probability to vote for SSP",
        subtitle = "Partial Pooling (glmer) model",
-       y = "", x = "Average Marginal Effect")+
+       y = "Average Marginal Effect", x = "")+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 
 plot_ame_glmer_ssp
 ```
+The results are very close to the repeated cross-section model.
 
+```{r plot glmer comparisons ssp}
+#| echo: false
+load("glmer_comparisons_ssp.Rdata")
+
+glmer_comparisons_ssp %>% 
+  ggplot()+
+  aes(x = annee_f, y = estimate, color = term, shape = term, group = term)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Differences in Probability: Support for SSP",
+       subtitle = "Partial Pooling (glmer) model",
+       y = "Average Marginal Effect", x = "")+  
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  
+```
+
+#### Support for Radicals/Liberals
 ```{r partial pooling plr}
 #| eval: false
 #| include: false
@@ -896,14 +1110,25 @@ ame_glmer_plr %>%
   geom_line()+
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
-  labs(title = "Probability to vote for PLR",
+  labs(title = "Probability to support Radicals/Liberals",
        subtitle = "Partial Pooling (glmer) model",
-       y = "", x = "Average Marginal Effect")+
+       y = "Average Marginal Effect", x = "")+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 
 plot_ame_glmer_plr
 ```
+
+```{r plot comparisons glmer plr}
+#| echo: false
+load("comparisons_glmer_plr.Rdata")
+comparisons_plot_glmer(comparisons_glmer_plr)+
+  labs(title = "Differences in Probability: Support for Radicals/Liberals",
+       subtitle = "Partial Pooling (glmer) model",
+       y = "", x = "")
+```
+
+#### Partial Pooling: Support for SVP
 
 ```{r glmer svp}
 #| eval: false
@@ -939,11 +1164,135 @@ ame_glmer_udc %>%
   geom_line()+
   geom_pointrange(aes(ymin = low, ymax = high))+
   scale_y_continuous(labels = scales::percent_format())+
-  labs(title = "Probability to vote for SVP",
-       subtitle = "Partial Pooling (glmer) model",
-       y = "", x = "Average Marginal Effect")+
+  labs(title = "Probability to support SVP",
+       subtitle = "Partial Pooling (glmer) logit model",
+       y = "Average Marginal Effect", x = "")+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 
 plot_ame_glmer_udc
 ```
+
+```{r comparison plot glmer svp}
+#| echo: false
+load("comparison_glmer_svp.Rdata")
+
+comparisons_plot_glmer(comparison_glmer_svp)+
+  labs(title = "Differences in Probability: Support for SVP",
+       subtitle = "Partial Pooling (glmer) logit model",
+       caption = "Difference between highest and lowest income groups (income) and
+       between university graduates and trainees (educ))")
+```
+
+#### Partial Pooling: Support for the Greens
+```{r partial pooling glmer greens}
+#| echo: false
+#| eval: false
+glmer_greens <- glmer(data = vox,
+                   formula = green ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
+                   family = binomial(link = "logit"))
+```
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| eval: false
+
+glmer_greens_income <- table_ame(regression = glmer_greens, variable = "income", group = annee_f)
+glmer_greens_educ <- table_ame(regression = glmer_greens, variable = "educ", group = annee_f)
+
+glmer_greens_ame <- rbind(glmer_greens_income, glmer_greens_educ)
+
+
+
+save(glmer_greens_ame, file = "glmer_greens_ame.Rdata")
+```
+
+```{r}
+#| echo: false
+
+load("glmer_greens_ame.Rdata")
+
+plot_ame_glmer_greens <- 
+glmer_greens_ame %>% 
+  ggplot()+
+  aes(y = ame, x = annee_f, color = variable, shape = variable, group = variable)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = low, ymax = high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Probability to vote for the Greens",
+       subtitle = "Partial Pooling (glmer) logit model",
+       y = "Average Marginal Effect", x = "")+  
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+
+plot_ame_glmer_greens
+```
+
+```{r plot comparisons glmer greens}
+#| echo: false
+load("comparisons_glmer_greens.Rdata")
+comparisons_plot_glmer(comparisons_glmer_greens)+
+  labs(title = "Differences in Probability: Support for the Greens",
+       subtitle = "Partial Pooling (glmer) logit model")
+```
+
+
+```{r glmer comparisons ssp}
+#| eval: false
+#| echo: false
+glmer_comparisons_ssp_educ <- glmer_pss %>% 
+  avg_comparisons(variables = list(educ = c(2,6)), by = "annee_f")
+
+glmer_comparisons_ssp_income <- glmer_pss %>% 
+  avg_comparisons(variables = list(income = c(1,4)), by = "annee_f") 
+
+glmer_comparisons_ssp <- rbind(glmer_comparisons_ssp_educ, glmer_comparisons_ssp_income)
+
+save(glmer_comparisons_ssp, file = "glmer_comparisons_ssp.Rdata")
+```
+
+
+```{r comparison df svp glmer}
+#| eval: false
+#| echo: false
+comparison_glmer_svp <- dataframe_comparisons_glmer(glmer_udc)
+save(comparison_glmer_svp, file = "comparison_glmer_svp.Rdata")
+```
+
+
+```{r comparison df glmer plr}
+#| eval: false
+#| echo: false
+comparisons_glmer_plr <- dataframe_comparisons_glmer(glmer_plr)
+
+save(comparisons_glmer_plr, file = "comparisons_glmer_plr.Rdata")
+```
+
+
+```{r comparison df glmer greens}
+#| eval: false
+#| echo: false
+comparisons_glmer_greens <- dataframe_comparisons_glmer(glmer_greens)
+
+save(comparisons_glmer_greens, file = "comparisons_glmer_greens.Rdata")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
