@@ -7,6 +7,7 @@ execute:
 categories: [Political Economy, Statistics]
 author: "Celâl Güney"
 date: "9 July 2023"
+date-modified: "18 july 2023"
 draft: false
 bibliography: vox_biblio.bib
 ---
@@ -34,10 +35,11 @@ library(ggeffects)
 library(ordinal)
 library(broom)
 library(knitr)
+library(readr)
+library(gtExtras)
 
 theme_set(theme_bw())
 ```
-
 
 ```{r functions}
 #| echo: false
@@ -162,7 +164,6 @@ comparisons_educ <- function(data){
 
 ```
 
-
 # Political Cleavages and inequality
 
 ## Introduction and Problématique
@@ -231,8 +232,7 @@ Party identification will obviously be the dependent variable. I create a dummy 
 #| echo: false
 #| warning: false
 #| message: false
-vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Projets_15_121_F.sav")
-
+vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Scrutins_15_121_F.sav")
 ```
 
 ```{r}
@@ -243,7 +243,8 @@ vox %>%
   count(p02) %>% 
   mutate(prop = n/sum(n),
          label = as_character(p02)) %>% 
-  kable(caption = "Party identification")
+  gt() %>% 
+  gt_theme_dark()
 ```
 
 The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable "educ" which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each group is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation in R very hard and tedious (especially the glmer function, which can take a long time).
@@ -258,9 +259,9 @@ vox %>%
   count(educ) %>% 
   mutate(prop = n/sum(n), 
          label = as_character(educ)) %>% 
-  kable()
+  gt() %>% 
+  gt_theme_dark()
 ```
-
 
 On the other hand, the dataset offers two variables for income: "nivmena" and "revenu". Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable.
 
@@ -269,13 +270,15 @@ vox %>%
   count(nivmena) %>% 
   mutate(prop = n/sum(n), 
          label = as_character(nivmena)) %>% 
-  kable()
+  gt() %>% 
+  gt_theme_dark()
 
 vox %>% 
   count(revenu) %>% 
   mutate(prop = n/sum(n), 
          label = as_character(revenu)) %>% 
-  kable()
+  gt() %>% 
+  gt_theme_dark()
 ```
 
 I made the choice to merge the two variables by recoding the revenu variable so that it fits into the categories of the first variable. I do so by considering the first income bracket as the "low" category, the second as "inferior-middle", the third and fourth as the "upper-middle" category and the fifth as the "upper" category.
@@ -600,8 +603,6 @@ nprcs_ssp_results %>%
 
 Here are the estimated coefficient for each regression. Since the coefficients give information on log(odds), they are not very informative (even if their sign still is). To give more meaningful results, I compute average marginal effects (AME) for each year:
 
-
-
 ```{r average marginal effect nprcs ssp}
 # computing average marginal effect for each year
 ame_income_nprcrs_ssp <- 
@@ -626,7 +627,6 @@ nprcs_ssp %>%
 ame_nprcrs_ssp <- rbind(ame_income_nprcrs_ssp, ame_educ_nprcrs_ssp)
 ```
 
-
 ```{r plot ame nprcs ssp}
 ## plot the AME for each year
 plot_ame_ssp <- 
@@ -641,6 +641,7 @@ plot_ame_ssp
 This graph offers interesting results. The support for SSP used to be strongly negatively associated with income in 1981-2, but this negative relationship declined a lot during the 80s. It recovered a bit during the 90s but then even became positive in the middle of the 1990s and positive again in the early 2000s. On the other hand, the support for SSP seems to be always linked positively with the level of education. We can thus say that the SSP was and still is indeed a brahmin party, and even endorse the role of a bourgeois party for some years when its support is linked positively with income and education.
 
 Another way to represent the relationship between support for SSP and income and education is to estimates of probability differences between given values of the predictors using the comparisons() function, which compute (in our case) probability differences between values at certain levels. The graph below show comparisons between the highest and lowest income groups (4-1). For education, I compare the highest level of education (university) not with the lowest level (primary school), but with vocational trainees/apprenticeship because the latter is the most widespread highest achieved level of education in Switzerland, even nowadays.
+
 ```{r nprcs comparisons ssp}
 # how to compute and plot average comparison in R
 ame_income_comparison_ssp <- 
@@ -676,9 +677,8 @@ comparison_npcrs_ssp %>%
 
 
 ```
+
 In 1981, an individual of the highest income group was 28% less probable to support the SSP compared with someone from the lowest income income. This difference decreased substantially over the years, and is rather close to zero nowadays. This is not the case for education. In 1981, a highly educated individual from either university of polytechnic school had around 19% more probabilities to support the SSP than someone who completed an apprenticeship. This difference has decreased over the years, but is still quiet high, around 10% in 2016. This show that the SSP was and still is the party of the most educated, but not necessarily of the poorest or the richest.
-
-
 
 To check whether the results above are robust, I run and present a second model which controls for soc-dem characteristics (age, gender, marital status, region):
 
@@ -736,8 +736,8 @@ ame_nprcs_ssp_controls %>%
 
 plot_ame_nprcs_ssp_controls
 ```
-The graph above does not imply any change to the broad picture, let's see for comparisons
 
+The graph above does not imply any change to the broad picture, let's see for comparisons
 
 ```{r ame comparison controls ssp}
 #| echo: false
@@ -784,8 +784,8 @@ ame_educ_comparisons_ssp_controls %>%
        subtitle = "Repeated Cross-sectional logit regressions, with controls")
 
 ```
-The differences in probability have slighlty change, but the conclusions here are in fine the same as the no-control regression.
 
+The differences in probability have slighlty change, but the conclusions here are in fine the same as the no-controls regression.
 
 #### Repeated Cross-section: support for SVP
 
@@ -799,7 +799,7 @@ The results show how the support for SVP is clearly linked negatively with educa
 nprcs_udc_controls <- 
 vox %>%
   split(.$annee_f) %>% 
-  map(~ glm(udc ~ income + educ + gender + age_cat + married + regionL + religion, data = .x, family = binomial(link = "logit")))
+  map(~ glm(udc ~ income + educ + gender + age_cat + married + religion + regionL, data = .x, family = binomial(link = "logit")))
 
 
 
@@ -829,7 +829,7 @@ ame_nprcs_udc_controls %>%
   plot_ame()+
   labs(title = "Probability to support the SVP",
        subtitle = "Repeated Cross-sectional logit regressions, after controls",
-       y = "", x = "Average Marginal Effect")
+       y = "Average Marginal Effect", x = "")
 ```
 
 ```{r comparisons svp}
@@ -852,8 +852,6 @@ comparisons_svp %>%
   labs(title = "Differences in Probability: support for SVP",
        subtitle = "Repeated Cross-sectional logit regressions, with controls")
 ```
-
-
 
 #### Repeated Cross-section: support for PLR
 
@@ -884,9 +882,10 @@ ame_nprcs_plr_controls %>%
   plot_ame()+
   labs(title = "Probability to vote for radical/liberal party",
        subtitle = "Repeated cross-section, with controls",
-       y = "", x = "Average Marginal Effect")
+       y = "Average Marginal Effect", x = "")
   
 ```
+
 ```{r plr comparisons nprcs}
 comparisons_plr_educ <- 
   nprcs_plr_controls %>% 
@@ -904,8 +903,6 @@ comparisons_plr %>%
   labs(title = "Difference in Predicted Probabilities: vote for radicals/liberals",
        subtitle = "Repeated Cross-sectional regressions, with controls")
 ```
-
-
 
 Finally, here are the results for PLR support. We can see that the PLR clearly fits into the bourgeois category with support linked positively with both education and income, the latter being the important factor even if it declined nonetheless.
 
@@ -950,7 +947,6 @@ comparisons_greens <- rbind(comparisons_greens_educ, comparisons_greens_income)
 
 ```
 
-
 ```{r greens plot}
 #| echo: false
 #| message: false
@@ -970,9 +966,12 @@ comparisons_greens %>%
        subtitle = "Repeated Cross-sectional logit regressions, after controls")
   
 ```
+
 Regarding the support for the Greens, it is associated positively with education. The relationship with income is not clear, the multilevel model will hopefully give better results.
 
 ### Multilevel regression: partial pooling for years
+
+All the models computed and presented have major drawbacks. First, estimates are surely biased because not all important and potentially confounding variables are included in the model. Since we are not here interested in causality, this does not constitute a major problem either. A bigger problem is the inference: many estimates are not statistically significant. To try to solve this issue, I will now run multilevel regressions. There are many choices regarding the levels: one can choose the canton as a group and run separate multilevel regression for each year. Alternatively, both years and canton can be included as a level in the regression.
 
 ```{r function glmer comparison and plot}
 #| echo: false
@@ -1007,15 +1006,16 @@ glmer_comparisons_ssp <- rbind(glmer_comparisons_ssp_educ, glmer_comparisons_ssp
 
 The multilevel regressions, with years as a level, lead globally to the same conclusions as above.
 
-```{r partial pooling canton pss}
-#| eval: false
+
+
+```{r partial pooling years pss}
 #| warning: false
 #| message: false
+#| eval: false
 glmer_pss <- glmer(data = vox,
                    formula = pss ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
                    family = binomial(link = "logit"))
 ```
-
 
 ```{r ame partial pooling pss}
 #| echo: false
@@ -1053,6 +1053,7 @@ ame_glmer_pss_full %>%
 
 plot_ame_glmer_ssp
 ```
+
 The results are very close to the repeated cross-section model.
 
 ```{r plot glmer comparisons ssp}
@@ -1075,6 +1076,7 @@ glmer_comparisons_ssp %>%
 ```
 
 #### Support for Radicals/Liberals
+
 ```{r partial pooling plr}
 #| eval: false
 #| include: false
@@ -1132,6 +1134,7 @@ comparisons_plot_glmer(comparisons_glmer_plr)+
 
 ```{r glmer svp}
 #| eval: false
+#| echo: false
 glmer_udc <- glmer(data = vox,
                    formula = udc ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
                    family = binomial(link = "logit"))
@@ -1146,6 +1149,8 @@ glmer_udc <- glmer(data = vox,
 glmer_udc_income <- table_ame(regression = glmer_udc, variable = "income", group = annee_f)
 glmer_udc_educ <- table_ame(regression = glmer_udc, variable = "educ", group = annee_f)
 ame_glmer_udc <- rbind(glmer_udc_income, glmer_udc_educ)
+save(ame_glmer_plr, file = "ame_glmer_udc.Rdata")
+
 ```
 
 ```{r partial pooling udc plot}
@@ -1153,7 +1158,7 @@ ame_glmer_udc <- rbind(glmer_udc_income, glmer_udc_educ)
 #| message: false
 #| warning: false
 
-load("ame_glmer_udc.Rdata")
+ame_glmer_udc <- readRDS("F:/myblog/posts/vox and voto analysis/ame_glmer_udc.rds")
 
 plot_ame_glmer_udc <- 
 ame_glmer_udc %>% 
@@ -1176,24 +1181,31 @@ plot_ame_glmer_udc
 ```{r comparison plot glmer svp}
 #| echo: false
 load("comparison_glmer_svp.Rdata")
-
-comparisons_plot_glmer(comparison_glmer_svp)+
-  labs(title = "Differences in Probability: Support for SVP",
-       subtitle = "Partial Pooling (glmer) logit model",
-       caption = "Difference between highest and lowest income groups (income) and
-       between university graduates and trainees (educ))")
+comparison_glmer_svp %>% 
+ggplot()+
+  aes(x = annee_f, y = estimate, color = term, shape = term, group = term)+
+  geom_hline(yintercept = 0, linetype = "dashed")+
+  geom_point()+
+  geom_line()+
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  scale_y_continuous(labels = scales::percent_format())+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+      labs(x = "", y = "",
+           title = "Difference in probabilities: Support for SVP",
+           subtitle = "Partial Pooling (glmer) model")
 ```
 
 #### Partial Pooling: Support for the Greens
+
 ```{r partial pooling glmer greens}
 #| echo: false
 #| eval: false
+#| warning: false
+#| message: false
 glmer_greens <- glmer(data = vox,
                    formula = green ~ income + educ + gender + age_cat + married + regionL + religion + (income + educ | annee_f),
                    family = binomial(link = "logit"))
 ```
-
-
 
 ```{r}
 #| echo: false
@@ -1242,7 +1254,6 @@ comparisons_plot_glmer(comparisons_glmer_greens)+
        subtitle = "Partial Pooling (glmer) logit model")
 ```
 
-
 ```{r glmer comparisons ssp}
 #| eval: false
 #| echo: false
@@ -1257,14 +1268,12 @@ glmer_comparisons_ssp <- rbind(glmer_comparisons_ssp_educ, glmer_comparisons_ssp
 save(glmer_comparisons_ssp, file = "glmer_comparisons_ssp.Rdata")
 ```
 
-
 ```{r comparison df svp glmer}
 #| eval: false
 #| echo: false
 comparison_glmer_svp <- dataframe_comparisons_glmer(glmer_udc)
 save(comparison_glmer_svp, file = "comparison_glmer_svp.Rdata")
 ```
-
 
 ```{r comparison df glmer plr}
 #| eval: false
@@ -1274,7 +1283,6 @@ comparisons_glmer_plr <- dataframe_comparisons_glmer(glmer_plr)
 save(comparisons_glmer_plr, file = "comparisons_glmer_plr.Rdata")
 ```
 
-
 ```{r comparison df glmer greens}
 #| eval: false
 #| echo: false
@@ -1282,7 +1290,6 @@ comparisons_glmer_greens <- dataframe_comparisons_glmer(glmer_greens)
 
 save(comparisons_glmer_greens, file = "comparisons_glmer_greens.Rdata")
 ```
-
 
 ## Conclusion
 
@@ -1293,8 +1300,6 @@ This hypothesis is globally confirmed. The Swiss socialist party was clearing ga
 #### Merchant and Bourgeois Bloc hypotheses
 
 The Radicals-Liberals represent clearly a bourgeois bloc, gathering the support of the wealthiest and most educated in almost every year of the dataset. The SVP was a merchant right party until 1992. After this period, the SVP gather mainly support from low income and low level of education groups
-
-
 
 
 

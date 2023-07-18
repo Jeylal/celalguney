@@ -77,235 +77,1070 @@
 <p>Party identification will obviously be the dependent variable. I create a dummy variable for each party support.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<caption>Party identification</caption>
-<thead>
+
+<div id="evxpoomrpr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#evxpoomrpr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #333333;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #333333;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #333333;
+}
+
+#evxpoomrpr .gt_heading {
+  background-color: #333333;
+  text-align: left;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#evxpoomrpr .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #333333;
+  border-bottom-width: 0;
+}
+
+#evxpoomrpr .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #333333;
+  border-top-width: 0;
+}
+
+#evxpoomrpr .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#evxpoomrpr .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#evxpoomrpr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#evxpoomrpr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#evxpoomrpr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#evxpoomrpr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#evxpoomrpr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#evxpoomrpr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#evxpoomrpr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#evxpoomrpr .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#evxpoomrpr .gt_stub {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evxpoomrpr .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#evxpoomrpr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#evxpoomrpr .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evxpoomrpr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#evxpoomrpr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evxpoomrpr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#evxpoomrpr .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+}
+
+#evxpoomrpr .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evxpoomrpr .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#evxpoomrpr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evxpoomrpr .gt_left {
+  text-align: left;
+}
+
+#evxpoomrpr .gt_center {
+  text-align: center;
+}
+
+#evxpoomrpr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#evxpoomrpr .gt_font_normal {
+  font-weight: normal;
+}
+
+#evxpoomrpr .gt_font_bold {
+  font-weight: bold;
+}
+
+#evxpoomrpr .gt_font_italic {
+  font-style: italic;
+}
+
+#evxpoomrpr .gt_super {
+  font-size: 65%;
+}
+
+#evxpoomrpr .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#evxpoomrpr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#evxpoomrpr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#evxpoomrpr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#evxpoomrpr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#evxpoomrpr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#evxpoomrpr .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
 <tr class="header">
-<th style="text-align: right;">p02</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">prop</th>
-<th style="text-align: left;">label</th>
+<th id="p02" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">p02</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">n</th>
+<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">prop</th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">label</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">5209</td>
-<td style="text-align: right;">0.0162681</td>
-<td style="text-align: left;">PDC+PCS groupés</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">0</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">1938</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0177440029</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PDC+PCS groupés</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">760</td>
-<td style="text-align: right;">0.0023735</td>
-<td style="text-align: left;">PCS/CSP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">1</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">227</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0020783739</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PCS/CSP</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">18345</td>
-<td style="text-align: right;">0.0572929</td>
-<td style="text-align: left;">PDC/CVP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">2</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">6148</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0562900568</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PDC/CVP</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2589</td>
-<td style="text-align: right;">0.0080856</td>
-<td style="text-align: left;">PEP/EVP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">3</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">905</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0082860282</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PEP/EVP</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">22144</td>
-<td style="text-align: right;">0.0691574</td>
-<td style="text-align: left;">PRD/FDP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">4</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">7511</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0687694561</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PRD/FDP</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">1280</td>
-<td style="text-align: right;">0.0039975</td>
-<td style="text-align: left;">PdL (PA)/FPS (AP)</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">5</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">376</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0034425929</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PdL (PA)/FPS (AP)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">9563</td>
-<td style="text-align: right;">0.0298660</td>
-<td style="text-align: left;">PES/GPS</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">6</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">3175</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0290697674</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PES/GPS</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">2026</td>
-<td style="text-align: right;">0.0063274</td>
-<td style="text-align: left;">AdI/LdU</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">7</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">663</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0060703168</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">AdI/LdU</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">1690</td>
-<td style="text-align: right;">0.0052780</td>
-<td style="text-align: left;">Lega</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">8</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">580</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0053103827</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Lega</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">2839</td>
-<td style="text-align: right;">0.0088664</td>
-<td style="text-align: left;">PLS/LPS</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">9</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">963</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0088170665</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PLS/LPS</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">2007</td>
-<td style="text-align: right;">0.0062680</td>
-<td style="text-align: left;">PdT [POCH, PSA]/PdA [POCH, PSA]</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">10</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">672</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0061527193</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PdT [POCH, PSA]/PdA [POCH, PSA]</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">885</td>
-<td style="text-align: right;">0.0027639</td>
-<td style="text-align: left;">DS (AN)/SD (NA)</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">11</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">282</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0025819447</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">DS (AN)/SD (NA)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">47166</td>
-<td style="text-align: right;">0.1473031</td>
-<td style="text-align: left;">PSS/SPS</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">12</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">16326</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.1494781176</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PSS/SPS</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">30156</td>
-<td style="text-align: right;">0.0941795</td>
-<td style="text-align: left;">UDC/SVP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">13</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">10603</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0970792895</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">UDC/SVP</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">305</td>
-<td style="text-align: right;">0.0009525</td>
-<td style="text-align: left;">FraP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">14</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">79</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0007233107</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">FraP</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">463</td>
-<td style="text-align: right;">0.0014460</td>
-<td style="text-align: left;">AV/GB</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">15</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">161</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0014740890</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">AV/GB</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: right;">0.0001530</td>
-<td style="text-align: left;">AdG</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">16</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">15</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0001373375</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">AdG</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">320</td>
-<td style="text-align: right;">0.0009994</td>
-<td style="text-align: left;">UDF/EDU</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">17</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">143</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0013092840</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">UDF/EDU</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">1521</td>
-<td style="text-align: right;">0.0047502</td>
-<td style="text-align: left;">PBD/BDP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">18</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">541</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0049533053</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PBD/BDP</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">2413</td>
-<td style="text-align: right;">0.0075360</td>
-<td style="text-align: left;">Verts Libéraux/GLP</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">19</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">836</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0076542758</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Verts Libéraux/GLP</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">12601</td>
-<td style="text-align: right;">0.0393539</td>
-<td style="text-align: left;">PLR/FDP Die Liberalen</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">20</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">4368</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0399926753</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">PLR/FDP Die Liberalen</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">30</td>
-<td style="text-align: right;">2819</td>
-<td style="text-align: right;">0.0088040</td>
-<td style="text-align: left;">Autre parti</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">30</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">915</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0083775865</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Autre parti</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">31</td>
-<td style="text-align: right;">12996</td>
-<td style="text-align: right;">0.0405875</td>
-<td style="text-align: left;">Plusieurs partis</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">31</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">4495</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0411554660</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Plusieurs partis</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">6033</td>
-<td style="text-align: right;">0.0188415</td>
-<td style="text-align: left;">Pas un parti, mais une personne</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">32</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">2123</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0194378319</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Pas un parti, mais une personne</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">33</td>
-<td style="text-align: right;">102205</td>
-<td style="text-align: right;">0.3191941</td>
-<td style="text-align: left;">Aucun parti</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">33</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">34607</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.3168558872</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Aucun parti</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">31813</td>
-<td style="text-align: right;">0.0993545</td>
-<td style="text-align: left;">NA</td>
+<td class="gt_row gt_center" headers="p02" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">10568</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.0967588354</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
 </tr>
 </tbody>
 </table>
+
+</div>
 </div>
 </div>
 <p>The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable “educ” which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each group is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation in R very hard and tedious (especially the glmer function, which can take a long time).</p>
 <p>On the other hand, the dataset offers two variables for income: “nivmena” and “revenu”.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
+
+<div id="cmjuzwgmgv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#cmjuzwgmgv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #333333;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #333333;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #333333;
+}
+
+#cmjuzwgmgv .gt_heading {
+  background-color: #333333;
+  text-align: left;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cmjuzwgmgv .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #333333;
+  border-bottom-width: 0;
+}
+
+#cmjuzwgmgv .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #333333;
+  border-top-width: 0;
+}
+
+#cmjuzwgmgv .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cmjuzwgmgv .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cmjuzwgmgv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cmjuzwgmgv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cmjuzwgmgv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cmjuzwgmgv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cmjuzwgmgv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cmjuzwgmgv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cmjuzwgmgv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cmjuzwgmgv .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cmjuzwgmgv .gt_stub {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cmjuzwgmgv .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cmjuzwgmgv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cmjuzwgmgv .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cmjuzwgmgv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cmjuzwgmgv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cmjuzwgmgv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cmjuzwgmgv .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+}
+
+#cmjuzwgmgv .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cmjuzwgmgv .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cmjuzwgmgv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cmjuzwgmgv .gt_left {
+  text-align: left;
+}
+
+#cmjuzwgmgv .gt_center {
+  text-align: center;
+}
+
+#cmjuzwgmgv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cmjuzwgmgv .gt_font_normal {
+  font-weight: normal;
+}
+
+#cmjuzwgmgv .gt_font_bold {
+  font-weight: bold;
+}
+
+#cmjuzwgmgv .gt_font_italic {
+  font-style: italic;
+}
+
+#cmjuzwgmgv .gt_super {
+  font-size: 65%;
+}
+
+#cmjuzwgmgv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#cmjuzwgmgv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cmjuzwgmgv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cmjuzwgmgv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cmjuzwgmgv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cmjuzwgmgv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cmjuzwgmgv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
 <tr class="header">
-<th style="text-align: right;">educ</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">prop</th>
-<th style="text-align: left;">label</th>
+<th id="educ" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">educ</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">n</th>
+<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">prop</th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">label</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">44007</td>
-<td style="text-align: right;">0.1374373</td>
-<td style="text-align: left;">Ecole obligatoire</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">1</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">14982</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.137172679</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Ecole obligatoire</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">147792</td>
-<td style="text-align: right;">0.4615658</td>
-<td style="text-align: left;">Apprentissage</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">2</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">50054</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.458286028</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Apprentissage</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">29759</td>
-<td style="text-align: right;">0.0929397</td>
-<td style="text-align: left;">Maturité + école normale</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">3</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">9926</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.090880791</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Maturité + école normale</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">31534</td>
-<td style="text-align: right;">0.0984831</td>
-<td style="text-align: left;">Formation prof. supérieure</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">4</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">11006</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.100769090</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Formation prof. supérieure</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">16599</td>
-<td style="text-align: right;">0.0518400</td>
-<td style="text-align: left;">Haute école spécialisée</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">5</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">5695</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.052142465</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Haute école spécialisée</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">47681</td>
-<td style="text-align: right;">0.1489115</td>
-<td style="text-align: left;">Université + Polytechnique</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">6</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">16640</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.152353049</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Université + Polytechnique</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">2825</td>
-<td style="text-align: right;">0.0088227</td>
-<td style="text-align: left;">NA</td>
+<td class="gt_row gt_center" headers="educ" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">917</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.008395898</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
 </tr>
 </tbody>
 </table>
+
+</div>
 </div>
 </div>
 <p>On the other hand, the dataset offers two variables for income: “nivmena” and “revenu”. Nivmena, a 4 point scale ordinal variable (in categories), was collected until 1993 and revenu was then collected. the latter is a 5 points scale ordinal income brackets variable.</p>
@@ -336,50 +1171,473 @@ background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb1-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">kable</span>()</span></code></pre></div>
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt_theme_dark</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
+
+<div id="mtzdcnhdse" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#mtzdcnhdse .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #333333;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #333333;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #333333;
+}
+
+#mtzdcnhdse .gt_heading {
+  background-color: #333333;
+  text-align: left;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mtzdcnhdse .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #333333;
+  border-bottom-width: 0;
+}
+
+#mtzdcnhdse .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #333333;
+  border-top-width: 0;
+}
+
+#mtzdcnhdse .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mtzdcnhdse .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mtzdcnhdse .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mtzdcnhdse .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mtzdcnhdse .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mtzdcnhdse .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mtzdcnhdse .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mtzdcnhdse .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mtzdcnhdse .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mtzdcnhdse .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mtzdcnhdse .gt_stub {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtzdcnhdse .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mtzdcnhdse .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mtzdcnhdse .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtzdcnhdse .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mtzdcnhdse .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtzdcnhdse .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mtzdcnhdse .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+}
+
+#mtzdcnhdse .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtzdcnhdse .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mtzdcnhdse .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtzdcnhdse .gt_left {
+  text-align: left;
+}
+
+#mtzdcnhdse .gt_center {
+  text-align: center;
+}
+
+#mtzdcnhdse .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mtzdcnhdse .gt_font_normal {
+  font-weight: normal;
+}
+
+#mtzdcnhdse .gt_font_bold {
+  font-weight: bold;
+}
+
+#mtzdcnhdse .gt_font_italic {
+  font-style: italic;
+}
+
+#mtzdcnhdse .gt_super {
+  font-size: 65%;
+}
+
+#mtzdcnhdse .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#mtzdcnhdse .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mtzdcnhdse .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mtzdcnhdse .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mtzdcnhdse .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mtzdcnhdse .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mtzdcnhdse .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
 <tr class="header">
-<th style="text-align: right;">nivmena</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">prop</th>
-<th style="text-align: left;">label</th>
+<th id="nivmena" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">nivmena</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">n</th>
+<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">prop</th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">label</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5515</td>
-<td style="text-align: right;">0.0172238</td>
-<td style="text-align: left;">Elevé</td>
+<td class="gt_row gt_center" headers="nivmena" style="font-family: 'Source Sans Pro'; font-weight: 400">1</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">1887</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.01727706</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Elevé</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">19126</td>
-<td style="text-align: right;">0.0597320</td>
-<td style="text-align: left;">Moyen supérieur</td>
+<td class="gt_row gt_center" headers="nivmena" style="font-family: 'Source Sans Pro'; font-weight: 400">2</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">6687</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.06122505</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Moyen supérieur</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">35285</td>
-<td style="text-align: right;">0.1101978</td>
-<td style="text-align: left;">Moyen inférieur</td>
+<td class="gt_row gt_center" headers="nivmena" style="font-family: 'Source Sans Pro'; font-weight: 400">3</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">12438</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.11388024</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Moyen inférieur</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">9292</td>
-<td style="text-align: right;">0.0290196</td>
-<td style="text-align: left;">Bas</td>
+<td class="gt_row gt_center" headers="nivmena" style="font-family: 'Source Sans Pro'; font-weight: 400">4</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">3283</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.03005860</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">Bas</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">250979</td>
-<td style="text-align: right;">0.7838268</td>
-<td style="text-align: left;">NA</td>
+<td class="gt_row gt_center" headers="nivmena" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">84925</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.77755906</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
 </tr>
 </tbody>
 </table>
+
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">vox <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -407,62 +1665,485 @@ background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb2-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">kable</span>()</span></code></pre></div>
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt_theme_dark</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
+
+<div id="qmgkwffjiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#qmgkwffjiv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #333333;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #333333;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #333333;
+}
+
+#qmgkwffjiv .gt_heading {
+  background-color: #333333;
+  text-align: left;
+  border-bottom-color: #333333;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qmgkwffjiv .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #333333;
+  border-bottom-width: 0;
+}
+
+#qmgkwffjiv .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #333333;
+  border-top-width: 0;
+}
+
+#qmgkwffjiv .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qmgkwffjiv .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qmgkwffjiv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qmgkwffjiv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qmgkwffjiv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #FFFFFF;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qmgkwffjiv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qmgkwffjiv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qmgkwffjiv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qmgkwffjiv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qmgkwffjiv .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qmgkwffjiv .gt_stub {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmgkwffjiv .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #333333;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qmgkwffjiv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qmgkwffjiv .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmgkwffjiv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qmgkwffjiv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #333333;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmgkwffjiv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qmgkwffjiv .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #333333;
+}
+
+#qmgkwffjiv .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmgkwffjiv .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #333333;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qmgkwffjiv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmgkwffjiv .gt_left {
+  text-align: left;
+}
+
+#qmgkwffjiv .gt_center {
+  text-align: center;
+}
+
+#qmgkwffjiv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qmgkwffjiv .gt_font_normal {
+  font-weight: normal;
+}
+
+#qmgkwffjiv .gt_font_bold {
+  font-weight: bold;
+}
+
+#qmgkwffjiv .gt_font_italic {
+  font-style: italic;
+}
+
+#qmgkwffjiv .gt_super {
+  font-size: 65%;
+}
+
+#qmgkwffjiv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#qmgkwffjiv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qmgkwffjiv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qmgkwffjiv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qmgkwffjiv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qmgkwffjiv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qmgkwffjiv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
 <tr class="header">
-<th style="text-align: right;">revenu</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">prop</th>
-<th style="text-align: left;">label</th>
+<th id="revenu" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">revenu</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">n</th>
+<th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">prop</th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">label</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">23419</td>
-<td style="text-align: right;">0.0731393</td>
-<td style="text-align: left;">3’000.- CHF et moins</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">1</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">7886</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.07220289</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">3'000.- CHF et moins</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">51879</td>
-<td style="text-align: right;">0.1620221</td>
-<td style="text-align: left;">de 3’001 à 5’000.- CHF</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">2</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">17535</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.16054752</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">de 3'001 à 5'000.- CHF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">53038</td>
-<td style="text-align: right;">0.1656418</td>
-<td style="text-align: left;">de 5’001 à 7’000.- CHF</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">3</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">18302</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.16757004</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">de 5'001 à 7'000.- CHF</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">34683</td>
-<td style="text-align: right;">0.1083177</td>
-<td style="text-align: left;">de 7’001 à 9’000.- CHF</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">4</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">11988</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.10976012</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">de 7'001 à 9'000.- CHF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">35171</td>
-<td style="text-align: right;">0.1098418</td>
-<td style="text-align: left;">9’001.- CHF et plus</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">5</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">12390</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.11344076</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">9'001.- CHF et plus</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">13940</td>
-<td style="text-align: right;">0.0435357</td>
-<td style="text-align: left;">nsp</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">8</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">4784</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.04380150</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">nsp</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">108067</td>
-<td style="text-align: right;">0.3375016</td>
-<td style="text-align: left;">NA</td>
+<td class="gt_row gt_center" headers="revenu" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
+<td class="gt_row gt_right" headers="n" style="font-family: 'Source Sans Pro'; font-weight: 400">36335</td>
+<td class="gt_row gt_right" headers="prop" style="font-family: 'Source Sans Pro'; font-weight: 400">0.33267717</td>
+<td class="gt_row gt_left" headers="label" style="font-family: 'Source Sans Pro'; font-weight: 400">NA</td>
 </tr>
 </tbody>
 </table>
+
+</div>
 </div>
 </div>
 <p>I made the choice to merge the two variables by recoding the revenu variable so that it fits into the categories of the first variable. I do so by considering the first income bracket as the “low” category, the second as “inferior-middle”, the third and fourth as the “upper-middle” category and the fifth as the “upper” category.</p>
@@ -1208,7 +2889,7 @@ font-style: inherit;">"Average Marginal Effect"</span>)</span>
 <p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons ssp controls-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The differences in probability have slighlty change, but the conclusions here are in fine the same as the no-control regression.</p>
+<p>The differences in probability have slighlty change, but the conclusions here are in fine the same as the no-controls regression.</p>
 </section>
 <section id="repeated-cross-section-support-for-svp" class="level4">
 <h4 class="anchored" data-anchor-id="repeated-cross-section-support-for-svp">Repeated Cross-section: support for SVP</h4>
@@ -1295,6 +2976,7 @@ font-style: inherit;">"Repeated Cross-sectional regressions, with controls"</spa
 </section>
 <section id="multilevel-regression-partial-pooling-for-years" class="level3">
 <h3 class="anchored" data-anchor-id="multilevel-regression-partial-pooling-for-years">Multilevel regression: partial pooling for years</h3>
+<p>All the models computed and presented have major drawbacks. First, estimates are surely biased because not all important and potentially confounding variables are included in the model. Since we are not here interested in causality, this does not constitute a major problem either. A bigger problem is the inference: many estimates are not statistically significant. To try to solve this issue, I will now run multilevel regressions. There are many choices regarding the levels: one can choose the canton as a group and run separate multilevel regression for each year. Alternatively, both years and canton can be included as a level in the regression.</p>
 <section id="support-for-ssp" class="level4">
 <h4 class="anchored" data-anchor-id="support-for-ssp">Support for SSP</h4>
 <p>The multilevel regressions, with years as a level, lead globally to the same conclusions as above.</p>
@@ -1366,47 +3048,6 @@ font-style: inherit;">"logit"</span>))</span></code></pre></div>
 </section>
 <section id="partial-pooling-support-for-svp" class="level4">
 <h4 class="anchored" data-anchor-id="partial-pooling-support-for-svp">Partial Pooling: Support for SVP</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">glmer_udc <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">glmer</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> vox,</span>
-<span id="cb11-2">                   <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">formula =</span> udc <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> income <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> educ <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> gender <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> age_cat <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> married <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> regionL <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> religion <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> (income <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> educ <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|</span> annee_f),</span>
-<span id="cb11-3">                   <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">binomial</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"logit"</span>))</span></code></pre></div>
-</div>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/partial pooling udc plot-1.png" class="img-fluid" width="672"></p>
