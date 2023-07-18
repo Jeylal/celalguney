@@ -4,6 +4,7 @@ format: html
 editor: visual
 image: graph1.png
 date: "17 April 2023"
+date-modified: "18 July 2023"
 execute: 
   freeze: true
 categories: [Political Economy, Stats, Coding]
@@ -27,6 +28,7 @@ library(marginaleffects)
 library(gtsummary)
 library(DescTools)
 library(weights)
+library(gtExtras)
 setwd("F:/myblog/posts/Techinal notes of political cleavages and inequality")
 
 options(scipen = 999)
@@ -84,10 +86,14 @@ ca2015 %>% filter(votendp == 1) %>%
     cumrelfreqInc = cumsum(inc/sum(inc))) -> table.income
 
 table.income.pervote %>% 
-  gt(caption = "Distribution of the vote for the NDP by income group")
+  gt(caption = "Distribution of the vote for the NDP by income group") %>% 
+  gt_theme_dark()
 
 table.income %>% 
-  gt(caption =  "Distribution of income group among NDP's voters")
+  gt(caption =  "Distribution of income group among NDP's voters") %>% 
+  gt_theme_dark()
+
+
 
 
 ```
@@ -164,21 +170,28 @@ ca2015 %>%
   filter(votendp == 1) %>% 
   drop_na() %>% 
   ungroup() %>% 
-  mutate(prop = n/sum(n)) -> table.income.vote
+  mutate(prop = n/sum(n),
+         cumsumlag = (lag(cumsum(prop))),
+         cumsum = cumsum(prop)) -> table.income.vote
 
-table.income.vote %>% gt(caption = "Decile and income bracket")
+table.income.vote %>% 
+  gt(caption = "Decile and income bracket") %>% 
+  gt_theme_dark()
 ```
 
-However, it is straightforward to see that the ntile() function has flaws in decile computing. More generally, computing income decile when the income variable is in brackets seems complicated, but the technical note proposes a re-weighting average approach to partially solve this problem.
+However, it is straightforward to see that the ntile() function has flaws in decile computing.
+
+More generally, computing income decile when the income variable is in brackets seems complicated, but the technical note proposes a re-weighting average approach to partially solve this problem.
 
 To see how the re-weighing approach works, let's go back to the first table:
 
 ```{r}
 table.income %>%
-  gt()
+  gt() %>% 
+  gt_theme_dark()
 ```
 
-We can directly see the problem posed by income brackets: for example, we can observe that all of income bracket one belongs to the first decile since its relative range is between 0 and 0.0723. However, the relative range of bracket two is \[0.0723 - 0.1487\]. Some part of it belong to the first decile (\[0 - 0.1\]), but some belong to the second (\[0 - 0.2\]). The approach to compute the proportion of observations belonging to the any given decile is to compute the share of each income bracket belonging to this decile and then compute a weighted average. For example, if I want to compute the share of observation of the first decile (D10), I already know that 100% of income bracket one belongs to D10 but I need to know the share of bracket 2 (B2) belonging to D10.
+We can directly see the problem posed by income brackets: for example, we can see that all of income bracket one belongs to the first decile since its relative range is between 0 and 0.0723. However, the relative range of bracket two is \[0.0723 - 0.1487\]. Some part of it belong to the first decile (\[0 - 0.1\]), but some belong to the second (\[0 - 0.2\]). The approach to compute the proportion of observations belonging to the any given decile is to compute the share of each income bracket belonging to this decile and then compute a weighted average. For example, if I want to compute the share of observation of the first decile (D10), I already know that 100% of income bracket one belongs to D10 but I need to know the share of bracket 2 (B2) belonging to D10.
 
 To estimate this, let's assume the distribution of B2 is uniform $x \sim U[0.0723; 0.1487]$, with x the observation within this range. We want to know $P(x<0.1)$, that is to say, the probability that x belongs to the first decile. We use the uniform cumulative distribution function with parameters min = 0.073 and max = 0.1487: $P(x<0.1) = \frac{0.1-0.0723}{0.1487-0.0723} = 0.3626$. This means that 36.26% of B2 belongs to D10. Then, the weighted average for the proportion of observation within D10: $\frac{1*0.317+0.3626*0.26}{1+0.3626} = 0.3018$. 30.2% the first decile voters voted for the NDP in 2015.
 
@@ -224,14 +237,15 @@ table.income %>%
 
 table.income %>% mutate(
   prop_vote = table.income.pervote$prop[table.income.pervote$votendp == 1]
-) %>% gt()
+) %>% gt() %>% 
+  gt_theme_dark()
 ```
 
 There can be mistakes, but the results seem to make sense
 
 Since I do not want to ever do this computation again (😅), I put all of this into a function:
 
-```{r}
+```{r weight share function}
 weight_share <- function(x){
   weight <- rep(NA, length(x))
   
@@ -259,13 +273,13 @@ weight_share(x = table.income$cumrelfreqN)
 
 ```
 
-We are almost done, there are only the weighted averages for each decile left to calculate. One further step is to compute dummy variables to show to which decile income brackets belong to. This will produce a table close to the one from the technical note.
+We are almost done, there are only the weighted averages for each decile left to compute. One further step is to compute dummy variables to show to which decile income brackets belong to. This will produce a table close to the one from the technical note.
 
 ```{r}
 
 table.income %>% 
   mutate(d1 = ifelse(table.income$rangeleft >= 0 & table.income$rangeleft < 0.1, 1, 0),
-         d2 = ifelse(table.income$rangeleft %[]% c(0.1, 0.2) | table.income$cumrelfreqN %[]% c(0.1, 0.2), 1, 0),  # the %[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d2 = ifelse(table.income$rangeleft %[]% c(0.1, 0.2) | table.income$cumrelfreqN %[]% c(0.1, 0.2), 1, 0),  # the %[]% is an "between" operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
          d3 = ifelse(table.income$rangeleft %[]% c(0.2, 0.3) | table.income$cumrelfreqN %[]% c(0.2, 0.3), 1, 0),
          d4 = ifelse(table.income$rangeleft %[]% c(0.3, 0.4) | table.income$cumrelfreqN %[]% c(0.3, 0.4), 1, 0),
          d5 = ifelse(table.income$rangeleft %[]% c(0.4, 0.5) | table.income$cumrelfreqN %[]% c(0.4, 0.5), 1, 0),
@@ -275,12 +289,14 @@ table.income %>%
          d9 = ifelse(table.income$rangeleft %[]% c(0.8, 0.9) | table.income$cumrelfreqN %[]% c(0.8, 0.9), 1, 0),
          d10 = ifelse(table.income$rangeleft %[]% c(0.9, 1) | table.income$cumrelfreqN %[]% c(0.9, 1), 1, 0)) -> table.income
 
-table.income %>% gt()
+table.income %>% 
+  gt() %>% 
+  gt_theme_dark()
 ```
 
 Tu put the code above into a function:
 
-```{r}
+```{r decile dummies function}
 decile_dummies <- function(data, rangeleft, rangeright){
 
 data %>% 
@@ -369,7 +385,276 @@ This graph is very close to the one from the techninal note (figure one, right-s
 
 For now, let's put the for loop into a function: this function would require the decile dummies columns, the columns for the proportion, the column for decile share and the column for the rest's share:
 
+```{r decile function}
+decile <- function(data, columns, prop, share_decile, share_rest){
+  
+  decile_vec <- rep(NA, 10)
+decile <- c()
+
+decile_vec <- capture.output(for (i in min(columns):max(columns)) {
+
+  if(i == min(columns)){
+    
+  decile =  c(weighted.mean(x = c(prop[data[,i] == 1]),
+              w = c(share_decile[data[,i] == 1])))
+  }else{
+    
+   decile = c(weighted.mean(x = c(prop[data[,i] == 1]),
+              w = c(share_rest[data[,i-1] == 1 & data[, i] == 1], 
+                    share_decile[data[i-1] == 0 & data[,i] == 1])))
+  }
+ 
+cat(decile,"\n")
+})
+
+decile_vec <- as.numeric(decile_vec)
+decile <- data.frame(decile = 1:10,
+                         prop = decile_vec)
+decile <- decile %>% 
+  mutate(across(everything(), ~replace(.x, is.nan(.x), 0))) # if an income group has no individuals who has votendp == 1, make the function return 0 instead of NaNs
+}
+```
+
 ```{r}
+decile(data = table.income, columns = 12:21, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
+```
+
+The function seems to work, but requires a specific dataframe (formatted as table.income).
+
+## Summing up all of this into one function
+
+The goal here is to write all the steps above into one function, such that only the variable from the dataset must be given to compute the deciles.
+
+```{r all and final functions}
+# note: the function needs the weight_share() function and the decile_dummies function and the decile function
+
+weight_share <- function(x){
+  weight <- rep(NA, length(x))
+  
+  for (i in 1:length(x)) {
+   weight[i] <-  ifelse(x[i] < 0.1 | x[i] == 1, 1,
+                  ifelse(x[i] > 0.1 & x[i] < 0.2, punif(0.1, min = x[i-1], max = x[i]),
+                         ifelse(x[i] > 0.2 & x[i] < 0.3, punif(0.2, min = x[i-1], max = x[i]),
+                                ifelse(x[i] > 0.3 & x[i] < 0.4, punif(0.3, min = x[i-1], max = x[i]),
+                                       ifelse(x[i] > 0.4 & x[i] < 0.5, punif(0.4, min = x[i-1], max = x[i]), 
+                                              ifelse(x[i] > 0.5 & x[i] < 0.6, punif(0.5, min = x[i-1], max = x[i]), 
+                                                     ifelse(x[i] > 0.6 & x[i] < 0.7, punif(0.6, min = x[i-1], max = x[i]),
+                                                            ifelse(x[i] > 0.7 & x[i] < 0.8, punif(0.7, min = x[i-1], max = x[i]),
+                                                                   ifelse(x[i] > 0.8 & x[i] < 0.9, punif(0.8, min = x[i-1], max = x[i]),
+                                                                                                         ifelse(x[i] > 0.9 & x[i] < 1, punif(0.9, min = x[i-1], max = x[i]), 1))))))))))
+  }
+  weight <- ifelse(weight == 0, 1, weight)
+}
+
+
+decile_dummies <- function(data, rangeleft, rangeright){
+
+data %>% 
+  mutate(d1 = ifelse({{rangeleft}} >= 0 & {{rangeleft}} < 0.1, 1, 0),
+         d2 = ifelse({{rangeleft}} %[]% c(0.1, 0.2) | {{rangeright}} %[]% c(0.1, 0.2), 1, 0),  #%[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d3 = ifelse({{rangeleft}} %[]% c(0.2, 0.3) | {{rangeright}} %[]% c(0.2, 0.3), 1, 0),
+         d4 = ifelse({{rangeleft}} %[]% c(0.3, 0.4) | {{rangeright}} %[]% c(0.3, 0.4), 1, 0),
+         d5 = ifelse({{rangeleft}} %[]% c(0.4, 0.5) | {{rangeright}} %[]% c(0.4, 0.5), 1, 0),
+         d6 = ifelse({{rangeleft}} %[]% c(0.5, 0.6) | {{rangeright}} %[]% c(0.5, 0.6), 1, 0),
+         d7 = ifelse({{rangeleft}} %[]% c(0.6, 0.7) | {{rangeright}} %[]% c(0.6, 0.7), 1, 0),
+         d8 = ifelse({{rangeleft}} %[]% c(0.7, 0.8) | {{rangeright}} %[]% c(0.7, 0.8), 1, 0),
+         d9 = ifelse({{rangeleft}} %[]% c(0.8, 0.9) | {{rangeright}} %[]% c(0.8, 0.9), 1, 0),
+         d10 = ifelse({{rangeleft}} %[]% c(0.9, 1) | {{rangeright}} %[]% c(0.9, 1), 1, 0))
+  
+}
+
+decile <- function(data, columns, prop, share_decile, share_rest){
+  
+  decile_vec <- rep(NA, 10)
+decile <- c()
+
+decile_vec <- capture.output(for (i in min(columns):max(columns)) {
+
+  if(i == min(columns)){
+    
+  decile =  c(weighted.mean(x = c(prop[data[,i] == 1]),
+              w = c(share_decile[data[,i] == 1])))
+  }else{
+    
+   decile = c(weighted.mean(x = c(prop[data[,i] == 1]),
+              w = c(share_rest[data[,i-1] == 1 & data[, i] == 1], 
+                    share_decile[data[i-1] == 0 & data[,i] == 1])))
+  }
+ 
+cat(decile,"\n")
+})
+
+decile_vec <- as.numeric(decile_vec)
+decile <- data.frame(decile = 1:10,
+                         prop = decile_vec)
+decile <- decile %>% 
+  mutate(across(everything(), ~replace(.x, is.nan(.x), 0))) ### if a group has no observation in the count, replace the NaNs by zeros
+
+decile
+}
+
+decile_final <- function(data, x, by, value){
+  
+table1 <- 
+  {{data}} %>%
+  group_by({{by}}) %>% 
+  count({{x}}) %>% 
+  drop_na() %>% 
+  mutate(
+    cum_x = cumsum(n),
+    prop_x = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter({{x}} == value)
+
+
+table <- 
+{{data}} %>% 
+  filter({{x}} == value) %>% 
+  group_by({{by}}) %>% 
+  count({{x}}) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(
+         prop_x = table1$prop_x,
+         prop = n/sum(n),
+         rangeleft = lag(cumsum(prop), default = 0),
+         cumrelfreq = cumsum(prop),
+         share_decile = weight_share(cumrelfreq),
+         share_rest = 1 - weight_share(cumrelfreq)) %>% 
+    decile_dummies(rangeleft = rangeleft, rangeright = cumrelfreq)
+
+
+decile_columns <- which(colnames(table)=="d1" ):which(colnames(table)=="d10" )
+
+decile(data = table, columns = decile_columns, prop = table$prop_x, share_decile = table$share_decile, share_rest = table$share_rest)
+
+}
+
+```
+
+```{r}
+decile_final(data = ca2015, by = inc, x = votendp, value = 1)
+decile_final(data = ca2015, by = inc, x = votelib, value = 1)
+```
+
+```{r}
+#| eval: false
+#| include: false
+ca2015 %>% 
+  count(inc) %>% 
+  mutate(prop = n/sum(n),
+         cumrelfreq = cumsum(prop),
+         inverse_rcdf = rev(cumrelfreq)) -> paretotable
+
+paretotable %>% 
+  gt()
+
+```
+
+```{r}
+#| eval: false
+#| include: false
+paretotable %>% 
+  ggplot()+
+  aes(x = log(inc), y = log(rev(cumrelfreq)))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  theme_bw()
+```
+
+```{r}
+#| eval: false
+#| include: false
+ca2015 %>% 
+  count(inc) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n),
+         rangeleft = lag(cumsum(prop), default = 0),
+         rangeright = cumsum(prop)) -> data
+data %>% gt()
+```
+
+```{r}
+#| eval: false
+#| include: false
+weight_share(x = data$rangeright)
+```
+
+```{r}
+#| eval: false
+#| include: false
+data %>% 
+  mutate(share_decile = weight_share(x = data$rangeright),
+         share_rest = 1-weight_share(x = data$rangeright)) -> data
+```
+
+```{r}
+#| eval: false
+#| include: false
+data %>% 
+  mutate(d1 = ifelse(data$rangeleft >= 0 & data$rangeright < 0.1, 1, 0),
+         d2 = ifelse(data$rangeleft %[]% c(0.1, 0.2) | data$rangeright %[]% c(0.1, 0.2), 1, 0),  # the %[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d3 = ifelse(data$rangeleft %[]% c(0.2, 0.3) | data$rangeright %[]% c(0.2, 0.3), 1, 0),
+         d4 = ifelse(data$rangeleft %[]% c(0.3, 0.4) | data$rangeright %[]% c(0.3, 0.4), 1, 0),
+         d5 = ifelse(data$rangeleft %[]% c(0.4, 0.5) | data$rangeright %[]% c(0.4, 0.5), 1, 0),
+         d6 = ifelse(data$rangeleft %[]% c(0.5, 0.6) | data$rangeright %[]% c(0.5, 0.6), 1, 0),
+         d7 = ifelse(data$rangeleft %[]% c(0.6, 0.7) | data$rangeright %[]% c(0.6, 0.7), 1, 0),
+         d8 = ifelse(data$rangeleft %[]% c(0.7, 0.8) | data$rangeright %[]% c(0.7, 0.8), 1, 0),
+         d9 = ifelse(data$rangeleft %[]% c(0.8, 0.9) | data$rangeright %[]% c(0.8, 0.9), 1, 0),
+         d10 = ifelse(data$rangeleft %[]% c(0.9, 1) | data$rangeright %[]% c(0.9, 1), 1, 0)) -> data
+
+data %>% gt()
+```
+
+### What's Next?
+
+Even if the goal of reproducing the WPID's methodology is now done, I am still unsatisfied with some aspects of the work done above. I will try in the future to do the following:
+
+-   Improve the code of all the functions (see below)
+
+-   Improve the functions to allow for greater flexibility (for example allowing to compute not only decile, but also quartiles, quintiles...)
+
+-   Create a function which assigns each individual of the dataset to a quantile group (Piketty and Co-authors provide the function only in Stata...)
+
+```{r all and final functions working on}
+# note: the function needs the weight_share() function and the decile_dummies function and the decile function
+# I am Still working on improving these functions: simplify the code and allow for a lot more flexibility, for instance:
+      # 1. compute different quantile groups (quartile, quintiles... instead of always deciles)
+weight_share <- function(x){
+  weight <- rep(NA, length(x))
+  
+  for (i in 1:length(x)) {
+   weight[i] <-  ifelse(x[i] < 0.1 | x[i] == 1, 1,
+                  ifelse(x[i] > 0.1 & x[i] < 0.2, punif(0.1, min = x[i-1], max = x[i]),
+                         ifelse(x[i] > 0.2 & x[i] < 0.3, punif(0.2, min = x[i-1], max = x[i]),
+                                ifelse(x[i] > 0.3 & x[i] < 0.4, punif(0.3, min = x[i-1], max = x[i]),
+                                       ifelse(x[i] > 0.4 & x[i] < 0.5, punif(0.4, min = x[i-1], max = x[i]), 
+                                              ifelse(x[i] > 0.5 & x[i] < 0.6, punif(0.5, min = x[i-1], max = x[i]), 
+                                                     ifelse(x[i] > 0.6 & x[i] < 0.7, punif(0.6, min = x[i-1], max = x[i]),
+                                                            ifelse(x[i] > 0.7 & x[i] < 0.8, punif(0.7, min = x[i-1], max = x[i]),
+                                                                   ifelse(x[i] > 0.8 & x[i] < 0.9, punif(0.8, min = x[i-1], max = x[i]),
+                                                                                                         ifelse(x[i] > 0.9 & x[i] < 1, punif(0.9, min = x[i-1], max = x[i]), 1))))))))))
+  }
+  weight <- ifelse(weight == 0, 1, weight)
+}
+
+
+decile_dummies <- function(data, rangeleft, rangeright){
+
+data %>% 
+  mutate(d1 = ifelse({{rangeleft}} >= 0 & {{rangeleft}} < 0.1, 1, 0),
+         d2 = ifelse({{rangeleft}} %[]% c(0.1, 0.2) | {{rangeright}} %[]% c(0.1, 0.2), 1, 0),  #%[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
+         d3 = ifelse({{rangeleft}} %[]% c(0.2, 0.3) | {{rangeright}} %[]% c(0.2, 0.3), 1, 0),
+         d4 = ifelse({{rangeleft}} %[]% c(0.3, 0.4) | {{rangeright}} %[]% c(0.3, 0.4), 1, 0),
+         d5 = ifelse({{rangeleft}} %[]% c(0.4, 0.5) | {{rangeright}} %[]% c(0.4, 0.5), 1, 0),
+         d6 = ifelse({{rangeleft}} %[]% c(0.5, 0.6) | {{rangeright}} %[]% c(0.5, 0.6), 1, 0),
+         d7 = ifelse({{rangeleft}} %[]% c(0.6, 0.7) | {{rangeright}} %[]% c(0.6, 0.7), 1, 0),
+         d8 = ifelse({{rangeleft}} %[]% c(0.7, 0.8) | {{rangeright}} %[]% c(0.7, 0.8), 1, 0),
+         d9 = ifelse({{rangeleft}} %[]% c(0.8, 0.9) | {{rangeright}} %[]% c(0.8, 0.9), 1, 0),
+         d10 = ifelse({{rangeleft}} %[]% c(0.9, 1) | {{rangeright}} %[]% c(0.9, 1), 1, 0))
+  
+}
+
 decile <- function(data, columns, prop, share_decile, share_rest){
   
   decile_vec <- rep(NA, 10)
@@ -396,97 +681,68 @@ decile <- data.frame(decile = 1:10,
                          prop = decile_vec)
 decile
 }
-```
 
-```{r}
-decile(data = table.income, columns = 12:21, prop = table.income$prop_vote, share_decile = table.income$share_decile, share_rest = table.income$share_rest)
-```
-
-The function seems to work, but requires a specific dataframe (formatted as table.income).
-
-## Sidenote: fitting a Pareto line to income brackets
-
-Finally, one can also try to fit a "Pareto line" to the income bracket data. Vilfredo Pareto (1848-1923) is well-known for being one of the first economist to have computed inequality indices (his famous alpha coefficient) directly from personal income distribution data. His relationship $log(N) = A-\alpha log(x)$, with N the number of people earning more than income level x, is a famous relationship and almost every course on income inequality measurement starts with it.
-
-First, a table need to be constructed from the data, we count the number of observation per income bracket and compute the inverse of the cumulative relative frequencies, which is the same as N is Pareto's equation.
-
-```{r}
-ca2015 %>% 
-  count(inc) %>% 
-  mutate(prop = n/sum(n),
-         cumrelfreq = cumsum(prop),
-         inverse_rcdf = rev(cumrelfreq)) -> paretotable
-
-paretotable %>% 
-  gt()
-
-```
-
-Finally, one can plot the log of the inverse of the relative cumulative distribution function against the log of the income groups:
-
-```{r}
-#| warning: false
-#| message: false
-paretotable %>% 
-  ggplot()+
-  aes(x = log(inc), y = log(rev(cumrelfreq)))+
-  geom_point()+
-  geom_smooth(method = "lm")+
-  theme_bw()
-```
-
-We can see that the line does not fit the data very well. As explained by [Milanovic](https://glineq.blogspot.com/2015/02/what-remains-of-pareto.html?m=1), the Pareto line fits well only for the top of income distribution. In fact, the data on personal income distribution that Pareto had only collected income data of the very rich. If he had data covering more than the top 1 percent, he would have probably made similar graphs as here and as in Milanovic's blog post.
-
-```{r}
-#| include: false
-ca2015 %>% 
-  count(inc) %>% 
+table_decile <- function(data, x, by, value){
+  
+table1 <- 
+  {{data}} %>%
+  group_by({{by}}) %>% 
+  count({{x}}) %>% 
   drop_na() %>% 
-  mutate(prop = n/sum(n),
+  mutate(
+    cum_x = cumsum(n),
+    prop_x = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter({{x}} == value)
+
+
+table <- 
+{{data}} %>% 
+  filter({{x}} == value) %>% 
+  group_by({{by}}) %>% 
+  count({{x}}) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(
+         prop_x = table1$prop_x,
+         prop = n/sum(n),
          rangeleft = lag(cumsum(prop), default = 0),
-         rangeright = cumsum(prop)) -> data
-data %>% gt()
+         cumrelfreq = cumsum(prop),
+         share_decile = weight_share(cumrelfreq),
+         share_rest = 1 - weight_share(cumrelfreq)) %>% 
+    decile_dummies(rangeleft = rangeleft, rangeright = cumrelfreq)
+
+
+decile_columns <- which(colnames(table)=="d1" ):which(colnames(table)=="d10")
+
+list(table = table,
+     decile = decile(data = table, columns = decile_columns, prop = table$prop_x, share_decile = table$share_decile, share_rest = table$share_rest))
+
+
+}
+
 ```
 
-```{r}
-#| include: false
-weight_share(x = data$rangeright)
-```
 
-```{r}
-#| include: false
-data %>% 
-  mutate(share_decile = weight_share(x = data$rangeright),
-         share_rest = 1-weight_share(x = data$rangeright)) -> data
-```
 
-```{r}
-#| include: false
-data %>% 
-  mutate(d1 = ifelse(data$rangeleft >= 0 & data$rangeright < 0.1, 1, 0),
-         d2 = ifelse(data$rangeleft %[]% c(0.1, 0.2) | data$rangeright %[]% c(0.1, 0.2), 1, 0),  # the %[]% is an within bracket operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a<b 
-         d3 = ifelse(data$rangeleft %[]% c(0.2, 0.3) | data$rangeright %[]% c(0.2, 0.3), 1, 0),
-         d4 = ifelse(data$rangeleft %[]% c(0.3, 0.4) | data$rangeright %[]% c(0.3, 0.4), 1, 0),
-         d5 = ifelse(data$rangeleft %[]% c(0.4, 0.5) | data$rangeright %[]% c(0.4, 0.5), 1, 0),
-         d6 = ifelse(data$rangeleft %[]% c(0.5, 0.6) | data$rangeright %[]% c(0.5, 0.6), 1, 0),
-         d7 = ifelse(data$rangeleft %[]% c(0.6, 0.7) | data$rangeright %[]% c(0.6, 0.7), 1, 0),
-         d8 = ifelse(data$rangeleft %[]% c(0.7, 0.8) | data$rangeright %[]% c(0.7, 0.8), 1, 0),
-         d9 = ifelse(data$rangeleft %[]% c(0.8, 0.9) | data$rangeright %[]% c(0.8, 0.9), 1, 0),
-         d10 = ifelse(data$rangeleft %[]% c(0.9, 1) | data$rangeright %[]% c(0.9, 1), 1, 0)) -> data
 
-data %>% gt()
-```
 
-```{r}
-#| include: false
-decile(data = data, columns = 8:17, prop = data$prop, share_decile = data$share_decile, share_rest = data$share_rest) -> data_decile
-```
 
-```{r}
-#| include: false
-data_decile %>% 
-  ggplot()+
-  aes(x = factor(decile), y = prop)+
-  geom_col()+
-  theme_bw()
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

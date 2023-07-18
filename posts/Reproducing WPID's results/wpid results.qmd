@@ -17,6 +17,8 @@ To analyze the evolution of political cleavages, [Piketty et al (2021)](https://
 #| warning: false
 #| message: false
 #| echo: false
+
+rm(list = ls())
 library(tidyverse)
 library(nnet)
 library(haven)
@@ -30,6 +32,8 @@ library(plot3logit)
 library(RColorBrewer)
 library(DescTools)
 library(splitstackshape)
+library(lme4)
+library(brms)
 setwd("F:/myblog/Posts/Reproducing WPID's results")
 ```
 
@@ -37,13 +41,26 @@ setwd("F:/myblog/Posts/Reproducing WPID's results")
 chinc <- read_dta("ch-inc.dta")
 names(chinc)
 ```
+```{r}
+unique(chinc$year)
+chinc %>% arrange(id)
+```
+
+
 
 ```{r}
-lm1 <- lm(data = chinc, voteleft ~ ginc_3 + factor(year) + educ)
-summary(lm1)
+data2015  <- 
+chinc %>% 
+  filter(year == 2015 )
+
+
+summary(glm(voteleft ~ dinc_10, family = binomial(link = "logit"), data = data2015))
+
 ```
 
 ```{r}
-lm1975 <- lm(data = chinc[chinc$year == 1975,], voteleft ~ ginc_3, weights = weightorig)
-summary(lm1975)
+summary(lm1)
+summary(glm1)
+summary(glmer1)
+ranef(glmer1)
 ```
