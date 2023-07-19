@@ -37,6 +37,7 @@ library(broom)
 library(knitr)
 library(readr)
 library(gtExtras)
+library(broom.mixed)
 
 theme_set(theme_bw())
 ```
@@ -297,10 +298,24 @@ vox <- vox %>%
                                                   if_else(is.na(revenu) & annee <= 1993, nivmena, NA))))))
 
          
-vox$income <- ifelse(vox$income == 4, 1,
-                    ifelse(vox$income == 3, 2,
-                        ifelse(vox$income == 2, 3,
-                          ifelse(vox$income == 1, 4, NA))))
+vox$income <- ifelse(vox$income == 4, -1,
+                    ifelse(vox$income == 3, 0,
+                        ifelse(vox$income == 2, 1,
+                          ifelse(vox$income == 1, 2, NA)))) # centering around zero, this will make the intercept more interpretable 
+
+
+# for education, rescale the values so that the lowest level is equal to zero
+vox <- vox %>% 
+  mutate(education = case_when(
+    educ == 1 ~ 0,
+    educ == 2 ~ 1,
+    educ == 3 ~ 2,
+    educ == 4 ~ 3,
+    educ == 5 ~ 4,
+    educ == 6 ~ 5,
+    is.na(educ) ~ NA
+  ))
+
 ```
 
 ```{r party dummies and other recoding}
@@ -334,11 +349,11 @@ vox$religion <- relevel(factor(as_character(vox$confess)), ref = "Catholique rom
 ## recoding age in 4 categories
 
 
-vox$age_cat <- if_else(vox$ age <= 29, 1,
-                  if_else(vox$ age %>% between(30,44), 2,
-                    if_else(vox$ age %>% between(45,64), 3, 
-                      if_else(vox$ age >= 65, 4,
-                        if_else(is.na(vox$ age), NA, NA)))))
+vox$age_cat <- if_else(vox$ age <= 29, -1,
+                  if_else(vox$ age %>% between(30,44), 0,
+                    if_else(vox$ age %>% between(45,64), 1, 
+                      if_else(vox$ age >= 65, 2,
+                        if_else(is.na(vox$age), NA, NA)))))
 
 vox$anne_f <- factor(vox$annee)
 
@@ -572,15 +587,53 @@ The first option is a lot more convenient than the multilevel model, because it 
 #### Repeated Cross-section: support for SSP
 
 Let's first run binary logit regression separately for each year of the dataset. The package purrr and map() function allows to do this quiet easily:
+```{r}
+#| eval: false
+glmer_ssp <- 
+  vox %>% 
+  split(.$annee_f) %>% 
+  map(~ glmer(pss ~ income + education + gender + (1 | canton_f),
+              data = .x, family = binomial(link = "logit")))
+
+
+
+ame_glmer_ssp_inc <- 
+glmer_ssp %>% 
+  map(~slopes(.x ,variables = "income")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "income")
+
+ame_glmer_ssp_educ <- 
+glmer_ssp %>% 
+  map(~slopes(.x ,variables = "education")) %>% 
+  map_df(~summarise(.x, ame = mean(estimate),
+            high = mean(conf.high),
+            low = mean(conf.low))) %>% 
+           mutate(year = 1981:2016,
+                  variable = "education")
+
+
+ame_glmer_ssp <- rbind(ame_glmer_ssp_inc, ame_glmer_ssp_educ)
+
+ame_glmer_ssp %>% plot_ame()
+
+
+plot_predictions(glmer_ssp[["2008"]], condition = list("income", "education", "canton_f"))+facet_wrap(~canton_f)+
+  aes(linetype = education)+
+  scale_colour_brewer(palette = "Set1")
+```
+
 
 ```{r no pooling repeated cross section (nprcs) regression vote for ssp}
 nprcs_ssp <- 
 vox %>%
   split(.$annee_f) %>% 
-  map(~ glm(pss ~ income + educ, data = .x, family = binomial(link = "logit")))
+  map(~ glm(pss ~ income + education, data = .x, family = binomial(link = "logit")))
 
 
-year <- data.frame(year = 1981:2016)
 
 nprcs_ssp %>% 
   map_df(tidy) %>% 
@@ -599,6 +652,8 @@ nprcs_ssp_results %>%
   facet_wrap(~term)+
   labs(title = "Vote for SSP, log(odds)")
 
+
+
 ```
 
 Here are the estimated coefficient for each regression. Since the coefficients give information on log(odds), they are not very informative (even if their sign still is). To give more meaningful results, I compute average marginal effects (AME) for each year:
@@ -616,7 +671,7 @@ nprcs_ssp %>%
 
 ame_educ_nprcrs_ssp <- 
 nprcs_ssp %>% 
-  map(~slopes(.x ,variables = "educ")) %>% 
+  map(~slopes(.x ,variables = "education")) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
             low = mean(conf.low))) %>% 
@@ -1302,6 +1357,59 @@ This hypothesis is globally confirmed. The Swiss socialist party was clearing ga
 The Radicals-Liberals represent clearly a bourgeois bloc, gathering the support of the wealthiest and most educated in almost every year of the dataset. The SVP was a merchant right party until 1992. After this period, the SVP gather mainly support from low income and low level of education groups
 
 
+
+```{r correlation plots}
+#| eval: false
+tbl_corr_plr <- 
+vox %>% 
+  group_by(annee, income) %>%
+  count(plr) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(plr == 1) %>% 
+  pivot_wider(names_from = c("income"), values_from = c("prop", "n")) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(party = "plr") %>% 
+  dplyr::select(-plr)
+
+tbl_corr_pss <- 
+vox %>% 
+  group_by(annee, income) %>%
+  count(pss) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(pss == 1) %>% 
+  pivot_wider(names_from = c("income"), values_from = c("prop", "n")) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(party = "pss") %>% 
+  dplyr::select(-pss)
+
+tbl_corr_udc <- 
+vox %>% 
+  group_by(annee, income) %>%
+  count(udc) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(udc == 1) %>% 
+  pivot_wider(names_from = c("income"), values_from = c("prop", "n")) %>% 
+  drop_na() %>% 
+  ungroup() %>% 
+  mutate(party = "udc") %>% 
+  dplyr::select(-udc)
+
+tbl_corr <- rbind(tbl_corr_plr, tbl_corr_pss, tbl_corr_udc)
+
+tbl_corr2 <- 
+  tbl_corr %>% 
+  dplyr::select(-matches("n_[1-4]")) %>% 
+  pivot_wider(names_from = "party", values_from = matches("prop_[1-4]"))
+
+  cor(tbl_corr2[,2:13]) %>% 
+    corrplot.mixed(order = "hclust", lower = "ellipse", upper = 'number', tl.cex = 0.6)
+  
+```
 
 
 

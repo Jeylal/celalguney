@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Celâl Güney">
+<meta name="dcterms.date" content="2023-07-19">
+
+<title>Celâl Güney - Classical-Marxian Model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Celâl Güney</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf" rel="" target="">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:celal.gueney@etu.unige.ch" rel="" target=""><i class="bi bi-envelope-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Post</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../economics.html" rel="" target="">
+ <span class="menu-text">Economics</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Classical-Marxian Model</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Celâl Güney </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 19, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>What follows is extensively based on <em>Heterodox Macroeconomics: Models of of Demand, Distribution and Growth</em> (2019) by Robert A. Blecker and Mark Setterfield</p>
+<section id="assumptions-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions-of-the-model">Assumptions of the model</h3>
+<p>The classical-marxian model, named after Smith, Ricardo (who are considered as classics) and marx and based on their important work, comes its specific assumptions:</p>
+<ol type="1">
+<li><strong>Constant or full capacity rate of utilization</strong>.</li>
+</ol>
+<p>The latter, <span class="math inline">\(u = \frac{Y}{Y_{K}}\)</span>, is ratio of the actual output (GDP) divided by the full capacity output <span class="math inline">\(Y_K\)</span>, which is the level if output if all capital in the economy was used at its full capacity (no unused machines, raw materials…). If this ratio is equal to one, that means that the economy is at full capacity, the actual output is equal to its capacity level. If the ratio is for example 0.5, that means that actual output is half its level if all capital was fully used. But why does this model make such an assumption? This assumption stands in sharp contrast with the (neo)kaleckian model which typically reverses this assumption stating that capacity rate <span class="math inline">\(u\)</span> is an important adjusting variable.</p>
+<p>Before explaining the reason behind this assumption, it is necessary to understand the classical-marxian conception of the production process (how inputs, capital and labor, are combined to produce either goods or services), which rests on the <strong>Leontieff production function</strong>. The latter can be written as</p>
+<p><span class="math display">\[
+Y = min(\frac{N}{a_0}, \frac{K}{a_1})
+\]</span></p>
+<p>With N and K respectively labor and capital, <span class="math inline">\(a_0 = L/Y\)</span> the labour-output ratio (the quantity of labour required to produce one unit of ouput) and <span class="math inline">\(a_1 = K/Y\)</span> the quantity of capital required to produce one unit of output (capital-output ratio).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how to write the leontief production function in R</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>leontief <span class="ot">&lt;-</span> <span class="cf">function</span>(l, k, a0, a1) (<span class="fu">min</span>(<span class="fu">c</span>(l<span class="sc">/</span>a0, k<span class="sc">/</span>a1)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="math inline">\(\frac{N}{a_0}\)</span> is the maximum output that can be produced with available labour resources while <span class="math inline">\(\frac{K}{a_1}\)</span> represents maximum output when all capital resources are used.</p>
+<p>For instance, if three units of labor are required to produce one unit of output and one unit of capital is required to produce one unit of output, what will be produced if we have N = 9 and K = 4 ?</p>
+<p>In our example, <span class="math inline">\(a_0 = 3/1\)</span> (three units of labor required to produce Y = 1) and <span class="math inline">\(a_1 = 1\)</span> (one unit of capital to produce one unit). We compute <span class="math inline">\(N/a_0 = 9/3\)</span> and <span class="math inline">\(K/a_1 = 4/1\)</span>. Since the former <span class="math inline">\(9/3 = 3\)</span> is bigger than <span class="math inline">\(4\)</span>, all 9 units of labor will be used to produce 3 units of output. Note that at Y = 3, one unit of capital will be leftover and be unused. In this example, output is “labor-constrained” because it is the amount of labor which is fully used and capital which is not. Output at full employment is <span class="math inline">\(Y_N = N/a_0\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leontief</span>(<span class="at">l =</span> <span class="dv">9</span>, <span class="at">k =</span> <span class="dv">4</span>, <span class="at">a0 =</span> <span class="dv">3</span>, <span class="at">a1 =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>Considering labor as the constraint is what the (neo)kaleckian model does, while the classical-marxian model considers that capital is the binding constraint on potential output. In the classical-marxian model, all capital is used and thus output is output at full capital utilization <span class="math inline">\(Y_K = K/a_1\)</span>.</p>
+<p>While both classical-marxian and (neo)kaleckian models use Leontief production function (and are here different from neoclassical models which use cobb-douglas production function), they differ by what they consider as the constraining factor on output: labor for (neo)kaleckian model <span class="math inline">\(Y_N\)</span>, capital for classical-marxian model <span class="math inline">\(Y_k\)</span>.</p>
+<p>Thus, considering that capital is the constraint implies the possibility to consider that the economy can reach a full capacity utilization <span class="math inline">\(u = Y/Y_k\)</span>, this is what the classical-marxian model does thus why <span class="math inline">\(u\)</span> is considered constant at full capacity <span class="math inline">\(u = 1\)</span>.</p>
+<ol start="2" type="1">
+<li><strong>Constant and Given Technology</strong></li>
+</ol>
+<p>There is no technological change in the classical-marxian model. However, the effects of exogenous technological change can still be analyzed.</p>
+</section>
+<section id="basis-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="basis-of-the-model">Basis of the model</h3>
+<section id="wage-profit-trade-off" class="level4">
+<h4 class="anchored" data-anchor-id="wage-profit-trade-off">Wage-profit trade-off</h4>
+<p>The main equation is derived from the income approach to national income, which is an accounting identity showing that national income is the sum of all income sources in the economy. The model makes here other assumptions: no government, closed economy, only workers and capitalists, only one good produced, which are nessecary to write:</p>
+<p><span class="math display">\[
+PY = WL + rPK
+\]</span> Which is the national income identity after those assumptions, with <span class="math inline">\(P\)</span> the price, <span class="math inline">\(Y\)</span> the output, <span class="math inline">\(W\)</span> the nominal wage rate, <span class="math inline">\(L\)</span> the amount of labor employed, <span class="math inline">\(r\)</span> the profit rate and <span class="math inline">\(K\)</span> the real stock of capital.</p>
+<p>From this equation above is derived one the main equation of the model, the inverse wage-profit relationship:</p>
+<p><span class="math display">\[
+w = \frac{1}{a_0}-\frac{a_1}{a_0}r
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="cf">function</span>(r) <span class="dv">40</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>r</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>), <span class="fu">aes</span>(<span class="at">x =</span> x))<span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> w)<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"label"</span>, <span class="at">x =</span> <span class="fl">7.5</span>, <span class="at">y =</span> <span class="dv">40</span>, <span class="at">label =</span> <span class="st">"w = 1/a0 - (a1/a0)*r"</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Inverse wage-profit relationship"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"profit rate (r)"</span>, <span class="at">y =</span> <span class="st">"real wage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="classical-marxian-model_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This equation also implies an inverse relationship between consumption and growth</p>
+<p><span class="math display">\[
+c = \frac{1}{a_0}-\frac{a_1}{a_0}g
+\]</span> With <span class="math inline">\(c\)</span> consumption of both workers and capitalist and <span class="math inline">\(g\)</span> the rate of capital accumulation <span class="math inline">\(g = \Delta{K}/K = I/K\)</span></p>
+<p>These two relationships and hence trade-off between wage and profit, and consumption and growth are the implications of the two main assumptions explained above: <strong>constant rate of capacity utilization</strong> and <strong>given constant technology</strong>. Technological change or rise in <span class="math inline">\(u\)</span> can improve the wage-profit trade-off and thus make both profits and wage rate rise (same for consumption-growth trade-off). Graphically, the slope of the curve above would either shift upward or one of the intercept increase.</p>
+</section>
+<section id="saving-function" class="level4">
+<h4 class="anchored" data-anchor-id="saving-function">Saving function</h4>
+<p>The model makes here another important assumption: <strong>all saving is done by the capitalist class</strong>. All savings come out from of the profits received by the capitalists. Another important feature is the fact that the classics and Marx did not distinguish between savings and investment (“the purchase of newly produced capital goods, such as machinery, equipment or structures”(p.63)). In C-M terminology, “accumulation” means the mechanistic flow between savings, investment and thus growth. This leads to the “accumulation function”:</p>
+<p><span class="math display">\[
+g \equiv I/K \equiv S/K = s_r(r-r_{min})
+\]</span></p>
+<p><span class="math inline">\(g \equiv I/K \equiv S/K\)</span> (growth <span class="math inline">\(g\)</span> is equal to the investment rate <span class="math inline">\(I/K\)</span> which is the same as saving rate <span class="math inline">\(S/K\)</span>) comes from this non-distinction between saving and investment. <span class="math inline">\(s_r\)</span> is the proportion capitalists save out of their profits <span class="math inline">\(r\)</span>. This equation means that growth can increase only with an increase in the saving rate of the capitalists.</p>
+</section>
+</section>
+<section id="the-three-equations-and-the-alternative-closures" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-equations-and-the-alternative-closures">The three equations and the alternative closures</h3>
+<section id="equations" class="level4">
+<h4 class="anchored" data-anchor-id="equations">3 Equations</h4>
+<p>The basic model is thus based on the three main equations</p>
+<ol type="1">
+<li>Profit-wage trade-off</li>
+</ol>
+<p><span class="math display">\[
+w = \frac{1}{a_0}-\frac{a_1}{a_0}r
+\]</span></p>
+<ol start="2" type="1">
+<li>Consumption-growth trade-off</li>
+</ol>
+<p><span class="math display">\[
+c = \frac{1}{a_0}-\frac{a_1}{a_0}g
+\]</span></p>
+<ol start="3" type="1">
+<li>Accumulation function</li>
+</ol>
+<p><span class="math display">\[
+g \equiv I/K \equiv S/K = s_r(r-r_{min})
+\]</span> However, the model is not “closed” in the sense that all the main variables (w, r, s_r, g) are endogenous (they all are a function of one another). The model needs thus to be “closed” by adding an exogenous variable. Since the classics and Marx did not give a precise and consistent closure (exogenous variable), the textbook gives four “alternative closures” which come from different interpretation the classics and Marx.</p>
+</section>
+<section id="alternative-closures" class="level4">
+<h4 class="anchored" data-anchor-id="alternative-closures">4 alternative closures</h4>
+<ol type="1">
+<li>An exogenously given real wage <span class="math inline">\(\bar{w}\)</span></li>
+</ol>
+<p>Which represents an ordinary standard of living for a working-class family. This should not be confounded with the infamous “iron law” of wages (that wages will always tend to go to the subsistence level, this was made popular by Ferdinand Lassalle and Malthus but has nothing to do with Marx and the classics). This exogenous wage rate <span class="math inline">\(\bar{w}\)</span> is given, but socially and historically determined and varies across countries and time. This is not a natural/physical minium subsistence wage.</p>
+<ol start="2" type="1">
+<li>Exogenous given wage share of national income</li>
+</ol>
+<p>This assumes that wages are determined through a bargaining process in which workers can bargain with capitalists to get wages such as a given wage share of national income is achieved. Note that the wage share can be written as <span class="math inline">\(\psi = wa_0 = w*L/Y\)</span> and the profit share <span class="math inline">\(\pi = ra_1=rK/Y\)</span>. The real wage <span class="math inline">\(w\)</span> can be written as negatively related to the profit share <span class="math inline">\(\pi\)</span></p>
+<p><span class="math display">\[
+w = (1 - \bar{\pi})/a_0 = (1 - \bar{\pi})Q
+\]</span> With <span class="math inline">\(Q=Y/L\)</span> labour productivity.</p>
+<ol start="3" type="1">
+<li>Full employment or constant employment</li>
+</ol>
+<p>This closures explains that wage depends on the balance between labor demand and supply. Increase in labor demand tend to increase wages whereas the growth in labor supply will tend to decrease wages. A rapid growth of labor demand increase the bargaining power of workers, who can bargain higher wages and conversely when population and labor supply increase rapidly.</p>
+<p>This closure states that the change in real wage <span class="math inline">\(\hat{w}\)</span> is a negative function of growth in labour supply <span class="math inline">\(n\)</span></p>
+<p><span class="math inline">\(\hat{w} = \phi(g - n), \phi'&gt;0\)</span></p>
+<p>Thus, wage is constant when <span class="math inline">\(g = n\)</span></p>
+<p>But then, the manual (on page 71) considers another function, which describes the growth of labor force <span class="math inline">\(n\)</span> as a positive function of real rage <span class="math inline">\(w\)</span>, the idea is that the higher wage leads to higher population growth and thus higher labor supply growth:</p>
+<p><span class="math inline">\(n = n_0 + n_1w\)</span></p>
+<ol start="4" type="1">
+<li>A given rate of profit, determined by financial market forces</li>
+</ol>
+<p>The profit rate is determined by the interest rate on loans to firms <span class="math inline">\(i\)</span> and by a risk premium <span class="math inline">\(\lambda\)</span>:</p>
+<p><span class="math inline">\(r = i + \lambda\)</span></p>
+</section>
+</section>
+<section id="effects-of-exogenous-change" class="level3">
+<h3 class="anchored" data-anchor-id="effects-of-exogenous-change">Effects of exogenous change</h3>
+<section id="vizualization-of-the-models" class="level4">
+<h4 class="anchored" data-anchor-id="vizualization-of-the-models">Vizualization of the models</h4>
+</section>
+<section id="first-and-second-closures" class="level4">
+<h4 class="anchored" data-anchor-id="first-and-second-closures">First and second closures</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="closure_1.jpg" class="img-fluid figure-img" width="491"></p>
+<figcaption class="figure-caption">The model under first and second closures (exogenous real wage or wage share),Blecker and Setterfield (2019, 69)</figcaption>
+</figure>
+</div>
+</section>
+<section id="third-closure" class="level4">
+<h4 class="anchored" data-anchor-id="third-closure">Third closure</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="closure_3.jpg" class="img-fluid figure-img" width="448"></p>
+<figcaption class="figure-caption">Third closure: constant of full employment rate, Blecker and Stterfield (2019, 72)</figcaption>
+</figure>
+</div>
+<p>Since the fourth closure is in my opinion not really important, I will mostly focus now of those closures above.</p>
+</section>
+<section id="effects-of-exogenous-change-in-propensity-to-save" class="level4">
+<h4 class="anchored" data-anchor-id="effects-of-exogenous-change-in-propensity-to-save">Effects of exogenous change in propensity to save</h4>
+<p>What happens if the saving propensity out of profits, <span class="math inline">\(s_r\)</span>, rise or fall?</p>
+<ol type="1">
+<li><p>Closure 1 and 2</p>
+<p>If the propsensity to save increase, the accumulation function curve becomes flatter (attention: in the graph above, the y and x axis are inverted on the right quadrant, where the accumulation function is drawn. So a rise in the slope implies a flattening of the curve). Since the real wage (or wage change) is exgenously given, it does not change. What changes are the growth (accumulation) rate and consumption: accumulation and growth increase because more profits are saved and invested into new capital. Consumption decreases because since capitalists increase their saving propensity, less of their profits are dedicated to personal consumption. Conversely, if the saving propensity decreases, accumulations and growth decrease and consumption increase. The real wage and profit rate remain unchanged.</p></li>
+</ol>
+<p><span class="math inline">\(\nearrow s_r \Rightarrow \nearrow I/K \Rightarrow \nearrow g, \searrow c\)</span></p>
+<ol start="2" type="1">
+<li><p>Closure 3 (natural rate of growth closure)</p>
+<p>An increase in the propensity to save will again make the accumulation curve rotate down to the right (the slope increase). The direct short run effect is a rise in growth rate g. Then, this increase in growth rate makes labor demand increase faster than labor supply, resulting in a rise in the real wage. The rise in real wage decreases the profit rate and thus the growth rate decreases until the growth of labor demand and labor supply are equal. Whereas the growth rate g ends up at the same level or higher depends if labor supply is considered as endogenous or exogenous. If it is endogenous, the increase in labor supply after the increase in real wage will be faster and the new equilibrium growth rate will be higher than the original level. If labor supply is exogenous (a vertical curve in the upper-right candrant), the equilibrium growth rate cannot rise in the long run and will return at its original level.</p>
+<p>Endogenous labor supply: <span class="math inline">\(\nearrow s_r \Rightarrow \nearrow \nearrow g, \Rightarrow \nearrow w, \searrow r \Rightarrow \nearrow n \Rightarrow \searrow g\)</span>,</p>
+<p>but with final g &gt; initial g. Note that under these conditions, both the growth rate and the real wage rise.</p>
+<p>Exogenous labor supply: <span class="math inline">\(\nearrow s_r \Rightarrow \nearrow \nearrow g \Rightarrow \nearrow w, \searrow r \Rightarrow \searrow \searrow g\)</span></p></li>
+</ol>
+</section>
+<section id="effects-of-redistribution-of-income" class="level4">
+<h4 class="anchored" data-anchor-id="effects-of-redistribution-of-income">Effects of redistribution of income</h4>
+<ol type="1">
+<li><p>Closure 1 and 2</p>
+<p>A rise in real wage or wage share would decrease the profit rate (recall the trade-off between wage and profit), which would decrease the growth rate (less is saved and invested since profits decrease). Consumption rises due to the increase in real wage/wage share</p></li>
+</ol>
+<p><span class="math inline">\(\nearrow \bar{w} \Rightarrow \searrow r \Rightarrow \searrow g \Rightarrow \nearrow c\)</span></p>
+<pre><code>A decrease in real wage or wage share would have the opposite effects.</code></pre>
+<ol start="2" type="1">
+<li><p>Closure 3 natural rate of growth</p>
+<p>In this closure, a change in real wage or wage share would be the effect of an exognous change in population growth (and thus of labor supply). A rise in real wage would happen if there is a negative exogenous shock to population and labor supply (for instance a brutal epidemic like the black death, which decreased population a lot in the 14th century and made wages rise because of labor supply scarcity). The curve n = n0 + n1*w shifts to the left, real wages rise, profit rate decreases, growth rate decreases and concumption increases.</p></li>
+</ol>
+<p><span class="math inline">\(\nearrow n_0 \Rightarrow \nearrow w, \nearrow c \Rightarrow \searrow r \Rightarrow \searrow g\)</span></p>
+</section>
+</section>
+<section id="effects-of-technological-change" class="level3">
+<h3 class="anchored" data-anchor-id="effects-of-technological-change">Effects of technological change</h3>
+<p>The manual presents four types of technological change:</p>
+<ol type="1">
+<li><p><strong>Harrod-neutral: pure labor saving technological change</strong></p>
+<p>Labor productivity rises, but capital productivity remains unchanged</p></li>
+</ol>
+<p><span class="math inline">\(\nearrow Q = Y/L = 1/a_0\)</span></p>
+<ol start="2" type="1">
+<li><p><strong>Hicks-neutral: factor-saving technological change</strong></p>
+<p>Both capital and labor productivity rise</p></li>
+</ol>
+<p><span class="math inline">\(\nearrow Q = Y/L = 1/a_0, \nearrow Y/K = 1/a_1\)</span></p>
+<ol start="3" type="1">
+<li><p><strong>Marx-biased: labor saving, capital using</strong></p>
+<p>Labor productivity increases, but capital productivity decreases</p></li>
+<li><p><strong>Solow-neutral: pure capital saving technological change</strong></p>
+<p>Capital productivity rises, with labor productivity unchanged</p></li>
+</ol>
+<p>All those patterns of technological change, with the exception of the marx-biased one, will improve the wage-profit trade-off, the curve of the latter shifting outward. Wage and profit as well as growth rise. Under the natural rate of growth closure (3) with exogenous labor supply, the long-run growth rate does not increase, however.</p>
+<section id="marx-biased-technological-change-the-falling-tendency-of-the-rate-of-profit-ftrp" class="level4">
+<h4 class="anchored" data-anchor-id="marx-biased-technological-change-the-falling-tendency-of-the-rate-of-profit-ftrp">Marx-biased technological change the falling tendency of the rate of profit (FTRP)</h4>
+<p>The FTRP is perhaps one of the most famous claim/theory of Marx. In <em>Capital Volume III</em>, Marx exposes this theory, which claims that technological change, by increasing labor productivity while decreasing capital productivity, will lead to a fall in the profit rate. The manual claims that Marx makes one important but often forgotten assumption: a constant rate of exploitation <span class="math inline">\(e = s/v\)</span> with s the surplus value and v the value of labor power. Blecker and Setterfield argue that assuming a constant rate of exploitation is the same as assuming a constant wage share and profit share.</p>
+<p>Recall that the profit share can be written as <span class="math inline">\(r = \pi / a_1\)</span>, if <span class="math inline">\(\pi\)</span> the profit share is constant and marx-biased technological change happens, <span class="math inline">\(a_1\)</span> will increase (<span class="math inline">\(a_1\)</span> is the inverse of capital productivity <span class="math inline">\(a_1 = K/Y_k\)</span>). and thus decrease profit rate <span class="math inline">\(r\)</span>. Thus, under the constant wage share closure, Marx-biased technological change does imply a fall in profit rate. However, it is unlikely that capitalists will let their profit rate fall without reacting and trying to suppress wages or slow down accumulation and growth, which would decrease labor demand, reduce workers bargaining power and thus lead to lower wages and to a recovery of the profit rate.</p>
+<p>What about the third closure? Under this closure, the fall in profit rate does not happen, mainly because of the effect of the increase in labor supply resulting from the increase in real wage. If labor supply is considered as exogenous, the long run profit and growth rate cannot change: <span class="math inline">\(a_0\)</span> falls more than real wage increase, and thus <span class="math inline">\(\pi = 1-wa_0\)</span> increases. Thus, the FTRP is false under this closure, but another of Marx prediction is true: the relative immiseration of the proletariat, since the profit share increases (and wage share decreases).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

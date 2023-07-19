@@ -9,8 +9,327 @@
 <link>https://jeylal.github.io/myblog/economics.html</link>
 <atom:link href="https://jeylal.github.io/myblog/economics.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.2.335</generator>
-<lastBuildDate>Wed, 28 Jun 2023 22:00:00 GMT</lastBuildDate>
+<generator>quarto-1.3.353</generator>
+<lastBuildDate>Tue, 18 Jul 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Classical-Marxian Model</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/economics_series/classical-marxian model/classical-marxian model.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>What follows is extensively based on <em>Heterodox Macroeconomics: Models of of Demand, Distribution and Growth</em> (2019) by Robert A. Blecker and Mark Setterfield</p>
+<section id="assumptions-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions-of-the-model">Assumptions of the model</h3>
+<p>The classical-marxian model, named after Smith, Ricardo (who are considered as classics) and marx and based on their important work, comes its specific assumptions:</p>
+<ol type="1">
+<li><strong>Constant or full capacity rate of utilization</strong>.</li>
+</ol>
+<p>The latter, <img src="https://latex.codecogs.com/png.latex?u%20=%20%5Cfrac%7BY%7D%7BY_%7BK%7D%7D">, is ratio of the actual output (GDP) divided by the full capacity output <img src="https://latex.codecogs.com/png.latex?Y_K">, which is the level if output if all capital in the economy was used at its full capacity (no unused machines, raw materials…). If this ratio is equal to one, that means that the economy is at full capacity, the actual output is equal to its capacity level. If the ratio is for example 0.5, that means that actual output is half its level if all capital was fully used. But why does this model make such an assumption? This assumption stands in sharp contrast with the (neo)kaleckian model which typically reverses this assumption stating that capacity rate <img src="https://latex.codecogs.com/png.latex?u"> is an important adjusting variable.</p>
+<p>Before explaining the reason behind this assumption, it is necessary to understand the classical-marxian conception of the production process (how inputs, capital and labor, are combined to produce either goods or services), which rests on the <strong>Leontieff production function</strong>. The latter can be written as</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY%20=%20min(%5Cfrac%7BN%7D%7Ba_0%7D,%20%5Cfrac%7BK%7D%7Ba_1%7D)%0A"></p>
+<p>With N and K respectively labor and capital, <img src="https://latex.codecogs.com/png.latex?a_0%20=%20L/Y"> the labour-output ratio (the quantity of labour required to produce one unit of ouput) and <img src="https://latex.codecogs.com/png.latex?a_1%20=%20K/Y"> the quantity of capital required to produce one unit of output (capital-output ratio).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># how to write the leontief production function in R</span></span>
+<span id="cb1-2">leontief <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(l, k, a0, a1) (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>a0, k<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>a1)))</span></code></pre></div>
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BN%7D%7Ba_0%7D"> is the maximum output that can be produced with available labour resources while <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BK%7D%7Ba_1%7D"> represents maximum output when all capital resources are used.</p>
+<p>For instance, if three units of labor are required to produce one unit of output and one unit of capital is required to produce one unit of output, what will be produced if we have N = 9 and K = 4 ?</p>
+<p>In our example, <img src="https://latex.codecogs.com/png.latex?a_0%20=%203/1"> (three units of labor required to produce Y = 1) and <img src="https://latex.codecogs.com/png.latex?a_1%20=%201"> (one unit of capital to produce one unit). We compute <img src="https://latex.codecogs.com/png.latex?N/a_0%20=%209/3"> and <img src="https://latex.codecogs.com/png.latex?K/a_1%20=%204/1">. Since the former <img src="https://latex.codecogs.com/png.latex?9/3%20=%203"> is bigger than <img src="https://latex.codecogs.com/png.latex?4">, all 9 units of labor will be used to produce 3 units of output. Note that at Y = 3, one unit of capital will be leftover and be unused. In this example, output is “labor-constrained” because it is the amount of labor which is fully used and capital which is not. Output at full employment is <img src="https://latex.codecogs.com/png.latex?Y_N%20=%20N/a_0">.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">leontief</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">k =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">a0 =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">a1 =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>Considering labor as the constraint is what the (neo)kaleckian model does, while the classical-marxian model considers that capital is the binding constraint on potential output. In the classical-marxian model, all capital is used and thus output is output at full capital utilization <img src="https://latex.codecogs.com/png.latex?Y_K%20=%20K/a_1">.</p>
+<p>While both classical-marxian and (neo)kaleckian models use Leontief production function (and are here different from neoclassical models which use cobb-douglas production function), they differ by what they consider as the constraining factor on output: labor for (neo)kaleckian model <img src="https://latex.codecogs.com/png.latex?Y_N">, capital for classical-marxian model <img src="https://latex.codecogs.com/png.latex?Y_k">.</p>
+<p>Thus, considering that capital is the constraint implies the possibility to consider that the economy can reach a full capacity utilization <img src="https://latex.codecogs.com/png.latex?u%20=%20Y/Y_k">, this is what the classical-marxian model does thus why <img src="https://latex.codecogs.com/png.latex?u"> is considered constant at full capacity <img src="https://latex.codecogs.com/png.latex?u%20=%201">.</p>
+<ol start="2" type="1">
+<li><strong>Constant and Given Technology</strong></li>
+</ol>
+<p>There is no technological change in the classical-marxian model. However, the effects of exogenous technological change can still be analyzed.</p>
+</section>
+<section id="basis-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="basis-of-the-model">Basis of the model</h3>
+<section id="wage-profit-trade-off" class="level4">
+<h4 class="anchored" data-anchor-id="wage-profit-trade-off">Wage-profit trade-off</h4>
+<p>The main equation is derived from the income approach to national income, which is an accounting identity showing that national income is the sum of all income sources in the economy. The model makes here other assumptions: no government, closed economy, only workers and capitalists, only one good produced, which are nessecary to write:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0APY%20=%20WL%20+%20rPK%0A"> Which is the national income identity after those assumptions, with <img src="https://latex.codecogs.com/png.latex?P"> the price, <img src="https://latex.codecogs.com/png.latex?Y"> the output, <img src="https://latex.codecogs.com/png.latex?W"> the nominal wage rate, <img src="https://latex.codecogs.com/png.latex?L"> the amount of labor employed, <img src="https://latex.codecogs.com/png.latex?r"> the profit rate and <img src="https://latex.codecogs.com/png.latex?K"> the real stock of capital.</p>
+<p>From this equation above is derived one the main equation of the model, the inverse wage-profit relationship:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Aw%20=%20%5Cfrac%7B1%7D%7Ba_0%7D-%5Cfrac%7Ba_1%7D%7Ba_0%7Dr%0A"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">w <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(r) <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>r</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_function</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fun =</span> w)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">annotate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">geom =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"label"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"w = 1/a0 - (a1/a0)*r"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_classic</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Inverse wage-profit relationship"</span>,</span>
+<span id="cb4-8">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"profit rate (r)"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"real wage"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/economics_series/classical-marxian model/classical-marxian-model_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This equation also implies an inverse relationship between consumption and growth</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ac%20=%20%5Cfrac%7B1%7D%7Ba_0%7D-%5Cfrac%7Ba_1%7D%7Ba_0%7Dg%0A"> With <img src="https://latex.codecogs.com/png.latex?c"> consumption of both workers and capitalist and <img src="https://latex.codecogs.com/png.latex?g"> the rate of capital accumulation <img src="https://latex.codecogs.com/png.latex?g%20=%20%5CDelta%7BK%7D/K%20=%20I/K"></p>
+<p>These two relationships and hence trade-off between wage and profit, and consumption and growth are the implications of the two main assumptions explained above: <strong>constant rate of capacity utilization</strong> and <strong>given constant technology</strong>. Technological change or rise in <img src="https://latex.codecogs.com/png.latex?u"> can improve the wage-profit trade-off and thus make both profits and wage rate rise (same for consumption-growth trade-off). Graphically, the slope of the curve above would either shift upward or one of the intercept increase.</p>
+</section>
+<section id="saving-function" class="level4">
+<h4 class="anchored" data-anchor-id="saving-function">Saving function</h4>
+<p>The model makes here another important assumption: <strong>all saving is done by the capitalist class</strong>. All savings come out from of the profits received by the capitalists. Another important feature is the fact that the classics and Marx did not distinguish between savings and investment (“the purchase of newly produced capital goods, such as machinery, equipment or structures”(p.63)). In C-M terminology, “accumulation” means the mechanistic flow between savings, investment and thus growth. This leads to the “accumulation function”:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ag%20%5Cequiv%20I/K%20%5Cequiv%20S/K%20=%20s_r(r-r_%7Bmin%7D)%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?g%20%5Cequiv%20I/K%20%5Cequiv%20S/K"> (growth <img src="https://latex.codecogs.com/png.latex?g"> is equal to the investment rate <img src="https://latex.codecogs.com/png.latex?I/K"> which is the same as saving rate <img src="https://latex.codecogs.com/png.latex?S/K">) comes from this non-distinction between saving and investment. <img src="https://latex.codecogs.com/png.latex?s_r"> is the proportion capitalists save out of their profits <img src="https://latex.codecogs.com/png.latex?r">. This equation means that growth can increase only with an increase in the saving rate of the capitalists.</p>
+</section>
+</section>
+<section id="the-three-equations-and-the-alternative-closures" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-equations-and-the-alternative-closures">The three equations and the alternative closures</h3>
+<section id="equations" class="level4">
+<h4 class="anchored" data-anchor-id="equations">3 Equations</h4>
+<p>The basic model is thus based on the three main equations</p>
+<ol type="1">
+<li>Profit-wage trade-off</li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%0Aw%20=%20%5Cfrac%7B1%7D%7Ba_0%7D-%5Cfrac%7Ba_1%7D%7Ba_0%7Dr%0A"></p>
+<ol start="2" type="1">
+<li>Consumption-growth trade-off</li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ac%20=%20%5Cfrac%7B1%7D%7Ba_0%7D-%5Cfrac%7Ba_1%7D%7Ba_0%7Dg%0A"></p>
+<ol start="3" type="1">
+<li>Accumulation function</li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ag%20%5Cequiv%20I/K%20%5Cequiv%20S/K%20=%20s_r(r-r_%7Bmin%7D)%0A"> However, the model is not “closed” in the sense that all the main variables (w, r, s_r, g) are endogenous (they all are a function of one another). The model needs thus to be “closed” by adding an exogenous variable. Since the classics and Marx did not give a precise and consistent closure (exogenous variable), the textbook gives four “alternative closures” which come from different interpretation the classics and Marx.</p>
+</section>
+<section id="alternative-closures" class="level4">
+<h4 class="anchored" data-anchor-id="alternative-closures">4 alternative closures</h4>
+<ol type="1">
+<li>An exogenously given real wage <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bw%7D"></li>
+</ol>
+<p>Which represents an ordinary standard of living for a working-class family. This should not be confounded with the infamous “iron law” of wages (that wages will always tend to go to the subsistence level, this was made popular by Ferdinand Lassalle and Malthus but has nothing to do with Marx and the classics). This exogenous wage rate <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bw%7D"> is given, but socially and historically determined and varies across countries and time. This is not a natural/physical minium subsistence wage.</p>
+<ol start="2" type="1">
+<li>Exogenous given wage share of national income</li>
+</ol>
+<p>This assumes that wages are determined through a bargaining process in which workers can bargain with capitalists to get wages such as a given wage share of national income is achieved. Note that the wage share can be written as <img src="https://latex.codecogs.com/png.latex?%5Cpsi%20=%20wa_0%20=%20w*L/Y"> and the profit share <img src="https://latex.codecogs.com/png.latex?%5Cpi%20=%20ra_1=rK/Y">. The real wage <img src="https://latex.codecogs.com/png.latex?w"> can be written as negatively related to the profit share <img src="https://latex.codecogs.com/png.latex?%5Cpi"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Aw%20=%20(1%20-%20%5Cbar%7B%5Cpi%7D)/a_0%20=%20(1%20-%20%5Cbar%7B%5Cpi%7D)Q%0A"> With <img src="https://latex.codecogs.com/png.latex?Q=Y/L"> labour productivity.</p>
+<ol start="3" type="1">
+<li>Full employment or constant employment</li>
+</ol>
+<p>This closures explains that wage depends on the balance between labor demand and supply. Increase in labor demand tend to increase wages whereas the growth in labor supply will tend to decrease wages. A rapid growth of labor demand increase the bargaining power of workers, who can bargain higher wages and conversely when population and labor supply increase rapidly.</p>
+<p>This closure states that the change in real wage <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bw%7D"> is a negative function of growth in labour supply <img src="https://latex.codecogs.com/png.latex?n"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7Bw%7D%20=%20%5Cphi(g%20-%20n),%20%5Cphi'%3E0"></p>
+<p>Thus, wage is constant when <img src="https://latex.codecogs.com/png.latex?g%20=%20n"></p>
+<p>But then, the manual (on page 71) considers another function, which describes the growth of labor force <img src="https://latex.codecogs.com/png.latex?n"> as a positive function of real rage <img src="https://latex.codecogs.com/png.latex?w">, the idea is that the higher wage leads to higher population growth and thus higher labor supply growth:</p>
+<p><img src="https://latex.codecogs.com/png.latex?n%20=%20n_0%20+%20n_1w"></p>
+<ol start="4" type="1">
+<li>A given rate of profit, determined by financial market forces</li>
+</ol>
+<p>The profit rate is determined by the interest rate on loans to firms <img src="https://latex.codecogs.com/png.latex?i"> and by a risk premium <img src="https://latex.codecogs.com/png.latex?%5Clambda">:</p>
+<p><img src="https://latex.codecogs.com/png.latex?r%20=%20i%20+%20%5Clambda"></p>
+</section>
+</section>
+<section id="effects-of-exogenous-change" class="level3">
+<h3 class="anchored" data-anchor-id="effects-of-exogenous-change">Effects of exogenous change</h3>
+<section id="vizualization-of-the-models" class="level4">
+<h4 class="anchored" data-anchor-id="vizualization-of-the-models">Vizualization of the models</h4>
+</section>
+<section id="first-and-second-closures" class="level4">
+<h4 class="anchored" data-anchor-id="first-and-second-closures">First and second closures</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/economics_series/classical-marxian model/closure_1.jpg" class="img-fluid figure-img" width="491"></p>
+<figcaption class="figure-caption">The model under first and second closures (exogenous real wage or wage share),Blecker and Setterfield (2019, 69)</figcaption>
+</figure>
+</div>
+</section>
+<section id="third-closure" class="level4">
+<h4 class="anchored" data-anchor-id="third-closure">Third closure</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/economics_series/classical-marxian model/closure_3.jpg" class="img-fluid figure-img" width="448"></p>
+<figcaption class="figure-caption">Third closure: constant of full employment rate, Blecker and Stterfield (2019, 72)</figcaption>
+</figure>
+</div>
+<p>Since the fourth closure is in my opinion not really important, I will mostly focus now of those closures above.</p>
+</section>
+<section id="effects-of-exogenous-change-in-propensity-to-save" class="level4">
+<h4 class="anchored" data-anchor-id="effects-of-exogenous-change-in-propensity-to-save">Effects of exogenous change in propensity to save</h4>
+<p>What happens if the saving propensity out of profits, <img src="https://latex.codecogs.com/png.latex?s_r">, rise or fall?</p>
+<ol type="1">
+<li><p>Closure 1 and 2</p>
+<p>If the propsensity to save increase, the accumulation function curve becomes flatter (attention: in the graph above, the y and x axis are inverted on the right quadrant, where the accumulation function is drawn. So a rise in the slope implies a flattening of the curve). Since the real wage (or wage change) is exgenously given, it does not change. What changes are the growth (accumulation) rate and consumption: accumulation and growth increase because more profits are saved and invested into new capital. Consumption decreases because since capitalists increase their saving propensity, less of their profits are dedicated to personal consumption. Conversely, if the saving propensity decreases, accumulations and growth decrease and consumption increase. The real wage and profit rate remain unchanged.</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20s_r%20%5CRightarrow%20%5Cnearrow%20I/K%20%5CRightarrow%20%5Cnearrow%20g,%20%5Csearrow%20c"></p>
+<ol start="2" type="1">
+<li><p>Closure 3 (natural rate of growth closure)</p>
+<p>An increase in the propensity to save will again make the accumulation curve rotate down to the right (the slope increase). The direct short run effect is a rise in growth rate g. Then, this increase in growth rate makes labor demand increase faster than labor supply, resulting in a rise in the real wage. The rise in real wage decreases the profit rate and thus the growth rate decreases until the growth of labor demand and labor supply are equal. Whereas the growth rate g ends up at the same level or higher depends if labor supply is considered as endogenous or exogenous. If it is endogenous, the increase in labor supply after the increase in real wage will be faster and the new equilibrium growth rate will be higher than the original level. If labor supply is exogenous (a vertical curve in the upper-right candrant), the equilibrium growth rate cannot rise in the long run and will return at its original level.</p>
+<p>Endogenous labor supply: <img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20s_r%20%5CRightarrow%20%5Cnearrow%20%5Cnearrow%20g,%20%5CRightarrow%20%5Cnearrow%20w,%20%5Csearrow%20r%20%5CRightarrow%20%5Cnearrow%20n%20%5CRightarrow%20%5Csearrow%20g">,</p>
+<p>but with final g &gt; initial g. Note that under these conditions, both the growth rate and the real wage rise.</p>
+<p>Exogenous labor supply: <img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20s_r%20%5CRightarrow%20%5Cnearrow%20%5Cnearrow%20g%20%5CRightarrow%20%5Cnearrow%20w,%20%5Csearrow%20r%20%5CRightarrow%20%5Csearrow%20%5Csearrow%20g"></p></li>
+</ol>
+</section>
+<section id="effects-of-redistribution-of-income" class="level4">
+<h4 class="anchored" data-anchor-id="effects-of-redistribution-of-income">Effects of redistribution of income</h4>
+<ol type="1">
+<li><p>Closure 1 and 2</p>
+<p>A rise in real wage or wage share would decrease the profit rate (recall the trade-off between wage and profit), which would decrease the growth rate (less is saved and invested since profits decrease). Consumption rises due to the increase in real wage/wage share</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20%5Cbar%7Bw%7D%20%5CRightarrow%20%5Csearrow%20r%20%5CRightarrow%20%5Csearrow%20g%20%5CRightarrow%20%5Cnearrow%20c"></p>
+<pre><code>A decrease in real wage or wage share would have the opposite effects.</code></pre>
+<ol start="2" type="1">
+<li><p>Closure 3 natural rate of growth</p>
+<p>In this closure, a change in real wage or wage share would be the effect of an exognous change in population growth (and thus of labor supply). A rise in real wage would happen if there is a negative exogenous shock to population and labor supply (for instance a brutal epidemic like the black death, which decreased population a lot in the 14th century and made wages rise because of labor supply scarcity). The curve n = n0 + n1*w shifts to the left, real wages rise, profit rate decreases, growth rate decreases and concumption increases.</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20n_0%20%5CRightarrow%20%5Cnearrow%20w,%20%5Cnearrow%20c%20%5CRightarrow%20%5Csearrow%20r%20%5CRightarrow%20%5Csearrow%20g"></p>
+</section>
+</section>
+<section id="effects-of-technological-change" class="level3">
+<h3 class="anchored" data-anchor-id="effects-of-technological-change">Effects of technological change</h3>
+<p>The manual presents four types of technological change:</p>
+<ol type="1">
+<li><p><strong>Harrod-neutral: pure labor saving technological change</strong></p>
+<p>Labor productivity rises, but capital productivity remains unchanged</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20Q%20=%20Y/L%20=%201/a_0"></p>
+<ol start="2" type="1">
+<li><p><strong>Hicks-neutral: factor-saving technological change</strong></p>
+<p>Both capital and labor productivity rise</p></li>
+</ol>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cnearrow%20Q%20=%20Y/L%20=%201/a_0,%20%5Cnearrow%20Y/K%20=%201/a_1"></p>
+<ol start="3" type="1">
+<li><p><strong>Marx-biased: labor saving, capital using</strong></p>
+<p>Labor productivity increases, but capital productivity decreases</p></li>
+<li><p><strong>Solow-neutral: pure capital saving technological change</strong></p>
+<p>Capital productivity rises, with labor productivity unchanged</p></li>
+</ol>
+<p>All those patterns of technological change, with the exception of the marx-biased one, will improve the wage-profit trade-off, the curve of the latter shifting outward. Wage and profit as well as growth rise. Under the natural rate of growth closure (3) with exogenous labor supply, the long-run growth rate does not increase, however.</p>
+<section id="marx-biased-technological-change-the-falling-tendency-of-the-rate-of-profit-ftrp" class="level4">
+<h4 class="anchored" data-anchor-id="marx-biased-technological-change-the-falling-tendency-of-the-rate-of-profit-ftrp">Marx-biased technological change the falling tendency of the rate of profit (FTRP)</h4>
+<p>The FTRP is perhaps one of the most famous claim/theory of Marx. In <em>Capital Volume III</em>, Marx exposes this theory, which claims that technological change, by increasing labor productivity while decreasing capital productivity, will lead to a fall in the profit rate. The manual claims that Marx makes one important but often forgotten assumption: a constant rate of exploitation <img src="https://latex.codecogs.com/png.latex?e%20=%20s/v"> with s the surplus value and v the value of labor power. Blecker and Setterfield argue that assuming a constant rate of exploitation is the same as assuming a constant wage share and profit share.</p>
+<p>Recall that the profit share can be written as <img src="https://latex.codecogs.com/png.latex?r%20=%20%5Cpi%20/%20a_1">, if <img src="https://latex.codecogs.com/png.latex?%5Cpi"> the profit share is constant and marx-biased technological change happens, <img src="https://latex.codecogs.com/png.latex?a_1"> will increase (<img src="https://latex.codecogs.com/png.latex?a_1"> is the inverse of capital productivity <img src="https://latex.codecogs.com/png.latex?a_1%20=%20K/Y_k">). and thus decrease profit rate <img src="https://latex.codecogs.com/png.latex?r">. Thus, under the constant wage share closure, Marx-biased technological change does imply a fall in profit rate. However, it is unlikely that capitalists will let their profit rate fall without reacting and trying to suppress wages or slow down accumulation and growth, which would decrease labor demand, reduce workers bargaining power and thus lead to lower wages and to a recovery of the profit rate.</p>
+<p>What about the third closure? Under this closure, the fall in profit rate does not happen, mainly because of the effect of the increase in labor supply resulting from the increase in real wage. If labor supply is considered as exogenous, the long run profit and growth rate cannot change: <img src="https://latex.codecogs.com/png.latex?a_0"> falls more than real wage increase, and thus <img src="https://latex.codecogs.com/png.latex?%5Cpi%20=%201-wa_0"> increases. Thus, the FTRP is false under this closure, but another of Marx prediction is true: the relative immiseration of the proletariat, since the profit share increases (and wage share decreases).</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <guid>https://jeylal.github.io/myblog/economics_series/classical-marxian model/classical-marxian model.html</guid>
+  <pubDate>Tue, 18 Jul 2023 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>IS-LM Model</title>
   <dc:creator>Celâl Güney</dc:creator>
@@ -85,19 +404,163 @@
 <p>To grasp the function in an easier way, we will just consider that the IS curve is a linear function of consumption (positive relation between output and consumption), Investment and government spending (also positive relation) and the interest rate (negative relation):</p>
 <p><img src="https://latex.codecogs.com/png.latex?IS%20=%20Y%20=%20F%5BC(Y_%7B+%7D,%20T_%7B-%7D),%20I(i_%7B-%7D),%20G_%7B+%7D%5D"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;">#example of a linear IS function</span></span>
-<span id="cb1-2">IS <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(A, k, x) A <span class="sc" style="color: #5E5E5E;">-</span> k<span class="sc" style="color: #5E5E5E;">*</span>x <span class="co" style="color: #5E5E5E;">#with A autonomous spending, k the mutliplier and x the interest rate</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#example of a linear IS function</span></span>
+<span id="cb1-2">IS <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(A, k, x) A <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> k<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#with A autonomous spending, k the mutliplier and x the interest rate</span></span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">isplot <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="at" style="color: #657422;">data =</span> <span class="fu" style="color: #4758AB;">tibble</span>(<span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">15</span>), <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> x)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-2">  <span class="fu" style="color: #4758AB;">stat_function</span>(<span class="at" style="color: #657422;">fun =</span> IS, <span class="at" style="color: #657422;">args =</span> <span class="fu" style="color: #4758AB;">list</span>(<span class="at" style="color: #657422;">A =</span> <span class="dv" style="color: #AD0000;">20</span>, <span class="at" style="color: #657422;">k =</span> <span class="dv" style="color: #AD0000;">1</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-3">  <span class="fu" style="color: #4758AB;">stat_function</span>(<span class="at" style="color: #657422;">fun =</span> IS, <span class="at" style="color: #657422;">args =</span> <span class="fu" style="color: #4758AB;">list</span>(<span class="at" style="color: #657422;">A =</span> <span class="dv" style="color: #AD0000;">25</span>, <span class="at" style="color: #657422;">k =</span> <span class="dv" style="color: #AD0000;">1</span>), <span class="at" style="color: #657422;">linetype =</span> <span class="st" style="color: #20794D;">"dashed"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-4">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"Investment-Savings curve"</span>,</span>
-<span id="cb2-5">       <span class="at" style="color: #657422;">subtitle =</span> <span class="st" style="color: #20794D;">"Effect of an increase in government spending, consumption or investment"</span>,</span>
-<span id="cb2-6">       <span class="at" style="color: #657422;">y =</span> <span class="st" style="color: #20794D;">"interest rate"</span>, <span class="at" style="color: #657422;">x =</span> <span class="st" style="color: #20794D;">"Y, output, GDP"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-7">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="at" style="color: #657422;">geom =</span> <span class="st" style="color: #20794D;">"label"</span>, <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"IS"</span>, <span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">18</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-8">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="at" style="color: #657422;">geom =</span> <span class="st" style="color: #20794D;">"segment"</span>, <span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">6</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">15</span>, <span class="at" style="color: #657422;">xend =</span> <span class="fl" style="color: #AD0000;">7.5</span>, <span class="at" style="color: #657422;">yend =</span> <span class="dv" style="color: #AD0000;">15</span>,</span>
-<span id="cb2-9">           <span class="at" style="color: #657422;">arrow =</span> <span class="fu" style="color: #4758AB;">arrow</span>(<span class="at" style="color: #657422;">ends =</span> <span class="st" style="color: #20794D;">"last"</span>))</span>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">isplot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stat_function</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fun =</span> IS, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">args =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">A =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">k =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stat_function</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fun =</span> IS, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">args =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">A =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">k =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dashed"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Investment-Savings curve"</span>,</span>
+<span id="cb2-5">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Effect of an increase in government spending, consumption or investment"</span>,</span>
+<span id="cb2-6">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"interest rate"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y, output, GDP"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">annotate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">geom =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"label"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"IS"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">annotate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">geom =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"segment"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>,</span>
+<span id="cb2-9">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">arrow =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrow</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ends =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"last"</span>))</span>
 <span id="cb2-10"></span>
 <span id="cb2-11">isplot</span></code></pre></div>
 <div class="cell-output-display">
@@ -125,9 +588,6 @@
 
 
 
-<div class="cell">
-
-</div>
 <section id="intro" class="level2">
 <h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>As I explained in the <a href="https://jeylal.github.io/myblog/economics_series/consumer%20theory/consumer%20theory.html">consumer theory post</a>, the most important element of mainstream neoclassical theory is the concept of market equilibrium under perfect competition. In the consumer theory post, I explained how mainstream economists derive the market equilibrium downwards slopping demand curve. Here, the objective is to understand how the other curve, the upward slopping supply curve, is derived. To understand why mainstream economics arrived to this result, one needs to understand mainstream production theory, which is the goal of this post.</p>
@@ -140,10 +600,29 @@
 <p><img src="https://latex.codecogs.com/png.latex?Y%20=%20K%5E%7B1/2%7DL%5E%7B1/2%7D"></p>
 <p>Here is how to write this function in R:</p>
 <div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">neo_prod_fun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(l, k) (l<span class="sc" style="color: #5E5E5E;">^</span>(<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">2</span>)) <span class="sc" style="color: #5E5E5E;">*</span> (k<span class="sc" style="color: #5E5E5E;">^</span>(<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">2</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">neo_prod_fun <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(l, k) (l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (k<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span></code></pre></div>
 </div>
 <p>The neoclassical production function rests on important assumptions which illustrate how neoclassical theory conceive the production process:</p>
 <ol type="1">
@@ -154,7 +633,13 @@
 </ol>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cfrac%7B%5Cpartial%7BY%7D%7D%7B%5Cpartial%7BL%7D%7D%20=%200.5K%5E%7B0.5%7DL%5E%7B0.5-1%7D%0A%5C%5C%0A=%200.5K%5E%7B0.5%7DL%5E%7B-0.5%7D%0A%5Cend%7Baligned%7D%0A"> Here is how to find the marginal productivity of labor function of our example in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">MPL <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">Deriv</span>(neo_prod_fun, <span class="st" style="color: #20794D;">"l"</span>)</span>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">MPL <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Deriv</span>(neo_prod_fun, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"l"</span>)</span>
 <span id="cb2-2">MPL</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (l, k) 
@@ -200,9 +685,6 @@
 <p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve. If we go back to our production function curve <img src="https://latex.codecogs.com/png.latex?Y%20=%20k%5E%7B0.5%7DL%5E%7B0.5%7D">, we have to isolate k to draw isoquants for this function, and then choose any value of output (Y):</p>
 <p><img src="https://latex.codecogs.com/png.latex?K%20=%20%5Cfrac%7BY%5E%7B2%7D%7D%7BL%7D"></p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -215,7 +697,19 @@
 <p><img src="https://latex.codecogs.com/png.latex?K%20=%20TC/r%20-%20(w/r)/L"></p>
 <p>For example, let’s say that the total cost over rental cost of capital (TC/r) is equal to 40 and the wage rate - rental rate is equal to 2 (w/r = 2). The function becomes <img src="https://latex.codecogs.com/png.latex?K%20=%2010%20-%202L"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">isocost <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(l) <span class="dv" style="color: #AD0000;">40</span> <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">2</span><span class="sc" style="color: #5E5E5E;">*</span>l</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">isocost <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(l) <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>l</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -263,9 +757,6 @@
 </ul></li>
 </ul>
 <p>Those factors explain why the profit equation is concave. This has strong implications, because that means there is an optimal size for the firm associated with an optimal level of output which maximise profits.</p>
-<div class="cell">
-
-</div>
 <p>Then, we can show that profit maximization under all of those conditions lead to the marginal cost being equal to marginal revenue</p>
 <p><img src="https://latex.codecogs.com/png.latex?(%5Cpi)'%20=%200"> (()’ meaning derivative)</p>
 <p><img src="https://latex.codecogs.com/png.latex?0%20=(PQ)'%20-%20(TC)'"> the derivative of total revenue is the marginal revenue, and the derivative of the total cost is the marginal cost</p>
@@ -315,8 +806,32 @@
 <p>Moreover, let’s say that the quantity supplied for grains is a positive linear function of prices for grain: the higher the price, the more are firms willing to supply grains.</p>
 <p><img src="https://latex.codecogs.com/png.latex?Q_%7Bsupply%7D%20=%201+0.6p"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">demand <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(p) <span class="dv" style="color: #AD0000;">7</span> <span class="sc" style="color: #5E5E5E;">-</span> (<span class="fl" style="color: #AD0000;">0.5</span><span class="sc" style="color: #5E5E5E;">*</span>p)</span>
-<span id="cb1-2">supply <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(p) <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="fl" style="color: #AD0000;">0.6</span><span class="sc" style="color: #5E5E5E;">*</span>p</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">demand <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(p) <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> (<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>p)</span>
+<span id="cb1-2">supply <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(p) <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>p</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -328,7 +843,23 @@
 <p>The equilibrium price level is thus <img src="https://latex.codecogs.com/png.latex?p%5E*%20=%205.45">. To find the equilibrium quantity, we simple put the value of the equilibrium price (5.45) into either the supply or demand function: <img src="https://latex.codecogs.com/png.latex?7-0.5*5.45%20=%204.275%20=%20p%5E*"></p>
 <p>It is easy to check directly if the computation is correct in r:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">equilibrium <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">curve_intersect</span>(demand, supply, <span class="at" style="color: #657422;">empirical =</span> <span class="cn" style="color: #8f5902;">FALSE</span>, <span class="at" style="color: #657422;">domain =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">10</span>))</span>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">equilibrium <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">curve_intersect</span>(demand, supply, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">empirical =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">domain =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>))</span>
 <span id="cb2-2">equilibrium</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$x
@@ -406,7 +937,19 @@ $y
 <p>$$ More generally, the budget function can also be written as</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0AQ_1%20=%20%5Cfrac%7BIncome%7D%7BP_1%7D%20-%20%5Cfrac%7BP_2%7D%7BP_1%7DQ_2%0A"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">budget <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x) <span class="dv" style="color: #AD0000;">150</span> <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">50</span><span class="sc" style="color: #5E5E5E;">*</span>x</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">budget <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(x) <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">150</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x</span></code></pre></div>
 </div>
 <p>Now we can plot both the indifference curves and the budget constraint:</p>
 <div class="cell">
@@ -433,9 +976,29 @@ $y
 <p>To get the number of apples, we simply replace x by 6 in the budget constraint equation <img src="https://latex.codecogs.com/png.latex?y%20=%20150-50*2%20=%2050">, <img src="https://latex.codecogs.com/png.latex?U%20=%202%5E2*50*0.18%20=%2036"></p>
 <p>R can check the results</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">price_x <span class="ot" style="color: #003B4F;">=</span> <span class="dv" style="color: #AD0000;">200</span></span>
-<span id="cb6-2">price_y <span class="ot" style="color: #003B4F;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
-<span id="cb6-3"><span class="fu" style="color: #4758AB;">Solve</span>(<span class="fu" style="color: #4758AB;">paste</span>(<span class="fu" style="color: #4758AB;">Simplify</span>(mu_x <span class="sc" style="color: #5E5E5E;">/</span> mu_y), <span class="st" style="color: #20794D;">"=="</span>, price_x, <span class="st" style="color: #20794D;">"/"</span>, price_y), y)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">price_x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span></span>
+<span id="cb6-2">price_y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span></span>
+<span id="cb6-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Solve</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Simplify</span>(mu_x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> mu_y), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"=="</span>, price_x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/"</span>, price_y), y)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Yacas vector:
 [1] y == -(-9 * x/0.36)</code></pre>
@@ -445,9 +1008,37 @@ $y
 
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">optimal_x <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">uniroot</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">budget</span>(x) <span class="sc" style="color: #5E5E5E;">-</span> <span class="fu" style="color: #4758AB;">marginal_utility</span>(x), <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">100</span>))<span class="sc" style="color: #5E5E5E;">$</span>root</span>
-<span id="cb8-2">optimal_y <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">budget</span>(optimal_x)</span>
-<span id="cb8-3">optimal_u <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">utility_u</span>(optimal_x, optimal_y)</span>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">optimal_x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">uniroot</span>(<span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">budget</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">marginal_utility</span>(x), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>root</span>
+<span id="cb8-2">optimal_y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">budget</span>(optimal_x)</span>
+<span id="cb8-3">optimal_u <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">utility_u</span>(optimal_x, optimal_y)</span>
 <span id="cb8-4"></span>
 <span id="cb8-5"></span>
 <span id="cb8-6">optimal_x</span></code></pre></div>
