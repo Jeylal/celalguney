@@ -7,7 +7,7 @@ execute:
 categories: [Political Economy, Statistics]
 author: "Celâl Güney"
 date: "9 July 2023"
-date-modified: "18 july 2023"
+date-modified: "21 july 2023"
 draft: false
 bibliography: vox_biblio.bib
 ---
@@ -38,6 +38,12 @@ library(knitr)
 library(readr)
 library(gtExtras)
 library(broom.mixed)
+library(performance)
+library(GGally)
+library(questionr)
+library(car)
+library(effects)
+library(polcompr)
 
 theme_set(theme_bw())
 ```
@@ -349,17 +355,21 @@ vox$religion <- relevel(factor(as_character(vox$confess)), ref = "Catholique rom
 ## recoding age in 4 categories
 
 
-vox$age_cat <- if_else(vox$ age <= 29, -1,
-                  if_else(vox$ age %>% between(30,44), 0,
-                    if_else(vox$ age %>% between(45,64), 1, 
-                      if_else(vox$ age >= 65, 2,
+vox$age_cat <- if_else(vox$ age <= 29, 0,
+                  if_else(vox$ age %>% between(30,44), 1,
+                    if_else(vox$ age %>% between(45,64), 2, 
+                      if_else(vox$ age >= 65, 3,
                         if_else(is.na(vox$age), NA, NA)))))
+
+vox$age_cat2 <- cut(vox$age, c(16, 25, 45, 65, 99), right = FALSE, include.lowest = TRUE)
+
 
 vox$anne_f <- factor(vox$annee)
 
 vox$canton_f <- as_character(vox$canton)
 
 ```
+
 
 ## Exploratory Analysis
 
@@ -381,6 +391,7 @@ trust_gov_inc <-
   ungroup() %>% 
   filter(a22 == 1) %>% 
   drop_na()
+
 
 plot1981_2000 <- 
 trust_gov_inc %>% 
@@ -413,11 +424,9 @@ trust_gov_inc %>%
 
 
 
-
-
 title <- ggdraw() + 
   draw_label(
-    "Trust in Swiss Government",
+    "Trust in Swiss Government in each Income Group",
     fontface = 'bold',
     x = 0,
     hjust = 0
@@ -587,8 +596,12 @@ The first option is a lot more convenient than the multilevel model, because it 
 #### Repeated Cross-section: support for SSP
 
 Let's first run binary logit regression separately for each year of the dataset. The package purrr and map() function allows to do this quiet easily:
+
 ```{r}
-#| eval: false
+#| message: false
+#| warning: false
+
+
 glmer_ssp <- 
   vox %>% 
   split(.$annee_f) %>% 
@@ -620,12 +633,7 @@ ame_glmer_ssp <- rbind(ame_glmer_ssp_inc, ame_glmer_ssp_educ)
 
 ame_glmer_ssp %>% plot_ame()
 
-
-plot_predictions(glmer_ssp[["2008"]], condition = list("income", "education", "canton_f"))+facet_wrap(~canton_f)+
-  aes(linetype = education)+
-  scale_colour_brewer(palette = "Set1")
 ```
-
 
 ```{r no pooling repeated cross section (nprcs) regression vote for ssp}
 nprcs_ssp <- 
@@ -635,28 +643,9 @@ vox %>%
 
 
 
-nprcs_ssp %>% 
-  map_df(tidy) %>% 
-  mutate(year = year[rep(seq_len(nrow(year)), each = 3),],
-         test = if_else(p.value <= 0.05, TRUE, FALSE),
-         lower = estimate - 1.96*std.error,
-         upper = estimate + 1.96*std.error) -> nprcs_ssp_results
-
-
-nprcs_ssp_results %>% 
-  filter(term != "(Intercept)") %>% 
-  ggplot()+
-  aes(x = estimate, y = factor(year), group = term, color = term)+
-  geom_vline(xintercept = 0, linetype = "dashed")+
-  geom_pointrange(aes(xmin = lower, xmax = upper))+
-  facet_wrap(~term)+
-  labs(title = "Vote for SSP, log(odds)")
-
-
-
 ```
 
-Here are the estimated coefficient for each regression. Since the coefficients give information on log(odds), they are not very informative (even if their sign still is). To give more meaningful results, I compute average marginal effects (AME) for each year:
+ To present the results, I compute average marginal effects (AME) for each year:
 
 ```{r average marginal effect nprcs ssp}
 # computing average marginal effect for each year
@@ -698,6 +687,10 @@ This graph offers interesting results. The support for SSP used to be strongly n
 Another way to represent the relationship between support for SSP and income and education is to estimates of probability differences between given values of the predictors using the comparisons() function, which compute (in our case) probability differences between values at certain levels. The graph below show comparisons between the highest and lowest income groups (4-1). For education, I compare the highest level of education (university) not with the lowest level (primary school), but with vocational trainees/apprenticeship because the latter is the most widespread highest achieved level of education in Switzerland, even nowadays.
 
 ```{r nprcs comparisons ssp}
+#| echo: false
+#| eval: true
+
+
 # how to compute and plot average comparison in R
 ame_income_comparison_ssp <- 
 nprcs_ssp %>% 
@@ -711,12 +704,12 @@ nprcs_ssp %>%
 
 ame_educ_comparison_ssp <- 
 nprcs_ssp %>% 
-  map(~comparisons(.x, variables = list(educ = c(2, 6)))) %>% 
+  map(~comparisons(.x, variables = list(education = c(2, 6)))) %>% 
   map_df(~summarise(.x, ame = mean(estimate),
             high = mean(conf.high),
             low = mean(conf.low))) %>% 
            mutate(year = 1981:2016,
-                  variable = "educ 6-2")
+                  variable = "education 6-2")
 
 
 comparison_npcrs_ssp <- rbind(ame_educ_comparison_ssp, ame_income_comparison_ssp)
@@ -1061,8 +1054,6 @@ glmer_comparisons_ssp <- rbind(glmer_comparisons_ssp_educ, glmer_comparisons_ssp
 
 The multilevel regressions, with years as a level, lead globally to the same conclusions as above.
 
-
-
 ```{r partial pooling years pss}
 #| warning: false
 #| message: false
@@ -1356,8 +1347,6 @@ This hypothesis is globally confirmed. The Swiss socialist party was clearing ga
 
 The Radicals-Liberals represent clearly a bourgeois bloc, gathering the support of the wealthiest and most educated in almost every year of the dataset. The SVP was a merchant right party until 1992. After this period, the SVP gather mainly support from low income and low level of education groups
 
-
-
 ```{r correlation plots}
 #| eval: false
 tbl_corr_plr <- 
@@ -1410,6 +1399,3 @@ tbl_corr2 <-
     corrplot.mixed(order = "hclust", lower = "ellipse", upper = 'number', tl.cex = 0.6)
   
 ```
-
-
-

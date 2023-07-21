@@ -1,0 +1,16 @@
+{
+  "hash": "fbe2af56270492bd2c0203212ac6c3a9",
+  "result": {
+    "markdown": "---\ntitle: \"Political Compass: the most famous graph of political science\"\nauthor: \"Celâl Güney\"\nformat: html\neditor: visual\nexecute: \n  freeze: true\ndate: \"21 July 2023\"\ncategories: [Political Science, Statistics]\ndraft: false\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n# Two ways to create the income variable\nvox <- vox %>% \n  mutate(income = if_else(revenu == 1 & is.na(nivmena), 4,\n                          if_else(revenu == 2 & is.na(nivmena), 3,\n                                  if_else(revenu %in% c(3,4) & is.na(nivmena), 2,\n                                          if_else(revenu == 5 & is.na(nivmena), 1,\n                                                  if_else(is.na(revenu) & annee <= 1993, nivmena, NA))))))\n\n         \nvox$income <- ifelse(vox$income == 4, -1,\n                    ifelse(vox$income == 3, 0,\n                        ifelse(vox$income == 2, 1,\n                          ifelse(vox$income == 1, 2, NA)))) # centering around zero, this will make the intercept more interpretable \n\n\n# for education, rescale the values so that the lowest level is equal to zero\nvox <- vox %>% \n  mutate(education = case_when(\n    educ == 1 ~ 0,\n    educ == 2 ~ 1,\n    educ == 3 ~ 2,\n    educ == 4 ~ 3,\n    educ == 5 ~ 4,\n    educ == 6 ~ 5,\n    is.na(educ) ~ NA\n  ))\n```\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nvalues %>% \n  dplyr::select(-annee, -party) %>% \n  cor() %>% \n  corrplot(order = \"hclust\")\n```\n\n::: {.cell-output-display}\n![](pol_compass_files/figure-html/corrplot-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nvalues %>% \n  filter(annee %in% c(1996) & party %in% c(\"UDC/SVP\", \"PDC/CVP\", \"PLS/LPS\", \"PSS/SPS\", \"PRD/FDP\", \"PES/GPS\")) %>% \n  ggplot()+\n  aes(x = state_market, y = no_chance_foreign, label = party, color = factor(annee))+\n  geom_hline(yintercept = 0)+\n  geom_vline(xintercept = 0)+\n  geom_line(aes(group = party))+\n  geom_label()\n```\n\n::: {.cell-output-display}\n![](pol_compass_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n\n```{.r .cell-code}\n  labs(x = \"State intervention - Free market\",\n       y = \"envi_vs_growth\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n$x\n[1] \"State intervention - Free market\"\n\n$y\n[1] \"envi_vs_growth\"\n\nattr(,\"class\")\n[1] \"labels\"\n```\n:::\n:::\n\n::: {.cell}\n\n:::",
+    "supporting": [
+      "pol_compass_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

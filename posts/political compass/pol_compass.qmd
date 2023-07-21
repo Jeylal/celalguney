@@ -1,0 +1,258 @@
+---
+title: "Political Compass: the most famous graph of political science"
+author: "Celâl Güney"
+format: html
+editor: visual
+execute: 
+  freeze: true
+date: "21 July 2023"
+categories: [Political Science, Statistics]
+draft: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+rm(list = ls())
+library(haven)
+library(sjlabelled)
+library(tidyverse)
+library(viridis)
+library(stargazer)
+library(gtsummary)
+library(gt)
+library(brms)
+library(ggrepel)
+library(cowplot)
+library(ggpubr)
+library(lme4)
+library(prediction)
+library(marginaleffects)
+library(ggeffects)
+library(ordinal)
+library(broom)
+library(knitr)
+library(readr)
+library(gtExtras)
+library(broom.mixed)
+library(performance)
+library(GGally)
+library(questionr)
+library(car)
+library(effects)
+library(polcompr)
+library(stargazer)
+library(corrplot)
+library(ggrepel)
+
+theme_set(theme_bw())
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+vox <- read_sav("F:/mapec/Master THESIS/projectB_politicalecon/data/vox/vox_cumulative_dataset/688_VoxIt_Data_CumulatedFile_Scrutins_15_121_F.sav")
+```
+
+```{r create income variable}
+#| warning: false
+#| message: false
+
+
+# Two ways to create the income variable
+vox <- vox %>% 
+  mutate(income = if_else(revenu == 1 & is.na(nivmena), 4,
+                          if_else(revenu == 2 & is.na(nivmena), 3,
+                                  if_else(revenu %in% c(3,4) & is.na(nivmena), 2,
+                                          if_else(revenu == 5 & is.na(nivmena), 1,
+                                                  if_else(is.na(revenu) & annee <= 1993, nivmena, NA))))))
+
+         
+vox$income <- ifelse(vox$income == 4, -1,
+                    ifelse(vox$income == 3, 0,
+                        ifelse(vox$income == 2, 1,
+                          ifelse(vox$income == 1, 2, NA)))) # centering around zero, this will make the intercept more interpretable 
+
+
+# for education, rescale the values so that the lowest level is equal to zero
+vox <- vox %>% 
+  mutate(education = case_when(
+    educ == 1 ~ 0,
+    educ == 2 ~ 1,
+    educ == 3 ~ 2,
+    educ == 4 ~ 3,
+    educ == 5 ~ 4,
+    educ == 6 ~ 5,
+    is.na(educ) ~ NA
+  ))
+
+```
+
+```{r party dummies and other recoding}
+#| warning: false
+#| message: false
+#| echo: false
+
+
+missing_values <- function(data, variable, group) { 
+  
+   table <- data %>% 
+     group_by({{group}}) %>% 
+     count({{variable}}) %>% 
+     mutate(prop = n/sum(n)) %>% 
+     filter(is.na({{variable}})) %>% 
+     ungroup()
+  
+   plot <- 
+     ggplot(data = table, aes(x = {{group}}, y = prop))+
+     geom_col()+
+     geom_label(aes(x = {{group}}, y = prop, label = {{group}}))
+   print(plot)
+  
+}
+
+```
+
+
+
+```{r political compass}
+#| echo: false
+#| warning: false
+#| message: false
+strdz <- function(x){
+  (x - mean(x, na.rm = TRUE))/(sd(x, na.rm = TRUE))
+}
+
+
+vox <- 
+vox %>% 
+  group_by(annee) %>% 
+  mutate(state_market = strdz(val11),
+         open_closed = strdz(val14),
+         envi_vs_growth = strdz(val10),
+         inegalite_hf = strdz(val16),
+         weak_army = strdz(val3),
+         inc_equality = strdz(val5),
+         no_chance_foreign = strdz(val9)) %>% 
+  ungroup()
+
+values <- 
+vox %>% 
+  group_by(annee, as_character(p02)) %>% 
+  summarise(state_market = mean(state_market, na.rm = TRUE),
+            open_closed = mean(open_closed, na.rm = TRUE),
+            envi_vs_growth = mean(envi_vs_growth, na.rm = TRUE),
+            inegalite_hf = mean(inegalite_hf, na.rm = TRUE),
+            weak_army = mean(weak_army, na.rm = TRUE),
+            inc_equality = mean(inc_equality, na.rm = TRUE),
+            no_chance_foreign = mean(no_chance_foreign, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  drop_na() %>% 
+  rename("party" = `as_character(p02)`)
+
+
+
+```
+
+```{r corrplot}
+
+values %>% 
+  dplyr::select(-annee, -party) %>% 
+  cor() %>% 
+  corrplot(order = "hclust")
+```
+
+
+```{r}
+#| echo: false
+values$party[values$party == "PLR/FDP Die Liberalen"] <- "PLR"
+```
+
+
+
+
+```{r}
+#| warning: false
+#| message: false
+
+values %>% 
+  filter(annee %in% c(1996) & party %in% c("UDC/SVP", "PDC/CVP", "PLS/LPS", "PSS/SPS", "PRD/FDP", "PES/GPS")) %>% 
+  ggplot()+
+  aes(x = state_market, y = no_chance_foreign, label = party, color = factor(annee))+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  geom_line(aes(group = party))+
+  geom_label()
+  labs(x = "State intervention - Free market",
+       y = "envi_vs_growth")
+
+
+```
+
+
+```{r pol compass2}
+#| echo: false
+#| eval: false
+
+# other possible way to compute?
+values2 <- 
+vox %>% 
+  group_by(annee, as_character(p02)) %>% 
+  reframe(val11_scaled = mean(val11, na.rm = TRUE),
+          val14_scaled = mean(val14, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  rename("party" = `as_character(p02)`) %>% 
+  mutate(z_eco = strdz(val11_scaled),
+         z_values = strdz(val14_scaled))
+```
+
+
+
+
+
+
+
+
+
+```{r}
+#| eval: false
+
+
+vote_eee <- 
+vox %>% 
+  filter(annee == 1992 & mois == 12 & jour == 6) %>% 
+  mutate(vote_yes = case_when(
+    a02x1 == 1 ~ 1,
+    a02x1 %in% c(2, 3) ~ 0,
+    is.na(a02x1) ~ NA
+  ),
+  vote_yes2 = case_when(
+    decx1 == 1 ~ 1,
+    decx1 %in% c(2, 3) ~ 0,
+    is.na(decx1) ~ NA
+  ),
+  urb = case_when(
+    vilcamp == 1 ~ 1,
+    vilcamp == 2 ~ 0
+  ),
+  nivmena2 = case_when(
+    nivmena == 4 ~ 0,
+    nivmena == 3 ~ 1,
+    nivmena == 2 ~ 2,
+    nivmena == 1 ~ 3,
+    is.na(nivmena) ~ NA
+  ),
+  educ2 = case_when(
+    educ == 1 ~ 0,
+    educ == 2 ~ 1,
+    educ == 3 ~ 2,
+    educ == 6 ~ 3,
+  ),
+  lr_pos = p04 - median(vote_eee$p04, na.rm = TRUE))
+```
+
+
+
+
