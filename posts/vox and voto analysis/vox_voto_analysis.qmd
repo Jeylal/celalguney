@@ -1349,6 +1349,7 @@ The Radicals-Liberals represent clearly a bourgeois bloc, gathering the support 
 
 ```{r correlation plots}
 #| eval: false
+#| echo: false
 tbl_corr_plr <- 
 vox %>% 
   group_by(annee, income) %>%

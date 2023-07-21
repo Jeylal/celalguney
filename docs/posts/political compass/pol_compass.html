@@ -9,7 +9,7 @@
 <meta name="author" content="Celâl Güney">
 <meta name="dcterms.date" content="2023-07-21">
 
-<title>Celâl Güney - Political Compass: the most famous graph of political science</title>
+<title>Celâl Güney - Political Compass: what lies behind political science’s most famous graphs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,7 +56,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -157,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Political Compass: the most famous graph of political science</h1>
+      <h1 class="title">Political Compass: what lies behind political science’s most famous graphs</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Political Science</div>
                 <div class="quarto-category">Statistics</div>
@@ -196,72 +215,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<p>People who get lost or waste their time on internet have surely seen the now famous “political compass” graphs, which have now become a popular meme and perhaps the most popular one related to politics. The irony and paradox of political compass, and that is what makes it intriguing, are that it is actually and important representation in political science. Very shortly, a political compass is a mapping of political leaning and preferences based on two axes: (1) an economic axis representing the position of an individual, party, association or group on global economic issues (pro and anti redistribution, for economic planning or free market…) and (2) a “cultural” or “post-material” (a lot of different names are given to this axis) axis representing position on cultural issues, such as: “in favor or against immigration”, “in favor or against gay marriage/lgbt rights/traditional values…”</p>
+<p>Whereas most of people who use political compass do so to make memes and amuse their friends, political scientists are still seriously attached to their favorite toy and one often sees such mapping on political science articles. For instance, Oesch and Rennwald provide such graphics to map individuals political preferences for Switzerland and other countries using European Social Survey data <span class="citation" data-cites="oesch_electoral_2018">(<a href="#ref-oesch_electoral_2018" role="doc-biblioref">Oesch and Rennwald 2018, 795</a>)</span>. Pascal Sciarini, in a manual on Swiss politics, also provides such a graph using Swiss Elections Studies data <span class="citation" data-cites="sciarini_politique_2023">(<a href="#ref-sciarini_politique_2023" role="doc-biblioref">Sciarini 2023, 341</a>)</span>. The idea that political preferences can be separated between an economic and cultural cleavage comes back at least to Inglehart <span class="citation" data-cites="inglehart_silent_1971">(<a href="#ref-inglehart_silent_1971" role="doc-biblioref">1971</a>)</span> who explained the emerging salience of cultural issues over the traditional economic divide as a consequence of post-war tremendous economic growth which made the West so wealthy that people would get rid off of any material insecurity, hence shifting the focus on cultural matters rather than economic ones. But how do political scientists construct such graphs? The goal of this post is to explore how the economic and cultural axes are constructed, what are the data and variables used, and what kind of statistical manipulation is done with those data.</p>
+<section id="constructing-a-political-compass" class="level2">
+<h2 class="anchored" data-anchor-id="constructing-a-political-compass">Constructing a Political Compass</h2>
+<p>Political compass is typically constructed from ordinal variables related to economic and cultural issues and the individual self-placement of survey respondents to these issues. For instance, Oesch and Rennwald <span class="citation" data-cites="oesch_electoral_2018">(<a href="#ref-oesch_electoral_2018" role="doc-biblioref">2018</a>)</span> construct the preferences of respondents on the economic axis from an ordinal 5-points scale variable about preferences on redistribution (1 = strongly agree to reduce differences in income levels, 5 = strongly disagree). For the cultural cleavage, they took three variables: (1) the impact of immigrants on cultural life, (2) European integration and (3) freedom of gay people. One can directly see the problem with the construction of such a “cultural” axis: are here the European integration and immigration issues purely cultural issues? In my opinion, European integration cannot be considered only as cultural “openness vs closeness values” issue and should not have been included to construct the cultural axis. However, the next step after choosing the variables is to standardize them: each observed value of the dataset is subtracted by the mean of the variable and divided by its standard deviation. If more than one variable are taken into account, the variables are standardized and the average values on these three standardized variables are computed to create the final index.</p>
+<p>To work with an example, I will work here with a dataset which is not used by the literature cited above: the Voxit studies. The latter offer a cumulative dataset on Swiss referendum voting from 1981 to 2016. The dataset contains a list of “issue positions” variables:</p>
+<ul>
+<li>In favor of state intervention or free markets</li>
+<li>In favor of or against income equality</li>
+<li>In favor of an open or closed Switzerland</li>
+<li>In favor of active equality policy between men and women</li>
+<li>In favor of equal chances between Swiss people and foreigners</li>
+<li>In favor of environnment protection or economic growth</li>
+<li>In favor of a strong or weak Swiss army</li>
+</ul>
+<p>All these variables are ordinal on a 7-points scale. Another variable, “p02” collected political party support (which party the respondent feels the most closed to). I will use this variable as a group to plot Swiss political parties on the economic and cultural axes depending on the average value of their supporters on the standardized economic and cultural issues variables. To construct the economic axis, I will use the “state vs market” variable. “Open vs closed Switzerland” will be used for the cultural axis.</p>
+<p>Here are all the steps to transform the variable, compute the average values for each year for each political party support and how to plot the final political compass.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two ways to create the income variable</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>vox <span class="ot">&lt;-</span> vox <span class="sc">%&gt;%</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">if_else</span>(revenu <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">4</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">if_else</span>(revenu <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">3</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">if_else</span>(revenu <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>) <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">2</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="fu">if_else</span>(revenu <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(nivmena), <span class="dv">1</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                                                  <span class="fu">if_else</span>(<span class="fu">is.na</span>(revenu) <span class="sc">&amp;</span> annee <span class="sc">&lt;=</span> <span class="dv">1993</span>, nivmena, <span class="cn">NA</span>))))))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>vox<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">4</span>, <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">0</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">ifelse</span>(vox<span class="sc">$</span>income <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)))) <span class="co"># centering around zero, this will make the intercept more interpretable </span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># for education, rescale the values so that the lowest level is equal to zero</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>vox <span class="ot">&lt;-</span> vox <span class="sc">%&gt;%</span> </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">education =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    educ <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    educ <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    educ <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    educ <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    educ <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    educ <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(educ) <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>strdz <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">/</span>(<span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>} <span class="co"># create a function which transfrom x into standardize variable by subtracting the mean and dividing by standard deviation</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>vox <span class="ot">&lt;-</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(annee) <span class="sc">%&gt;%</span> <span class="co"># group by year</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state_market =</span> <span class="fu">strdz</span>(val11), <span class="co"># compute the standardization transformation and store into new variable</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">open_closed =</span> <span class="fu">strdz</span>(val14),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">envi_vs_growth =</span> <span class="fu">strdz</span>(val10),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">inegalite_hf =</span> <span class="fu">strdz</span>(val16),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">weak_army =</span> <span class="fu">strdz</span>(val3),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">inc_equality =</span> <span class="fu">strdz</span>(val5),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">no_chance_foreign =</span> <span class="fu">strdz</span>(val9)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="do">#### create a table: each row (observation) is a political party repeated for each year in which data were available (1996 to 2016)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span> </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(annee, <span class="fu">as_character</span>(p02)) <span class="sc">%&gt;%</span> <span class="co"># average computed across both year and parties</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">state_market =</span> <span class="fu">mean</span>(state_market, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># compute the average of standardized state vs market variable in each year for each party support group.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">open_closed =</span> <span class="fu">mean</span>(open_closed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">envi_vs_growth =</span> <span class="fu">mean</span>(envi_vs_growth, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">inegalite_hf =</span> <span class="fu">mean</span>(inegalite_hf, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">weak_army =</span> <span class="fu">mean</span>(weak_army, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">inc_equality =</span> <span class="fu">mean</span>(inc_equality, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">no_chance_foreign =</span> <span class="fu">mean</span>(no_chance_foreign, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"party"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">as_character(p02)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Before plotting the political compass, it could be interesting to see the correlation between the average values through the years. If two variables are positively correlated, that means there are chances that, given any year, when one has high value (average of the standardized issue position variable for each respondent having declared to support the Swiss’s People party for instance) the other will have a high value as well:</p>
+<p>The correlation plots give coherent results overall. For example, the average of party supporters who declared not being in favor of equal chance for foreigners are also supportive of a isolated Switzerland (see “no_chance-foreign” - “open_closed”).</p>
+<p>Let’s now plot a political compass for a given year. I choose the first year available: 1996. I also filter political parties to select only the most important ones: the Swiss Social Democratic Party (PSS/SPS), the Radicals (PRD), The Swiss Peoples Party (UDC/SVP), the Liberals, The Catholic-Conservatives (PDC), the Greens (PES/GPS), the Evangelical party (PEP/EVP).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>annee, <span class="sc">-</span>party) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">order =</span> <span class="st">"hclust"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="pol_compass_files/figure-html/corrplot-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(annee <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span>) <span class="sc">&amp;</span> party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UDC/SVP"</span>, <span class="st">"PDC/CVP"</span>, <span class="st">"PLS/LPS"</span>, <span class="st">"PSS/SPS"</span>, <span class="st">"PRD/FDP"</span>, <span class="st">"PES/GPS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> state_market, <span class="at">y =</span> no_chance_foreign, <span class="at">label =</span> party, <span class="at">color =</span> <span class="fu">factor</span>(annee))<span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> party))<span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(annee <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span>) <span class="sc">&amp;</span> party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UDC/SVP"</span>, <span class="st">"PDC/CVP"</span>, <span class="st">"PLS/LPS"</span>, <span class="st">"PSS/SPS"</span>, <span class="st">"PRD/FDP"</span>, <span class="st">"PES/GPS"</span>, <span class="st">"PEP/EVP"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> state_market, <span class="at">y =</span> open_closed, <span class="at">label =</span> party)<span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>()<span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"State intervention - Free market"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Open vs Closed Switzerland"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Swiss Political Compass"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"1996"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data source: Voxit"</span>)<span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="pol_compass_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"State intervention - Free market"</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"envi_vs_growth"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$x
-[1] "State intervention - Free market"
-
-$y
-[1] "envi_vs_growth"
-
-attr(,"class")
-[1] "labels"</code></pre>
-</div>
 </div>
 
 
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-inglehart_silent_1971" class="csl-entry" role="listitem">
+Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerational Change in Post-Industrial Societies.”</span> <em>American Political Science Review</em> 65 (4): 991–1017. <a href="https://doi.org/10.2307/1953494">https://doi.org/10.2307/1953494</a>.
+</div>
+<div id="ref-oesch_electoral_2018" class="csl-entry" role="listitem">
+Oesch, Daniel, and Line Rennwald. 2018. <span>“Electoral Competition in Europe’s New Tripolar Political Space: Class Voting for the Left, Centre-Right and Radical Right.”</span> <em>European Journal of Political Research</em> 57 (4): 783–807. <a href="https://doi.org/10.1111/1475-6765.12259">https://doi.org/10.1111/1475-6765.12259</a>.
+</div>
+<div id="ref-sciarini_politique_2023" class="csl-entry" role="listitem">
+Sciarini, Pascal. 2023. <em>Politique Suisse - Institutions, Acteurs, Processus</em>. Lausanne: Presses polytechniques et universitaires romandes. <a href="https://www.epflpress.org/produit/1421/9782889155279/politique-suisse">https://www.epflpress.org/produit/1421/9782889155279/politique-suisse</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
