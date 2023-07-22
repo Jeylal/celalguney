@@ -286,8 +286,8 @@ Since gganimate provides gifs, which are sometimes not really convenient (if we 
 
 What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==\> income group).
 
-The income variable that I will use is a variable I created from two income variables of the dataset (look [here](https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html) if you want to see the details). The income variable has four groups. 
--
+The income variable that I will use is a variable I created from two income variables of the dataset (look [here](https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html) if you want to see the details). The income variable has four groups.
+
 ```{r table income values}
 #| warning: false
 #| message: false
@@ -315,7 +315,6 @@ values_inc %>%
   corrplot(order = "hclust")
 ```
 
-
 ```{r plot polcompass income group}
 values_inc %>% 
   filter(annee %in% c(1996, 2016)) %>% 
@@ -333,8 +332,6 @@ values_inc %>%
   theme(legend.position = "none")+
   scale_fill_brewer(palette = "Set1")
 ```
-
-
 
 ```{r}
 #| eval: false
@@ -356,6 +353,14 @@ values_inc %>%
 
 animate(anim2, duration = 30, fps = 30, end_pause = 50)
 ```
+
+
+
+{{< video https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/polcomp2.mp4 >}}
+
+
+
+
 
 
 

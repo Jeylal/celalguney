@@ -863,10 +863,7 @@ font-style: inherit;">50</span>)</span></code></pre></div>
 <section id="replacing-party-support-by-income-group" class="level3">
 <h3 class="anchored" data-anchor-id="replacing-party-support-by-income-group">Replacing party support by income group</h3>
 <p>What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==&gt; income group).</p>
-</section>
-</section>
-<section id="the-income-variable-that-i-will-use-is-a-variable-i-created-from-two-income-variables-of-the-dataset-look-here-if-you-want-to-see-the-details.-the-income-variable-has-four-groups." class="level2">
-<h2 class="anchored" data-anchor-id="the-income-variable-that-i-will-use-is-a-variable-i-created-from-two-income-variables-of-the-dataset-look-here-if-you-want-to-see-the-details.-the-income-variable-has-four-groups.">The income variable that I will use is a variable I created from two income variables of the dataset (look <a href="https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html">here</a> if you want to see the details). The income variable has four groups.</h2>
+<p>The income variable that I will use is a variable I created from two income variables of the dataset (look <a href="https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html">here</a> if you want to see the details). The income variable has four groups.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">vox<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1282,9 +1279,11 @@ font-style: inherit;">end_pause =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">50</span>)</span></code></pre></div>
 </div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/polcomp2.mp4"></video></div>
 
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
