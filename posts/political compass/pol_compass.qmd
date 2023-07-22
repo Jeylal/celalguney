@@ -280,7 +280,7 @@ animate(anim, duration = 30, fps = 30, end_pause = 50)
 
 Since gganimate provides gifs, which are sometimes not really convenient (if we want to pause the animation for example). Here is thus the same animation in video format:
 
-{{< video pol_compass_video.mp4 >}}
+{{< video https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/pol_compass_video.mp4 >}}
 
 
 ```{r pol compass2}
