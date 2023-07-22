@@ -282,6 +282,82 @@ Since gganimate provides gifs, which are sometimes not really convenient (if we 
 
 {{< video https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/pol_compass_video.mp4 >}}
 
+### Replacing party support by income group
+
+What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==\> income group).
+
+The income variable that I will use is a variable I created from two income variables of the dataset (look [here](https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html) if you want to see the details). The income variable has four groups. 
+-
+```{r table income values}
+#| warning: false
+#| message: false
+vox$income_f <- factor(vox$income, levels = c(-1, 0, 1, 2), labels = c("low", "lower middle", "upper middle", "high"))
+
+values_inc <- 
+vox %>% 
+  group_by(annee, income_f) %>% # average computed across both year and parties
+  summarise(state_market = mean(state_market, na.rm = TRUE), # compute the average of standardized state vs market variable in each year for each party support group.
+            open_closed = mean(open_closed, na.rm = TRUE),
+            envi_vs_growth = mean(envi_vs_growth, na.rm = TRUE),
+            inegalite_hf = mean(inegalite_hf, na.rm = TRUE),
+            weak_army = mean(weak_army, na.rm = TRUE),
+            inc_equality = mean(inc_equality, na.rm = TRUE),
+            no_chance_foreign = mean(no_chance_foreign, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  drop_na() %>% 
+  rename("income_group" = income_f)
+```
+
+```{r}
+values_inc %>% 
+  dplyr::select(-annee, -income_group) %>% 
+  cor() %>% 
+  corrplot(order = "hclust")
+```
+
+
+```{r plot polcompass income group}
+values_inc %>% 
+  filter(annee %in% c(1996, 2016)) %>% 
+  ggplot()+
+  aes(x = state_market, y = open_closed, label = income_group, fill = income_group, group = income_group)+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  geom_label()+
+  geom_line(arrow = arrow(length=unit(0.30,"cm"), type = "closed"))+
+  labs(x = "State intervention - Free market",
+       y = "Open vs Closed Switzerland",
+       title = "Swiss Political Compass",
+       subtitle = "Average by income group, 1996",
+       caption = "Data source: Voxit")+
+  theme(legend.position = "none")+
+  scale_fill_brewer(palette = "Set1")
+```
+
+
+
+```{r}
+#| eval: false
+anim2 <- 
+values_inc %>% 
+  ggplot()+
+  aes(x = state_market, y = open_closed, label = income_group, fill = income_group)+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  geom_label()+
+  theme(legend.position = "none")+
+  scale_fill_brewer(palette = "Set1")+
+  transition_time(time = annee)+
+  labs(title = 'Year: {frame_time}',
+       x = "State intervention - Free market",
+       y = "Open vs Closed Switzerland",
+       subtitle = "Average by income group, 1996-2016",
+       caption = "Data source: Voxit")
+
+animate(anim2, duration = 30, fps = 30, end_pause = 50)
+```
+
+
 
 ```{r pol compass2}
 #| echo: false
