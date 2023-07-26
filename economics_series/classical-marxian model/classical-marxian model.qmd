@@ -21,7 +21,7 @@ library(Ryacas0)
 theme_set(theme_light())
 ```
 
-What follows is extensively based on *Heterodox Macroeconomics: Models of of Demand, Distribution and Growth* (2019) by Robert A. Blecker and Mark Setterfield
+What follows is extensively based on the second chapter of *Heterodox Macroeconomics: Models of of Demand, Distribution and Growth* (2019) by Robert A. Blecker and Mark Setterfield
 
 ### Assumptions of the model
 
@@ -179,93 +179,76 @@ $r = i + \lambda$
 
 ![Third closure: constant of full employment rate, Blecker and Stterfield (2019, 72)](closure_3.jpg){fig-align="center" width="448"}
 
-
 Since the fourth closure is in my opinion not really important, I will mostly focus now of those closures above.
-
 
 #### Effects of exogenous change in propensity to save
 
-What happens if the saving propensity out of profits, $s_r$, rise or fall? 
+What happens if the saving propensity out of profits, $s_r$, rise or fall?
 
-1. Closure 1 and 2
+1.  Closure 1 and 2
 
     If the propsensity to save increase, the accumulation function curve becomes flatter (attention: in the graph above, the y and x axis are inverted on the right quadrant, where the accumulation function is drawn. So a rise in the slope implies a flattening of the curve). Since the real wage (or wage change) is exgenously given, it does not change. What changes are the growth (accumulation) rate and consumption: accumulation and growth increase because more profits are saved and invested into new capital. Consumption decreases because since capitalists increase their saving propensity, less of their profits are dedicated to personal consumption. Conversely, if the saving propensity decreases, accumulations and growth decrease and consumption increase. The real wage and profit rate remain unchanged.
 
-
 $\nearrow s_r \Rightarrow \nearrow I/K \Rightarrow \nearrow g, \searrow c$
-    
 
-    
-    
-2. Closure 3 (natural rate of growth closure)
+2.  Closure 3 (natural rate of growth closure)
 
     An increase in the propensity to save will again make the accumulation curve rotate down to the right (the slope increase). The direct short run effect is a rise in growth rate g. Then, this increase in growth rate makes labor demand increase faster than labor supply, resulting in a rise in the real wage. The rise in real wage decreases the profit rate and thus the growth rate decreases until the growth of labor demand and labor supply are equal. Whereas the growth rate g ends up at the same level or higher depends if labor supply is considered as endogenous or exogenous. If it is endogenous, the increase in labor supply after the increase in real wage will be faster and the new equilibrium growth rate will be higher than the original level. If labor supply is exogenous (a vertical curve in the upper-right candrant), the equilibrium growth rate cannot rise in the long run and will return at its original level.
 
-    Endogenous labor supply:
-$\nearrow s_r \Rightarrow \nearrow \nearrow g, \Rightarrow \nearrow w, \searrow r \Rightarrow \nearrow n \Rightarrow \searrow g$, 
-    
-    but with final g > initial g. Note that under these conditions, both the growth rate and the real wage rise.
-    
-    
-    Exogenous labor supply:
-$\nearrow s_r \Rightarrow \nearrow \nearrow g \Rightarrow \nearrow w, \searrow r \Rightarrow \searrow \searrow g$
+    Endogenous labor supply: $\nearrow s_r \Rightarrow \nearrow \nearrow g, \Rightarrow \nearrow w, \searrow r \Rightarrow \nearrow n \Rightarrow \searrow g$,
+
+    but with final g \> initial g. Note that under these conditions, both the growth rate and the real wage rise.
+
+    Exogenous labor supply: $\nearrow s_r \Rightarrow \nearrow \nearrow g \Rightarrow \nearrow w, \searrow r \Rightarrow \searrow \searrow g$
 
 #### Effects of redistribution of income
 
-1. Closure 1 and 2
+1.  Closure 1 and 2
 
     A rise in real wage or wage share would decrease the profit rate (recall the trade-off between wage and profit), which would decrease the growth rate (less is saved and invested since profits decrease). Consumption rises due to the increase in real wage/wage share
-    
+
 $\nearrow \bar{w} \Rightarrow \searrow r \Rightarrow \searrow g \Rightarrow \nearrow c$
 
-    A decrease in real wage or wage share would have the opposite effects.
-    
-2. Closure 3 natural rate of growth
+```         
+A decrease in real wage or wage share would have the opposite effects.
+```
 
-    In this closure, a change in real wage or wage share would be the effect of an exognous change in population growth (and thus of labor supply). A rise in real wage would happen if there is a negative exogenous shock to population and labor supply (for instance a brutal epidemic like the black death, which decreased population a lot in the 14th century and made wages rise because of labor supply scarcity). The curve n = n0 + n1*w shifts to the left, real wages rise, profit rate decreases, growth rate decreases and concumption increases.
-    
-$\nearrow n_0 \Rightarrow  \nearrow w, \nearrow c \Rightarrow \searrow r \Rightarrow  \searrow g$
+2.  Closure 3 natural rate of growth
 
+    In this closure, a change in real wage or wage share would be the effect of an exognous change in population growth (and thus of labor supply). A rise in real wage would happen if there is a negative exogenous shock to population and labor supply (for instance a brutal epidemic like the black death, which decreased population a lot in the 14th century and made wages rise because of labor supply scarcity). The curve n = n0 + n1\*w shifts to the left, real wages rise, profit rate decreases, growth rate decreases and concumption increases.
+
+$\nearrow n_0 \Rightarrow \nearrow w, \nearrow c \Rightarrow \searrow r \Rightarrow \searrow g$
 
 ### Effects of technological change
 
 The manual presents four types of technological change:
 
-1. **Harrod-neutral: pure labor saving technological change**
+1.  **Harrod-neutral: pure labor saving technological change**
 
     Labor productivity rises, but capital productivity remains unchanged
-    
+
 $\nearrow Q = Y/L = 1/a_0$
 
-    
-2. **Hicks-neutral: factor-saving technological change**
+2.  **Hicks-neutral: factor-saving technological change**
 
     Both capital and labor productivity rise
 
 $\nearrow Q = Y/L = 1/a_0, \nearrow Y/K = 1/a_1$
 
-3. **Marx-biased: labor saving, capital using**
+3.  **Marx-biased: labor saving, capital using**
 
     Labor productivity increases, but capital productivity decreases
-    
-4. **Solow-neutral: pure capital saving technological change**
+
+4.  **Solow-neutral: pure capital saving technological change**
 
     Capital productivity rises, with labor productivity unchanged
-    
-    
+
 All those patterns of technological change, with the exception of the marx-biased one, will improve the wage-profit trade-off, the curve of the latter shifting outward. Wage and profit as well as growth rise. Under the natural rate of growth closure (3) with exogenous labor supply, the long-run growth rate does not increase, however.
 
-    
 #### Marx-biased technological change the falling tendency of the rate of profit (FTRP)
 
-The FTRP is perhaps one of the most famous claim/theory of Marx. In *Capital Volume III*, Marx exposes this theory, which claims that technological change, by increasing labor productivity while decreasing capital productivity, will lead to a fall in the profit rate. The manual claims that Marx makes one important but often forgotten assumption: a constant rate of exploitation $e = s/v$ with s the surplus value and v the value of labor power. Blecker and Setterfield argue that assuming a constant rate of exploitation is the same as assuming a constant wage share and profit share. 
+The FTRP is perhaps one of the most famous claim/theory of Marx. In *Capital Volume III*, Marx exposes this theory, which claims that technological change, by increasing labor productivity while decreasing capital productivity, will lead to a fall in the profit rate. The manual claims that Marx makes one important but often forgotten assumption: a constant rate of exploitation $e = s/v$ with s the surplus value and v the value of labor power. Blecker and Setterfield argue that assuming a constant rate of exploitation is the same as assuming a constant wage share and profit share.
 
 Recall that the profit share can be written as $r = \pi / a_1$, if $\pi$ the profit share is constant and marx-biased technological change happens, $a_1$ will increase ($a_1$ is the inverse of capital productivity $a_1 = K/Y_k$). and thus decrease profit rate $r$. Thus, under the constant wage share closure, Marx-biased technological change does imply a fall in profit rate. However, it is unlikely that capitalists will let their profit rate fall without reacting and trying to suppress wages or slow down accumulation and growth, which would decrease labor demand, reduce workers bargaining power and thus lead to lower wages and to a recovery of the profit rate.
 
-What about the third closure? Under this closure, the fall in profit rate does not happen, mainly because of the effect of the increase in labor supply resulting from the increase in real wage. If labor supply is considered as exogenous, the long run profit and growth rate cannot change: $a_0$ falls more than real wage increase, and thus $\pi = 1-wa_0$ increases. Thus, the FTRP is false under this closure, but another of Marx prediction is true: the relative immiseration of the proletariat, since the profit share increases (and wage share decreases). 
-
-
-
-
-
-
+What about the third closure? Under this closure, the fall in profit rate does not happen, mainly because of the effect of the increase in labor supply resulting from the increase in real wage. If labor supply is considered as exogenous, the long run profit and growth rate cannot change: $a_0$ falls more than real wage increase, and thus $\pi = 1-wa_0$ increases. Thus, the FTRP is false under this closure, but another of Marx prediction is true: the relative immiseration of the proletariat, since the profit share increases (and wage share decreases).

@@ -1,0 +1,46 @@
+---
+title: "Neo-Keynesian Models"
+author: "Celâl Güney"
+format: html
+editor: visual
+date: "26 July 2023"
+---
+
+What follows is extensively based on the third chapter of Heterodox Macroeconomics: Models of of Demand, Distribution and Growth (2019) by Robert A. Blecker and Mark Setterfield
+
+
+## Roy Harrod: a Model of Unstable Growth
+
+Roy Forbes Harrod (1900-1978) is an important figure in economics. The British economist is first and foremost known due to the Harrod-Domar model which is one of the first attempt to describe economic growth formally. Economists typically learned during their studies the Solow growth model, whose starting point is based on Harrod's formal description of economic growth mechanics.
+
+The third chapter of *Heterodox Macroenomics*, dedicated to Neo-Keynesian models (models strongly inspired by Keynes pioneer work) starts with Harrod's model of unstable growth. This model was a first attempt to link keynes' short term analysis to a model of long-run growth.
+
+### Three Growth Rates, First and Second Harrod Problems
+
+Harrod distiguished three growth rates:
+
+1. The *actual* growth rate
+
+    The rate of growth which is actually observed in the economy
+    $y = \frac{Y_{t}-Y_{t-1}}{Y_{t}}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
