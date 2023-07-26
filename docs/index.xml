@@ -10,7 +10,1301 @@
 <atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.3.353</generator>
-<lastBuildDate>Sat, 08 Jul 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 20 Jul 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Political Compass: what lies behind political science’s most famous graphs</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/posts/political compass/pol_compass.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>People who get lost or waste their time on the internet have surely seen the now famous “political compass” graphs, which have become a popular meme on the web. The irony and paradox of political compass, and that is what makes the latter intriguing, are that it is actually an important visualization in political science. Very shortly, a political compass is a mapping of political leaning and preferences based on two axes: (1) an economic axis representing the position of an individual, party, association or group on global economic issues (pro and anti redistribution, for economic planning or free market…) and (2) a “cultural” or “post-material” (a lot of different names are given to this axis) axis representing position on cultural issues, such as: “in favor or against immigration”, “in favor or against gay marriage/lgbt rights/traditional values…”</p>
+<p>Whereas most people who use political compass do so to make memes and amuse their friends, political scientists are still seriously attached to their favorite toy and one often sees such mapping in political science articles. For instance, Oesch and Rennwald provide such graphics to map individuals political preferences for Switzerland and other countries using European Social Survey data <span class="citation" data-cites="oesch_electoral_2018">(Oesch and Rennwald 2018, 795)</span>. Pascal Sciarini, in a manual on Swiss politics, also provides such a graph using Swiss Elections Studies data <span class="citation" data-cites="sciarini_politique_2023">(Sciarini 2023, 341)</span>. The idea that political preferences can be separated between an economic and cultural cleavage comes back at least to Inglehart <span class="citation" data-cites="inglehart_silent_1971">(1971)</span> who explained the emerging salience of cultural issues over the traditional economic divide as a consequence of post-war tremendous economic growth which made the West so wealthy that people would get rid off of any material insecurity, hence shifting the focus on cultural matters rather than economic ones. But how do political scientists construct such graphs? The goal of this post is to explore how the economic and cultural axes are constructed, what are the data and variables used, and what kind of statistical manipulation is done with those data.</p>
+<section id="constructing-a-political-compass" class="level2">
+<h2 class="anchored" data-anchor-id="constructing-a-political-compass">Constructing a Political Compass</h2>
+<p>Political compass is typically constructed from ordinal variables related to economic and cultural issues and the individual self-placement of survey respondents to these issues. For instance, Oesch and Rennwald <span class="citation" data-cites="oesch_electoral_2018">(2018)</span> construct the preferences of respondents on the economic axis from an ordinal 5-points scale variable about preferences on redistribution (1 = strongly agree to reduce differences in income levels, 5 = strongly disagree). For the cultural cleavage, they took three variables: (1) the impact of immigrants on cultural life, (2) European integration and (3) freedom of gay people. One can directly see the problem with the construction of such a “cultural” axis: are here the European integration and immigration issues purely cultural issues? In my opinion, European integration cannot be considered only as a cultural “openness vs closeness values” issue and should not have been included to construct the cultural axis. However, the next step after choosing the variables is to standardize them: each observed value of the dataset is subtracted by the mean of the variable and divided by its standard deviation. If more than one variable are taken into account, the variables are standardized and the average values on these three standardized variables are computed to create the final index.</p>
+<p>To work with an example, I will work here with a dataset which is not used by the literature cited above: the Voxit studies. The latter offer a cumulative dataset on Swiss referendum voting from 1981 to 2016. The dataset contains a list of “issue positions” variables:</p>
+<ul>
+<li>In favor of state intervention or free markets</li>
+<li>In favor of or against income equality</li>
+<li>In favor of an open or closed Switzerland</li>
+<li>In favor of active equality policy between men and women</li>
+<li>In favor of equal chances between Swiss people and foreigners</li>
+<li>In favor of environnment protection or economic growth</li>
+<li>In favor of a strong or weak Swiss army</li>
+</ul>
+<p>All these variables are ordinal on a 7-points scale. Another variable, “p02” collected political party support (which party the respondent feels the most closed to). I will use this variable as a group to plot Swiss political parties on the economic and cultural axes depending on the average value of their supporters on the standardized economic and cultural issues variables. To construct the economic axis, I will use the “state vs market” variable. “Open vs closed Switzerland” will be used for the cultural axis.</p>
+<p>Here are all the steps to transform the variable, compute the average values for each year for each political party support and how to plot the final political compass.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">strdz <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb1-2">  (x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))</span>
+<span id="cb1-3">} <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create a function which transfrom x into standardize variable by subtracting the mean and dividing by standard deviation</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"></span>
+<span id="cb1-6">vox <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb1-7">vox <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(annee) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># group by year</span></span>
+<span id="cb1-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">state_market =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val11), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># compute the standardization transformation and store into new variable</span></span>
+<span id="cb1-10">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">open_closed =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val14),</span>
+<span id="cb1-11">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">envi_vs_growth =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val10),</span>
+<span id="cb1-12">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inegalite_hf =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val16),</span>
+<span id="cb1-13">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weak_army =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val3),</span>
+<span id="cb1-14">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inc_equality =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val5),</span>
+<span id="cb1-15">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">no_chance_foreign =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strdz</span>(val9)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>()</span>
+<span id="cb1-17"></span>
+<span id="cb1-18"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">#### create a table: each row (observation) is a political party repeated for each year in which data were available (1996 to 2016)</span></span>
+<span id="cb1-19">values <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb1-20">vox <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(annee, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_character</span>(p02)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># average computed across both year and parties</span></span>
+<span id="cb1-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">state_market =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># compute the average of standardized state vs market variable in each year for each party support group.</span></span>
+<span id="cb1-23">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">open_closed =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb1-24">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">envi_vs_growth =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(envi_vs_growth, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb1-25">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inegalite_hf =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(inegalite_hf, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb1-26">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weak_army =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(weak_army, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb1-27">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inc_equality =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(inc_equality, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb1-28">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">no_chance_foreign =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(no_chance_foreign, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">drop_na</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-31">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"party"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">as_character(p02)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>)</span></code></pre></div>
+</div>
+<p>Before plotting the political compass, it could be interesting to see the correlation between the average values through the years. If two variables are positively correlated, that means there are chances that, given any year, when one has high value (average of the standardized issue position variable for each respondent having declared to support the Swiss’s People party for instance) the other will have a high value as well:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">values <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-2">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>annee, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>party) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cor</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">corrplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">order =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hclust"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/corrplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The correlation plots give coherent results overall. For example, the average of party supporters who declared not being in favor of equal chance for foreigners are also supportive of a isolated Switzerland (see “no_chance-foreign” - “open_closed”).</p>
+<p>Let’s now plot a political compass for a given year. I choose the first year available: 1996. I also filter political parties to select only the most important ones: the Swiss Social Democratic Party (PSS/SPS), the Radicals (PRD), The Swiss Peoples Party (UDC/SVP), the Liberals, The Catholic-Conservatives (PDC), the Greens (PES/GPS), the Evangelical party (PEP/EVP).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">values <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(annee <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1996</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> party <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UDC/SVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PDC/CVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLS/LPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PSS/SPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PRD/FDP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PES/GPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PEP/EVP"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> party, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> party)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_label</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"State intervention - Free market"</span>,</span>
+<span id="cb3-9">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open vs Closed Switzerland"</span>,</span>
+<span id="cb3-10">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Swiss Political Compass"</span>,</span>
+<span id="cb3-11">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1996"</span>,</span>
+<span id="cb3-12">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Voxit"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlim</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylim</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PSS/SPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkred"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PES/GPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"green"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UDC/SVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgreen"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PEP/EVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gold"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLS/LPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>,</span>
+<span id="cb3-17">                                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLR"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkblue"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PDC/CVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkorange"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PRD/FDP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkblue"</span>))</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/pol compass plot 1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Switzerland’s political space is often considered as constituted by three political blocs. The first plot above shows that it was indeed the case in 1996 if we look only at the main parties. The greens and social-democratic supporters are for an open Switzerland and rather for state intervention. Piketty <span class="citation" data-cites="piketty_capital_2019">(2019)</span> would call this bloc “Social-egalitarian” because social economically and egalitarian in terms of cultural/openess values. A second bloc is constituted by free-market and open Switzerland Swiss citizen, who support the Radical-Democratic party (PRD/FDP) and the Liberal party (PLS/PRD). Note that these two parties, constituting a “Social-inegalitarian bloc” <span class="citation" data-cites="piketty_capital_2019">(Piketty 2019)</span>, merged in 2009 and gave birth to the Liberal-Radical party (PLR). The graph above shows that base the two parties was indeed very close. Third and finally, what Piketty calls negatively the “Social-nativist trap” is represented here on the upper-right cadran. However, the graph clearly shows that the SVP cannot be considered as “social-nativist” because its supporters are on average clearly in favor of pro-market policies. The party is thus more “nativist-inegalitarian” than “social-nativist”. Social-nativism is not represented in Switzerland: there is no political support for any party which is on the left economically and on the right in terms of cultural values (empty upper-left cadran).</p>
+<p>Next, let’s take advantage of what can be done with such data and visualization. It would be interesting to compare 1996 with 2016 (the last year of the dataset) to see the evolution: is the tripolar political space described above stable?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">values <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(annee <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1996</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2016</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> party <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UDC/SVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PDC/CVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLS/LPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PSS/SPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PRD/FDP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PES/GPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PEP/EVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLR"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> party, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> party, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> party)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_label</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">arrow =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrow</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.30</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cm"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"closed"</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"State intervention - Free market"</span>,</span>
+<span id="cb4-10">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open vs Closed Switzerland"</span>,</span>
+<span id="cb4-11">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Swiss Political Compass"</span>,</span>
+<span id="cb4-12">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1996-2016"</span>,</span>
+<span id="cb4-13">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Voxit"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PSS/SPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkred"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PES/GPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"green"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UDC/SVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgreen"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PEP/EVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gold"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLS/LPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>,</span>
+<span id="cb4-16">                                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLR"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkblue"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PDC/CVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkorange"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PRD/FDP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkblue"</span>))</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/pol compass plot 2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that there is no great change overall: Switzerland’s tripolar division is still valid in 2016. The greens supporters haven’t really change their position. PSS supporter have become more right-wing economically. The PEP supporters have totally changed their position in terms of cultural values. The PLS and PRD have merged to create the PLR and the SVP supporters have become slighlty more right-wing economically.</p>
+<p>However, a great deal of information is hidden behind this graph. In effect, we also want to know the transition every year. This would allow to check whether the tripolar division was stable or not. To do so, we have few choices but to create an animated graph that would display the graphs every year from 1996 to 2016. Fortunaly, the package gganimate allows to rather easily make such animations in R. In my case, I will simply add the function transition_time():</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">anim <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb5-2">values <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(party <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UDC/SVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PDC/CVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLS/LPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PSS/SPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PRD/FDP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PES/GPS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PEP/EVP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLR"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> party, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> party)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_label</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PSS/SPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkred"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PES/GPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"green"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UDC/SVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgreen"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PEP/EVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gold"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLS/LPS"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>,</span>
+<span id="cb5-11">                                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PLR"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkblue"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PDC/CVP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkorange"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PRD/FDP"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkblue"</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">transition_time</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(annee))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year: {frame_time}'</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ease_aes</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'linear'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">interval =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div>
+</div>
+<p>Then use animate() to improve the fps, add a pause at the end and slow down the animation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">animate</span>(anim, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">duration =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fps =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">end_pause =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-4-1.gif" class="img-fluid"></p>
+</div>
+</div>
+<p>Since gganimate provides gifs, which are sometimes not really convenient (if we want to pause the animation for example). Here is thus the same animation in video format:</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/pol_compass_video.mp4"></video></div>
+<section id="replacing-party-support-by-income-group" class="level3">
+<h3 class="anchored" data-anchor-id="replacing-party-support-by-income-group">Replacing party support by income group</h3>
+<p>What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==&gt; income group).</p>
+<p>The income variable that I will use is a variable I created from two income variables of the dataset (look <a href="https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html">here</a> if you want to see the details). The income variable has four groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">vox<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>income_f <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(vox<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>income, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"low"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lower middle"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"upper middle"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"high"</span>))</span>
+<span id="cb7-2"></span>
+<span id="cb7-3">values_inc <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb7-4">vox <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(annee, income_f) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># average computed across both year and parties</span></span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">state_market =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># compute the average of standardized state vs market variable in each year for each party support group.</span></span>
+<span id="cb7-7">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">open_closed =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb7-8">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">envi_vs_growth =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(envi_vs_growth, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb7-9">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inegalite_hf =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(inegalite_hf, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb7-10">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weak_army =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(weak_army, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb7-11">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inc_equality =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(inc_equality, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb7-12">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">no_chance_foreign =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(no_chance_foreign, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">drop_na</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"income_group"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> income_f)</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">values_inc <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb8-2">  dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>annee, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>income_group) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cor</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">corrplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">order =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hclust"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">values_inc <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(annee <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1996</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2016</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb9-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> income_group, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> income_group, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> income_group)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_label</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">arrow =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrow</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.30</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cm"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"closed"</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"State intervention - Free market"</span>,</span>
+<span id="cb9-10">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open vs Closed Switzerland"</span>,</span>
+<span id="cb9-11">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Swiss Political Compass"</span>,</span>
+<span id="cb9-12">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average by income group, 1996"</span>,</span>
+<span id="cb9-13">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Voxit"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_brewer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Set1"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/plot polcompass income group-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">anim2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb10-2">values_inc <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> state_market, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> open_closed, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> income_group, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> income_group)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_label</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_brewer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Set1"</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">transition_time</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time =</span> annee)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Year: {frame_time}'</span>,</span>
+<span id="cb10-12">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"State intervention - Free market"</span>,</span>
+<span id="cb10-13">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open vs Closed Switzerland"</span>,</span>
+<span id="cb10-14">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average by income group, 1996-2016"</span>,</span>
+<span id="cb10-15">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data source: Voxit"</span>)</span>
+<span id="cb10-16"></span>
+<span id="cb10-17"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">animate</span>(anim2, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">duration =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fps =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">end_pause =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>)</span></code></pre></div>
+</div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/polcomp2.mp4"></video></div>
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-inglehart_silent_1971" class="csl-entry">
+Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerational Change in Post-Industrial Societies.”</span> <em>American Political Science Review</em> 65 (4): 991–1017. <a href="https://doi.org/10.2307/1953494">https://doi.org/10.2307/1953494</a>.
+</div>
+<div id="ref-oesch_electoral_2018" class="csl-entry">
+Oesch, Daniel, and Line Rennwald. 2018. <span>“Electoral Competition in Europe’s New Tripolar Political Space: Class Voting for the Left, Centre-Right and Radical Right.”</span> <em>European Journal of Political Research</em> 57 (4): 783–807. <a href="https://doi.org/10.1111/1475-6765.12259">https://doi.org/10.1111/1475-6765.12259</a>.
+</div>
+<div id="ref-piketty_capital_2019" class="csl-entry">
+Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
+</div>
+<div id="ref-sciarini_politique_2023" class="csl-entry">
+Sciarini, Pascal. 2023. <em>Politique Suisse - Institutions, Acteurs, Processus</em>. Lausanne: Presses polytechniques et universitaires romandes. <a href="https://www.epflpress.org/produit/1421/9782889155279/politique-suisse">https://www.epflpress.org/produit/1421/9782889155279/politique-suisse</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>Political Science</category>
+  <category>Statistics</category>
+  <guid>https://jeylal.github.io/myblog/posts/political compass/pol_compass.html</guid>
+  <pubDate>Thu, 20 Jul 2023 22:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Political Conflict and Inequality in Switzerland</title>
   <dc:creator>Celâl Güney</dc:creator>

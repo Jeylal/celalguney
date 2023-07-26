@@ -354,15 +354,7 @@ values_inc %>%
 animate(anim2, duration = 30, fps = 30, end_pause = 50)
 ```
 
-
-
 {{< video https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/polcomp2.mp4 >}}
-
-
-
-
-
-
 
 ```{r pol compass2}
 #| echo: false
