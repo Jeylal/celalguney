@@ -171,10 +171,188 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p>The <em>actual</em> growth rate</p>
 <p>The rate of growth which is actually observed in the economy <span class="math inline">\(y = \frac{Y_{t}-Y_{t-1}}{Y_{t}}\)</span></p></li>
+<li><p>Natural growth rate</p>
+<p>Which is defined as <span class="math inline">\(y_N = q + n\)</span>, with n the rate of growth of labour and q the rate of growth of labor productivity.</p></li>
 </ol>
-
-
+<p>This rate of growth comes from the definition of ouput at the full-employment level: <span class="math inline">\(Y_N = \frac{Y}{a_0}\)</span> with <span class="math inline">\(a_0 = \frac{L}{Y}\)</span> the labour-output ratio (how much labour is required per unit of output). The rate of change of <span class="math inline">\(Y_N\)</span> is <span class="math inline">\(\widehat{Y_N} = n - \widehat{a_0}\)</span>. Since <span class="math inline">\(a_0\)</span> is also the inverse of labour productivity <span class="math inline">\(\frac{1}{a_0} = Y/L\)</span>, <span class="math inline">\(-\widehat{a}\)</span> is equivalent to labour productivity growth <span class="math inline">\(\widehat{Q} = q\)</span>.</p>
+<p>This natural rate of growth can be interpreted as an upper limit, the maximum rate of growth that can be achieved in the long run. The limit comes from the fact that production (output level) is limited by labour supply constraint (since <span class="math inline">\(Y_N\)</span> is the maximum level of output at full-employment).</p>
+<ol start="3" type="1">
+<li><p>Warranted rate of growth</p>
+<p>Which is the rate of growth when investment is equal to savings <span class="math inline">\(S = I\)</span>.</p></li>
+</ol>
+<p>How can we found this third rate of growth? We must first define the investment function (how the model thinks investment decisions are made):</p>
+<p><span class="math display">\[
+I_t = a_1(Y^e_t - Y_{t-1})
+\]</span></p>
+<p>With <span class="math inline">\(I_t\)</span> investment at period <span class="math inline">\(t\)</span>, <span class="math inline">\(a1\)</span> the full-capacity capital–output ratio (quantity of capital required to produce any given level of output) <span class="math inline">\(a_1 = \frac{K}{Y_K}\)</span>. This ratio can also be interpreted here as the additional quantity of capital needed to produce any additional output (the “at the margins” interpretation). This equation simply means that if agents at time <span class="math inline">\(t-1\)</span> expect output a the next period <span class="math inline">\(t\)</span> to be higher, <span class="math inline">\(Y^e_t &gt; Y_{t-1}\)</span>, then investment at the next period <span class="math inline">\(t\)</span> will be equal this this positive difference multiplied by the full-capacity capital–output ratio.</p>
+<p>Why multiply by <span class="math inline">\(a_1\)</span> ? If we define the actual quantity of capital which is utilized in the economy as <span class="math inline">\(K_u = uK\)</span>, <span class="math inline">\(u\)</span> being the full capacity utilization rate <span class="math inline">\(u = Y/Y_k\)</span>, we can rewrite the actual quantity of utilized capital as <span class="math inline">\(K_u = uK = \frac{Y}{Y_k}K = a_1Y\)</span></p>
+<p>The change of the amount of capital actually used in the production process is thus <span class="math inline">\(\Delta{K_u} = a_1\Delta{Y}\)</span></p>
+<p>Investment basically means that new capital is bought and added to the stock of capital available for production: <span class="math inline">\(I = \Delta{K}\)</span>, so that when investment occurs, capital stock increases by <span class="math inline">\(\Delta K\)</span>. If we consider that expectations are realized, <span class="math inline">\(\Delta{Y} = \Delta{Y^e}\)</span>, we can write</p>
+<p><span class="math display">\[
+I = \Delta K = a_1\Delta Y = \Delta K_u = a_1\Delta{Y}
+\]</span> Thus, <span class="math inline">\(a_1\)</span> is not arbitrary, but conformed to the known quantity of capital required to expand production through investment.</p>
+<p>We have thus the investment function:</p>
+<p><span class="math display">\[
+I_t = a_1(Y^e_t - Y_{t-1})
+\]</span> The saving function, on the other hand, is equal to:</p>
+<p><span class="math display">\[
+S_t = sY_t
+\]</span></p>
+<p>With <span class="math inline">\(s\)</span> the propensity to save. This saving function simply means that the total saving is a fixed proportion of total income (production).</p>
+<p>The last steps to find the warranted rate of growth is to equate the savings and investment function, after making the assumption that expectations are realized:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_t = Y^e_t
+\\
+S_t = I_t
+\\
+s_tY = a_1(Y_t - Y_{t-1})
+\\
+\frac{s}{a_1} = \frac{Y_t-Y_{t-1}}{Y_t}
+\end{aligned}
+\]</span></p>
+<p>The warranted rate of growth is thus</p>
+<p><span class="math display">\[y_w = \frac{s}{a_1}\]</span></p>
+<p>To sum up, the three rates of growth are</p>
+<ol type="1">
+<li><strong>Actual Growth Rate</strong></li>
+</ol>
+<p><span class="math inline">\(y = \frac{Y_t-Y_{t-1}}{Y_t}\)</span></p>
+<ol start="2" type="1">
+<li><strong>Natural Growth Rate</strong></li>
+</ol>
+<p><span class="math inline">\(y_n = q + n\)</span></p>
+<ol start="3" type="1">
+<li><strong>Warranted Growth Rate</strong></li>
+</ol>
+<p><span class="math inline">\(y_w = \frac{s}{a_1}\)</span></p>
 </section>
+<section id="the-first-harrod-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-first-harrod-problem">The First Harrod Problem</h3>
+<p>The first Harrod problem states that there is no mechanisms that would ensure a persistent or non-accidental equality between the three growth rates, thus the equality</p>
+<p><span class="math display">\[
+y = \frac{s}{a_1} = \bar{q} + \bar{n}
+\]</span> is possible, but as the manual puts it, <em>not likely</em>. The reason is that what influences the warranted rate of growth and the natural rate of growth are independent of each other.</p>
+</section>
+<section id="the-second-harrod-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-second-harrod-problem">The Second Harrod Problem</h3>
+<p>The second Harrod problem states that the warranted rate of growth <span class="math inline">\(y_w = s/a_1\)</span> is unstable. That means that any deviation of the rate of growth from the warranted rate will be self-reinforcing.</p>
+<p>To see this, we start with the equality between savings and investment:</p>
+<p><span class="math display">\[
+\begin{aligned}
+I = S
+\\
+I_t = sY_t
+\\
+Y_t = \frac{I_t}{s}
+\\
+\end{aligned}
+\]</span></p>
+<p>Then by substituting <span class="math inline">\(I_t\)</span> by the investment function <span class="math inline">\(I_t = a_1(Y^e_t - Y_{t-1})\)</span>:</p>
+<p><span class="math display">\[
+Y_t = \frac{a_1(Y^e_t - Y_{t-1})}{s} = \frac{Y^e_t - Y_{t-1}}{y_w}
+\]</span> Note that here <span class="math inline">\(a_1/s\)</span> is the inverse of the warranted rate of growth <span class="math inline">\(y_w\)</span>, this is why <span class="math inline">\(y_w\)</span> appears at the denominator. If we divide both sides of the equation above by the expected rate of growth <span class="math inline">\(Y^e_t\)</span>, we get:</p>
+<p><span class="math display">\[\frac{Y_t}{y^e_t} = \frac{y^e}{y_w}\]</span></p>
+<p><span class="math inline">\(y^e\)</span> comes from the fact that we divided <span class="math inline">\(Y^e_t - Y_{t-1}\)</span> by <span class="math inline">\(Y^e_t\)</span>, which is the rate of growth of expected growth rate. This equation above simply shows that, if expectations are realized (<span class="math inline">\(Y_t = Y^e_t\)</span>, this is a condition for the warranted rate of growth), and <span class="math inline">\(y^e = y_w\)</span>, then we have an equilibrium between the actual growth rate and warranted growth rate</p>
+<p><span class="math display">\[y^e = y = y_w\]</span></p>
+<p>The second Harrod problem explains that any deviation of <span class="math inline">\(y\)</span> from <span class="math inline">\(y_w\)</span> will be self-reinforcing. If <span class="math inline">\(y&lt;y_w\)</span>, there will be a downwards pressure on <span class="math inline">\(y\)</span>, thus a persistent recession. Conversely, if <span class="math inline">\(y&gt;y_w\)</span>, there will be an upwards pressure on <span class="math inline">\(y\)</span>, hence a self-reinforcing economic expansion.</p>
+<p>These mechanisms are the results of how the model conceive the change of the expected growth rate <span class="math inline">\(y^e_t\)</span>. If at period <span class="math inline">\(t\)</span> the growth rate <span class="math inline">\(y_t\)</span> is greater than the expected growth rate <span class="math inline">\(y_t&gt;y^e_t\)</span>, then at period <span class="math inline">\(t+1\)</span> agents will revise their expected growth rate upward <span class="math inline">\(y^e_{t+1} &gt; y^e_t\)</span>. This simple behavioral principle can be summarized as:</p>
+<p><span class="math display">\[y_t &gt; y^e_t \Rightarrow y^e_{t+1} &gt;y^e_t\]</span></p>
+<p><span class="math display">\[y_t &lt; y^e_t \Rightarrow y^e_{t+1} &lt;y^e_t\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="harrod1.jpg" class="img-fluid figure-img" width="376"></p>
+<figcaption class="figure-caption">Instability of the Warranted rate of Growth</figcaption>
+</figure>
+</div>
+<p>The graph above shows that any deviation from the equilibrium point, at which <span class="math inline">\(y_w = y = y^e\)</span> will lead either to permanent boom or bust. Note that the second Harrod problem depends on how expectations are revised: here we consider expectations as adaptive: expectations will be based on what happened at the previous period.</p>
+</section>
+<section id="interactions-between-actual-warranted-and-natural-growth-rates" class="level3">
+<h3 class="anchored" data-anchor-id="interactions-between-actual-warranted-and-natural-growth-rates">Interactions between actual, warranted and natural growth rates</h3>
+<p>Two scenarios can be considered.</p>
+<p>First, when <span class="math inline">\(y_w&lt;y_N\)</span>, the economy will be prone to boom and bust behavior. If the actual growth rate is greater than the warranted growth rate, the former will be ever-increasing until the economy will “overheat” when the actual growth rate is superior to the natural rate (which is an upper limit above which there will be exhaustion of labor force and a likely wage-inflation spiral).</p>
+<p>Second, if <span class="math inline">\(y_w&gt;y_N\)</span>, the economy is in a situation of chronic depression. Since the actual growth rate cannot be permanently equal to the warranted rate in this situation (because of the upper limit <span class="math inline">\(y_N\)</span>), the actual rate of growth would tend to permanently fall until government policies would likely start to intervene.</p>
+<p>Finally, this model has consequence for economic policy. Increasing the saving propensity <span class="math inline">\(s\)</span> to boost growth is not a good idea if it is not accompanied by a rise in aggregate demand, in which case increased saving means reduced consumption demand and investment demand is not guaranteed to offset the fall in consumption.</p>
+</section>
+</section>
+<section id="the-early-kaldorian-model-of-growth-and-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="the-early-kaldorian-model-of-growth-and-distribution">The Early Kaldorian Model of Growth and Distribution</h2>
+<p>This model is very close to the Classical-Marxian model I described <a href="https://jeylal.github.io/myblog/economics_series/classical-marxian%20model/classical-marxian%20model.html">here</a>. The main difference is the fact that the early Kaldorian model (EKM) includes <strong>the saving propensity out of wages</strong> <span class="math inline">\(s_w\)</span> whereas the classical-marxian model only includes savings out of profits.</p>
+<p>Recall that the classical-marxian saving function was</p>
+<p><span class="math inline">\(S/K= s_r(r-r_min)\)</span></p>
+<p>The EKM introduces savings out of wages, with a propensity lower than savings out of profits. Total savings is thus a weighted average bewteen savings out of wages and profits:</p>
+<p><span class="math display">\[S = [(1-\pi)s_w+\pi s_r]Y\]</span></p>
+<p><span class="math inline">\(\pi\)</span> is the profit share, <span class="math inline">\((1-\pi)\)</span> the wage share, with <span class="math inline">\(0&lt;s_w &lt; s_r&lt;1\)</span>.</p>
+<p>The model makes some assumptions, which are globally similar to the C-M model:</p>
+<ol type="1">
+<li><p>EKM assumes that labor productivity is constant <span class="math inline">\(q=0\)</span>, hence the natural rate of growth is simply <span class="math inline">\(y_N=n\)</span>.</p></li>
+<li><p>Like the Classical-Marxian model, growth rate is the rate of capital accumulation <span class="math inline">\(g = \Delta K/K\)</span>.</p></li>
+<li><p>Full or constant capacity rate of utilization <span class="math inline">\(u\)</span></p></li>
+<li><p>Constancy and exogenous capital-output and labor-output ratios <span class="math inline">\(a_0,a_1\)</span></p></li>
+</ol>
+<p>To maintain full employment, capital accumulate rate must grow the same as the investment rate and labor supply growth rate:</p>
+<p><span class="math inline">\(g = \frac{I}{K} = n\)</span></p>
+<p>As usual, we equate <span class="math inline">\(S = I\)</span>, to find the equilibrium:</p>
+<p><span class="math display">\[g = n = \frac{I}{K} = \frac{S}{K} = \frac{[(1-\pi)s_w+\pi s_r]Y}{K} = \frac{(s_r-s_w)\pi + s_w}{a_1}\]</span></p>
+<p>The equilibrium profit share is thus</p>
+<p><span class="math display">\[\pi^* = \frac{a_1 n - s_w}{s_r - s_w}\]</span></p>
+<p>And the equilibrium growth rate is</p>
+<p><span class="math display">\[g^* = n = \frac{s^*}{a_1}\]</span></p>
+<p>A major difference with the C-M model is that instead of considering an exogenous wage share or real wage and deriving the profit rate and growth rate from it, Kaldor set the growth rate equal to its natural rate and derive the profit/wage share and saving propensity necessary to reach this equilibrium. For the EKM to work, wage and profit shares must be flexible, there must be active government stabilization policies (fiscal &amp; monetary).</p>
+<p>EKM has the implications that for the economy to grow faster only with higher inequality.</p>
+</section>
+<section id="neo-robinsonian-model" class="level2">
+<h2 class="anchored" data-anchor-id="neo-robinsonian-model">Neo-Robinsonian Model</h2>
+<p>The major point of this model is to introduce a separation between investment and savings. All the models we saw until now did not distinguish between savings and investment (as the classical-marxian model).</p>
+<p>The main equations of the model are thus a saving function out of profits and a desired investment as a positive function of expected profits.</p>
+<ol type="1">
+<li><strong>Saving function</strong></li>
+</ol>
+<p><span class="math display">\[\sigma = s_rr\]</span> With <span class="math inline">\(\sigma\)</span> savings.</p>
+<ol start="2" type="1">
+<li><strong>Desired investment function</strong></li>
+</ol>
+<p><span class="math display">\[g = f(r^e)\]</span></p>
+<p><span class="math inline">\(g\)</span> being investment. This function is assumed to have positive but diminishing marginal impact of expected profits on desired investment (<span class="math inline">\(f'&gt;0, f''&lt;0\)</span>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="robinson.jpg" class="img-fluid figure-img" width="398"></p>
+<figcaption class="figure-caption">Robinson “banana diagram”</figcaption>
+</figure>
+</div>
+<p>Point A on the graph above is a stable equilibrium whereas point B is an unstable one. The graph has to be read as follows: at <span class="math inline">\(r_0\)</span> the saving rate is smaller than the (desired) growth rate <span class="math inline">\(g_0\)</span>. At <span class="math inline">\(g_0\)</span>, the corresponding profit rate is <span class="math inline">\(r_1\)</span>, which is above the profit rate related to actual saving rate (<span class="math inline">\(r_0\)</span>). Firms have thus invested in way that will make profits rise and they will thus revise their profits expectations upwards: at <span class="math inline">\(r_1\)</span> they will invest at a level slighlty above <span class="math inline">\(g_0\)</span>, which will again push up the profit rate until point A, at which <span class="math inline">\(g=\sigma\)</span> is reached.</p>
+<p>On the other hand, if we start at any profit rate below point B, the desired rate of investment will lead to a growth rate that will lead in return to a lower profit rate, firms will revise their profit rate expectations downwards and thus reduce their desired rate of investment, which will then lead to an even lower growth and profit rates and so on. Below point B, this process does not end automatically, there must be for example government stabilization. Above point A, however, the process is the same as described above in this paragraph, but it stabilizes at point A. Note that what happens below point B is strongly similar to the second Harrod problem.</p>
+<p>The Neo-Robinsonian model combines the model above with the inverse wage-profit relationship we saw in the C-M model. The desired investment rate is simplified to</p>
+<p><span class="math inline">\(g = f_0+f_1r\)</span></p>
+<p>With the same saving function <span class="math inline">\(\sigma = s_rr\)</span> and the inverse profit-wage relationship <span class="math inline">\(w =\frac{1-a_1 r}{a_0}\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="neorobinson.jpg" class="img-fluid figure-img" width="520"></p>
+<figcaption class="figure-caption">Neo-robinsonian model</figcaption>
+</figure>
+</div>
+<p>To find the equilibrium levels of growth, profit and wage rates, we set investment equals to savings <span class="math inline">\(\sigma = g\)</span> and solve for:</p>
+<p><span class="math display">\[r^* = \frac{f_0}{s_r-f_1}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[g^*=\frac{s_rf_0}{s_r-f_1}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[w^* = \frac{1}{a_0} - \frac{a_1}{a_0}(\frac{f_0}{s_r-f_1})\]</span></p>
+<p>Note that in this model the <strong>real wage and wage share are flexible, but nominal wage is not</strong>.</p>
+<p>In this model, an increase in the propensity to save leads to lower equilibrium level of growth and profit rates and a higher equilibrium real wage. The mechanism is that an increase in the propensity to save, with an unchanged desired investment curve (which means that saving propensity increases without changing firms’ willingness to invest), reduces aggregate demand through a reduction in consumption demand. With falling demand, profits realized from actual investment expenditures also fall.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="neorobinson2.jpg" class="img-fluid figure-img" width="529"></p>
+<figcaption class="figure-caption">Effect of an increase in saving propensity</figcaption>
+</figure>
+</div>
+<p>Graphically, the saving curve rotates down to the right. Why does the real wage increase? Recall that in this model, nominal wage is fixed. A change in real wage must then come from a change in the price level. In the case of higher propensity to save, the latter has depressed aggregate demand and growth, which reduce inflation <span class="math inline">\(\searrow \hat{P}\)</span>.</p>
+<p>What if we consider a shift in the desired investment curve? An exemple would be a rise in <span class="math inline">\(f_0\)</span>, which can be interpreted as the level of confidence of firms: the higher their confidence in the economy, the higher they will invest for every level of expected profit rates. A rise in <span class="math inline">\(f_0\)</span> would shift the desired investment curve <span class="math inline">\(g = f_0+f_1r\)</span> to the right, profit rate would rise, growth rate would rise, but real wage would decrease. Real wage decreases because inflation increases as a result of higher aggregate demand and thus excess demand in the goods market. Note that inflation in the Neo-robinsonian model is always “demand-pushed”, that is, led by excess or lower demand in the market for goods and services.</p>
+</section>
+<section id="marglins-neo-marxianneo-keynesian-synthesis" class="level2">
+<h2 class="anchored" data-anchor-id="marglins-neo-marxianneo-keynesian-synthesis">Marglin’s neo-Marxian/neo-Keynesian synthesis</h2>
+<p>Since the assumption of fixed nominal wage was considered as unrealistic, mainly because it is very likely that workers would bargain for higher wages in the case of higher inflation as described above, Marglin has constructed model which is a mixed between the classical-marxian model and the neo-robinsonian model.</p>
+
+
 </section>
 
 </main> <!-- /main -->
