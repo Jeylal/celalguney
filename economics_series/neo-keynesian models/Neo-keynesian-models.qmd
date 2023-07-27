@@ -6,13 +6,23 @@ editor: visual
 date: "26 July 2023"
 ---
 
-What follows is extensively based on the third chapter of Heterodox Macroeconomics: Models of of Demand, Distribution and Growth (2019) by Robert A. Blecker and Mark Setterfield
+# Neo-keynesian models
+
+What follows is extensively based on the third chapter of Heterodox Macroeconomics: Models of of Demand, Distribution and Growth (2019) by Robert A. Blecker and Mark Setterfield.
+
+"Neo-keynesianism" refers in our context to economic models conceived by neo-keynesian economists, that is, economists who built their model from the important contributions of Keynes. It here refers mainly to :
+
+
+- **Roy Forbes Harrod** (1900-1978), was a British economist who did his education and then was professor in Oxford and Cambridge, where he met Keynes.
+
+- **Nicholar Kaldor** (1908-1986), born in Budapest, was a British economist (he completed his education in Britain). What will be presented here as the early Kaldorian model (EKM) is based on his early work, in which he attempted to derive the conditions at which the growth rate could grow at a rate consistent with full-employment in the long run.
+
+- **Joan Robinson** (1903-1983), was also a British economist from Cambridge. She is known for her development of Keynesian theory.
+
 
 ## Roy Harrod: a Model of Unstable Growth
 
-Roy Forbes Harrod (1900-1978) is an important figure in economics. The British economist is first and foremost known due to the Harrod-Domar model which is one of the first attempt to describe economic growth formally. Economists typically learned during their studies the Solow growth model, whose starting point is based on Harrod's formal description of economic growth mechanics.
-
-The third chapter of *Heterodox Macroenomics*, dedicated to Neo-Keynesian models (models strongly inspired by Keynes pioneer work) starts with Harrod's model of unstable growth. This model was a first attempt to link keynes' short term analysis to a model of long-run growth.
+Roy Forbes Harrod (1900-1978) is an important figure in economics. The British economist is first and foremost known for his formal description of the mechanisms of economic growth, which one of the first attempt to do so in the discipline. As we will see, the conclusion of Harrod's model is that growth under capitalism is fundamentally unstable.
 
 ### Three Growth Rates, First and Second Harrod Problems
 
@@ -26,9 +36,9 @@ Harrod distiguished three growth rates:
 
     Which is defined as $y_N = q + n$, with n the rate of growth of labour and q the rate of growth of labor productivity.
 
-This rate of growth comes from the definition of ouput at the full-employment level: $Y_N = \frac{Y}{a_0}$ with $a_0 = \frac{L}{Y}$ the labour-output ratio (how much labour is required per unit of output). The rate of change of $Y_N$ is $\widehat{Y_N} = n - \widehat{a_0}$. Since $a_0$ is also the inverse of labour productivity $\frac{1}{a_0} = Y/L$, $-\widehat{a}$ is equivalent to labour productivity growth $\widehat{Q} = q$.
+This rate of growth comes from the definition of ouput at the full-employment level: $Y_N = \frac{N}{a_0}$ with $a_0 = \frac{N}{Y}$ the labour-output ratio (how much labour is required per unit of output). The rate of change of $Y_N$ is $\widehat{Y_N} = n - \widehat{a_0}$. Since $a_0$ is also the inverse of labour productivity $\frac{1}{a_0} = Y/L$, $-\widehat{a}$ is equivalent to labour productivity growth $\widehat{Q} = q$.
 
-This natural rate of growth can be interpreted as an upper limit, the maximum rate of growth that can be achieved in the long run. The limit comes from the fact that production (output level) is limited by labour supply constraint (since $Y_N$ is the maximum level of output at full-employment).
+This natural rate of growth can be interpreted as an upper limit, the maximum rate of growth that can be achieved in the long run at full employment. The limit comes from the fact that production (output level) is limited by labour supply constraint (since $Y_N$ is the maximum level of output at full-employment).
 
 3.  Warranted rate of growth
 
@@ -223,7 +233,7 @@ On the other hand, if we start at any profit rate below point B, the desired rat
 
 The Neo-Robinsonian model combines the model above with the inverse wage-profit relationship we saw in the C-M model. The desired investment rate is simplified to
 
-$g = f_0+f_1r$
+$g = f_0+f_1r^e$
 
 With the same saving function $\sigma = s_rr$ and the inverse profit-wage relationship $w =\frac{1-a_1 r}{a_0}$
 

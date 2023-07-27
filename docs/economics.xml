@@ -20,11 +20,18 @@
 
 
 
-<p>What follows is extensively based on the third chapter of Heterodox Macroeconomics: Models of of Demand, Distribution and Growth (2019) by Robert A. Blecker and Mark Setterfield</p>
+<section id="neo-keynesian-models" class="level1">
+<h1>Neo-keynesian models</h1>
+<p>What follows is extensively based on the third chapter of Heterodox Macroeconomics: Models of of Demand, Distribution and Growth (2019) by Robert A. Blecker and Mark Setterfield.</p>
+<p>“Neo-keynesianism” refers in our context to economic models conceived by neo-keynesian economists, that is, economists who built their model from the important contributions of Keynes. It here refers mainly to :</p>
+<ul>
+<li><p><strong>Roy Forbes Harrod</strong> (1900-1978), was a British economist who did his education and then was professor in Oxford and Cambridge, where he met Keynes.</p></li>
+<li><p><strong>Nicholar Kaldor</strong> (1908-1986), born in Budapest, was a British economist (he completed his education in Britain). What will be presented here as the early Kaldorian model (EKM) is based on his early work, in which he attempted to derive the conditions at which the growth rate could grow at a rate consistent with full-employment in the long run.</p></li>
+<li><p><strong>Joan Robinson</strong> (1903-1983), was also a British economist from Cambridge. She is known for her development of Keynesian theory.</p></li>
+</ul>
 <section id="roy-harrod-a-model-of-unstable-growth" class="level2">
 <h2 class="anchored" data-anchor-id="roy-harrod-a-model-of-unstable-growth">Roy Harrod: a Model of Unstable Growth</h2>
-<p>Roy Forbes Harrod (1900-1978) is an important figure in economics. The British economist is first and foremost known due to the Harrod-Domar model which is one of the first attempt to describe economic growth formally. Economists typically learned during their studies the Solow growth model, whose starting point is based on Harrod’s formal description of economic growth mechanics.</p>
-<p>The third chapter of <em>Heterodox Macroenomics</em>, dedicated to Neo-Keynesian models (models strongly inspired by Keynes pioneer work) starts with Harrod’s model of unstable growth. This model was a first attempt to link keynes’ short term analysis to a model of long-run growth.</p>
+<p>Roy Forbes Harrod (1900-1978) is an important figure in economics. The British economist is first and foremost known for his formal description of the mechanisms of economic growth, which one of the first attempt to do so in the discipline. As we will see, the conclusion of Harrod’s model is that growth under capitalism is fundamentally unstable.</p>
 <section id="three-growth-rates-first-and-second-harrod-problems" class="level3">
 <h3 class="anchored" data-anchor-id="three-growth-rates-first-and-second-harrod-problems">Three Growth Rates, First and Second Harrod Problems</h3>
 <p>Harrod distiguished three growth rates:</p>
@@ -34,8 +41,8 @@
 <li><p>Natural growth rate</p>
 <p>Which is defined as <img src="https://latex.codecogs.com/png.latex?y_N%20=%20q%20+%20n">, with n the rate of growth of labour and q the rate of growth of labor productivity.</p></li>
 </ol>
-<p>This rate of growth comes from the definition of ouput at the full-employment level: <img src="https://latex.codecogs.com/png.latex?Y_N%20=%20%5Cfrac%7BY%7D%7Ba_0%7D"> with <img src="https://latex.codecogs.com/png.latex?a_0%20=%20%5Cfrac%7BL%7D%7BY%7D"> the labour-output ratio (how much labour is required per unit of output). The rate of change of <img src="https://latex.codecogs.com/png.latex?Y_N"> is <img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BY_N%7D%20=%20n%20-%20%5Cwidehat%7Ba_0%7D">. Since <img src="https://latex.codecogs.com/png.latex?a_0"> is also the inverse of labour productivity <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7Ba_0%7D%20=%20Y/L">, <img src="https://latex.codecogs.com/png.latex?-%5Cwidehat%7Ba%7D"> is equivalent to labour productivity growth <img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BQ%7D%20=%20q">.</p>
-<p>This natural rate of growth can be interpreted as an upper limit, the maximum rate of growth that can be achieved in the long run. The limit comes from the fact that production (output level) is limited by labour supply constraint (since <img src="https://latex.codecogs.com/png.latex?Y_N"> is the maximum level of output at full-employment).</p>
+<p>This rate of growth comes from the definition of ouput at the full-employment level: <img src="https://latex.codecogs.com/png.latex?Y_N%20=%20%5Cfrac%7BN%7D%7Ba_0%7D"> with <img src="https://latex.codecogs.com/png.latex?a_0%20=%20%5Cfrac%7BN%7D%7BY%7D"> the labour-output ratio (how much labour is required per unit of output). The rate of change of <img src="https://latex.codecogs.com/png.latex?Y_N"> is <img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BY_N%7D%20=%20n%20-%20%5Cwidehat%7Ba_0%7D">. Since <img src="https://latex.codecogs.com/png.latex?a_0"> is also the inverse of labour productivity <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7Ba_0%7D%20=%20Y/L">, <img src="https://latex.codecogs.com/png.latex?-%5Cwidehat%7Ba%7D"> is equivalent to labour productivity growth <img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BQ%7D%20=%20q">.</p>
+<p>This natural rate of growth can be interpreted as an upper limit, the maximum rate of growth that can be achieved in the long run at full employment. The limit comes from the fact that production (output level) is limited by labour supply constraint (since <img src="https://latex.codecogs.com/png.latex?Y_N"> is the maximum level of output at full-employment).</p>
 <ol start="3" type="1">
 <li><p>Warranted rate of growth</p>
 <p>Which is the rate of growth when investment is equal to savings <img src="https://latex.codecogs.com/png.latex?S%20=%20I">.</p></li>
@@ -152,7 +159,7 @@
 <p>Point A on the graph above is a stable equilibrium whereas point B is an unstable one. The graph has to be read as follows: at <img src="https://latex.codecogs.com/png.latex?r_0"> the saving rate is smaller than the (desired) growth rate <img src="https://latex.codecogs.com/png.latex?g_0">. At <img src="https://latex.codecogs.com/png.latex?g_0">, the corresponding profit rate is <img src="https://latex.codecogs.com/png.latex?r_1">, which is above the profit rate related to actual saving rate (<img src="https://latex.codecogs.com/png.latex?r_0">). Firms have thus invested in way that will make profits rise and they will thus revise their profits expectations upwards: at <img src="https://latex.codecogs.com/png.latex?r_1"> they will invest at a level slighlty above <img src="https://latex.codecogs.com/png.latex?g_0">, which will again push up the profit rate until point A, at which <img src="https://latex.codecogs.com/png.latex?g=%5Csigma"> is reached.</p>
 <p>On the other hand, if we start at any profit rate below point B, the desired rate of investment will lead to a growth rate that will lead in return to a lower profit rate, firms will revise their profit rate expectations downwards and thus reduce their desired rate of investment, which will then lead to an even lower growth and profit rates and so on. Below point B, this process does not end automatically, there must be for example government stabilization. Above point A, however, the process is the same as described above in this paragraph, but it stabilizes at point A. Note that what happens below point B is strongly similar to the second Harrod problem.</p>
 <p>The Neo-Robinsonian model combines the model above with the inverse wage-profit relationship we saw in the C-M model. The desired investment rate is simplified to</p>
-<p><img src="https://latex.codecogs.com/png.latex?g%20=%20f_0+f_1r"></p>
+<p><img src="https://latex.codecogs.com/png.latex?g%20=%20f_0+f_1r%5Ee"></p>
 <p>With the same saving function <img src="https://latex.codecogs.com/png.latex?%5Csigma%20=%20s_rr"> and the inverse profit-wage relationship <img src="https://latex.codecogs.com/png.latex?w%20=%5Cfrac%7B1-a_1%20r%7D%7Ba_0%7D"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -182,6 +189,7 @@
 <p>Since the assumption of fixed nominal wage was considered as unrealistic, mainly because it is very likely that workers would bargain for higher wages in the case of higher inflation as described above, Marglin has constructed model which is a mixed between the classical-marxian model and the neo-robinsonian model.</p>
 
 
+</section>
 </section>
 
  ]]></description>
