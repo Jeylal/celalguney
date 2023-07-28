@@ -32,16 +32,15 @@ $$Y^d \equiv C+I+G+(X-M)$$
 
 With $Y^d$ aggregate demand, which depends positively:
 
-- $C$, private consumption demand (by individuals, not firms nor the government, nor foreigners). $C$ is the sum of all private consumption in a given economy.
+-   $C$, private consumption demand (by individuals, not firms nor the government, nor foreigners). $C$ is the sum of all private consumption in a given economy.
 
-- $I$, investment demand. The latter represents all purchases of capital goods by firms and all new residential investment. It includes mainly the purchase by firms of machinery, tools, raw materials and other equipment. However, residential investment (purchase of new houses) is also considered as an investment in national accounts.
+-   $I$, investment demand. The latter represents all purchases of capital goods by firms and all new residential investment. It includes mainly the purchase by firms of machinery, tools, raw materials and other equipment. However, residential investment (purchase of new houses) is also considered as an investment in national accounts.
 
-- $G$, the demand coming from government purchases of goods and services.
+-   $G$, the demand coming from government purchases of goods and services.
 
-- $X$, the demand coming from purchase by foreigners of national goods and services. It represents all exportation made by the economy. Subtracted by $M$, which is imported goods and services, we get the trade balance.
+-   $X$, the demand coming from purchase by foreigners of national goods and services. It represents all exportation made by the economy. Subtracted by $M$, which is imported goods and services, we get the trade balance.
 
 Why is aggregate demand important? Because any increase in demand gives impetus to economic expansion: the higher the demand for goods and services, the more firms will want to respond by producing more.
-
 
 The (neo)-kaleckian models are thus very important among heterdox models of economic growth, because it the former incorporates the role of aggregate demand and its impact on growth, even in the long run.
 
@@ -51,30 +50,27 @@ The (neo)-kaleckian models are thus very important among heterdox models of econ
 
 The main difference of the Neo-Kaleckian model with the CMMs and NKMs is that the Neo-Kaleckian model does not make the assumption that the capacity rate of utilization is fixed, constant, or constant at full level $u = 1$. But what is the rate of capacity utilization already?
 
-The rate of capacity utilization $u$ is the ratio of actual output $Y$ to the full-capacity output $Y_k$, which is the output level when all capital is used in the economy. The capacity rate can be thus written as 
+The rate of capacity utilization $u$ is the ratio of actual output $Y$ to the full-capacity output $Y_k$, which is the output level when all capital is used in the economy. The capacity rate can be thus written as
 
-$$u = \frac{Y}{Y_k}$$
-If we consider, as the CMMs and NKMs, that $u = 1$, we simply say that $Y = Y_k$. In other words, $u = 1$ means that all capital is used in the production process in the economy. If, for instance, $u = 0.5$, that means that actual output is only half of what it could be if all capital was used in production.
+$$u = \frac{Y}{Y_k}$$ If we consider, as the CMMs and NKMs, that $u = 1$, we simply say that $Y = Y_k$. In other words, $u = 1$ means that all capital is used in the production process in the economy. If, for instance, $u = 0.5$, that means that actual output is only half of what it could be if all capital was used in production.
 
 A major characteristics of the Neo-Kaleckian model is that the model considers that the capacity rate $u$ is flexible and not equal to one: the level of output is thus never at its full capacity level, contrary to the previous models presented in the manual.
 
-#### 3 Reasons why u<1
+#### 3 Reasons why u\<1
 
 Why does the Neo-Kaleckian model has such a conception of the capacity rate? There are three main reasons for which firms do not operate at full capacity (full utilization of capital).
 
-1. *Indivisibilities*
+1.  *Indivisibilities*
 
     Firms tend to purchase capital goods (machinery, raw materials, tools...) which can be obtained only in large and discontinuous units, and thus can be operated at less than 100 per cent of their potential.
 
-2. *Building ahead of demand*
+2.  *Building ahead of demand*
 
     Since firms do not know and cannot know what the demand for their products will be in the future (fundamental uncertainty of the future), they will hold excess capacity (excess capital not used in production) in case if demand rise in the future. If firms did not hold excess capacity and if demand suddenly happened to rise, they would not be able to respond by increasing production.
 
-
-3. *Entry deterrence*
+3.  *Entry deterrence*
 
     Most large firms operate in a non-competitive (great number of competitive firms) framework, in which only a few large oligopolistic firms compete in the market. In this situation, these large firms will hold excess capacity as a weapon in case if new firms (new entrants) would want to enter the market as producers and compete with the established firms. Having excess capacity allows established firms to be able to rise production immediately and thus push price downwards to crush any potential new competitors.
-
 
 ### Prices as markups over costs
 
@@ -88,55 +84,35 @@ Which means that a firm will increase price $P$ if it decides to rise its markup
 
 What will influence change in the markup rate $\tau$? Kalecki and the manual give five main factors which will influence the markup (a + or - sign is added next to each factor to indicate whether it rises the markup or decreases it):
 
-1. **Industrial concentration** (+)
+1.  **Industrial concentration** (+)
 
     The fewer the firms are in competition with each other, the less the market is competitive and the more firms have market power to increase prices through an increase in their markup.
-    
-    
-2. **‘Overheads’ or fixed costs** (+)
+
+2.  **'Overheads' or fixed costs** (+)
 
     By these overhead and fixed costs, we mean all the costs associated with machinery and equipment, management, maintenance (overhead labor), Research & Development expenses, intellectual property rights costs or debt service expenses. All these costs are taken into account by firms, which want to set price with a markup over these costs. If these costs increase, firms will also want to increase the markup to set a prices bringing enough revenues.
-    
-3. **Sales effort** (+)
+
+3.  **Sales effort** (+)
 
     When firms operate under an oligopolistic framework (few firms, low competition between firms), adverstising is important to increase the number of consumers. Moreover, adverstising is also useful for 'product differentiation", that is, convincing consumers that the firm's products are different than the other products offered in the market. Consumers would then be more disposed to consume the differentiated product at a higher price. Advertising is thus both a way to increase the number of consumers and a way to increase oligopolistic market power.
-    
-4. **Strength of labour unions** (-)
+
+4.  **Strength of labour unions** (-)
 
     If workers within a firm have enough bargaining power, they may are able to capture parts of the firms's potential profits. The degree of power workers can have depend on the existence and strength of labor unions: the more labor unions there are and the stronger and more well-organized and powerful they are, they more firms will have to share their value added, and thus decrease their markups.
 
-5. **External competition** (-)
+5.  **External competition** (-)
 
     The more national firms are in competition with the rest of the world, the more competitive pressure they have to lower their price, and thus their markup.
 
+### New wage-profit relationship
 
+As with the CMMs, we start with the definition of national income under the income approach: national income is the sum of capitalists and workers' income (profits and wages, ignoring depreciation, no government, only one good):
 
+$$PY = WL + rPK$$ Dividing by $PY$, we get a new inverse wage profit relationship:
 
+$$w = \frac{1}{a_0} - \frac{a_1}{a_0} \frac{r}{u}$$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+This equation is almost the same as the one we derived in the [classical-marxian models](https://jeylal.github.io/myblog/economics_series/classical-marxian%20model/classical-marxian%20model.html#basis-of-the-model). Since the CMMs assumed a full and constant capacity rate of utilization $u = 1$, it does not appear in their wage-profit equation. However, $u$ appears here in the denominator of the $r/u$ fraction because it is assumed to be inferior to one (below full capacity) and flexible. In the equation above, wage appears to be a positive function of $u$, but this is misleading since $u$ and profit rate $r$ are not independent of each other, meaning that if one of the two variables increases, the other will change as well, leaving an ambiguous impact on real wage $w$.
 
 
 

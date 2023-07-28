@@ -79,6 +79,13 @@
 <li><p><strong>External competition</strong> (-)</p>
 <p>The more national firms are in competition with the rest of the world, the more competitive pressure they have to lower their price, and thus their markup.</p></li>
 </ol>
+</section>
+<section id="new-wage-profit-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="new-wage-profit-relationship">New wage-profit relationship</h3>
+<p>As with the CMMs, we start with the definition of national income under the income approach: national income is the sum of capitalists and workers’ income (profits and wages, ignoring depreciation, no government, only one good):</p>
+<p><img src="https://latex.codecogs.com/png.latex?PY%20=%20WL%20+%20rPK"> Dividing by <img src="https://latex.codecogs.com/png.latex?PY">, we get a new inverse wage profit relationship:</p>
+<p><img src="https://latex.codecogs.com/png.latex?w%20=%20%5Cfrac%7B1%7D%7Ba_0%7D%20-%20%5Cfrac%7Ba_1%7D%7Ba_0%7D%20%5Cfrac%7Br%7D%7Bu%7D"></p>
+<p>This equation is almost the same as the one we derived in the <a href="https://jeylal.github.io/myblog/economics_series/classical-marxian%20model/classical-marxian%20model.html#basis-of-the-model">classical-marxian models</a>. Since the CMMs assumed a full and constant capacity rate of utilization <img src="https://latex.codecogs.com/png.latex?u%20=%201">, it does not appear in their wage-profit equation. However, <img src="https://latex.codecogs.com/png.latex?u"> appears here in the denominator of the <img src="https://latex.codecogs.com/png.latex?r/u"> fraction because it is assumed to be inferior to one (below full capacity) and flexible. In the equation above, wage appears to be a positive function of <img src="https://latex.codecogs.com/png.latex?u">, but this is misleading since <img src="https://latex.codecogs.com/png.latex?u"> and profit rate <img src="https://latex.codecogs.com/png.latex?r"> are not independent of each other, meaning that if one of the two variables increases, the other will change as well, leaving an ambiguous impact on real wage <img src="https://latex.codecogs.com/png.latex?w">.</p>
 
 
 </section>
