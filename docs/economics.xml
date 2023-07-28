@@ -10,7 +10,34 @@
 <atom:link href="https://jeylal.github.io/myblog/economics.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.3.353</generator>
-<lastBuildDate>Tue, 25 Jul 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 28 Jul 2023 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Neo-Kaleckian Models</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/myblog/economics_series/neo-kaleckian models/neo-kaleckian models.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>What follows is extensively based on the fourth chapter of <em>Heterodox Macroeconomics: Models of of Demand, Distribution and Growth</em> (2019) by Robert A. Blecker and Mark Setterfield.</p>
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>Michał Kalecki (1899-1970) was a Polish economist and major figure of heterodox economics. He made important contributions in macroeconomics and political economy, and his work represents a crucial legacy for a lot of contemporary heterodox economics.</p>
+<p>The models that will be presented here are related to the macroeconomics of Kalecki. However, it is important to keep in mind that Kalecki also developed a theory of political business cycles (I talk shortly about this theory <a href="https://jeylal.github.io/myblog/posts/About%20cycles%20and%20crises/cycles_crises.html">here</a>). What will be presented here (based on the manual) is just one part of the many important contributions of Kalecki to this discipline.</p>
+<p>Until now, almost all the models I summarized in my <a href="https://jeylal.github.io/myblog/economics.html">heterodox economics series</a>, the classical-marxian models (CMM) and the neo-keynesian models (NKM), explain that more rapid growth can only be achieve at the expense of a more unequal distribution of income. In other words, the CMM and NKM explain that increasing the rate of growth implies more inequality through either lower real wage or lower wage share.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Heterodox Economics</category>
+  <category>Kalecki</category>
+  <category>Macroeconomics</category>
+  <guid>https://jeylal.github.io/myblog/economics_series/neo-kaleckian models/neo-kaleckian models.html</guid>
+  <pubDate>Fri, 28 Jul 2023 22:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/economics_series/neo-kaleckian models/kaleckipic.png" medium="image" type="image/png" height="126" width="144"/>
+</item>
 <item>
   <title>Neo-Keynesian Models</title>
   <dc:creator>Celâl Güney</dc:creator>
@@ -250,6 +277,7 @@
   <category>Macroeconomics</category>
   <guid>https://jeylal.github.io/myblog/economics_series/neo-keynesian models/Neo-keynesian-models.html</guid>
   <pubDate>Tue, 25 Jul 2023 22:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/economics_series/neo-keynesian models/neokeynesians.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Classical-Marxian Model</title>
@@ -571,6 +599,7 @@ font-style: inherit;">"real wage"</span>)</span></code></pre></div>
   <category>Macroeconomics</category>
   <guid>https://jeylal.github.io/myblog/economics_series/classical-marxian model/classical-marxian model.html</guid>
   <pubDate>Tue, 18 Jul 2023 22:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/myblog/economics_series/classical-marxian model/marxsmithricardo.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>IS-LM Model</title>

@@ -1,0 +1,47 @@
+---
+title: "Neo-Kaleckian Models"
+author: "Celâl Güney"
+format: 
+  html:
+    toc: true
+editor: visual
+date: "29 July 2023"
+execute: 
+  freeze: true
+draft: false
+categories: [Heterodox Economics, Kalecki, Macroeconomics]
+image: kaleckipic.png
+---
+
+What follows is extensively based on the fourth chapter of *Heterodox Macroeconomics: Models of of Demand, Distribution and Growth* (2019) by Robert A. Blecker and Mark Setterfield.
+
+## Intro
+
+Michał Kalecki (1899-1970) was a Polish economist and major figure of heterodox economics. He made important contributions in macroeconomics and political economy, and his work represents a crucial legacy for a lot of contemporary heterodox economics.
+
+The models that will be presented here are related to the macroeconomics of Kalecki. However, it is important to keep in mind that Kalecki also developed a theory of political business cycles (I talk shortly about this theory [here](https://jeylal.github.io/myblog/posts/About%20cycles%20and%20crises/cycles_crises.html)). What will be presented here (based on the manual) is just one part of the many important contributions of Kalecki to this discipline.
+
+Until now, almost all the models I summarized in my [heterodox economics series](https://jeylal.github.io/myblog/economics.html), the classical-marxian models (CMM) and the neo-keynesian models (NKM), explain that more rapid growth can only be achieve at the expense of a more unequal distribution of income. In other words, the CMM and NKM explain that increasing the rate of growth implies more inequality through either lower real wage or lower wage share.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
