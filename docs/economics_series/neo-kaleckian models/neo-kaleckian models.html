@@ -61,6 +61,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -169,6 +171,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#main-characteristics-of-the-model" id="toc-main-characteristics-of-the-model" class="nav-link" data-scroll-target="#main-characteristics-of-the-model">Main characteristics of the model</a>
+  <ul>
+  <li><a href="#capacity-rate-of-utilization" id="toc-capacity-rate-of-utilization" class="nav-link" data-scroll-target="#capacity-rate-of-utilization">Capacity rate of utilization</a>
+  <ul class="collapse">
+  <li><a href="#reasons-why-u1" id="toc-reasons-why-u1" class="nav-link" data-scroll-target="#reasons-why-u1">3 Reasons why u&lt;1</a></li>
+  </ul></li>
+  <li><a href="#prices-as-markups-over-costs" id="toc-prices-as-markups-over-costs" class="nav-link" data-scroll-target="#prices-as-markups-over-costs">Prices as markups over costs</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -183,9 +193,63 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>Michał Kalecki (1899-1970) was a Polish economist and major figure of heterodox economics. He made important contributions in macroeconomics and political economy, and his work represents a crucial legacy for a lot of contemporary heterodox economics.</p>
 <p>The models that will be presented here are related to the macroeconomics of Kalecki. However, it is important to keep in mind that Kalecki also developed a theory of political business cycles (I talk shortly about this theory <a href="https://jeylal.github.io/myblog/posts/About%20cycles%20and%20crises/cycles_crises.html">here</a>). What will be presented here (based on the manual) is just one part of the many important contributions of Kalecki to this discipline.</p>
-<p>Until now, almost all the models I summarized in my <a href="https://jeylal.github.io/myblog/economics.html">heterodox economics series</a>, the classical-marxian models (CMM) and the neo-keynesian models (NKM), explain that more rapid growth can only be achieve at the expense of a more unequal distribution of income. In other words, the CMM and NKM explain that increasing the rate of growth implies more inequality through either lower real wage or lower wage share.</p>
+<p>The Neo-Kaleckian model is actually posterior to Kalecki (hence “Neo”), but heavily based on his work. It was developed by Kaleckian economists in the 70s and 80s based on Kalecki work, but also on the work of Josef Steindl (1912-1993), an austrian post-keynesian economist who was a close collegue of Kalecki.</p>
+<p>Until now, almost all the models I summarized in my <a href="https://jeylal.github.io/myblog/economics.html">heterodox economics series</a>, the classical-marxian models (CMMs) and the Neo-Keynesian models (NKMs), explain that more rapid growth can only be achieve at the expense of a more unequal distribution of income. In other words, the CMM and NKM explain that increasing the rate of growth implies more inequality through either lower real wage or lower wage share.</p>
+<p>One major flaw of the CMM and NKM is that they either don’t incorporate the important role of aggregate demand in the analysis (in the case of the CMMs) or only partially incorporate it (for the NKMs). Why is it important to take aggregate demand into account when one wants to analyze the determinants of economic growth? Before answering this question, let’s first define aggregate demand. The latte can be defined as the <strong>sum of all demand sources for goods and services in an economy</strong>. Aggregate demand is often summarized with the following formula:</p>
+<p><span class="math display">\[Y^d \equiv C+I+G+(X-M)\]</span></p>
+<p>With <span class="math inline">\(Y^d\)</span> aggregate demand, which depends positively:</p>
+<ul>
+<li><p><span class="math inline">\(C\)</span>, private consumption demand (by individuals, not firms nor the government, nor foreigners). <span class="math inline">\(C\)</span> is the sum of all private consumption in a given economy.</p></li>
+<li><p><span class="math inline">\(I\)</span>, investment demand. The latter represents all purchases of capital goods by firms and all new residential investment. It includes mainly the purchase by firms of machinery, tools, raw materials and other equipment. However, residential investment (purchase of new houses) is also considered as an investment in national accounts.</p></li>
+<li><p><span class="math inline">\(G\)</span>, the demand coming from government purchases of goods and services.</p></li>
+<li><p><span class="math inline">\(X\)</span>, the demand coming from purchase by foreigners of national goods and services. It represents all exportation made by the economy. Subtracted by <span class="math inline">\(M\)</span>, which is imported goods and services, we get the trade balance.</p></li>
+</ul>
+<p>Why is aggregate demand important? Because any increase in demand gives impetus to economic expansion: the higher the demand for goods and services, the more firms will want to respond by producing more.</p>
+<p>The (neo)-kaleckian models are thus very important among heterdox models of economic growth, because it the former incorporates the role of aggregate demand and its impact on growth, even in the long run.</p>
+</section>
+<section id="main-characteristics-of-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="main-characteristics-of-the-model">Main characteristics of the model</h2>
+<section id="capacity-rate-of-utilization" class="level3">
+<h3 class="anchored" data-anchor-id="capacity-rate-of-utilization">Capacity rate of utilization</h3>
+<p>The main difference of the Neo-Kaleckian model with the CMMs and NKMs is that the Neo-Kaleckian model does not make the assumption that the capacity rate of utilization is fixed, constant, or constant at full level <span class="math inline">\(u = 1\)</span>. But what is the rate of capacity utilization already?</p>
+<p>The rate of capacity utilization <span class="math inline">\(u\)</span> is the ratio of actual output <span class="math inline">\(Y\)</span> to the full-capacity output <span class="math inline">\(Y_k\)</span>, which is the output level when all capital is used in the economy. The capacity rate can be thus written as</p>
+<p><span class="math display">\[u = \frac{Y}{Y_k}\]</span> If we consider, as the CMMs and NKMs, that <span class="math inline">\(u = 1\)</span>, we simply say that <span class="math inline">\(Y = Y_k\)</span>. In other words, <span class="math inline">\(u = 1\)</span> means that all capital is used in the production process in the economy. If, for instance, <span class="math inline">\(u = 0.5\)</span>, that means that actual output is only half of what it could be if all capital was used in production.</p>
+<p>A major characteristics of the Neo-Kaleckian model is that the model considers that the capacity rate <span class="math inline">\(u\)</span> is flexible and not equal to one: the level of output is thus never at its full capacity level, contrary to the previous models presented in the manual.</p>
+<section id="reasons-why-u1" class="level4">
+<h4 class="anchored" data-anchor-id="reasons-why-u1">3 Reasons why u&lt;1</h4>
+<p>Why does the Neo-Kaleckian model has such a conception of the capacity rate? There are three main reasons for which firms do not operate at full capacity (full utilization of capital).</p>
+<ol type="1">
+<li><p><em>Indivisibilities</em></p>
+<p>Firms tend to purchase capital goods (machinery, raw materials, tools…) which can be obtained only in large and discontinuous units, and thus can be operated at less than 100 per cent of their potential.</p></li>
+<li><p><em>Building ahead of demand</em></p>
+<p>Since firms do not know and cannot know what the demand for their products will be in the future (fundamental uncertainty of the future), they will hold excess capacity (excess capital not used in production) in case if demand rise in the future. If firms did not hold excess capacity and if demand suddenly happened to rise, they would not be able to respond by increasing production.</p></li>
+<li><p><em>Entry deterrence</em></p>
+<p>Most large firms operate in a non-competitive (great number of competitive firms) framework, in which only a few large oligopolistic firms compete in the market. In this situation, these large firms will hold excess capacity as a weapon in case if new firms (new entrants) would want to enter the market as producers and compete with the established firms. Having excess capacity allows established firms to be able to rise production immediately and thus push price downwards to crush any potential new competitors.</p></li>
+</ol>
+</section>
+</section>
+<section id="prices-as-markups-over-costs" class="level3">
+<h3 class="anchored" data-anchor-id="prices-as-markups-over-costs">Prices as markups over costs</h3>
+<p>In most models described until now, none of them had a precise model/equation describing how prices are set by firms. The Neo-Kaleckian as an explicit and precise definition of how prices are set. Recall that in the context of perfect competition, standard economic theory tells that prices are the result of the equilibrium between demand and supply. In the Neo-Kaleckian framework, markets are not perfectly competitive and firms have what economics call “market power”, that is, the power to influence prices and thus set the latter.</p>
+<p>How will firms then set prices in the Neo-Kaleckian model? The manual presents the following price equation:</p>
+<p><span class="math display">\[P = (1 + \tau)Wa_0\]</span></p>
+<p>Which means that a firm will increase price <span class="math inline">\(P\)</span> if it decides to rise its markup rate <span class="math inline">\(\tau\)</span>, or if nominal wage increase <span class="math inline">\(W\)</span> (since nominal wage is a cost for the firm, note that here other costs are ignored for simplicity and only labor costs are taken into account), or if <span class="math inline">\(a_0 = \frac{L}{Y}\)</span>, the labor/output ratio increases. Here, <span class="math inline">\(Y\)</span> refers to the output produced by the firm and <span class="math inline">\(L\)</span> the amount of labor employed by the firm.</p>
+<p>What will influence change in the markup rate <span class="math inline">\(\tau\)</span>? Kalecki and the manual give five main factors which will influence the markup (a + or - sign is added next to each factor to indicate whether it rises the markup or decreases it):</p>
+<ol type="1">
+<li><p><strong>Industrial concentration</strong> (+)</p>
+<p>The fewer the firms are in competition with each other, the less the market is competitive and the more firms have market power to increase prices through an increase in their markup.</p></li>
+<li><p><strong>‘Overheads’ or fixed costs</strong> (+)</p>
+<p>By these overhead and fixed costs, we mean all the costs associated with machinery and equipment, management, maintenance (overhead labor), Research &amp; Development expenses, intellectual property rights costs or debt service expenses. All these costs are taken into account by firms, which want to set price with a markup over these costs. If these costs increase, firms will also want to increase the markup to set a prices bringing enough revenues.</p></li>
+<li><p><strong>Sales effort</strong> (+)</p>
+<p>When firms operate under an oligopolistic framework (few firms, low competition between firms), adverstising is important to increase the number of consumers. Moreover, adverstising is also useful for ’product differentiation”, that is, convincing consumers that the firm’s products are different than the other products offered in the market. Consumers would then be more disposed to consume the differentiated product at a higher price. Advertising is thus both a way to increase the number of consumers and a way to increase oligopolistic market power.</p></li>
+<li><p><strong>Strength of labour unions</strong> (-)</p>
+<p>If workers within a firm have enough bargaining power, they may are able to capture parts of the firms’s potential profits. The degree of power workers can have depend on the existence and strength of labor unions: the more labor unions there are and the stronger and more well-organized and powerful they are, they more firms will have to share their value added, and thus decrease their markups.</p></li>
+<li><p><strong>External competition</strong> (-)</p>
+<p>The more national firms are in competition with the rest of the world, the more competitive pressure they have to lower their price, and thus their markup.</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
