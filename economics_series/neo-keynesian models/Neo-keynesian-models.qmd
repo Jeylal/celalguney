@@ -6,6 +6,7 @@ format:
     toc: true
 editor: visual
 date: "26 July 2023"
+categories: [Heterodox Economics, Neo-Keynesian Economics, Macroeconomics]
 ---
 
 # Neo-keynesian models
@@ -167,7 +168,6 @@ Finally, this model has consequence for economic policy. Increasing the saving p
 
 ## The Early Kaldorian Model (EKM) of Growth and Distribution
 
-
 ### A model very close to the Classical-Marxian model
 
 This model is very close to the Classical-Marxian model I described [here](https://jeylal.github.io/myblog/economics_series/classical-marxian%20model/classical-marxian%20model.html). The main difference is the fact that the early Kaldorian model (EKM) includes **the saving propensity out of wages** $s_w$ whereas the classical-marxian model only includes savings out of profits.
@@ -311,7 +311,6 @@ The equilibrium condition of the model, which will determine growth, real wage a
 $$\widehat{W} = \widehat{P}$$
 
 ![Marglin's Classical-Marxian - NeoRobinsonian synthesis](marglinsynthesis.jpg){fig-align="center" width="577"}
-
 
 At this equilibrium, the real wage $W/P$ is constant. The other variables behave as such:
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -127,7 +98,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -138,44 +109,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Celâl Güney</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf">
+    <a class="nav-link" href="https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:celal.gueney@etu.unige.ch"><i class="bi bi-envelope-fill" role="img">
+    <a class="nav-link" href="mailto:celal.gueney@etu.unige.ch" rel="" target=""><i class="bi bi-envelope-fill" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
- <span class="menu-text">Post</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../index.html" rel="" target="">
+ <span class="dropdown-text">Post</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../economics.html">
- <span class="menu-text">Economics</span></a>
+        <li>
+    <a class="dropdown-item" href="../../economics.html" rel="" target="">
+ <span class="dropdown-text">Economics</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -216,7 +196,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#an-introduction-to-web-scraping-in-r" id="toc-an-introduction-to-web-scraping-in-r" class="nav-link active" data-scroll-target="#an-introduction-to-web-scraping-in-r">An introduction to web scraping in R</a>
+  <ul class="collapse">
+  <li><a href="#getting-data-videogame-prices" id="toc-getting-data-videogame-prices" class="nav-link" data-scroll-target="#getting-data-videogame-prices">Getting data: videogame prices</a></li>
+  <li><a href="#getting-data-on-all-pages" id="toc-getting-data-on-all-pages" class="nav-link" data-scroll-target="#getting-data-on-all-pages">Getting data on all pages</a></li>
+  <li><a href="#getting-data-from-a-webpage-table" id="toc-getting-data-from-a-webpage-table" class="nav-link" data-scroll-target="#getting-data-from-a-webpage-table">Getting data from a webpage table</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -227,12 +220,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="an-introduction-to-web-scraping-in-r">An introduction to web scraping in R</h2>
 <p>Web scraping is nowadays rife in statistics and data science. This data collection method has become fashionable not only in computer and data science, but also in economics, sociology and social sciences in general. The reasons for the success of web scraping need hardly to be told at length: the usefulness of web scrapping, extracting data from whatever website we visit, is self-evident. Go to any Wikipedia page, and you can extract whatever data table in contains into your favorite statistical software. The potential of web scraping is huge and will be increasingly used in social sciences.</p>
 <p>The main goal of this post is to show the basics of web scraping using R and the package rvest. To do so, I draw extensively on Paul C. Bauer’s <a href="https://bookdown.org/paul/2021_computational_social_science/data-collection-web-screen-scraping.html">Computational Social Sciences manual</a>, which explains in depth how to do web scraping in R.</p>
-<div class="cell">
-
-</div>
-</section>
-<section id="getting-data-videogame-prices" class="level2">
-<h2 class="anchored" data-anchor-id="getting-data-videogame-prices">Getting data: videogame prices</h2>
+<section id="getting-data-videogame-prices" class="level3">
+<h3 class="anchored" data-anchor-id="getting-data-videogame-prices">Getting data: videogame prices</h3>
 <p>I will here use web scraping to get video-game prices in Switzerland. The first step of web scraping is to find a webpage from which you want to collect data. To collect the prices of video-games, I need a web page from for instance a chain stores. In Switzerland, MediaMarkt is a famous chain stores selling consumer electronics and most Swiss people who still buy or order physical copy of their favorite video-games go to or order from MediaMarkt.</p>
 <p>For the anecdote, at the time and for many years (at least until I was 18 in the 2010s), MediaMarkt used to sell video-games slightly below market prices and some stores in Geneva even sometimes sold copies before the release date. The situation has much changed since and the stores are now barely able to sell and distribute physical copies day one (it was the case this year at least for Wo Long and Dead Space 2 remake).</p>
 <p>I search then, on MediaMarkt website, the webpage dedicated to video-games. The webpages are separated by video-games platforms/consoles, so I choose to focus on Playstation 5 games. I store the <a href="https://www.mediamarkt.ch/fr/category/_jeux-ps5-772119.html">link</a> in an object called url. Then, the web page can be read in R using read_html():</p>
@@ -244,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imagemediamarkt.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Using selectorgadget</figcaption><p></p>
+<figcaption class="figure-caption">Using selectorgadget</figcaption>
 </figure>
 </div>
 <p>Then, you just have to paste it into the html_nodes function (here .info-wrapper for the price, then .product-link for the title).</p>
@@ -259,20 +248,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "274.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-"
-[2] "34.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
-[3] "72.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
-[4] "94.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
-[5] "72.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
-[6] "42.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" </code></pre>
+[2] "72.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[3] "67.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[4] "69.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[5] "73.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" 
+[6] "54.95\r\n\t\r\n\t\t\tTVA compris, plus frais d’expédition 0.-" </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(game)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Marvel's Spider-Man 2: Édition Collector (CiaB) - PlayStation 5 - Allemand, Français, Italien"
-[2] "FIFA 23 - PlayStation 5 - Allemand, Français, Italien"                                        
-[3] "F1 23 - PlayStation 5 - Allemand, Français, Italien"                                          
-[4] "Final Fantasy XVI : Édition Deluxe - PlayStation 5 - Français"                                
-[5] "Final Fantasy XVI - PlayStation 5 - Français"                                                 
-[6] "Marvel’s Spider-Man: Miles Morales - PlayStation 5 - Allemand, Français, Italien"             </code></pre>
+[2] "Sports FC 24 : Édition Standard - PlayStation 5 - Allemand, Français, Italien"                
+[3] "Marvel’s Spider-Man: Miles Morales - PlayStation 5 - Allemand, Français, Italien"             
+[4] "STAR WARS Jedi : Survivor - PlayStation 5 - Allemand, Français, Italien"                      
+[5] "F1 23 - PlayStation 5 - Allemand, Français, Italien"                                          
+[6] "Ratchet &amp; Clank : Rift Apart - PlayStation 5 - Allemand, Français, Italien"                   </code></pre>
 </div>
 </div>
 <p>It worked well for the game titles (even if they could be simplified), but not so much for prices. We need to extract the latter from the text in the price object. This can be done using function gsub() and some Regex manipulation:</p>
@@ -281,9 +270,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#"([0.001-9]+).*$" means: "keep only characters from 0.001 to 9 multiple times" it will thus extract the number from the character list we got with html_text()</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>price_final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 274.95  34.95  72.95  94.95  72.95  42.95  72.95  62.95  54.95  54.00
-[11]  82.95  77.95  99.95  62.95  74.95  69.95  34.95  54.95  62.95  32.00
-[21]  69.95  62.95  34.95  29.00</code></pre>
+<pre><code> [1] 274.95  72.95  67.95  69.95  73.95  54.95  44.95  69.95  62.95  59.95
+[11]  69.95  74.95  54.95  40.95  72.95  29.95  69.95  14.00  72.95  26.95
+[21]  22.00  24.00  74.95  89.95</code></pre>
 </div>
 </div>
 <p>Similarly, the video-game titles can be simplified using some Regex:</p>
@@ -296,12 +285,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="rjyscfelzh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="cruqxjpltn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#rjyscfelzh) .gt_table {
+#cruqxjpltn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -326,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_heading {
+#cruqxjpltn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -338,12 +327,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_caption {
+#cruqxjpltn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#rjyscfelzh) .gt_title {
+#cruqxjpltn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -355,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#rjyscfelzh) .gt_subtitle {
+#cruqxjpltn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -367,13 +356,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#rjyscfelzh) .gt_bottom_border {
+#cruqxjpltn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_col_headings {
+#cruqxjpltn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -388,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_col_heading {
+#cruqxjpltn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -408,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#rjyscfelzh) .gt_column_spanner_outer {
+#cruqxjpltn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -420,15 +409,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#rjyscfelzh) .gt_column_spanner_outer:first-child {
+#cruqxjpltn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#rjyscfelzh) .gt_column_spanner_outer:last-child {
+#cruqxjpltn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#rjyscfelzh) .gt_column_spanner {
+#cruqxjpltn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -440,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#rjyscfelzh) .gt_group_heading {
+#cruqxjpltn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -466,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#rjyscfelzh) .gt_empty_group_heading {
+#cruqxjpltn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -481,15 +470,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#rjyscfelzh) .gt_from_md > :first-child {
+#cruqxjpltn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#rjyscfelzh) .gt_from_md > :last-child {
+#cruqxjpltn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#rjyscfelzh) .gt_row {
+#cruqxjpltn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -508,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#rjyscfelzh) .gt_stub {
+#cruqxjpltn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,7 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#rjyscfelzh) .gt_stub_row_group {
+#cruqxjpltn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -535,11 +524,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#rjyscfelzh) .gt_row_group_first td {
+#cruqxjpltn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#rjyscfelzh) .gt_summary_row {
+#cruqxjpltn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -549,16 +538,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#rjyscfelzh) .gt_first_summary_row {
+#cruqxjpltn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_first_summary_row.thick {
+#cruqxjpltn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#rjyscfelzh) .gt_last_summary_row {
+#cruqxjpltn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -568,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_grand_summary_row {
+#cruqxjpltn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -578,7 +567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#rjyscfelzh) .gt_first_grand_summary_row {
+#cruqxjpltn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -588,11 +577,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_striped {
+#cruqxjpltn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#rjyscfelzh) .gt_table_body {
+#cruqxjpltn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -601,7 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_footnotes {
+#cruqxjpltn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -615,7 +604,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_footnote {
+#cruqxjpltn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -624,7 +613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#rjyscfelzh) .gt_sourcenotes {
+#cruqxjpltn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -638,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#rjyscfelzh) .gt_sourcenote {
+#cruqxjpltn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -646,128 +635,175 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#rjyscfelzh) .gt_left {
+#cruqxjpltn .gt_left {
   text-align: left;
 }
 
-:where(#rjyscfelzh) .gt_center {
+#cruqxjpltn .gt_center {
   text-align: center;
 }
 
-:where(#rjyscfelzh) .gt_right {
+#cruqxjpltn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#rjyscfelzh) .gt_font_normal {
+#cruqxjpltn .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#rjyscfelzh) .gt_font_bold {
+#cruqxjpltn .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#rjyscfelzh) .gt_font_italic {
+#cruqxjpltn .gt_font_italic {
   font-style: italic;
 }
 
-:where(#rjyscfelzh) .gt_super {
+#cruqxjpltn .gt_super {
   font-size: 65%;
 }
 
-:where(#rjyscfelzh) .gt_footnote_marks {
+#cruqxjpltn .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#rjyscfelzh) .gt_asterisk {
+#cruqxjpltn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#rjyscfelzh) .gt_indent_1 {
+#cruqxjpltn .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#rjyscfelzh) .gt_indent_2 {
+#cruqxjpltn .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#rjyscfelzh) .gt_indent_3 {
+#cruqxjpltn .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#rjyscfelzh) .gt_indent_4 {
+#cruqxjpltn .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#rjyscfelzh) .gt_indent_5 {
+#cruqxjpltn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="game_final">game_final</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="price_final">price_final</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="game_final" class="gt_row gt_left">Marvel's Spider-Man 2: Édition Collector (CiaB) </td>
-<td headers="price_final" class="gt_row gt_right">274.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">FIFA 23 </td>
-<td headers="price_final" class="gt_row gt_right">34.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">F1 23 </td>
-<td headers="price_final" class="gt_row gt_right">72.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI : Édition Deluxe - PlayStation 5 - Français</td>
-<td headers="price_final" class="gt_row gt_right">94.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI - PlayStation 5 - Français</td>
-<td headers="price_final" class="gt_row gt_right">72.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Marvel’s Spider-Man: Miles Morales </td>
-<td headers="price_final" class="gt_row gt_right">42.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI </td>
-<td headers="price_final" class="gt_row gt_right">72.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Diablo IV </td>
-<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Ratchet &amp; Clank : Rift Apart </td>
-<td headers="price_final" class="gt_row gt_right">54.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">STAR WARS Jedi : Survivor </td>
-<td headers="price_final" class="gt_row gt_right">54.00</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Gran Turismo 7 </td>
-<td headers="price_final" class="gt_row gt_right">82.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Sackboy: A Big Adventure </td>
-<td headers="price_final" class="gt_row gt_right">77.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Final Fantasy XVI: Deluxe Edition </td>
-<td headers="price_final" class="gt_row gt_right">99.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Hogwarts Legacy </td>
-<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Marvel's Spider-Man 2 </td>
-<td headers="price_final" class="gt_row gt_right">74.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Horizon Forbidden West </td>
-<td headers="price_final" class="gt_row gt_right">69.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Uncharted : Legacy of Thieves Collection </td>
-<td headers="price_final" class="gt_row gt_right">34.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">The Last of Us Part I </td>
-<td headers="price_final" class="gt_row gt_right">54.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Diablo IV - PlayStation 5 - Français</td>
-<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Need for Speed Unbound </td>
-<td headers="price_final" class="gt_row gt_right">32.00</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Street Fighter 6 </td>
-<td headers="price_final" class="gt_row gt_right">69.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Diablo IV - PlayStation 5 - Italien</td>
-<td headers="price_final" class="gt_row gt_right">62.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Grand Theft Auto V </td>
-<td headers="price_final" class="gt_row gt_right">34.95</td></tr>
-    <tr><td headers="game_final" class="gt_row gt_left">Wild Hearts </td>
-<td headers="price_final" class="gt_row gt_right">29.00</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="game_final" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">game_final</th>
+<th id="price_final" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">price_final</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Marvel's Spider-Man 2: Édition Collector (CiaB)</td>
+<td class="gt_row gt_right" headers="price_final">274.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Sports FC 24 : Édition Standard</td>
+<td class="gt_row gt_right" headers="price_final">72.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Marvel’s Spider-Man: Miles Morales</td>
+<td class="gt_row gt_right" headers="price_final">67.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">STAR WARS Jedi : Survivor</td>
+<td class="gt_row gt_right" headers="price_final">69.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">F1 23</td>
+<td class="gt_row gt_right" headers="price_final">73.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Ratchet &amp; Clank : Rift Apart</td>
+<td class="gt_row gt_right" headers="price_final">54.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Elden Ring : Édition Standard</td>
+<td class="gt_row gt_right" headers="price_final">44.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Street Fighter 6</td>
+<td class="gt_row gt_right" headers="price_final">69.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Hogwarts Legacy</td>
+<td class="gt_row gt_right" headers="price_final">62.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Need for Speed Unbound</td>
+<td class="gt_row gt_right" headers="price_final">59.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Diablo IV</td>
+<td class="gt_row gt_right" headers="price_final">69.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Marvel's Spider-Man 2</td>
+<td class="gt_row gt_right" headers="price_final">74.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">The Last of Us Part I</td>
+<td class="gt_row gt_right" headers="price_final">54.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">MotoGP 23 : Édition Day One</td>
+<td class="gt_row gt_right" headers="price_final">40.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Gran Turismo 7</td>
+<td class="gt_row gt_right" headers="price_final">72.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Der Herr der Ringe: Gollum</td>
+<td class="gt_row gt_right" headers="price_final">29.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Diablo IV - PlayStation 5 - Français</td>
+<td class="gt_row gt_right" headers="price_final">69.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">New Tales from the Borderlands: Deluxe Edition</td>
+<td class="gt_row gt_right" headers="price_final">14.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Madden NFL 24 - PlayStation 5 - English</td>
+<td class="gt_row gt_right" headers="price_final">72.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Far Cry 6</td>
+<td class="gt_row gt_right" headers="price_final">26.95</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Assassin's Creed Valhalla</td>
+<td class="gt_row gt_right" headers="price_final">22.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Assassin's Creed : Valhalla - Édition Ragnarök</td>
+<td class="gt_row gt_right" headers="price_final">24.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="game_final">Wild Hearts</td>
+<td class="gt_row gt_right" headers="price_final">74.95</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="game_final">Mortal Kombat 1: Premium Edition</td>
+<td class="gt_row gt_right" headers="price_final">89.95</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -786,8 +822,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="getting-data-on-all-pages" class="level2">
-<h2 class="anchored" data-anchor-id="getting-data-on-all-pages">Getting data on all pages</h2>
+<section id="getting-data-on-all-pages" class="level3">
+<h3 class="anchored" data-anchor-id="getting-data-on-all-pages">Getting data on all pages</h3>
 <p>We have until now collected data only the first page of the website, but ideally we want to be able to collect data on all pages automatically. This can be done as follow:</p>
 <p>First, create a function which will automatically most of the steps: reading the url (read_html), the css nodes found with the chrome extension SelectorGadget and extracting the information of interest:</p>
 <div class="cell">
@@ -854,12 +890,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">caption =</span> <span class="st">"Video-games summary statistics (CHF)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="irxfefsdwr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qhbxlkegpc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#irxfefsdwr) .gt_table {
+#qhbxlkegpc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -884,7 +920,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_heading {
+#qhbxlkegpc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -896,12 +932,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_caption {
+#qhbxlkegpc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#irxfefsdwr) .gt_title {
+#qhbxlkegpc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -913,7 +949,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#irxfefsdwr) .gt_subtitle {
+#qhbxlkegpc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -925,13 +961,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#irxfefsdwr) .gt_bottom_border {
+#qhbxlkegpc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_col_headings {
+#qhbxlkegpc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -946,7 +982,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_col_heading {
+#qhbxlkegpc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -966,7 +1002,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#irxfefsdwr) .gt_column_spanner_outer {
+#qhbxlkegpc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -978,15 +1014,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#irxfefsdwr) .gt_column_spanner_outer:first-child {
+#qhbxlkegpc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#irxfefsdwr) .gt_column_spanner_outer:last-child {
+#qhbxlkegpc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#irxfefsdwr) .gt_column_spanner {
+#qhbxlkegpc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -998,7 +1034,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#irxfefsdwr) .gt_group_heading {
+#qhbxlkegpc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1024,7 +1060,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#irxfefsdwr) .gt_empty_group_heading {
+#qhbxlkegpc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1039,15 +1075,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#irxfefsdwr) .gt_from_md > :first-child {
+#qhbxlkegpc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#irxfefsdwr) .gt_from_md > :last-child {
+#qhbxlkegpc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#irxfefsdwr) .gt_row {
+#qhbxlkegpc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1066,7 +1102,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#irxfefsdwr) .gt_stub {
+#qhbxlkegpc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1079,7 +1115,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#irxfefsdwr) .gt_stub_row_group {
+#qhbxlkegpc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1093,11 +1129,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#irxfefsdwr) .gt_row_group_first td {
+#qhbxlkegpc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#irxfefsdwr) .gt_summary_row {
+#qhbxlkegpc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1107,16 +1143,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#irxfefsdwr) .gt_first_summary_row {
+#qhbxlkegpc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_first_summary_row.thick {
+#qhbxlkegpc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#irxfefsdwr) .gt_last_summary_row {
+#qhbxlkegpc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1126,7 +1162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_grand_summary_row {
+#qhbxlkegpc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1136,7 +1172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#irxfefsdwr) .gt_first_grand_summary_row {
+#qhbxlkegpc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1146,11 +1182,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_striped {
+#qhbxlkegpc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#irxfefsdwr) .gt_table_body {
+#qhbxlkegpc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1159,7 +1195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_footnotes {
+#qhbxlkegpc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1173,7 +1209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_footnote {
+#qhbxlkegpc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1182,7 +1218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#irxfefsdwr) .gt_sourcenotes {
+#qhbxlkegpc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1196,7 +1232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#irxfefsdwr) .gt_sourcenote {
+#qhbxlkegpc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1204,89 +1240,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#irxfefsdwr) .gt_left {
+#qhbxlkegpc .gt_left {
   text-align: left;
 }
 
-:where(#irxfefsdwr) .gt_center {
+#qhbxlkegpc .gt_center {
   text-align: center;
 }
 
-:where(#irxfefsdwr) .gt_right {
+#qhbxlkegpc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#irxfefsdwr) .gt_font_normal {
+#qhbxlkegpc .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#irxfefsdwr) .gt_font_bold {
+#qhbxlkegpc .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#irxfefsdwr) .gt_font_italic {
+#qhbxlkegpc .gt_font_italic {
   font-style: italic;
 }
 
-:where(#irxfefsdwr) .gt_super {
+#qhbxlkegpc .gt_super {
   font-size: 65%;
 }
 
-:where(#irxfefsdwr) .gt_footnote_marks {
+#qhbxlkegpc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#irxfefsdwr) .gt_asterisk {
+#qhbxlkegpc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#irxfefsdwr) .gt_indent_1 {
+#qhbxlkegpc .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#irxfefsdwr) .gt_indent_2 {
+#qhbxlkegpc .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#irxfefsdwr) .gt_indent_3 {
+#qhbxlkegpc .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#irxfefsdwr) .gt_indent_4 {
+#qhbxlkegpc .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#irxfefsdwr) .gt_indent_5 {
+#qhbxlkegpc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  <caption>Video-games summary statistics (CHF)</caption>
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="median">median</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sd">sd</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="min">min</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="max">max</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="mean" class="gt_row gt_right">35.83075</td>
-<td headers="median" class="gt_row gt_right">34.95</td>
-<td headers="sd" class="gt_row gt_right">23.90328</td>
-<td headers="min" class="gt_row gt_right">5</td>
-<td headers="max" class="gt_row gt_right">299.95</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Video-games summary statistics (CHF)</caption>
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="mean" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mean</th>
+<th id="median" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median</th>
+<th id="sd" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sd</th>
+<th id="min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">min</th>
+<th id="max" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">max</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="mean">37.23819</td>
+<td class="gt_row gt_right" headers="median">34.95</td>
+<td class="gt_row gt_right" headers="sd">23.70447</td>
+<td class="gt_row gt_right" headers="min">5</td>
+<td class="gt_row gt_right" headers="max">300.95</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1306,8 +1343,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="getting-data-from-a-table" class="level2">
-<h2 class="anchored" data-anchor-id="getting-data-from-a-table">Getting data from a table</h2>
+<section id="getting-data-from-a-webpage-table" class="level3">
+<h3 class="anchored" data-anchor-id="getting-data-from-a-webpage-table">Getting data from a webpage table</h3>
 <p>When browsing the internet, it often happens that we come across tables but without any possibility to export this table. Web scraping allows to easily read those tables into R.</p>
 <p>I will here import data from a table on the results of the famous 1992 Swiss voting on the adhesion to the European Economic Area. The Swiss government website provides a table <a href="https://www.bk.admin.ch/ch/f/pore/va/19921206/can388.html">here</a>. I am almost certain that the Swiss government provides an excel or csv file on this but since I am too lazy to search for it (for my defense, the website page should allow to export directly the table into csv or excel), I will use web scraping to read this table in R and then extract the data into a dataframe.</p>
 <p>The first step is the same as above: read the url to import the html code into R:</p>
@@ -1324,12 +1361,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="qomkamtpta" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gqcoyrkvua" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#qomkamtpta) .gt_table {
+#gqcoyrkvua .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1354,7 +1391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_heading {
+#gqcoyrkvua .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1366,12 +1403,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_caption {
+#gqcoyrkvua .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#qomkamtpta) .gt_title {
+#gqcoyrkvua .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1383,7 +1420,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#qomkamtpta) .gt_subtitle {
+#gqcoyrkvua .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1395,13 +1432,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#qomkamtpta) .gt_bottom_border {
+#gqcoyrkvua .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_col_headings {
+#gqcoyrkvua .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1416,7 +1453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_col_heading {
+#gqcoyrkvua .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1436,7 +1473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#qomkamtpta) .gt_column_spanner_outer {
+#gqcoyrkvua .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1448,15 +1485,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#qomkamtpta) .gt_column_spanner_outer:first-child {
+#gqcoyrkvua .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#qomkamtpta) .gt_column_spanner_outer:last-child {
+#gqcoyrkvua .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#qomkamtpta) .gt_column_spanner {
+#gqcoyrkvua .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1468,7 +1505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#qomkamtpta) .gt_group_heading {
+#gqcoyrkvua .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1494,7 +1531,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#qomkamtpta) .gt_empty_group_heading {
+#gqcoyrkvua .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1509,15 +1546,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#qomkamtpta) .gt_from_md > :first-child {
+#gqcoyrkvua .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#qomkamtpta) .gt_from_md > :last-child {
+#gqcoyrkvua .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#qomkamtpta) .gt_row {
+#gqcoyrkvua .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1536,7 +1573,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#qomkamtpta) .gt_stub {
+#gqcoyrkvua .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1549,7 +1586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#qomkamtpta) .gt_stub_row_group {
+#gqcoyrkvua .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1563,11 +1600,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#qomkamtpta) .gt_row_group_first td {
+#gqcoyrkvua .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#qomkamtpta) .gt_summary_row {
+#gqcoyrkvua .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1577,16 +1614,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#qomkamtpta) .gt_first_summary_row {
+#gqcoyrkvua .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_first_summary_row.thick {
+#gqcoyrkvua .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#qomkamtpta) .gt_last_summary_row {
+#gqcoyrkvua .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1596,7 +1633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_grand_summary_row {
+#gqcoyrkvua .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1606,7 +1643,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#qomkamtpta) .gt_first_grand_summary_row {
+#gqcoyrkvua .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1616,11 +1653,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_striped {
+#gqcoyrkvua .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#qomkamtpta) .gt_table_body {
+#gqcoyrkvua .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1629,7 +1666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_footnotes {
+#gqcoyrkvua .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1643,7 +1680,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_footnote {
+#gqcoyrkvua .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1652,7 +1689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#qomkamtpta) .gt_sourcenotes {
+#gqcoyrkvua .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1666,7 +1703,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#qomkamtpta) .gt_sourcenote {
+#gqcoyrkvua .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1674,134 +1711,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#qomkamtpta) .gt_left {
+#gqcoyrkvua .gt_left {
   text-align: left;
 }
 
-:where(#qomkamtpta) .gt_center {
+#gqcoyrkvua .gt_center {
   text-align: center;
 }
 
-:where(#qomkamtpta) .gt_right {
+#gqcoyrkvua .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#qomkamtpta) .gt_font_normal {
+#gqcoyrkvua .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#qomkamtpta) .gt_font_bold {
+#gqcoyrkvua .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#qomkamtpta) .gt_font_italic {
+#gqcoyrkvua .gt_font_italic {
   font-style: italic;
 }
 
-:where(#qomkamtpta) .gt_super {
+#gqcoyrkvua .gt_super {
   font-size: 65%;
 }
 
-:where(#qomkamtpta) .gt_footnote_marks {
+#gqcoyrkvua .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#qomkamtpta) .gt_asterisk {
+#gqcoyrkvua .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#qomkamtpta) .gt_indent_1 {
+#gqcoyrkvua .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#qomkamtpta) .gt_indent_2 {
+#gqcoyrkvua .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#qomkamtpta) .gt_indent_3 {
+#gqcoyrkvua .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#qomkamtpta) .gt_indent_4 {
+#gqcoyrkvua .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#qomkamtpta) .gt_indent_5 {
+#gqcoyrkvua .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Canton">Canton</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Electeurs">Electeurs</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Votants">Votants</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="% Particip.">% Particip.</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Oui">Oui</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Non">Non</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="% Oui">% Oui</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="% Non">% Non</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Canton" class="gt_row gt_left">Zurich</td>
-<td headers="Electeurs" class="gt_row gt_right">768'126</td>
-<td headers="Votants" class="gt_row gt_right">618'209</td>
-<td headers="% Particip." class="gt_row gt_right">80.48%</td>
-<td headers="Oui" class="gt_row gt_right">297'503</td>
-<td headers="Non" class="gt_row gt_right">316'154</td>
-<td headers="% Oui" class="gt_row gt_right">48.5%</td>
-<td headers="% Non" class="gt_row gt_right">51.5%</td></tr>
-    <tr><td headers="Canton" class="gt_row gt_left">Berne</td>
-<td headers="Electeurs" class="gt_row gt_right">686'459</td>
-<td headers="Votants" class="gt_row gt_right">540'179</td>
-<td headers="% Particip." class="gt_row gt_right">78.69%</td>
-<td headers="Oui" class="gt_row gt_right">255'224</td>
-<td headers="Non" class="gt_row gt_right">281'026</td>
-<td headers="% Oui" class="gt_row gt_right">47.6%</td>
-<td headers="% Non" class="gt_row gt_right">52.4%</td></tr>
-    <tr><td headers="Canton" class="gt_row gt_left">Lucerne</td>
-<td headers="Electeurs" class="gt_row gt_right">224'458</td>
-<td headers="Votants" class="gt_row gt_right">181'614</td>
-<td headers="% Particip." class="gt_row gt_right">80.91%</td>
-<td headers="Oui" class="gt_row gt_right">70'878</td>
-<td headers="Non" class="gt_row gt_right">109'447</td>
-<td headers="% Oui" class="gt_row gt_right">39.3%</td>
-<td headers="% Non" class="gt_row gt_right">60.7%</td></tr>
-    <tr><td headers="Canton" class="gt_row gt_left">Uri</td>
-<td headers="Electeurs" class="gt_row gt_right">25'290</td>
-<td headers="Votants" class="gt_row gt_right">19'816</td>
-<td headers="% Particip." class="gt_row gt_right">78.36%</td>
-<td headers="Oui" class="gt_row gt_right">4'943</td>
-<td headers="Non" class="gt_row gt_right">14'728</td>
-<td headers="% Oui" class="gt_row gt_right">25.1%</td>
-<td headers="% Non" class="gt_row gt_right">74.9%</td></tr>
-    <tr><td headers="Canton" class="gt_row gt_left">Schwyz</td>
-<td headers="Electeurs" class="gt_row gt_right">77'278</td>
-<td headers="Votants" class="gt_row gt_right">64'315</td>
-<td headers="% Particip." class="gt_row gt_right">83.23%</td>
-<td headers="Oui" class="gt_row gt_right">17'094</td>
-<td headers="Non" class="gt_row gt_right">46'962</td>
-<td headers="% Oui" class="gt_row gt_right">26.7%</td>
-<td headers="% Non" class="gt_row gt_right">73.3%</td></tr>
-    <tr><td headers="Canton" class="gt_row gt_left">Obwald</td>
-<td headers="Electeurs" class="gt_row gt_right">20'713</td>
-<td headers="Votants" class="gt_row gt_right">16'940</td>
-<td headers="% Particip." class="gt_row gt_right">81.78%</td>
-<td headers="Oui" class="gt_row gt_right">4'737</td>
-<td headers="Non" class="gt_row gt_right">12'062</td>
-<td headers="% Oui" class="gt_row gt_right">28.2%</td>
-<td headers="% Non" class="gt_row gt_right">71.8%</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Canton" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Canton</th>
+<th id="Electeurs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Electeurs</th>
+<th id="Votants" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Votants</th>
+<th id="% Particip." class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Particip.</th>
+<th id="Oui" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Oui</th>
+<th id="Non" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Non</th>
+<th id="% Oui" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Oui</th>
+<th id="% Non" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Non</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Canton">Zurich</td>
+<td class="gt_row gt_right" headers="Electeurs">768'126</td>
+<td class="gt_row gt_right" headers="Votants">618'209</td>
+<td class="gt_row gt_right" headers="% Particip.">80.48%</td>
+<td class="gt_row gt_right" headers="Oui">297'503</td>
+<td class="gt_row gt_right" headers="Non">316'154</td>
+<td class="gt_row gt_right" headers="% Oui">48.5%</td>
+<td class="gt_row gt_right" headers="% Non">51.5%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Canton">Berne</td>
+<td class="gt_row gt_right" headers="Electeurs">686'459</td>
+<td class="gt_row gt_right" headers="Votants">540'179</td>
+<td class="gt_row gt_right" headers="% Particip.">78.69%</td>
+<td class="gt_row gt_right" headers="Oui">255'224</td>
+<td class="gt_row gt_right" headers="Non">281'026</td>
+<td class="gt_row gt_right" headers="% Oui">47.6%</td>
+<td class="gt_row gt_right" headers="% Non">52.4%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Canton">Lucerne</td>
+<td class="gt_row gt_right" headers="Electeurs">224'458</td>
+<td class="gt_row gt_right" headers="Votants">181'614</td>
+<td class="gt_row gt_right" headers="% Particip.">80.91%</td>
+<td class="gt_row gt_right" headers="Oui">70'878</td>
+<td class="gt_row gt_right" headers="Non">109'447</td>
+<td class="gt_row gt_right" headers="% Oui">39.3%</td>
+<td class="gt_row gt_right" headers="% Non">60.7%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Canton">Uri</td>
+<td class="gt_row gt_right" headers="Electeurs">25'290</td>
+<td class="gt_row gt_right" headers="Votants">19'816</td>
+<td class="gt_row gt_right" headers="% Particip.">78.36%</td>
+<td class="gt_row gt_right" headers="Oui">4'943</td>
+<td class="gt_row gt_right" headers="Non">14'728</td>
+<td class="gt_row gt_right" headers="% Oui">25.1%</td>
+<td class="gt_row gt_right" headers="% Non">74.9%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Canton">Schwyz</td>
+<td class="gt_row gt_right" headers="Electeurs">77'278</td>
+<td class="gt_row gt_right" headers="Votants">64'315</td>
+<td class="gt_row gt_right" headers="% Particip.">83.23%</td>
+<td class="gt_row gt_right" headers="Oui">17'094</td>
+<td class="gt_row gt_right" headers="Non">46'962</td>
+<td class="gt_row gt_right" headers="% Oui">26.7%</td>
+<td class="gt_row gt_right" headers="% Non">73.3%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Canton">Obwald</td>
+<td class="gt_row gt_right" headers="Electeurs">20'713</td>
+<td class="gt_row gt_right" headers="Votants">16'940</td>
+<td class="gt_row gt_right" headers="% Particip.">81.78%</td>
+<td class="gt_row gt_right" headers="Oui">4'737</td>
+<td class="gt_row gt_right" headers="Non">12'062</td>
+<td class="gt_row gt_right" headers="% Oui">28.2%</td>
+<td class="gt_row gt_right" headers="% Non">71.8%</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1838,6 +1886,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1867,9 +1916,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1934,6 +1997,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

@@ -1,7 +1,9 @@
 ---
 title: "Web Scraping with R"
 author: "Celâl Güney"
-format: html
+format: 
+  html:
+    toc: true
 editor: visual
 date: "4 July 2023"
 categories: [web scraping, data science]
@@ -38,7 +40,7 @@ library(ggrepel)
 library(xml2)
 ```
 
-## Getting data: videogame prices
+### Getting data: videogame prices
 
 I will here use web scraping to get video-game prices in Switzerland. The first step of web scraping is to find a webpage from which you want to collect data. To collect the prices of video-games, I need a web page from for instance a chain stores. In Switzerland, MediaMarkt is a famous chain stores selling consumer electronics and most Swiss people who still buy or order physical copy of their favorite video-games go to or order from MediaMarkt.
 
@@ -105,7 +107,7 @@ data %>%
     y = "", x = "price in swiss francs")
 ```
 
-## Getting data on all pages
+### Getting data on all pages
 
 We have until now collected data only the first page of the website, but ideally we want to be able to collect data on all pages automatically. This can be done as follow:
 
@@ -176,7 +178,6 @@ data <- url %>%
 
 ```
 
-
 We thus have all the data we wanted! Let's now have a quick look at what we collected.
 
 ```{r}
@@ -203,20 +204,21 @@ data %>%
        y = "", x = "Swiss Francs (CHF)")
 ```
 
-## Getting data from a table
+### Getting data from a webpage table
 
 When browsing the internet, it often happens that we come across tables but without any possibility to export this table. Web scraping allows to easily read those tables into R.
 
 I will here import data from a table on the results of the famous 1992 Swiss voting on the adhesion to the European Economic Area. The Swiss government website provides a table [here](https://www.bk.admin.ch/ch/f/pore/va/19921206/can388.html). I am almost certain that the Swiss government provides an excel or csv file on this but since I am too lazy to search for it (for my defense, the website page should allow to export directly the table into csv or excel), I will use web scraping to read this table in R and then extract the data into a dataframe.
 
-
 The first step is the same as above: read the url to import the html code into R:
+
 ```{r}
 url <- "https://www.bk.admin.ch/ch/f/pore/va/19921206/can388.html"
 page <- read_html(url)
 ```
 
 Then, html_table() can directly import the table information
+
 ```{r}
 table <- html_table(page, header = TRUE)
 
@@ -225,8 +227,7 @@ head(data) %>%
   gt()
 ```
 
-There is one problem here: the numbers either contain "'" or "%". As a result, R read them as characters and it will not be possible to convert those number into numeric format unless all the ' and % are deleted.
-
+There is one problem here: the numbers either contain "'" or "%". As a result, R read them as characters and it will not be possible to convert those number into numeric format unless all the' and % are deleted.
 
 ```{r}
 data2 <- as_tibble(lapply(data, function(x) {gsub("'|%", "", x)})) # collapse all ' and % in the values to transform them into numeric
@@ -256,6 +257,3 @@ data2 %>%
   labs(y = "",
        title = "1992 Swiss Voting: Adhesion to the EEA")
 ```
-
-
-

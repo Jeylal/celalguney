@@ -119,7 +119,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -159,14 +159,21 @@ div.csl-indent {
 </i> 
  <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Post</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../index.html" rel="" target="">
+ <span class="dropdown-text">Post</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../economics.html" rel="" target="">
- <span class="menu-text">Economics</span></a>
+        <li>
+    <a class="dropdown-item" href="../../economics.html" rel="" target="">
+ <span class="dropdown-text">Economics</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -210,18 +217,40 @@ div.csl-indent {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#constructing-a-political-compass" id="toc-constructing-a-political-compass" class="nav-link" data-scroll-target="#constructing-a-political-compass">Constructing a Political Compass</a>
+  <ul class="collapse">
+  <li><a href="#example-and-variables" id="toc-example-and-variables" class="nav-link" data-scroll-target="#example-and-variables">Example and Variables</a></li>
+  <li><a href="#constructing-the-axes" id="toc-constructing-the-axes" class="nav-link" data-scroll-target="#constructing-the-axes">Constructing the axes</a></li>
+  <li><a href="#plotting-the-graph" id="toc-plotting-the-graph" class="nav-link" data-scroll-target="#plotting-the-graph">Plotting the Graph</a></li>
+  <li><a href="#time-comparisons" id="toc-time-comparisons" class="nav-link" data-scroll-target="#time-comparisons">Time Comparisons</a></li>
+  <li><a href="#making-a-video" id="toc-making-a-video" class="nav-link" data-scroll-target="#making-a-video">Making a Video</a></li>
+  <li><a href="#replacing-party-support-by-income-group" id="toc-replacing-party-support-by-income-group" class="nav-link" data-scroll-target="#replacing-party-support-by-income-group">Replacing party support by income group</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <p>People who get lost or waste their time on the internet have surely seen the now famous “political compass” graphs, which have become a popular meme on the web. The irony and paradox of political compass, and that is what makes the latter intriguing, are that it is actually an important visualization in political science. Very shortly, a political compass is a mapping of political leaning and preferences based on two axes: (1) an economic axis representing the position of an individual, party, association or group on global economic issues (pro and anti redistribution, for economic planning or free market…) and (2) a “cultural” or “post-material” (a lot of different names are given to this axis) axis representing position on cultural issues, such as: “in favor or against immigration”, “in favor or against gay marriage/lgbt rights/traditional values…”</p>
 <p>Whereas most people who use political compass do so to make memes and amuse their friends, political scientists are still seriously attached to their favorite toy and one often sees such mapping in political science articles. For instance, Oesch and Rennwald provide such graphics to map individuals political preferences for Switzerland and other countries using European Social Survey data <span class="citation" data-cites="oesch_electoral_2018">(<a href="#ref-oesch_electoral_2018" role="doc-biblioref">Oesch and Rennwald 2018, 795</a>)</span>. Pascal Sciarini, in a manual on Swiss politics, also provides such a graph using Swiss Elections Studies data <span class="citation" data-cites="sciarini_politique_2023">(<a href="#ref-sciarini_politique_2023" role="doc-biblioref">Sciarini 2023, 341</a>)</span>. The idea that political preferences can be separated between an economic and cultural cleavage comes back at least to Inglehart <span class="citation" data-cites="inglehart_silent_1971">(<a href="#ref-inglehart_silent_1971" role="doc-biblioref">1971</a>)</span> who explained the emerging salience of cultural issues over the traditional economic divide as a consequence of post-war tremendous economic growth which made the West so wealthy that people would get rid off of any material insecurity, hence shifting the focus on cultural matters rather than economic ones. But how do political scientists construct such graphs? The goal of this post is to explore how the economic and cultural axes are constructed, what are the data and variables used, and what kind of statistical manipulation is done with those data.</p>
+</section>
 <section id="constructing-a-political-compass" class="level2">
 <h2 class="anchored" data-anchor-id="constructing-a-political-compass">Constructing a Political Compass</h2>
 <p>Political compass is typically constructed from ordinal variables related to economic and cultural issues and the individual self-placement of survey respondents to these issues. For instance, Oesch and Rennwald <span class="citation" data-cites="oesch_electoral_2018">(<a href="#ref-oesch_electoral_2018" role="doc-biblioref">2018</a>)</span> construct the preferences of respondents on the economic axis from an ordinal 5-points scale variable about preferences on redistribution (1 = strongly agree to reduce differences in income levels, 5 = strongly disagree). For the cultural cleavage, they took three variables: (1) the impact of immigrants on cultural life, (2) European integration and (3) freedom of gay people. One can directly see the problem with the construction of such a “cultural” axis: are here the European integration and immigration issues purely cultural issues? In my opinion, European integration cannot be considered only as a cultural “openness vs closeness values” issue and should not have been included to construct the cultural axis. However, the next step after choosing the variables is to standardize them: each observed value of the dataset is subtracted by the mean of the variable and divided by its standard deviation. If more than one variable are taken into account, the variables are standardized and the average values on these three standardized variables are computed to create the final index.</p>
+<section id="example-and-variables" class="level3">
+<h3 class="anchored" data-anchor-id="example-and-variables">Example and Variables</h3>
 <p>To work with an example, I will work here with a dataset which is not used by the literature cited above: the Voxit studies. The latter offer a cumulative dataset on Swiss referendum voting from 1981 to 2016. The dataset contains a list of “issue positions” variables:</p>
 <ul>
 <li>In favor of state intervention or free markets</li>
@@ -232,7 +261,11 @@ div.csl-indent {
 <li>In favor of environnment protection or economic growth</li>
 <li>In favor of a strong or weak Swiss army</li>
 </ul>
-<p>All these variables are ordinal on a 7-points scale. Another variable, “p02” collected political party support (which party the respondent feels the most closed to). I will use this variable as a group to plot Swiss political parties on the economic and cultural axes depending on the average value of their supporters on the standardized economic and cultural issues variables. To construct the economic axis, I will use the “state vs market” variable. “Open vs closed Switzerland” will be used for the cultural axis.</p>
+<p>All these variables are ordinal on a 7-points scale. Another variable, “p02” collected political party support (which party the respondent feels the most closed to). I will use this variable as a group to plot Swiss political parties on the economic and cultural axes depending on the average value of their supporters on the standardized economic and cultural issues variables.</p>
+</section>
+<section id="constructing-the-axes" class="level3">
+<h3 class="anchored" data-anchor-id="constructing-the-axes">Constructing the axes</h3>
+<p>To construct the economic axis, I will use the “state vs market” variable. “Open vs closed Switzerland” will be used for the cultural axis.</p>
 <p>Here are all the steps to transform the variable, compute the average values for each year for each political party support and how to plot the final political compass.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>strdz <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -278,6 +311,9 @@ div.csl-indent {
 </div>
 </div>
 <p>The correlation plots give coherent results overall. For example, the average of party supporters who declared not being in favor of equal chance for foreigners are also supportive of a isolated Switzerland (see “no_chance-foreign” - “open_closed”).</p>
+</section>
+<section id="plotting-the-graph" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-the-graph">Plotting the Graph</h3>
 <p>Let’s now plot a political compass for a given year. I choose the first year available: 1996. I also filter political parties to select only the most important ones: the Swiss Social Democratic Party (PSS/SPS), the Radicals (PRD), The Swiss Peoples Party (UDC/SVP), the Liberals, The Catholic-Conservatives (PDC), the Greens (PES/GPS), the Evangelical party (PEP/EVP).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
@@ -302,6 +338,9 @@ div.csl-indent {
 </div>
 </div>
 <p>Switzerland’s political space is often considered as constituted by three political blocs. The first plot above shows that it was indeed the case in 1996 if we look only at the main parties. The greens and social-democratic supporters are for an open Switzerland and rather for state intervention. Piketty <span class="citation" data-cites="piketty_capital_2019">(<a href="#ref-piketty_capital_2019" role="doc-biblioref">2019</a>)</span> would call this bloc “Social-egalitarian” because social economically and egalitarian in terms of cultural/openess values. A second bloc is constituted by free-market and open Switzerland Swiss citizen, who support the Radical-Democratic party (PRD/FDP) and the Liberal party (PLS/PRD). Note that these two parties, constituting a “Social-inegalitarian bloc” <span class="citation" data-cites="piketty_capital_2019">(<a href="#ref-piketty_capital_2019" role="doc-biblioref">Piketty 2019</a>)</span>, merged in 2009 and gave birth to the Liberal-Radical party (PLR). The graph above shows that base the two parties was indeed very close. Third and finally, what Piketty calls negatively the “Social-nativist trap” is represented here on the upper-right cadran. However, the graph clearly shows that the SVP cannot be considered as “social-nativist” because its supporters are on average clearly in favor of pro-market policies. The party is thus more “nativist-inegalitarian” than “social-nativist”. Social-nativism is not represented in Switzerland: there is no political support for any party which is on the left economically and on the right in terms of cultural values (empty upper-left cadran).</p>
+</section>
+<section id="time-comparisons" class="level3">
+<h3 class="anchored" data-anchor-id="time-comparisons">Time Comparisons</h3>
 <p>Next, let’s take advantage of what can be done with such data and visualization. It would be interesting to compare 1996 with 2016 (the last year of the dataset) to see the evolution: is the tripolar political space described above stable?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
@@ -325,6 +364,9 @@ div.csl-indent {
 </div>
 </div>
 <p>We can see that there is no great change overall: Switzerland’s tripolar division is still valid in 2016. The greens supporters haven’t really change their position. PSS supporter have become more right-wing economically. The PEP supporters have totally changed their position in terms of cultural values. The PLS and PRD have merged to create the PLR and the SVP supporters have become slighlty more right-wing economically.</p>
+</section>
+<section id="making-a-video" class="level3">
+<h3 class="anchored" data-anchor-id="making-a-video">Making a Video</h3>
 <p>However, a great deal of information is hidden behind this graph. In effect, we also want to know the transition every year. This would allow to check whether the tripolar division was stable or not. To do so, we have few choices but to create an animated graph that would display the graphs every year from 1996 to 2016. Fortunaly, the package gganimate allows to rather easily make such animations in R. In my case, I will simply add the function transition_time():</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> </span>
@@ -351,6 +393,7 @@ div.csl-indent {
 </div>
 <p>Since gganimate provides gifs, which are sometimes not really convenient (if we want to pause the animation for example). Here is thus the same animation in video format:</p>
 <div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/pol_compass_video.mp4"></video></div>
+</section>
 <section id="replacing-party-support-by-income-group" class="level3">
 <h3 class="anchored" data-anchor-id="replacing-party-support-by-income-group">Replacing party support by income group</h3>
 <p>What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==&gt; income group).</p>

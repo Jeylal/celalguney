@@ -1,9 +1,12 @@
 ---
 title: "Classical-Marxian Model"
 author: "Celâl Güney"
-format: html
+format: 
+  html:
+    toc: true
 editor: visual
 date: "19 July 2023"
+categories: [Heterodox Economics, Macroeconomics]
 ---
 
 ```{r}
