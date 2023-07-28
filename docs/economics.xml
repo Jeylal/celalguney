@@ -181,14 +181,48 @@
 <figcaption class="figure-caption">Effect of an increase in saving propensity</figcaption>
 </figure>
 </div>
-<p>Graphically, the saving curve rotates down to the right. Why does the real wage increase? Recall that in this model, nominal wage is fixed. A change in real wage must then come from a change in the price level. In the case of higher propensity to save, the latter has depressed aggregate demand and growth, which reduce inflation <img src="https://latex.codecogs.com/png.latex?%5Csearrow%20%5Chat%7BP%7D">.</p>
+<p>Graphically, the saving curve rotates down to the right. Why does the real wage increase? Recall that in this model, nominal wage is fixed. A change in real wage must then come from a change in the price level. In the case of higher propensity to save, the latter has depressed aggregate demand and growth, which reduces the price level <img src="https://latex.codecogs.com/png.latex?%5Csearrow%20P">.</p>
 <p>What if we consider a shift in the desired investment curve? An exemple would be a rise in <img src="https://latex.codecogs.com/png.latex?f_0">, which can be interpreted as the level of confidence of firms: the higher their confidence in the economy, the higher they will invest for every level of expected profit rates. A rise in <img src="https://latex.codecogs.com/png.latex?f_0"> would shift the desired investment curve <img src="https://latex.codecogs.com/png.latex?g%20=%20f_0+f_1r"> to the right, profit rate would rise, growth rate would rise, but real wage would decrease. Real wage decreases because inflation increases as a result of higher aggregate demand and thus excess demand in the goods market. Note that inflation in the Neo-robinsonian model is always “demand-pushed”, that is, led by excess or lower demand in the market for goods and services.</p>
 </section>
 <section id="marglins-neo-marxianneo-keynesian-synthesis" class="level2">
 <h2 class="anchored" data-anchor-id="marglins-neo-marxianneo-keynesian-synthesis">Marglin’s neo-Marxian/neo-Keynesian synthesis</h2>
-<p>Since the assumption of fixed nominal wage was considered as unrealistic, mainly because it is very likely that workers would bargain for higher wages in the case of higher inflation as described above, Marglin has constructed model which is a mixed between the classical-marxian model and the neo-robinsonian model.</p>
+<p>Since the assumption of fixed real wage was considered not very realistic, since it is very likely that workers would bargain for higher wages in the case of higher inflation as described above, Marglin has constructed model which is a mixed between the classical-marxian model and the neo-robinsonian model. Marglin’s contribution was to consider that workers bargain for nominal wages rather than the real wage or wage share.</p>
+<p>Marglin’s synthesis add two functions, which model the change in nominal wage and price level.</p>
+<section id="change-in-nominal-wage" class="level4">
+<h4 class="anchored" data-anchor-id="change-in-nominal-wage">Change in nominal wage</h4>
+<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BW%7D%20=%20%5COmega%20(%5Cbar%7Bw%7D%20-%20w)"></p>
+<p>With <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bw%7D"> the target real wage for workers and <img src="https://latex.codecogs.com/png.latex?%5COmega"> a constant describing how fast change in nominal wage adjusts to the difference between the target real wage and the real wage <img src="https://latex.codecogs.com/png.latex?(%5Cbar%7Bw%7D%20-%20w)">. If the target real wage is greater than the actual real wage, workers are willing and are able to bargain for higher wages.</p>
+</section>
+<section id="change-in-price" class="level4">
+<h4 class="anchored" data-anchor-id="change-in-price">Change in price</h4>
+<p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BP%7D%20=%20%5CPhi%20(g%5Ed-g)"></p>
+<p>With</p>
+<p><img src="https://latex.codecogs.com/png.latex?g%5Ed%20=%20f_0%20+%20f_1r"> (assuming <img src="https://latex.codecogs.com/png.latex?r%5Ee%20=%20r">)</p>
+<p>The desired investment function, which means that the desired investment rate (<img src="https://latex.codecogs.com/png.latex?g%5Ed">) is a positive function of the profit rate (assumed to be equal to the expected rate).</p>
+<p>And</p>
+<p><img src="https://latex.codecogs.com/png.latex?g%20=%20s_rr"></p>
+<p>The saving function, which is also a positive function of profit rate.</p>
+<p>Thus, <img src="https://latex.codecogs.com/png.latex?%5Chat%7BP%7D%20=%20%5CPhi%20(g%5Ed-g)">, means that inflation (persistent change in price level: <img src="https://latex.codecogs.com/png.latex?%5Chat%7BP%7D">) is always the result of excess demand in the goods market, excess demand due to the fact that <img src="https://latex.codecogs.com/png.latex?g%5Ed%3Eg">, demand related to investment (demand for tools, machinery, equipment…).</p>
+<p>This price level change equation captures an important assumption of the neo-keynesian models that inflation is always <strong>“demand-led”</strong>, that is, led by excessive demand in the goods market. Another assumption is the constancy of the capital to full capacity output ratio <img src="https://latex.codecogs.com/png.latex?a_1"> (constant technology).</p>
+<p>The equilibrium condition of the model, which will determine growth, real wage and profit rate, is the equality between price change and nominal wage change:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BW%7D%20=%20%5Cwidehat%7BP%7D"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/myblog/economics_series/neo-keynesian models/marglinsynthesis.jpg" class="img-fluid figure-img" width="577"></p>
+<figcaption class="figure-caption">Marglin’s Classical-Marxian - NeoRobinsonian synthesis</figcaption>
+</figure>
+</div>
+<p>At this equilibrium, the real wage <img src="https://latex.codecogs.com/png.latex?W/P"> is constant. The other variables behave as such:</p>
+<ul>
+<li><p>If the target real wage increase <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bw%7D">, equilibrium profit rate decreases, real wage increases, growth rate decreases and equilibrium inflation increases.</p></li>
+<li><p>If <img src="https://latex.codecogs.com/png.latex?f_0">, firms’ confidence in the economy, increases, equilibrium inflation increases, equilibrium profit rate and growth rate also increase and equilibrium real wage decreases.</p></li>
+<li><p>If the propensity <img src="https://latex.codecogs.com/png.latex?s_r"> to save increases, equilibrium profit rate and inflation decrease, but the impact on growth is ambiguous: on the one hand growth is constrained by available savings (and thus if savings increase growth can increase) but on the other hand, growth can also decrease because of the fall in profit rate.</p></li>
+</ul>
+<p>An important contribution of this model is to make explicit the argument about <strong>inflation</strong>, which was only implicit in the previous neo-keynesian models (Robinson, Kaldor…). An crucial point is that the model assumes that <strong>inflation is always driven by demand</strong> (excess demand in the goods market). A critic adressed to this model is that inflation is not only “demand-pull” but can also be “cost-push”, that is, driven positively by an increase in firms’ markups due to an increase in costs.</p>
+<p>Another critic concerns that inflation caused by the difference between <img src="https://latex.codecogs.com/png.latex?g%5Ed%3Eg"> is not very realistic because it implies that firms will always want to invest at a rate they cannot achieve.</p>
 
 
+</section>
 </section>
 </section>
 
