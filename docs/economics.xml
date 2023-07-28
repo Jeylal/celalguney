@@ -1009,7 +1009,7 @@ font-style: inherit;">*</span>l</span></code></pre></div>
 <section id="deriving-the-supply-curve" class="level2">
 <h2 class="anchored" data-anchor-id="deriving-the-supply-curve">Deriving the supply curve</h2>
 <p>When will firms decide to supply a good at a given price? And why the quantities supplied increase with the price of the good?</p>
-<p>Micro theory tells that the supply curve are all the combinations of price and output (quantity of the good supplied) in which the price is higher than the average variable cost. If the market price is below the average variable cost (AVC), supplying the good would not be profitable. If the price is higher than AVC, it is profitable for the firm to produce (and the firm will supply the quantity at which its marginal revenue, the price, is equal to the marginal cost). Then, if price increases, marginal revenue increases, andfirms can increase production and quantity supplied until marginal revenue is again equal to the marginal cost.</p>
+<p>Micro theory tells that the supply curve represents all the combinations of price and output (quantity of the good supplied) in which the price is higher than the average variable cost. If the market price is below the average variable cost (AVC), supplying the good would not be profitable. If the price is higher than AVC, it is profitable for the firm to produce (and the firm will supply the quantity at which its marginal revenue, the price, is equal to the marginal cost). Then, if price increases, marginal revenue increases, and firms can increase production and quantity supplied until marginal revenue is again equal to the marginal cost.</p>
 
 
 </section>
@@ -1030,9 +1030,6 @@ font-style: inherit;">*</span>l</span></code></pre></div>
 
 
 
-<div class="cell">
-
-</div>
 <p>What follows is a summary of the neoclassical market equilibrium model under perfect competition. This summary was inspired and constructed from my notes of my microeconomics classes.</p>
 <section id="market-equilibrium" class="level2">
 <h2 class="anchored" data-anchor-id="market-equilibrium">Market equilibrium</h2>
@@ -1132,15 +1129,9 @@ $y
 <h3 class="anchored" data-anchor-id="utility-function-marginal-utility">Utility function, marginal utility</h3>
 <p>Consumer theory then illustrates any choice between two goods with the help of the famous indifference curves , which show the relation between the demand for one good against the demand for another good (for example food and clothes, cars and bikes…). Indifference curves are based on <strong>utility functions</strong> whose really important property and assumption is the decreasing marginal utility principle. Decreasing marginal utility means that for every one additional unit of a given good a consumer get, the utility for this consumer increases less than the previous additional unit. Let’s say, for instance, that you don’t have food at the moment and you are hungry: if i give you one apple, you will be a lot better off and your utility will increase a lot when I give you this one apple. Then, if I give you another apple, your utility will still increase, but by less than when I gave you the first apple. Finally, after I give you an additional apple for the fifteenth time, your additional utility will still be positive, but by far more less than when I gave you the first apple.</p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
-</div>
-<div class="cell">
-
 </div>
 <p>Decreasing marginal utility is an important assumption which explains the shape of the indifference curves. The latter, if the two goods are substitutes (but not perfect substitute) and not perfect complements, are convex-shaped. If, for instance, we consider an indifference curve for the choice between units of apples and bikes, the line of the indifference curve represents all the possible combination of the two goods which give the same utility for the consumer.</p>
 </section>
@@ -1154,9 +1145,6 @@ $y
 <pre><code>Yacas vector:
 [1] y == U/(0.18 * x^2)</code></pre>
 </div>
-</div>
-<div class="cell">
-
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1201,9 +1189,6 @@ font-style: inherit;">*</span>x</span></code></pre></div>
 <p>Note that finding the marginal rate of substitution is a bit trickier than for the budget line. To find the MRS, we have to compute the derivative with respect to the first good (x which are apples here) and then for the second one (y the watches). Then, the MRS is the ratio between the two marginal utilities <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7Bx%7D%7D%7D%7B%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7By%7D%7D%7D"></p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AU%20=%20x%5E20.18y%0A%5C%5C%0A%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7Bx%7D%7D%20=%200.36xy%0A%5C%5C%0A%5Cfrac%7B%5Cpartial%7BU%7D%7D%7B%5Cpartial%7By%7D%7D%20=%200.18*x%5E2%0A%5Cend%7Baligned%7D%0A"> Thus</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AMRS%20=%20%5Cfrac%7B0.36xy%7D%7B0.18x%5E2%7D%20=%202%5Cfrac%7By%7D%7Bx%7D%0A%5Cend%7Baligned%7D%0A"> Here is how to compute this in R</p>
-<div class="cell">
-
-</div>
 <p>Then, we set the marginal rate of substitution equal to the slope of the budget line:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A2%5Cfrac%7By%7D%7Bx%7D%20=%2050%0A%5C%5C%0Ay%20=%2025x%0A%5Cend%7Baligned%7D%0A"> We can then substitute y with 25x in the budget equation</p>
 <p>$$</p>
@@ -1240,9 +1225,6 @@ font-style: inherit;">"/"</span>, price_y), y)</span></code></pre></div>
 <pre><code>Yacas vector:
 [1] y == -(-9 * x/0.36)</code></pre>
 </div>
-</div>
-<div class="cell">
-
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">optimal_x <span class="ot" style="color: #003B4F;
@@ -1304,9 +1286,6 @@ font-style: inherit;">utility_u</span>(optimal_x, optimal_y)</span>
 <p><img src="https://latex.codecogs.com/png.latex?apple%20=%20150%20-%2050watch"></p>
 <p>And now, the price of watch increases up to 400, income is unchanged (Income = 600) as well as the price of apples (4):</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A600%20=%204*apple%20+%20400watch%0A%5C%5C%0A4apple%20=%20600-400watch%0A%5C%5C%0Aapple%20=%20150%20-%20100watch%0A%5Cend%7Baligned%7D%0A"></p>
-<div class="cell">
-
-</div>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
