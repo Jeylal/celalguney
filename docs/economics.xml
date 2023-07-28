@@ -111,14 +111,19 @@
 <p>Finally, this model has consequence for economic policy. Increasing the saving propensity <img src="https://latex.codecogs.com/png.latex?s"> to boost growth is not a good idea if it is not accompanied by a rise in aggregate demand, in which case increased saving means reduced consumption demand and investment demand is not guaranteed to offset the fall in consumption.</p>
 </section>
 </section>
-<section id="the-early-kaldorian-model-of-growth-and-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="the-early-kaldorian-model-of-growth-and-distribution">The Early Kaldorian Model of Growth and Distribution</h2>
+<section id="the-early-kaldorian-model-ekm-of-growth-and-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="the-early-kaldorian-model-ekm-of-growth-and-distribution">The Early Kaldorian Model (EKM) of Growth and Distribution</h2>
+<section id="a-model-very-close-to-the-classical-marxian-model" class="level3">
+<h3 class="anchored" data-anchor-id="a-model-very-close-to-the-classical-marxian-model">A model very close to the Classical-Marxian model</h3>
 <p>This model is very close to the Classical-Marxian model I described <a href="https://jeylal.github.io/myblog/economics_series/classical-marxian%20model/classical-marxian%20model.html">here</a>. The main difference is the fact that the early Kaldorian model (EKM) includes <strong>the saving propensity out of wages</strong> <img src="https://latex.codecogs.com/png.latex?s_w"> whereas the classical-marxian model only includes savings out of profits.</p>
 <p>Recall that the classical-marxian saving function was</p>
 <p><img src="https://latex.codecogs.com/png.latex?S/K=%20s_r(r-r_min)"></p>
 <p>The EKM introduces savings out of wages, with a propensity lower than savings out of profits. Total savings is thus a weighted average bewteen savings out of wages and profits:</p>
 <p><img src="https://latex.codecogs.com/png.latex?S%20=%20%5B(1-%5Cpi)s_w+%5Cpi%20s_r%5DY"></p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cpi"> is the profit share, <img src="https://latex.codecogs.com/png.latex?(1-%5Cpi)"> the wage share, with <img src="https://latex.codecogs.com/png.latex?0%3Cs_w%20%3C%20s_r%3C1">.</p>
+</section>
+<section id="ekm-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="ekm-assumptions">EKM Assumptions</h3>
 <p>The model makes some assumptions, which are globally similar to the C-M model:</p>
 <ol type="1">
 <li><p>EKM assumes that labor productivity is constant <img src="https://latex.codecogs.com/png.latex?q=0">, hence the natural rate of growth is simply <img src="https://latex.codecogs.com/png.latex?y_N=n">.</p></li>
@@ -128,6 +133,9 @@
 </ol>
 <p>To maintain full employment, capital accumulate rate must grow the same as the investment rate and labor supply growth rate:</p>
 <p><img src="https://latex.codecogs.com/png.latex?g%20=%20%5Cfrac%7BI%7D%7BK%7D%20=%20n"></p>
+</section>
+<section id="ekm-equilibrium" class="level3">
+<h3 class="anchored" data-anchor-id="ekm-equilibrium">EKM Equilibrium</h3>
 <p>As usual, we equate <img src="https://latex.codecogs.com/png.latex?S%20=%20I">, to find the equilibrium:</p>
 <p><img src="https://latex.codecogs.com/png.latex?g%20=%20n%20=%20%5Cfrac%7BI%7D%7BK%7D%20=%20%5Cfrac%7BS%7D%7BK%7D%20=%20%5Cfrac%7B%5B(1-%5Cpi)s_w+%5Cpi%20s_r%5DY%7D%7BK%7D%20=%20%5Cfrac%7B(s_r-s_w)%5Cpi%20+%20s_w%7D%7Ba_1%7D"></p>
 <p>The equilibrium profit share is thus</p>
@@ -137,9 +145,12 @@
 <p>A major difference with the C-M model is that instead of considering an exogenous wage share or real wage and deriving the profit rate and growth rate from it, Kaldor set the growth rate equal to its natural rate and derive the profit/wage share and saving propensity necessary to reach this equilibrium. For the EKM to work, wage and profit shares must be flexible, there must be active government stabilization policies (fiscal &amp; monetary).</p>
 <p>EKM has the implications that for the economy to grow faster only with higher inequality.</p>
 </section>
+</section>
 <section id="neo-robinsonian-model" class="level2">
 <h2 class="anchored" data-anchor-id="neo-robinsonian-model">Neo-Robinsonian Model</h2>
 <p>The major point of this model is to introduce a separation between investment and savings. All the models we saw until now did not distinguish between savings and investment (as the classical-marxian model).</p>
+<section id="separating-savings-from-investment" class="level3">
+<h3 class="anchored" data-anchor-id="separating-savings-from-investment">Separating Savings from Investment</h3>
 <p>The main equations of the model are thus a saving function out of profits and a desired investment as a positive function of expected profits.</p>
 <ol type="1">
 <li><strong>Saving function</strong></li>
@@ -158,6 +169,9 @@
 </div>
 <p>Point A on the graph above is a stable equilibrium whereas point B is an unstable one. The graph has to be read as follows: at <img src="https://latex.codecogs.com/png.latex?r_0"> the saving rate is smaller than the (desired) growth rate <img src="https://latex.codecogs.com/png.latex?g_0">. At <img src="https://latex.codecogs.com/png.latex?g_0">, the corresponding profit rate is <img src="https://latex.codecogs.com/png.latex?r_1">, which is above the profit rate related to actual saving rate (<img src="https://latex.codecogs.com/png.latex?r_0">). Firms have thus invested in way that will make profits rise and they will thus revise their profits expectations upwards: at <img src="https://latex.codecogs.com/png.latex?r_1"> they will invest at a level slighlty above <img src="https://latex.codecogs.com/png.latex?g_0">, which will again push up the profit rate until point A, at which <img src="https://latex.codecogs.com/png.latex?g=%5Csigma"> is reached.</p>
 <p>On the other hand, if we start at any profit rate below point B, the desired rate of investment will lead to a growth rate that will lead in return to a lower profit rate, firms will revise their profit rate expectations downwards and thus reduce their desired rate of investment, which will then lead to an even lower growth and profit rates and so on. Below point B, this process does not end automatically, there must be for example government stabilization. Above point A, however, the process is the same as described above in this paragraph, but it stabilizes at point A. Note that what happens below point B is strongly similar to the second Harrod problem.</p>
+</section>
+<section id="connecting-neo-robinsonian-model-with-wage-profit-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-neo-robinsonian-model-with-wage-profit-relationship">Connecting Neo-Robinsonian Model with Wage-Profit Relationship</h3>
 <p>The Neo-Robinsonian model combines the model above with the inverse wage-profit relationship we saw in the C-M model. The desired investment rate is simplified to</p>
 <p><img src="https://latex.codecogs.com/png.latex?g%20=%20f_0+f_1r%5Ee"></p>
 <p>With the same saving function <img src="https://latex.codecogs.com/png.latex?%5Csigma%20=%20s_rr"> and the inverse profit-wage relationship <img src="https://latex.codecogs.com/png.latex?w%20=%5Cfrac%7B1-a_1%20r%7D%7Ba_0%7D"></p>
@@ -184,17 +198,18 @@
 <p>Graphically, the saving curve rotates down to the right. Why does the real wage increase? Recall that in this model, nominal wage is fixed. A change in real wage must then come from a change in the price level. In the case of higher propensity to save, the latter has depressed aggregate demand and growth, which reduces the price level <img src="https://latex.codecogs.com/png.latex?%5Csearrow%20P">.</p>
 <p>What if we consider a shift in the desired investment curve? An exemple would be a rise in <img src="https://latex.codecogs.com/png.latex?f_0">, which can be interpreted as the level of confidence of firms: the higher their confidence in the economy, the higher they will invest for every level of expected profit rates. A rise in <img src="https://latex.codecogs.com/png.latex?f_0"> would shift the desired investment curve <img src="https://latex.codecogs.com/png.latex?g%20=%20f_0+f_1r"> to the right, profit rate would rise, growth rate would rise, but real wage would decrease. Real wage decreases because inflation increases as a result of higher aggregate demand and thus excess demand in the goods market. Note that inflation in the Neo-robinsonian model is always “demand-pushed”, that is, led by excess or lower demand in the market for goods and services.</p>
 </section>
+</section>
 <section id="marglins-neo-marxianneo-keynesian-synthesis" class="level2">
 <h2 class="anchored" data-anchor-id="marglins-neo-marxianneo-keynesian-synthesis">Marglin’s neo-Marxian/neo-Keynesian synthesis</h2>
 <p>Since the assumption of fixed real wage was considered not very realistic, since it is very likely that workers would bargain for higher wages in the case of higher inflation as described above, Marglin has constructed model which is a mixed between the classical-marxian model and the neo-robinsonian model. Marglin’s contribution was to consider that workers bargain for nominal wages rather than the real wage or wage share.</p>
 <p>Marglin’s synthesis add two functions, which model the change in nominal wage and price level.</p>
-<section id="change-in-nominal-wage" class="level4">
-<h4 class="anchored" data-anchor-id="change-in-nominal-wage">Change in nominal wage</h4>
+<section id="change-in-nominal-wage" class="level3">
+<h3 class="anchored" data-anchor-id="change-in-nominal-wage">Change in nominal wage</h3>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BW%7D%20=%20%5COmega%20(%5Cbar%7Bw%7D%20-%20w)"></p>
 <p>With <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bw%7D"> the target real wage for workers and <img src="https://latex.codecogs.com/png.latex?%5COmega"> a constant describing how fast change in nominal wage adjusts to the difference between the target real wage and the real wage <img src="https://latex.codecogs.com/png.latex?(%5Cbar%7Bw%7D%20-%20w)">. If the target real wage is greater than the actual real wage, workers are willing and are able to bargain for higher wages.</p>
 </section>
-<section id="change-in-price" class="level4">
-<h4 class="anchored" data-anchor-id="change-in-price">Change in price</h4>
+<section id="change-in-price" class="level3">
+<h3 class="anchored" data-anchor-id="change-in-price">Change in price</h3>
 <p><img src="https://latex.codecogs.com/png.latex?%5Chat%7BP%7D%20=%20%5CPhi%20(g%5Ed-g)"></p>
 <p>With</p>
 <p><img src="https://latex.codecogs.com/png.latex?g%5Ed%20=%20f_0%20+%20f_1r"> (assuming <img src="https://latex.codecogs.com/png.latex?r%5Ee%20=%20r">)</p>
@@ -204,6 +219,9 @@
 <p>The saving function, which is also a positive function of profit rate.</p>
 <p>Thus, <img src="https://latex.codecogs.com/png.latex?%5Chat%7BP%7D%20=%20%5CPhi%20(g%5Ed-g)">, means that inflation (persistent change in price level: <img src="https://latex.codecogs.com/png.latex?%5Chat%7BP%7D">) is always the result of excess demand in the goods market, excess demand due to the fact that <img src="https://latex.codecogs.com/png.latex?g%5Ed%3Eg">, demand related to investment (demand for tools, machinery, equipment…).</p>
 <p>This price level change equation captures an important assumption of the neo-keynesian models that inflation is always <strong>“demand-led”</strong>, that is, led by excessive demand in the goods market. Another assumption is the constancy of the capital to full capacity output ratio <img src="https://latex.codecogs.com/png.latex?a_1"> (constant technology).</p>
+</section>
+<section id="dynamics-of-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="dynamics-of-the-model">Dynamics of the Model</h3>
 <p>The equilibrium condition of the model, which will determine growth, real wage and profit rate, is the equality between price change and nominal wage change:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BW%7D%20=%20%5Cwidehat%7BP%7D"></p>
 <div class="quarto-figure quarto-figure-center">

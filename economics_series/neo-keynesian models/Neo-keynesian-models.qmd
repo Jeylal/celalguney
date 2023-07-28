@@ -1,7 +1,9 @@
 ---
 title: "Neo-Keynesian Models"
 author: "Celâl Güney"
-format: html
+format: 
+  html:
+    toc: true
 editor: visual
 date: "26 July 2023"
 ---
@@ -163,7 +165,10 @@ Second, if $y_w>y_N$, the economy is in a situation of chronic depression. Since
 
 Finally, this model has consequence for economic policy. Increasing the saving propensity $s$ to boost growth is not a good idea if it is not accompanied by a rise in aggregate demand, in which case increased saving means reduced consumption demand and investment demand is not guaranteed to offset the fall in consumption.
 
-## The Early Kaldorian Model of Growth and Distribution
+## The Early Kaldorian Model (EKM) of Growth and Distribution
+
+
+### A model very close to the Classical-Marxian model
 
 This model is very close to the Classical-Marxian model I described [here](https://jeylal.github.io/myblog/economics_series/classical-marxian%20model/classical-marxian%20model.html). The main difference is the fact that the early Kaldorian model (EKM) includes **the saving propensity out of wages** $s_w$ whereas the classical-marxian model only includes savings out of profits.
 
@@ -176,6 +181,8 @@ The EKM introduces savings out of wages, with a propensity lower than savings ou
 $$S = [(1-\pi)s_w+\pi s_r]Y$$
 
 $\pi$ is the profit share, $(1-\pi)$ the wage share, with $0<s_w < s_r<1$.
+
+### EKM Assumptions
 
 The model makes some assumptions, which are globally similar to the C-M model:
 
@@ -190,6 +197,8 @@ The model makes some assumptions, which are globally similar to the C-M model:
 To maintain full employment, capital accumulate rate must grow the same as the investment rate and labor supply growth rate:
 
 $g = \frac{I}{K} = n$
+
+### EKM Equilibrium
 
 As usual, we equate $S = I$, to find the equilibrium:
 
@@ -211,6 +220,8 @@ EKM has the implications that for the economy to grow faster only with higher in
 
 The major point of this model is to introduce a separation between investment and savings. All the models we saw until now did not distinguish between savings and investment (as the classical-marxian model).
 
+### Separating Savings from Investment
+
 The main equations of the model are thus a saving function out of profits and a desired investment as a positive function of expected profits.
 
 1.  **Saving function**
@@ -228,6 +239,8 @@ $g$ being investment. This function is assumed to have positive but diminishing 
 Point A on the graph above is a stable equilibrium whereas point B is an unstable one. The graph has to be read as follows: at $r_0$ the saving rate is smaller than the (desired) growth rate $g_0$. At $g_0$, the corresponding profit rate is $r_1$, which is above the profit rate related to actual saving rate ($r_0$). Firms have thus invested in way that will make profits rise and they will thus revise their profits expectations upwards: at $r_1$ they will invest at a level slighlty above $g_0$, which will again push up the profit rate until point A, at which $g=\sigma$ is reached.
 
 On the other hand, if we start at any profit rate below point B, the desired rate of investment will lead to a growth rate that will lead in return to a lower profit rate, firms will revise their profit rate expectations downwards and thus reduce their desired rate of investment, which will then lead to an even lower growth and profit rates and so on. Below point B, this process does not end automatically, there must be for example government stabilization. Above point A, however, the process is the same as described above in this paragraph, but it stabilizes at point A. Note that what happens below point B is strongly similar to the second Harrod problem.
+
+### Connecting Neo-Robinsonian Model with Wage-Profit Relationship
 
 The Neo-Robinsonian model combines the model above with the inverse wage-profit relationship we saw in the C-M model. The desired investment rate is simplified to
 
@@ -265,13 +278,13 @@ Since the assumption of fixed real wage was considered not very realistic, since
 
 Marglin's synthesis add two functions, which model the change in nominal wage and price level.
 
-#### Change in nominal wage
+### Change in nominal wage
 
 $\hat{W} = \Omega (\bar{w} - w)$
 
 With $\bar{w}$ the target real wage for workers and $\Omega$ a constant describing how fast change in nominal wage adjusts to the difference between the target real wage and the real wage $(\bar{w} - w)$. If the target real wage is greater than the actual real wage, workers are willing and are able to bargain for higher wages.
 
-#### Change in price
+### Change in price
 
 $\hat{P} = \Phi (g^d-g)$
 
@@ -291,11 +304,14 @@ Thus, $\hat{P} = \Phi (g^d-g)$, means that inflation (persistent change in price
 
 This price level change equation captures an important assumption of the neo-keynesian models that inflation is always **"demand-led"**, that is, led by excessive demand in the goods market. Another assumption is the constancy of the capital to full capacity output ratio $a_1$ (constant technology).
 
+### Dynamics of the Model
+
 The equilibrium condition of the model, which will determine growth, real wage and profit rate, is the equality between price change and nominal wage change:
 
 $$\widehat{W} = \widehat{P}$$
 
 ![Marglin's Classical-Marxian - NeoRobinsonian synthesis](marglinsynthesis.jpg){fig-align="center" width="577"}
+
 
 At this equilibrium, the real wage $W/P$ is constant. The other variables behave as such:
 
