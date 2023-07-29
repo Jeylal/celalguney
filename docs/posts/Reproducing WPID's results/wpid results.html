@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -137,14 +103,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
  <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Post</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../index.html" rel="" target="">
+ <span class="dropdown-text">Post</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../economics.html" rel="" target="">
- <span class="menu-text">Economics</span></a>
+        <li>
+    <a class="dropdown-item" href="https://jeylal.github.io/heterodox-economics/" rel="" target="">
+ <span class="dropdown-text">Economics</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -191,93 +164,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="switzerland" class="level2">
 <h2 class="anchored" data-anchor-id="switzerland">Switzerland</h2>
 <p>To analyze the evolution of political cleavages, <a href="https://wid.world/wp-content/uploads/2021/05/WorldInequalityLab_WP2021_15_PoliticalCleavages_WesternDemocracies.pdf">Piketty et al (2021)</a> compiled datasets covering a lot of countries.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>chinc <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"ch-inc.dta"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(chinc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] "iso"          "isoname"      "year"         "survey"       "source"      
-  [6] "type"         "id"           "weightorig"   "vote"         "voteprev"    
- [11] "lrs"          "turnout"      "intpol"       "age"          "educ"        
- [16] "educ2"        "emp"          "house"        "inc"          "marital"     
- [21] "region"       "religion"     "religious"    "rural"        "rural2"      
- [26] "sector"       "sex"          "union"        "educ3"        "region2"     
- [31] "language"     "ctrbirth"     "occup_kriesi" "occup_oesch"  "self"        
- [36] "partyid"      "Group"        "voteleft"     "voteright"    "voteother"   
- [41] "weight"       "votesoci"     "votechri"     "votelibe"     "voteecol"    
- [46] "voteextr"     "voteothe"     "univ"         "year2"        "educ_1"      
- [51] "educ_2"       "educ_3"       "emp_1"        "emp_2"        "emp_3"       
- [56] "religious_1"  "religious_2"  "religious_3"  "religion_1"   "religion_2"  
- [61] "religion_3"   "religion_4"   "sex_1"        "sex_2"        "region_1"    
- [66] "region_2"     "region_3"     "language_1"   "language_2"   "language_3"  
- [71] "ctrbirth_1"   "ctrbirth_2"   "agerec"       "agerec_1"     "agerec_2"    
- [76] "agerec_3"     "surveyid"     "identifier"   "id2"          "dinc_1"      
- [81] "dinc_2"       "dinc_3"       "dinc_4"       "dinc_5"       "dinc_6"      
- [86] "dinc_7"       "dinc_8"       "dinc_9"       "dinc_10"      "dinc"        
- [91] "qinc"         "qinc_1"       "qinc_2"       "qinc_3"       "qinc_4"      
- [96] "qinc_5"       "ginc"         "ginc_1"       "ginc_2"       "ginc_3"      
-[101] "b50"         </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> chinc, voteleft <span class="sc">~</span> ginc_3 <span class="sc">+</span> <span class="fu">factor</span>(year) <span class="sc">+</span> educ)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = voteleft ~ ginc_3 + factor(year) + educ, data = chinc)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--0.6117 -0.4013 -0.3214  0.5859  0.8800 
-
-Coefficients:
-                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       0.218977   0.016673  13.134  &lt; 2e-16 ***
-ginc_3           -0.070445   0.008380  -8.407  &lt; 2e-16 ***
-factor(year)1979 -0.115305   0.021381  -5.393 6.97e-08 ***
-factor(year)1995 -0.066702   0.016000  -4.169 3.07e-05 ***
-factor(year)1999 -0.103853   0.017267  -6.015 1.82e-09 ***
-factor(year)2003 -0.079407   0.016168  -4.911 9.09e-07 ***
-factor(year)2007 -0.135868   0.016622  -8.174 3.07e-16 ***
-factor(year)2011 -0.100260   0.016532  -6.065 1.33e-09 ***
-factor(year)2015 -0.159405   0.016477  -9.675  &lt; 2e-16 ***
-factor(year)2019 -0.015055   0.016127  -0.934    0.351    
-educ              0.130890   0.004706  27.816  &lt; 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4824 on 41221 degrees of freedom
-  (35899 observations effacées parce que manquantes)
-Multiple R-squared:  0.02731,   Adjusted R-squared:  0.02708 
-F-statistic: 115.7 on 10 and 41221 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lm1975 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> chinc[chinc<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">1975</span>,], voteleft <span class="sc">~</span> ginc_3, <span class="at">weights =</span> weightorig)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1975)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = voteleft ~ ginc_3, data = chinc[chinc$year == 1975, 
-    ], weights = weightorig)
-
-Weighted Residuals:
-    Min      1Q  Median      3Q     Max 
--0.4184 -0.3951 -0.3951  0.5493  0.5493 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.41838    0.01592  26.281   &lt;2e-16 ***
-ginc_3       0.01605    0.04748   0.338    0.735    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4666 on 1083 degrees of freedom
-  (1272 observations effacées parce que manquantes)
-Multiple R-squared:  0.0001055, Adjusted R-squared:  -0.0008178 
-F-statistic: 0.1142 on 1 and 1083 DF,  p-value: 0.7354</code></pre>
-</div>
-</div>
 
 
 </section>

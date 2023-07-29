@@ -46,7 +46,7 @@
 <h3 class="anchored" data-anchor-id="constructing-the-axes">Constructing the axes</h3>
 <p>To construct the economic axis, I will use the “state vs market” variable. “Open vs closed Switzerland” will be used for the cultural axis.</p>
 <p>Here are all the steps to transform the variable, compute the average values for each year for each political party support and how to plot the final political compass.</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/political compass_6fe8769a866c2574fbef6cdaee6af4b6">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">strdz <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
@@ -244,7 +244,7 @@ background-color: null;
 font-style: inherit;">`</span>)</span></code></pre></div>
 </div>
 <p>Before plotting the political compass, it could be interesting to see the correlation between the average values through the years. If two variables are positively correlated, that means there are chances that, given any year, when one has high value (average of the standardized issue position variable for each respondent having declared to support the Swiss’s People party for instance) the other will have a high value as well:</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/corrplot_a7202aa12d96c61b9258888952dd9edc">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">values <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
@@ -280,7 +280,7 @@ font-style: inherit;">"hclust"</span>)</span></code></pre></div>
 <section id="plotting-the-graph" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-the-graph">Plotting the Graph</h3>
 <p>Let’s now plot a political compass for a given year. I choose the first year available: 1996. I also filter political parties to select only the most important ones: the Swiss Social Democratic Party (PSS/SPS), the Radicals (PRD), The Swiss Peoples Party (UDC/SVP), the Liberals, The Catholic-Conservatives (PDC), the Greens (PES/GPS), the Evangelical party (PEP/EVP).</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/pol compass plot 1_77d78d271d1883cd0b9b165baf130bef">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">values <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
@@ -481,7 +481,7 @@ font-style: inherit;">"darkblue"</span>))</span></code></pre></div>
 <section id="time-comparisons" class="level3">
 <h3 class="anchored" data-anchor-id="time-comparisons">Time Comparisons</h3>
 <p>Next, let’s take advantage of what can be done with such data and visualization. It would be interesting to compare 1996 with 2016 (the last year of the dataset) to see the evolution: is the tripolar political space described above stable?</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/pol compass plot 2_abf34625f191996e9fbf968cca956a8b">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">values <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
@@ -687,7 +687,7 @@ font-style: inherit;">"darkblue"</span>))</span></code></pre></div>
 <section id="making-a-video" class="level3">
 <h3 class="anchored" data-anchor-id="making-a-video">Making a Video</h3>
 <p>However, a great deal of information is hidden behind this graph. In effect, we also want to know the transition every year. This would allow to check whether the tripolar division was stable or not. To do so, we have few choices but to create an animated graph that would display the graphs every year from 1996 to 2016. Fortunaly, the package gganimate allows to rather easily make such animations in R. In my case, I will simply add the function transition_time():</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/polcompass animation_2cd0f59d691f97c8d32b03d743475b83">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">anim <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> </span>
@@ -856,7 +856,7 @@ background-color: null;
 font-style: inherit;">1</span>)</span></code></pre></div>
 </div>
 <p>Then use animate() to improve the fps, add a pause at the end and slow down the animation</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-4_480c505174de1764f88a318bc10daa64">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">animate</span>(anim, <span class="at" style="color: #657422;
@@ -883,7 +883,7 @@ font-style: inherit;">50</span>)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="replacing-party-support-by-income-group">Replacing party support by income group</h3>
 <p>What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==&gt; income group).</p>
 <p>The income variable that I will use is a variable I created from two income variables of the dataset (look <a href="https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html">here</a> if you want to see the details). The income variable has four groups.</p>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/table income values_fd40a48459ad04c35e62088b874272bd">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">vox<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>income_f <span class="ot" style="color: #003B4F;
@@ -1020,7 +1020,7 @@ font-style: inherit;">"income_group"</span> <span class="ot" style="color: #003B
 background-color: null;
 font-style: inherit;">=</span> income_f)</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-5_fc132dc93a6d00c28d1795b798d0d146">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">values_inc <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
@@ -1051,7 +1051,7 @@ font-style: inherit;">"hclust"</span>)</span></code></pre></div>
 <p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/plot polcompass income group_8722316470050c65ec81d8e2b0c2365e">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">values_inc <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
@@ -1181,7 +1181,7 @@ font-style: inherit;">"Set1"</span>)</span></code></pre></div>
 <p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/plot polcompass income group-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-6_381c5c3118f7185adeb1789de14f1a9f">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">anim2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> </span>
@@ -6929,14 +6929,14 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption><p></p>
+<figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption>
 </figure>
 </div>
 <p>In Switzerland, the confidence in national government in 2020 was the highest among OECD countries with a level of 85%. Other countries like France and Italy have a level of confidence lower than the average.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption><p></p>
+<figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption>
 </figure>
 </div>
 <p>If one looks at other data provided by the OECD, Switzerland still ranks among the highest. In the graph above, Swiss people show a great deal of confidence in the police (about 85%), parliament (60%) and government (70%). This stands in sharp contrast with France, Italy and the US (which shows very low level of confidence in parliament with 15%). If one tries therefore to assess the evolution of trust in institutions in Switzerland, one thus expects to find a great stability. Nonetheless, one period in recent Swiss history represents an exception: the crisis of the 1990s. This period was marked by recession and was accompanied by a decline in trust in institutions <span class="citation" data-cites="brunner_crise_1997">(Brunner and Sgier 1997)</span>.</p>
@@ -6945,9 +6945,6 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <section id="assessing-political-stability-in-switzerland-selects-data" class="level3">
 <h3 class="anchored" data-anchor-id="assessing-political-stability-in-switzerland-selects-data">Assessing political stability in Switzerland: Selects data</h3>
 <p>Let’s first see what Selects data offer. The Swiss Election Studies (SELECTS) contains a cumulative dataset which is of particular interest.</p>
-<div class="cell">
-
-</div>
 <p>This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of “trust in political institutions” variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table:</p>
 <table class="table">
 <colgroup>
@@ -7008,17 +7005,11 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 </div>
 <p>Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems rather strong. However, since the graph above is rather difficult to interpret due to the fact that it carries too much information and the scales change through the years, I will create an indicator variable to simplify the information. The dummy variable will take value 1 if the respondent takes a value higher than 5 (the middle point level of indifference), and 0 otherwise.</p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/trust1 dummy descriptive-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph above represents the percentage of respondents who declared to always or most of the time trust the federal council. The only period this trust declined was between 1975 and 1991. However, one should be cautious with the strong decline in 1991, because the scale (number of values the ordinal variable can take) changes for the first time for this year (see the precedent graph above). In fact, the strong decline in 1991 is surely due to the fact that the scale, by including more response choices in the survey (from 4 to 7 points scale), perhaps induced more “middle-point” responses (the middle answer is the mode for 1991). From 1995 to 2011, the trust in federal council shows a great stability, and even increases between 2007 and 2011. Nonetheless, the variable does not include data after 2011, which is unfortunate. Fortunately, there are other variables which cover a bigger time frame. In this regard, the variable on the evaluation of the Swiss democracy/political system (eps1) is interesting:</p>
-<div class="cell">
-
-</div>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
@@ -16790,7 +16781,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/myblog/posts/About cycles and crises/babsonchart.jpg" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Babson presenting one of his famous babsoncharts on business cycles</figcaption><p></p>
+<figcaption class="figure-caption">Babson presenting one of his famous babsoncharts on business cycles</figcaption>
 </figure>
 </div>
 </section>
@@ -16822,9 +16813,9 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <h2 class="anchored" data-anchor-id="description-of-some-variables-of-the-dataset">Description of some variables of the dataset</h2>
 <table class="table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 21%">
-<col style="width: 57%">
+<col style="width: 8%">
+<col style="width: 26%">
+<col style="width: 65%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -17552,7 +17543,7 @@ font-style: inherit;">"All current and capital expenditures on the armed forces"
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://en.wikipedia.org/wiki/Atlantic_slave_trade#/media/File:Slaves_resting_by_Rugendas_01.jpg"><img src="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/slavery.jpg" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Recently bought slaves in Brazil on their way to the farms of the landowners who bought them c.&nbsp;1830 (credit: wikipedia)</figcaption><p></p>
+<figcaption class="figure-caption">Recently bought slaves in Brazil on their way to the farms of the landowners who bought them c.&nbsp;1830 (credit: wikipedia)</figcaption>
 </figure>
 </div>
 <p>Regardless, Inikori’s methodological work is impressive: it offers vast amounts of quantitative data in table form as well as qualitative data through archival researches of a great varieties of historical reports and records. His quantitative and qualitative archival research and evidence allow the author to provide critical reviews of the existing literature on the subject and even to re-evaluate some estimations for example in chapter 5 in which he discusses the measurement of the importance of slave trading between 1600-1850. However, Inikori’s data analysis seems sometimes futile and can blur his main argument as well as confusing and overwhelming the reader. For instance, the author spends pages of digression discussing in vain population and GDP estimates of Domesday England in chapter 2 or Africa and America population estimates before Atlantic trade’s emergence in chapter 4.</p>
