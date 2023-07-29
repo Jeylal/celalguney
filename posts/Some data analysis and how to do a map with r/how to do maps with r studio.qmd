@@ -5,7 +5,7 @@ editor: visual
 image: map.png
 date: "Novemer 2022"
 execute: 
-  freeze: true
+  freeze: auto
 categories: [Stats, Coding]
 ---
 
@@ -29,7 +29,7 @@ data_qog <- read_csv("2022-10-31-T412006-assignment2-data.csv")
 ## Description of some variables of the dataset
 
 | Variable name     | Short description                                          | Information                                                                                                                                         |
-|-------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------|----------------|------------------------------------------|
 | ccode             | Country code                                               | Country code with the ISO-3166-1 standard                                                                                                           |
 | cname             | Country name                                               | Country name                                                                                                                                        |
 | year              | Year                                                       |                                                                                                                                                     |

@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Post</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../economics.html" rel="" target="">
+    <a class="dropdown-item" href="https://jeylal.github.io/heterodox-economics/" rel="" target="">
  <span class="dropdown-text">Economics</span></a>
   </li>  
     </ul>
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>With Y the output, the quantity produced, K the quantity of capital used and L the quantity of labour employed. From now on, we will work with the following neoclassical production function as an example:</p>
 <p><span class="math inline">\(Y = K^{1/2}L^{1/2}\)</span></p>
 <p>Here is how to write this function in R:</p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-4_8786e4ea76d34db6275579f6a0901814">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>neo_prod_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(l, k) (l<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)) <span class="sc">*</span> (k<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The neoclassical production function rests on important assumptions which illustrate how neoclassical theory conceive the production process:</p>
@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 = 0.5K^{0.5}L^{-0.5}
 \end{aligned}
 \]</span> Here is how to find the marginal productivity of labor function of our example in R:</p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-5_a13b0c7ea963760577a23907f4aeeb6d">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MPL <span class="ot">&lt;-</span> <span class="fu">Deriv</span>(neo_prod_fun, <span class="st">"l"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>MPL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we fix the amount of capital to any value, 10 and 25 for instance, we can plot the marginal productivity of labour to better illustrate the principle of diminishing marginal returns:</p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-6_cf9f830df936f0a3a7ad0f4bef2d2da6">
 <div class="cell-output-display">
 <p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="isoquant-and-isocost">Isoquant and Isocost</h2>
 <p>Isoquants are a way to represent graphically any combination of labour and capital for any level of ouput. Capital is typically plotted on the y axis and labour on the x axis and output is fixed along each curve. If we go back to our production function curve <span class="math inline">\(Y = k^{0.5}L^{0.5}\)</span>, we have to isolate k to draw isoquants for this function, and then choose any value of output (Y):</p>
 <p><span class="math inline">\(K = \frac{Y^{2}}{L}\)</span></p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-8_8890e8a444db29a04e905ef86cb24b16">
 <div class="cell-output-display">
 <p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -305,16 +305,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Isocost can then be rearranged to:</p>
 <p><span class="math inline">\(K = TC/r - (w/r)/L\)</span></p>
 <p>For example, let’s say that the total cost over rental cost of capital (TC/r) is equal to 40 and the wage rate - rental rate is equal to 2 (w/r = 2). The function becomes <span class="math inline">\(K = 10 - 2L\)</span></p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-9_7fbeeae7f5e3c79e1f9ceaf673a6c056">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>isocost <span class="ot">&lt;-</span> <span class="cf">function</span>(l) <span class="dv">40</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-10_028f8857913575bfbcfa2057ecfcf264">
 <div class="cell-output-display">
 <p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The steps to derive the optimal choice of output, capital and labor is the same than for consumer theory: here the slope of the isoquant is called the marginal rate of technical substitution (MRTS). Setting the latter equal to the slope of the isocost, which is w/r (1 in our example) and solving for K, Y and L. In our example, the equilibrium level of output is 14.14, with K = 20 and L = 10.</p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-11_1c4066463c3840cf45332d578a424d9f">
 <div class="cell-output-display">
 <p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(0 =MR - MC\)</span></p>
 <p><span class="math inline">\(MR = MC\)</span></p>
 <p>Graphically, the profit equation has a negative-concave shape, and optimal level of output is set where profits are at their maximum:</p>
-<div class="cell">
+<div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-13_6d37d789124db9761ef36ee9a440330b">
 <div class="cell-output-display">
 <p><img src="mainstream_production_theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>

@@ -16950,7 +16950,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <h1>Choropleth maps</h1>
 <p>Let’s try to do some maps to visualize some of the dataset variables</p>
 <p>I first load the packages required to do maps on r.</p>
-<div class="cell">
+<div class="cell" data-hash="how-to-do-maps-with-r-studio_cache/html/BT 1_655a612227847a9538af10f7cdb3f88b">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rgdal)</span>
@@ -17010,7 +17010,7 @@ Integer64 fields read as strings:  NE_ID </code></pre>
 </div>
 <p>To plot maps, a shapefile is required. I downloaded mine from <a href="https://www.naturalearthdata.com/downloads/">Natural earth</a>.</p>
 <p>I then have to “fortify” the map data to make it tidyverse compatible</p>
-<div class="cell">
+<div class="cell" data-hash="how-to-do-maps-with-r-studio_cache/html/BT 2_a63de492bfc0fc3fedab618922afe1ad">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">map_fortify <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
@@ -17130,7 +17130,7 @@ font-style: inherit;">$</span>id)</span></code></pre></div>
 </div>
 </div>
 <p>The biggest problem to plot a map will be the names of all the countries in the two datasets because I have to successfully join the dataset to the map-dataset, I have to recode the name in one dataset. The package countrycode will do most of the work, but some countries still need to be recoded.</p>
-<div class="cell">
+<div class="cell" data-hash="how-to-do-maps-with-r-studio_cache/html/BT 3_d741f19dc421d2c26477413f9284b994">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">data_qog<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>cname <span class="ot" style="color: #003B4F;
@@ -17211,7 +17211,7 @@ background-color: null;
 font-style: inherit;">"United Republic of Tanzania"</span></span></code></pre></div>
 </div>
 <p>I join the datasets by the country names:</p>
-<div class="cell">
+<div class="cell" data-hash="how-to-do-maps-with-r-studio_cache/html/BT 4_d638814de86a26abe0822a142c61fefc">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">map_join <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> map_fortify <span class="sc" style="color: #5E5E5E;
@@ -17240,7 +17240,7 @@ font-style: inherit;">"cname"</span>))</span></code></pre></div>
 </div>
 <p>Are military expenditure geographically related to the probability of a country to be autocratic? I will explore with two maps the relation between p_polity and wdi_expmil. I expect countries with high military expenditure to be more autocratic.</p>
 <p>I then plot the first map with the variable p_polity2:</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="how-to-do-maps-with-r-studio_cache/html/BT 5_ca40c48dbb903b81a06102ced554ad24">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">map_join <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
@@ -17406,7 +17406,7 @@ font-style: inherit;">-&gt;</span> map_plot</span>
 </div>
 <p>The more democratic countries in 2015 are concentrated in western Europe, America, East and East/South East Asia (Indonesia, Japan, South Korea), South Pacific and India and Mongolia. The autocratic countries tend to be in Africa, Middle East, some in east Europe and South Asia.</p>
 <p>I now plot the second map military expenditure wdi_expmil:</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="how-to-do-maps-with-r-studio_cache/html/BT 6_7aa6370ca2ff330d6d231b41f57997b3">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">map_join <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
