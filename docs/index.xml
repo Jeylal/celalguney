@@ -7187,9 +7187,6 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 <h2 class="anchored" data-anchor-id="note-this-post-is-not-finished-and-still-in-progress">Note: this post is not finished and still in progress</h2>
 <p>Two years ago, Piketty and his team published a fascinating book about the evolution of political cleavages in almost all democratic countries in the world and even beyond. The publication of this book and of its <a href="https://wpid.world/resources/">online database</a> got me very interested in the study of political cleavages from a political economy approach. This book contains huge amount of findings and observations, but there is one which is really emphasized by the authors: from roughly the 1980s until, the class-based political divide has become a multidimensional one incorporating a “educational” or, in Inglehart terms, a “postmaterial” or “cultural” cleavage <span class="citation" data-cites="gethin_political_2021">(Gethin, Martinez-Toledano, and Piketty 2021)</span> <span class="citation" data-cites="inglehart_silent_1971">(Inglehart 1971)</span>. Very shortly, They found that the electoral support for the left shifted from the low income and low education classes to the highly educated ones. Regarding the electoral support for the right, the latter remains positively correlated with income.</p>
 <p>This post is going to simply test this finding for Switzerland using the post-electoral survey for the National Council election in 2019. The following analysis is based on data analysis of the Swiss Election Study (Selects) of 2019. The dataset can be found <a href="https://www.swissubase.ch/en/catalogue/studies/13846/18585/overview">here</a>. I will test if the support for the left is linked positively with the education level and negatively with income.</p>
-<div class="cell">
-
-</div>
 <p>To analyze the link between vote for the left (dependent variable) and income and education, I create a dummy variable from the variable “W1_f1085_90” which asked for which party the respondent is going to vote for in the 2019 national council election. The indicator variable is equal to 1 if the respondent declared voting for the socialist party, the greens, the christian socialist party or for far left parties (swiss labour party, solidarités, ensemble à gauche…)</p>
 <p>Regarding the independ variables, the variable “f28910” asks the gross monthly houshold income of the individual and the variable has 15 income brackets (we thus do not have directly the income of the respondant). For education, “f21310” asks the highest level of achieved education. Here is below descriptive statistics for these variables:</p>
 <div class="cell">
@@ -7197,7 +7194,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Education level</figcaption><p></p>
+<figcaption class="figure-caption">Education level</figcaption>
 </figure>
 </div>
 </div>
@@ -7207,7 +7204,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Gross monthly houshold income</figcaption><p></p>
+<figcaption class="figure-caption">Gross monthly houshold income</figcaption>
 </figure>
 </div>
 </div>
@@ -7371,7 +7368,7 @@ Akaike Inf. Crit.
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Probability of voting for the left - curves from estimated coefficients</figcaption><p></p>
+<figcaption class="figure-caption">Probability of voting for the left - curves from estimated coefficients</figcaption>
 </figure>
 </div>
 </div>
@@ -8180,12 +8177,6 @@ font-style: inherit;">0.8</span>)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="adding-variables-to-the-model">Adding variables to the model</h3>
 <p>Let’s now add some control variables to the model. The models above are flawed by the fact that there are only two regressors. One important assumption of regression models are the mean independence of the covariates with the error term. The model is assumed to include all the important explanatory variables in the model. If not, the estimates will be biased, so one can suspect that the coefficients estimates for this first model are heavily biased.</p>
 <p>For the second model, I include gender (dummy with female = 1), age (in categories), religiosity (the higher, the less religious is the respondent), a variable indicating whether the respondent has a full-time job (full_time), whether the respondent works in the public sector (public) and marital status. I also include variables on issue position related to socio-economic issues such as EU integration, taxation and attitude towards foreigners (each one of these variables are ordinal on a 1-5 scale). Finally, I run the same model for the other main parties in Switzerland: the liberal radical party (center-right, plr), the Swiss people’s party (far-right, udc) and the two greens party (the greens, the liberal greens).</p>
-<div class="cell">
-
-</div>
-<div class="cell">
-
-</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">marginsfull <span class="sc" style="color: #5E5E5E;
 background-color: null;
