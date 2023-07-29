@@ -20,7 +20,7 @@ website:
         - text: "Post"
           file: index.qmd
         - text: "Economics"
-          file: economics.qmd
+          file: https://jeylal.github.io/heterodox-economics/
 
 format:
   html:
