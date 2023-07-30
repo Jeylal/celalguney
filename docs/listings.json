@@ -1,5 +1,16 @@
 [
   {
+    "listing": "/economics.html",
+    "items": [
+      "/economics_series/neo-kaleckian models/neo-kaleckian models.html",
+      "/economics_series/neo-keynesian models/Neo-keynesian-models.html",
+      "/economics_series/classical-marxian model/classical-marxian model.html",
+      "/economics_series/is-lm model/is-lm model.html",
+      "/economics_series/production theory/mainstream_production_theory.html",
+      "/economics_series/consumer theory/consumer theory.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/posts/political compass/pol_compass.html",
@@ -12,23 +23,6 @@
       "/posts/About cycles and crises/cycles_crises.html",
       "/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html",
       "/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html"
-    ]
-  },
-  {
-    "listing": "/econ_guide_series.html",
-    "items": [
-      "/economics_series/consumer theory/consumer theory.html"
-    ]
-  },
-  {
-    "listing": "/economics.html",
-    "items": [
-      "/economics_series/neo-kaleckian models/neo-kaleckian models.html",
-      "/economics_series/neo-keynesian models/Neo-keynesian-models.html",
-      "/economics_series/classical-marxian model/classical-marxian model.html",
-      "/economics_series/is-lm model/is-lm model.html",
-      "/economics_series/production theory/mainstream_production_theory.html",
-      "/economics_series/consumer theory/consumer theory.html"
     ]
   }
 ]

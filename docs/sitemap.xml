@@ -2,98 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeylal.github.io/myblog/about.html</loc>
-    <lastmod>2023-07-29T20:14:13.842Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/index.html</loc>
-    <lastmod>2023-07-29T20:48:18.303Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</loc>
-    <lastmod>2023-07-29T20:34:43.966Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</loc>
-    <lastmod>2023-06-26T21:36:24.866Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</loc>
-    <lastmod>2023-06-26T21:36:25.537Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</loc>
-    <lastmod>2023-06-26T21:36:27.503Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/Some data analysis and maps with r.html</loc>
-    <lastmod>2023-04-05T19:28:10.883Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/Some data analysis and maps with R.html</loc>
-    <lastmod>2023-04-05T20:05:25.487Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</loc>
-    <lastmod>2023-07-29T20:47:02.923Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</loc>
-    <lastmod>2023-07-18T08:51:31.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</loc>
-    <lastmod>2023-04-08T09:58:32.082Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</loc>
-    <lastmod>2023-07-29T20:47:19.083Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/mainstream econ guide/Mainstream econ guide.html</loc>
-    <lastmod>2023-06-27T16:49:23.289Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/econ_guide_series.html</loc>
-    <lastmod>2023-06-28T11:02:04.696Z</lastmod>
+    <lastmod>2023-07-30T09:37:52.589Z</lastmod>
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/economics.html</loc>
-    <lastmod>2023-07-29T20:29:58.681Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/economics_series/consumer theory/consumer theory.html</loc>
-    <lastmod>2023-07-28T17:10:42.171Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory.html</loc>
-    <lastmod>2023-07-29T20:29:57.348Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/economics_series/is-lm model/is-lm model.html</loc>
-    <lastmod>2023-07-02T10:29:00.448Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/posts/web scraping/web_scraping.html</loc>
-    <lastmod>2023-07-28T17:19:07.001Z</lastmod>
+    <lastmod>2023-07-30T09:36:41.990Z</lastmod>
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/economics_series/classical-marxian model/classical-marxian model.html</loc>
-    <lastmod>2023-07-28T18:41:12.778Z</lastmod>
+    <lastmod>2023-07-30T09:36:43.248Z</lastmod>
   </url>
   <url>
-    <loc>https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis.html</loc>
-    <lastmod>2023-07-21T21:14:02.983Z</lastmod>
+    <loc>https://jeylal.github.io/myblog/economics_series/consumer theory/consumer theory.html</loc>
+    <lastmod>2023-07-30T09:36:44.468Z</lastmod>
   </url>
   <url>
-    <loc>https://jeylal.github.io/myblog/posts/political compass/pol_compass.html</loc>
-    <lastmod>2023-07-28T17:24:03.751Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeylal.github.io/myblog/economics_series/neo-keynesian models/Neo-keynesian-models.html</loc>
-    <lastmod>2023-07-28T18:37:29.942Z</lastmod>
+    <loc>https://jeylal.github.io/myblog/economics_series/is-lm model/is-lm model.html</loc>
+    <lastmod>2023-07-30T09:36:45.397Z</lastmod>
   </url>
   <url>
     <loc>https://jeylal.github.io/myblog/economics_series/neo-kaleckian models/neo-kaleckian models.html</loc>
-    <lastmod>2023-07-28T21:30:50.359Z</lastmod>
+    <lastmod>2023-07-30T09:36:46.162Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/economics_series/neo-keynesian models/Neo-keynesian-models.html</loc>
+    <lastmod>2023-07-30T09:36:47.127Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/economics_series/production theory/mainstream_production_theory.html</loc>
+    <lastmod>2023-07-30T09:36:48.412Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/index.html</loc>
+    <lastmod>2023-07-30T09:36:50.432Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</loc>
+    <lastmod>2023-07-30T09:36:51.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</loc>
+    <lastmod>2023-07-30T09:36:53.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/political compass/pol_compass.html</loc>
+    <lastmod>2023-07-30T09:36:54.752Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</loc>
+    <lastmod>2023-07-30T09:36:56.617Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</loc>
+    <lastmod>2023-07-30T09:36:57.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</loc>
+    <lastmod>2023-07-30T09:37:02.838Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</loc>
+    <lastmod>2023-07-30T09:37:03.968Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</loc>
+    <lastmod>2023-07-30T09:37:06.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis.html</loc>
+    <lastmod>2023-07-30T09:37:10.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeylal.github.io/myblog/posts/web scraping/web_scraping.html</loc>
+    <lastmod>2023-07-30T09:37:12.695Z</lastmod>
   </url>
 </urlset>
