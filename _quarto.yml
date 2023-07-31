@@ -3,7 +3,7 @@ project:
   output-dir: docs
 website:
   title: "Celâl Güney"
-  site-url: "https://jeylal.github.io/myblog/"
+  site-url: "https://jeylal.github.io/celalguney/"
   navbar:
     left:
       - about.qmd
