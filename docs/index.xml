@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Celâl Güney</title>
-<link>https://jeylal.github.io/myblog/index.html</link>
-<atom:link href="https://jeylal.github.io/myblog/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://jeylal.github.io/celalguney/index.html</link>
+<atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.3.353</generator>
 <lastBuildDate>Thu, 20 Jul 2023 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Political Compass: what lies behind political science’s most famous graphs</title>
   <dc:creator>Celâl Güney</dc:creator>
-  <link>https://jeylal.github.io/myblog/posts/political compass/pol_compass.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/political compass/pol_compass.html</link>
   <description><![CDATA[ 
 
 
@@ -272,7 +272,7 @@ font-style: inherit;">order =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"hclust"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/corrplot-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/political compass/pol_compass_files/figure-html/corrplot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The correlation plots give coherent results overall. For example, the average of party supporters who declared not being in favor of equal chance for foreigners are also supportive of a isolated Switzerland (see “no_chance-foreign” - “open_closed”).</p>
@@ -473,7 +473,7 @@ font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"darkblue"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/pol compass plot 1-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/political compass/pol_compass_files/figure-html/pol compass plot 1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Switzerland’s political space is often considered as constituted by three political blocs. The first plot above shows that it was indeed the case in 1996 if we look only at the main parties. The greens and social-democratic supporters are for an open Switzerland and rather for state intervention. Piketty <span class="citation" data-cites="piketty_capital_2019">(2019)</span> would call this bloc “Social-egalitarian” because social economically and egalitarian in terms of cultural/openess values. A second bloc is constituted by free-market and open Switzerland Swiss citizen, who support the Radical-Democratic party (PRD/FDP) and the Liberal party (PLS/PRD). Note that these two parties, constituting a “Social-inegalitarian bloc” <span class="citation" data-cites="piketty_capital_2019">(Piketty 2019)</span>, merged in 2009 and gave birth to the Liberal-Radical party (PLR). The graph above shows that base the two parties was indeed very close. Third and finally, what Piketty calls negatively the “Social-nativist trap” is represented here on the upper-right cadran. However, the graph clearly shows that the SVP cannot be considered as “social-nativist” because its supporters are on average clearly in favor of pro-market policies. The party is thus more “nativist-inegalitarian” than “social-nativist”. Social-nativism is not represented in Switzerland: there is no political support for any party which is on the left economically and on the right in terms of cultural values (empty upper-left cadran).</p>
@@ -679,7 +679,7 @@ font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"darkblue"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/pol compass plot 2-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/political compass/pol_compass_files/figure-html/pol compass plot 2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can see that there is no great change overall: Switzerland’s tripolar division is still valid in 2016. The greens supporters haven’t really change their position. PSS supporter have become more right-wing economically. The PEP supporters have totally changed their position in terms of cultural values. The PLS and PRD have merged to create the PLR and the SVP supporters have become slighlty more right-wing economically.</p>
@@ -873,7 +873,7 @@ font-style: inherit;">end_pause =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">50</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-4-1.gif" class="img-fluid"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-4-1.gif" class="img-fluid"></p>
 </div>
 </div>
 <p>Since gganimate provides gifs, which are sometimes not really convenient (if we want to pause the animation for example). Here is thus the same animation in video format:</p>
@@ -1048,7 +1048,7 @@ font-style: inherit;">order =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"hclust"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/political compass/pol_compass_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell" data-hash="pol_compass_cache/html/plot polcompass income group_8722316470050c65ec81d8e2b0c2365e">
@@ -1178,7 +1178,7 @@ font-style: inherit;">palette =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Set1"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/political compass/pol_compass_files/figure-html/plot polcompass income group-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/political compass/pol_compass_files/figure-html/plot polcompass income group-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-6_381c5c3118f7185adeb1789de14f1a9f">
@@ -1321,13 +1321,13 @@ Sciarini, Pascal. 2023. <em>Politique Suisse - Institutions, Acteurs, Processus<
 </div></section></div> ]]></description>
   <category>Political Science</category>
   <category>Statistics</category>
-  <guid>https://jeylal.github.io/myblog/posts/political compass/pol_compass.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/political compass/pol_compass.html</guid>
   <pubDate>Thu, 20 Jul 2023 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Political Conflict and Inequality in Switzerland</title>
   <dc:creator>Celâl Güney</dc:creator>
-  <link>https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis.html</link>
   <description><![CDATA[ 
 
 
@@ -3685,7 +3685,7 @@ font-style: inherit;">NA</span></span>
 <p>Let’s first see how support for the Swiss Socialist Party (SSP) evolved across income groups in the last decades. I expect the lower groups to support the SSP until the 1990s, when the poor have supposedly shifted their support from the SSP to other parties (mainly the SVP) or to abstention.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/vote for the left by income group-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/vote for the left by income group-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph above shows well the reversal of the SSP support. From 1981 to around 1992, the lowest income groups (1 and 2) were the groups that supported the SSP the most. The richest group (4) was clearly not supporting the SSP a lot until the middle of the 1990s, when it became the most supportive group!. A reversal has thus clearly happened during the 1990s: the support for SSP declined among the poorest and increased among the upper middle class and the richest.</p>
@@ -3693,14 +3693,14 @@ font-style: inherit;">NA</span></span>
 <p>The bourgeois dimension of the PLR is also made clear by the graph below:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/support plr by income group-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/support plr by income group-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can see that the radical-democrates (from 1981 to 2008) and then PLR (2009-2016) was always mainly supported by the richest income groups. Support among the poorest rarely went beyond the 10%.</p>
 <p>Regarding the support for Swiss People’s party (SVP), here is the graph below:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/support udc by income group-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/support udc by income group-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph illustrates well how the avarage support for SVP increased in almost all income groups, except for the highest group. The latter used to support SVP the most until the late 1990s. Moreover, we can see that the common and widespread idea that the SVP is the most successful among the poorest voters is an exaggeration. The support for SVP also increased among the third and second income group. It is interesting to note how a reversal happened in 1992, the year of the voting on the adhesion to the European Economic Area (EEA). Before 1992, the richest group used to be the most supportive of the SVP. After 1992, the support among the richest declined and is the lowest in almost every year.</p>
@@ -3890,7 +3890,7 @@ font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">plot_ame</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -4097,14 +4097,14 @@ background-color: null;
 font-style: inherit;">"Average Marginal Effect"</span>)</span>
 <span id="cb7-8">plot_ame_ssp</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot ame nprcs ssp-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot ame nprcs ssp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This graph offers interesting results. The support for SSP used to be strongly negatively associated with income in 1981-2, but this negative relationship declined a lot during the 80s. It recovered a bit during the 90s but then even became positive in the middle of the 1990s and positive again in the early 2000s. On the other hand, the support for SSP seems to be always linked positively with the level of education. We can thus say that the SSP was and still is indeed a brahmin party, and even endorse the role of a bourgeois party for some years when its support is linked positively with income and education.</p>
 <p>Another way to represent the relationship between support for SSP and income and education is to estimates of probability differences between given values of the predictors using the comparisons() function, which compute (in our case) probability differences between values at certain levels. The graph below show comparisons between the highest and lowest income groups (4-1). For education, I compare the highest level of education (university) not with the lowest level (primary school), but with vocational trainees/apprenticeship because the latter is the most widespread highest achieved level of education in Switzerland, even nowadays.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/nprcs comparisons ssp-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/nprcs comparisons ssp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>In 1981, an individual of the highest income group was 28% less probable to support the SSP compared with someone from the lowest income income. This difference decreased substantially over the years, and is rather close to zero nowadays. This is not the case for education. In 1981, a highly educated individual from either university of polytechnic school had around 19% more probabilities to support the SSP than someone who completed an apprenticeship. This difference has decreased over the years, but is still quiet high, around 10% in 2016. This show that the SSP was and still is the party of the most educated, but not necessarily of the poorest or the richest.</p>
@@ -4145,13 +4145,13 @@ font-style: inherit;">"Average Marginal Effect"</span>)</span>
 <span id="cb8-7"></span>
 <span id="cb8-8">plot_ame_nprcs_ssp_controls</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot ame ssp full-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot ame ssp full-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph above does not imply any change to the broad picture, let’s see for comparisons</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons ssp controls-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons ssp controls-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The differences in probability have slighlty change, but the conclusions here are in fine the same as the no-controls regression.</p>
@@ -4161,7 +4161,7 @@ font-style: inherit;">"Average Marginal Effect"</span>)</span>
 <p>The results show how the support for SVP is clearly linked negatively with educational level. The relationship with income is less clear since a lot of the results are not statistically significant (the confidence interval cross 0 for most years). Here I will not give any conclusion before fitting the multilevel regression.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/comparisons svp-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/comparisons svp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -4169,7 +4169,7 @@ font-style: inherit;">"Average Marginal Effect"</span>)</span>
 <h4 class="anchored" data-anchor-id="repeated-cross-section-support-for-plr">Repeated Cross-section: support for PLR</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plr nprcs controls-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plr nprcs controls-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -4221,7 +4221,7 @@ font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Repeated Cross-sectional regressions, with controls"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plr comparisons nprcs-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plr comparisons nprcs-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Finally, here are the results for PLR support. We can see that the PLR clearly fits into the bourgeois category with support linked positively with both education and income, the latter being the important factor even if it declined nonetheless.</p>
@@ -4231,10 +4231,10 @@ font-style: inherit;">"Repeated Cross-sectional regressions, with controls"</spa
 <h4 class="anchored" data-anchor-id="repeated-cross-section-support-for-the-greens">Repeated Cross-section: support for the Greens</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/greens plot-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/greens plot-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/greens plot-2.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/greens plot-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Regarding the support for the Greens, it is associated positively with education. The relationship with income is not clear, the multilevel model will hopefully give better results.</p>
@@ -4288,13 +4288,13 @@ font-style: inherit;">"logit"</span>))</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot ame partial pooling pss-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot ame partial pooling pss-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The results are very close to the repeated cross-section model.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot glmer comparisons ssp-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot glmer comparisons ssp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -4302,12 +4302,12 @@ font-style: inherit;">"logit"</span>))</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="support-for-radicalsliberals">Support for Radicals/Liberals</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/partial pooling plr plot-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/partial pooling plr plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons glmer plr-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons glmer plr-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -4315,12 +4315,12 @@ font-style: inherit;">"logit"</span>))</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="partial-pooling-support-for-svp">Partial Pooling: Support for SVP</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/partial pooling udc plot-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/partial pooling udc plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/comparison plot glmer svp-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/comparison plot glmer svp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -4328,12 +4328,12 @@ font-style: inherit;">"logit"</span>))</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="partial-pooling-support-for-the-greens">Partial Pooling: Support for the Greens</h4>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons glmer greens-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis_files/figure-html/plot comparisons glmer greens-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -4706,13 +4706,13 @@ Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
 </div></section></div> ]]></description>
   <category>Political Economy</category>
   <category>Statistics</category>
-  <guid>https://jeylal.github.io/myblog/posts/vox and voto analysis/vox_voto_analysis.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis.html</guid>
   <pubDate>Sat, 08 Jul 2023 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Web Scraping with R</title>
   <dc:creator>Celâl Güney</dc:creator>
-  <link>https://jeylal.github.io/myblog/posts/web scraping/web_scraping.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/web scraping/web_scraping.html</link>
   <description><![CDATA[ 
 
 
@@ -4742,7 +4742,7 @@ font-style: inherit;">read_html</span>(url)</span></code></pre></div>
 <p>The next step is to search and select each videogame price as well as the videogame’s titles using the chrome extension selectorgadget. This step is a bit tricky and is a pain because selectorgadget is a chrome-only extension. So if you don’t have chrome, you have to install it and then add selector gadget on it. To use selectorgadget, just click on what you want to collect on the webpage and then copy the css selector which is on the left of the selectorgadget bar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/web scraping/imagemediamarkt.png" class="img-fluid figure-img"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/web scraping/imagemediamarkt.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Using selectorgadget</figcaption>
 </figure>
 </div>
@@ -5456,7 +5456,7 @@ font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"price in swiss francs"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -6281,7 +6281,7 @@ font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Swiss Francs (CHF)"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -6900,7 +6900,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/web scraping/web_scraping_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -6911,13 +6911,13 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
  ]]></description>
   <category>web scraping</category>
   <category>data science</category>
-  <guid>https://jeylal.github.io/myblog/posts/web scraping/web_scraping.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/web scraping/web_scraping.html</guid>
   <pubDate>Mon, 03 Jul 2023 22:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/web scraping/imagemediamarkt.png" medium="image" type="image/png" height="104" width="144"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/web scraping/imagemediamarkt.png" medium="image" type="image/png" height="104" width="144"/>
 </item>
 <item>
   <title>Political stability and political crises in Switzerland: empirical evidence</title>
-  <link>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust institution switzerland.html</link>
   <description><![CDATA[ 
 
 
@@ -6928,14 +6928,14 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <p>Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. Along with the good performances of the economy, one expects that Swiss people also have more trust in their institutions compared with other countries. If one looks at, for instance, the data provided by the OECD on the confidence in government and other institutions, Switzerland is indeed one of the countries with the highest level of trust:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid figure-img"></a></p>
+<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption>
 </figure>
 </div>
 <p>In Switzerland, the confidence in national government in 2020 was the highest among OECD countries with a level of 85%. Other countries like France and Italy have a level of confidence lower than the average.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/graph_ocde.png" class="img-fluid figure-img"></a></p>
+<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Source: OECD (Government at Glance, 2021)</figcaption>
 </figure>
 </div>
@@ -7000,32 +7000,32 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="trust-in-federal-council">Trust in Federal Council</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="1440"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="1440"></p>
 </div>
 </div>
 <p>Here is a basic visualisation to show the distribution of the variable for each year. It is strinking how the distribution is almost the same for the years 1971-1975-1987 and then from 1995 to 2011. This suggests a great stability of trust in Federal Council, which seems rather strong. However, since the graph above is rather difficult to interpret due to the fact that it carries too much information and the scales change through the years, I will create an indicator variable to simplify the information. The dummy variable will take value 1 if the respondent takes a value higher than 5 (the middle point level of indifference), and 0 otherwise.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/trust1 dummy descriptive-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/trust1 dummy descriptive-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph above represents the percentage of respondents who declared to always or most of the time trust the federal council. The only period this trust declined was between 1975 and 1991. However, one should be cautious with the strong decline in 1991, because the scale (number of values the ordinal variable can take) changes for the first time for this year (see the precedent graph above). In fact, the strong decline in 1991 is surely due to the fact that the scale, by including more response choices in the survey (from 4 to 7 points scale), perhaps induced more “middle-point” responses (the middle answer is the mode for 1991). From 1995 to 2011, the trust in federal council shows a great stability, and even increases between 2007 and 2011. Nonetheless, the variable does not include data after 2011, which is unfortunate. Fortunately, there are other variables which cover a bigger time frame. In this regard, the variable on the evaluation of the Swiss democracy/political system (eps1) is interesting:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph above shows how strong trust in institutions is in Switzerland and that the latter has even increased in the last years until 2019. Note that the data for 1995 have the same problem as for the year 1991 in the previous graph (change in the variable’s number of categories). I can thus conclude that the trust in institutions is not only stable in Switzerland, but even increasing. One further step, however, is to look at how trust changes if one takes education and income levels into account: do poorer people and less educated people have less trust in institutions in Switzerland? We will see that the picture is slightly more contrasted trust is analyzed for each income level.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/eps1d trust and income quintiles-1.png" class="img-fluid" width="960"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/eps1d trust and income quintiles-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
 <p>Taking into account income quintiles offer a slightly more contrasted results, but trust is high even for low income levels. There is no strong differences in trust if we compare the lowest quintile with the highest (with still somme difference in each year), but one can see that trust increases with income group: richer Swiss people (in terms of income) have more confidence in the political system/democracy in this sample.</p>
 <p>Since the dataset also gives the education group, one can do the same graph above with education:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/eps1 and education group-1.png" class="img-fluid" width="1248"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/eps1 and education group-1.png" class="img-fluid" width="1248"></p>
 </div>
 </div>
 <p>There is overall a positive association between education level and trust in democracy/political system, even though trust is high and systematically above 50% in each year (with one exception for 1979).</p>
@@ -7102,25 +7102,25 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <p>Let’s first have a look at how the variable is distributed for a given year, for instance 2020:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust-institution-switzerland_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph is coherent with all the previous data we saw: most Swiss people have confidence and trust in the politicians of their country in 2020. What about the evolution of this trust if one looks at all the rounds provided by ESS since 2002? To have a look a this, I load all the ESS rounds, create an indicator variable (still from the same variable, trstplt) taking value 1 if the respondent takes at least value 5 and plot the proportion for each year:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust in instit blog post switzerland.png" class="img-fluid figure-img"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust in instit blog post switzerland.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>If one considers trust in politicians as a good indicator of political stability, Switzerland shows a great and increasing level of stability and it would be difficult to say that the country has known any deep political crisis in the last years. The political stability of Switzerland is even more striking when compared with countries which have known instability and systemic crises such as Italy and France:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust_pol_parties_ess.png" class="img-fluid figure-img" width="691"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust_pol_parties_ess.png" class="img-fluid figure-img" width="691"></p>
 </figure>
 </div>
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust_natio_gov_ess.png" class="img-fluid"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust_natio_gov_ess.png" class="img-fluid"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/trust_pol_ess.png" class="img-fluid figure-img"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust_pol_ess.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>However, ESS data are rather limited with respect to the time frame: only data from 2002 to 2020 are available. Ideally, I would like to have data which come back at least to the 1980s. In my opinion, both Selects and ESS data have serious shortcomings that prevent any straightforward conclusion regarding the evolution of political stability in Switzerland. For this reason, I searched other data source and found one which can give better results and insights.</p>
@@ -7130,7 +7130,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <p>A final and last alternative data source to assess the temporal evolution of trust in institutions in Switzerland (and thus its period of political stability/crises) are the “Vox” studies, which are conducted for after Swiss referendum (“votation populaire” in French) since 1981. Kriesi, Brunner and Lorétan compiled and standardized every Vox studies from 1981 up to 2016 to create a cumulative dataset <span class="citation" data-cites="kriesi_enquetes_2017">(Kriesi, Brunner, and Lorétan 2017)</span>. This dataset has a variable of interest, “a22 (confidence in government)”, which is a binary variable (either confidence of mistrust in government). The graph below plots the percentage of respondents having confidence in government for each year:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/trust institution switzerland/vox_trust_gov.png" class="img-fluid figure-img"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/vox_trust_gov.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>We finally have a satisfying and valuable graph: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in government, which lead to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1990s: the percentage of people who declared having confidence in government fell from 65% in 1998 to 38.9% in 1995. Confidence in government then fell a for second time from 2001 (64%) to 2005 (38.4%), a period which can thus be considered as a second political crisis due to the very low level of confidence in 2005. But about the period post-2016? The shortcoming of this dataset is that it does not go beyond 2016. Fortunately, another dataset gathered data for the period 2016-2020.</p>
@@ -7162,13 +7162,13 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 </div></section></div> ]]></description>
   <category>Political Economy</category>
   <category>Stats</category>
-  <guid>https://jeylal.github.io/myblog/posts/trust institution switzerland/trust institution switzerland.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/trust institution switzerland/trust institution switzerland.html</guid>
   <pubDate>Sat, 24 Jun 2023 22:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/trust institution switzerland/vox_trust_gov.png" medium="image" type="image/png" height="90" width="144"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/trust institution switzerland/vox_trust_gov.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 <item>
   <title>Income, education and voting outcome: a cross-sectional analysis of voting outcome in Switzerland</title>
-  <link>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</link>
   <description><![CDATA[ 
 
 
@@ -7184,7 +7184,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Education level</figcaption>
 </figure>
 </div>
@@ -7194,7 +7194,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Gross monthly houshold income</figcaption>
 </figure>
 </div>
@@ -7347,7 +7347,7 @@ Akaike Inf. Crit.
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -7358,7 +7358,7 @@ Akaike Inf. Crit.
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Probability of voting for the left - curves from estimated coefficients</figcaption>
 </figure>
 </div>
@@ -7521,7 +7521,7 @@ font-style: inherit;">"Slopes education"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -7543,7 +7543,7 @@ font-style: inherit;">"income"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -7659,7 +7659,7 @@ font-style: inherit;">"Slopes income"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -7827,7 +7827,7 @@ font-style: inherit;">plot_grid</span>(plotpredicteduc, plotpredictincome)</span
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -7977,7 +7977,7 @@ font-style: inherit;">0.15</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -8157,7 +8157,7 @@ font-style: inherit;">0.8</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -8272,7 +8272,7 @@ font-style: inherit;">"none"</span>,</span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -8296,13 +8296,13 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
 </div></section></div> ]]></description>
   <category>Political Economy</category>
   <category>Stats</category>
-  <guid>https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</guid>
   <pubDate>Tue, 09 May 2023 22:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/image.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>From income brackets to income decile</title>
-  <link>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</link>
   <description><![CDATA[ 
 
 
@@ -9962,7 +9962,7 @@ font-style: inherit;">plot_grid</span>(income.group.plot, income.group.plot2)</s
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Distribution of Income groups: Canadian 2015 election survey</figcaption>
 </figure>
 </div>
@@ -14578,13 +14578,13 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">theme_bw</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/technical-note-piketty-2021_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This graph is very close to the one from the techninal note (figure one, right-sided graph)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" class="img-fluid figure-img"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/graph1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>For now, let’s put the for loop into a function: this function would require the decile dummies columns, the columns for the proportion, the column for decile share and the column for the rest’s share:</p>
@@ -16693,13 +16693,13 @@ font-style: inherit;">$</span>share_rest))</span>
   <category>Political Economy</category>
   <category>Stats</category>
   <category>Coding</category>
-  <guid>https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</guid>
   <pubDate>Sun, 16 Apr 2023 22:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/graph1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>Sugar, Cochineal and power</title>
-  <link>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/sugar cochineal power.html</link>
   <description><![CDATA[ 
 
 
@@ -16715,7 +16715,7 @@ font-style: inherit;">$</span>share_rest))</span>
 <p>Marichal’s analysis of the rise and decline of cochineal production and trade rests upon three main hypotheses. The first one is that the prosperity of cochineal production and trade in Oaxaca, the main farming region of cochineal in Mexico, from the 16th century on was demand led. He advances two reasons for this strong demand, mostly driven by the upper classes of Europe, namely the Church, the nobility, and other elites. One reason is cultural and symbolic: cochineals produce a particularly magnificent crimson color that the nobility and the church associated with symbols of prestige and power. The other reason is physical: cochineal has physical properties which make it materially more advantageous compared to its competitors (kermes for example). This strong demand thus made cochineal highly profitable. Trade, production, and prices thus boomed from the 16th until the late 18th century which marked the start of a long run decline. Mintz’ analysis of how sugar became such an essential and highly demanded commodity is more nuanced. In fact, Mintz’s text is an attempt to answer the following question: how and why did sugar become one of the most widespread and consumed commodities in British society? An obvious and straightforward answer would be, as Marichal argues in the cochineal’s case, that humans are naturally inclined to accept sugar in their consumption habits because of its physical properties. As an anthropologist, Mintz knows that there is nothing natural in the growth of sugar demand. More elaborated answers would be for instance that sugar’s consumption habits spread from the upper classes to the lower classes through imitation (what Mintz calls “intensification”), or the constant tendency of sugar prices to fall. None of these answers are convincing enough for Mintz, whose argument is that the structural transformations of the working conditions and schedules of the British workers, during a transition process from an agricultural economy to an industrial one from circa the 16th century to the 19th century, were the real reason behind sugar’s tremendous prosperity as an essential commodity with strong meaning and signification for its consumers. Mintz explores the dual “meaning” of sugar. On the one hand, sugar replaced honey as a signification of sweetness, happiness, endearment, and tenderness (the “inside meaning” of sugar in anthropological terms) for the common British people. On the other hand, sugar became a symbol of power and prosperity for the imperialistic British ruling classes which had an interest in sugar production and trading made possible by the exploitation of African slaves in the Caribbean plantations. This represents the “outside meaning” of sugar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.worldhistory.org/article/1795/life-on-a-colonial-sugar-plantation/"><img src="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="img-fluid figure-img"></a></p>
+<p><a href="https://www.worldhistory.org/article/1795/life-on-a-colonial-sugar-plantation/"><img src="https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Colonial sugar cane manufacturing</figcaption>
 </figure>
 </div>
@@ -16752,13 +16752,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 </div>
 </div></section></div> ]]></description>
   <category>Economic History</category>
-  <guid>https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/sugar cochineal power.html</guid>
   <pubDate>Fri, 09 Dec 2022 23:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Crises &amp; cycles</title>
-  <link>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/About cycles and crises/cycles_crises.html</link>
   <description><![CDATA[ 
 
 
@@ -16780,7 +16780,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>Apart from Marx and Marxists scholars, another trend emerged in the end of the 19th and in the first half the of 20th century: economists who became increasingly interested in the measurement and analysis of business cycles. The biggest impetus in that matter can surely be accredited to Wesley Clair Mitchell (1874-1948) who was the first director of the National Bureau of Economic Research (founded in 1920) and conducted tremendous research on the measurement and analysis of business cycles. Influenced by Thorstein Veblen and his critic of neoclassical economics, Mitchell sought a new way of conducting economic analysis and research, mainly through historical and empirical data analysis. He was convinced that his empirical and inductive approach (constructing new theories from empirical evidence) would make older economic theories obsolete: “quantitative analysis” would produce more robust economic reasonings than “qualitative analysis”, that is, neoclassical deductive approach. Conclusions Mitchell drew from his work are remarkably similar to Marx’: business cycles are chiefly driven by the incessant pursuit for profit. Assuredly, Mitchell’s work paved the way to a golden age of statistical and quantitative analysis of business cycles in the 1920s, so much that even economists hitherto not interested in that domain sought to bring their own contribution to business cycle analysis. A striking example is surely Irving Fisher (1867-1947) and his debt-deflation theory. Fisher, who recognized that he was a newcomer on the subject, made a distinction between “forced cycles”, cycles determined and driven by external factors (Fisher gives the example of the sun spot theory which sought to explain economic cycles through astronomical cycles) and “free cycles”, namely, cycles whose prime movers are not external, but inherent and intrinsic to the cycle. It is to this latter case, the free cycles, that Fisher wants to explain taking what he calls a “economic science” point of departure as opposed to economic history which only describe business cycles. Fisher wants to identify relations and tendencies that drive the cycles. His main idea is that the main two factors are (1) over-indebtedness and (2) deflation, the former being more important than the latter. The state of over-indebtedness leads to worries on the part of either debtors and/or creditors. As debtors try to sell their assets to pay back their debts, the quantity of money in circulation and the velocity of money decline (agents consume less to save). This leads to a fall in price level and a paradoxical situation where the more economic agents try to get rid of their debts, the more its value in real terms rise: “the more the debtors pay, the more they owe” (<a href="https://github.com/Jeylal/myblog/raw/master/posts/About%20cycles%20and%20crises/Fisher_Debt_Deflation.pdf">Fisher</a> 1933: 54). The fall in general price level leads to a fall of profit rate and hence to a decline of production and employment. This leads to general pessimism, loss of confidence and hoarding, the value of money rises even more, prices decline further and the real interest rate rises. Fisher argues it would be insane not to intervene through economic policy and that the economy should not be left to natural market forces: reflation policy becomes necessary. However, it would not be sufficient, since the main problem of the tendency towards over-indebtedness remains. This leads Fisher to explore some of the reasons which drive the economy towards this state of over-borrowing and over-indebtedness. He argues, finally, that the mains factors are the new investments opportunities associated with great profit expectations (because it will encourage agents to borrow to invest). Those new investments opportunities are, in return, created by new inventions and technological breakthrough and progress.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/myblog/posts/About cycles and crises/babsonchart.jpg" class="img-fluid figure-img"></a></p>
+<p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/celalguney/posts/About cycles and crises/babsonchart.jpg" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Babson presenting one of his famous babsoncharts on business cycles</figcaption>
 </figure>
 </div>
@@ -16796,13 +16796,13 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
  ]]></description>
   <category>Political Economy</category>
   <category>Economic History</category>
-  <guid>https://jeylal.github.io/myblog/posts/About cycles and crises/cycles_crises.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/About cycles and crises/cycles_crises.html</guid>
   <pubDate>Wed, 30 Nov 2022 23:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/About cycles and crises/crises_cycles.JPG" medium="image"/>
 </item>
 <item>
   <title>How to do maps with R studio</title>
-  <link>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</link>
   <description><![CDATA[ 
 
 
@@ -17381,7 +17381,7 @@ font-style: inherit;">-&gt;</span> map_plot</span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how-to-do-maps-with-r-studio_files/figure-html/BT 5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Some data analysis and how to do a map with r/how-to-do-maps-with-r-studio_files/figure-html/BT 5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -17507,7 +17507,7 @@ font-style: inherit;">"All current and capital expenditures on the armed forces"
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how-to-do-maps-with-r-studio_files/figure-html/BT 6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/Some data analysis and how to do a map with r/how-to-do-maps-with-r-studio_files/figure-html/BT 6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -17520,13 +17520,13 @@ font-style: inherit;">"All current and capital expenditures on the armed forces"
  ]]></description>
   <category>Stats</category>
   <category>Coding</category>
-  <guid>https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/Some data analysis and how to do a map with r/how to do maps with r studio.html</guid>
   <pubDate>Mon, 31 Oct 2022 23:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/Some data analysis and how to do a map with r/map.png" medium="image" type="image/png" height="103" width="144"/>
 </item>
 <item>
   <title>Inikori about Slavery and the Industrial Revolution</title>
-  <link>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</link>
+  <link>https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</link>
   <description><![CDATA[ 
 
 
@@ -17542,7 +17542,7 @@ font-style: inherit;">"All current and capital expenditures on the armed forces"
 <p>Regardless, it was the access to new markets in Africa and in America’s colonies which enabled England to further its industrialization through import substitution strategies. Imports of cotton textile from India, for instance, gave impetus to local English entrepreneurs to try to venture into cotton textile manufacturing. Protectionist policies, access to outlets in British American colonies and Africa and raw cotton provided by American colonies where production in plantations were based on Africans slaves labor permitted England to successfully achieve import substitution in the cotton industry which is recognized as one of the most crucial sectors of the Industrial Revolution. The reader could be surprised of the relatively few pages focusing on cotton industry in chapter 9 (about 20 pages: pp.427-451) since the Industrial Revolution mostly began with the cotton industry and its technological improvements, but Inikori is right when he argues that this industry developed under the impetus of access to overseas African and American markets and based on raw cotton provided by slave labor in British American colonies. Nonetheless, I think we could also consider the possibility of counterfactual although it may sound speculative: could have England developed its revolutionary cotton industry without African slave labor? This question is a matter of substitutability degree of labor and imports: one could argue that the specialization of Egypt in raw cotton production in the middle of the 19th shows that imports of raw cotton was perhaps more flexible than what Inikori seems to consider.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://en.wikipedia.org/wiki/Atlantic_slave_trade#/media/File:Slaves_resting_by_Rugendas_01.jpg"><img src="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/slavery.jpg" class="img-fluid figure-img"></a></p>
+<p><a href="https://en.wikipedia.org/wiki/Atlantic_slave_trade#/media/File:Slaves_resting_by_Rugendas_01.jpg"><img src="https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/slavery.jpg" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">Recently bought slaves in Brazil on their way to the farms of the landowners who bought them c.&nbsp;1830 (credit: wikipedia)</figcaption>
 </figure>
 </div>
@@ -17555,9 +17555,9 @@ font-style: inherit;">"All current and capital expenditures on the armed forces"
 
  ]]></description>
   <category>Economic History</category>
-  <guid>https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
+  <guid>https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
   <pubDate>Tue, 04 Oct 2022 22:00:00 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/myblog/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
+  <media:content url="https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
 </channel>
 </rss>

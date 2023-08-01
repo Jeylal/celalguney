@@ -1,1 +1,1 @@
-Sitemap: https://jeylal.github.io/myblog/sitemap.xml
+Sitemap: https://jeylal.github.io/celalguney/sitemap.xml
