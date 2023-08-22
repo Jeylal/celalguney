@@ -13,9 +13,9 @@ about:
     - icon: github
       text: Github
       href: https://github.com/Jeylal
-    - icon: book-fill
-      text: Blogger
-      href: https://jeyjayb.blogspot.com/
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/cel%C3%A2l-g%C3%BCney-90b508285/?originalSubdomain=ch
     - icon: file-bar-graph-fill
       text: Survey Data shiny app
       href: https://celalguney.shinyapps.io/Projet_Data_Science/?_ga=2.255792968.1974330428.1680436983-1453518093.1673880491 
@@ -23,7 +23,7 @@ about:
 
 # Welcome !
 
-My name is Celâl and I am a master student in the Political Economy of Capitalism at the University of Geneva. You can have a look to my [CV](https://github.com/Jeylal/myblog/raw/master/Cel%C3%A2l%20G%C3%BCney%20cv%20english.pdf) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests.
+My name is Celâl and I am a master student in the Political Economy of Capitalism at the University of Geneva. You can have a look to my [CV](https://jeylal.github.io/celalguney/CV.html) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests.
 
 My current project at the moment is my master thesis, which will be about the political economy of political cleavages in Switzerland. You can have a look to the first draft of my master thesis proposal [here](https://github.com/Jeylal/myblog/raw/master/master%20thesis%20proposal%20celal%20guney.pdf), which will be subject to frequent improvements.
 
