@@ -49,7 +49,7 @@ ses <- read_sav("swiss election study.sav")
 This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of "trust in political institutions" variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table:
 
 | Code   | name                                   | values                                              | Years                                                |
-|---------------|---------------|---------------------|----------------------|
+|-----------------|-----------------|-------------------|--------------------|
 | trust1 | trust in federal council               | 0 (no trust) to 10 (full trust) with decimal values | not 1979, 2015, 2019                                 |
 | trust2 | trust in national parliament           | 0 (no trust) to 10 (full trust) with decimal values | 1991, 1995, 1999, 2003, 2007, 2011                   |
 | trust3 | trust in cantonal authorities          | 0 (no trust) to 10 (full trust) with decimal values | 1995, 1999, 2003, 2007, 2011                         |
@@ -242,7 +242,7 @@ There is overall a positive association between education level and trust in dem
 As we have seen, Selects data have some shortcomings which prevent to conduct a serious evaluation of the evolution of trust in institutions. One thus has to look at other data. To do so, I will now analyse the Swiss trust in institutions using ESS data.
 
 | variable | name                                                   | scale                                                                                    |
-|--------------|----------------------|------------------------------------|
+|-----------------|---------------------|----------------------------------|
 | trstplt  | trust in politician                                    | 0 = no trust, 10 = complete trust (discrete scale)                                       |
 | trstprl  | Trust in country's parliament                          | 0 = no trust, 10 = complete trust (discrete scale)                                       |
 | stfeco   | How satisfied with present state of economy in country | 0 = extremely dissatisfied, 1 = extremely satisfied (discrete scale)                     |
@@ -316,3 +316,47 @@ A final and last alternative data source to assess the temporal evolution of tru
 ![](vox_trust_gov.png){fig-align="center"}
 
 We finally have a satisfying and valuable graph: the time frame is large enough, the variable is the same for each year and the results are far more contrasted and interesting than the previous graphs. One can see clearly different periods of declining and increasing confidence in government, which lead to the conclusion that Switzerland knew different waves of decreasing and increasing political stability as well as clear periods of political crisis. For instance, the graph illustrates well the political crisis of the 1990s: the percentage of people who declared having confidence in government fell from 65% in 1998 to 38.9% in 1995. Confidence in government then fell a for second time from 2001 (64%) to 2005 (38.4%), a period which can thus be considered as a second political crisis due to the very low level of confidence in 2005. But about the period post-2016? The shortcoming of this dataset is that it does not go beyond 2016. Fortunately, another dataset gathered data for the period 2016-2020.
+
+
+
+
+
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| include: false
+
+
+# OECD (2023), "Trust in government" (indicator), https://doi.org/10.1787/1de9675e-en (accessed on 08 October 2023)
+# https://www.oecd-ilibrary.org/governance/trust-in-government/indicator/english_1de9675e-en 
+
+oecd_trust_gov <- read_csv("F:/master-thesis/data/oecd_trust_gov.csv")
+
+
+oecd_trust_gov %>% 
+  filter(LOCATION %in% c("CHE", "FRA", "DEU", "ITA", "SWE", "GBR", "USA")) %>% 
+  ggplot()+
+  aes(x = TIME, y = Value, color = LOCATION, shape = LOCATION)+
+  geom_line()+
+  geom_point()+
+  theme_bw()+
+  scale_x_continuous(breaks = 2006:2022)+
+  scale_color_brewer(palette = "Set1")+
+  labs(title = "Political Stability across OECD countries",
+       subtitle = "Trust in National Government: 2006-2022",
+       y = "%", x = "",
+       caption = "Trust in national government refers to the 
+       share of people who report having confidence in the national government.
+       Data source: OECD")
+
+```
+
+
+
+
+
+
+
+
