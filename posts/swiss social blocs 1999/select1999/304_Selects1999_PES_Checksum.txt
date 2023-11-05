@@ -1,0 +1,24 @@
+---------------CHECKSUM-----------------------
+
+
+304_Selects1999_PES_Data_v1.1.sav (SHA-1):
+
+3FCCFEDCF4D142298F162EE01EF3E558C77DFEF3
+
+
+304_Selects1999_PES_Data_v1.1.dta (SHA-1):
+
+BA928251112D50647862B17D2C5A6A9DCB98EB49
+
+
+304_Selects1999_PES_Data_v1.1.csv (SHA-1):
+
+96FD75844AFA12BFF9400B4AD96508A2BA70173D
+
+
+
+-----------------INFOS-------------------------
+
+Checksum allows you to verify the integrity of a data file
+using a specific tool, for example D5 & SHA-1 Checksum Utility,
+which is available for free download on several websites. 

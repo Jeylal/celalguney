@@ -43,7 +43,7 @@ library(GGally)
 library(questionr)
 library(car)
 library(effects)
-library(polcompr)
+library(readxl)
 
 theme_set(theme_bw())
 ```
@@ -175,13 +175,13 @@ comparisons_educ <- function(data){
 
 ## Introduction and Problématique
 
-How does social inequality affect political cleavages and political conflict? A recent trend in political economy has developed and built a tremendous analysis of the evolution of political cleavages in almost all democratic countries around the world. This sudden interest, whose origin can be traced back to Piketty's last book [@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database ([WPID](https://wpid.world/)) and to a book which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [@gethin_political_2021].
+How do socio-economic factor influence party support and the membership to a social bloc? A recent trend in political economy has developed and built a tremendous analysis of the links between income and education levels in almost all democratic countries around the world. This sudden interest, which is symbolized by Piketty's *Capital and Ideology* [@piketty_capital_2019], gave rise to the World Political Cleavages and Inequality Database project ([WPID](https://wpid.world/)) and to an ambitious book which analyses the effect of income, social and educational inequality on the structure and transformation of political cleavages from 1948 to 2020 in 50 countries [@gethin_political_2021].
 
-Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left and far-left parties, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent years studying inequality, how the latter has evolved and can disturb political and economic stability and how they can be reduced to make society more equal. However, whereas the technical solutions are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not only technical problem, but also a political one and that inequality analysis musts thus take politics into account.
+Why have political cleavages and political conflict become popular among economists such as Piketty, who were originally more focused on inequality analysis? An answer could be the inequality paradox: the fact that rising inequality in almost all developed countries in the world has no paved the way to growing support for left-wing blocs, income and wealth redistribution and for political contest in general. Political economists such as Piketty have spent decades studying inequality, how the latter has evolved and can disturb political and economic stability and how they can be reduced to make society more equal. However, whereas the technical solutions are here, political outcomes are not. Political economists have thus realized that the persistence of inequality is not only technical problem, but also a political one and that inequality analysis musts thus take politics into account.
 
 It is interesting to note how the same reasoning can be applied to ecology. Ecologists face indeed the same issue: global warming becomes increasingly more threatening, and scholars know how it could be stopped or at least reduced, but there is paradoxically no political outcome and no serious political measure which has been taken despite the emergency.
 
-The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus "classist" and bipolar in the sense that the political positioning of an individual on the left-right axis was mainly determined by his position in the economic structure.
+The work of Piketty and coauthors can be summarized as follows: in the post-war period, political cleavages were bipolar with respectively a left a right bloc. Support for social-democratic parties was negatively correlated with income and education: the lower the income and level of education, the higher the probability to support the left and left economic policies. Conversely, support for right-wing parties was positively linked with income and educational level. Political cleavage was thus "classist" and bipolar in the sense that the political preference of an individual on the left-right axis was mainly determined by his position in the economic structure.
 
 The situation changed around the 1970s and 1980s: the support for the left became positively correlated with education whereas the support for the right remained linked positively with income and education. Political cleavages became thus "multipolar" by combining an economic cleavage (degree of income and wealth), which became relatively less salient, with a growing "cultural" cleavage due to the increase in average educational level. People who are familiar with political science literature will here recognize that Piketty is simply re-asserting Inglehart's famous "post-materialist" divide over cultural issue, but giving much importance to education as a source of this cleavage.
 
@@ -191,7 +191,7 @@ Amable and Darcillon [-@amable_brahmin_2022] offer more contrasted results. Inco
 
 ## Political cleavages, political conflict and inequality in Switzerland
 
-Switzerland is considered by this literature as the country in which those transformations have been one of the most important. For instance, Durrer de la Sota et al. explain that "Switzerland is the country where the shift of the higher educated towards the left has been the most dramatic" [@durrer_de_la_sota_party_2021, p.4]. Switzerland is infamous for being the home of one of the most successful social-nativist party, the SVP which now the first political party in Switzerland. Green parties have also become an important force and they are separated between the liberal ecologists and social ecologists. The important elements of the WPID's analysis of Switzerland are the following:
+Switzerland is considered by this literature as the country in which the cross-cutting of the "cultural" cleavage over the economic cleavage has been the most important. For instance, Durrer de la Sota et al. explain that "Switzerland is the country where the shift of the higher educated towards the left has been the most dramatic" [@durrer_de_la_sota_party_2021, p.4]. Switzerland is infamous for being the home of one of the most successful social-nativist party, the SVP which now the first political party in Switzerland. Green parties have also become an important force and they are separated between the liberal ecologists and social ecologists. The important elements of the WPID's analysis of Switzerland are the following:
 
 -   The authors used Swiss Election Studies (*Selects*) data, which are data collected after each parliamentary election.
 
@@ -231,7 +231,7 @@ These research questions can be given temporary hypothetical answers:
 
 ### Data
 
-As mentioned above, the WPID's findings for Switzerland are based on Selects data. Since using Selects data again would not make great sense, unless a very different and specific methodology is used, I tried my best to find another data source. I have thus found an interesting dataset, the standardized Voxlt surveys, which are post-electoral survey data that were collected after each referendum voting from 1981 to 2016. In those surveys, not only referendum voting decisions were collected, but also information on party identification, left-right positioning and various soc-dem characteristics.
+As mentioned above, the WPID's findings for Switzerland are based on Selects data. Since using Selects data again would not make great sense, unless a very different and specific methodology is used, I tried my best to find another data source. I have thus found an interesting dataset, the standardized VoxIt surveys, which are post-voting survey data that were collected after each referendum from 1981 to 2016. In those surveys, not only referendum voting decisions were collected, but also information on party identification, left-right positioning and various socio-economic characteristics.
 
 Party identification will obviously be the dependent variable. I create a dummy variable for each party support.
 
@@ -254,7 +254,7 @@ vox %>%
   gt_theme_dark()
 ```
 
-The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable "educ" which is a 1-6 point scale variable on the highest achieved level of education of the respondant, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous. Considering this variable as continuous is not a ideal option since the distance between each group is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation in R very hard and tedious (especially the glmer function, which can take a long time).
+The two main explanatory variable will be income and educational level. On the one hand, the dataset contains the variable "educ" which is a 1-6 point scale variable on the highest achieved level of education of the respondent, 1 being mandatory school and 6 university. I do not here perform any modification on this variable and I will consider it as continuous for computational simplicity. Considering this variable as continuous is not a ideal option since the distance between each group is not really the same, but since I will perform complex multilevel models with years as a level and varying slopes for education and income, considering this variable as a factor would make computation in R very hard and tedious (especially the glmer function, which can take a long time).
 
 On the other hand, the dataset offers two variables for income: "nivmena" and "revenu".
 
@@ -499,7 +499,7 @@ supportpssplot
 
 The graph above shows well the reversal of the SSP support. From 1981 to around 1992, the lowest income groups (1 and 2) were the groups that supported the SSP the most. The richest group (4) was clearly not supporting the SSP a lot until the middle of the 1990s, when it became the most supportive group!. A reversal has thus clearly happened during the 1990s: the support for SSP declined among the poorest and increased among the upper middle class and the richest.
 
-Let's now see how the support for the radicals/Liberals evolved. The Radicals are surely one of the most important political bloc historically in Switzerland. Radicals literally created modern Switzerland in the middle of the 19th century. Radicals underwent a lot of transformations, fusions and alliances with other parties. From 1984 to 2008, their party was the "radical-democratic party" after having merged with Swiss democrates. In 2009, this party merged again with another, the Swiss Liberal party, to create the Liberal-Radical (PLR) party which is the party which exists until nowadays. The bourgeois element of this bloc has never been a taboo and the PLR can clearly be named a bourgeois party.
+Let's now see how the support for the Radicals/Liberals evolved. The Radicals are surely one of the most historically important political bloc in Switzerland since they literally created modern Switzerland in the middle of the 19th century. Radicals underwent a lot of transformations, fusions and alliances with other parties. From 1984 to 2008, their party was the "radical-democratic party" after having merged with Swiss Democrates. In 2009, this party merged again with another, the Swiss Liberal party, to create the Liberal-Radical (PLR) party which is the party which exists until nowadays. The bourgeois element of this bloc has never been a taboo and the PLR can clearly be named a bourgeois party.
 
 The bourgeois dimension of the PLR is also made clear by the graph below:
 
@@ -589,7 +589,39 @@ The graph illustrates well how the avarage support for SVP increased in almost a
 
 ## Modelling
 
-To analyze the relationship between party support and income and education, let's now run some regressions. I will run separate binary logit regression for each party support dummies with income and education as explanatory variable. Since we have a timeframe which goes from 1981 to 2016, a choice has to be made regarding which regression model to run in order to take years into account. The first and most simple option would be to run separate regressions for each year. This is the repeated cross-sectional regression option. Another option would be to run a multilevel regression with years as a level and with varying slopes for education and income.
+To analyze the relationship between party support and income and education, let's now run some regressions. I will run separate binary logit regression for each party support dummies with income and education as explanatory variable. 
+
+The VoxIt dataset offers a real statistical modelling challenge. On the one hand, the individuals are clustered into cantons, which constitute an important level that should not be ignored since political and economic institutions vary greatly across Swiss cantons. Why are Swiss cantons an issue when running regression analysis in Switzerland? Because Swiss citizen of the same canton may show and share some characteristics which differ across cantons. There is, for instance, this widespread *cliché* that french-speaking cantons are more leftist and than Swiss-German ones. On the other hand, another real challenge is that individuals are also clustered into 35 different years (2016-1981). It is important to note that the common methods used for panel data do not really fit well here, since individuals are not observed repeatedly. The literature calls this kind of dataset (when individuals are not repeated) *repeated cross-sections*. This multilevel structure of repeated cross sectional data is often ignored in the academic works which analyze these data. This is a problem because ignoring the nested structure can result in standard errors and coefficient measurement bias.
+
+How do we cope with these two challenges: the time and regional structures? @gelman_data_2006 offers an interesting approach: repeated cross-sectional multilevel regressions (RCsMR). Andrew Gelman was interested in the following paradox: why do richer US states vote for Democrats while, at the individual level, we still observe that richer US citizen vote for the Republicans? The pertinence of multilevel modelling was here to shed light on the following mechanism behind this paradox: in richer states, the link between income and vote for the Republicans.
+
+```{r canton voting}
+#| message: false
+#| warning: false
+#| echo: false
+#| include: false
+library(naniar)
+canton_data <- read_excel("canton_income_voting.xlsx", sheet = 1)
+canton_data <- 
+canton_data %>% 
+  replace_with_na_all(condition = ~.x == "*") 
+
+canton_data[3:9] <- sapply(canton_data[3:9], as.numeric)
+
+canton_data %>% 
+  ggplot()+
+  aes(x = avg_netinc_percap, y = greens, label = canton)+
+  geom_text()+
+  theme_bw()
+
+canton_data %>% 
+  ggplot()+
+  aes(x = unemployment_rate, y = plr, label = canton, size = avg_netinc_percap)+
+  geom_point()+
+  geom_text_repel()+
+  theme_bw()
+```
+
 
 The first option is a lot more convenient than the multilevel model, because it is a lot faster to run in R, especially when control variables are added in the model. However, multilevel model is more appropriated and gives more robust results and better inference. Since it would be also interesting to compare the results between the two options, both repeated cross-sectional and multilevel regressions will be run here.
 
