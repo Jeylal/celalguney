@@ -25,7 +25,7 @@ about:
 
 My name is Celâl and I am a master student in the Political Economy of Capitalism at the University of Geneva. You can have a look to my [CV](https://jeylal.github.io/celalguney/CV.html) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests.
 
-My current project at the moment is my master thesis, which will be about the political economy of political cleavages in Switzerland. You can have a look to the first draft of my master thesis proposal [here](Social-Blocs,-Political-Cleavages-and-Institutional-Change-in-Switzerland-1.pdf), which will be subject to frequent improvements.
+My current project at the moment is my master thesis, which is about the socio-economic determinants behind the evolution of social blocs and capitalism in Switzerland. You can have a look to the progress of my master thesis [here](Social-Blocs,-Political-Cleavages-and-Institutional-Change-in-Switzerland-1.pdf).
 
 ## Education
 
@@ -42,6 +42,7 @@ My current project at the moment is my master thesis, which will be about the po
 - Political economy and comparative capitalism
 - Economic history | history of economic thought 
 - Data science | statistics & econometrics | history of economic methods and measures
+- Demography
 
 #### ![caption](translate.svg) Languages
 
