@@ -9,13 +9,14 @@
 <link>https://jeylal.github.io/celalguney/economics.html</link>
 <atom:link href="https://jeylal.github.io/celalguney/economics.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.3.353</generator>
+<generator>quarto-1.4.549</generator>
 <lastBuildDate>Fri, 28 Jul 2023 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Neo-Kaleckian Models</title>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/economics_series/neo-kaleckian models/neo-kaleckian models.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -108,6 +109,7 @@
 
 
 
+
 <section id="neo-keynesian-models" class="level1">
 <h1>Neo-keynesian models</h1>
 <p>What follows is extensively based on the third chapter of Heterodox Macroeconomics: Models of of Demand, Distribution and Growth (2019) by Robert A. Blecker and Mark Setterfield.</p>
@@ -185,8 +187,8 @@
 <p><img src="https://latex.codecogs.com/png.latex?y_t%20%3C%20y%5Ee_t%20%5CRightarrow%20y%5Ee_%7Bt+1%7D%20%3Cy%5Ee_t"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/harrod1.jpg" class="img-fluid figure-img" width="376"></p>
-<figcaption class="figure-caption">Instability of the Warranted rate of Growth</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/harrod1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="376"></p>
+<figcaption>Instability of the Warranted rate of Growth</figcaption>
 </figure>
 </div>
 <p>The graph above shows that any deviation from the equilibrium point, at which <img src="https://latex.codecogs.com/png.latex?y_w%20=%20y%20=%20y%5Ee"> will lead either to permanent boom or bust. Note that the second Harrod problem depends on how expectations are revised: here we consider expectations as adaptive: expectations will be based on what happened at the previous period.</p>
@@ -251,8 +253,8 @@
 <p><img src="https://latex.codecogs.com/png.latex?g"> being investment. This function is assumed to have positive but diminishing marginal impact of expected profits on desired investment (<img src="https://latex.codecogs.com/png.latex?f'%3E0,%20f''%3C0">).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/robinson.jpg" class="img-fluid figure-img" width="398"></p>
-<figcaption class="figure-caption">Robinson “banana diagram”</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/robinson.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="398"></p>
+<figcaption>Robinson “banana diagram”</figcaption>
 </figure>
 </div>
 <p>Point A on the graph above is a stable equilibrium whereas point B is an unstable one. The graph has to be read as follows: at <img src="https://latex.codecogs.com/png.latex?r_0"> the saving rate is smaller than the (desired) growth rate <img src="https://latex.codecogs.com/png.latex?g_0">. At <img src="https://latex.codecogs.com/png.latex?g_0">, the corresponding profit rate is <img src="https://latex.codecogs.com/png.latex?r_1">, which is above the profit rate related to actual saving rate (<img src="https://latex.codecogs.com/png.latex?r_0">). Firms have thus invested in way that will make profits rise and they will thus revise their profits expectations upwards: at <img src="https://latex.codecogs.com/png.latex?r_1"> they will invest at a level slighlty above <img src="https://latex.codecogs.com/png.latex?g_0">, which will again push up the profit rate until point A, at which <img src="https://latex.codecogs.com/png.latex?g=%5Csigma"> is reached.</p>
@@ -265,8 +267,8 @@
 <p>With the same saving function <img src="https://latex.codecogs.com/png.latex?%5Csigma%20=%20s_rr"> and the inverse profit-wage relationship <img src="https://latex.codecogs.com/png.latex?w%20=%5Cfrac%7B1-a_1%20r%7D%7Ba_0%7D"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson.jpg" class="img-fluid figure-img" width="520"></p>
-<figcaption class="figure-caption">Neo-robinsonian model</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="520"></p>
+<figcaption>Neo-robinsonian model</figcaption>
 </figure>
 </div>
 <p>To find the equilibrium levels of growth, profit and wage rates, we set investment equals to savings <img src="https://latex.codecogs.com/png.latex?%5Csigma%20=%20g"> and solve for:</p>
@@ -279,8 +281,8 @@
 <p>In this model, an increase in the propensity to save leads to lower equilibrium level of growth and profit rates and a higher equilibrium real wage. The mechanism is that an increase in the propensity to save, with an unchanged desired investment curve (which means that saving propensity increases without changing firms’ willingness to invest), reduces aggregate demand through a reduction in consumption demand. With falling demand, profits realized from actual investment expenditures also fall.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson2.jpg" class="img-fluid figure-img" width="529"></p>
-<figcaption class="figure-caption">Effect of an increase in saving propensity</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson2.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="529"></p>
+<figcaption>Effect of an increase in saving propensity</figcaption>
 </figure>
 </div>
 <p>Graphically, the saving curve rotates down to the right. Why does the real wage increase? Recall that in this model, nominal wage is fixed. A change in real wage must then come from a change in the price level. In the case of higher propensity to save, the latter has depressed aggregate demand and growth, which reduces the price level <img src="https://latex.codecogs.com/png.latex?%5Csearrow%20P">.</p>
@@ -314,8 +316,8 @@
 <p><img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BW%7D%20=%20%5Cwidehat%7BP%7D"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/marglinsynthesis.jpg" class="img-fluid figure-img" width="577"></p>
-<figcaption class="figure-caption">Marglin’s Classical-Marxian - NeoRobinsonian synthesis</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/marglinsynthesis.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="577"></p>
+<figcaption>Marglin’s Classical-Marxian - NeoRobinsonian synthesis</figcaption>
 </figure>
 </div>
 <p>At this equilibrium, the real wage <img src="https://latex.codecogs.com/png.latex?W/P"> is constant. The other variables behave as such:</p>
@@ -345,6 +347,7 @@
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/economics_series/classical-marxian model/classical-marxian model.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -511,7 +514,11 @@ font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"real wage"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/classical-marxian-model_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/classical-marxian-model_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This equation also implies an inverse relationship between consumption and growth</p>
@@ -579,8 +586,8 @@ font-style: inherit;">"real wage"</span>)</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="first-and-second-closures">First and second closures</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_1.jpg" class="img-fluid figure-img" width="491"></p>
-<figcaption class="figure-caption">The model under first and second closures (exogenous real wage or wage share),Blecker and Setterfield (2019, 69)</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="491"></p>
+<figcaption>The model under first and second closures (exogenous real wage or wage share),Blecker and Setterfield (2019, 69)</figcaption>
 </figure>
 </div>
 </section>
@@ -588,8 +595,8 @@ font-style: inherit;">"real wage"</span>)</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="third-closure">Third closure</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_3.jpg" class="img-fluid figure-img" width="448"></p>
-<figcaption class="figure-caption">Third closure: constant of full employment rate, Blecker and Stterfield (2019, 72)</figcaption>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="448"></p>
+<figcaption>Third closure: constant of full employment rate, Blecker and Stterfield (2019, 72)</figcaption>
 </figure>
 </div>
 <p>Since the fourth closure is in my opinion not really important, I will mostly focus now of those closures above.</p>
@@ -667,6 +674,7 @@ font-style: inherit;">"real wage"</span>)</span></code></pre></div>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/economics_series/is-lm model/is-lm model.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -893,7 +901,11 @@ font-style: inherit;">"last"</span>))</span>
 <span id="cb2-10"></span>
 <span id="cb2-11">isplot</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/is-lm model/is-lm-model_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/is-lm model/is-lm-model_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 
@@ -913,6 +925,7 @@ font-style: inherit;">"last"</span>))</span>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -978,7 +991,11 @@ font-style: inherit;">"l"</span>)</span>
 <p>If we fix the amount of capital to any value, 10 and 25 for instance, we can plot the marginal productivity of labour to better illustrate the principle of diminishing marginal returns:</p>
 <div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-6_cf9f830df936f0a3a7ad0f4bef2d2da6">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <ol start="3" type="1">
@@ -1015,7 +1032,11 @@ font-style: inherit;">"l"</span>)</span>
 <p><img src="https://latex.codecogs.com/png.latex?K%20=%20%5Cfrac%7BY%5E%7B2%7D%7D%7BL%7D"></p>
 <div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-8_8890e8a444db29a04e905ef86cb24b16">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>As in consumer theory, firms cannot choose any combination of capital and labour they want because, as consumers face a budget constraint, firms also face a constraint: their total cost. The isocost line, which shows all possible combinations of labour and capital that the firm can purchase with its current budget, hence total cost. Isocost is for the firm what the budget constraint line is to consumers.</p>
@@ -1042,13 +1063,21 @@ font-style: inherit;">*</span>l</span></code></pre></div>
 </div>
 <div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-10_028f8857913575bfbcfa2057ecfcf264">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The steps to derive the optimal choice of output, capital and labor is the same than for consumer theory: here the slope of the isoquant is called the marginal rate of technical substitution (MRTS). Setting the latter equal to the slope of the isocost, which is w/r (1 in our example) and solving for K, Y and L. In our example, the equilibrium level of output is 14.14, with K = 20 and L = 10.</p>
 <div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-11_1c4066463c3840cf45332d578a424d9f">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1094,7 +1123,11 @@ font-style: inherit;">*</span>l</span></code></pre></div>
 <p>Graphically, the profit equation has a negative-concave shape, and optimal level of output is set where profits are at their maximum:</p>
 <div class="cell" data-hash="mainstream_production_theory_cache/html/unnamed-chunk-13_6d37d789124db9761ef36ee9a440330b">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/production theory/mainstream_production_theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1118,6 +1151,7 @@ font-style: inherit;">*</span>l</span></code></pre></div>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer theory.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -1161,7 +1195,11 @@ font-style: inherit;">*</span>p</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>To find the equilibrium price and quantity, we equate the demand and supply functions and solve for q:</p>
@@ -1197,7 +1235,11 @@ $y
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>But how did neoclassical theory arrive to this kind of model of equilibrium price and quantity determination? To understand better this model, we need to know why we have this positive supply curve and this negative demand curve. We will first investigate consumer choice theory, which is behind the negative demand curve, and then production-side theory, which is behind the positive supply curve</p>
@@ -1222,7 +1264,11 @@ $y
 <p>Consumer theory then illustrates any choice between two goods with the help of the famous indifference curves , which show the relation between the demand for one good against the demand for another good (for example food and clothes, cars and bikes…). Indifference curves are based on <strong>utility functions</strong> whose really important property and assumption is the decreasing marginal utility principle. Decreasing marginal utility means that for every one additional unit of a given good a consumer get, the utility for this consumer increases less than the previous additional unit. Let’s say, for instance, that you don’t have food at the moment and you are hungry: if i give you one apple, you will be a lot better off and your utility will increase a lot when I give you this one apple. Then, if I give you another apple, your utility will still increase, but by less than when I gave you the first apple. Finally, after I give you an additional apple for the fifteenth time, your additional utility will still be positive, but by far more less than when I gave you the first apple.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Decreasing marginal utility is an important assumption which explains the shape of the indifference curves. The latter, if the two goods are substitutes (but not perfect substitute) and not perfect complements, are convex-shaped. If, for instance, we consider an indifference curve for the choice between units of apples and bikes, the line of the indifference curve represents all the possible combination of the two goods which give the same utility for the consumer.</p>
@@ -1240,7 +1286,11 @@ $y
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1271,7 +1321,11 @@ font-style: inherit;">*</span>x</span></code></pre></div>
 <p>Now we can plot both the indifference curves and the budget constraint:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The budget line represents all the combination of apples and watches that the consumer can afford with his income. This implies that is final choice has to be on this line. The consumer cannot afford to be on the U = 90 indifference curve because its income is not large enough. Also, he will not choose any point on U = 10 because the latter’s majority of point are on the left of the budget line (the assumption of more is better than less would not be respected if the consumer for instance chooses 1 watch and 50 apples, because he can afford more of the two goods).</p>
@@ -1367,7 +1421,11 @@ font-style: inherit;">utility_u</span>(optimal_x, optimal_y)</span>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1380,7 +1438,11 @@ font-style: inherit;">utility_u</span>(optimal_x, optimal_y)</span>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A600%20=%204*apple%20+%20400watch%0A%5C%5C%0A4apple%20=%20600-400watch%0A%5C%5C%0Aapple%20=%20150%20-%20100watch%0A%5Cend%7Baligned%7D%0A"></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/consumer-theory_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>At the new equilibrium level, utility has decreased to 9, apple consumption remains unchanged and the quantity of watches has decreased to one. Note that there are two important mechanisms behind the graph above:</p>
@@ -1400,7 +1462,7 @@ font-style: inherit;">utility_u</span>(optimal_x, optimal_y)</span>
 <p>The table below is a good summary of how income and substitution effect:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://analystnotes.com/cfa-study-notes-compare-substitution-and-income-effects-and-distinguish-between-normal-goods-and-inferior-goods.html"><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/income_substitution.png" class="img-fluid figure-img"></a></p>
+<p><a href="https://analystnotes.com/cfa-study-notes-compare-substitution-and-income-effects-and-distinguish-between-normal-goods-and-inferior-goods.html"><img src="https://jeylal.github.io/celalguney/economics_series/consumer theory/income_substitution.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <p>This is how microeconomics derive the demand curve. We will see below that the supply curve is also derived with the same logic, the steps being almost the same as we saw here, but by replacing the utility function with a production function and replacing the two goods by capital and labour, which are the factors of production of any firm.</p>

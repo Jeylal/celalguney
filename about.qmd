@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: portrait_cv.PNG
+image: profilphoto.JPEG
 about:
   template: jolla
   links:
