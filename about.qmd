@@ -23,9 +23,8 @@ about:
 
 # Welcome !
 
-My name is Celâl and I am a master student in the Political Economy of Capitalism at the University of Geneva. You can have a look to my [CV](https://jeylal.github.io/celalguney/CV.html) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests.
+My name is Celâl and I am a master's student in the Political Economy of Capitalism at the University of Geneva. I specialize in macroeconomics, post-Keynesian economics and in data science. I am also interested in econometrics, economic history, the history of economic ideas and theories and in programming, especially with R. My master's studies are coming to an end this June, when I will defend my [master thesis](Social-Blocs,-Institutional-Change-and-Social-Conflict-in-Switzerland.pdf), which is about institutional change in Switzerland. I am currently looking for an internship, a Phd position or a job linked to my studies and interests, so don't hesitate to have a look to my [CV](https://jeylal.github.io/celalguney/CV.html) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests.
 
-My current project at the moment is my master thesis, which is about the socio-economic determinants behind the evolution of social blocs and capitalism in Switzerland. You can have a look to the progress of my master thesis [here](Social-Blocs,-Political-Cleavages-and-Institutional-Change-in-Switzerland-1.pdf).
 
 ## Education
 
@@ -33,7 +32,7 @@ My current project at the moment is my master thesis, which is about the socio-e
 
 ![Caption](mortarboard-fill.svg)   Complementary Certificate in Applied Statistics \| University of Geneva (GSEM) \| 2021-2022
 
-![Caption](mortarboard-fill.svg)  Master in The Political Economy of Capitalism \| University of Geneva \| 2022 -
+![Caption](mortarboard-fill.svg)  Master in The Political Economy of Capitalism \| University of Geneva \| 2022 - 2024
 
 #### Interests
 
