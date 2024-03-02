@@ -4,6 +4,6 @@ format: html
 editor: visual
 ---
 
-<iframe width="100%" height="800" src="cgcv.pdf">
+<iframe width="100%" height="800" src="CV.pdf">
 
 </iframe>
