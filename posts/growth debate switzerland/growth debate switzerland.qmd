@@ -5,15 +5,15 @@ format: html
 editor: visual
 execute: 
   freeze: true
-date: "8 mai 2024"
+date: "8 may 2024"
 categories: [Economics]
 draft: false
 bibliography: references.bib
 ---
 
-In the last years, recurring debates are emerging in Switzerland regarding the future of the country's socio-economic model, showing a rising concern by the Swiss elites for their country's economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper *Neue Zürcher Zeitung*. This article, written by Thomas Fuster and entitled *"Immigration: The Swiss economy is primarily growing extensively"* argued that the Swiss economy is solely growing "extensively", that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP), is still growing due to immigration, GDP per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank *Avenir Suisse* and the business interest association *EconomieSuisse*, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland's economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.
+In the last years, recurring debates are emerging in Switzerland regarding the future of the country's socio-economic model, showing a rising concern by the Swiss elites for their country's economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper *Neue Zürcher Zeitung*. This article, written by Thomas Fuster and entitled *"Immigration: The Swiss economy is primarily growing extensively"* argued that the Swiss economy is solely growing "extensively", that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP), is still growing due to immigration, gdp per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank *Avenir Suisse* and the business interest association *EconomieSuisse*, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland's economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.
 
-[EconomieSuisse's argument and empirical evidence](https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative) [@minsch_croissance_2023] are first based on a graph showing the evolution of Switzerland's real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse's figure. First, the choice of the countries which are compared to Switzerland biases overstates the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is argued by EconomieSuisse
+[EconomieSuisse's argument and empirical evidence](https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative) [@minsch_croissance_2023] are first based on a graph showing the evolution of Switzerland's real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse's figure. First, the choice of the countries which are compared to Switzerland biases the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is shown by EconomieSuisse.
 
 ```{r set up}
 #| message: false
@@ -46,8 +46,6 @@ wageshare_ameco2 <-
 nationalincome_wid <- read_csv("nationalincome_wid.csv")
 
 ```
-
-
 
 ```{r gdp cap plot}
 #| message: false
@@ -121,9 +119,11 @@ wid_gdpcountries %>%
 ggplotly(gdpcapplot)
 ```
 
-@fig-gdpcap shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland' gdp per capita was indeed well in advanced over other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway. It is interesting to note that Norway is not taken into account in EconomieSuisse's empirical evidence, and this shows that EconomieSuisse has carefully chosen the countries to compare with Switzerland. Norway's growth has been impressive since the 90s, and the country would have surpassed Switzerland already shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.
+@fig-gdpcap shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland's gdp per capita was indeed well in advance compared to other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway. It is interesting to note that Norway is not taken into account in EconomieSuisse's article, and this shows that the lobby has carefully chosen the countries for the comparison. Norway's growth has been impressive since the 90s, and the country would have surpassed Switzerland shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.
 
-Another issue of the debate about Switzerland's economic growth is the excessive focus on GDP as an indicator of a country's economic wealth and performance. In that matter, other indicators such as national income[^nationalincome] also deserves close attention.
+Another issue of the debate about Switzerland's economic growth is the excessive focus on GDP as an indicator of a country's economic wealth and performance. In that matter, other indicators such as national income[^1] also deserves close attention.
+
+[^1]: National income is defined as GDP minus depreciation of capital and plus net foreign income earned by residents in the rest of the world.
 
 ```{r national income plot}
 #| echo: false
@@ -135,12 +135,10 @@ Another issue of the debate about Switzerland's economic growth is the excessive
 ggplotly(natinc_plot)
 ```
 
-
-[^nationalincome]: National income is defined as GDP minus depreciation of capital and plus net foreign income earned by residents in the rest of the world.
-
 @fig-nationalincome puts even more into question the discourse elaborated by EconomieSuisse. In terms of average national income, Switzerland has been caught up and surpassed Norway and the United States since the 2008 crisis. Other countries such as Denmark are also getting closer to Switzerland.
 
-How can we better grasp the relative economic slow-down of Switzerland ? An important issue is that of the so-called "secular stagnation" phenomena that is observed in developed countries since the Great Recession. When we look at the average rate of growth of real GDP and national income per capita over 10 years with a moving window, we can have a better overview of the evolution of the Switzerland's economic growth.
+How can we better grasp the relative economic slow-down of Switzerland ? An important issue is that of the so-called "secular stagnation" observed in developed countries since the Great Recession. 
+
 
 
 ```{r gdp and natinc plot}
@@ -215,4 +213,60 @@ rolltable %>%
   geom_hline(data = data_hline, aes(yintercept = coef, color = variable))+
   theme(legend.position = "none")+
   labs(x = "", y = "")
+```
+
+@fig-roll shows an estimated growth trend of the Swiss real gdp and national income per capita over the period 1950-2022. The overall rates of growth are respectively `{r} coef(lmavg_gdpcap)[2]*100`% for gdp and `{r} coef(lmavgch)[2]*100`% for national income. We can see that the Swiss economy was growing at a rate higher than its overall average until the 70s. Since the 70s, the rate of growth of the Swiss economy follows a downwards trend.
+
+
+```{r productivity}
+#| echo: false
+#| message: false
+#| warning: false
+#| include: false
+
+productivityUCL_oecd <- read_csv("productivityUCL_oecd.csv")
+realwage1939_2023 <- read_excel("realwage1939_2023.xlsx")
+
+
+productivityUCL_oecd %>% 
+  filter(Subject %in% c("GDP per hour worked, constant prices") & Measure %in% c("Index") & Country %in% c("Switzerland", "France")) %>% 
+  ggplot()+
+  aes(x = Time, y = Value, color = Country)+
+  geom_line()
+
+
+productivitych <- 
+  productivityUCL_oecd %>% 
+  filter(Subject %in% c("GDP per hour worked, constant prices") & Measure %in% c("Index") & Country %in% c("Switzerland"))
+
+realwage1939_2023$year <- as.numeric(realwage1939_2023$year)
+
+
+ciseau <- 
+  realwage1939_2023 %>% 
+  left_join(productivitych, by = c("year" = "Time")) %>% 
+  mutate(prodbase = Value/Value[year == 1970],
+         realwagebase = `real wage`/`real wage`[year == 1970])
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| include: false
+
+ciseau %>% 
+  ggplot()+
+  aes(x = year, y = `real wage`)+
+  geom_line()+
+  scale_y_continuous(position = "right")
+
+ciseau %>% 
+  ggplot()+
+  aes(x = year, y = prodbase)+
+  geom_line()+
+  geom_line(aes(y = realwagebase), color = "red")+
+  xlim(1970, 2022)
+
 ```

@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Celâl Güney">
+<meta name="dcterms.date" content="2024-05-08">
 
 <title>Celâl Güney - Economic stagnation in Switzerland: discussion of a growing debate</title>
 <style>
@@ -20,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -188,7 +223,7 @@ div.csl-indent {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">Invalid Date</p>
+        <p class="date">May 8, 2024</p>
       </div>
     </div>
     
@@ -207,8 +242,8 @@ div.csl-indent {
 
 
 
-<p>In the last years, recurring debates are emerging in Switzerland regarding the future of the country’s socio-economic model, showing a rising concern by the Swiss elites for their country’s economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper <em>Neue Zürcher Zeitung</em>. This article, written by Thomas Fuster and entitled <em>“Immigration: The Swiss economy is primarily growing extensively”</em> argued that the Swiss economy is solely growing “extensively”, that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP), is still growing due to immigration, GDP per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank <em>Avenir Suisse</em> and the business interest association <em>EconomieSuisse</em>, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland’s economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.</p>
-<p><a href="https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative">EconomieSuisse’s argument and empirical evidence</a> <span class="citation" data-cites="minsch_croissance_2023">(<a href="#ref-minsch_croissance_2023" role="doc-biblioref">Minsch 2023</a>)</span> are first based on a graph showing the evolution of Switzerland’s real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse’s figure. First, the choice of the countries which are compared to Switzerland biases overstates the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is argued by EconomieSuisse</p>
+<p>In the last years, recurring debates are emerging in Switzerland regarding the future of the country’s socio-economic model, showing a rising concern by the Swiss elites for their country’s economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper <em>Neue Zürcher Zeitung</em>. This article, written by Thomas Fuster and entitled <em>“Immigration: The Swiss economy is primarily growing extensively”</em> argued that the Swiss economy is solely growing “extensively”, that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP), is still growing due to immigration, gdp per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank <em>Avenir Suisse</em> and the business interest association <em>EconomieSuisse</em>, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland’s economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.</p>
+<p><a href="https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative">EconomieSuisse’s argument and empirical evidence</a> <span class="citation" data-cites="minsch_croissance_2023">(<a href="#ref-minsch_croissance_2023" role="doc-biblioref">Minsch 2023</a>)</span> are first based on a graph showing the evolution of Switzerland’s real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse’s figure. First, the choice of the countries which are compared to Switzerland biases the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is shown by EconomieSuisse.</p>
 <div class="cell">
 <div id="fig-gdpcap" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -222,7 +257,7 @@ Figure&nbsp;1: Real GDP per capita growth in Switzerland in international compar
 </figure>
 </div>
 </div>
-<p><a href="#fig-gdpcap" class="quarto-xref">Figure&nbsp;1</a> shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland’ gdp per capita was indeed well in advanced over other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway. It is interesting to note that Norway is not taken into account in EconomieSuisse’s empirical evidence, and this shows that EconomieSuisse has carefully chosen the countries to compare with Switzerland. Norway’s growth has been impressive since the 90s, and the country would have surpassed Switzerland already shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.</p>
+<p><a href="#fig-gdpcap" class="quarto-xref">Figure&nbsp;1</a> shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland’s gdp per capita was indeed well in advance compared to other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway. It is interesting to note that Norway is not taken into account in EconomieSuisse’s article, and this shows that the lobby has carefully chosen the countries for the comparison. Norway’s growth has been impressive since the 90s, and the country would have surpassed Switzerland shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.</p>
 <p>Another issue of the debate about Switzerland’s economic growth is the excessive focus on GDP as an indicator of a country’s economic wealth and performance. In that matter, other indicators such as national income<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> also deserves close attention.</p>
 <div class="cell">
 <div id="fig-nationalincome" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
@@ -238,7 +273,7 @@ Figure&nbsp;2: Real net national income per capita in Switzerland and other West
 </div>
 </div>
 <p><a href="#fig-nationalincome" class="quarto-xref">Figure&nbsp;2</a> puts even more into question the discourse elaborated by EconomieSuisse. In terms of average national income, Switzerland has been caught up and surpassed Norway and the United States since the 2008 crisis. Other countries such as Denmark are also getting closer to Switzerland.</p>
-<p>How can we better grasp the relative economic slow-down of Switzerland ? An important issue is that of the so-called “secular stagnation” phenomena that is observed in developed countries since the Great Recession. When we look at the average rate of growth of real GDP and national income per capita over 10 years with a moving window, we can have a better overview of the evolution of the Switzerland’s economic growth.</p>
+<p>How can we better grasp the relative economic slow-down of Switzerland ? An important issue is that of the so-called “secular stagnation” observed in developed countries since the Great Recession.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-roll" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -249,6 +284,48 @@ Figure&nbsp;2: Real net national income per capita in Switzerland and other West
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Swiss GDP and national income per capita, estimated growth trend with a rolling ten-years window. 95% confidence intervals. The horizontal lines represent the average rate of growth over the whole period. Data source: WID.
 </figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-roll" class="quarto-xref">Figure&nbsp;3</a> shows an estimated growth trend of the Swiss real gdp and national income per capita over the period 1950-2022. The overall rates of growth are respectively 1.2380011% for gdp and 1.1079029% for national income. We can see that the Swiss economy was growing at a rate higher than its overall average between 1950 and the 1970s.</p>
+<p>What about productivity ?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="growth-debate-switzerland_files/figure-html/productivity-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ciseau <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> <span class="st">`</span><span class="at">real wage</span><span class="st">`</span>)<span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="growth-debate-switzerland_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ciseau <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> prodbase)<span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> realwagebase), <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">1970</span>, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 29 rows containing missing values (`geom_line()`).
+Removed 29 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="growth-debate-switzerland_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
