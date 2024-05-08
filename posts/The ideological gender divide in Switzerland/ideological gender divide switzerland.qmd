@@ -1,0 +1,161 @@
+---
+title: "The ideological gender divide in Switzerland"
+author: "Celâl Güney"
+format: html
+editor: visual
+draft: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(haven)
+library(tidyverse)
+library(sjPlot)
+library(sjlabelled)
+library(marginaleffects)
+selectscum <- read_sav("C:/Users/celal/OneDrive/Bureau/celalguney/posts/The ideological gender divide in Switzerland/swissubase_495_6_0(2)/selectscum.sav")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+selectscum <- 
+  selectscum %>% 
+  mutate(
+    ideology = case_when(
+      lr1 %>% between(0, 4.99) ~ "Left",
+      lr1 %>% between(5.1, 10) ~ "Right"
+      
+    ),
+    
+    left = if_else(lr1 %>% between(0, 4.99), 1,
+                   if_else(is.na(lr1), NA, 0)),
+    right = if_else(lr1 %>% between(5.1, 10), 1,
+                   if_else(is.na(lr1), NA, 0)),
+    year_cat = case_when(
+      year %in% c(1971, 1975, 1979) ~ "1970s",
+      year %in% c(1987) ~ "1980s",
+      year %in% c(1991, 1995, 1999) ~ "1990s",
+      year %in% c(2003, 2007) ~ "2000s",
+      year %in% c(2011, 2015, 2019) ~ "2010s"
+    )
+  )
+
+table2 <- 
+selectscum %>% 
+  filter(age %>% between(18, 29)) %>% 
+  group_by(year, sex) %>% 
+  count(ideology) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup()
+
+table2diff <- 
+  table2 %>% 
+  group_by(year, sex) %>% 
+  summarise(
+    diff = diff(prop)
+  ) %>% 
+  ungroup()
+
+table2diff <- 
+table2 %>% 
+  group_by(year, sex) %>% 
+  summarise(across(ideology), diff(prop)) %>% 
+  ungroup()
+
+
+
+  
+
+tableleft <- 
+selectscum %>% 
+  filter(age %>% between(18, 29)) %>% 
+  group_by(sex, year) %>% 
+  count(left) %>% 
+  drop_na() %>% 
+  mutate(propleft = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(left == 1)
+
+tableright <- 
+  selectscum %>% 
+  filter(age %>% between(18, 29)) %>% 
+  group_by(sex, year) %>% 
+  count(right) %>% 
+  drop_na() %>% 
+  mutate(propright = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(right == 1) %>% 
+  select(right, propright)
+
+table <- cbind(tableleft, tableright)
+
+table <- 
+  table %>% 
+  mutate(diff = propleft - propright)
+
+selectsfiltered <- 
+  selectscum %>% 
+  filter(age %>% between(0,29))
+summary(ideololm <- lm(data = selectsfiltered,
+           left ~ year_cat*factor(sex)))
+
+summary(ideololmright <- lm(data = selectsfiltered, 
+                            right ~ year_cat*factor(sex)))
+
+library(marginaleffects)
+  
+
+effects <- 
+  ideololm %>% 
+  avg_comparisons(variables = c("sex"), by = "year_cat") %>% 
+  mutate(variable = "Left")
+
+effectsright <- 
+  ideololmright %>% 
+  avg_comparisons(variables = c("sex"), by = "year_cat") %>% 
+  mutate(variable = "Right")
+
+effectstotal <- rbind(effects, effectsright)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+table2diff %>% 
+  ggplot()+
+  aes(x = year, y = `diff(prop)`, color = as_character(sex))+
+  geom_line()+
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(title = "Political ideology of 18-29s in Switzerland",
+       subtitle = "% of respondents leaning to the right minus % of respondents leaning to the left by gender",
+       caption = "Data source: Selects",
+       x = "", y = "Left-Right")+
+  theme_minimal()+
+  geom_hline(yintercept = 0)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+effects %>% 
+  ggplot()+
+  aes(x = year_cat, y = estimate)+
+  geom_point()+
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  geom_hline(yintercept = 0)
+
+effectstotal %>% 
+  ggplot()+
+  aes(x = year_cat, y = estimate, color = variable)+
+  geom_point()+
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  geom_hline(yintercept = 0)
+```
+

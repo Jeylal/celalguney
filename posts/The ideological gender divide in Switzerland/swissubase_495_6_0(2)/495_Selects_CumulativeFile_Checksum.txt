@@ -1,0 +1,18 @@
+
+---------------CHECKSUM-----------------------
+
+495_Selects_CumulativeFile_Data_1971-2019_v2.3.0.sav (SHA-1):
+
+0F24B43B90AC5AC3AFBAD50215AC25EA9666530E
+
+
+495_Selects_CumulativeFile_Data_1971-2019_v2.3.0.dta (SHA-1):
+
+07C8028264795EC2CFA6826ED293E8A4AB01C0EE
+
+
+-----------------INFOS-------------------------
+
+Checksum allows you to verify the integrity of a data file using a specific tool, 
+for example MD5 & SHA-1 Checksum Utility, which is available for free download on 
+several websites. 

@@ -1,0 +1,218 @@
+---
+title: "Economic stagnation in Switzerland: discussion of a growing debate"
+author: "Celâl Güney"
+format: html
+editor: visual
+execute: 
+  freeze: true
+date: "8 mai 2024"
+categories: [Economics]
+draft: false
+bibliography: references.bib
+---
+
+In the last years, recurring debates are emerging in Switzerland regarding the future of the country's socio-economic model, showing a rising concern by the Swiss elites for their country's economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper *Neue Zürcher Zeitung*. This article, written by Thomas Fuster and entitled *"Immigration: The Swiss economy is primarily growing extensively"* argued that the Swiss economy is solely growing "extensively", that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP), is still growing due to immigration, GDP per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank *Avenir Suisse* and the business interest association *EconomieSuisse*, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland's economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.
+
+[EconomieSuisse's argument and empirical evidence](https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative) [@minsch_croissance_2023] are first based on a graph showing the evolution of Switzerland's real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse's figure. First, the choice of the countries which are compared to Switzerland biases overstates the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is argued by EconomieSuisse
+
+```{r set up}
+#| message: false
+#| warning: false
+#| echo: false
+
+# import ameco data downloaded from dbnomics: https://db.nomics.world/AMECO/ALCD0?dimensions=%7B%22geo%22%3A%5B%22che%22%2C%22fra%22%2C%22deu%22%2C%22usa%22%2C%22aut%22%2C%22bel%22%2C%22ea20%22%2C%22jpn%22%2C%22swe%22%5D%7D&q=wage%20share 
+
+# import excel file and recode into long format csv
+
+rm(list = ls())
+library(tidyverse)
+library(readxl)
+library(rdbnomics)
+library(rollRegres)
+library(roll)
+wid_gdpcountries <- read_delim("wid_gdpcountries.csv", 
+    delim = ";", escape_double = FALSE, trim_ws = TRUE)
+wageshare_ameco <- read_excel("wageshare_ameco.xlsx", 
+    col_types = c("text", "numeric", "numeric", 
+        "numeric", "numeric", "numeric", 
+        "numeric", "numeric", "numeric", 
+        "numeric"))
+
+wageshare_ameco2 <- 
+  wageshare_ameco %>% 
+  pivot_longer(names_to = "country", values_to = "wage_share", cols = 2:10)
+
+
+nationalincome_wid <- read_csv("nationalincome_wid.csv")
+
+```
+
+
+
+```{r gdp cap plot}
+#| message: false
+#| warning: false
+#| echo: false
+#| label: fig-gdpcap
+#| fig-cap: "Real GDP per capita growth in Switzerland in international comparison. Constant 2022 euros at ppp. Data source: World Inequality Database (WID)."
+library(gghighlight)
+library(ggrepel)
+library(plotly)
+library(viridis)
+
+gdpcapplot <- 
+wid_gdpcountries %>% 
+  filter(category %in% c("agdpro") & country != "Luxembourg") %>% 
+  ggplot(aes(x = year, y = log(value), group = country))+
+  geom_line(color = "grey75")+
+  geom_line(data = wid_gdpcountries %>% filter(category %in% c("agdpro") & country %in% c("Suisse", "Norvège", "États-Unis")), aes(color = country))+
+  geom_text_repel(
+    data = wid_gdpcountries %>% filter(category %in% c("agdpro") & country %in%               c("Suisse", "Norvège", "États-Unis") & year == last(year)),
+    aes(label = c("Norway", "Switzerland", "USA"), color = country),
+    fontface = "bold",
+    size = 3.5,   
+    direction = "y",
+    xlim = c(2050, NA),
+    hjust = 0,
+    segment.size = .7,
+    segment.alpha = .5,
+    segment.linetype = "dotted",
+    box.padding = .4,
+    segment.curvature = -0.1,
+    segment.ncp = 3,
+    segment.angle = 20
+  )+
+  theme_minimal()+
+  scale_colour_manual(values = c("darkblue", "darkred", "red"))+
+  theme(
+        plot.margin = margin(0.1,2.6,0.1,0.1, "cm"))+
+  coord_cartesian(clip = "off")+
+  labs(x = "", y = "Log")
+natinc_plot <- 
+wid_gdpcountries %>% 
+  filter(category %in% c("anninc") & country != "Luxembourg") %>% 
+  ggplot(aes(x = year, y = log(value), group = country))+
+  geom_line(color = "grey75")+
+  geom_line(data = wid_gdpcountries %>% filter(category %in% c("anninc") & country %in% c("Suisse", "Norvège", "États-Unis")), aes(color = country))+
+  geom_text_repel(
+    data = wid_gdpcountries %>% filter(category %in% c("anninc") & country %in%               c("Suisse", "Norvège", "États-Unis") & year == last(year)),
+    aes(label = c("Norway", "Switzerland", "USA"), color = country),
+    fontface = "bold",
+    size = 3.5,   
+    direction = "y",
+    xlim = c(2050, NA),
+    hjust = 0,
+    segment.size = .7,
+    segment.alpha = .5,
+    segment.linetype = "dotted",
+    box.padding = .4,
+    segment.curvature = -0.1,
+    segment.ncp = 3,
+    segment.angle = 20
+  )+
+  theme_minimal()+
+  scale_colour_manual(values = c("darkblue", "darkred", "red"))+
+  theme(
+        plot.margin = margin(0.1,2.6,0.1,0.1, "cm"))+
+  coord_cartesian(clip = "off")+
+  labs(x = "", y = "Log")
+
+
+ggplotly(gdpcapplot)
+```
+
+@fig-gdpcap shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland' gdp per capita was indeed well in advanced over other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway. It is interesting to note that Norway is not taken into account in EconomieSuisse's empirical evidence, and this shows that EconomieSuisse has carefully chosen the countries to compare with Switzerland. Norway's growth has been impressive since the 90s, and the country would have surpassed Switzerland already shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.
+
+Another issue of the debate about Switzerland's economic growth is the excessive focus on GDP as an indicator of a country's economic wealth and performance. In that matter, other indicators such as national income[^nationalincome] also deserves close attention.
+
+```{r national income plot}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-nationalincome
+#| fig-cap: "Real net national income per capita in Switzerland and other Western countries. Constant 2022 euros at ppp. Data source: WID."
+
+ggplotly(natinc_plot)
+```
+
+
+[^nationalincome]: National income is defined as GDP minus depreciation of capital and plus net foreign income earned by residents in the rest of the world.
+
+@fig-nationalincome puts even more into question the discourse elaborated by EconomieSuisse. In terms of average national income, Switzerland has been caught up and surpassed Norway and the United States since the 2008 crisis. Other countries such as Denmark are also getting closer to Switzerland.
+
+How can we better grasp the relative economic slow-down of Switzerland ? An important issue is that of the so-called "secular stagnation" phenomena that is observed in developed countries since the Great Recession. When we look at the average rate of growth of real GDP and national income per capita over 10 years with a moving window, we can have a better overview of the evolution of the Switzerland's economic growth.
+
+
+```{r gdp and natinc plot}
+#| message: false
+#| warning: false
+#| echo: false
+#| include: false
+nationalincome_wid %>% 
+  ggplot()+
+  aes(x = Year, y = log(gdp_cap))+
+  geom_line(aes(color = "blue"))+
+  geom_line(aes(x = Year, y = log(national_inc_pc), color = "red"))+
+  theme_minimal()+
+  scale_color_discrete(labels = c("Real GDP per capita", "National Income per capita"))+
+  theme(legend.position = "bottom")+
+  labs(title = "Economic Growth in Switzerland",
+       subtitle = "1950 - 2022",
+       x = "", y = "Log")+
+  scale_x_continuous(breaks = seq(from = 1950, to = 2022, by = 10))
+```
+
+```{r rolling window table}
+#| message: false
+#| warning: false
+#| echo: false
+
+roll_gdpcap <- roll_lm(x = nationalincome_wid$Year, y = log(nationalincome_wid$gdp_cap), width = 10)
+
+lmavg_gdpcap <- lm(data = nationalincome_wid, log(gdp_cap) ~ Year)
+
+roll_gdpcap_estimates<- tibble(beta = roll_gdpcap$coefficients[,2], st.err = roll_gdpcap$std.error[,2]) %>% 
+  mutate(year = 1950:2022) %>% 
+  drop_na() %>% 
+  mutate(conf.low = beta - 1.96*st.err,
+         conf.high = beta + 1.96*st.err, 
+         variable = "gdpcap")
+
+
+roll_natinc <- roll_lm(x = nationalincome_wid$Year, y = log(nationalincome_wid$national_inc_pc), width = 10)
+
+lmavgch <- lm(data = nationalincome_wid, log(national_inc_pc) ~ Year)
+
+roll_natinc_estimates <- tibble(beta = roll_natinc$coefficients[,2], st.err = roll_natinc$std.error[,2]) %>% 
+  mutate(year = 1950:2022) %>% 
+  drop_na() %>% 
+  mutate(conf.low = beta - 1.96*st.err,
+         conf.high = beta + 1.96*st.err,
+         variable = "natinc")
+
+
+
+rolltable <- rbind(roll_natinc_estimates, roll_gdpcap_estimates)
+```
+
+```{r rollplot}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-roll
+#| fig-cap: "Swiss GDP and national income per capita, estimated growth trend with a rolling ten-years window. 95% confidence intervals. The horizontal lines represent the average rate of growth over the whole period. Data source: WID."
+data_hline <- data.frame(coef = c(coef(lmavgch)[2], coef(lmavg_gdpcap)[2]),
+                         variable = unique(rolltable$variable))
+rolltable %>% 
+  ggplot()+
+  aes(x = year, y = beta, color = variable)+
+  geom_point()+
+  geom_line()+
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2)+
+  theme_bw()+
+  facet_wrap(~variable,
+             labeller = as_labeller(c(gdpcap = "GDP per capita", natinc = "National income per capita")))+
+  geom_hline(data = data_hline, aes(yintercept = coef, color = variable))+
+  theme(legend.position = "none")+
+  labs(x = "", y = "")
+```
