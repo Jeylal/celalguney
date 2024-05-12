@@ -8,10 +8,11 @@ execute:
 date: "8 may 2024"
 categories: [Economics]
 draft: false
+image: "fig-roll-1.png"
 bibliography: references.bib
 ---
 
-In the last years, recurring debates are emerging in Switzerland regarding the future of the country's socio-economic model, showing a rising concern by the Swiss elites for their country's economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper *Neue Zürcher Zeitung*. This article, written by Thomas Fuster and entitled *"Immigration: The Swiss economy is primarily growing extensively"* argued that the Swiss economy is solely growing "extensively", that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP), is still growing due to immigration, gdp per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank *Avenir Suisse* and the business interest association *EconomieSuisse*, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland's economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.
+In the last years, recurring debates are emerging in Switzerland regarding the future of the country's socio-economic model, showing a rising concern of the Swiss elites for their country's economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper *Neue Zürcher Zeitung*. This article, written by Thomas Fuster and entitled *"Immigration: The Swiss economy is primarily growing extensively"* argued that the Swiss economy is solely growing "extensively", that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP) indicator, is still growing due to immigration, gdp per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank *Avenir Suisse* and the business interest association *EconomieSuisse*, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland's economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.
 
 [EconomieSuisse's argument and empirical evidence](https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative) [@minsch_croissance_2023] are first based on a graph showing the evolution of Switzerland's real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse's figure. First, the choice of the countries which are compared to Switzerland biases the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is shown by EconomieSuisse.
 
@@ -119,7 +120,7 @@ wid_gdpcountries %>%
 ggplotly(gdpcapplot)
 ```
 
-@fig-gdpcap shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland's gdp per capita was indeed well in advance compared to other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway. It is interesting to note that Norway is not taken into account in EconomieSuisse's article, and this shows that the lobby has carefully chosen the countries for the comparison. Norway's growth has been impressive since the 90s, and the country would have surpassed Switzerland shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.
+@fig-gdpcap shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland's gdp per capita was indeed well in advance compared to other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway which is, interestingly, not taken into account in EconomieSuisse's article, showing that the lobby has carefully chosen the countries for the comparison. Norway's growth has been particularly impressive and the country would have surpassed Switzerland shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.
 
 Another issue of the debate about Switzerland's economic growth is the excessive focus on GDP as an indicator of a country's economic wealth and performance. In that matter, other indicators such as national income[^1] also deserves close attention.
 
@@ -137,28 +138,129 @@ ggplotly(natinc_plot)
 
 @fig-nationalincome puts even more into question the discourse elaborated by EconomieSuisse. In terms of average national income, Switzerland has been caught up and surpassed Norway and the United States since the 2008 crisis. Other countries such as Denmark are also getting closer to Switzerland.
 
-How can we better grasp the relative economic slow-down of Switzerland ? An important issue is that of the so-called "secular stagnation" observed in developed countries since the Great Recession. 
+Looking at @fig-nationalincome and @fig-gdpcap, one can identify different growth periods of the Swiss economy. The first period, ranging from 1950 to 1970, corresponds to sustained high growth of gdp and national income per capita. The compound average rates of growth were 3.2% for GDP per capita and 2.8% for national income per capita [@fig-tblgrowth]. Few studies have conducted a detailed analysis of Switzerland's growth regime during this period. Post-war studies of the so-called "Trentes Glorieuses" generally emphasized a catching-up effect, but Switzerland was not, or at least very little, impacted by the destructive consequences of WWII. Other explanations, which focused not so much on small countries like Switzerland, but on larger economies such as France and the US, explain post-WWII growth through the constitution of a new accumulation regime, the Fordist regime, based on a virtuous cycle of production and mass consumption. The institution which laid the foundations of this Fordist regime was a wage-labour nexus based on productivity gainsharing [@boyer_political_2022, p.62]. However, whether Switzerland's post-WWII growth regime was Fordist as in the US or France deserves more investigation. Switzerland is a highly decentralized country, and Fordist institutions require a certain degree of government intervention. Contrary to most Western countries during the Trentes Glorieuses, Switzerland never implemented active Keynesian macroeconomic management through fiscal and monetary policies, which remained constrained during the period. 
+
+One could argue that Switzerland's post-war regime had its own national peculiarities which helped real wages to grow with productivity and thus sustain a Fordist accumulation regime. A first characteristic is the importance of the labour collective agreements regulating industrial relations. A second factor were full-employment and the structural labour shortage which induced Switzerland to extensively rely on immigration as a reserve of labour supply. These factors surely helped Switzerland to have its own Fordist growth regime.
 
 
 
-```{r gdp and natinc plot}
+```{r table growth rates}
+#| echo: false
 #| message: false
 #| warning: false
-#| echo: false
-#| include: false
-nationalincome_wid %>% 
-  ggplot()+
-  aes(x = Year, y = log(gdp_cap))+
-  geom_line(aes(color = "blue"))+
-  geom_line(aes(x = Year, y = log(national_inc_pc), color = "red"))+
-  theme_minimal()+
-  scale_color_discrete(labels = c("Real GDP per capita", "National Income per capita"))+
-  theme(legend.position = "bottom")+
-  labs(title = "Economic Growth in Switzerland",
-       subtitle = "1950 - 2022",
-       x = "", y = "Log")+
-  scale_x_continuous(breaks = seq(from = 1950, to = 2022, by = 10))
+
+wid_gdpcountries <- 
+wid_gdpcountries %>% 
+  group_by(country, category) %>% 
+  mutate(logvalue = log(value)) %>% 
+  ungroup()
+
+tbl_growth <- 
+wid_gdpcountries %>% 
+  group_by(country, category) %>% 
+  summarise(`1950-1970` = (logvalue[year == 1970]-logvalue[year == 1950])/20,
+            `1971-1980` = (logvalue[year == 1980]-logvalue[year == 1971])/9,
+            `1981-1990` = (logvalue[year == 1990]-logvalue[year == 1981])/9,
+            `1991-2000` = (logvalue[year == 2000]-logvalue[year == 1991])/9,
+            `2001-2010` = (logvalue[year == 2010]-logvalue[year == 2001])/9,
+            `2011-2020` = (logvalue[year == 2020]-logvalue[year == 2011])/9) %>% 
+  ungroup() %>% 
+  pivot_longer(cols = c(3:8), names_to = "period", values_to = "value")
+
+
+tbl_growth$category[tbl_growth$category == 'agdpro\n'] <- 'agdpro'
+
+tbl_growth$category[tbl_growth$category == 'anninc\n'] <- 'anninc'
+
+
+  
 ```
+
+
+```{r plot table growth rates}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-tblgrowth
+#| fig-cap: "Compound growth rates over different periods. Real GDP and national income per capita. Constant 2015 euros corrected for ppp. Data source: WID"
+
+library(scales)
+library(ggrepel)
+growthtblplot <- 
+tbl_growth %>% 
+  filter(country %in% c("France", "Suisse", "Norvège", "Allemagne", "États-Unis")) %>% 
+  ggplot()+
+  aes(x = country, y = value, fill = category)+
+  geom_col(position = "dodge", color = "white")+
+  geom_text(aes(label = percent(round(value, 3)), group = category), vjust = -1, size = 1.8,
+            position = position_dodge(width = 1))+
+  facet_wrap(~period)+
+  scale_fill_brewer(labels = c("GDP per capita", "National income per capita"),
+                    palette = "Set1")+
+  theme_minimal()+
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        axis.text.x = element_text(angle = 70, vjust = 1, hjust=1))+
+  labs(x = "", y = "")+
+  ylim(-0.0015, 0.07)+
+  scale_y_continuous(labels = scales::percent)
+
+
+
+growthtblplot
+```
+
+The second growth period, ranging from 1971 to 1980, marked the end of the post-war sustained high growth regime. The average growth rates for this period fell to 0.2% for GDP and 0.7% for national income per capita. The 70s were thus a deep period of economic crisis and stagnation, both in Switzerland and at the international level. According to the Régulation school, the 70s marked the end of the Fordist accumulation regime. But the disintegration of the latter is not only the result international events such as the Oil shocks (1973, 1979), but suffered from internal contradictions (as does each regime). @boyer_political_2022 identifies several sources of crisis of the Fordist regime: (1) the end of productivity gains associated with Fordist production methods; (2) full-employment which induce more indexation of wages to productivity gains, which can provoke instability because of factor (1). 
+
+```{r productivity}
+#| echo: false
+#| message: false
+#| warning: false
+
+productivityUCL_oecd <- read_csv("productivityUCL_oecd.csv")
+realwage1939_2023 <- read_excel("realwage1939_2023.xlsx")
+
+productivitych <- 
+  productivityUCL_oecd %>% 
+  filter(Subject %in% c("GDP per hour worked, constant prices") & Measure %in% c("Index") & Country %in% c("Switzerland"))
+
+realwage1939_2023$year <- as.numeric(realwage1939_2023$year)
+
+
+ciseau <- 
+  realwage1939_2023 %>% 
+  left_join(productivitych, by = c("year" = "Time")) %>% 
+  mutate(prodbase = Value/Value[year == 1970],
+         realwagebase = `real wage`/`real wage`[year == 1970])
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-prodwage
+#| fig-cap: "Real wage and productivity in Switzerland, 1970-2022. 1 = 1970. Data source: OECD, OFS."
+
+
+ciseau %>% 
+  ggplot()+
+  aes(x = year, y = prodbase)+
+  geom_line(aes(color = "Productivity"))+
+  geom_line(aes(y = realwagebase, color = "Real wage"))+
+  xlim(1970, 2022)+
+  theme_minimal()+
+  labs(x = "", y = "")+
+  theme(legend.position = "bottom",
+        legend.title = element_blank())
+
+```
+
+Unfortunately, data on productivity are not available for Switzerland before the 70s, but one can still have a look at the co-evolution with real wage since the 70s. @fig-prodwage shows that real wage and productivity were still growing together after the 70s and 80s, but that a "decoupling" between the two happened during the 90s, which are often characterized as a period of wage moderation.
+
+
+
+
 
 ```{r rolling window table}
 #| message: false
@@ -217,56 +319,5 @@ rolltable %>%
 
 @fig-roll shows an estimated growth trend of the Swiss real gdp and national income per capita over the period 1950-2022. The overall rates of growth are respectively `{r} coef(lmavg_gdpcap)[2]*100`% for gdp and `{r} coef(lmavgch)[2]*100`% for national income. We can see that the Swiss economy was growing at a rate higher than its overall average until the 70s. Since the 70s, the rate of growth of the Swiss economy follows a downwards trend.
 
+No matter how Switzerland's post-war growth regime is characterized, it is clear that the country's economy lost its dynamics during the 70s. During the 80s, the average rates of growth increased slightly to 1.5% and 1%. However, the tendency shows a downwards pattern and the average rates of growth are consistently around or below 1% since the 70s. But if Switzerland shows a clear economic slow-down and stagnation, the situation is not catastrophic either.
 
-```{r productivity}
-#| echo: false
-#| message: false
-#| warning: false
-#| include: false
-
-productivityUCL_oecd <- read_csv("productivityUCL_oecd.csv")
-realwage1939_2023 <- read_excel("realwage1939_2023.xlsx")
-
-
-productivityUCL_oecd %>% 
-  filter(Subject %in% c("GDP per hour worked, constant prices") & Measure %in% c("Index") & Country %in% c("Switzerland", "France")) %>% 
-  ggplot()+
-  aes(x = Time, y = Value, color = Country)+
-  geom_line()
-
-
-productivitych <- 
-  productivityUCL_oecd %>% 
-  filter(Subject %in% c("GDP per hour worked, constant prices") & Measure %in% c("Index") & Country %in% c("Switzerland"))
-
-realwage1939_2023$year <- as.numeric(realwage1939_2023$year)
-
-
-ciseau <- 
-  realwage1939_2023 %>% 
-  left_join(productivitych, by = c("year" = "Time")) %>% 
-  mutate(prodbase = Value/Value[year == 1970],
-         realwagebase = `real wage`/`real wage`[year == 1970])
-
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| include: false
-
-ciseau %>% 
-  ggplot()+
-  aes(x = year, y = `real wage`)+
-  geom_line()+
-  scale_y_continuous(position = "right")
-
-ciseau %>% 
-  ggplot()+
-  aes(x = year, y = prodbase)+
-  geom_line()+
-  geom_line(aes(y = realwagebase), color = "red")+
-  xlim(1970, 2022)
-
-```
