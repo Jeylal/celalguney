@@ -1,0 +1,44 @@
+---
+title: "Demand Regime Switzerland"
+author: "Celâl Gûney"
+format: html
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+library(tidyverse)
+library(ARDL)
+library(rdbnomics)
+
+
+```
+
+```{r load data from dbnomics}
+#| echo: false
+#| message: false
+#| warning: false
+
+# consumer price index, all item AMECO/ZCPIN/CHE.3.0.0.0.ZCPIN, 2015 = 100
+
+cpi <- rdb(ids = "AMECO/ZCPIN/CHE.3.0.0.0.ZCPIN") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
+# gdp deflator, 2015 price AMECO/PVGD/CHE.3.1.0.0.PVGD
+deflator_gdp <- rdb(ids = "AMECO/PVGD/CHE.3.1.0.0.PVGD") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
+
+# compute gdp deflator inflation rate
+
+infl_gdp_deflator = diff(log(deflator_gdp))
+check = diff(deflator_gdp)/deflator_gdp
+check2 = 1-(deflator_gdp/stats::lag(deflator_gdp))
+plot(check2)+lines(check, col = "red")
+```
