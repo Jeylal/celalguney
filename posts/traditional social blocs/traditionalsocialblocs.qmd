@@ -1,8 +1,14 @@
 ---
 title: "The Left and Liberal-conservative blocs in Switzerland"
 author: "Celâl Güney"
-format: html
+format: 
+  html:
+    toc: true
 editor: visual
+execute: 
+  freeze: true
+categories: [Political economy, Political science, statistics]
+draft: true
 ---
 
 ```{r}
