@@ -15,6 +15,7 @@ draft: true
 #| echo: false
 #| message: false
 #| warning: false
+#| include: false
 
 
 library(tidyverse)
@@ -27,23 +28,94 @@ library(latex2exp)
 library(gt)
 library(stats)
 
-macroch <- read_csv("F:/celalguney/posts/demand regime/macroch.csv")
+# Loading data from ameco and oecd using rdbnomics
 
-```
+# [UVGD] Gross domestic product at current prices, annually, mrd chf AMECO/UVGD/CHE.1.0.0.0.UVGD
+GDP_n <- rdb(ids = "AMECO/UVGD/CHE.1.0.0.0.UVGD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
 
+# [PVGD] Price deflator gross domestic product, national currency, 2015 = 100 AMECO/PVGD/CHE.3.1.0.0.PVGD
+GDP_deflator <- rdb(ids = "AMECO/PVGD/CHE.3.1.0.0.PVGD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# computing real gdp by deflating GDP_n
+GDP_real = (GDP_n/GDP_deflator)*100
+
+# [UCPH] Private final consumption expenditure at current prices AMECO/UCPH/CHE.1.0.0.0.UCPH
+C_n <- rdb(ids = "AMECO/UCPH/CHE.1.0.0.0.UCPH") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [PCPH] Price deflator private final consumption expenditure AMECO/PCPH/CHE.3.1.0.0.PCPH
+
+C_deflator <- rdb(ids = "AMECO/PCPH/CHE.3.1.0.0.PCPH") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# deflate private final consumption
+C_real = (C_n/C_deflator)*100
+
+# [UIGT] Gross fixed capital formation at current prices: total economy AMECO/UIGT/CHE.1.0.0.0.UIGT
+I_n <- rdb(ids = "AMECO/UIGT/CHE.1.0.0.0.UIGT") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [PIGT] Price deflator gross fixed capital formation: total economy AMECO/PIGT/CHE.3.1.0.0.PIGT
+I_deflator <- rdb(ids = "AMECO/PIGT/CHE.3.1.0.0.PIGT") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# deflate investment
+I_real = (I_n/I_deflator)*100
+
+
+# [UBGS] Net exports of goods and services at current prices (National accounts) AMECO/UBGS/CHE.1.0.0.0.UBGS
+NX <- rdb(ids = "AMECO/UBGS/CHE.1.0.0.0.UBGS") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [UWCD] Compensation of employees: total economy AMECO/UWCD/CHE.1.0.0.0.UWCD
+W_n <- rdb(ids = "AMECO/UWCD/CHE.1.0.0.0.UWCD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [UOGD] Gross operating surplus: total economy AMECO/UOGD/CHE.1.0.0.0.UOGD
+R_n <- rdb(ids = "AMECO/UOGD/CHE.1.0.0.0.UOGD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [ZCPIN] National consumer price index (All-items) AMECO/ZCPIN/CHE.3.0.0.0.ZCPIN
+cpi <- rdb(ids = "AMECO/ZCPIN/CHE.3.0.0.0.ZCPIN") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# deflate W and R with CPI
+
+W_real = (W_n/cpi)*100
+R_real = (R_n/cpi)*100
+
+
+# [UCTG] Final consumption expenditure of general government at current prices AMECO/UCTG/CHE.1.0.0.0.UCTG
+G_n <- rdb(ids = "AMECO/UCTG/CHE.1.0.0.0.UCTG") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [CHE.IRL.A] Switzerland – Long-term interest rate on government bonds – Annual OECD/EO/CHE.IRL.A
+i <- rdb(ids = "OECD/EO/CHE.IRL.A") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
 # [OTO.GDPV.A] OECD - Total – Gross domestic product, volume, market prices – Annual OECD/EO/OTO.GDPV.A
 oecd_real <- rdb(ids = "OECD/EO/OTO.GDPV.A") %>% 
   filter(original_period %in% c(1960:2022)) %>% 
   select(value) %>% 
-  ts(start = 1960, end = 2022)
+  ts(start = 1960, end = 2022) - GDP_real # substract swiss real gdp
 
-oecd_real2 = oecd_real - macroch$gdp_real
+
+# compute profit share, wage share and the share of government and private expenditures, net exports and investment in GDP
+
+wageShare = W_n/GDP_n
+profitShare = R_n/GDP_n
+G_share = G_n/GDP_n
+I_share = I_n/GDP_n
+C_share = C_n/GDP_n
+NX_share = NX/GDP_n
+
+macroch <- cbind(GDP_n, GDP_deflator, GDP_real, C_n, C_deflator, C_real, I_n, I_deflator, I_real, cpi, W_n, W_real, R_n, R_real, NX, G_n, i, wageShare, profitShare, G_share, I_share, C_share, NX_share, oecd_real = oecd_real/10^9) # divide oecd_real by one billion to have same scale as others
+
+macroch <- as_tibble(macroch)
+write.csv(macroch, "macroch.csv")
+
+
+```
+
+```{r import data}
+#| echo: false
+#| message: false
+#| warning: false
+macroch <- read_csv("macroch.csv")
+macroch <- macroch %>% ts(start = 1960, end = 2022)
+
+
 ```
 
 ### Consumption function
@@ -68,7 +140,6 @@ logW = log(macroch$W_real)
 C_fun = auto_ardl(data = cbind(logC, logR, logW),
                   logC ~ logR + logW,
                   max_order = 4, selection = "BIC")$best_model
-
 ```
 
 Both the bounds t and f tests do not reject the null hypothesis of no integration. Hence, the consumption function was estimated using first differences:
@@ -162,7 +233,7 @@ $$
 #| warning: false
 #| message: false
 
-lY = log(macroch$gdp_real) %>% ts(start = 1960, end = 2022)
+lY = log(macroch$GDP_real) %>% ts(start = 1960, end = 2022)
 
 data_I = cbind(dlogY = diff(lY), dh = diff(macroch$profitShare), dlogI = diff(log(macroch$I_real)), dlogR = diff(logR))
 
@@ -218,15 +289,17 @@ $$
 #| message: false
 #| warning: false
 
-NX = macroch$NX_share %>% ts(start = 1960, end = 2022, frequency = 1)
-logOECD = log(oecd_real2) %>% ts(start = 1960, end = 2022, frequency = 1)
-logY = log(macroch$gdp_real) %>% ts(start = 1960, end = 2022, frequency = 1)
-h = macroch$profitShare %>% ts(start = 1960, end = 2022, frequency = 1)
+NX = macroch$NX_share 
+logOECD = log(macroch$oecd_real) 
+logY = log(macroch$GDP_real)
+h = macroch$profitShare
 
-
-nx_fun = auto_ardl(data_nx,
-                   NX ~ logOECD + logY + h,
+data_NX = cbind(NX, logOECD, logY, h)
+nx_fun = auto_ardl(data = data_NX,
+                   formula = NX ~  logOECD + logY + h ,
                    max_order = 4, selection = "BIC")$best_model
-
+nx_fun %>% summary
+nx_uecm <- uecm(nx_fun, case = 3)
+nx_uecm %>% summary
 
 ```
