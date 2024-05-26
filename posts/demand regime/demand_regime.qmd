@@ -1,8 +1,14 @@
 ---
 title: "Demand Regime Switzerland"
 author: "Celâl Gûney"
-format: html
+format: 
+  html:
+    toc: true
 editor: visual
+execute: 
+  freeze: true
+categories: [Economics]
+draft: true
 ---
 
 ```{r}
@@ -14,31 +20,213 @@ editor: visual
 library(tidyverse)
 library(ARDL)
 library(rdbnomics)
+library(lmtest)
+library(strucchange)
+library(modelsummary)
+library(latex2exp)
+library(gt)
+library(stats)
 
+macroch <- read_csv("F:/celalguney/posts/demand regime/macroch.csv")
 
 ```
 
-```{r load data from dbnomics}
+```{r}
 #| echo: false
 #| message: false
 #| warning: false
 
-# consumer price index, all item AMECO/ZCPIN/CHE.3.0.0.0.ZCPIN, 2015 = 100
 
-cpi <- rdb(ids = "AMECO/ZCPIN/CHE.3.0.0.0.ZCPIN") %>% 
-  filter(original_period %in% c(1960:2022)) %>% 
-  select(value) %>% 
-  ts(start = 1960, end = 2022)
-# gdp deflator, 2015 price AMECO/PVGD/CHE.3.1.0.0.PVGD
-deflator_gdp <- rdb(ids = "AMECO/PVGD/CHE.3.1.0.0.PVGD") %>% 
+# [OTO.GDPV.A] OECD - Total – Gross domestic product, volume, market prices – Annual OECD/EO/OTO.GDPV.A
+oecd_real <- rdb(ids = "OECD/EO/OTO.GDPV.A") %>% 
   filter(original_period %in% c(1960:2022)) %>% 
   select(value) %>% 
   ts(start = 1960, end = 2022)
 
-# compute gdp deflator inflation rate
+oecd_real2 = oecd_real - macroch$gdp_real
+```
 
-infl_gdp_deflator = diff(log(deflator_gdp))
-check = diff(deflator_gdp)/deflator_gdp
-check2 = 1-(deflator_gdp/stats::lag(deflator_gdp))
-plot(check2)+lines(check, col = "red")
+### Consumption function
+
+$$
+C = f(W, R)
+$$
+
+With $C$ the real private final consumption expenditures, $W$ the real compensation of employees and $R$ real gross profits (gross operating surplus).
+
+I first estimate an ardl model, selecting the number of lags using the Schwarz information criteria (BIC). In R, one can use the function auto_ardl from the package ARDL. Once the best model is selected, the bounds t test and f tests are conducted to test for cointegration and assess whether an ecm model can be estimated.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+logC = log(macroch$C_real)
+logR = log(macroch$R_real)
+logW = log(macroch$W_real)
+
+
+C_fun = auto_ardl(data = cbind(logC, logR, logW),
+                  logC ~ logR + logW,
+                  max_order = 4, selection = "BIC")$best_model
+
+```
+
+Both the bounds t and f tests do not reject the null hypothesis of no integration. Hence, the consumption function was estimated using first differences:
+
+$$
+d[log(C_t)] = \alpha + \beta_1d[log(R_t)] + \beta_2d[log(W_t)]
+$$
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+dlogC = diff(log(macroch$C_real)) %>% ts(start = 1960, end = 2022)
+dlogR = diff(log(macroch$R_real)) %>% ts(start = 1960, end = 2022)
+dlogW = diff(log(macroch$W_real)) %>% ts(start = 1960, end = 2022)
+
+C_fun_diff <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)),
+           dlogC ~ dlogR + dlogW)
+
+C_fun_diff2 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[1:31,]),
+           dlogC ~ dlogR + dlogW)
+
+C_fun_diff3 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[32:62,]),
+           dlogC ~ dlogR + dlogW)
+
+modelsCfun = list("C_fun_diff" = C_fun_diff, "C_fun_diff2" = C_fun_diff2, "C_fun_diff3" = C_fun_diff3)
+
+
+
+
+
+
+diagnostic = t(data.frame(
+  "Adj R2" = sapply(modelsCfun, function(x){
+    summary(x)$adj.r.squared
+  }),
+  "Durbin-Watson statistics" = sapply(modelsCfun, function(x){
+    dwtest(x)[["statistic"]]
+  }),
+  "RESET test" = sapply(modelsCfun, function(x){
+    resettest(x)[["statistic"]]
+  }),
+  "BG tests" = sapply(modelsCfun, function(x){
+    bgtest(x, order = 4)[["p.value"]]
+  }),
+  "BP tests" = sapply(modelsCfun, function(x){
+    bptest(x)[["p.value"]]
+  })
+))
+
+diagnosticdf = as.data.frame(diagnostic)
+diagnosticdf2 = rownames_to_column(diagnosticdf)
+
+modelsummary(list("1961-2022" = C_fun_diff, "1961-1982" = C_fun_diff2,
+                  "1983-2022" = C_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
+             title = "Consumption Function (dlog[C])")
+
+```
+
+To compute the partial effect of the profit share on the share of consumption in aggregate demand, the coefficients are weighted by the sample average of the ratio of consumption to profits and the share of consumption to wages:
+
+$$\frac{\partial C/Y}{\partial h} = \beta_1 \frac{C}{R} - \beta_2 \frac{C}{W}$$
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+C_table = tibble(
+  
+  "C/R" = mean(macroch$C_n/macroch$R_n),
+  "C/W" = mean(macroch$C_n/macroch$W_n),
+  "beta_1*(C/R)" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n),
+  "beta_2*(C/W)" = coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
+  effect = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n)
+  
+)
+
+C_table %>% gt
+```
+
+### Investment function
+
+$$
+I_t = f(Y, h, i)
+$$
+
+```{r investment function ardl}
+#| echo: false
+#| warning: false
+#| message: false
+
+lY = log(macroch$gdp_real) %>% ts(start = 1960, end = 2022)
+
+data_I = cbind(dlogY = diff(lY), dh = diff(macroch$profitShare), dlogI = diff(log(macroch$I_real)), dlogR = diff(logR))
+
+
+I_fun_diff = lm(data = data_I,
+                dlogI ~ dlogY + dlogR)
+
+I_fun_diff2 = lm(data = as_tibble(data_I[1:31,]),
+                dlogI ~  dlogY + dlogR)
+
+I_fun_diff3 = lm(data = as_tibble(data_I[32:62,]),
+                dlogI ~  dlogY + dlogR)
+
+models_I = list(I_fun_diff, I_fun_diff2, I_fun_diff3)
+
+diagnostic_I = t(data.frame(
+  "Adj R2" = sapply(models_I, function(x){
+    summary(x)$adj.r.squared
+  }),
+  "Durbin-Watson statistics" = sapply(models_I, function(x){
+    dwtest(x)[["statistic"]]
+  }),
+  "RESET test" = sapply(models_I, function(x){
+    resettest(x)[["statistic"]]
+  }),
+  "BG tests" = sapply(models_I, function(x){
+    bgtest(x, order = 4)[["p.value"]]
+  }),
+  "BP tests" = sapply(models_I, function(x){
+    bptest(x)[["p.value"]]
+  })
+))
+
+
+diagnosti_Idf = as.data.frame(diagnostic_I)
+diagnostic_I_df2 = rownames_to_column(diagnosti_Idf)
+
+modelsummary(list("1961-2022" = I_fun_diff, "1961-1982" = I_fun_diff2,
+                  "1983-2022" = I_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
+             title = "Investment function")
+```
+
+We cannot conclude anything regarding the effect of profit share on investment, the effect will thus be condsidered to be equal to zero.
+
+### Net exports function
+
+$$
+NX_t = f(h, Y^f, Y)
+$$
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+NX = macroch$NX_share %>% ts(start = 1960, end = 2022, frequency = 1)
+logOECD = log(oecd_real2) %>% ts(start = 1960, end = 2022, frequency = 1)
+logY = log(macroch$gdp_real) %>% ts(start = 1960, end = 2022, frequency = 1)
+h = macroch$profitShare %>% ts(start = 1960, end = 2022, frequency = 1)
+
+
+nx_fun = auto_ardl(data_nx,
+                   NX ~ logOECD + logY + h,
+                   max_order = 4, selection = "BIC")$best_model
+
+
 ```
