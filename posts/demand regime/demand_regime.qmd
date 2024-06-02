@@ -1,5 +1,5 @@
 ---
-title: "Demand Regime Switzerland"
+title: "The Swiss Growth Model: a Structural Approach"
 author: "Celâl Gûney"
 format: 
   html:
@@ -7,26 +7,29 @@ format:
 editor: visual
 execute: 
   freeze: true
-categories: [Economics]
-draft: true
+categories: [Macroeconomics, Post-Keynesian Economics]
+draft: false
+bibliography: references.bib
 ---
 
-```{r}
+```{r set up and loading data from dbnomics}
 #| echo: false
 #| message: false
 #| warning: false
 #| include: false
 
-
 library(tidyverse)
 library(ARDL)
 library(rdbnomics)
+library(ggfortify)
 library(lmtest)
 library(strucchange)
+library(flextable)
 library(modelsummary)
 library(latex2exp)
 library(gt)
 library(stats)
+library(marginaleffects)
 
 # Loading data from ameco and oecd using rdbnomics
 
@@ -81,6 +84,9 @@ R_real = (R_n/cpi)*100
 # [UCTG] Final consumption expenditure of general government at current prices AMECO/UCTG/CHE.1.0.0.0.UCTG
 G_n <- rdb(ids = "AMECO/UCTG/CHE.1.0.0.0.UCTG") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
+# [OCTG] Final consumption expenditure of general government at 2015 price AMECO/OCTG/CHE.1.1.0.0.OCTG
+G_real <- rdb(ids = "AMECO/OCTG/CHE.1.1.0.0.OCTG") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
 # [CHE.IRL.A] Switzerland – Long-term interest rate on government bonds – Annual OECD/EO/CHE.IRL.A
 i <- rdb(ids = "OECD/EO/CHE.IRL.A") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
@@ -100,10 +106,10 @@ I_share = I_n/GDP_n
 C_share = C_n/GDP_n
 NX_share = NX/GDP_n
 
-macroch <- cbind(GDP_n, GDP_deflator, GDP_real, C_n, C_deflator, C_real, I_n, I_deflator, I_real, cpi, W_n, W_real, R_n, R_real, NX, G_n, i, wageShare, profitShare, G_share, I_share, C_share, NX_share, oecd_real = oecd_real/10^9) # divide oecd_real by one billion to have same scale as others
+#macroch <- cbind(GDP_n, GDP_deflator, GDP_real, C_n, C_deflator, C_real, I_n, I_deflator, I_real, cpi, W_n, W_real, R_n, R_real, NX, G_n, i, wageShare, profitShare, G_share, I_share, C_share, NX_share, oecd_real = oecd_real/10^9) # divide oecd_real by one billion to have same scale as others
 
-macroch <- as_tibble(macroch)
-write.csv(macroch, "macroch.csv")
+#macroch <- as_tibble(macroch)
+
 
 
 ```
@@ -112,11 +118,21 @@ write.csv(macroch, "macroch.csv")
 #| echo: false
 #| message: false
 #| warning: false
+
 macroch <- read_csv("macroch.csv")
-macroch <- macroch %>% ts(start = 1960, end = 2022)
+
 
 
 ```
+
+
+## Abstract 
+
+Despite a flourishing and growing litterature on the identification of demand and growth regimes, Switzerland remains little studied. This is all the more odd given that the Swiss model is often considered one of the most successful and stable in the world. From the Kaleckian approach to demand and growth regimes, which started with the seminal contribution of @bhaduri_unemployment_1990, only one study tried to identify the Swiss demand and growth regimes [@hartwig_distribution_2013]. This paper tries to fill this gap by conducting a comprehensive identification of the Swiss acummulation regime. It finds that, from 1960 to 2022, as predicted by the model for small-open economies, the Swiss demand regime is profit led due a strong effect of the profit share on net exports.
+
+## Introduction
+
+Since the development of neo-Kaleckian models, following the seminal contributions of @bhaduri_unemployment_1990 and their extension to open-economy models [@blecker_international_1989], an enormous empirical literature trying to identify the demand and growth regimes of real-world economies has emerged. Unlike New Classical and New Keynesian economics, in which only one type of relationships between distribution and growth is described, Heterodox theories have emphasized the diversity of growth models. @bhaduri_unemployment_1990 notably extended Kalecki's model of wage-led growth to allow for both profit-led and wage-led regimes. The diversity of growth regimes is also a central focus of French Régulation Theory (FRT), which conceives the diversity of capitalisms as evolutionary systems characterized by successive growth regimes, defined as interactions between demand and productivity regimes [@boyer_political_2022].
 
 ### Consumption function
 
@@ -152,6 +168,8 @@ $$
 #| echo: false
 #| message: false
 #| warning: false
+#| label: tbl-C
+#| tbl-cap: "Estimation results for the consumption function"
 
 dlogC = diff(log(macroch$C_real)) %>% ts(start = 1960, end = 2022)
 dlogR = diff(log(macroch$R_real)) %>% ts(start = 1960, end = 2022)
@@ -160,10 +178,10 @@ dlogW = diff(log(macroch$W_real)) %>% ts(start = 1960, end = 2022)
 C_fun_diff <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)),
            dlogC ~ dlogR + dlogW)
 
-C_fun_diff2 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[1:31,]),
+C_fun_diff2 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[1:30,]),
            dlogC ~ dlogR + dlogW)
 
-C_fun_diff3 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[32:62,]),
+C_fun_diff3 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[31:62,]),
            dlogC ~ dlogR + dlogW)
 
 modelsCfun = list("C_fun_diff" = C_fun_diff, "C_fun_diff2" = C_fun_diff2, "C_fun_diff3" = C_fun_diff3)
@@ -194,8 +212,8 @@ diagnostic = t(data.frame(
 diagnosticdf = as.data.frame(diagnostic)
 diagnosticdf2 = rownames_to_column(diagnosticdf)
 
-modelsummary(list("1961-2022" = C_fun_diff, "1961-1982" = C_fun_diff2,
-                  "1983-2022" = C_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
+modelsummary(list("1961-2022" = C_fun_diff, "1961-1991" = C_fun_diff2,
+                  "1992-2022" = C_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
              title = "Consumption Function (dlog[C])")
 
 ```
@@ -208,21 +226,25 @@ $$\frac{\partial C/Y}{\partial h} = \beta_1 \frac{C}{R} - \beta_2 \frac{C}{W}$$
 #| echo: false
 #| message: false
 #| warning: false
-
+#| results: asis
+#| label: tbl-C_effects
+#| tbl-cap: "Partial effects of profit share on consumption"
 C_table = tibble(
   
   "C/R" = mean(macroch$C_n/macroch$R_n),
   "C/W" = mean(macroch$C_n/macroch$W_n),
-  "beta_1*(C/R)" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n),
-  "beta_2*(C/W)" = coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
-  effect = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n)
+  "𝛽1(C/R)" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n),
+  "𝛽2(C/W)" = coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
+  "𝜕C/Y/𝜕h" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n)
   
 )
-
 C_table %>% gt
 ```
 
+$\beta_1*\frac{C}{R}$
+
 ### Investment function
+
 
 $$
 I_t = f(Y, h, i)
@@ -232,10 +254,13 @@ $$
 #| echo: false
 #| warning: false
 #| message: false
-
+#| label: tbl-I
+#| tbl-cap: "Estimation results for the investment function"
 lY = log(macroch$GDP_real) %>% ts(start = 1960, end = 2022)
 
 data_I = cbind(dlogY = diff(lY), dh = diff(macroch$profitShare), dlogI = diff(log(macroch$I_real)), dlogR = diff(logR))
+
+data_I2 = cbind(logI = macroch$I_real, logY = macroch$GDP_real, logR = macroch$R_real)
 
 
 I_fun_diff = lm(data = data_I,
@@ -281,14 +306,15 @@ We cannot conclude anything regarding the effect of profit share on investment, 
 ### Net exports function
 
 $$
-NX_t = f(h, Y^f, Y)
+NX_t/Y_t = f(h, Y^f, Y)
 $$
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-
+#| label: tbl-NX_ecm
+#| tbl-cap: "Estimation results of the error correction model for the net export function."
 NX = macroch$NX_share 
 logOECD = log(macroch$oecd_real) 
 logY = log(macroch$GDP_real)
@@ -298,8 +324,286 @@ data_NX = cbind(NX, logOECD, logY, h)
 nx_fun = auto_ardl(data = data_NX,
                    formula = NX ~  logOECD + logY + h ,
                    max_order = 4, selection = "BIC")$best_model
-nx_fun %>% summary
+
 nx_uecm <- uecm(nx_fun, case = 3)
-nx_uecm %>% summary
+nx_recm <- recm(nx_fun, case = 3)
+
+modelsnxuecm <- list(nx_uecm)
+
+diagnostic_NXuecm = t(data.frame(
+  "Adj R2" = sapply(modelsnxuecm, function(x){
+    summary(x)$adj.r.squared
+  }),
+  "Durbin-Watson statistics" = sapply(modelsnxuecm, function(x){
+    dwtest(x)[["statistic"]]
+  }),
+  "RESET test" = sapply(modelsnxuecm, function(x){
+    resettest(x)[["statistic"]]
+  }),
+  "BG tests" = sapply(modelsnxuecm, function(x){
+    bgtest(x, order = 4)[["p.value"]]
+  }),
+  "BP tests" = sapply(modelsnxuecm, function(x){
+    bptest(x)[["p.value"]]
+  })
+))
+
+diagnosti_NXuecmdf = as.data.frame(diagnostic_NXuecm)
+diagnostic_NXuecm_df2 = rownames_to_column(diagnosti_NXuecmdf)
+
+modelsummary(list("d[NX/Y]" = nx_uecm), stars = TRUE, add_rows = diagnostic_NXuecm_df2, gof_map = NA)
+```
+
+The long-run effect of the profit share on net export can be obtained by dividing the coefficient of the profit share, divided by the absolute value of the lag effect of the endogenous independent variable:
+
+$$\frac{\partial NX_t/Y_t}{\partial h} = \frac{\beta_4}{\lvert \beta_2 \rvert} = 0.51/0.457 = 1.116$$
+
+
+
+
+
+
+```{r final results table}
+#| echo: false
+#| message: false
+#| warning: false
+finalresult <- tibble(
+  "𝜕C/Y/𝜕h" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
+  "𝜕I/Y/𝜕h" = "/",
+  "𝜕NX/Y/𝜕h" = "1.116",
+  "𝜕Y/Y/𝜕h" = "0.766"
+  
+)
+
+finalresult %>% gt
+```
+
+
+### Productivity
+
+```{r productivity}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Import real wage from fso
+
+salaire_reel_ofs <- read_csv("C:/Users/celal/OneDrive/Bureau/celalguney/posts/demand regime/salaire_reel_ofs.csv")
+
+salaire_reel_ofs2 <- salaire_reel_ofs %>% 
+  filter(SEX == "T" & WAGE_TYPE == "R") %>% 
+  select(VALUE) %>% 
+  ts(start = 1942, end = 2023)
+# load productivity data from dbnomics
+# [RVGDE] Gross domestic product at 2015 reference levels per person employed AMECO/RVGDE/CHE.1.1.0.0.RVGDE
+
+prod <- rdb(ids = "AMECO/RVGDE/CHE.1.1.0.0.RVGDE") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [CHE.GDPHRWKD.TOT.IDX2015.A] Switzerland – GDP per hour worked – Total – 2015=100 – Annual
+
+dlogProd = diff(log(prod))
+dlY = diff(lY)
+dh = diff(profitShare)
+dlogw = diff(log(salaire_reel_ofs2))
+dataprod = cbind(dlogProd, dlY, dh, dlogw)
+
+prod_fun = auto_ardl(data = dataprod,
+                     dlogProd ~ dlY + dh-1,
+                     max_order = 4, selection = "BIC",
+                     start = "1960", end = "2022")$best_model
+
+summary(prodols <- lm(data = dataprod,
+                      dlogProd ~ dlY + dh + lag(dlY) + lag(dlogProd)))
+
+summary(prod_fun)
+```
+
+
+### Appendix
+
+```{r nx first difference}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-NX
+#| tbl-cap: "Estimation results for the net export function (first differences)"
+
+library(nlWaldTest)
+
+
+
+
+dNX = diff(macroch$NX_share)
+dlogOECD = diff(log(macroch$oecd_real))
+dlogY = diff(log(macroch$GDP_real))
+dh = diff(macroch$profitShare)
+
+data_nx_diff = cbind(dNX, dlogOECD, dlogY, dh)
+
+nxfun_diff = auto_ardl(data = data_nx_diff,
+                       dNX ~ dlogOECD + dlogY + dh -1,
+                       max_order = 4, selection = "BIC")$best_model
+
+nxfun_diff_ols = lm(data = as_tibble(data_nx_diff),
+                    dNX ~ dlogOECD + lag(dlogOECD) + dlogY + lag(dlogY) + dh-1)
+
+nxfun_diff_ols2 = lm(data = as_tibble(data_nx_diff)[1:32,],
+                    dNX ~ dlogOECD + dlogY + lag(dlogY) + dh -1)
+
+nxfun_diff_ols3 = lm(data = as_tibble(data_nx_diff)[33:63,],
+                    dNX ~ dlogOECD + dlogY + dh - 1)
+
+
+models_NX = list(nxfun_diff_ols, nxfun_diff_ols2, nxfun_diff_ols3)
+
+diagnostic_NX = t(data.frame(
+  "Adj R2" = sapply(models_NX, function(x){
+    summary(x)$adj.r.squared
+  }),
+  "Durbin-Watson statistics" = sapply(models_NX, function(x){
+    dwtest(x)[["statistic"]]
+  }),
+  "RESET test" = sapply(models_NX, function(x){
+    resettest(x)[["statistic"]]
+  }),
+  "BG tests" = sapply(models_NX, function(x){
+    bgtest(x, order = 4)[["p.value"]]
+  }),
+  "BP tests" = sapply(models_NX, function(x){
+    bptest(x)[["p.value"]]
+  })
+))
+
+diagnosti_NXdf = as.data.frame(diagnostic_NX)
+diagnostic_NX_df2 = rownames_to_column(diagnosti_NXdf)
+
+
+modelsummary(list("1961-2022" = nxfun_diff_ols, "1960-1982" = nxfun_diff_ols2,
+                  "1983-2022" = nxfun_diff_ols3), stars = TRUE, gof_map = NA,
+             title = "d[NX/Y]", add_rows = diagnostic_NX_df2)
+
+
 
 ```
+
+```{r relative contribution to growth}
+#| echo: false
+#| warning: false
+#| message: false
+
+# [CVGD9] Contribution to the increase of GDP at constant prices of the balance of goods and services AMECO/CVGD9/CHE.1.0.0.0.CVGD9
+
+nx_contr <- rdb(ids = "AMECO/CVGD9/CHE.1.0.0.0.CVGD9") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
+
+#[CVGD2] Contribution to the increase of GDP at constant prices of gross fixed capital formation AMECO/CVGD2/CHE.1.0.0.0.CVGD2
+
+I_contr <- rdb(ids = "AMECO/CVGD2/CHE.1.0.0.0.CVGD2") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
+
+# [CVGD0] Contribution to the increase of GDP at constant prices of private consumption AMECO/CVGD0/CHE.1.0.0.0.CVGD0
+
+C_contr <- rdb(ids = "AMECO/CVGD0/CHE.1.0.0.0.CVGD0") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
+
+# [CVGD1] Contribution to the increase of GDP at constant prices of public consumption AMECO/CVGD1/CHE.1.0.0.0.CVGD1
+
+G_contr <- rdb(ids = "AMECO/CVGD1/CHE.1.0.0.0.CVGD1") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
+
+# [CVGD4] Contribution to the increase of GDP at constant prices of changes in inventories and acquisitions less disposals of valuables AMECO/CVGD4/CHE.1.0.0.0.CVGD4
+
+inv_contr <- rdb(ids = "AMECO/CVGD4/CHE.1.0.0.0.CVGD4") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
+
+y_real = diff(log(GDP_real))*100
+
+nxcontr = nx_contr/y_real
+ccontr = C_contr/y_real
+icontr = I_contr/y_real
+gcontr = G_contr/y_real
+invcontr = inv_contr/y_real
+
+data_contr1990 = cbind(nxcontr, ccontr, icontr, gcontr, invcontr)[1:39,]
+data_contr2009 = cbind(nxcontr, ccontr, icontr, gcontr, invcontr)[40:48,]
+data_contr2022 = cbind(nxcontr, ccontr, icontr, gcontr, invcontr)[49:62,]
+contr1990 <- apply(data_contr1990,2, function(x){sum(x)/length(x)})
+contr2009 <- apply(data_contr2022,2, function(x){sum(x)/length(x)})
+contr2022 <- apply(data_contr2022,2, function(x){sum(x)/length(x)})
+
+apply(as_tibble(contr1990), 2, sum)
+```
+
+
+```{r sectoral balance}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+# [CHE.CBGDPR.A] Switzerland – Current account balance as a percentage of GDP – Annual
+
+CAB <- rdb(ids = "OECD/EO/CHE.CBGDPR.A") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+
+# governemt balance
+
+Government_balance <- rdb(ids = "OECD/NAAG/CHE.B9S13S") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+
+# [CHE.B9S14_​S15S] Switzerland – Net lending/net borrowing, Households and NPISHs, percentage of GDP
+
+household_balance <- rdb(ids = "OECD/NAAG/CHE.B9S14_S15S") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+
+# [CHE.B9S11_​S12S] Switzerland – Net lending/net borrowing, Corporations, percentage of GDP
+
+corporation_balance <- rdb(ids = "OECD/NAAG/CHE.B9S11_S12S") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+private_sector_balance = corporation_balance + household_balance
+
+sectoralBalance = as_tibble(cbind(private_sector_balance, Government_balance, -CAB)) %>% 
+  drop_na() %>% 
+  mutate(year = 1995:2022)
+
+autoplot(cbind(Government_balance, private_sector_balance, -CAB), facets = FALSE)
+
+
+apply(sectoralBalance[,1:3], 1, sum)
+
+```
+
+```{r}
+
+# [UVGN] Gross national income at current prices
+GNI <- rdb(ids = "AMECO/UVGN/CHE.1.0.0.0.UVGN") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+# [UBLA] Net lending (+) or net borrowing (-): total economy AMECO/UBLA/CHE.1.0.0.0.UBLA
+
+CAB <- rdb(ids = "AMECO/UBLA/CHE.1.0.0.0.UBLA") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+# [UBLG] Net lending (+) or net borrowing (-): general government :- ESA 2010 AMECO/UBLG/CHE.1.0.0.0.UBLG
+
+public_balance <- rdb(ids = "AMECO/UBLG/CHE.1.0.0.0.UBLG") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+# [UBLH] Net lending (+) or net borrowing (-): households and NPISH AMECO/UBLH/CHE.1.0.0.0.UBLH
+
+household_balance <- rdb(ids = "AMECO/UBLH/CHE.1.0.0.0.UBLH") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+# [UBLC] Net lending (+) or net borrowing (-): corporations AMECO/UBLC/CHE.1.0.0.0.UBLC
+
+corporation_balance <- rdb(ids = "AMECO/UBLC/CHE.1.0.0.0.UBLC") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+
+cab = CAB/GNI
+public_balance2 = public_balance/GNI
+
+household_balance2 = (household_balance/GNI)
+
+private_sector_balance2 = (private_sector_balance/GNI)
+
+data =cbind(private = household_balance2,private_sector_balance2,-cab,public_balance2)
+
+apply(data, 1, sum)
+
+
+autoplot(data, facets = FALSE)
+
+
+```
+
+
+### References

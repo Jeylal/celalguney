@@ -1,0 +1,15 @@
+{
+  "hash": "5f2190ab7d158e7a4f95e980273869d1",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"The Left and Liberal-conservative blocs in Switzerland\"\nauthor: \"Celâl Güney\"\nformat: \n  html:\n    toc: true\neditor: visual\nexecute: \n  freeze: true\ncategories: [Political economy, Political science, statistics]\ndraft: true\n---\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
