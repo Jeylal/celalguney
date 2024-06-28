@@ -1,0 +1,490 @@
+dataset_version:
+  DOI: 10.48573/q99z-aa77
+  additional_information: 'Due to anonymity reasons, some variables (municipality,
+    zipcode, ISCO 08 codes 4-digit level) are not included in the downloadable dataset.
+    These variables are only available on request and with prior consent of the authors.
+    Please send an e-mail with your justified request to dataservice@fors.unil.ch.
+
+    The Selects 2023 Post-Election Survey was approved by the Ethics Committee of
+    the University of Lausanne (project number: C_Services_centraux_092023_00004).'
+  bibliographical_citation: Selects. (2024). Selects 2023 Post-Election Survey (Version
+    1.0) [Data set]. FORS. https://doi.org/10.48573/q99z-aa77
+  collection mode:
+    dataCollector: Researcher Team
+    dataType: Quantitative data
+    media:
+    - Digitalized data file
+    otherDataCollectorFreeText: FORS - Swiss Centre of Expertise in the Social Sciences
+    timeMethod: Cross-section
+  data_files:
+  - curator_treated:
+      data collection:
+        AnalysisUnit:
+        - Individual
+        CollectionDate:
+          CollectionDateBegin: '2023-10-23'
+          CollectionDateEnd: '2024-01-11'
+        DataCollectionInstruments:
+        - Questionnaire
+        ModeOfDataCollection:
+        - 'Self-administered questionnaire: Paper'
+        - 'Self-administered questionnaire: Web-based'
+        NumberOfCaseAndVariable:
+          NumberOfCase: 5033
+          NumberOfVariable: 308
+        ResponseRate: 48.4%
+        SamplingDescription: Random sample stratified by cantons of 10'395 Swiss citizens
+          with the right to vote, aged 18 and above (no upper age limit) and living
+          in private households in Switzerland. Small cantons were oversampled in
+          order to achieve a minimum number of 50 respondents in each canton. Furthermore,
+          the cantons of Geneva and Ticino were oversampled, too, thanks to additional
+          funding from these cantons. The sample is based on the sampling register
+          of the Swiss Federal Statistical Office (FSO).
+        SamplingMethod: Random sampling
+        Universe: Swiss citizens aged 18 years or older living in Switzerland
+        WeightingInformation: 'Different weighting variables are provided in the dataset:
+
+          - Design weight ("weight_d") to correct the oversampling of some of the
+          cantons.
+
+          - Turnout weight ("weight_d_t") to correct the overrepresentation of voters
+          in the sample, according to the official election results. (This weight
+          already includes the design weight.)
+
+          - Party choice weight ("weight_d_p") to correct the distribution of party
+          voters in the sample, according to the official election results. (This
+          weight already includes the design weight.)
+
+          - Total weight ("weight_tot") to correct for the biases induced by the oversampling
+          of some of the cantons, the overrepresentation of voters and the distribution
+          of party voters in the sample. This combined weight is equal to the multiplication
+          of the design weight x turnout weight (without design weight) x party choice
+          weight (without design weight).
+
+
+          For the cantons of Zurich, Geneva and Ticino, there are also turnout, party
+          choice and total weights provided in the dataset. The party weights ("weight_p_zh",
+          "weight_p_ge", and "weight_p_ti") are to be used with the three cantonal
+          vote choice variables (i.e., "f11800ZH", "f11800GE", and "f11800TI", respectively).'
+      data_anonymised: true
+      original_file:
+        md5: ecb11d4f42ffdb5fc2694e8e22767a25
+        physical_file: data/2634_Selects2023_PES_Data_v1.0.dta
+        size: 2844789
+      title: Post-Election Survey Data (Stata)
+      variables and values:
+        ConstructedVariables: See syntax provided for the construction of the Oesch
+          class variables.
+        ContextualVariables: 'Based on the FSO municipality number where respondent
+          lives, three contextual variables were included in the dataset:
+
+          - smt3: Spatial municipality typology (3 categories, FSO 2020)
+
+          - smt9: Spatial municipality typology (9 categories, FSO 2020)
+
+          - msize: Municipality size (8 categories, FSO 2022)'
+        DataCompleteness: Respondents who took less than one third of the median duration
+          (32.6 minutes) to complete the web questionnaire were removed from the data
+          (speeders). Furthermore, only respondents whose age and sex corresponded
+          to the information from the sampling frame were retained.
+        MissingValuesTreatment: "Usual convention: \n- No answer= -99; \n- Multiple\
+          \ answers when single choice (paper questionnaires only)=-98; \n- Incomprehensible/illegible/invalid\
+          \ (paper questionnaires only)=-97;\n- Don't know=98 or 998; \n- Filtered\
+          \ or Question not received/seen: system missing\n\nFor some variables, further\
+          \ values are defined as \"missings\" in the SPSS data (e.g., 994 (\"No party\
+          \ / rather persons\") and 995 (\"Other answer\") are additionally defined\
+          \ as missing values for variable f12720rec (\"Party most competent to solve\
+          \ most important problem\"), see codebook or SPSS dataset for a complete\
+          \ overview).\n\n"
+        QuestionVariableLink: The variable names in the dataset generally correspond
+          to those in the questionnaire.  If this is not the case, it should be relatively
+          straightforward to see from the data documentation which variable is based
+          on which questionnaire question (e.g., f11800rec in the dataset is the combination
+          of variables f11800, f11800s and f11800s2 in the web questionnaire). Variables
+          that required recoding of open-ended responses generally end with the letters
+          “rec” (e.g., f12700rec).
+    reference_no: 32100
+  - curator_treated:
+      data collection:
+        AnalysisUnit:
+        - Individual
+        CollectionDate:
+          CollectionDateBegin: '2023-10-23'
+          CollectionDateEnd: '2024-01-11'
+        DataCollectionInstruments:
+        - Questionnaire
+        ModeOfDataCollection:
+        - 'Self-administered questionnaire: Web-based'
+        - 'Self-administered questionnaire: Paper'
+        NumberOfCaseAndVariable:
+          NumberOfCase: 5033
+          NumberOfVariable: 308
+        ResponseRate: 48.4%
+        SamplingDescription: Random sample stratified by cantons of 10'395 Swiss citizens
+          with the right to vote, aged 18 and above (no upper age limit) and living
+          in private households in Switzerland. Small cantons were oversampled in
+          order to achieve a minimum number of 50 respondents in each canton. Furthermore,
+          the cantons of Geneva and Ticino were oversampled, too, thanks to additional
+          funding from these cantons. The sample is based on the sampling register
+          of the Swiss Federal Statistical Office (FSO).
+        SamplingMethod: Random sampling
+        Universe: Swiss citizens aged 18 years or older living in Switzerland
+        WeightingInformation: 'Different weighting variables are provided in the dataset:
+
+          - Design weight ("weight_d") to correct the oversampling of some of the
+          cantons.
+
+          - Turnout weight ("weight_d_t") to correct the overrepresentation of voters
+          in the sample, according to the official election results. (This weight
+          already includes the design weight.)
+
+          - Party choice weight ("weight_d_p") to correct the distribution of party
+          voters in the sample, according to the official election results. (This
+          weight already includes the design weight.)
+
+          - Total weight ("weight_tot") to correct for the biases induced by the oversampling
+          of some of the cantons, the overrepresentation of voters and the distribution
+          of party voters in the sample. This combined weight is equal to the multiplication
+          of the design weight x turnout weight (without design weight) x party choice
+          weight (without design weight).
+
+
+          For the cantons of Zurich, Geneva and Ticino, there are also turnout, party
+          choice and total weights provided in the dataset. The party weights ("weight_p_zh",
+          "weight_p_ge", and "weight_p_ti") are to be used with the three cantonal
+          vote choice variables (i.e., "f11800ZH", "f11800GE", and "f11800TI", respectively).'
+      data_anonymised: true
+      original_file:
+        md5: 09f7c6d9e9657a9874002abc8306091a
+        physical_file: data/2634_Selects2023_PES_Data_v1.0.sav
+        size: 5236181
+      title: Post-Election Survey Data (SPSS)
+      variables and values:
+        ConstructedVariables: See syntax provided for the construction of the Oesch
+          class variables.
+        ContextualVariables: 'Based on the FSO municipality number where respondent
+          lives, three contextual variables were included in the dataset:
+
+          - smt3: Spatial municipality typology (3 categories, FSO 2020)
+
+          - smt9: Spatial municipality typology (9 categories, FSO 2020)
+
+          - msize: Municipality size (8 categories, FSO 2022)'
+        DataCompleteness: Respondents who took less than one third of the median duration
+          (32.6 minutes) to complete the web questionnaire were removed from the data
+          (speeders). Furthermore, only respondents whose age and sex corresponded
+          to the information from the sampling frame were retained.
+        MissingValuesTreatment: 'Usual convention:
+
+          - No answer= -99;
+
+          - Multiple answers when single choice (paper questionnaires only)=-98;
+
+          - Incomprehensible/illegible/invalid (paper questionnaires only)=-97;
+
+          - Don''t know=98 or 998;
+
+          - Filtered or Question not received/seen: system missing
+
+
+          For some variables, further values are defined as "missings" in the SPSS
+          data (e.g., 994 ("No party / rather persons") and 995 ("Other answer") are
+          additionally defined as missing values for variable f12720rec ("Party most
+          competent to solve most important problem"), see codebook or SPSS dataset
+          for a complete overview).'
+        QuestionVariableLink: The variable names in the dataset generally correspond
+          to those in the questionnaire. If this is not the case, it should be relatively
+          straightforward to see from the data documentation which variable is based
+          on which questionnaire question (e.g., f11800rec in the dataset is the combination
+          of variables f11800, f11800s and f11800s2 in the web questionnaire). Variables
+          that required recoding of open-ended responses generally end with the letters
+          “rec” (e.g., f12700rec).
+    distribution_files:
+    - md5: b9cd3b27fcddc292cb5f727b906b8624
+      physical_file: data/2634_Selects2023_PES_Data_v1.0.csv
+      size: 4166380
+    reference_no: 32101
+  documents:
+  - curator_treated:
+      document_type: Codebook
+      is_public: true
+      original_file:
+        md5: c5fb12a72eb58afe94069974b2a17a8f
+        physical_file: documentation/2634_Selects2023_PES_Doc_Codebook_EN.pdf
+        size: 1079073
+      title: Post-Election Survey Codebook - EN
+    reference_no: 32103
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 20d9f1061d30de589afab1a262d411c9
+        physical_file: documentation/2634_Selects2023_PES_Doc_Web_Questionnaire_WithFilters_DE-FR-IT.pdf
+        size: 1118768
+      title: Post-Election Survey Web Questionnaire (with filters) - DE, FR & IT
+    reference_no: 32104
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 93e3c369fa8181a17d192c8a4e005385
+        physical_file: documentation/2634_Selects2023_PES_Doc_Web_Questionnaire_DE-FR-IT.pdf
+        size: 1121670
+      title: Post-Election Survey Web Questionnaire - DE, FR & IT
+    reference_no: 32105
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 32ff902cc0d16d90633c8770b0792da8
+        physical_file: documentation/2634_Selects2023_PES_Doc_Paper_Questionnaire_DE.pdf
+        size: 6714025
+      title: Post-Election Survey Paper Questionnaire - DE
+    reference_no: 32106
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 214916d96da9fa2a75de0f10d8bd4e6c
+        physical_file: documentation/2634_Selects2023_PES_Doc_Paper_Questionnaire_FR.pdf
+        size: 6671778
+      title: Post-Election Survey Paper Questionnaire - FR
+    reference_no: 32107
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: c2729acf4686efabab28b9787570e53f
+        physical_file: documentation/2634_Selects2023_PES_Doc_Paper_Questionnaire_IT.pdf
+        size: 6669385
+      title: Post-Election Survey Paper Questionnaire - IT
+    reference_no: 32108
+  - curator_treated:
+      document_type: Publications (final report, articles)
+      is_public: true
+      original_file:
+        md5: 335056e92435efbb4564bd2b19f40ab9
+        physical_file: documentation/20738_Selects2023_Doc_Brochure_DE-FR-IT.zip
+        size: 3967369
+      title: Selects 2023 Brochure - DE, FR & IT
+    reference_no: 32109
+  - curator_treated:
+      document_type: Technical report
+      is_public: true
+      original_file:
+        md5: 3c4357a2faeb0101e7fb6ecb04592378
+        physical_file: documentation/2634_Selects2023_PES_Doc_TechnicalReport_EN.pdf
+        size: 286051
+      title: Post-Election Survey Technical Report - EN
+    reference_no: 32110
+  - curator_treated:
+      document_type: Variable documentation
+      is_public: true
+      original_file:
+        md5: d26a592e93f4e583d0f28d0ca368a5ea
+        physical_file: documentation/2634_Selects2023_PES_Doc_ManualCoding_EN.pdf
+        size: 178680
+      title: Post-Election Survey Manual Coding Information - EN
+    reference_no: 32111
+  - curator_treated:
+      document_type: Syntax file
+      is_public: true
+      original_file:
+        md5: e20a600d4618569ec35b4bd85fa928cc
+        physical_file: documentation/2634_Selects2023_PES_Doc_Syntax_Oesch_ClassVariables_EN.sps
+        size: 58943
+      title: Post-Election Survey Syntax for creating Oesch Class Variables - EN
+    reference_no: 32112
+  language: English
+  reference_no: 2634
+  title:
+    en: Selects 2023 Post-Election Survey
+  usage_license:
+    reference_no: 232
+    restriction: Academic research and teaching only
+    special_permission: None
+    text: 'Ref study: 20738 / Ref dataset: 2634
+
+
+      Bibliographical Citation:
+
+
+      Selects. (2024). Selects 2023 Post-Election Survey (Version 1.0) [Data set].
+      FORS. https://doi.org/10.48573/q99z-aa77
+
+
+      I agree to the following:
+
+
+
+      1. to use the data cited above and related instruments for non-commercial purposes
+      (e.g. journalists, NGOs) and to use the data for the purpose that I have declared
+      in the Usage terms in the present contract; I declare also to use the data under
+      the following  additional restriction: Academic research and teaching only;
+
+
+      2. to use the data with respect to Swiss federal law and the applicable standard
+      norms of data protection;
+
+
+      3. not to undertake to attribute data to specific individuals; and to communicate
+      my results only in a way that does not identify individual cases (i.e., persons,
+      households, institutions, etc.);
+
+
+      4. to respect above all individual confidentiality, and not to divulge any information
+      that might compromise this confidentiality;
+
+
+      5. to use the data in a conscientious and informed manner, notably by consulting
+      the related documentation, and to respect scientific ethical rules of conduct;
+
+
+      6. to cite used data and documents in conformity with scientific standards (using
+      the citation above);
+
+
+      7. to inform FORS of all publications based on these data;
+
+
+      8. not to transmit these data to third parties, whether in original or modified
+      form;
+
+
+      9. to store the data in a way such that no third party can gain  access to them;
+
+
+      10. to destroy the data at the latest upon expiry of the present contract, and
+      to confirm this to FORS.'
+    title: Restricted access
+  version_no: '1.0'
+  version_notes: Version 1.0
+meta_info:
+  application: SUB
+  creation_timestamp: '2024-06-20'
+  meta_format: YAML
+  meta_version: v2
+study_version:
+  abstract:
+    en: "The Swiss Election Study (Selects) 2023 consists of four complementary components:\
+      \ The Post-Election Survey (PES), the Panel Survey, the Candidate Survey, and\
+      \ the Media Analysis. The study design is largely inspired by Selects 2019.\
+      \ The PES and Candidate Survey are mixed-mode surveys (online/paper), with a\
+      \ push-to-web design, whereas the Panel Study is an online survey. In April\
+      \ 2022, a call for questions/modules was opened to allow researchers from Switzerland\
+      \ and abroad to include novel questions into one or different components of\
+      \ Selects. Ten out of 14 submitted proposals were selected by the Selects Commission\
+      \ after a review process conducted by internationally renowned election researchers,\
+      \ and were fully or partially integrated into one or several components of Selects\
+      \ 2023. The Selects surveys were approved by the Ethics commission of the University\
+      \ of Lausanne.\n\nPost-Election Survey (PES):\nThe Post-Election Survey consists\
+      \ of 5033 respondents who answered the questionnaire in the period from 23 October\
+      \ 2023 to 12 January 2024. The survey was conducted in a sequential mixed mode\
+      \ with web offered as the first option: 90% responded in this way, while 10%\
+      \ responded by returning the paper questionnaire that was sent out with the\
+      \ second reminder to those that had not completed the web questionnaire. The\
+      \ sampling was based on a representative sample of around 2’600 Swiss citizens,\
+      \ with an oversampling of small cantons to have at least 50 respondents in every\
+      \ canton. An additional oversampling was done in the cantons of Geneva and Ticino\
+      \ thanks to additional funding from these cantons. The sample was drawn by the\
+      \ Federal Statistics Office from the SRPH. Sample members received an unconditional\
+      \ incentive (10 CHF in cash) that was sent out with the invitation letter. Module\
+      \ 6 Questionnaire of the Comparative Study of Electoral Systems was included\
+      \ into the PES.\n\nPanel Survey:\nThe Panel Survey studies the evolution of\
+      \ opinion and vote intention/choice during the different phases of the election\
+      \ cycle. In 2023, three waves were conducted: the first before the main campaign\
+      \ period (June/early August), the second during the election campaign (September/October),\
+      \ and the third after the elections (October/November). The initial random sample\
+      \ (stratified by big region/NUTS II) was taken by the Federal Statistics Office\
+      \ from the SRPH. 8197 individuals responded to the first wave, 6077 to the second\
+      \ wave, and 5579 to the third wave. Conditional incentives were used in all\
+      \ three panel waves (lottery of 5x300 CHF in wave 1, 10 CHF in cash in waves\
+      \ 2 and 3). This three-wave panel will be continued with annual follow-up waves\
+      \ until the 2027 elections. \n\nCandidate Survey:\nThe Candidate Survey was\
+      \ carried out among all candidates for the National Council and the Council\
+      \ of States in the framework of the international Comparative Candidate Survey\
+      \ (CCS) project, based on the Round III questionnaire. The survey collects data\
+      \ on the biography, campaign activities, and policy position of the candidates.\
+      \ Among others, the information gathered makes possible the study of underlying\
+      \ factors of candidates’ electoral success, as well as of issues of representation\
+      \ and linkage between voters and elites. In 2023, 2527 out of 5997 candidates\
+      \ participated in the Candidate Survey. This survey was conducted by FORS in\
+      \ collaboration with Politools and the University of Bern. \n\nMedia Analysis:\n\
+      On behalf of Selects, the Center for Research & Methods at the University of\
+      \ Applied Sciences in Business Administration Zurich (HWZ) conducted a Media\
+      \ Analysis. The Media Analysis is a supplement to the Panel Survey and makes\
+      \ it possible to analyse the election campaign in the media and its influence\
+      \ on voters' opinion formation. A media study has been part of Selects since\
+      \ 2003. In 2023, 116 daily or weekly newspapers (print and online) were content-analyzed\
+      \ in the period between 1 May 2023 and 31 October 2023."
+  authors:
+  - letter: a
+    name: Anke Tresch
+  - letter: a
+    name: Line Rennwald
+  - letter: a
+    name: Lukas Lauener
+  domain: Social sciences
+  end_date: '2027-12-31'
+  financed_by:
+  - SNSF Subsidy (Nr. 198472)
+  geographical_area:
+  - Europe
+  - Western Europe
+  - Switzerland
+  geographical_space:
+    en: The surveys are representative for Switzerland, but the PES includes an oversample
+      for the cantons of Geneva and Ticino, which allow for analyses on the cantonal
+      level.
+  institutions:
+  - letter: a
+    name: FORS - Swiss Centre of Expertise in the Social Sciences
+  language: English
+  main_disciplines:
+  - Humanities and Social Sciences
+  - Sociology, social work, political sciences, media and communication studies, health
+  - Political science
+  methods:
+    methodInstruments:
+    - methodInstrument: Standardised interviews - by mail
+      otherComments: 'In the PES, we used an unconditional cash incentive (10 CHF)
+        that was sent to sample members together with the invitation letter.
+
+        Panel: in wave 1, respondents participated in a lottery (5x300 CHF); in waves
+        2 and 3, respondents received a conditional cash incentive (10 CHF) after
+        completion of the survey.'
+      participantSelection: 'PES: stratified by canton, e.g. individuals were randomly
+        selected within the 26 cantons. A basic sample of around 2600 individuals
+        was calculated for each canton to minimize variance regarding participation
+        and party choice. In the least populous cantons, the samples were increased
+        to ensure that at least 50 individuals could be surveyed. An oversample was
+        taken for the cantons of Ticino and Geneva.
+
+        Panel: stratified by big region (NUTS 2), e.g. individuals were randomly selected
+        within the seven major regions (Lake Geneva Region, Espace Mittelland, North-West
+        Switzerland, Zurich region, Eastern Switzerland, Central Switzerland, Ticino).
+
+        The samples were drawn from the SRPH by the Federal Statistics Office.'
+      population: 'For voter surveys (PES and Panel): Swiss citizens aged 18 years
+        and above
+
+        For candidate surveys: all candidates running for the National Council and/or
+        the Council of States'
+    - methodInstrument: Analysis of content - standardized
+      otherComments: The issues of the newspaper articles were coded based on the
+        same categories as the most important problems perceived by voters in the
+        PES and the Panel, as well as by candidates included in the Candidate Survey.
+      participantSelection: Newspapers were mainly accessed on Swissdox@Liri. Only
+        articles dealing with Swiss politics were selected.
+      population: 116 daily and weekly newspapers (print and online) were semi-automatically
+        content-analyzed in the period from 1 May 2023 to 31 October 2023.
+  period:
+    en: 2023-2027
+  reference_no: 20738
+  start_date: '2023-06-19'
+  study_status: Published
+  study_type:
+  - Research subsidized by the SNSF
+  title:
+    en: Swiss Election Study (Selects) 2023
+  version_no: '1.2'

@@ -8,7 +8,7 @@ editor: visual
 execute: 
   freeze: true
 categories: [Macroeconomics, Post-Keynesian Economics]
-draft: false
+draft: true
 bibliography: references.bib
 ---
 
@@ -97,6 +97,13 @@ oecd_real <- rdb(ids = "OECD/EO/OTO.GDPV.A") %>%
   ts(start = 1960, end = 2022) - GDP_real # substract swiss real gdp
 
 
+# [RVGDE] Gross domestic product at 2015 reference levels per person employed AMECO/RVGDE/CHE.1.1.0.0.RVGDE
+
+y <- rdb(ids = "AMECO/RVGDE/CHE.1.1.0.0.RVGDE") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
+
 # compute profit share, wage share and the share of government and private expenditures, net exports and investment in GDP
 
 wageShare = W_n/GDP_n
@@ -106,12 +113,21 @@ I_share = I_n/GDP_n
 C_share = C_n/GDP_n
 NX_share = NX/GDP_n
 
+
 #macroch <- cbind(GDP_n, GDP_deflator, GDP_real, C_n, C_deflator, C_real, I_n, I_deflator, I_real, cpi, W_n, W_real, R_n, R_real, NX, G_n, i, wageShare, profitShare, G_share, I_share, C_share, NX_share, oecd_real = oecd_real/10^9) # divide oecd_real by one billion to have same scale as others
 
 #macroch <- as_tibble(macroch)
 
+# working age population 15-64
+
+WAP <- rdb(ids = "AMECO/NPAN/CHE.1.0.0.0.NPAN") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# total employment in 1000 AMECO/NETD/CHE.1.0.0.0.NETD
+
+E <- rdb(ids = "AMECO/NETD/CHE.1.0.0.0.NETD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
 
+e = E/WAP
 ```
 
 ```{r import data}
@@ -125,8 +141,7 @@ macroch <- read_csv("macroch.csv")
 
 ```
 
-
-## Abstract 
+## Abstract
 
 Despite a flourishing and growing litterature on the identification of demand and growth regimes, Switzerland remains little studied. This is all the more odd given that the Swiss model is often considered one of the most successful and stable in the world. From the Kaleckian approach to demand and growth regimes, which started with the seminal contribution of @bhaduri_unemployment_1990, only one study tried to identify the Swiss demand and growth regimes [@hartwig_distribution_2013]. This paper tries to fill this gap by conducting a comprehensive identification of the Swiss acummulation regime. It finds that, from 1960 to 2022, as predicted by the model for small-open economies, the Swiss demand regime is profit led due a strong effect of the profit share on net exports.
 
@@ -241,10 +256,26 @@ C_table = tibble(
 C_table %>% gt
 ```
 
+```{r tableC}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-C_effects
+#| tbl-cap: "Partial effects of profit share on consumption"
+C_table = tibble(
+  "$C/R$" = mean(macroch$C_n/macroch$R_n),
+  "$C/W$" = mean(macroch$C_n/macroch$W_n),
+  "$c1(C/R)$" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n),
+  "$c2(C/W)$" = coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
+  "Final effect" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n)
+  
+)
+C_table %>% kbl(escape = FALSE)
+```
+
 $\beta_1*\frac{C}{R}$
 
 ### Investment function
-
 
 $$
 I_t = f(Y, h, i)
@@ -258,7 +289,7 @@ $$
 #| tbl-cap: "Estimation results for the investment function"
 lY = log(macroch$GDP_real) %>% ts(start = 1960, end = 2022)
 
-data_I = cbind(dlogY = diff(lY), dh = diff(macroch$profitShare), dlogI = diff(log(macroch$I_real)), dlogR = diff(logR))
+data_Idiff = cbind(dlogY = diff(lY), dh = diff(macroch$profitShare), dlogI = diff(log(macroch$I_real)), dlogR = diff(logR))
 
 data_I2 = cbind(logI = macroch$I_real, logY = macroch$GDP_real, logR = macroch$R_real)
 
@@ -309,7 +340,7 @@ $$
 NX_t/Y_t = f(h, Y^f, Y)
 $$
 
-```{r}
+```{r net exports function}
 #| echo: false
 #| message: false
 #| warning: false
@@ -358,11 +389,6 @@ The long-run effect of the profit share on net export can be obtained by dividin
 
 $$\frac{\partial NX_t/Y_t}{\partial h} = \frac{\beta_4}{\lvert \beta_2 \rvert} = 0.51/0.457 = 1.116$$
 
-
-
-
-
-
 ```{r final results table}
 #| echo: false
 #| message: false
@@ -377,7 +403,6 @@ finalresult <- tibble(
 
 finalresult %>% gt
 ```
-
 
 ### Productivity
 
@@ -417,7 +442,6 @@ summary(prodols <- lm(data = dataprod,
 
 summary(prod_fun)
 ```
-
 
 ### Appendix
 
@@ -529,7 +553,6 @@ contr2022 <- apply(data_contr2022,2, function(x){sum(x)/length(x)})
 apply(as_tibble(contr1990), 2, sum)
 ```
 
-
 ```{r sectoral balance}
 #| echo: false
 #| warning: false
@@ -605,5 +628,46 @@ autoplot(data, facets = FALSE)
 
 ```
 
+```{r}
+# philips curve
+
+autoplot(cbind(e, salaire_reel_ofs2))
+
+pcdata = as_tibble(cbind(e = diff(log(E)), w = diff(log(salaire_reel_ofs2)))) %>% 
+  drop_na()
+
+summary(lm(data = as_tibble(pcdata[,]),
+           w ~ e))
+
+plot(pcdata$e[1:30], pcdata$w[1:30])
+plot(pcdata$e[40:62], pcdata$w[40:62])
+```
+
+```{r profit rate}
+#| echo: false
+#| message: false
+#| warning: false
+# net gross operating surplus nominal AMECO/UOND/CHE.1.0.0.0.UOND
+profits <- rdb(ids = "AMECO/UOND/CHE.1.0.0.0.UOND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [OKND] Net capital stock at 2015 prices: total economy AMECO/OKND/CHE.1.0.0.0.OKND
+
+K <- rdb(ids = "AMECO/OKND/CHE.1.0.0.0.OKND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# net gross operating surplus nominal AMECO/UOND/FRA.1.0.0.0.UOND FRANCE
+profits <- rdb(ids = "AMECO/UOND/FRA.1.0.0.0.UOND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+# [OKND] Net capital stock at 2015 prices: total economy AMECO/OKND/FRA.1.0.0.0.OKND FRANCE
+
+K <- rdb(ids = "AMECO/OKND/FRA.1.0.0.0.OKND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
+profits_real = (profits/GDP_deflator)*100
+profits_real2 = (profits/cpi)*100
+profitRate = profits_real/K
+autoplot(profitRate)+
+  labs(title = "General rate of profit in Switzerland")+
+  theme_minimal()+
+  scale_y_continuous(labels = scales::percent)
+```
 
 ### References
