@@ -70,6 +70,10 @@ editor: visual
 ::: {.column width="15%"}
 [![Structural Change and Economic Dynamics](resources_pictures/sced.jpg){width="96"}](https://www.sciencedirect.com/journal/structural-change-and-economic-dynamics)
 :::
+
+::: {.column width="15%"}
+[![Analytical Political Economy](resources_pictures/ape.jpg){width="102"}](https://www.wiley.com/en-us/Analytical+Political+Economy-p-9781119483311)
+:::
 :::
 
 ## Mainstream Journals
@@ -96,6 +100,7 @@ editor: visual
 :::
 
 ::: {.column width="15%"}
+[![Swiss Journal of Economics and Statistics](resources_pictures/sjes.jpg){width="99"}](https://sjes.springeropen.com/)
 :::
 
 ::: {.column width="15%"}
@@ -109,10 +114,11 @@ editor: visual
 
 ::: columns
 ::: {.column width="15%"}
-[![Journal of Economic History](resources_pictures/the_journal of economic history.jpg){width="80"}](https://www.cambridge.org/core/journals/journal-of-economic-history)
+[![Journal of Economic History](resources_pictures/the_journal%20of%20economic%20history.jpg){width="80"}](https://www.cambridge.org/core/journals/journal-of-economic-history)
 :::
 
 ::: {.column width="15%"}
+[![Journal of Global History](resources_pictures/journal_of global history.jpg){width="123"}](https://www.cambridge.org/core/journals/journal-of-global-history)
 :::
 
 ::: {.column width="15%"}
@@ -122,6 +128,22 @@ editor: visual
 ## Political Science
 
 ::: columns
+::: {.column width="15%"}
+[![Swiss Political Science Review](resources_pictures/spsr.jpg){width="109"}](https://onlinelibrary.wiley.com/journal/16626370)
+:::
+
+::: {.column width="15%"}
+[![Comparative Political Studies](resources_pictures/cps.jpg){width="119"}](https://us.sagepub.com/en-us/nam/journal/comparative-political-studies)
+:::
+
+::: {.column width="15%"}
+[![Politics & Society](resources_pictures/politics&society.jpg){width="122"}](https://journals.sagepub.com/home/pasa)
+:::
+
+::: {.column width="15%"}
+[![Political Science Research and Methods](resources_pictures/political_science research and methods.jpg){width="133"}](https://www.cambridge.org/core/journals/political-science-research-and-methods)
+:::
+
 ::: {.column width="15%"}
 :::
 
