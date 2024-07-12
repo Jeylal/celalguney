@@ -1,0 +1,133 @@
+---
+title: "Resources"
+format: html
+editor: visual
+---
+
+## Post-Keynesian journals
+
+::: columns
+::: {.column width="15%"}
+[![Cambridge Journal of Economics](resources_pictures/m_cover.jpeg){width="94"}](https://academic.oup.com/cje)
+:::
+
+::: {.column width="15%"}
+[![Journal of Post-Keynesian Economics](resources_pictures/jpke.jpg){width="99"}](https://www.tandfonline.com/journals/mpke20)
+:::
+
+::: {.column width="15%"}
+[![Socio-economic Review](resources_pictures/socioeconomicReview.jpeg){width="106"}](https://academic.oup.com/ser)
+:::
+
+::: {.column width="15%"}
+[![Revue de la Régulation](resources_pictures/rr.jpg){width="105"}](https://journals.openedition.org/regulation/)
+:::
+
+::: {.column width="15%"}
+[![Metroeconomica](resources_pictures/metroeconometrica.jpg){width="100"}](https://onlinelibrary.wiley.com/journal/1467999x)
+:::
+
+::: {.column width="15%"}
+[![Review of Political Economy](resources_pictures/rope.png){width="107"}](https://www.tandfonline.com/journals/crpe20)
+:::
+
+::: {.column width="15%"}
+[![International Review of Applied Economics](resources_pictures/irae.png){width="117"}](https://www.tandfonline.com/journals/cira20)
+:::
+
+::: {.column width="15%"}
+[![European Journal of Economics and Economic Policies](resources_pictures/ejeep.jpg){width="122"}](https://www.elgaronline.com/view/journals/ejeep/ejeep-overview.xml)
+:::
+
+::: {.column width="15%"}
+[![Journal of Economic Issues](resources_pictures/jei.jpg){width="93"}](https://www.tandfonline.com/journals/mjei20)
+:::
+
+::: {.column width="15%"}
+[![International Journal of Political Economy](resources_pictures/ijpe.jpg){width="101"}](https://www.tandfonline.com/journals/mijp20)
+:::
+
+::: {.column width="15%"}
+[![Review of Radical Political Economics](resources_pictures/rrpe.png){width="109"}](https://journals.sagepub.com/home/RRP)
+:::
+
+::: {.column width="15%"}
+[![Contributions to Political Economy](resources_pictures/cpe.jpeg){width="102"}](https://academic.oup.com/cpe)
+:::
+
+::: {.column width="15%"}
+[![Panoeconomicus](resources_pictures/panoeconomicus.jpg){width="93"}](https://panoeconomicus.org/index.php/jorunal)
+:::
+
+::: {.column width="15%"}
+[![Evolutionary Political Economy](resources_pictures/epe.jpg)](https://link.springer.com/journal/43253)
+:::
+
+::: {.column width="15%"}
+[![European Journal of the History of Economic Thought](resources_pictures/ejhet.jpg){width="92"}](https://www.tandfonline.com/toc/rejh20/current)
+:::
+
+::: {.column width="15%"}
+[![Structural Change and Economic Dynamics](resources_pictures/sced.jpg){width="96"}](https://www.sciencedirect.com/journal/structural-change-and-economic-dynamics)
+:::
+:::
+
+## Mainstream Journals
+
+::: columns
+::: {.column width="15%"}
+[![Econometrica](resources_pictures/econometrica.jpg){width="95"}](https://onlinelibrary.wiley.com/journal/14680262)
+:::
+
+::: {.column width="15%"}
+[![Quarterly Journal of Economics](resources_pictures/qje.jpeg){width="103"}](https://academic.oup.com/qje)
+:::
+
+::: {.column width="15%"}
+[![American Economic Review](resources_pictures/aer.jpg){width="100"}](https://www.aeaweb.org/journals/AER)
+:::
+
+::: {.column width="15%"}
+[![Journal of Political Economy](resources_pictures/journalpolecon.jpg){width="95"}](https://www.journals.uchicago.edu/toc/jpe/current)
+:::
+
+::: {.column width="15%"}
+[![Journal of Applied Econometrics](resources_pictures/journalAppliedEconometrics.webp){width="96"}](https://onlinelibrary.wiley.com/journal/10991255)
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+:::
+
+## Economic History
+
+::: columns
+::: {.column width="15%"}
+[![Journal of Economic History](resources_pictures/the_journal of economic history.jpg){width="80"}](https://www.cambridge.org/core/journals/journal-of-economic-history)
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+:::
+
+## Political Science
+
+::: columns
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+:::
