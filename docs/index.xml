@@ -9,7 +9,7 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.4.549</generator>
+<generator>quarto-1.5.56</generator>
 <lastBuildDate>Tue, 07 May 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Economic stagnation in Switzerland: discussion of a growing debate</title>
@@ -24,7 +24,7 @@
 <p>In the last years, recurring debates are emerging in Switzerland regarding the future of the country’s socio-economic model, showing a rising concern of the Swiss elites for their country’s economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper <em>Neue Zürcher Zeitung</em>. This article, written by Thomas Fuster and entitled <em>“Immigration: The Swiss economy is primarily growing extensively”</em> argued that the Swiss economy is solely growing “extensively”, that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP) indicator, is still growing due to immigration, gdp per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank <em>Avenir Suisse</em> and the business interest association <em>EconomieSuisse</em>, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland’s economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.</p>
 <p><a href="https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative">EconomieSuisse’s argument and empirical evidence</a> <span class="citation" data-cites="minsch_croissance_2023">(Minsch 2023)</span> are first based on a graph showing the evolution of Switzerland’s real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse’s figure. First, the choice of the countries which are compared to Switzerland biases the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is shown by EconomieSuisse.</p>
 <div class="cell">
-<div id="fig-gdpcap" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gdpcap" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gdpcap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="plotly html-widget html-fill-item" id="htmlwidget-392cbab86077167fdeb7" style="width:100%;height:464px;"></div>
@@ -39,7 +39,7 @@ Figure&nbsp;1: Real GDP per capita growth in Switzerland in international compar
 <p>Figure&nbsp;1 shows the evolution of the Swiss real gdp per capita at purchasing power parities (ppp) compared to a sample of Western countries, using high-quality data provided by the World Inequality Database (WID). One can see that Switzerland’s gdp per capita was indeed well in advance compared to other Western countries in the post-war period. However, starting from the 1970s, gdp per capita growth has slowed down in Switzerland, and the difference with other countries is gradually getting smaller. Contrary to what is argued by EconomieSuisse, Switzerland has even been caught up and surpassed by Norway which is, interestingly, not taken into account in EconomieSuisse’s article, showing that the lobby has carefully chosen the countries for the comparison. Norway’s growth has been particularly impressive and the country would have surpassed Switzerland shortly after 2008 if the Great Recession did not happen. Moreover, The United States are now very close to Switzerland, at least when we take a longer historical perspective.</p>
 <p>Another issue of the debate about Switzerland’s economic growth is the excessive focus on GDP as an indicator of a country’s economic wealth and performance. In that matter, other indicators such as national income<sup>1</sup> also deserves close attention.</p>
 <div class="cell">
-<div id="fig-nationalincome" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-nationalincome" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nationalincome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="plotly html-widget html-fill-item" id="htmlwidget-32339ae1cf362c46a005" style="width:100%;height:464px;"></div>
@@ -56,7 +56,7 @@ Figure&nbsp;2: Real net national income per capita in Switzerland and other West
 <p>One could argue that Switzerland’s post-war regime had its own national peculiarities which helped real wages to grow with productivity and thus sustain a Fordist accumulation regime. A first characteristic is the importance of the labour collective agreements regulating industrial relations. A second factor were full-employment and the structural labour shortage which induced Switzerland to extensively rely on immigration as a reserve of labour supply. These factors surely helped Switzerland to have its own Fordist growth regime.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-tblgrowth" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tblgrowth" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tblgrowth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/growth debate switzerland/growth-debate-switzerland_files/figure-html/fig-tblgrowth-1.png" class="img-fluid figure-img" width="672">
@@ -71,7 +71,7 @@ Figure&nbsp;3: Compound growth rates over different periods. Real GDP and nation
 <p>The second growth period, ranging from 1971 to 1980, marked the end of the post-war sustained high growth regime. The average growth rates for this period fell to 0.2% for GDP and 0.7% for national income per capita. The 70s were thus a deep period of economic crisis and stagnation, both in Switzerland and at the international level. According to the Régulation school, the 70s marked the end of the Fordist accumulation regime. But the disintegration of the latter is not only the result international events such as the Oil shocks (1973, 1979), but suffered from internal contradictions (as does each regime). <span class="citation" data-cites="boyer_political_2022">Boyer (2022)</span> identifies several sources of crisis of the Fordist regime: (1) the end of productivity gains associated with Fordist production methods; (2) full-employment which induce more indexation of wages to productivity gains, which can provoke instability because of factor (1).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-prodwage" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-prodwage" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-prodwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/growth debate switzerland/growth-debate-switzerland_files/figure-html/fig-prodwage-1.png" class="img-fluid figure-img" width="672">
@@ -86,7 +86,7 @@ Figure&nbsp;4: Real wage and productivity in Switzerland, 1970-2022. 1 = 1970. D
 <p>Unfortunately, data on productivity are not available for Switzerland before the 70s, but one can still have a look at the co-evolution with real wage since the 70s. Figure&nbsp;4 shows that real wage and productivity were still growing together after the 70s and 80s, but that a “decoupling” between the two happened during the 90s, which are often characterized as a period of wage moderation.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-roll" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-roll" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-roll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/growth debate switzerland/growth-debate-switzerland_files/figure-html/fig-roll-1.png" class="img-fluid figure-img" width="672">
@@ -165,6 +165,7 @@ Minsch, Rudolf. 2023. <span>“La croissance suisse est-elle avant tout quantita
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb1-2">  (x <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1944,7 +1945,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="p02" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">p02</th>
@@ -2535,7 +2536,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="educ" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">educ</th>
@@ -3043,7 +3044,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="nivmena" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">nivmena</th>
@@ -3536,7 +3537,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="revenu" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">revenu</th>
@@ -4962,7 +4963,7 @@ font-style: inherit;">read_html</span>(url)</span></code></pre></div>
 <p>The next step is to search and select each videogame price as well as the videogame’s titles using the chrome extension selectorgadget. This step is a bit tricky and is a pain because selectorgadget is a chrome-only extension. So if you don’t have chrome, you have to install it and then add selector gadget on it. To use selectorgadget, just click on what you want to collect on the webpage and then copy the css selector which is on the left of the selectorgadget bar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/web scraping/imagemediamarkt.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/web scraping/imagemediamarkt.png" class="img-fluid figure-img"></p>
 <figcaption>Using selectorgadget</figcaption>
 </figure>
 </div>
@@ -5490,7 +5491,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="game_final" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">game_final</th>
@@ -5692,6 +5693,7 @@ font-style: inherit;">"price in swiss francs"</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(url){</span>
 <span id="cb12-2">  </span>
 <span id="cb12-3">  website <span class="ot" style="color: #003B4F;
@@ -5821,8 +5823,10 @@ background-color: null;
 font-style: inherit;">list</span>()</span>
 <span id="cb15-2"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -6384,7 +6388,7 @@ font-style: inherit;">"Video-games summary statistics (CHF)"</span>)</span></cod
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Video-games summary statistics (CHF)</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -6968,7 +6972,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="Canton" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Canton</th>
@@ -7058,6 +7062,7 @@ font-style: inherit;">as_tibble</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">lapply</span>(data, <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) {<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
@@ -7077,6 +7082,7 @@ font-style: inherit;">%&gt;%</span> </span>
 background-color: null;
 font-style: inherit;">map_df</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) {<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
@@ -7158,14 +7164,22 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <p>Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. Along with the good performances of the economy, one expects that Swiss people also have more trust in their institutions compared with other countries. If one looks at, for instance, the data provided by the OECD on the confidence in government and other institutions, Switzerland is indeed one of the countries with the highest level of trust:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Source: OECD (Government at Glance, 2021)"></a></p>
+</figure>
+</div>
 <figcaption>Source: OECD (Government at Glance, 2021)</figcaption>
 </figure>
 </div>
 <p>In Switzerland, the confidence in national government in 2020 was the highest among OECD countries with a level of 85%. Other countries like France and Italy have a level of confidence lower than the average.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Source: OECD (Government at Glance, 2021)"></a></p>
+</figure>
+</div>
 <figcaption>Source: OECD (Government at Glance, 2021)</figcaption>
 </figure>
 </div>
@@ -7176,7 +7190,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="assessing-political-stability-in-switzerland-selects-data">Assessing political stability in Switzerland: Selects data</h3>
 <p>Let’s first see what Selects data offer. The Swiss Election Studies (SELECTS) contains a cumulative dataset which is of particular interest.</p>
 <p>This dataset is in fact a harmonized dataset of all the successive post-electoral studies that have been conducted in Switzerland between 1971 and 2019 by different universities. This dataset contains a set of “trust in political institutions” variables which are of interest, but not all of them can be used because they are not avaliable for each year of the dataset. The ones which have the most time coverage are the following variables and that I will analyse here are described in the following table:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
 <col style="width: 24%">
@@ -7282,7 +7296,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <section id="alternative-data-source-the-european-social-survey-ess" class="level3">
 <h3 class="anchored" data-anchor-id="alternative-data-source-the-european-social-survey-ess">Alternative data source: the European Social Survey (ESS)</h3>
 <p>As we have seen, Selects data have some shortcomings which prevent to conduct a serious evaluation of the evolution of trust in institutions. One thus has to look at other data. To do so, I will now analyse the Swiss trust in institutions using ESS data.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 29%">
@@ -9168,7 +9182,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Distribution of the vote for the NDP by income group</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -9882,7 +9896,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Distribution of income group among NDP's voters</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -10729,7 +10743,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Decile and income bracket</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -11259,7 +11273,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="inc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">inc</th>
@@ -11582,8 +11596,10 @@ font-style: inherit;">$</span>inc))</span>
 <span id="cb15-2"></span>
 <span id="cb15-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -12385,7 +12401,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="inc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">inc</th>
@@ -12662,6 +12678,7 @@ html {
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb18-2">  weight <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -12675,8 +12692,10 @@ font-style: inherit;">length</span>(x))</span>
 <span id="cb18-3">  </span>
 <span id="cb18-4">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -13683,7 +13702,7 @@ html {
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="inc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">inc</th>
@@ -14159,6 +14178,7 @@ html {
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb22-2"></span>
 <span id="cb22-3">data <span class="sc" style="color: #5E5E5E;
@@ -14645,8 +14665,10 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">12</span><span class="sc" style="color: #5E5E5E;
@@ -14657,6 +14679,7 @@ font-style: inherit;">21</span>) {</span>
 <span id="cb31-5"></span>
 <span id="cb31-6">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
@@ -14693,6 +14716,7 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb31-10">  }<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb31-11">    </span>
 <span id="cb31-12">   decile <span class="ot" style="color: #003B4F;
@@ -14844,6 +14868,7 @@ font-style: inherit;">theme_bw</span>()</span></code></pre></div>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb34-2">  </span>
 <span id="cb34-3">  decile_vec <span class="ot" style="color: #003B4F;
@@ -14867,8 +14892,10 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(columns)<span class="sc" style="color: #5E5E5E;
@@ -14879,6 +14906,7 @@ font-style: inherit;">max</span>(columns)) {</span>
 <span id="cb34-7"></span>
 <span id="cb34-8">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
@@ -14911,6 +14939,7 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb34-12">  }<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb34-13">    </span>
 <span id="cb34-14">   decile <span class="ot" style="color: #003B4F;
@@ -15058,6 +15087,7 @@ font-style: inherit;"># note: the function needs the weight_share() function and
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb36-4">  weight <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -15071,8 +15101,10 @@ font-style: inherit;">length</span>(x))</span>
 <span id="cb36-5">  </span>
 <span id="cb36-6">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -15325,6 +15357,7 @@ font-style: inherit;">1</span>, weight)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb36-23"></span>
 <span id="cb36-24">data <span class="sc" style="color: #5E5E5E;
@@ -15603,6 +15636,7 @@ font-style: inherit;">0</span>))</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb36-39">  </span>
 <span id="cb36-40">  decile_vec <span class="ot" style="color: #003B4F;
@@ -15626,8 +15660,10 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(columns)<span class="sc" style="color: #5E5E5E;
@@ -15638,6 +15674,7 @@ font-style: inherit;">max</span>(columns)) {</span>
 <span id="cb36-44"></span>
 <span id="cb36-45">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
@@ -15670,6 +15707,7 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb36-49">  }<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb36-50">    </span>
 <span id="cb36-51">   decile <span class="ot" style="color: #003B4F;
@@ -15781,6 +15819,7 @@ font-style: italic;">### if a group has no observation in the count, replace the
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, x, by, value){</span>
 <span id="cb36-69">  </span>
 <span id="cb36-70">table1 <span class="ot" style="color: #003B4F;
@@ -16042,6 +16081,7 @@ font-style: inherit;"># 1. compute different quantile groups (quartile, quintile
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb41-5">  weight <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -16055,8 +16095,10 @@ font-style: inherit;">length</span>(x))</span>
 <span id="cb41-6">  </span>
 <span id="cb41-7">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -16309,6 +16351,7 @@ font-style: inherit;">1</span>, weight)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb41-24"></span>
 <span id="cb41-25">data <span class="sc" style="color: #5E5E5E;
@@ -16587,6 +16630,7 @@ font-style: inherit;">0</span>))</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb41-40">  </span>
 <span id="cb41-41">  decile_vec <span class="ot" style="color: #003B4F;
@@ -16610,8 +16654,10 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(columns)<span class="sc" style="color: #5E5E5E;
@@ -16622,6 +16668,7 @@ font-style: inherit;">max</span>(columns)) {</span>
 <span id="cb41-45"></span>
 <span id="cb41-46">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
@@ -16654,6 +16701,7 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb41-50">  }<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb41-51">    </span>
 <span id="cb41-52">   decile <span class="ot" style="color: #003B4F;
@@ -16742,6 +16790,7 @@ font-style: inherit;">prop =</span> decile_vec)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(data, x, by, value){</span>
 <span id="cb41-67">  </span>
 <span id="cb41-68">table1 <span class="ot" style="color: #003B4F;
@@ -16967,7 +17016,11 @@ font-style: inherit;">$</span>share_rest))</span>
 <p>Marichal’s analysis of the rise and decline of cochineal production and trade rests upon three main hypotheses. The first one is that the prosperity of cochineal production and trade in Oaxaca, the main farming region of cochineal in Mexico, from the 16th century on was demand led. He advances two reasons for this strong demand, mostly driven by the upper classes of Europe, namely the Church, the nobility, and other elites. One reason is cultural and symbolic: cochineals produce a particularly magnificent crimson color that the nobility and the church associated with symbols of prestige and power. The other reason is physical: cochineal has physical properties which make it materially more advantageous compared to its competitors (kermes for example). This strong demand thus made cochineal highly profitable. Trade, production, and prices thus boomed from the 16th until the late 18th century which marked the start of a long run decline. Mintz’ analysis of how sugar became such an essential and highly demanded commodity is more nuanced. In fact, Mintz’s text is an attempt to answer the following question: how and why did sugar become one of the most widespread and consumed commodities in British society? An obvious and straightforward answer would be, as Marichal argues in the cochineal’s case, that humans are naturally inclined to accept sugar in their consumption habits because of its physical properties. As an anthropologist, Mintz knows that there is nothing natural in the growth of sugar demand. More elaborated answers would be for instance that sugar’s consumption habits spread from the upper classes to the lower classes through imitation (what Mintz calls “intensification”), or the constant tendency of sugar prices to fall. None of these answers are convincing enough for Mintz, whose argument is that the structural transformations of the working conditions and schedules of the British workers, during a transition process from an agricultural economy to an industrial one from circa the 16th century to the 19th century, were the real reason behind sugar’s tremendous prosperity as an essential commodity with strong meaning and signification for its consumers. Mintz explores the dual “meaning” of sugar. On the one hand, sugar replaced honey as a signification of sweetness, happiness, endearment, and tenderness (the “inside meaning” of sugar in anthropological terms) for the common British people. On the other hand, sugar became a symbol of power and prosperity for the imperialistic British ruling classes which had an interest in sugar production and trading made possible by the exploitation of African slaves in the Caribbean plantations. This represents the “outside meaning” of sugar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="https://www.worldhistory.org/article/1795/life-on-a-colonial-sugar-plantation/"><img src="https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Colonial sugar cane manufacturing"></a></p>
+</figure>
+</div>
 <figcaption>Colonial sugar cane manufacturing</figcaption>
 </figure>
 </div>
@@ -17033,7 +17086,11 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>Apart from Marx and Marxists scholars, another trend emerged in the end of the 19th and in the first half the of 20th century: economists who became increasingly interested in the measurement and analysis of business cycles. The biggest impetus in that matter can surely be accredited to Wesley Clair Mitchell (1874-1948) who was the first director of the National Bureau of Economic Research (founded in 1920) and conducted tremendous research on the measurement and analysis of business cycles. Influenced by Thorstein Veblen and his critic of neoclassical economics, Mitchell sought a new way of conducting economic analysis and research, mainly through historical and empirical data analysis. He was convinced that his empirical and inductive approach (constructing new theories from empirical evidence) would make older economic theories obsolete: “quantitative analysis” would produce more robust economic reasonings than “qualitative analysis”, that is, neoclassical deductive approach. Conclusions Mitchell drew from his work are remarkably similar to Marx’: business cycles are chiefly driven by the incessant pursuit for profit. Assuredly, Mitchell’s work paved the way to a golden age of statistical and quantitative analysis of business cycles in the 1920s, so much that even economists hitherto not interested in that domain sought to bring their own contribution to business cycle analysis. A striking example is surely Irving Fisher (1867-1947) and his debt-deflation theory. Fisher, who recognized that he was a newcomer on the subject, made a distinction between “forced cycles”, cycles determined and driven by external factors (Fisher gives the example of the sun spot theory which sought to explain economic cycles through astronomical cycles) and “free cycles”, namely, cycles whose prime movers are not external, but inherent and intrinsic to the cycle. It is to this latter case, the free cycles, that Fisher wants to explain taking what he calls a “economic science” point of departure as opposed to economic history which only describe business cycles. Fisher wants to identify relations and tendencies that drive the cycles. His main idea is that the main two factors are (1) over-indebtedness and (2) deflation, the former being more important than the latter. The state of over-indebtedness leads to worries on the part of either debtors and/or creditors. As debtors try to sell their assets to pay back their debts, the quantity of money in circulation and the velocity of money decline (agents consume less to save). This leads to a fall in price level and a paradoxical situation where the more economic agents try to get rid of their debts, the more its value in real terms rise: “the more the debtors pay, the more they owe” (<a href="https://github.com/Jeylal/myblog/raw/master/posts/About%20cycles%20and%20crises/Fisher_Debt_Deflation.pdf">Fisher</a> 1933: 54). The fall in general price level leads to a fall of profit rate and hence to a decline of production and employment. This leads to general pessimism, loss of confidence and hoarding, the value of money rises even more, prices decline further and the real interest rate rises. Fisher argues it would be insane not to intervene through economic policy and that the economy should not be left to natural market forces: reflation policy becomes necessary. However, it would not be sufficient, since the main problem of the tendency towards over-indebtedness remains. This leads Fisher to explore some of the reasons which drive the economy towards this state of over-borrowing and over-indebtedness. He argues, finally, that the mains factors are the new investments opportunities associated with great profit expectations (because it will encourage agents to borrow to invest). Those new investments opportunities are, in return, created by new inventions and technological breakthrough and progress.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/celalguney/posts/About cycles and crises/babsonchart.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Babson presenting one of his famous babsoncharts on business cycles"></a></p>
+</figure>
+</div>
 <figcaption>Babson presenting one of his famous babsoncharts on business cycles</figcaption>
 </figure>
 </div>

@@ -9,7 +9,7 @@
 <link>https://jeylal.github.io/celalguney/economics.html</link>
 <atom:link href="https://jeylal.github.io/celalguney/economics.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.4.549</generator>
+<generator>quarto-1.5.56</generator>
 <lastBuildDate>Fri, 28 Jul 2023 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Neo-Kaleckian Models</title>
@@ -187,7 +187,7 @@
 <p><img src="https://latex.codecogs.com/png.latex?y_t%20%3C%20y%5Ee_t%20%5CRightarrow%20y%5Ee_%7Bt+1%7D%20%3Cy%5Ee_t"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/harrod1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="376"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/harrod1.jpg" class="img-fluid figure-img" width="376"></p>
 <figcaption>Instability of the Warranted rate of Growth</figcaption>
 </figure>
 </div>
@@ -253,7 +253,7 @@
 <p><img src="https://latex.codecogs.com/png.latex?g"> being investment. This function is assumed to have positive but diminishing marginal impact of expected profits on desired investment (<img src="https://latex.codecogs.com/png.latex?f'%3E0,%20f''%3C0">).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/robinson.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="398"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/robinson.jpg" class="img-fluid figure-img" width="398"></p>
 <figcaption>Robinson “banana diagram”</figcaption>
 </figure>
 </div>
@@ -267,7 +267,7 @@
 <p>With the same saving function <img src="https://latex.codecogs.com/png.latex?%5Csigma%20=%20s_rr"> and the inverse profit-wage relationship <img src="https://latex.codecogs.com/png.latex?w%20=%5Cfrac%7B1-a_1%20r%7D%7Ba_0%7D"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="520"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson.jpg" class="img-fluid figure-img" width="520"></p>
 <figcaption>Neo-robinsonian model</figcaption>
 </figure>
 </div>
@@ -281,7 +281,7 @@
 <p>In this model, an increase in the propensity to save leads to lower equilibrium level of growth and profit rates and a higher equilibrium real wage. The mechanism is that an increase in the propensity to save, with an unchanged desired investment curve (which means that saving propensity increases without changing firms’ willingness to invest), reduces aggregate demand through a reduction in consumption demand. With falling demand, profits realized from actual investment expenditures also fall.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson2.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="529"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/neorobinson2.jpg" class="img-fluid figure-img" width="529"></p>
 <figcaption>Effect of an increase in saving propensity</figcaption>
 </figure>
 </div>
@@ -316,7 +316,7 @@
 <p><img src="https://latex.codecogs.com/png.latex?%5Cwidehat%7BW%7D%20=%20%5Cwidehat%7BP%7D"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/marglinsynthesis.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="577"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/neo-keynesian models/marglinsynthesis.jpg" class="img-fluid figure-img" width="577"></p>
 <figcaption>Marglin’s Classical-Marxian - NeoRobinsonian synthesis</figcaption>
 </figure>
 </div>
@@ -371,6 +371,7 @@ font-style: inherit;"># how to write the leontief production function in R</span
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(l, k, a0, a1) (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(<span class="fu" style="color: #4758AB;
@@ -429,6 +430,7 @@ font-style: inherit;">1</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(r) <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">40</span> <span class="sc" style="color: #5E5E5E;
@@ -586,7 +588,7 @@ font-style: inherit;">"real wage"</span>)</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="first-and-second-closures">First and second closures</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="491"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_1.jpg" class="img-fluid figure-img" width="491"></p>
 <figcaption>The model under first and second closures (exogenous real wage or wage share),Blecker and Setterfield (2019, 69)</figcaption>
 </figure>
 </div>
@@ -595,7 +597,7 @@ font-style: inherit;">"real wage"</span>)</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="third-closure">Third closure</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="448"></p>
+<p><img src="https://jeylal.github.io/celalguney/economics_series/classical-marxian model/closure_3.jpg" class="img-fluid figure-img" width="448"></p>
 <figcaption>Third closure: constant of full employment rate, Blecker and Stterfield (2019, 72)</figcaption>
 </figure>
 </div>
@@ -748,6 +750,7 @@ font-style: inherit;">#example of a linear IS function</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(A, k, x) A <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span> k<span class="sc" style="color: #5E5E5E;
@@ -946,6 +949,7 @@ font-style: inherit;">"last"</span>))</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(l, k) (l<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
@@ -1051,6 +1055,7 @@ font-style: inherit;">"l"</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(l) <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">40</span> <span class="sc" style="color: #5E5E5E;
@@ -1170,6 +1175,7 @@ font-style: inherit;">*</span>l</span></code></pre></div>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(p) <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">7</span> <span class="sc" style="color: #5E5E5E;
@@ -1183,6 +1189,7 @@ font-style: inherit;">*</span>p)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(p) <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
@@ -1308,6 +1315,7 @@ $y
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">150</span> <span class="sc" style="color: #5E5E5E;
@@ -1379,6 +1387,7 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">uniroot</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">budget</span>(x) <span class="sc" style="color: #5E5E5E;

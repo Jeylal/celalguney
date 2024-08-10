@@ -76,6 +76,12 @@ editor: visual
 :::
 :::
 
+## Post-Keynesian manuals/books
+
+- [Post-Keynesian Economics: New Foundations (Marc Lavoie)](C:\Users\Gueney\Documents\GitHub\celalguney\resources_books\Marc Lavoie Post-Keynesian Economics_ New Foundations-Edward Elgar (2014).pdf)
+
+
+
 ## Mainstream Journals
 
 ::: columns
@@ -118,7 +124,7 @@ editor: visual
 :::
 
 ::: {.column width="15%"}
-[![Journal of Global History](resources_pictures/journal_of global history.jpg){width="123"}](https://www.cambridge.org/core/journals/journal-of-global-history)
+[![Journal of Global History](resources_pictures/journal_of%20global%20history.jpg){width="123"}](https://www.cambridge.org/core/journals/journal-of-global-history)
 :::
 
 ::: {.column width="15%"}
@@ -141,7 +147,7 @@ editor: visual
 :::
 
 ::: {.column width="15%"}
-[![Political Science Research and Methods](resources_pictures/political_science research and methods.jpg){width="133"}](https://www.cambridge.org/core/journals/political-science-research-and-methods)
+[![Political Science Research and Methods](resources_pictures/political_science%20research%20and%20methods.jpg){width="133"}](https://www.cambridge.org/core/journals/political-science-research-and-methods)
 :::
 
 ::: {.column width="15%"}
