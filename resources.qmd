@@ -4,6 +4,16 @@ format: html
 editor: visual
 ---
 
+## Books/Resources
+
+-   [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations ](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
+
+-   [Blecker and Setterfield (2019) Heterodox Economics: Models of Demand, Distribution and Growth](resources_books/heterodox%20economics%20manual.pdf)
+
+-   [Foley D.K. (1986) Understanding Capital: Marx's Economic Theory](resources_books/duncan86.pdf)
+
+-   [Aglietta M. (1979) A Theory of Capitalist Regulation. The US Experience](resources_books/aglietta1979.pdf)
+
 ## Post-Keynesian journals
 
 ::: columns
@@ -75,14 +85,6 @@ editor: visual
 [![Analytical Political Economy](resources_pictures/ape.jpg){width="102"}](https://www.wiley.com/en-us/Analytical+Political+Economy-p-9781119483311)
 :::
 :::
-
-## Post-Keynesian manuals/books
-
-- [Post-Keynesian Economics: New Foundations (Marc Lavoie)](resources_books/Marc Lavoie - Post-Keynesian Economics_ New Foundations-Edward Elgar (2014).pdf)
-
-- [Heterodox Economics](resources_books/heterodox economics manual.pdf)
-
-
 
 ## Mainstream Journals
 
