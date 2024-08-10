@@ -78,7 +78,9 @@ editor: visual
 
 ## Post-Keynesian manuals/books
 
-- [Post-Keynesian Economics: New Foundations (Marc Lavoie)](C:\Users\Gueney\Documents\GitHub\celalguney\resources_books\Marc Lavoie Post-Keynesian Economics_ New Foundations-Edward Elgar (2014).pdf)
+- [Post-Keynesian Economics: New Foundations (Marc Lavoie)](resources_books/Marc Lavoie - Post-Keynesian Economics_ New Foundations-Edward Elgar (2014).pdf)
+
+- [Heterodox Economics](resources_books/heterodox economics manual.pdf)
 
 
 
