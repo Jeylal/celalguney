@@ -1,0 +1,395 @@
+dataset_version:
+  DOI: 10.48573/b0rb-k085
+  additional_information: 'Due to anonymity reasons, some variables (municipality,
+    zipcode, isco codes 4-digit level) are not included in the downloadable dataset.
+    These variables are only available on request and with prior consent of the authors.
+    Please send an e-mail with your justified request to dataservice@fors.unil.ch.
+
+    The Selects 2023 Panel Survey was approved by the Ethics Committee of the University
+    of Lausanne (project number: C_Services_centraux_052023_00011).'
+  bibliographical_citation: Selects. (2024). Selects 2023 Panel Survey (waves 1-3)
+    (Version 1.0) [Data set]. FORS. https://doi.org/10.48573/b0rb-k085
+  collection mode:
+    dataCollector: Researcher Team
+    dataType: Quantitative data
+    media:
+    - Digitalized data file
+    otherDataCollectorFreeText: 'FORS - Swiss Centre of Expertise in the Social Sciences  '
+    timeMethod: Longitudinal
+  data_files:
+  - curator_treated:
+      data collection:
+        AnalysisUnit:
+        - Individual
+        CollectionDate:
+          CollectionDateBegin: '2023-06-18'
+          CollectionDateEnd: '2023-08-16'
+        DataCollectionInstruments:
+        - Questionnaire
+        ModeOfDataCollection:
+        - 'Self-administered questionnaire: Web-based'
+        NumberOfCaseAndVariable:
+          NumberOfCase: 8197
+          NumberOfVariable: 488
+        ResponseRate: 'Response rates per wave: Wave 1: 26.6%; Wave 2: 75.1%; Wave
+          3: 91.9%.'
+        SamplingDescription: 'Random sample stratified by major regions (7 major regions,
+          equivalent to the NUTS 2 regions of EUROSTAT) of 30’872 Swiss citizens with
+          the right to vote, aged 18 and above (no upper age limit) and living in
+          private households. The sample is based on the sampling register of the
+          Swiss Federal Statistical Office (FSO). '
+        SamplingMethod: Random sampling
+        Universe: Swiss citizens aged 18 years or older living in Switzerland
+        WeightingInformation: "Different weighting variables are provided:\n1. weight_t:\
+          \ Turnout weight to correct for the overrepresentation of voters in the\
+          \ sample, according to the official results. This is meant to be used in\
+          \ conjunction with the combined W2&W3 turnout variable \"W2_3_voted\". \n\
+          2. weight_p: Party choice weight to correct the distribution of votes according\
+          \ to the official results. This is meant to be used in conjunction with\
+          \ the combined W2&W3 vote choice variable \"W2_3_f11800main6\".\n3. weight_tot:\
+          \ Combined turnout and party choice weight (W2&W3)"
+      data_anonymised: true
+      original_file:
+        md5: bf5f182eda44590414ea10209e6db6f3
+        physical_file: data/2626_Selects2023_Panel_Data_v1.0.sav
+        size: 5961816
+      title: Panel Survey Data (SPSS)
+      variables and values:
+        DataCompleteness: "In all waves, respondents who took less than one third\
+          \ of the median duration to complete the questionnaire were removed from\
+          \ the data (speeders). In addition, incomplete responses (i.e. more than\
+          \ half of key non-filtered questions were not answered) were also removed.\
+          \ In all waves, only respondents whose age and sex corresponded to the sample\
+          \ information were retained. \n\n"
+        MissingValuesTreatment: 'Usual convention: No answer= -99; Don''t know= 8
+          or 98 or 998; Filtered: system missing.'
+        QuestionVariableLink: The variable names in the file correspond to those in
+          the questionnaire. A prefix is added for each wave (e.g., W1_age). Variables
+          that required recoding of open-ended responses generally end with the letters
+          “rec” (e.g., W1_f12700rec).
+    distribution_files:
+    - md5: bde2d1b08b3d15d6db26e504615222d6
+      physical_file: data/2626_Selects2023_Panel_Data_v1.0.csv
+      size: 10095953
+    reference_no: 32061
+  - curator_treated:
+      data collection:
+        AnalysisUnit:
+        - Individual
+        CollectionDate:
+          CollectionDateBegin: '2023-06-18'
+          CollectionDateEnd: '2023-08-16'
+        DataCollectionInstruments:
+        - Questionnaire
+        ModeOfDataCollection:
+        - 'Self-administered questionnaire: Web-based'
+        NumberOfCaseAndVariable:
+          NumberOfCase: 8197
+          NumberOfVariable: 488
+        ResponseRate: 'Response rates per wave: Wave 1: 26.6%; Wave 2: 75.1%; Wave
+          3: 91.9%. '
+        SamplingDescription: 'Random sample stratified by major regions (7 major regions,
+          equivalent to the NUTS 2 regions of EUROSTAT) of 30’872 Swiss citizens with
+          the right to vote, aged 18 and above (no upper age limit) and living in
+          private households. The sample is based on the sampling register of the
+          Swiss Federal Statistical Office (FSO).  '
+        SamplingMethod: Random sampling
+        Universe: Swiss citizens aged 18 years or older living in Switzerland
+        WeightingInformation: "Different weighting variables are provided:\n1. weight_t:\
+          \ Turnout weight to correct for the overrepresentation of voters in the\
+          \ sample, according to the official results. This is meant to be used in\
+          \ conjunction with the combined W2&W3 turnout variable \"W2_3_voted\". \n\
+          2. weight_p: Party choice weight to correct the distribution of votes according\
+          \ to the official results. This is meant to be used in conjunction with\
+          \ the combined W2&W3 vote choice variable \"W2_3_f11800main6\".\n3. weight_tot:\
+          \ Combined turnout and party choice weight (W2&W3)"
+      data_anonymised: true
+      original_file:
+        md5: 4031c8c9eefe74d76cd745421e7b75b1
+        physical_file: data/2626_Selects2023_Panel_Data_v1.0.dta
+        size: 32402786
+      title: Panel Survey Data (Stata)
+      variables and values:
+        DataCompleteness: 'In all waves, respondents who took less than one third
+          of the median duration to complete the questionnaire were removed from the
+          data (speeders). In addition, incomplete responses (i.e. more than half
+          of key non-filtered questions were not answered) were also removed. In all
+          waves, only respondents whose age and sex corresponded to the sample information
+          were retained. '
+        MissingValuesTreatment: 'Usual convention: No answer= -99; Don''t know= 8
+          or 98 or 998; Filtered: system missing. '
+        QuestionVariableLink: 'The variable names in the file correspond to those
+          in the questionnaire. A prefix is added for each wave (e.g., W1_age). Variables
+          that required recoding of open-ended responses generally end with the letters
+          “rec” (e.g., W1_f12700rec). '
+    reference_no: 32063
+  documents:
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 9cc8522bae5a824c50661ef7c1f66608
+        physical_file: documentation/2626_Selects2023_Panel_Doc_W1_Questionnaire_DE-FR-IT.pdf
+        size: 314269
+      remarks: '-'
+      title: Panel Survey Wave 1 Questionnaire - DE, FR & IT
+    reference_no: 32013
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 98c501a507db2300a7ce11ea287a0227
+        physical_file: documentation/2626_Selects2023_Panel_Doc_W2_Questionnaire_DE-FR-IT.pdf
+        size: 288775
+      remarks: '-'
+      title: Panel Survey Wave 2 Questionnaire - DE, FR & IT
+    reference_no: 32014
+  - curator_treated:
+      document_type: Collection instruments
+      is_public: true
+      original_file:
+        md5: 7e8f78bb05aa9134236d184aebbbfc23
+        physical_file: documentation/2626_Selects2023_Panel_Doc_W3_Questionnaire_DE-FR-IT.pdf
+        size: 279430
+      remarks: '-'
+      title: Panel Survey Wave 3 Questionnaire - DE, FR & IT
+    reference_no: 32015
+  - curator_treated:
+      document_type: Communications to respondents
+      is_public: true
+      original_file:
+        md5: 623a3ce407ea3711e24d265c978e6197
+        physical_file: documentation/2626_Selects2023_Panel_Doc_W1-W3_ContactLetters_DE-FR-IT.zip
+        size: 7622441
+      title: Panel Survey Waves 1-3 Contact Letters - DE, FR & IT
+    reference_no: 32021
+  - curator_treated:
+      document_type: Technical report
+      is_public: true
+      original_file:
+        md5: 75646872598cd1333ff11d659cf10a91
+        physical_file: documentation/2626_Selects2023_Panel_Doc_TechnicalReport_EN.pdf
+        size: 186134
+      title: Panel Survey Technical Report - EN
+    reference_no: 32022
+  - curator_treated:
+      document_type: Codebook
+      is_public: true
+      original_file:
+        md5: 92b785783ac52dd869e5132b71e1f57f
+        physical_file: documentation/2626_Selects2023_Panel_Doc_Codebook_EN.pdf
+        size: 1490552
+      title: Panel Survey Codebook - EN
+    reference_no: 32066
+  - curator_treated:
+      document_type: Variable documentation
+      is_public: true
+      original_file:
+        md5: 9ef37aa33eb04809a70966f50762a71d
+        physical_file: documentation/2626_Selects2023_Panel_Doc_ManualCoding_EN.pdf
+        size: 117733
+      title: Panel Survey Manual Coding Information - EN
+    reference_no: 32067
+  - curator_treated:
+      document_type: Publications (final report, articles)
+      is_public: true
+      original_file:
+        md5: 335056e92435efbb4564bd2b19f40ab9
+        physical_file: documentation/20738_Selects2023_Doc_Brochure_DE-FR-IT.zip
+        size: 3967369
+      title: Selects 2023 Brochure - DE, FR & IT
+    reference_no: 32113
+  language: English
+  reference_no: 2626
+  remarks_documentation: '-'
+  title:
+    en: Selects 2023 Panel Survey (waves 1-3)
+  usage_license:
+    reference_no: 232
+    restriction: Academic research and teaching only
+    special_permission: None
+    text: 'Ref study: 20738 / Ref dataset: 2626
+
+
+      Bibliographical Citation:
+
+
+      Selects. (2024). Selects 2023 Panel Survey (waves 1-3) (Version 1.0) [Data set].
+      FORS. https://doi.org/10.48573/b0rb-k085
+
+
+      I agree to the following:
+
+
+
+      1. to use the data cited above and related instruments for non-commercial purposes
+      (e.g. journalists, NGOs) and to use the data for the purpose that I have declared
+      in the Usage terms in the present contract; I declare also to use the data under
+      the following  additional restriction: Academic research and teaching only;
+
+
+      2. to use the data with respect to Swiss federal law and the applicable standard
+      norms of data protection;
+
+
+      3. not to undertake to attribute data to specific individuals; and to communicate
+      my results only in a way that does not identify individual cases (i.e., persons,
+      households, institutions, etc.);
+
+
+      4. to respect above all individual confidentiality, and not to divulge any information
+      that might compromise this confidentiality;
+
+
+      5. to use the data in a conscientious and informed manner, notably by consulting
+      the related documentation, and to respect scientific ethical rules of conduct;
+
+
+      6. to cite used data and documents in conformity with scientific standards (using
+      the citation above);
+
+
+      7. to inform FORS of all publications based on these data;
+
+
+      8. not to transmit these data to third parties, whether in original or modified
+      form;
+
+
+      9. to store the data in a way such that no third party can gain  access to them;
+
+
+      10. to destroy the data at the latest upon expiry of the present contract, and
+      to confirm this to FORS.'
+    title: Restricted access
+  version_no: '1.0'
+  version_notes: Version 1.0
+meta_info:
+  application: SUB
+  creation_timestamp: '2024-06-20'
+  meta_format: YAML
+  meta_version: v2
+study_version:
+  abstract:
+    en: "The Swiss Election Study (Selects) 2023 consists of four complementary components:\
+      \ The Post-Election Survey (PES), the Panel Survey, the Candidate Survey, and\
+      \ the Media Analysis. The study design is largely inspired by Selects 2019.\
+      \ The PES and Candidate Survey are mixed-mode surveys (online/paper), with a\
+      \ push-to-web design, whereas the Panel Study is an online survey. In April\
+      \ 2022, a call for questions/modules was opened to allow researchers from Switzerland\
+      \ and abroad to include novel questions into one or different components of\
+      \ Selects. Ten out of 14 submitted proposals were selected by the Selects Commission\
+      \ after a review process conducted by internationally renowned election researchers,\
+      \ and were fully or partially integrated into one or several components of Selects\
+      \ 2023. The Selects surveys were approved by the Ethics commission of the University\
+      \ of Lausanne.\n\nPost-Election Survey (PES):\nThe Post-Election Survey consists\
+      \ of 5033 respondents who answered the questionnaire in the period from 23 October\
+      \ 2023 to 12 January 2024. The survey was conducted in a sequential mixed mode\
+      \ with web offered as the first option: 90% responded in this way, while 10%\
+      \ responded by returning the paper questionnaire that was sent out with the\
+      \ second reminder to those that had not completed the web questionnaire. The\
+      \ sampling was based on a representative sample of around 2’600 Swiss citizens,\
+      \ with an oversampling of small cantons to have at least 50 respondents in every\
+      \ canton. An additional oversampling was done in the cantons of Geneva and Ticino\
+      \ thanks to additional funding from these cantons. The sample was drawn by the\
+      \ Federal Statistics Office from the SRPH. Sample members received an unconditional\
+      \ incentive (10 CHF in cash) that was sent out with the invitation letter. Module\
+      \ 6 Questionnaire of the Comparative Study of Electoral Systems was included\
+      \ into the PES.\n\nPanel Survey:\nThe Panel Survey studies the evolution of\
+      \ opinion and vote intention/choice during the different phases of the election\
+      \ cycle. In 2023, three waves were conducted: the first before the main campaign\
+      \ period (June/early August), the second during the election campaign (September/October),\
+      \ and the third after the elections (October/November). The initial random sample\
+      \ (stratified by big region/NUTS II) was taken by the Federal Statistics Office\
+      \ from the SRPH. 8197 individuals responded to the first wave, 6077 to the second\
+      \ wave, and 5579 to the third wave. Conditional incentives were used in all\
+      \ three panel waves (lottery of 5x300 CHF in wave 1, 10 CHF in cash in waves\
+      \ 2 and 3). This three-wave panel will be continued with annual follow-up waves\
+      \ until the 2027 elections. \n\nCandidate Survey:\nThe Candidate Survey was\
+      \ carried out among all candidates for the National Council and the Council\
+      \ of States in the framework of the international Comparative Candidate Survey\
+      \ (CCS) project, based on the Round III questionnaire. The survey collects data\
+      \ on the biography, campaign activities, and policy position of the candidates.\
+      \ Among others, the information gathered makes possible the study of underlying\
+      \ factors of candidates’ electoral success, as well as of issues of representation\
+      \ and linkage between voters and elites. In 2023, 2527 out of 5997 candidates\
+      \ participated in the Candidate Survey. This survey was conducted by FORS in\
+      \ collaboration with Politools and the University of Bern. \n\nMedia Analysis:\n\
+      On behalf of Selects, the Center for Research & Methods at the University of\
+      \ Applied Sciences in Business Administration Zurich (HWZ) conducted a Media\
+      \ Analysis. The Media Analysis is a supplement to the Panel Survey and makes\
+      \ it possible to analyse the election campaign in the media and its influence\
+      \ on voters' opinion formation. A media study has been part of Selects since\
+      \ 2003. In 2023, 116 daily or weekly newspapers (print and online) were content-analyzed\
+      \ in the period between 1 May 2023 and 31 October 2023."
+  authors:
+  - letter: a
+    name: Anke Tresch
+  - letter: a
+    name: Line Rennwald
+  - letter: a
+    name: Lukas Lauener
+  domain: Social sciences
+  end_date: '2027-12-31'
+  financed_by:
+  - SNSF Subsidy (Nr. 198472)
+  geographical_area:
+  - Europe
+  - Western Europe
+  - Switzerland
+  geographical_space:
+    en: The surveys are representative for Switzerland, but the PES includes an oversample
+      for the cantons of Geneva and Ticino, which allow for analyses on the cantonal
+      level.
+  institutions:
+  - letter: a
+    name: FORS - Swiss Centre of Expertise in the Social Sciences
+  language: English
+  main_disciplines:
+  - Humanities and Social Sciences
+  - Sociology, social work, political sciences, media and communication studies, health
+  - Political science
+  methods:
+    methodInstruments:
+    - methodInstrument: Standardised interviews - by mail
+      otherComments: 'In the PES, we used an unconditional cash incentive (10 CHF)
+        that was sent to sample members together with the invitation letter.
+
+        Panel: in wave 1, respondents participated in a lottery (5x300 CHF); in waves
+        2 and 3, respondents received a conditional cash incentive (10 CHF) after
+        completion of the survey.'
+      participantSelection: 'PES: stratified by canton, e.g. individuals were randomly
+        selected within the 26 cantons. A basic sample of around 2600 individuals
+        was calculated for each canton to minimize variance regarding participation
+        and party choice. In the least populous cantons, the samples were increased
+        to ensure that at least 50 individuals could be surveyed. An oversample was
+        taken for the cantons of Ticino and Geneva.
+
+        Panel: stratified by big region (NUTS 2), e.g. individuals were randomly selected
+        within the seven major regions (Lake Geneva Region, Espace Mittelland, North-West
+        Switzerland, Zurich region, Eastern Switzerland, Central Switzerland, Ticino).
+
+        The samples were drawn from the SRPH by the Federal Statistics Office.'
+      population: 'For voter surveys (PES and Panel): Swiss citizens aged 18 years
+        and above
+
+        For candidate surveys: all candidates running for the National Council and/or
+        the Council of States'
+    - methodInstrument: Analysis of content - standardized
+      otherComments: The issues of the newspaper articles were coded based on the
+        same categories as the most important problems perceived by voters in the
+        PES and the Panel, as well as by candidates included in the Candidate Survey.
+      participantSelection: Newspapers were mainly accessed on Swissdox@Liri. Only
+        articles dealing with Swiss politics were selected.
+      population: 116 daily and weekly newspapers (print and online) were semi-automatically
+        content-analyzed in the period from 1 May 2023 to 31 October 2023.
+  period:
+    en: 2023-2027
+  reference_no: 20738
+  start_date: '2023-06-19'
+  study_status: Published
+  study_type:
+  - Research subsidized by the SNSF
+  title:
+    en: Swiss Election Study (Selects) 2023
+  version_no: '1.2'
