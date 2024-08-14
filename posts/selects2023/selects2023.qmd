@@ -15,7 +15,7 @@ draft: true
 #| echo: false
 #| warning: false
 #| message: false
-
+rm(list=ls())
 library(tidyverse)
 library(haven)
 library(sjlabelled)
@@ -23,7 +23,14 @@ library(lme4)
 library(marginaleffects)
 library(modelsummary)
 library(sjPlot)
+library(FactoMineR)
+library(questionr)
+library(explor)
+
+
+
 ```
+
 
 ```{r recoding selects2023}
 #| echo: false
@@ -108,9 +115,9 @@ selects2023 %>%
     ),
     
     EqualOpportunitiyCH_F = case_when(
-      f15435 %in% c(1,2) ~ 1, # for equal opportunities
-      f15435 == 3 ~ 2, # neither nor
-      f15435 %in% c(4,5) ~ 3 # for better opportunities for the swiss
+      f15440 %in% c(1,2) ~ 1, # for equal opportunities
+      f15440 == 3 ~ 2, # neither nor
+      f15440 %in% c(4,5) ~ 3 # for better opportunities for the swiss
     ),
     
     Environment_vs_growth = case_when(
@@ -285,42 +292,51 @@ write_sav(selects2023, "selects2023_recoded.sav")
 
 ```
 
+
 ```{r}
 
 selects2023 <- read_sav("C:/Users/Celal/OneDrive/Bureau/celalguney/posts/selects2023/selects2023_recoded.sav")
+names <- tibble(names = names(selects2023))
+
+selects2023 <- 
+  selects2023 %>% 
+  mutate(vote2023 = if_else(is.na(voteChoice2023Combined), "NA/Abstention", as_label(voteChoice2023Combined)))
+
+```
+
+```{r}
+# need first to construct the dataeset
+selects2023MCA <-
+selects2023 %>%
+    select(socspend, EuMembership, TaxesHighInc, StateIntervention, Retirement67, MinWage4kchf, ModernityTraditions, Environment_vs_growth, EqualRightsHomoCouples, vote2023, lr_recoded, EducationLevel, sex, class8, age, IncomeAdjustedDecile) %>% drop_na()
+
+selects2023MCA <- 
+  selects2023MCA %>% 
+  select(socspend, EuMembership, TaxesHighInc, StateIntervention, Retirement67, MinWage4kchf, ModernityTraditions, Environment_vs_growth, EqualRightsHomoCouples, vote2023, lr_recoded, EducationLevel, sex, class8) %>% 
+  as_label %>% 
+  as_factor %>% 
+  mutate(
+    income = selects2023MCA$IncomeAdjustedDecile,
+    age = selects2023MCA$age
+  )
+
+mca = MCA(selects2023MCA,
+          quali.sup = c(10:14),
+          quanti.sup = 15:16,
+          ncp = Inf)
+mca %>% explor
+
+clustermca <- HCPC(mca, graph = FALSE)
+plot(clustermca, choice = "tree")
+
 ```
 
 
 ```{r}
-
-selects2023$gender <- factor(as_label(selects2023$sex))
-selects2023$age_cat <- factor(as_label(selects2023$age_cat))
-selects2023$class <- factor(as_label(selects2023$class8))
-selects2023$education <- relevel(factor(as_label(selects2023$education_recoded)), ref = "Secondary")
-selects2023$class <- relevel(selects2023$class, ref = "Production workers")
-selects2023$lang <- factor(as_label(selects2023$Language))
-
-glmer <- glmer(data = selects2023,
-              TaxesHighIncDummy ~ IncomeDecile + class + education + lang + (1|Canton),
-              family = binomial)
-
-summary(glmer)
-
-pred <- predictions(glmer, 
-                    newdata = datagrid(
-                      IncomeDecile = 1:10,
-                      Canton = "GE"
-                      
-                    ))
+res <- explor::prepare_results(mca)
+explor::MCA_var_plot(res, xax = 1, yax = 2, var_sup = TRUE, var_sup_choice = c("vote2023",
+    "EducationLevel", "class8", "income"), var_lab_min_contrib = 0, col_var = "Variable",
+    symbol_var = "Type", size_var = NULL, size_range = c(10, 300), labels_size = 10,
+    point_size = 56, transitions = TRUE, labels_positions = NULL, labels_prepend_var = FALSE,
+    xlim = c(-1.71, 1.68), ylim = c(-1.18, 2.21))
 ```
-
-
-
-
-
-
-
-
-
-
-
