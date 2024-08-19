@@ -1,5 +1,4 @@
 
-```{r set up}
 #| echo: false
 #| warning: false
 #| message: false
@@ -17,15 +16,8 @@ library(explor)
 
 
 
-```
 
 
-```{r recoding selects2023}
-#| echo: false
-#| warning: false
-#| message: false
-#| include: false
-#| eval: false
 
 selects2023 <- read_sav("data/2634_Selects2023_PES_Data_v1.0.sav")
 

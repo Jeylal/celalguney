@@ -15,3 +15,17 @@ lme4
 marginaleffects
 modelsummary
 sjPlot
+MASS
+GWalkR
+ggstats
+viridisLite
+viridis
+patchwork
+hrbrthemes
+circlize
+ggsankey
+plotly
+cowplot
+DescTools
+StepReg
+ggcharts

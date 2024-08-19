@@ -17146,5 +17146,150 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   <pubDate>Tue, 04 Oct 2022 22:00:00 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
 </item>
+<item>
+  <title>Post-election and panel Selects 2023 studies: what can we learn ?</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Even though the Swiss government is not very good at producing data and statistics, particularly with respect to macroeconomic data, some wonderful Swiss survey data studies carried by the excellent Swiss institute FORS are especially interesting to analyze. More specifically, the so-called “Swiss Election Studies” (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let’s have a look to what they offer.</p>
+<section id="a-little-context-on-the-2023-swiss-election" class="level2">
+<h2 class="anchored" data-anchor-id="a-little-context-on-the-2023-swiss-election">A little context on the 2023 Swiss election</h2>
+<p>Since the Selects studies are about politics and elections, let’s first remind ourselves what happened during the 2023 Swiss national election. Switzerland is not famous for the turbulence of its political scene, which is often considered as boring and stationary due to direct and consensus democracy, proportional representation, federalism, a highly “diversified” government (the so-called <em>magic formula</em>), referendums, a high abstention rate…</p>
+<p>But still, the stability of the Swiss model makes the small changes which tend to appear slowly and unnoticed even more interesting to analyze: because why would any political and institutional change happen in one of the most rich and successful countries in the world ?</p>
+<p>And some change <em>did</em> happen in the last few years. An illustrative example are the turmoils of the governmental bourgeois-right parties, the Liberal-Radicals (FDP) and the Christian-Democrats (CVP, now “The Center”). Both these parties suffer from long-term decline in vote shares since the post-war period, and they have attempted multiple strategies to try avoiding the fall. The Christian-Democrats were the ones who suffered the most from this trend, which peaked when they lost their second seat at the federal council in favor of the SVP (Swiss People’s party, Switzerland’s extreme right party) in 2003. In 2021, the party merged with another small bourgeois party to create “The Center”, in the hope that this new look would benefit them. In terms of political program, The Center is still promotes some forms of “soft neoliberalism”, that is to say, a neoliberal transformation of the Swiss model with some compensation measures. The program is close to that of the FDP, although the latter seeks less compromises. Why would the history of these two parties interest us ? Because in the last 2023 election, The Center almost surpassed the FDP in terms of vote shares (14,25% for FDP vs 14% for Center, The Center was actually above before a calculation mistake was corrected) for the first time in Swiss history. Actually, The Center did surpassed the FDP in terms of seats in the National Council, which is still an important shift in the political landscape: does that mean that there is a successful “centrist” strategy now in Switzerland ? Is that strategy destined to succeed in the future ?</p>
+<p>Another important element of the 2023 election is the downfall of ecological parties. There are two ecological parties in Switzerland: the Greens and the Liberal Greens. Whereas other countries generally have only one Green party, Switzerland has the peculiarity of having a Liberal Green party, which wants to dissociate itself from the Greens, considered as to extreme on the left in terms of economic policy. However, both these parties suffered from important backlash in the election: the Greens lost around 3% points and the Liberals 0,3% (with 6 lost MPs). Can we see and understand this drop of interest for ecological issues in the Selects data ?</p>
+<p>Finally, the winners of the election are the SVP and the Socialist Party (SP). The latter has won some battles in the last few years, for instance during the vote for a third rent pension rent. Was the SP successful in broadening its social basis ? What about the SVP ? Let’s have a look.</p>
+<p>In this post, I will first offer a descriptive analysis of party support. Then, the preferences of Swiss citizen regarding a set of policy preferences will be analyzed.</p>
+</section>
+<section id="party-support" class="level2">
+<h2 class="anchored" data-anchor-id="party-support">Party support</h2>
+<p>Figure&nbsp;1 shows voting intention of individuals who responded to the survey (before the election). To visualize the difference between the sample’s voting intentions and the final results of the election, I added the latter on the graph (as black dots). Some discrepancies between the sample and the final results are striking, especially for SVP’s support. In the sample, only 17,8% Swiss citizen declared voting for the SVP, whereas the party gathered 28% of the votes, more than 10 percentage points difference. Two hypotheses could explain this discrepancy: first, the SVP’s social basis, as most far right parties’ supporters, tend to hide their favorite party in surveys (what is known as “desirability bias”). Another explanation could be that SVP’s voters were undecided or changed their mind at the last time. The score of the SP and FDP are aligned with the survey responses, whereas the Center was underestimated and the vote for the Greens overestimated.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-voteint2023" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-voteint2023-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Voting intentions (above) and vote choice (below) for the Swiss 2023 national election. Hypothetical vote choices were added to those who were sure to vote or had voted in the election. Data source: Selects panel and post-election 2023
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, if we replicate the same graph using post-election rather than pre-election data, the percentages are more aligned with the final results. However, the support for the SVP is still underestimated, while the support for the Center and the FDP is overestimated and underestimated for the two green parties and the SP. The discrepancies could come from the fact the variable includes the hypothetical vote choice of those who did not vote at the election.</p>
+<p>The descriptive statistics of party choice thus confirm the slight changes in Switzerland’s politics: the green parties have experienced a strong electoral defeat while the Center seems to have found a strategy to halt its long-run decline, which is not the FDP’s case,</p>
+<p>How does the variable of voting intention to the 2023 election compares with the previous election (2019) ? Swinging voters between elections are often represented in sankey diagrams, which is what Figure&nbsp;2 shows. The sankey diagram shows that there is no tremendous between-parties flows: the blocs at both end of the diagram stay more or less the same. However, one can still notice some small flows: SP and the Greens seem to exchange their supporters, which means that the flows of left-wing voters happen as exchanges between the SP and the Greens. The SVP draw some voters from the undecided and the FDP. Interestingly, some parts of former SP and FDP supporters moved to the Liberal Greens.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sankey" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-sankey-1.png" id="fig-sankey" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="party-support-and-socio-economic-characteristics" class="level2">
+<h2 class="anchored" data-anchor-id="party-support-and-socio-economic-characteristics">Party support and socio-economic characteristics</h2>
+<p>From which parts of the population does each party draw support ? What are the social bases of the Swiss left, center and right parties ? How do socio-economic characteristics influence party support in Switzerland ? Social conflict is often considered as highly pacified in Switzerland. As a result, observers tend to consider that there is no important social divide based on class and socio-economic characteristics in the country. Considered to be a very rich and “post-materialist” country, social conflict in Switzerland should play at the level of cultural preferences rather than economic policy preferences. As explained by <span class="citation" data-cites="piketty_capital_2019">Piketty (2019)</span> and various other social scientists, European left-wing parties used to draw strong support from lower and dominated social classes and this support had economic motives since the working class supported the left in hope that the latter would increase its standard of living, while right-wing parties were draw more support from high income voters. However, <span class="citation" data-cites="rennwald2016">Rennwald and Zimmermann (2016)</span>, <span class="citation" data-cites="rennwald_class_2014">Rennwald (2014)</span>, <span class="citation" data-cites="rennwald_social_2020">Rennwald (2020)</span> showed that party support was more complex. For instance, in the post-war period the support for each Swiss party was more hybrid that bases only on one particular social class. The Swiss left was thereby supported not only by the working class, but also by “socio-cultural professionals” (teachers, researchers, journalists…) while the right gathered managers, self-employed, artisans, shop-keepers and large employers. Thus, as demonstrated by <span class="citation" data-cites="amable_structural_2017">Amable (2017)</span>, <span class="citation" data-cites="amable_illusion_2018">Amable and Palombarini (2018)</span> for France, the left and right blocs were heterogeneous in their social composition, a fact which is often under-estimated.</p>
+<p>What is the situation now ? Is the Swiss socialist party still supported by the working class and socio-cultural professionals, and the right by managers, self-employed, artisans and large employers ? We can descriptively explore these hypotheses by taking a social class variable from the dataset (I used here the Oesch class schema, because it is directly available in the post-election dataset), computing the percentage of party support for each party across these classes, and comparing these proportions with the overall proportions: if a social class supports a party with a proportion higher than the overall proportion, one can say that this social class is an important supporter of this party. To do so, the so-called diverging bar charts are a useful visualization.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-divbarcharts" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-divbarcharts-1.png" id="fig-divbarcharts" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure&nbsp;3 thus show the percentage difference in party support across social classes compared to the overall mean. One can see that the FDP draws strong above-average support from large employers and managers, the Center from managers, technical professionals, clerks and production workers (even though the positive differences are not that large), the SP above all from socio-cultural professionals, the SVP from production and service workers and from clerks and small-business owners; the Greens from from technical and socio-cultural professionals; and the Liberal Greens from large employers and slightly from managers, technical professionals, small business owners and technical professionals. It is also important to note that service and production workers also tend to not support any party, as shown in the no answer (NA) graph.</p>
+<p>If one does not trust the Oesch class schema, one can also look at more simple socio-economic factors such as income deciles. Figure&nbsp;4 shows the support for each swiss party for each income decile.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-decileplot" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-decileplot-1.png" id="fig-decileplot" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP and abstention (NA graph0), whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
+<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers.</p>
+</section>
+<section id="policy-preferences" class="level2">
+<h2 class="anchored" data-anchor-id="policy-preferences">Policy preferences</h2>
+<p>An advantage of post-election Selects data is the wide variety of questions which capture the preferences of Swiss citizen on a set of cultural economic issues. Figure&nbsp;5 shows the responses to these questions. For simplicity I reduced the number of categories when possible (for instance merging the “rather in favor” and “strongly in favor” responses).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-likertchart" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-likertchart-1.png" id="fig-likertchart" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-amable_structural_2017" class="csl-entry">
+Amable, Bruno. 2017. <em>Structural Crisis and Institutional Change in Modern Capitalism: French Capitalism in Transition</em>. Oxford University Press. <a href="https://doi.org/10.1093/acprof:oso/9780198787815.001.0001">https://doi.org/10.1093/acprof:oso/9780198787815.001.0001</a>.
+</div>
+<div id="ref-amable_illusion_2018" class="csl-entry">
+Amable, Bruno, and Stefano Palombarini. 2018. <em>L’illusion Du Bloc Bourgeois: Alliances Sociales Et Avenir Du Modèle Français</em>. Raisons d’Agir. Paris.
+</div>
+<div id="ref-piketty_capital_2019" class="csl-entry">
+Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
+</div>
+<div id="ref-rennwald_class_2014" class="csl-entry">
+Rennwald, Line. 2014. <span>“Class (Non)voting in Switzerland 1971-2011: Ruptures and Continuities in a Changing Political Landscape.”</span> <em>Swiss Political Science Review</em> 20 (4): 550–72. <a href="https://doi.org/10.1111/spsr.12124">https://doi.org/10.1111/spsr.12124</a>.
+</div>
+<div id="ref-rennwald_social_2020" class="csl-entry">
+———. 2020. <em>Social Democratic Parties and the Working Class: New Voting Patterns</em>. 1st ed. Challenges to Democracy in the 21st Century. Springer International Publishing;Palgrave Macmillan. <a href="http://gen.lib.rus.ec/book/index.php?md5=DC2AFED8958B9AE0932FFEFEAB45546C">http://gen.lib.rus.ec/book/index.php?md5=DC2AFED8958B9AE0932FFEFEAB45546C</a>.
+</div>
+<div id="ref-rennwald2016" class="csl-entry">
+Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse, 1971-2011.”</span> <em>Social Change in Switzerland</em>, no. 4. https://doi.org/<a href="http://doi.org/10.22019/SC-2016-00001">http://doi.org/10.22019/SC-2016-00001</a>.
+</div>
+</div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Social blocs</category>
+  <category>Political economy</category>
+  <category>Politics</category>
+  <category>Political Science</category>
+  <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
+  <pubDate>Mon, 19 Aug 2024 09:47:01 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
+</item>
 </channel>
 </rss>

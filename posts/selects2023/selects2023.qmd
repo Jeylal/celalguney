@@ -1,5 +1,5 @@
 ---
-title: "Que peut-on apprendre de l'étude Selects 2023 ?"
+title: "Post-election and panel Selects 2023 studies: what can we learn ?"
 author: "Celâl Güney"
 format: 
   html:
@@ -7,409 +7,381 @@ format:
 editor: visual
 execute: 
   freeze: true
-categories: [Social blocs, Political economy]
-draft: true
+categories: [Social blocs, Political economy, Politics, Political Science]
+image: fig-divbarcharts-1.png
+draft: false
+bibliography: references.bib
 ---
 
-```{r}
-rm(list=ls())
+```{r set up}
+#| echo: false
+#| warning: false
+#| message: false
 library(tidyverse)
 library(haven)
+library(MASS)
+library(lme4)
+library(cowplot)
+library(marginaleffects)
+library(GWalkR)
+library(ggstats)
+library(viridis)
+library(patchwork)
+library(hrbrthemes)
+library(circlize)
+library(ggsankey)
+library(dplyr)
 library(sjlabelled)
+library(plotly)
+rm(list = ls())
+selects2023panel <- read_sav("selects2023panel_recoded.sav")
+selects2023 <- read_sav("selects2023_recoded.sav")
+selects2023panel$canton <- as.factor(as_label(selects2023panel$W1_canton_sample))
+selects2023panel$language <- as.factor(as_label(selects2023panel$W1_langint))
+selects2023panel$gender <- as.factor(as_label(selects2023panel$W1_sex))
+selects2023$gender <- as.factor(as_label(selects2023$sex))
+selects2023$langint <- as.factor(as_label(selects2023$langint))
+selects2023$Religion <- as.factor(as_label(selects2023$Religion))
+selects2023$education_recoded <- as.factor(as_label(selects2023$education_recoded))
+selects2023$language <- as.factor(as_label(selects2023$langint))
 
-selects2023panel = read_sav("C:/Users/Gueney/Documents/GitHub/celalguney/posts/selects2023/selects2023Panel/data/selects2023panel.sav")
-
-
-```
-
-```{r}
-
-
-selects2023panel2 <- 
-selects2023panel  %>% 
-  rename(
-    "cantonVoteRight2023" = W1_f10000,
-    "satisfDemocracy" = W1_f13700,
-    "polNotCarePeople" = W1_Q04b,
-    "polTrustworthy" = W1_Q04c,
-    "peopleShouldMakeImpDecisions" = W1_Q04f,
-    "polOnlyCareAbtRich" = W1_Q04g,
-    "mostImpProblReduced" = W1_f12700rec,
-    "secMostImpProblReduced" = W1_f12730rec,
-    "evolEconPast12Months" = W1_f14610,
-    "partyVoted2019" = W1_f10300rec,
-    "partyVoted2019Main" = W1_f10300main6,
-    "voteIntention2023main" = W1_f1085_90main6, # uses combined variable
-    "particip_fedVotes" = W1_f12500, # 0 to 10
-    "N_times_loose_fedVotes" = W1_f12501, # 0 out of 10 to 10 out of 10,
-    "participVote18June23" = W1_f10750, # 1 = participated (dummy)
-    "perceptionFamilies" = W1_f19101a,
-    "perceptionWorkers" = W1_f19101b,
-    "perceptionRichPeople" = W1_f19101c,
-    "perceptionFeminists" = W1_f19101d,
-    "perceptionMigranst" = W1_f19101e,
-    "perceptionClimateActivists" = W1_f19101f,
-    "perceptionEntrepreneurs" = W1_f19101g,
-    "partyBestRepresentFamilies" = W1_f19102arec,
-    "partyBestRepresentWorkers" = W1_f19102brec,
-    "partyBestRepresentRich" = W1_f19102crec,
-    "partyBestRepresentFeminists" = W1_f19102drec,
-    "partyBestRepresentMigrants" = W1_f19102erec,
-    "partyBestRepresentClimAct" = W1_f19102frec,
-    "partyBestRepresentEntreprnrs" = W1_f19102grec,
-    "partyClosenessMain" = W1_f14010main6,
-    "probsVoteFDP" = W1_f14400a,
-    "probsVoteCenter" = W1_f14400j,
-    "probsVoteSP" = W1_f14400c,
-    "probsVoteSVP" = W1_f14400d,
-    "probsVoteGreens" = W1_f14400e,
-    "probsVoteLibGreens" = W1_f14400f,
-    "probsVoteLega" = W1_f14400h,
-    "probsVoteMCG" = W1_f14400i,
-    "lr" = W1_f15200,
-    "religion" = W1_f20760rec,
-    "churchAttendance" = W1_f20900, # 1 to 7 (never)
-    "education" = W1_f21310rec,
-    "workingSit" = W1_f21400,
-    "positionWork" = W1_f21500,
-    "workingSector" = W1_f21700,
-    "grossHouseholdIncome" = W1_f28910,
-    "householdSize" = W1_hhsize_sample
+selects2023$class <- as.factor(as_label(selects2023$class8))
+selects2023$class2 <- as.factor(as_label(selects2023$class5))
+selects2023panel$vote_oecd_taxation <- labelled(selects2023panel$vote_oecd_taxation, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
+selects2023panel$vote_climateLaw <- labelled(selects2023panel$vote_climateLaw, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
+selects2023panel$vote_covidAct <- labelled(selects2023panel$vote_covidAct, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
 
 
-     
-
-  ) %>% 
+# construct party choice for postelection, use vote dummy, vote choice and hypothetical vote choice
+selects2023 <- 
+  selects2023 %>% 
   mutate(
-
-    Income = case_when(
-      grossHouseholdIncome == 1 ~ 2000,
-      grossHouseholdIncome == 2 ~ (3000+2001)/2,
-      grossHouseholdIncome == 3 ~ (4000+3001)/2,
-      grossHouseholdIncome == 4 ~ (5000+4001)/2,
-      grossHouseholdIncome == 5 ~ (6000+5001)/2,
-      grossHouseholdIncome == 6 ~ (7000+6001)/2,
-      grossHouseholdIncome == 7 ~ (8000+7001)/2,
-      grossHouseholdIncome == 8 ~ (9000+8001)/2,
-      grossHouseholdIncome == 9 ~ (10000+9001)/2,
-      grossHouseholdIncome == 10 ~ (11000+10001)/2,
-      grossHouseholdIncome == 11 ~ (12000+11001)/2,
-      grossHouseholdIncome == 12 ~ (13000+12001)/2,
-      grossHouseholdIncome == 13 ~ (14000+13001)/2,
-      grossHouseholdIncome == 14 ~ (15000+14001)/2,
-      grossHouseholdIncome == 15 ~ (16000+15001)/2,
-      grossHouseholdIncome == 16 ~ (17000+16001)/2,
-      grossHouseholdIncome == 17 ~ (18000+17001)/2,
-      grossHouseholdIncome == 18 ~ (19000+18001)/2,
-      grossHouseholdIncome == 19 ~ (20000+19001)/2,
-      grossHouseholdIncome == 20 ~ 20000
-      ),
-
-    IncomeAdjusted = Income/sqrt(householdSize),
-    IncomeAdjustedDecile = ntile(IncomeAdjusted, 10),
-    IncomeDecile = ntile(Income, 10),
-
-    education_recoded = case_when(
+    voteChoice2023_combined = case_when(
       
-      education %in% c(1:4) ~ 1, # primary 
-      education %in% c(5:9) ~ 2, # secondary
-      education %in% c(10:13) ~ 3, # tertiary
-      education == 14 ~ NA # "other" ==> NA
+      VoteDummy2023 == 0 ~ VoteChoiceMain2023Hyp,
+      VoteDummy2023 == 1 ~ VoteChoiceMain2023
       
-    ),
+    )
+  )
 
-    op_privProfit_socializeLoss = case_when( # warning: the question is "Les banques encaissent des profits exorbitants, alors que les pertes sont toujours payées par les contribuables, dans quelle mesure êtes-vous d'accord ?"
-      W1_f14651   %in%  c(1,2) ~ 1, #disagree
-      W1_f14651 == 3 ~ 2, # neither
-      W1_f14651  %in% c(3,4) ~ 3 # agree
-    ),
-
-    op_bankingRegulation = case_when(
-      W1_f14652 %in% c(1,2) ~ 1, # disagree
-      W1_f14652 == 3 ~ 2, # neither
-      W1_f14652  %in% c(4, 5) ~ 3 # agree
-    ),
-
-    op_warMat_re_export = case_when(
-      W1_f15383 %in% c(0:4) ~ 1, # in favor
-      W1_f15383 == 5 ~ 2, # neither
-      W1_f15383  %in% c(6:10) ~ 3 # against
-    ),
-
-    op_easy_accessForMigrants = case_when(
-
-      W1_f15381 %in% c(0:4) ~ 1, # in favor 
-      W1_f15381 == 5 ~ 2, # neither
-      W1_f15381  %in% c(6,10) ~ 3 # against
-    ),
-
-    op_genderSensitiveLang = case_when(
-
-      W1_f15382 %in% c(0:4) ~ 1, # in favor
-      W1_f15382 == 5 ~ 2, # neither
-      W1_f15382  %in% c(6:10) ~ 3 # against
-    ),
-
-    vote_oecd_taxation = case_when(
-
-      W1_f10751a == 1 | W1_f10756a   %in%   c(3,4) ~ 1, # voted yes or is hypothetically in favor
-      W1_f10751a  %in% c(3) |  W1_f10756a == 8 ~ 2, # voted blank or don't know
-      W1_f10751a == 2 | W1_f10756a   %in%  c(1,2) ~ 3 # voted no or is hyp against
-
-    ),
-
-    vote_climateLaw = case_when(
-
-      W1_f10751b == 1 | W1_f10756b %in% c(3,4) ~ 1, # voted yes or hyp in favor
-      W1_f10751b == 3 | W1_f10756b == 8 ~ 2, # voted blank or don't know
-      W1_f10751b == 2 | W1_f10756b  %in%  c(1,2) ~ 3 # voted no or hyp against
-
-    ),
-
-    vote_covidAct = case_when(
-
-      W1_f10751c == 1 | W1_f10756c  %in%  c(3,4) ~ 1, # in favor
-      W1_f10751c == 3 | W1_f10756c == 8 ~ 2, # neither (blank or did not vote)
-      W1_f10751c == 2 | W1_f10756c   %in% c(1,2) ~ 3 # against (voted no)
-
-    ),
-
-    lr_recoded = case_when(
-
-      lr  %in% c(0,1,2) ~ 1, #left
-      lr  %in% c(3,4) ~ 2, #center-left
-      lr == 5 ~ 3, # center
-      lr %in% c(6,7) ~ 4, # center-right
-      lr %in% c(8,9,10) ~ 5 # right
-    ),
-
-    op_limit_immigration = case_when(
-      W1_f15340b %in% c(1,2) ~ 1, # against
-      W1_f15340b == 3  ~ 2, # neither
-      W1_f15340b  %in% c(4,5) ~ 3 # in favor
-    ),
-
-    op_funding_childcare = case_when(
-
-      W1_f15340c %in% c(1,2) ~ 1, # against
-      W1_f15340c == 3 ~ 2, # neither
-      W1_f15340c  %in% c(4,5) ~ 3 # in favor 
-
-    ),
-
-    op_environm_protection = case_when(
-
-      W1_f15340d %in% c(1,2) ~ 1, # against
-      W1_f15340d == 3 ~ 2, # neither
-      W1_f15340d  %in% c(4,5) ~ 3 # in favor 
-
-    ),
-
-    op_compet_swissEcon = case_when(
-
-      W1_f15340e %in% c(1,2) ~ 1, # against
-      W1_f15340e == 3 ~ 2, # neither
-      W1_f15340e  %in% c(4,5) ~ 3 # in favor 
-
-    ),
-
-    op_incr_minstand_healthIns = case_when(
-
-      W1_f15340f %in% c(1,2) ~ 1, # against
-      W1_f15340f == 3 ~ 2, # neither
-      W1_f15340f  %in% c(4,5) ~ 3 # in favor 
-
-    ),
-
-    op_socialExpend = case_when(
-
-      W1_f15420 %in% c(1,2) ~ 1, # against
-      W1_f15420 == 3 ~ 2, # neither
-      W1_f15420  %in% c(4,5) ~ 3 # in favor 
-
-    ),
-
-    op_eu_integration = case_when( # in the sense of integration without membership
-      
-      W1_f15425  %in% c(1,2) ~ 1, # in favor
-      W1_f15425 == 3 ~ 2, # neither
-      W1_f15425  %in% c(4,5) ~ 3 # against
-
-    ),
-
-    op_eu_membership = case_when(
-
-      W1_f15431 %in% c(1,2) ~ 1, # against
-      W1_f15431 == 3 ~ 2, # neither
-      W1_f15431  %in% c(4,5) ~ 3 # in favor 
-
-    ),
-
-    op_stateVScomp = case_when(
-      W1_f15435 %in%  c(1,2) ~ 1, # more state intervention
-      W1_f15435 == 3 ~ 2, # neither
-      W1_f15435 %in% c(4,5) ~ 3 # more competition in the economy
-    ),
-
-    op_chances_foreignVSswiss = case_when(
-
-      W1_f15440 %in% c(1,2) ~ 1, # in favor 
-      W1_f15440 == 3 ~ 2, # neither
-      W1_f15440 %in% c(4,5) ~ 3 # against (more chances for the swiss)
-    ),
-
-    op_tmwAb_e_ov_CandP = case_when(
-
-      W1_f15478 %in% c(1,2) ~ 1, # disagree 
-      W1_f15478 == 3 ~ 2, # neither
-      W1_f15478 %in% c(4,5) ~ 3 # agree (too much worries about environment over cost and prices)
-    ),
-
-    op_gender_equality = case_when(
-
-      W1_f15475 %in% c(1,2) ~ 1, # against (habe gone too far)
-      W1_f15475 == 3 ~ 2, # neither
-      W1_f15475 %in% c(4,5) ~ 3 # in favor (not far enough)
-    ),
-
-    op_taxes_high_Inc = case_when(
-
-      W1_f15480 %in% c(1,2) ~ 1, # in favor (for increase)
-      W1_f15480 == 3 ~ 2, # neither
-      W1_f15480 %in% c(4,5) ~ 3 # against (for reduction)
-    ),
-
-    op_traditionVSmodernity = case_when(
-
-      W1_f15485 %in% c(1,2) ~ 1, # modernity
-      W1_f15485 == 3 ~ 2, # neither
-      W1_f15485 %in% c(4,5) ~ 3 # traditions
-    ),
-
-    op_minWage = case_when(
-
-      W1_f15815 %in% c(1,2) ~ 1, # against
-      W1_f15815 %in% c(3,4) ~ 2 # in favor
-    ),
-
-    op_increase_retirementAge = case_when(
-
-      W1_f15811 %in% c(1,2) ~ 1, # against
-      W1_f15811 %in% c(3,4) ~ 2 # in favor
-    ),
-
-    op_equalRights_homo = case_when(
-
-      W1_f15817 %in% c(1,2) ~ 1, # against
-      W1_f15817 %in% c(3,4) ~ 2 # in favor
-    ),
+selects2023 <- 
+  selects2023 %>% 
+  rename(
+    "strongLeader" = Q04c,
+    "HowDemSwiss" = Q06,
+    "GovPerformance" = Q08a,
+    "feelEconSit" = f14610,
+    "opSocialSpending" = f15420,
+    "opEuMembership" = f15430,
+    "opStatevsFreemarkets" = f15435,
+    "opEqOppForeigners" = f15440, 
+    "opEnv_vs_growth" = f15470,
+    "opTaxesHighInc" = f15480,
+    "opModernVSTraditions" = f15485,
+    "opRaisingRetirementAge" = f15811,
+    "opMinWage" = f15815
     
-    op_voteRightForeign = case_when(
-
-      W1_f15816 %in% c(1,2) ~ 1, # against
-      W1_f15816 %in% c(3,4) ~ 2 # in favor
-    ),
-
-
-
-    participVote2019Dummy = if_else(W1_f10200rec == 1, 1, if_else(is.na(W1_f10200rec), NA, 0)),
-    willVote2023 = if_else(W1_f10800 %in% c(3,4), 1, if_else(is.na(W1_f10800), NA, 0)),
-    voteInt_FDP = if_else(voteIntention2023main == 10, 1, if_else(is.na(voteIntention2023main), NA, 0)),
-    voteInt_center = if_else(voteIntention2023main == 21, 1, if_else(is.na(voteIntention2023main), NA, 0)),
-    voteInt_SP = if_else(voteIntention2023main == 30, 1,  if_else(is.na(voteIntention2023main), NA, 0)),
-    voteInt_SVP = if_else(voteIntention2023main == 40, 1,  if_else(is.na(voteIntention2023main), NA, 0)),
-    voteInt_greens = if_else(voteIntention2023main == 50, 1,  if_else(is.na(voteIntention2023main), NA, 0)),
-    voteInt_greensLib = if_else(voteIntention2023main == 60, 1,  if_else(is.na(voteIntention2023main), NA, 0))
-
   )
 
 
 
 ```
 
+Even though the Swiss government is not very good at producing data and statistics, particularly with respect to macroeconomic data, some wonderful Swiss survey data studies carried by the excellent Swiss institute FORS are especially interesting to analyze. More specifically, the so-called "Swiss Election Studies" (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let's have a look to what they offer.
 
-```{r}
-selects2023panel2$op_privProfit_socializeLoss <- labelled(selects2023panel2$op_privProfit_socializeLoss, labels = c("disagree" = 1, "neither" = 2, "agree" = 3))
+## A little context on the 2023 Swiss election
 
-selects2023panel2$op_bankingRegulation <- labelled(selects2023panel2$op_bankingRegulation, labels = c("disagree" = 1, "neither" = 2, "agree" = 3))
+Since the Selects studies are about politics and elections, let's first remind ourselves what happened during the 2023 Swiss national election. Switzerland is not famous for the turbulence of its political scene, which is often considered as boring and stationary due to direct and consensus democracy, proportional representation, federalism, a highly "diversified" government (the so-called *magic formula*), referendums, a high abstention rate...
 
+But still, the stability of the Swiss model makes the small changes which tend to appear slowly and unnoticed even more interesting to analyze: because why would any political and institutional change happen in one of the most rich and successful countries in the world ?
 
-selects2023panel2$op_warMat_re_export <- labelled(selects2023panel2$op_warMat_re_export, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
+And some change *did* happen in the last few years. An illustrative example are the turmoils of the governmental bourgeois-right parties, the Liberal-Radicals (FDP) and the Christian-Democrats (CVP, now "The Center"). Both these parties suffer from long-term decline in vote shares since the post-war period, and they have attempted multiple strategies to try avoiding the fall. The Christian-Democrats were the ones who suffered the most from this trend, which peaked when they lost their second seat at the federal council in favor of the SVP (Swiss People's party, Switzerland's extreme right party) in 2003. In 2021, the party merged with another small bourgeois party to create "The Center", in the hope that this new look would benefit them. In terms of political program, The Center is still promotes some forms of "soft neoliberalism", that is to say, a neoliberal transformation of the Swiss model with some compensation measures. The program is close to that of the FDP, although the latter seeks less compromises. Why would the history of these two parties interest us ? Because in the last 2023 election, The Center almost surpassed the FDP in terms of vote shares (14,25% for FDP vs 14% for Center, The Center was actually above before a calculation mistake was corrected) for the first time in Swiss history. Actually, The Center did surpassed the FDP in terms of seats in the National Council, which is still an important shift in the political landscape: does that mean that there is a successful "centrist" strategy now in Switzerland ? Is that strategy destined to succeed in the future ?
 
+Another important element of the 2023 election is the downfall of ecological parties. There are two ecological parties in Switzerland: the Greens and the Liberal Greens. Whereas other countries generally have only one Green party, Switzerland has the peculiarity of having a Liberal Green party, which wants to dissociate itself from the Greens, considered as to extreme on the left in terms of economic policy. However, both these parties suffered from important backlash in the election: the Greens lost around 3% points and the Liberals 0,3% (with 6 lost MPs). Can we see and understand this drop of interest for ecological issues in the Selects data ?
 
-selects2023panel2$op_easy_accessForMigrants <- labelled(selects2023panel2$op_easy_accessForMigrants, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
+Finally, the winners of the election are the SVP and the Socialist Party (SP). The latter has won some battles in the last few years, for instance during the vote for a third rent pension rent. Was the SP successful in broadening its social basis ? What about the SVP ? Let's have a look.
 
+In this post, I will first offer a descriptive analysis of party support. Then, the preferences of Swiss citizen regarding a set of policy preferences will be analyzed.
 
-selects2023panel2$op_genderSensitiveLang <- labelled(selects2023panel2$op_genderSensitiveLang, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
+## Party support
 
+@fig-voteint2023 shows voting intention of individuals who responded to the survey (before the election). To visualize the difference between the sample's voting intentions and the final results of the election, I added the latter on the graph (as black dots). Some discrepancies between the sample and the final results are striking, especially for SVP's support. In the sample, only 17,8% Swiss citizen declared voting for the SVP, whereas the party gathered 28% of the votes, more than 10 percentage points difference. Two hypotheses could explain this discrepancy: first, the SVP's social basis, as most far right parties' supporters, tend to hide their favorite party in surveys (what is known as "desirability bias"). Another explanation could be that SVP's voters were undecided or changed their mind at the last time. The score of the SP and FDP are aligned with the survey responses, whereas the Center was underestimated and the vote for the Greens overestimated.
 
-
-selects2023panel2$lr_recoded <- labelled(selects2023panel2$lr_recoded, labels = c("left" = 1, "center-left" = 2, "center" = 3, "center-right" = 4, "right" = 5))
-
-
-
-selects2023panel2$op_limit_immigration <- labelled(selects2023panel2$op_limit_immigration, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
-
-
-selects2023panel2$op_funding_childcare <- labelled(selects2023panel2$op_funding_childcare, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
-
-
-selects2023panel2$op_environm_protection <- labelled(selects2023panel2$op_environm_protection, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
-
+```{r party support charts}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-voteint2023
+#| fig-cap: "Voting intentions (above) and vote choice (below) for the Swiss 2023 national election. Hypothetical vote choices were added to those who were sure to vote or had voted in the election. Data source: Selects panel and post-election 2023"
+#| fig-height: 7.5
 
 
-selects2023panel2$op_compet_swissEcon <- labelled(selects2023panel2$op_compet_swissEcon, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
+tblvote2023 <- 
+  selects2023panel %>% 
+  count(as_label(voteIntention2023main)) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n),
+         finalresults = c(0.1425, 0.1406, 0.1827, 0.2793, 0.0978, 0.0755, NA, NA))
 
 
+tblvote2023PE <- 
+  selects2023 %>% 
+  count(as_label(voteChoice2023_combined)) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n),
+         finalresults = c(0.1425, 0.1406, 0.1827, 0.2793, 0.0978, 0.0755, NA))
+  
+plotvotePanel <- 
+tblvote2023 %>% 
+  ggplot()+
+  aes(x = prop, y = fct_infreq(`as_label(voteIntention2023main)`, prop), label = scales::percent(round(prop, 3)), fill = `as_label(voteIntention2023main)`)+
+  geom_segment(aes(x=0, xend=finalresults, y=`as_label(voteIntention2023main)`, yend=`as_label(voteIntention2023main)`))+
+  geom_col()+
+  geom_point(aes(x = finalresults, label = scales::percent(round(finalresults, 3))), size = 3, color = "black")+
+  scale_x_continuous(labels = scales::percent)+
+  geom_text(hjust = 3, color = "white")+
+  theme_minimal()+
+  labs(y = "", x = "",
+       title = "",
+       subtitle = "",
+       caption = "")+
+  scale_fill_manual(values = c("darkblue", "darkorange", "darkred", "darkgreen", "chartreuse3", "lightgreen", "darkgrey", "grey"))+
+  theme(legend.position = "none")
 
-selects2023panel2$op_incr_minstand_healthIns <- labelled(selects2023panel2$op_incr_minstand_healthIns, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
+plotVotePE <- 
+tblvote2023PE %>% 
+ggplot()+
+  aes(x = prop, y = fct_infreq(`as_label(voteChoice2023_combined)`, prop), label = scales::percent(round(prop, 3)), fill = `as_label(voteChoice2023_combined)`)+
+  geom_segment(aes(x=0, xend=finalresults, y=`as_label(voteChoice2023_combined)`, yend=`as_label(voteChoice2023_combined)`))+
+  geom_col()+
+  geom_point(aes(x = finalresults, label = scales::percent(round(finalresults, 3))), size = 3, color = "black")+
+  scale_x_continuous(labels = scales::percent)+
+  geom_text(hjust = 2.3, color = "white")+
+  theme_minimal()+
+  labs(y = "", x = "")+
+  scale_fill_manual(values = c("darkblue", "darkorange", "darkred", "darkgreen", "chartreuse3", "lightgreen", "darkgrey", "grey"))+
+  theme(legend.position = "none")
 
-
-
-selects2023panel2$op_socialExpend <- labelled(selects2023panel2$op_socialExpend, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
-
-
-selects2023panel2$op_eu_integration <- labelled(selects2023panel2$op_eu_integration, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
-
-
-
-selects2023panel2$op_eu_membership <- labelled(selects2023panel2$op_eu_membership, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
-
-
-selects2023panel2$op_stateVSmarket <- labelled(selects2023panel2$op_stateVSmarket, labels = c("more state intervention" = 1, "neither" = 2, "more competition in the economy" = 3))
-
-
-
-selects2023panel2$op_chances_foreignVSswiss <- labelled(selects2023panel2$op_chances_foreignVSswiss, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
-
-
-
-selects2023panel2$op_tmwAb_e_ov_CandP <- labelled(selects2023panel2$op_tmwAb_e_ov_CandP, labels = c("disagree" = 1, "neither" = 2, "agree" = 3))
-
-
-
-selects2023panel2$op_gender_equality <- labelled(selects2023panel2$op_gender_equality, labels = c("against" = 1, "neither" = 2, "in favor" = 3))
-
-
-
-selects2023panel2$op_taxes_high_Inc <- labelled(selects2023panel2$op_taxes_high_Inc, labels = c("in favor" = 1, "neither" = 2, "against" = 3))
-
-
-selects2023panel2$op_traditionVSmodernity <- labelled(selects2023panel2$op_traditionVSmodernity, labels = c("modernity" = 1, "neither" = 2, "traditions" = 3))
-
-
-selects2023panel2$op_minWage <- labelled(selects2023panel2$op_minWage, labels = c("against" = 1, "in favor" = 2))
-
-
-selects2023panel2$op_increase_retirementAge <- labelled(selects2023panel2$op_increase_retirementAge, labels = c("against" = 1, "in favor" = 2))
-
-
-selects2023panel2$op_equalRights_homo <- labelled(selects2023panel2$op_equalRights_homo, labels = c("against" = 1, "in favor" = 2))
-
-
-selects2023panel2$op_voteRightForeign <- labelled(selects2023panel2$op_voteRightForeign, labels = c("against" = 1, "in favor" = 2))
-
-
-selects2023$education_recoded <- labelled(selects2023$education_recoded, labels = c("Primary" = 1, "Secondary" = 2, "Tertiary" = 3))
+cowplot::plot_grid(plotvotePanel, plotVotePE, labels = c("Selects 2023 Panel Data", "Post-Election Data"), nrow = 2)
 
 ```
+
+As expected, if we replicate the same graph using post-election rather than pre-election data, the percentages are more aligned with the final results. However, the support for the SVP is still underestimated, while the support for the Center and the FDP is overestimated and underestimated for the two green parties and the SP. The discrepancies could come from the fact the variable includes the hypothetical vote choice of those who did not vote at the election.
+
+The descriptive statistics of party choice thus confirm the slight changes in Switzerland's politics: the green parties have experienced a strong electoral defeat while the Center seems to have found a strategy to halt its long-run decline, which is not the FDP's case,
+
+How does the variable of voting intention to the 2023 election compares with the previous election (2019) ? Swinging voters between elections are often represented in sankey diagrams, which is what @fig-sankey shows. The sankey diagram shows that there is no tremendous between-parties flows: the blocs at both end of the diagram stay more or less the same. However, one can still notice some small flows: SP and the Greens seem to exchange their supporters, which means that the flows of left-wing voters happen as exchanges between the SP and the Greens. The SVP draw some voters from the undecided and the FDP. Interestingly, some parts of former SP and FDP supporters moved to the Liberal Greens.
+
+```{r vote sankey}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-sankey
+
+tbl_sankey <- 
+  selects2023panel %>% 
+  dplyr::select(partyVoted2019Main, voteIntention2023main) %>% 
+  drop_na() %>% 
+  as_character() %>%
+  make_long(partyVoted2019Main, voteIntention2023main)
+
+ggplot(tbl_sankey, aes(x = x, 
+               next_x = next_x, 
+               node = node, 
+               next_node = next_node,
+               fill = factor(node),
+               label = node)) +
+  geom_sankey(flow.alpha = .6)+
+  theme_sankey()+
+  scale_fill_manual(values = c("darkorange", "grey", "darkblue", "darkolivegreen3", "darkolivegreen", "darkgrey", "darkred", "darkgreen", "darkorange"))+
+  geom_sankey_label(
+                  aes(
+                    hjust = dplyr::case_when(
+                      x == "partyVoted2019Main" ~ 1.1,
+                      x == "voteIntention2023main" ~ -0.1,
+                      .default = .5
+                    )
+                    
+                    ),
+                    size = 2.5, color = "white", position = "dodge")+
+  theme(
+        legend.position = "none",
+        legend.title = element_blank())+
+  guides(fill=guide_legend(nrow=3,byrow=TRUE))+
+  labs(title = "Changes in party support between 2019 and 2023",
+       x = "",
+       caption = "Data source: Selects 2023")
+
+```
+
+## Party support and socio-economic characteristics
+
+From which parts of the population does each party draw support ? What are the social bases of the Swiss left, center and right parties ? How do socio-economic characteristics influence party support in Switzerland ? Social conflict is often considered as highly pacified in Switzerland. As a result, observers tend to consider that there is no important social divide based on class and socio-economic characteristics in the country. Considered to be a very rich and "post-materialist" country, social conflict in Switzerland should play at the level of cultural preferences rather than economic policy preferences. As explained by @piketty_capital_2019 and various other social scientists, European left-wing parties used to draw strong support from lower and dominated social classes and this support had economic motives since the working class supported the left in hope that the latter would increase its standard of living, while right-wing parties were draw more support from high income voters. However, @rennwald2016, @rennwald_class_2014, @rennwald_social_2020 showed that party support was more complex. For instance, in the post-war period the support for each Swiss party was more hybrid that bases only on one particular social class. The Swiss left was thereby supported not only by the working class, but also by "socio-cultural professionals" (teachers, researchers, journalists...) while the right gathered managers, self-employed, artisans, shop-keepers and large employers. Thus, as demonstrated by @amable_structural_2017, @amable_illusion_2018 for France, the left and right blocs were heterogeneous in their social composition, a fact which is often under-estimated.
+
+What is the situation now ? Is the Swiss socialist party still supported by the working class and socio-cultural professionals, and the right by managers, self-employed, artisans and large employers ? We can descriptively explore these hypotheses by taking a social class variable from the dataset (I used here the Oesch class schema, because it is directly available in the post-election dataset), computing the percentage of party support for each party across these classes, and comparing these proportions with the overall proportions: if a social class supports a party with a proportion higher than the overall proportion, one can say that this social class is an important supporter of this party. To do so, the so-called diverging bar charts are a useful visualization.
+
+```{r party support regression}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| label: fig-divbarcharts
+#| fig-cap: ""
+library(modelsummary)
+library(DescTools)
+library(StepReg)
+library(ggcharts)
+
+
+tbl_overall_prop_parties <- 
+selects2023 %>% 
+  count(as_label(voteChoice2023Combined)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  rename("Overall_prop" = prop,
+         "parties" = `as_label(voteChoice2023Combined)`)
+
+tbl_prop_class_parties <- 
+selects2023 %>% 
+  group_by(class) %>% 
+  count(as_label(voteChoice2023Combined)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  rename("parties" = `as_label(voteChoice2023Combined)`)
+
+tbl_class_parties <- 
+  tbl_prop_class_parties %>% 
+  left_join(tbl_overall_prop_parties, by = "parties") %>% 
+  mutate(diff = prop-Overall_prop)
+
+tbl_class_parties %>% 
+  group_by(parties) %>% 
+  diverging_bar_chart(x = class, y = diff, text_size = 5)+
+  facet_wrap(~parties)+
+  scale_y_continuous(labels = scales::percent)+
+  labs(y = "Difference compared to overall percentage of party choice", x = "Oesch class schema", 
+       title = "Party support and social class in Switzerland",
+       caption = "Data source: Selects post-election 2024")+
+  theme(text = element_text(size = 10))
+
+
+```
+
+@fig-divbarcharts thus show the percentage difference in party support across social classes compared to the overall mean. One can see that the FDP draws strong above-average support from large employers and managers, the Center from managers, technical professionals, clerks and production workers (even though the positive differences are not that large), the SP above all from socio-cultural professionals, the SVP from production and service workers and from clerks and small-business owners; the Greens from from technical and socio-cultural professionals; and the Liberal Greens from large employers and slightly from managers, technical professionals, small business owners and technical professionals. It is also important to note that service and production workers also tend to not support any party, as shown in the no answer (NA) graph.
+
+If one does not trust the Oesch class schema, one can also look at more simple socio-economic factors such as income deciles. @fig-decileplot shows the support for each swiss party for each income decile.
+
+```{r party class plot}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| label: fig-decileplot
+
+
+
+tbl_prop_decile_parties <- 
+selects2023 %>% 
+  group_by(IncomeDecile) %>% 
+  count(as_label(voteChoice2023Combined)) %>% 
+  drop_na() %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  rename("parties" = `as_label(voteChoice2023Combined)`)
+
+tbl_decile_parties <- 
+  tbl_prop_decile_parties %>% 
+  left_join(tbl_overall_prop_parties, by = "parties") %>% 
+  mutate(diff = prop-Overall_prop)
+
+tbl_decile_parties %>% 
+  group_by(parties) %>% 
+  diverging_bar_chart(x = IncomeDecile, y = diff, text_size = 5)+
+  facet_wrap(~parties)+
+  scale_y_continuous(labels = scales::percent)+
+  labs(y = "Difference compared to overall percentage of party choice", x = "Income decile", 
+       title = "Party support and income decile in Switzerland",
+       caption = "Data source: Selects post-election 2024")+
+  theme(text = element_text(size = 10))
+```
+
+The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP and abstention (NA graph0), whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.
+
+From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers.
+
+## Policy preferences
+
+An advantage of post-election Selects data is the wide variety of questions which capture the preferences of Swiss citizen on a set of cultural economic issues. @fig-likertchart shows the responses to these questions. For simplicity I reduced the number of categories when possible (for instance merging the "rather in favor" and "strongly in favor" responses).
+
+```{r likert chart}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-likertchart
+selects2023panel %>% 
+  dplyr::select(op_warMat_re_export, op_easy_accessForMigrants, op_genderSensitiveLang, op_limit_immigration, op_funding_childcare, op_environm_protection, op_compet_swissEcon, op_incr_minstand_healthIns, op_socialExpend, op_eu_integration, op_eu_membership, op_chances_foreignVSswiss, op_gender_equality, op_taxes_high_Inc, op_minWage, op_increase_retirementAge, op_equalRights_homo, op_voteRightForeign, vote_oecd_taxation, vote_covidAct, vote_climateLaw) %>% 
+  rename(
+    "Opinion on Swiss war material re-export" = op_warMat_re_export,
+    "Opinion on easy access for migrants" = op_easy_accessForMigrants,
+    "Opinion on gender sensitive language" = op_genderSensitiveLang,
+    "Opinion on limiting immigration" = op_limit_immigration,
+    "Increasing public funding for out-of-home childcare" = op_funding_childcare,
+    "Opinion on environment protection" = op_environm_protection,
+    "Strengthening the competitiveness of the Swiss economy" = op_compet_swissEcon,
+    "Raising the standard deductible for compulsory health insurance" = op_incr_minstand_healthIns,
+    "Opinion on social expenditures" = op_socialExpend,
+    "Opinion on European Union integration" = op_eu_integration,
+    "Opinion on European Union membership" = op_eu_membership,
+    "Opinion on chances for foreigners" = op_chances_foreignVSswiss,
+    "Opinion on existing measures in favor of gender equality" = op_gender_equality,
+    "Opinion on raising taxes on high incomes" = op_taxes_high_Inc,
+    "Opinion on raising minimum wage" = op_minWage,
+    "Opinion on raising retirement age" = op_increase_retirementAge,
+    "Opinion on equal rights for same-sex couples" = op_equalRights_homo,
+    "Opinion on voting right for foreigners" = op_voteRightForeign,
+    "OECD  large comp. tax. project" = vote_oecd_taxation,
+    "Climate law vote" = vote_climateLaw,
+    "Covid act" = vote_covidAct 
+    
+    
+    
+  ) %>% 
+  gglikert_stacked()
+```
+
+```{r annex}
+#| echo: false
+#| warning: false
+#| message: false
+#| include: false
+#| eval: false
+library(explor)
+library(FactoMineR)
+data_mca <- 
+selects2023panel %>% 
+  dplyr::select(op_warMat_re_export, op_easy_accessForMigrants, op_genderSensitiveLang, op_limit_immigration, op_funding_childcare, op_environm_protection, op_compet_swissEcon, op_incr_minstand_healthIns, op_socialExpend, op_eu_integration, op_eu_membership, op_chances_foreignVSswiss, op_gender_equality, op_taxes_high_Inc, op_minWage, op_increase_retirementAge, op_equalRights_homo, op_voteRightForeign, vote_oecd_taxation, vote_climateLaw, vote_covidAct, op_stateVScomp, op_taxes_high_Inc, op_traditionVSmodernity, education_recoded, religion, voteIntention2023main) %>% 
+  as_label() %>% 
+  as_factor() %>% 
+  mutate(
+    income = selects2023panel$IncomeDecile,
+    age = selects2023panel$age
+  ) %>% 
+  drop_na()
+
+
+mca <- MCA(data_mca, graph = FALSE, quali.sup = c(24:26), quanti.sup = 27)
+explor(mca)
+
+selects2023 %>% 
+  group_by(IncomeDecile) %>% 
+  count(as_label(voteChoice2023Combined)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  bar_chart(x = IncomeDecile, y = prop, facet = `as_label(voteChoice2023Combined)`, sort = FALSE)+
+  scale_x_continuous(breaks = seq(from = 1, to = 10, by = 3))+
+  scale_y_continuous(labels = scales::percent)
+```
+
+### References
+
+::: {#refs}
+:::
