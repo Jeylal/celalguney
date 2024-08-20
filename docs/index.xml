@@ -9,7 +9,7 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.5.56</generator>
+<generator>quarto-1.4.549</generator>
 <lastBuildDate>Tue, 07 May 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Economic stagnation in Switzerland: discussion of a growing debate</title>
@@ -165,7 +165,6 @@ Minsch, Rudolf. 2023. <span>“La croissance suisse est-elle avant tout quantita
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb1-2">  (x <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -5693,7 +5692,6 @@ font-style: inherit;">"price in swiss francs"</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(url){</span>
 <span id="cb12-2">  </span>
 <span id="cb12-3">  website <span class="ot" style="color: #003B4F;
@@ -5823,10 +5821,8 @@ background-color: null;
 font-style: inherit;">list</span>()</span>
 <span id="cb15-2"><span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -7062,7 +7058,6 @@ font-style: inherit;">as_tibble</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">lapply</span>(data, <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(x) {<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
@@ -7082,7 +7077,6 @@ font-style: inherit;">%&gt;%</span> </span>
 background-color: null;
 font-style: inherit;">map_df</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(x) {<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
@@ -11596,10 +11590,8 @@ font-style: inherit;">$</span>inc))</span>
 <span id="cb15-2"></span>
 <span id="cb15-3"><span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -12678,7 +12670,6 @@ html {
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb18-2">  weight <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -12692,10 +12683,8 @@ font-style: inherit;">length</span>(x))</span>
 <span id="cb18-3">  </span>
 <span id="cb18-4">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -14178,7 +14167,6 @@ html {
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb22-2"></span>
 <span id="cb22-3">data <span class="sc" style="color: #5E5E5E;
@@ -14665,10 +14653,8 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">12</span><span class="sc" style="color: #5E5E5E;
@@ -14679,7 +14665,6 @@ font-style: inherit;">21</span>) {</span>
 <span id="cb31-5"></span>
 <span id="cb31-6">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
@@ -14716,7 +14701,6 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb31-10">  }<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb31-11">    </span>
 <span id="cb31-12">   decile <span class="ot" style="color: #003B4F;
@@ -14868,7 +14852,6 @@ font-style: inherit;">theme_bw</span>()</span></code></pre></div>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb34-2">  </span>
 <span id="cb34-3">  decile_vec <span class="ot" style="color: #003B4F;
@@ -14892,10 +14875,8 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(columns)<span class="sc" style="color: #5E5E5E;
@@ -14906,7 +14887,6 @@ font-style: inherit;">max</span>(columns)) {</span>
 <span id="cb34-7"></span>
 <span id="cb34-8">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
@@ -14939,7 +14919,6 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb34-12">  }<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb34-13">    </span>
 <span id="cb34-14">   decile <span class="ot" style="color: #003B4F;
@@ -15087,7 +15066,6 @@ font-style: inherit;"># note: the function needs the weight_share() function and
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb36-4">  weight <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -15101,10 +15079,8 @@ font-style: inherit;">length</span>(x))</span>
 <span id="cb36-5">  </span>
 <span id="cb36-6">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -15357,7 +15333,6 @@ font-style: inherit;">1</span>, weight)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb36-23"></span>
 <span id="cb36-24">data <span class="sc" style="color: #5E5E5E;
@@ -15636,7 +15611,6 @@ font-style: inherit;">0</span>))</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb36-39">  </span>
 <span id="cb36-40">  decile_vec <span class="ot" style="color: #003B4F;
@@ -15660,10 +15634,8 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(columns)<span class="sc" style="color: #5E5E5E;
@@ -15674,7 +15646,6 @@ font-style: inherit;">max</span>(columns)) {</span>
 <span id="cb36-44"></span>
 <span id="cb36-45">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
@@ -15707,7 +15678,6 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb36-49">  }<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb36-50">    </span>
 <span id="cb36-51">   decile <span class="ot" style="color: #003B4F;
@@ -15819,7 +15789,6 @@ font-style: italic;">### if a group has no observation in the count, replace the
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, x, by, value){</span>
 <span id="cb36-69">  </span>
 <span id="cb36-70">table1 <span class="ot" style="color: #003B4F;
@@ -16081,7 +16050,6 @@ font-style: inherit;"># 1. compute different quantile groups (quartile, quintile
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(x){</span>
 <span id="cb41-5">  weight <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -16095,10 +16063,8 @@ font-style: inherit;">length</span>(x))</span>
 <span id="cb41-6">  </span>
 <span id="cb41-7">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -16351,7 +16317,6 @@ font-style: inherit;">1</span>, weight)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb41-24"></span>
 <span id="cb41-25">data <span class="sc" style="color: #5E5E5E;
@@ -16630,7 +16595,6 @@ font-style: inherit;">0</span>))</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb41-40">  </span>
 <span id="cb41-41">  decile_vec <span class="ot" style="color: #003B4F;
@@ -16654,10 +16618,8 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">capture.output</span>(<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(columns)<span class="sc" style="color: #5E5E5E;
@@ -16668,7 +16630,6 @@ font-style: inherit;">max</span>(columns)) {</span>
 <span id="cb41-45"></span>
 <span id="cb41-46">  <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
@@ -16701,7 +16662,6 @@ background-color: null;
 font-style: inherit;">1</span>])))</span>
 <span id="cb41-50">  }<span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">else</span>{</span>
 <span id="cb41-51">    </span>
 <span id="cb41-52">   decile <span class="ot" style="color: #003B4F;
@@ -16790,7 +16750,6 @@ font-style: inherit;">prop =</span> decile_vec)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-weight: bold;
 font-style: inherit;">function</span>(data, x, by, value){</span>
 <span id="cb41-67">  </span>
 <span id="cb41-68">table1 <span class="ot" style="color: #003B4F;
@@ -17171,7 +17130,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>Figure&nbsp;1 shows voting intention of individuals who responded to the survey (before the election). To visualize the difference between the sample’s voting intentions and the final results of the election, I added the latter on the graph (as black dots). Some discrepancies between the sample and the final results are striking, especially for SVP’s support. In the sample, only 17,8% Swiss citizen declared voting for the SVP, whereas the party gathered 28% of the votes, more than 10 percentage points difference. Two hypotheses could explain this discrepancy: first, the SVP’s social basis, as most far right parties’ supporters, tend to hide their favorite party in surveys (what is known as “desirability bias”). Another explanation could be that SVP’s voters were undecided or changed their mind at the last time. The score of the SP and FDP are aligned with the survey responses, whereas the Center was underestimated and the vote for the Greens overestimated.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-voteint2023" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-voteint2023" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-voteint2023-1.png" class="img-fluid figure-img" width="672">
@@ -17188,7 +17147,7 @@ Figure&nbsp;1: Voting intentions (above) and vote choice (below) for the Swiss 2
 <p>How does the variable of voting intention to the 2023 election compares with the previous election (2019) ? Swinging voters between elections are often represented in sankey diagrams, which is what Figure&nbsp;2 shows. The sankey diagram shows that there is no tremendous between-parties flows: the blocs at both end of the diagram stay more or less the same. However, one can still notice some small flows: SP and the Greens seem to exchange their supporters, which means that the flows of left-wing voters happen as exchanges between the SP and the Greens. The SVP draw some voters from the undecided and the FDP. Interestingly, some parts of former SP and FDP supporters moved to the Liberal Greens.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-sankey" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-sankey" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-sankey-1.png" id="fig-sankey" class="img-fluid figure-img" width="672">
@@ -17207,7 +17166,7 @@ Figure&nbsp;2
 <p>What is the situation now ? Is the Swiss socialist party still supported by the working class and socio-cultural professionals, and the right by managers, self-employed, artisans and large employers ? We can descriptively explore these hypotheses by taking a social class variable from the dataset (I used here the Oesch class schema, because it is directly available in the post-election dataset), computing the percentage of party support for each party across these classes, and comparing these proportions with the overall proportions: if a social class supports a party with a proportion higher than the overall proportion, one can say that this social class is an important supporter of this party. To do so, the so-called diverging bar charts are a useful visualization.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-divbarcharts" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<div id="fig-divbarcharts" class="quarto-figure quarto-figure-center quarto-float anchored" width="960">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-divbarcharts-1.png" id="fig-divbarcharts" class="img-fluid figure-img" width="960">
@@ -17223,7 +17182,7 @@ Figure&nbsp;3
 <p>If one does not trust the Oesch class schema, one can also look at more simple socio-economic factors such as income deciles. Figure&nbsp;4 shows the support for each swiss party for each income decile.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-decileplot" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<div id="fig-decileplot" class="quarto-figure quarto-figure-center quarto-float anchored" width="960">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-decileplot-1.png" id="fig-decileplot" class="img-fluid figure-img" width="960">
@@ -17235,15 +17194,15 @@ Figure&nbsp;4
 </div>
 </div>
 </div>
-<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP and abstention (NA graph0), whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
-<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers.</p>
+<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
+<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP</p>
 </section>
 <section id="policy-preferences" class="level2">
 <h2 class="anchored" data-anchor-id="policy-preferences">Policy preferences</h2>
 <p>An advantage of post-election Selects data is the wide variety of questions which capture the preferences of Swiss citizen on a set of cultural economic issues. Figure&nbsp;5 shows the responses to these questions. For simplicity I reduced the number of categories when possible (for instance merging the “rather in favor” and “strongly in favor” responses).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-likertchart" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-likertchart" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-likertchart-1.png" id="fig-likertchart" class="img-fluid figure-img" width="672">
@@ -17288,7 +17247,7 @@ Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse,
   <category>Politics</category>
   <category>Political Science</category>
   <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
-  <pubDate>Mon, 19 Aug 2024 09:47:01 GMT</pubDate>
+  <pubDate>Tue, 20 Aug 2024 17:54:53 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 </channel>
