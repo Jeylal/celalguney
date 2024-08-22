@@ -27,12 +27,11 @@ library(GWalkR)
 library(ggstats)
 library(viridis)
 library(patchwork)
-library(hrbrthemes)
-library(circlize)
 library(ggsankey)
 library(dplyr)
 library(sjlabelled)
 library(plotly)
+library(devtools)
 rm(list = ls())
 selects2023panel <- read_sav("selects2023panel_recoded.sav")
 selects2023 <- read_sav("selects2023_recoded.sav")
@@ -253,15 +252,16 @@ tbl_class_parties <-
   left_join(tbl_overall_prop_parties, by = "parties") %>% 
   mutate(diff = prop-Overall_prop)
 
+
 tbl_class_parties %>% 
   group_by(parties) %>% 
-  diverging_bar_chart(x = class, y = diff, text_size = 5)+
+  diverging_bar_chart(x = class, y = diff, text_size = 8)+
   facet_wrap(~parties)+
   scale_y_continuous(labels = scales::percent)+
   labs(y = "Difference compared to overall percentage of party choice", x = "Oesch class schema", 
        title = "Party support and social class in Switzerland",
        caption = "Data source: Selects post-election 2024")+
-  theme(text = element_text(size = 10))
+  theme(text = element_text(size = 14))
 
 
 ```
@@ -294,19 +294,20 @@ tbl_decile_parties <-
   mutate(diff = prop-Overall_prop)
 
 tbl_decile_parties %>% 
-  group_by(parties) %>% 
-  diverging_bar_chart(x = IncomeDecile, y = diff, text_size = 5)+
+  group_by(parties, IncomeDecile) %>% 
+  diverging_bar_chart(x = IncomeDecile, y = diff, text_size = 8)+
   facet_wrap(~parties)+
   scale_y_continuous(labels = scales::percent)+
   labs(y = "Difference compared to overall percentage of party choice", x = "Income decile", 
        title = "Party support and income decile in Switzerland",
        caption = "Data source: Selects post-election 2024")+
-  theme(text = element_text(size = 10))
+  theme(text = element_text(size = 14))
+
 ```
 
-The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP and abstention (NA graph0), whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.
+The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.
 
-From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers.
+From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP
 
 ## Policy preferences
 
