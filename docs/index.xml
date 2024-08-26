@@ -17156,7 +17156,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
 
 
-<p>Even though the Swiss government is not very good at producing data and statistics, particularly with respect to macroeconomic data, some wonderful Swiss survey data studies carried by the excellent Swiss institute FORS are especially interesting to analyze. More specifically, the so-called “Swiss Election Studies” (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let’s have a look to what they offer.</p>
+<p>In Switzerland, survey data are, compared to other countries, scarce, but of very good quality. More specifically, the so-called “Swiss Election Studies” (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let’s have a look to what they offer.</p>
 <section id="a-little-context-on-the-2023-swiss-election" class="level2">
 <h2 class="anchored" data-anchor-id="a-little-context-on-the-2023-swiss-election">A little context on the 2023 Swiss election</h2>
 <p>Since the Selects studies are about politics and elections, let’s first remind ourselves what happened during the 2023 Swiss national election. Switzerland is not famous for the turbulence of its political scene, which is often considered as boring and stationary due to direct and consensus democracy, proportional representation, federalism, a highly “diversified” government (the so-called <em>magic formula</em>), referendums, a high abstention rate…</p>
@@ -17235,8 +17235,8 @@ Figure&nbsp;4
 </div>
 </div>
 </div>
-<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP and abstention (NA graph0), whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
-<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers.</p>
+<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
+<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP.</p>
 </section>
 <section id="policy-preferences" class="level2">
 <h2 class="anchored" data-anchor-id="policy-preferences">Policy preferences</h2>
@@ -17288,7 +17288,7 @@ Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse,
   <category>Politics</category>
   <category>Political Science</category>
   <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
-  <pubDate>Thu, 22 Aug 2024 11:49:47 GMT</pubDate>
+  <pubDate>Mon, 26 Aug 2024 14:07:05 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 </channel>

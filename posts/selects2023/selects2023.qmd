@@ -32,6 +32,7 @@ library(dplyr)
 library(sjlabelled)
 library(plotly)
 library(devtools)
+library(plotly)
 rm(list = ls())
 selects2023panel <- read_sav("selects2023panel_recoded.sav")
 selects2023 <- read_sav("selects2023_recoded.sav")
@@ -86,7 +87,7 @@ selects2023 <-
 
 ```
 
-Even though the Swiss government is not very good at producing data and statistics, particularly with respect to macroeconomic data, some wonderful Swiss survey data studies carried by the excellent Swiss institute FORS are especially interesting to analyze. More specifically, the so-called "Swiss Election Studies" (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let's have a look to what they offer.
+In Switzerland, survey data are, compared to other countries, scarce, but of very good quality. More specifically, the so-called "Swiss Election Studies" (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let's have a look to what they offer.
 
 ## A little context on the 2023 Swiss election
 
@@ -161,7 +162,7 @@ ggplot()+
   scale_fill_manual(values = c("darkblue", "darkorange", "darkred", "darkgreen", "chartreuse3", "lightgreen", "darkgrey", "grey"))+
   theme(legend.position = "none")
 
-cowplot::plot_grid(plotvotePanel, plotVotePE, labels = c("Selects 2023 Panel Data", "Post-Election Data"), nrow = 2)
+cowplot::plot_grid(plotvotePanel, plotVotePE, labels = c("Selects 2023 Panel Data", "Post-Election Data"), nrow = 2) 
 
 ```
 
@@ -307,7 +308,7 @@ tbl_decile_parties %>%
 
 The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.
 
-From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP
+From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP.
 
 ## Policy preferences
 
