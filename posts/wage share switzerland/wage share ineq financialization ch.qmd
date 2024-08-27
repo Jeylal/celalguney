@@ -1,0 +1,44 @@
+---
+title: "Wage share, Inequality and Financialization in Switzerland"
+author: "Celâl Güney"
+format: 
+  html:
+    toc: true
+editor: visual
+execute: 
+  freeze: true
+categories: [Social blocs, Political economy, Politics, Political Science]
+image: fig-divbarcharts-1.png
+draft: true
+bibliography: references.bib
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+library(readr)
+WID_data_CH <- read_delim("wid_switzerland/WID_data_CH.csv", 
+    delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+namesVariables <- tibble(unique(WID_data_CH$variable))
+# see variables code and definition at https://wid.world/summary-table/ 
+# sptincj992 = share pretaxe national income
+# sdiincj992 share post tax national income
+# shwealj992 = share of wealth
+data_shares <- 
+WID_data_CH %>% 
+  filter(variable %in% c("sptincj992", "sdiincj992", "shwealj992")
+         & percentile %in% c("p90p100"))
+```
+
+```{r}
+data_shares %>% 
+  ggplot()+
+  aes(x = year, y = value, color = variable)+
+  geom_line()
+```
+
