@@ -17156,6 +17156,19 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
 
 
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This post is still in progress and will be updated</p>
+</div>
+</div>
 <p>In Switzerland, survey data are, compared to other countries, scarce, but of very good quality. More specifically, the so-called “Swiss Election Studies” (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let’s have a look to what they offer.</p>
 <section id="a-little-context-on-the-2023-swiss-election" class="level2">
 <h2 class="anchored" data-anchor-id="a-little-context-on-the-2023-swiss-election">A little context on the 2023 Swiss election</h2>
@@ -17236,17 +17249,17 @@ Figure&nbsp;4
 </div>
 </div>
 <p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
-<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP.</p>
+<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP. However, when one looks at income deciles, the SP gathers above-average support from each decile except the tenth.</p>
 </section>
 <section id="policy-preferences" class="level2">
 <h2 class="anchored" data-anchor-id="policy-preferences">Policy preferences</h2>
 <p>An advantage of post-election Selects data is the wide variety of questions which capture the preferences of Swiss citizen on a set of cultural economic issues. Figure&nbsp;5 shows the responses to these questions. For simplicity I reduced the number of categories when possible (for instance merging the “rather in favor” and “strongly in favor” responses).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-likertchart" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-likertchart" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-likertchart-1.png" id="fig-likertchart" class="img-fluid figure-img" width="672">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-likertchart-1.png" id="fig-likertchart" class="img-fluid figure-img" width="960">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5
@@ -17255,6 +17268,10 @@ Figure&nbsp;5
 </div>
 </div>
 </div>
+<p>Several remarks can be made looking at Figure&nbsp;5. First, Swiss citizen tend to be conservative regarding immigration issues, except when asked about whether foreigners should have voting rights. This seems paradoxical at first sight: why anti-immigrants would accept foreigners to vote ? In <em>Capitalism, Alone</em> (2019), Milanovic explains that such paradox makes sense when one considers the trade-off between immigration and foreigners’ rights from the point of view of the native population. The idea is that there is a negative relationship between foreigners’ rights and immigration: natives would accept more immigration if immigrants are not granted much rights and, conversely, they would grant more rights to the existing foreigners, but only if immigration is limited. The responses to the immigration-issues questions in Figure&nbsp;5 show that Swiss people chose the latter point of the immigration-right trade-off curve.</p>
+<p>Second, anti-EU membership is a structuring preference of Swiss citizen, who rejected the membership to the European Economic Area in 1992 and have been rather anti-EU ever since. Figure&nbsp;5 shows that, despite the fact that Swiss citizen still are agaisnt EU membership, they are in favor of European integration (but in the sense of integration through bilateral agreements.)</p>
+<p>Third, regarding so-called “cultural issues”, Swiss people are rather conservative regarding new cultural issues, while being rather progressive on issues which are now decades old. They are thus against imposing gender sensitive language, but are in favor of equal rights for same-sex couples.</p>
+<p>Finally, Swiss citizen are, overall, rather on the left on economic issues. 77% of the sample supports a raise in minimum wages, 70% are against raising the retirement age and 63% are in favor of increasing taxes on high income. This stands in stark contrast with the idea that Swiss citizen have one of the most “liberal spirit”.</p>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
@@ -17288,7 +17305,7 @@ Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse,
   <category>Politics</category>
   <category>Political Science</category>
   <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
-  <pubDate>Mon, 26 Aug 2024 14:07:05 GMT</pubDate>
+  <pubDate>Tue, 27 Aug 2024 05:57:52 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 </channel>

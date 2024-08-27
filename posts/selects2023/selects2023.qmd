@@ -13,6 +13,10 @@ draft: false
 bibliography: references.bib
 ---
 
+::: callout-warning
+This post is still in progress and will be updated
+:::
+
 ```{r set up}
 #| echo: false
 #| warning: false
@@ -97,7 +101,7 @@ But still, the stability of the Swiss model makes the small changes which tend t
 
 And some change *did* happen in the last few years. An illustrative example are the turmoils of the governmental bourgeois-right parties, the Liberal-Radicals (FDP) and the Christian-Democrats (CVP, now "The Center"). Both these parties suffer from long-term decline in vote shares since the post-war period, and they have attempted multiple strategies to try avoiding the fall. The Christian-Democrats were the ones who suffered the most from this trend, which peaked when they lost their second seat at the federal council in favor of the SVP (Swiss People's party, Switzerland's extreme right party) in 2003. In 2021, the party merged with another small bourgeois party to create "The Center", in the hope that this new look would benefit them. In terms of political program, The Center is still promotes some forms of "soft neoliberalism", that is to say, a neoliberal transformation of the Swiss model with some compensation measures. The program is close to that of the FDP, although the latter seeks less compromises. Why would the history of these two parties interest us ? Because in the last 2023 election, The Center almost surpassed the FDP in terms of vote shares (14,25% for FDP vs 14% for Center, The Center was actually above before a calculation mistake was corrected) for the first time in Swiss history. Actually, The Center did surpassed the FDP in terms of seats in the National Council, which is still an important shift in the political landscape: does that mean that there is a successful "centrist" strategy now in Switzerland ? Is that strategy destined to succeed in the future ?
 
-Another important element of the 2023 election is the downfall of ecological parties. There are two ecological parties in Switzerland: the Greens and the Liberal Greens. Whereas other countries generally have only one Green party, Switzerland has the peculiarity of having a Liberal Green party, which wants to dissociate itself from the Greens, considered as to extreme on the left in terms of economic policy. However, both these parties suffered from important backlash in the election: the Greens lost around 3% points and the Liberals 0,3% (with 6 lost MPs). Can we see and understand this drop of interest for ecological issues in the Selects data ?
+Another important element of the 2023 election is the downfall of ecological parties. There are two ecological parties in Switzerland: the Greens and the Liberal Greens. Whereas other countries generally have only one Green party, Switzerland has the peculiarity of having a Liberal Green party, which wants to dissociate itself from the Greens, considered as too extreme on the left in terms of economic policy. However, both these parties suffered from important backlash in the election: the Greens lost around 3% points and the Liberals 0,3% (with 6 lost MPs). Can we see and understand this drop of interest for ecological issues in the Selects data ?
 
 Finally, the winners of the election are the SVP and the Socialist Party (SP). The latter has won some battles in the last few years, for instance during the vote for a third rent pension rent. Was the SP successful in broadening its social basis ? What about the SVP ? Let's have a look.
 
@@ -308,7 +312,7 @@ tbl_decile_parties %>%
 
 The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.
 
-From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP.
+From @fig-divbarcharts and @fig-decileplot, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP. However, when one looks at income deciles, the SP gathers above-average support from each decile except the tenth.
 
 ## Policy preferences
 
@@ -319,6 +323,8 @@ An advantage of post-election Selects data is the wide variety of questions whic
 #| warning: false
 #| message: false
 #| label: fig-likertchart
+#| fig-width: 10
+#| fig-height: 10
 selects2023panel %>% 
   dplyr::select(op_warMat_re_export, op_easy_accessForMigrants, op_genderSensitiveLang, op_limit_immigration, op_funding_childcare, op_environm_protection, op_compet_swissEcon, op_incr_minstand_healthIns, op_socialExpend, op_eu_integration, op_eu_membership, op_chances_foreignVSswiss, op_gender_equality, op_taxes_high_Inc, op_minWage, op_increase_retirementAge, op_equalRights_homo, op_voteRightForeign, vote_oecd_taxation, vote_covidAct, vote_climateLaw) %>% 
   rename(
@@ -349,6 +355,14 @@ selects2023panel %>%
   ) %>% 
   gglikert_stacked()
 ```
+
+Several remarks can be made looking at @fig-likertchart. First, Swiss citizen tend to be conservative regarding immigration issues, except when asked about whether foreigners should have voting rights. This seems paradoxical at first sight: why anti-immigrants would accept foreigners to vote ? In *Capitalism, Alone* (2019), Milanovic explains that such paradox makes sense when one considers the trade-off between immigration and foreigners' rights from the point of view of the native population. The idea is that there is a negative relationship between foreigners' rights and immigration: natives would accept more immigration if immigrants are not granted much rights and, conversely, they would grant more rights to the existing foreigners, but only if immigration is limited. The responses to the immigration-issues questions in @fig-likertchart show that Swiss people chose the latter point of the immigration-right trade-off curve.
+
+Second, anti-EU membership is a structuring preference of Swiss citizen, who rejected the membership to the European Economic Area in 1992 and have been rather anti-EU ever since. @fig-likertchart shows that, despite the fact that Swiss citizen still are agaisnt EU membership, they are in favor of European integration (but in the sense of integration through bilateral agreements.)
+
+Third, regarding so-called "cultural issues", Swiss people are rather conservative regarding new cultural issues, while being rather progressive on issues which are now decades old. They are thus against imposing gender sensitive language, but are in favor of equal rights for same-sex couples.
+
+Finally, Swiss citizen are, overall, rather on the left on economic issues. 77% of the sample supports a raise in minimum wages, 70% are against raising the retirement age and 63% are in favor of increasing taxes on high income. This stands in stark contrast with the idea that Swiss citizen have one of the most "liberal spirit".
 
 ```{r annex}
 #| echo: false
