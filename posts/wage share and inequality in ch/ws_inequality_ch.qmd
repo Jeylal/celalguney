@@ -1,0 +1,90 @@
+---
+title: "Wage Share and Regional Inequality in Switzerland"
+author: "Celâl Güney"
+format: 
+  html:
+    toc: true
+editor: visual
+categories: [Income inequality]
+draft: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(rnaturalearth)
+library(tidyverse)
+library(sf)
+library(BFS)
+library(viridis)
+library(patchwork)
+```
+
+## Introduction
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+switzerland = bfs_get_base_maps(geom = "kant")
+AFC_data_canton <- read_csv("AFC_data_canton.csv") %>% 
+  rename("id" = ktnr)
+
+map_data_ch = switzerland %>% 
+  left_join(AFC_data_canton, by = "id")
+
+
+quantile_gini = quantile(map_data_ch$gini_reinka[map_data_ch$year == 2019], probs = seq(0, 1, by = 0.1))
+map_data_ch$breaks_gini = cut(map_data_ch$gini_reinka,
+                  breaks = quantile_gini)
+
+map =
+map_data_ch %>% 
+  filter(year == 2019) %>% 
+  ggplot()+
+  geom_sf(aes(fill = breaks_gini))+
+  theme_void()+
+  scale_fill_viridis(option = "A", discrete = TRUE, direction = -1,
+                     guide = guide_legend(position = "bottom",
+                                          label.position = "bottom",
+                                          nrow = 2),
+                     name = "")+
+  labs(title = "Gini coefficient of net equivalent disposable income (2019)",
+       caption = "Data source: Swiss Federal Tax Administration")
+
+
+
+AFC_data_canton$breaks_gini = cut(AFC_data_canton$gini_reinka,
+                  breaks = quantile_gini)
+
+barplot = 
+AFC_data_canton %>% 
+  filter(year == 2019) %>% 
+  ggplot()+
+  aes(y = reorder(ktname, gini_reinka), x = gini_reinka, fill = breaks_gini)+
+  geom_col()+
+  labs(x = "", y = "")+
+  theme_minimal()+
+  scale_fill_viridis(option = "A", discrete = TRUE, direction = -1)+
+  theme(legend.position = "none")
+
+
+map+
+  inset_element(barplot, -0.18, 0.1, 0.1, 1)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+AFC_data_canton %>% 
+  ggplot()+
+  aes(x = year, y = gini_reinka)+
+  geom_line()+
+  facet_wrap(~id)
+
+```
+

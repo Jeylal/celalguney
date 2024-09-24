@@ -9,7 +9,7 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.5.56</generator>
+<generator>quarto-1.6.9</generator>
 <lastBuildDate>Tue, 07 May 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Economic stagnation in Switzerland: discussion of a growing debate</title>
@@ -17305,8 +17305,38 @@ Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse,
   <category>Politics</category>
   <category>Political Science</category>
   <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
-  <pubDate>Tue, 27 Aug 2024 05:57:52 GMT</pubDate>
+  <pubDate>Tue, 24 Sep 2024 15:34:58 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
+</item>
+<item>
+  <title>Wage Share and Regional Inequality in Switzerland</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/celalguney/posts/wage share and inequality in ch/ws_inequality_ch.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/posts/wage share and inequality in ch/ws_inequality_ch_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Income inequality</category>
+  <guid>https://jeylal.github.io/celalguney/posts/wage share and inequality in ch/ws_inequality_ch.html</guid>
+  <pubDate>Tue, 24 Sep 2024 15:34:58 GMT</pubDate>
 </item>
 </channel>
 </rss>

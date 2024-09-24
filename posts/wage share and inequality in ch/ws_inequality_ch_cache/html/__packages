@@ -1,0 +1,16 @@
+rnaturalearth
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+lubridate
+sf
+BFS
+viridisLite
+viridis
+patchwork

@@ -1,0 +1,15 @@
+{
+  "hash": "1b6dc0813f6ff806292e158523fd66e4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Wage share, Inequality and Financialization in Switzerland\"\nauthor: \"Celâl Güney\"\nformat: \n  html:\n    toc: true\neditor: visual\nexecute: \n  freeze: true\ncategories: [Social blocs, Political economy, Politics, Political Science]\nimage: fig-divbarcharts-1.png\ndraft: true\nbibliography: references.bib\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndata_shares %>% \n  ggplot()+\n  aes(x = year, y = value, color = variable)+\n  geom_line()\n```\n\n::: {.cell-output-display}\n![](wage-share-ineq-financialization-ch_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

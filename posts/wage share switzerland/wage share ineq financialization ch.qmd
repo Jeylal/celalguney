@@ -41,4 +41,3 @@ data_shares %>%
   aes(x = year, y = value, color = variable)+
   geom_line()
 ```
-

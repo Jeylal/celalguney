@@ -1,0 +1,15 @@
+{
+  "hash": "0a24f64fee18329f29dd2a696900b40d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Wage Share and Regional Inequality in Switzerland\"\nauthor: \"Celâl Güney\"\nformat: \n  html:\n    toc: true\neditor: visual\ncategories: [Income inequality]\n---\n\n::: {.cell}\n\n:::\n\n\n\n## Introduction\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](ws_inequality_ch_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
