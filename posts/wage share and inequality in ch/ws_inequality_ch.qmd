@@ -46,12 +46,44 @@ wageShare_ameco <-
   pivot_longer(cols = 2:9, values_to = "Wage_share", names_to = "Country")
 
 
-# plot wage share
+
+library(ggrepel)
 
 wageShare_ameco %>%
-  filter(period %in% c(1991:2024) & Country != "Norway") %>% 
-  ggplot(aes(x = period, y = Wage_share, color = Country))+
-  geom_line()
+  filter(period %in% c(1991:2024) & Country != "Norway") %>%
+  ggplot(aes(x = period, y = Wage_share, group = Country)) +
+  
+  geom_line(aes(color = ifelse(Country == "Switzerland", "Switzerland", "Other")),
+            size = 1) + 
+  
+    scale_color_manual(values = c("Switzerland" = "red", "Other" = "grey")) +
+  
+  geom_text_repel(data = wageShare_ameco %>%
+                    filter(period == max(period) & Country != "Norway" & Country != "Switzerland"),
+                  aes(label = Country),
+                  nudge_x = 0.5,  
+                  hjust = 0,      
+                  direction = "y", 
+                  size = 3) +
+  
+  geom_text_repel(data = wageShare_ameco %>%
+                    filter(period == max(period) & Country == "Switzerland"),
+                  aes(label = Country),
+                  nudge_x = 0.5,  
+                  nudge_y = 0.5,  
+                  hjust = 0,      
+                  color = "red",  
+                  size = 3,       
+                  fontface = "bold") +  
+  
+  labs(title = "Wage Share by Country (1991-2024)",
+       x = "", y = "Wage Share in %") +
+  theme_minimal() +
+  theme(legend.position = "none")  
+
+
+
+
 ```
 
 
@@ -79,6 +111,19 @@ AFC_data_CH %>%
 #| echo: false
 #| warning: false
 #| message: false
+
+switzerland = bfs_get_base_maps(geom = "kant")
+AFC_data_canton <- read_csv("AFC_data_canton.csv") %>% 
+  rename("id" = ktnr)
+
+map_data_ch = switzerland %>% 
+  left_join(AFC_data_canton, by = "id")
+
+
+quantile_gini = quantile(map_data_ch$gini_reinka[map_data_ch$year == 2019], probs = seq(0, 1, by = 0.2))
+map_data_ch$breaks_gini = cut(map_data_ch$gini_reinka,
+                  breaks = quantile_gini)
+
 map_data_ch %>% 
   filter(year == 2019) %>% 
   mapview(zcol = "gini_reinka")
@@ -101,6 +146,35 @@ AFC_data_canton %>%
 
 ```
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggrepel)
+
+swiss_communes = bfs_get_base_maps(geom = "polg")
+afc_data_communes = read.csv("AFC_data_communes.csv") %>% 
+  rename("id" = gdenr)
+
+map_data_communes = swiss_communes %>% 
+  left_join(afc_data_communes, by = "id")
+
+map_data_communes %>%
+  filter(id %in% c(6601:6645) & year == 2020) %>%
+  mutate(label_color = case_when(
+    gini_reinka < 0.7 ~ "black",
+    gini_reinka >= 0.7 ~ "white"
+  )) %>%
+  ggplot() +
+  geom_sf(aes(fill = gini_reinka)) +
+  scale_fill_viridis(option = 1, direction = -1) +
+  theme_void() +
+  geom_sf_text(aes(label = name, color = label_color), size = 3) +
+  scale_color_manual(values = c("black", "white"), guide = "none")
+
+
+```
 
 
 
@@ -108,18 +182,8 @@ AFC_data_canton %>%
 #| echo: false
 #| warning: false
 #| message: false
-
-switzerland = bfs_get_base_maps(geom = "kant")
-AFC_data_canton <- read_csv("AFC_data_canton.csv") %>% 
-  rename("id" = ktnr)
-
-map_data_ch = switzerland %>% 
-  left_join(AFC_data_canton, by = "id")
-
-
-quantile_gini = quantile(map_data_ch$gini_reinka[map_data_ch$year == 2019], probs = seq(0, 1, by = 0.2))
-map_data_ch$breaks_gini = cut(map_data_ch$gini_reinka,
-                  breaks = quantile_gini)
+#| eval: false
+#| include: false
 
 map =
 map_data_ch %>% 
