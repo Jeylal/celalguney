@@ -67,6 +67,7 @@ write.csv(AFC_data_CH, "~/GitHub/celalguney/posts/wage share and inequality in c
 
 AFC_data_CH_contr <- read_csv("data_contribuable_only/AFC_data_CH_contr.csv")
 
+
 AFC_data_CH %>% 
   ggplot()+
   aes(x = year, y = gini_reinka)+
@@ -74,5 +75,10 @@ AFC_data_CH %>%
   geom_line(data = AFC_data_CH_contr, aes(x = year, y = gini_reinka), color = "red")
   
 
+AFC_data_communes = read.csv("AFC_data_communes.csv")
+AFC_data_canton = read.csv("AFC_data_canton.csv")
+AFC_data_CH = read.csv("AFC_data_CH.csv")
 
 
+AFC_data_canton$ktname[547:572] <- AFC_data_canton$ktname[1:26]
+write.csv(AFC_data_canton, "AFC_data_canton.csv")
