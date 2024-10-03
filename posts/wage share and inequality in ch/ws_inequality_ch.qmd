@@ -23,6 +23,7 @@ library(viridis)
 library(patchwork)
 library(leaflet)
 library(mapview)
+library(readxl)
 ```
 
 ## Introduction
@@ -87,6 +88,26 @@ wageShare_ameco %>%
 ```
 
 
+```{r siegenthaler}
+#| echo: false
+#| warning: false
+#| message: false
+
+siegen2024 <- read_excel("data_inequality/siegenthaler_etal_2024.xlsx", 
+    skip = 1)
+
+siegen2024$wage_shareCH = siegen2024$`Reales Arbeitnehmerentgelt (Mio. CHF 2005)`/siegen2024$`Reales BIP (Mio. CHF 2005)`
+wage_shareCH_ameco = wageShare_ameco$Wage_share[wageShare_ameco$Country == "Switzerland"]
+wage_shareCH_ameco = as.numeric(wage_shareCH_ameco)
+
+
+siegen2024 %>% 
+  filter(Jahr %in% c(1991:2024)) %>% 
+  ggplot()+
+  aes(x = Jahr, y = wage_shareCH*100)+
+  geom_line()+
+  geom_line(aes(y = wage_shareCH_ameco[35:66]), color = "red")
+```
 
 
 
