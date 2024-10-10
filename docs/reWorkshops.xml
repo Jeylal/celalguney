@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Celâl Güney</title>
+<link>https://jeylal.github.io/celalguney/reWorkshops.html</link>
+<atom:link href="https://jeylal.github.io/celalguney/reWorkshops.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.6.13</generator>
+<lastBuildDate>Thu, 10 Oct 2024 07:25:50 GMT</lastBuildDate>
+<item>
+  <title></title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/capitalism.html</link>
+  <description><![CDATA[ undefined ]]></description>
+  <guid>https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/capitalism.html</guid>
+  <pubDate>Thu, 10 Oct 2024 07:25:50 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/cover.png" medium="image" type="image/png" height="77" width="144"/>
+</item>
+</channel>
+</rss>

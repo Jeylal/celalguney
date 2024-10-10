@@ -1,0 +1,202 @@
+---
+title: "Rethinking Economics Geneva Workshops"
+subtitle: "Capitalism: Concepts and Approaches"
+author: "Celâl Güney"
+lang: en
+format: 
+  revealjs:
+    theme: serif
+    footer: "[Celâl Güney](https://jeylal.github.io/celalguney/about.html)"
+    incremental: true
+    preview-links: false
+    controls: true
+    embed-resources: true
+    pdf-separate-fragments: true
+    gfm:
+    mermaid-format: png
+    mermaid: 
+      theme: neutral
+editor: visual
+image: images/cover.png
+---
+
+## About the Workshops
+
+-   Designed to introduce you to some heterodox schools of thought in economics by exploring some topics:
+    -   Capitalism (today and next session)
+    -   Neoliberalism
+    -   History of economics as a discipline
+-   These workshops won't be "ex cathedra" courses, they are based on participation, discussions, etc
+    -   So do not hesitate to interrupt, ask questions, etc...
+
+## Capitalism: Concepts & Approaches
+
+### Why do we start with capitalism ?
+
+-   It is a good way to explore different schools of thought, since they differ a lot in how they define, conceive and analyze capitalism
+
+## Plan {.smaller}
+
+1.  Capitalism: debated definitions
+    -   What is capitalism for you ?
+    -   Standard definitions of capitalism
+    -   Conceptualizing capitalism
+    -   Liberal vs political capitalism
+2.  Analyzing capitalism
+    -   Marxist approaches
+    -   Comparative capitalism
+    -   Régulation approach
+    -   Post-Keynesian approaches
+
+## What is capitalism for you ?
+
+-   Take a piece of paper and write on it what would be your definition of capitalism
+
+## Standard definition
+
+> > "capitalism, economic system, dominant in the Western world since the breakup of feudalism, in which most means of production are privately owned and production is guided and income distributed largely through the operation of markets." (Britannica)
+
+::: notes
+2 elements: 1. means of production privately owned 2. Production and distribution through markets
+:::
+
+## Standard definitions: mainstream macroeconomics
+
+Macroeconomics manuals usually never or rarely mention capitalism at all, but we can find an exception in Carlin and Soskice manual:
+
+> > "Capitalism is an economic system in which the capital stock is privately owned and where employers hire workers to produce goods and services with the aim of making a profit." (Carlin and Soskice 2015, p.264)
+
+## Standard definitions: mainstream macroeconomics {.smaller}
+
+Followed by a definition of central planning and (of course) some normative views:
+
+> > "Under central planning, production takes place in state-owned enterprises, and resources are allocated to different sectors according to the decisions of planning bureaucrats. There was no incentive for people to take the risk of introducing new products, services or methods of production since they would not reap the rewards if the venture was successful. The potential for large gains from innovation in a capitalist economy was absent in a planned economy. There was also no penalty for failure." (Carlin and Soskice 2015, p.264)
+
+## Standard definition
+
+What do you think about this definition ? Is anything missing ?
+
+-   According to this definition, capitalism has more or less always existed and is rooted in human nature
+-   Several implied assumptions about human nature:
+    -   Driven by personal interests, profit-making
+    -   Rationality
+    -   Human nature is fixed
+
+## Problems with standard definitions
+
+If we trust these definitions, capitalism has existed for thousands of years
+
+-   Some early civilizations (ancient China for instance) already had some elements of private capital and strongly developed markets, were they capitalists ?
+
+## What was new in the beginning of capitalism ? (late 18th century)
+
+Markets, profit-seeking, private property have always more or less existed, so what made the difference ?
+
+## A new Spirit ? {.smaller}
+
+For Max Weber, (modern) capitalism is different from other economic systems because of:
+
+1.  The existence of a disciplined labour force, which is rationally organized and formally/legally free
+2.  A regularized investment of capital
+
+-   The existence and diffusion of capitalism was helped by the existence of a "protestant ethic" which favored behaviors benefiting a capitalistic system
+
+## A specific way to extract surplus value ? {.smaller}
+
+Marx almost never used the word capitalism per se, but words such as "capitalist mode of production" or "capitalist production".
+
+-   In marxian perspective, capitalism is a particular mode of production, defined as an economic system based on a specific way to extract surplus-value.
+
+-   What makes the capitalist mode of production "capitalism" is extraction of surplus value in the form of profit, with a separation between the workers, which are (in appearance) legally and formally free, from the means of production owned by another social group.
+
+## Ernest Mandel's view {.smaller}
+
+In its introduction to Marx's capital, Mandel gives a fair overview of what capitalism is about:
+
+> > "Capitalism \[...\] is a specific relation between wage-labour and capital, a social organization in which social labour is fragmented into firms independent of each other, which take independent decisions about investment, prices and forms of financing growth, which compete with each other for shares of markets and profits \[...\] and which therefore buy and exploit wage-labour under specific economic conditions, compulsions and constraints" (p.58)
+
+## The "M-definition" {.smaller}
+
+According to Hodgson, Marx's definition of capitalism contains the following points:
+
+::::: columns
+::: {.column width="70%"}
+1.  A legal system supporting individual rights to own and exchange private property
+2.  Widespread commodity exchange and markets
+3.  Widespread private ownership of the means of production by firms producing goods under the motivation of profits
+4.  Production is organized outside the home and the family
+5.  Widespread wage labor and employment contracts
+:::
+
+::: {.column width="30%"}
+![](images/9780226168005.jpg){width="260"}
+:::
+:::::
+
+## The contribution of Schumpeter {.smaller}
+
+According to Hodgson, the marxist definition omits an important point stressed by Schumpeter: the crucial role of money markets, finance and money which underlie capitalism
+
+Hodgson thus adds a 6th point:
+
+-   A developed financial system with banking institutions, the widespread use of credit with property as collateral, and the selling of debt (Hodgson 2015, p.256)
+
+## More important than a set of characteristics
+
+#### capital as *value in motion*
+
+::::: columns
+::: {.column width="50%"}
+![Fine and Saad-Filho (2004, p.55)](images/fine_saad_filho_2004_55.png){width="354"}
+:::
+
+::: {.column width="50%"}
+![Fine and Saad-Filho (2004, p.62)](images/saadfilho_62.png){width="357"}
+:::
+:::::
+
+## Milanovic's definition (2019) {.smaller}
+
+> > "System where most production is carried out with privately owned means of production of production, capital hires legally free labor, and coordination is decentralized. \[…\] Most investment decisions are made by private companies or individual entrepreneurs" (p.15)
+
+3 Criteria, which have the advantage of being measurable (1) Most production carried privately; (2) capital hires legally free labor; (3) investment decisions are in majority decentralized and carried by entrepreneurs
+
+## Example: is China capitalist ?
+
+::: r-stack
+![](images/milanovic2019_1.png){.fragment width="450" height="300"}
+
+![](images/milanovic2019_2.png){.fragment width="400" height="450"}
+
+![](images/milanovic2019_3.png){.fragment width="500" height="500"}
+:::
+
+## From capitalism to capitalisms: concluding activity {.smaller}
+
+-   As a concluding activity, I propose that we read an interesting passage from Milanovic's *Capitalism Alone* (2019)
+
+-   Read pages 91-98 (Key features of political capitalism)
+
+-   If you are fast, you can also have a look at the parts on liberal meritocratic capitalism
+
+-   What are the differences between political capitalism and the definition of capitalism we have seen ?
+
+-   What are the key features of political capitalism ?
+
+-   What do you think about this dual typology of capitalism (liberal meritocratic vs political capitalism) ?
+
+::: notes
+Political capitalism
+
+-   Domination of a bureaucracy
+-   Absence of binding rule of law
+-   Autonomy of the state
+
+Contradiction of political capitalism:
+:::
+
+## Capitalism: concepts & approaches Part 2: analyzing capitalism
+
+-   Marxist approach
+-   Régulation approach
+-   Comparative capitalism

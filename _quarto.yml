@@ -23,6 +23,8 @@ website:
           file: index.qmd
         - text: "Economics"
           file: https://jeylal.github.io/heterodox-economics/
+        - text: "RE Geneva Workshops"
+          file: reWorkshops.qmd
 
 format:
   html:
