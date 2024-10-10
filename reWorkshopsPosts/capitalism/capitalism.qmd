@@ -22,7 +22,7 @@ image: images/cover.png
 
 ## About the Workshops
 
--   Designed to introduce you to some heterodox schools of thought in economics by exploring some topics:
+-   Designed to introduce you to some heterodox schools of thoughts/ authors in economics by exploring some topics:
     -   Capitalism (today and next session)
     -   Neoliberalism
     -   History of economics as a discipline
@@ -33,7 +33,7 @@ image: images/cover.png
 
 ### Why do we start with capitalism ?
 
--   It is a good way to explore different schools of thought, since they differ a lot in how they define, conceive and analyze capitalism
+-   It is a good way to explore different schools of thought/thinkers, since they differ a lot in how they define, conceive and analyze capitalism
 
 ## Plan {.smaller}
 
@@ -48,9 +48,10 @@ image: images/cover.png
     -   Régulation approach
     -   Post-Keynesian approaches
 
-## What is capitalism for you ?
+## What is capitalism for you ? (Discussion)
 
--   Take a piece of paper and write on it what would be your definition of capitalism
+-   Take some time to think about what would be your definition of capitalism
+-   What influenced your definition of capitalism (which authors, readings etc) ?
 
 ## Standard definition
 
