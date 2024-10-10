@@ -22,7 +22,7 @@ image: images/cover.png
 
 ## About the Workshops
 
--   Designed to introduce you to some heterodox schools of thoughts/ authors in economics by exploring some topics:
+-   Designed to introduce and debate/discuss some heterodox schools of thoughts/ authors in economics by exploring some topics:
     -   Capitalism (today and next session)
     -   Neoliberalism
     -   History of economics as a discipline
@@ -212,6 +212,3 @@ Contradiction of political capitalism:
 -   Régulation approach
 -   Comparative capitalism
 
-## Grasping real-world capitalisms {.smaller}
-
-> > "Orthodox Marxism remained fixated for a long time on the formulation of the fundamental social relations of capitalism (private ownership of the means of production, commodities and money, the legal constitution of the "free bearer of labor power") without seeing, precisely, that these relations were… fundamental. That is to say, "incomplete," under-determined. The fundamental social relations of capitalism are never observed as they are, so to speak, in their "fundamentality." They are only observed as historically actualized, in a certain way" ([Lordon 2021](https://journals.openedition.org/asterion/6049))
