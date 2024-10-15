@@ -8,8 +8,8 @@ about:
       text: Twitter
       href: https://twitter.com/jey_lal
     - icon: envelope-fill
-      text: celal.gueney@etu.unige.ch
-      href: mailto:celal.gueney@etu.unige.ch
+      text: celal.98@outlook.com
+      href: mailto:celal.98@outlook.com
     - icon: github
       text: Github
       href: https://github.com/Jeylal
@@ -23,7 +23,8 @@ about:
 
 # Welcome !
 
-My name is Celâl and I am an economist and data analyst. I specialize in macroeconomics, post-Keynesian economics and in data science. I am also interested in econometrics, economic history, the history of economic ideas and theories and in programming, especially with R. I am currently a research and teaching assistant at the department of History-Economics-Society at the University of Geneva. My contract will end next February, I am thus actively looking for an internship, a Phd position or a job linked to my studies and areas of expertise, so don't hesitate to have a look to my [CV](https://jeylal.github.io/celalguney/CV.html) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests.
+
+My name is Celâl and I am an economist and data analyst. I specialize in macroeconomics and survey data analysis. I am also interested in the analysis of socio-political expectations/preferences, institutional change and in programming, especially with R. I am currently a research and teaching assistant at the department of History-Economics-Society at the University of Geneva. Since my contract will end next February, I am actively looking for an internship, a Phd position or a job linked to my studies and areas of expertise, so don't hesitate to have a look to my [CV](https://jeylal.github.io/celalguney/CV.html) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests. You can have a look to my master's thesis [here](https://jeylal.github.io/master-thesis/), which analyzes the political demands of Swiss citizen since the 80s and offers a clustering analysis of the Swiss socio-political groups in the 90s.
 
 
 ## Education
@@ -37,10 +38,11 @@ My name is Celâl and I am an economist and data analyst. I specialize in macroe
 #### Interests
 
 - Macroeconomics
-- Institutional economics | Evolutionary economics
+- Survey data analysis | Econometrics | Statistics
+- Institutional economics 
 - Political economy and comparative capitalism
 - Economic history | history of economic thought 
-- Data science | statistics & econometrics | history of economic methods and measures
+
 
 #### ![caption](translate.svg) Languages
 
