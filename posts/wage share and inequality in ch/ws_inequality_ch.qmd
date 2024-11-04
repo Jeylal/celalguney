@@ -102,11 +102,10 @@ wage_shareCH_ameco = as.numeric(wage_shareCH_ameco)
 
 
 siegen2024 %>% 
-  filter(Jahr %in% c(1991:2024)) %>% 
+  filter() %>% 
   ggplot()+
   aes(x = Jahr, y = wage_shareCH*100)+
-  geom_line()+
-  geom_line(aes(y = wage_shareCH_ameco[35:66]), color = "red")
+  geom_line()
 ```
 
 
