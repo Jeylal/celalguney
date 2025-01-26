@@ -4,6 +4,6 @@ format: html
 editor: visual
 ---
 
-<iframe width="100%" height="800" src="cv.pdf">
+<iframe width="100%" height="800" src="https://raw.githubusercontent.com/Jeylal/celalguney/master/cv.pdf">
 
 </iframe>
