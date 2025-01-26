@@ -9,7 +9,7 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.13</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Tue, 07 May 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Economic stagnation in Switzerland: discussion of a growing debate</title>
@@ -17305,7 +17305,15 @@ Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse,
   <category>Politics</category>
   <category>Political Science</category>
   <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
+<<<<<<< Updated upstream
   <pubDate>Wed, 16 Oct 2024 12:14:14 GMT</pubDate>
+=======
+<<<<<<< HEAD
+  <pubDate>Mon, 28 Oct 2024 20:05:09 GMT</pubDate>
+=======
+  <pubDate>Wed, 16 Oct 2024 12:14:14 GMT</pubDate>
+>>>>>>> 0ba07fea7898602d06f326533956fa6aff89d373
+>>>>>>> Stashed changes
   <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 </channel>
