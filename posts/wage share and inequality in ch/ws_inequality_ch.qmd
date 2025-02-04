@@ -28,7 +28,6 @@ library(readxl)
 
 ## Introduction
 
-
 ```{r}
 #| echo: false
 #| warning: false
@@ -87,7 +86,6 @@ wageShare_ameco %>%
 
 ```
 
-
 ```{r siegenthaler}
 #| echo: false
 #| warning: false
@@ -107,8 +105,6 @@ siegen2024 %>%
   aes(x = Jahr, y = wage_shareCH*100)+
   geom_line()
 ```
-
-
 
 ```{r}
 #| echo: false
@@ -196,8 +192,6 @@ map_data_communes %>%
 
 ```
 
-
-
 ```{r}
 #| echo: false
 #| warning: false
@@ -239,4 +233,3 @@ AFC_data_canton %>%
 map+
   inset_element(barplot, -0.18, 0.1, 0.1, 1)
 ```
-

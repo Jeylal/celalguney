@@ -1,0 +1,69 @@
+---
+title: "Exploring the Global Macro Database"
+author: "Celâl Gûney"
+format: 
+  html:
+    toc: true
+editor: visual
+execute: 
+  freeze: true
+categories: [Macroeconomics]
+draft: true
+
+---
+
+
+
+```{r}
+#| label: set up
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(haven)
+library(esquisse)
+GMD <- read_dta("GMD.dta") |> 
+  mutate(rGDP_pc_usd = (rGDP_USD*10^6)/(pop*10^6),
+         inflation_deflator = (deflator/lag(deflator) - 1)*100,
+         infl_tax = (inflation_deflator * govdebt_GDP)/100,
+         real_deficit = govdef_GDP + infl_tax)
+GMD_CH = GMD |> filter(countryname == "Switzerland")
+GMD_FR = GMD |> filter(countryname == "France" & year %in% c(2022:2023))
+```
+
+
+```{r}
+#| message: false
+#| warning: false
+
+GMD |> 
+filter(countryname %in% c("Switzerland", "France", "Germany", "United States", "United Kingdom")
+       & year %in% c(1850:1950)) |> 
+ggplot() +
+ aes(x = year, y = log(rGDP_pc_usd), colour = countryname, group = countryname) +
+ geom_line() +
+ scale_color_brewer(palette = "Set1", 
+ direction = 1) +
+ theme_minimal()
+
+
+GMD |> 
+filter(countryname %in% c("Switzerland")
+       & year %in% c(1900:2023)) |> 
+ggplot() +
+ aes(x = year, y = govdef_GDP, color = "Deficit") +
+ geom_line()+
+  geom_line(aes(y = real_deficit, color = "real_deficit"))+
+  theme_minimal()+
+  geom_hline(yintercept = 0)
+
+GMD_CH |> 
+  filter(year %in% c(1945:2022)) |> 
+  ggplot(aes(x = year, y = CA_GDP))+
+  geom_line()+
+  theme_minimal()+
+  geom_hline(yintercept = 0)
+
+```
+
+
