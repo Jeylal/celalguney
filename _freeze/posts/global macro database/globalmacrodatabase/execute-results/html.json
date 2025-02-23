@@ -1,0 +1,15 @@
+{
+  "hash": "2d90d24720e66e19462e8818ffed5bdb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Exploring the Global Macro Database\"\nauthor: \"Celâl Gûney\"\nformat: \n  html:\n    toc: true\neditor: visual\nexecute: \n  freeze: true\ncategories: [Macroeconomics]\ndraft: true\n\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(haven)\nlibrary(esquisse)\nGMD <- read_dta(\"GMD.dta\") |> \n  mutate(rGDP_pc_usd = (rGDP_USD*10^6)/(pop*10^6),\n         inflation_deflator = (deflator/lag(deflator) - 1)*100,\n         infl_tax = (inflation_deflator * govdebt_GDP)/100,\n         real_deficit = govdef_GDP + infl_tax)\nGMD_CH = GMD |> filter(countryname == \"Switzerland\")\nGMD_FR = GMD |> filter(countryname == \"France\" & year %in% c(2022:2023))\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nGMD |> \nfilter(countryname %in% c(\"Switzerland\", \"France\", \"Germany\", \"United States\", \"United Kingdom\")\n       & year %in% c(1850:1950)) |> \nggplot() +\n aes(x = year, y = log(rGDP_pc_usd), colour = countryname, group = countryname) +\n geom_line() +\n scale_color_brewer(palette = \"Set1\", \n direction = 1) +\n theme_minimal()\n```\n\n::: {.cell-output-display}\n![](globalmacrodatabase_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n\n```{.r .cell-code}\nGMD |> \nfilter(countryname %in% c(\"Switzerland\")\n       & year %in% c(1900:2023)) |> \nggplot() +\n aes(x = year, y = govdef_GDP, color = \"Deficit\") +\n geom_line()+\n  geom_line(aes(y = real_deficit, color = \"real_deficit\"))+\n  theme_minimal()+\n  geom_hline(yintercept = 0)\n```\n\n::: {.cell-output-display}\n![](globalmacrodatabase_files/figure-html/unnamed-chunk-2-2.png){width=672}\n:::\n\n```{.r .cell-code}\nGMD_CH |> \n  filter(year %in% c(1945:2022)) |> \n  ggplot(aes(x = year, y = CA_GDP))+\n  geom_line()+\n  theme_minimal()+\n  geom_hline(yintercept = 0)\n```\n\n::: {.cell-output-display}\n![](globalmacrodatabase_files/figure-html/unnamed-chunk-2-3.png){width=672}\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

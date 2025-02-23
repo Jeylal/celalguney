@@ -10,6 +10,7 @@ execute:
 categories: [Social blocs, Political economy, Politics, Political Science]
 image: fig-divbarcharts-1.png
 draft: false
+date: "10 November 2024"
 bibliography: references.bib
 ---
 

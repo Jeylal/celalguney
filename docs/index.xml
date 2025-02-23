@@ -9,8 +9,1470 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.5.57</generator>
-<lastBuildDate>Tue, 07 May 2024 22:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.40</generator>
+<lastBuildDate>Sat, 22 Feb 2025 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to run multiple factor analysis in R</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Writing still in progress
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>In social sciences, factor analysis is a very useful set of methods to analyze data for a wide variety of topics. The most well-known method is principal component analysis (PCA), which allows to reduce a set of variables into a few “principal components” which are linear combinations of the datasets’ variables. The components are ordered according to the percentage of variance captured by it and components are orthogonal (not correlated) with each other. PCA applies only to quantitative variables, but there are many options to include qualitative and ordinal variables: multiple correspondence analysis (MCA) which applies to qualitative variables only, and mixed methods which applies to both qualitative and quantitative variables. Factor analysis is also useful to run cluster analysis. Once the principal components are estimated, hierarchical cluster (HC) can be conducted to groups the observations into clusters.</p>
+<p>However, what happens when our variables correspond to different group ? Running a PCA directly would ignore this grouping and thus loose a lot of information. To give an example I am studying, the literature on comparative capitalism often uses clustering through PCA and MCA to identify empirically the varieties of socio-economic models which exist across countries. One of the main ideas of comparative capitalism is that social, political and economic institutions come with different forms, hierarchy as well as complementarities within countries, leading thus to different forms of capitalism between them, that we can clusterize. This is what has been done by, for instance, <span class="citation" data-cites="amable_diversity_2003">Amable (2003)</span> who identified five types of capitalism by the analysis of five institutional domains: the wage-labour nexus; the financial system; the education system; product-market competition; the welfare state &amp; social protection system. <span class="citation" data-cites="cahen-fourot_contemporary_2020">Cahen-Fourot (2020)</span> offers a similar typology, but with slighlty different institutional domains (which he calls “institutional forms” because they are taken from Régulation Theory): the monetary regime; the wage-labour nexus; the form of competition; the form of the state and the insertion into the international regime. What is interesting in <span class="citation" data-cites="cahen-fourot_contemporary_2020">Cahen-Fourot (2020)</span> is that he includes an additional institutional form: the social relations to the environment.</p>
+<p>To identify and cluster different types of capitalism, this literature uses a combination of PCA and MCA through the following steps:</p>
+<ol type="1">
+<li>Run a PCA for each institutional domain separately</li>
+<li>Cluster the countries on this institutional domain using HC on the PCA and attribute each country to their cluster</li>
+<li>Run a MCA on the cluster classification</li>
+</ol>
+<p>Despite the fact that this approach is acceptable, it can be very time consuming especially when the steps 1 and 2 above must be repeated a lot (in the example above, 5 or 6 times). There exists another principal component method which allows to do that in a much simpler way: multiple factor analysis. Using this method would allow to run a single principal components dimension reduction while taking into account the fact that the data are grouped into categories (in that case the institutional forms) and thus avoiding to run a separate analysis for each one of them. In very simple terms, MFA can be considered as a weighted PCA in which each variable is divided by the square root of the first eigenvalue of the group it belongs to. By doing so, the group structure is preserved while running the analysis over the whole variables.</p>
+<p>The present post will not explain further details on MFA, but will focus on its practical implementation and visualization in R using the FactoMineR and FactoShiny packages. There are many resources online to learn all technical details about MFA, as this <a href="https://www.youtube.com/watch?v=MOl0Aw1TTFE&amp;list=PLnZgp6epRBbRX8TEp1HlFGqfMf_AxYEj7&amp;index=1">series of youtube tutorials done by François Husson</a>. this <a href="https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/116-mfa-multiple-factor-analysis-in-r-essentials/">post</a> is also very useful.</p>
+<section id="how-to-run-mfa-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-run-mfa-in-r">How to run MFA in R</h2>
+<p>To show of to run MFA in R, I will use the data compiled by <span class="citation" data-cites="cahen-fourot_contemporary_2020">Cahen-Fourot (2020)</span> to analyze the diversity of capitalisms in 2015. This data contain 76 variables covering 37 countries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(readr)</span>
+<span id="cb1-2">data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data_full_CF2020.csv"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">column_to_rownames</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">var =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Country"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># important to have countries as rownames or the MFA will consider them as qualitative indicator variable</span></span>
+<span id="cb1-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(MatfootGDP, CO2footGDP, EnerfootGDP)) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># remove three variables which are present in the dataset but will not be used</span></span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div id="nthmoiprlx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nthmoiprlx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#nthmoiprlx thead, #nthmoiprlx tbody, #nthmoiprlx tfoot, #nthmoiprlx tr, #nthmoiprlx td, #nthmoiprlx th {
+  border-style: none;
+}
+
+#nthmoiprlx p {
+  margin: 0;
+  padding: 0;
+}
+
+#nthmoiprlx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#nthmoiprlx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#nthmoiprlx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#nthmoiprlx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#nthmoiprlx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#nthmoiprlx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#nthmoiprlx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#nthmoiprlx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#nthmoiprlx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#nthmoiprlx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#nthmoiprlx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#nthmoiprlx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#nthmoiprlx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#nthmoiprlx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#nthmoiprlx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nthmoiprlx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#nthmoiprlx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#nthmoiprlx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#nthmoiprlx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nthmoiprlx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#nthmoiprlx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nthmoiprlx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#nthmoiprlx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nthmoiprlx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nthmoiprlx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nthmoiprlx .gt_left {
+  text-align: left;
+}
+
+#nthmoiprlx .gt_center {
+  text-align: center;
+}
+
+#nthmoiprlx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#nthmoiprlx .gt_font_normal {
+  font-weight: normal;
+}
+
+#nthmoiprlx .gt_font_bold {
+  font-weight: bold;
+}
+
+#nthmoiprlx .gt_font_italic {
+  font-style: italic;
+}
+
+#nthmoiprlx .gt_super {
+  font-size: 65%;
+}
+
+#nthmoiprlx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#nthmoiprlx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#nthmoiprlx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#nthmoiprlx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#nthmoiprlx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#nthmoiprlx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#nthmoiprlx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#nthmoiprlx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#nthmoiprlx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="SCP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SCP</th>
+<th id="GIN" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">GIN</th>
+<th id="DCB" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">DCB</th>
+<th id="GOV" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">GOV</th>
+<th id="PCT" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PCT</th>
+<th id="CCR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">CCR</th>
+<th id="ABC" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ABC</th>
+<th id="ABP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ABP</th>
+<th id="BSS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">BSS</th>
+<th id="LPS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LPS</th>
+<th id="CSR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">CSR</th>
+<th id="LBR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LBR</th>
+<th id="ATX" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ATX</th>
+<th id="BEN" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">BEN</th>
+<th id="FDI" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">FDI</th>
+<th id="TRF" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">TRF</th>
+<th id="TFS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">TFS</th>
+<th id="TRD" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">TRD</th>
+<th id="Telec_struc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Telec_struc</th>
+<th id="Elec_struc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Elec_struc</th>
+<th id="Gas_struc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Gas_struc</th>
+<th id="Post_struc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Post_struc</th>
+<th id="Rail_struc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Rail_struc</th>
+<th id="Hstat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Hstat</th>
+<th id="LernerIndex" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LernerIndex</th>
+<th id="StateControl" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">StateControl</th>
+<th id="Taxes" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Taxes</th>
+<th id="HealthGDP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">HealthGDP</th>
+<th id="EducGDP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EducGDP</th>
+<th id="MilitaryGDP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">MilitaryGDP</th>
+<th id="Finalcons" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Finalcons</th>
+<th id="HealthGOV" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">HealthGOV</th>
+<th id="EducGOV" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EducGOV</th>
+<th id="MilitaryGOV" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">MilitaryGOV</th>
+<th id="Int_rate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Int_rate</th>
+<th id="Inf_rate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Inf_rate</th>
+<th id="Fin_reg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Fin_reg</th>
+<th id="LLR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLR</th>
+<th id="FinOpen" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">FinOpen</th>
+<th id="Liq" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Liq</th>
+<th id="PrimAgri" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PrimAgri</th>
+<th id="PrimIndus" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PrimIndus</th>
+<th id="SecManuf" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SecManuf</th>
+<th id="SecConst" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SecConst</th>
+<th id="Ter_Serv" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ter_Serv</th>
+<th id="Ter_FIRE" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ter_FIRE</th>
+<th id="Tradeglobfacto" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Tradeglobfacto</th>
+<th id="Finglobfacto" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Finglobfacto</th>
+<th id="Tradeglobjure" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Tradeglobjure</th>
+<th id="Finglobjure" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Finglobjure</th>
+<th id="Socglobfacto" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Socglobfacto</th>
+<th id="Socglobjure" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Socglobjure</th>
+<th id="Polglobfacto" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Polglobfacto</th>
+<th id="Polglobjure" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Polglobjure</th>
+<th id="IUCN" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IUCN</th>
+<th id="GreenP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">GreenP</th>
+<th id="EnvConflicts" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EnvConflicts</th>
+<th id="ClassGHG" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ClassGHG</th>
+<th id="EnvReg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EnvReg</th>
+<th id="EnvTreaties" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EnvTreaties</th>
+<th id="EnfEnvReg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EnfEnvReg</th>
+<th id="EnerGDP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EnerGDP</th>
+<th id="GHGGdp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">GHGGdp</th>
+<th id="MatGDP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">MatGDP</th>
+<th id="MatEmb" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">MatEmb</th>
+<th id="EnerEmb" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EnerEmb</th>
+<th id="CO2Emb" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">CO2Emb</th>
+<th id="Wshare" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Wshare</th>
+<th id="DistProf" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">DistProf</th>
+<th id="Labprotec" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Labprotec</th>
+<th id="CollBarg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">CollBarg</th>
+<th id="Unions" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Unions</th>
+<th id="Unemp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Unemp</th>
+<th id="IncomeIneq" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IncomeIneq</th>
+<th id="WorkingHours" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">WorkingHours</th>
+<th id="Gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Gender</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="SCP">2.85</td>
+<td class="gt_row gt_right" headers="GIN">2.17</td>
+<td class="gt_row gt_right" headers="DCB">1.03</td>
+<td class="gt_row gt_right" headers="GOV">5.63</td>
+<td class="gt_row gt_right" headers="PCT">0.84</td>
+<td class="gt_row gt_right" headers="CCR">1.08</td>
+<td class="gt_row gt_right" headers="ABC">0.8</td>
+<td class="gt_row gt_right" headers="ABP">0.8</td>
+<td class="gt_row gt_right" headers="BSS">1.15</td>
+<td class="gt_row gt_right" headers="LPS">4</td>
+<td class="gt_row gt_right" headers="CSR">0.55</td>
+<td class="gt_row gt_right" headers="LBR">1.47</td>
+<td class="gt_row gt_right" headers="ATX">1.43</td>
+<td class="gt_row gt_right" headers="BEN">2.75</td>
+<td class="gt_row gt_right" headers="FDI">0.77</td>
+<td class="gt_row gt_right" headers="TRF">0</td>
+<td class="gt_row gt_right" headers="TFS">0.00</td>
+<td class="gt_row gt_right" headers="TRD">0.00</td>
+<td class="gt_row gt_right" headers="Telec_struc">1.60</td>
+<td class="gt_row gt_right" headers="Elec_struc">0.0</td>
+<td class="gt_row gt_right" headers="Gas_struc">0.00</td>
+<td class="gt_row gt_right" headers="Post_struc">3</td>
+<td class="gt_row gt_right" headers="Rail_struc">3.0</td>
+<td class="gt_row gt_right" headers="Hstat">0.31</td>
+<td class="gt_row gt_right" headers="LernerIndex">0.17</td>
+<td class="gt_row gt_right" headers="StateControl">1.94</td>
+<td class="gt_row gt_right" headers="Taxes">22.1</td>
+<td class="gt_row gt_right" headers="HealthGDP">6.1</td>
+<td class="gt_row gt_right" headers="EducGDP">5.32</td>
+<td class="gt_row gt_right" headers="MilitaryGDP">1.96</td>
+<td class="gt_row gt_right" headers="Finalcons">18.1</td>
+<td class="gt_row gt_right" headers="HealthGOV">16.65</td>
+<td class="gt_row gt_right" headers="EducGOV">14.08</td>
+<td class="gt_row gt_right" headers="MilitaryGOV">5.22</td>
+<td class="gt_row gt_right" headers="Int_rate">2.26</td>
+<td class="gt_row gt_right" headers="Inf_rate">1.51</td>
+<td class="gt_row gt_right" headers="Fin_reg">1389</td>
+<td class="gt_row gt_right" headers="LLR">0.54</td>
+<td class="gt_row gt_right" headers="FinOpen">0.94</td>
+<td class="gt_row gt_right" headers="Liq">1874</td>
+<td class="gt_row gt_right" headers="PrimAgri">0.02</td>
+<td class="gt_row gt_right" headers="PrimIndus">0.10</td>
+<td class="gt_row gt_right" headers="SecManuf">0.07</td>
+<td class="gt_row gt_right" headers="SecConst">0.09</td>
+<td class="gt_row gt_right" headers="Ter_Serv">0.50</td>
+<td class="gt_row gt_right" headers="Ter_FIRE">0.22</td>
+<td class="gt_row gt_right" headers="Tradeglobfacto">239</td>
+<td class="gt_row gt_right" headers="Finglobfacto">785</td>
+<td class="gt_row gt_right" headers="Tradeglobjure">839</td>
+<td class="gt_row gt_right" headers="Finglobjure">678</td>
+<td class="gt_row gt_right" headers="Socglobfacto">868</td>
+<td class="gt_row gt_right" headers="Socglobjure">800</td>
+<td class="gt_row gt_right" headers="Polglobfacto">908</td>
+<td class="gt_row gt_right" headers="Polglobjure">911</td>
+<td class="gt_row gt_right" headers="IUCN">1.28</td>
+<td class="gt_row gt_right" headers="GreenP">0.213</td>
+<td class="gt_row gt_right" headers="EnvConflicts">0.7</td>
+<td class="gt_row gt_right" headers="ClassGHG">5.5</td>
+<td class="gt_row gt_right" headers="EnvReg">5.7</td>
+<td class="gt_row gt_right" headers="EnvTreaties">24</td>
+<td class="gt_row gt_right" headers="EnfEnvReg">5.7</td>
+<td class="gt_row gt_right" headers="EnerGDP">0.100</td>
+<td class="gt_row gt_right" headers="GHGGdp">408</td>
+<td class="gt_row gt_right" headers="MatGDP">0.70</td>
+<td class="gt_row gt_right" headers="MatEmb">-131.2</td>
+<td class="gt_row gt_right" headers="EnerEmb">-9.1</td>
+<td class="gt_row gt_right" headers="CO2Emb">1.9</td>
+<td class="gt_row gt_right" headers="Wshare">58.8</td>
+<td class="gt_row gt_right" headers="DistProf">15.0</td>
+<td class="gt_row gt_right" headers="Labprotec">1.9</td>
+<td class="gt_row gt_right" headers="CollBarg">50.6</td>
+<td class="gt_row gt_right" headers="Unions">15.0</td>
+<td class="gt_row gt_right" headers="Unemp">6.1</td>
+<td class="gt_row gt_right" headers="IncomeIneq">0.3</td>
+<td class="gt_row gt_right" headers="WorkingHours">34</td>
+<td class="gt_row gt_right" headers="Gender">13.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="SCP">3.00</td>
+<td class="gt_row gt_right" headers="GIN">2.78</td>
+<td class="gt_row gt_right" headers="DCB">1.03</td>
+<td class="gt_row gt_right" headers="GOV">2.25</td>
+<td class="gt_row gt_right" headers="PCT">0.37</td>
+<td class="gt_row gt_right" headers="CCR">1.78</td>
+<td class="gt_row gt_right" headers="ABC">1.8</td>
+<td class="gt_row gt_right" headers="ABP">0.2</td>
+<td class="gt_row gt_right" headers="BSS">4.04</td>
+<td class="gt_row gt_right" headers="LPS">2</td>
+<td class="gt_row gt_right" headers="CSR">0.05</td>
+<td class="gt_row gt_right" headers="LBR">0.20</td>
+<td class="gt_row gt_right" headers="ATX">0.00</td>
+<td class="gt_row gt_right" headers="BEN">2.47</td>
+<td class="gt_row gt_right" headers="FDI">0.63</td>
+<td class="gt_row gt_right" headers="TRF">0</td>
+<td class="gt_row gt_right" headers="TFS">0.35</td>
+<td class="gt_row gt_right" headers="TRD">1.40</td>
+<td class="gt_row gt_right" headers="Telec_struc">1.36</td>
+<td class="gt_row gt_right" headers="Elec_struc">0.0</td>
+<td class="gt_row gt_right" headers="Gas_struc">1.50</td>
+<td class="gt_row gt_right" headers="Post_struc">2</td>
+<td class="gt_row gt_right" headers="Rail_struc">0.0</td>
+<td class="gt_row gt_right" headers="Hstat">0.71</td>
+<td class="gt_row gt_right" headers="LernerIndex">0.55</td>
+<td class="gt_row gt_right" headers="StateControl">1.67</td>
+<td class="gt_row gt_right" headers="Taxes">26.8</td>
+<td class="gt_row gt_right" headers="HealthGDP">7.8</td>
+<td class="gt_row gt_right" headers="EducGDP">5.45</td>
+<td class="gt_row gt_right" headers="MilitaryGDP">0.71</td>
+<td class="gt_row gt_right" headers="Finalcons">19.9</td>
+<td class="gt_row gt_right" headers="HealthGOV">15.10</td>
+<td class="gt_row gt_right" headers="EducGOV">10.70</td>
+<td class="gt_row gt_right" headers="MilitaryGOV">1.37</td>
+<td class="gt_row gt_right" headers="Int_rate">-0.02</td>
+<td class="gt_row gt_right" headers="Inf_rate">0.90</td>
+<td class="gt_row gt_right" headers="Fin_reg">1654</td>
+<td class="gt_row gt_right" headers="LLR">2.65</td>
+<td class="gt_row gt_right" headers="FinOpen">1.00</td>
+<td class="gt_row gt_right" headers="Liq">2971</td>
+<td class="gt_row gt_right" headers="PrimAgri">0.01</td>
+<td class="gt_row gt_right" headers="PrimIndus">0.03</td>
+<td class="gt_row gt_right" headers="SecManuf">0.18</td>
+<td class="gt_row gt_right" headers="SecConst">0.06</td>
+<td class="gt_row gt_right" headers="Ter_Serv">0.56</td>
+<td class="gt_row gt_right" headers="Ter_FIRE">0.15</td>
+<td class="gt_row gt_right" headers="Tradeglobfacto">699</td>
+<td class="gt_row gt_right" headers="Finglobfacto">907</td>
+<td class="gt_row gt_right" headers="Tradeglobjure">911</td>
+<td class="gt_row gt_right" headers="Finglobjure">737</td>
+<td class="gt_row gt_right" headers="Socglobfacto">871</td>
+<td class="gt_row gt_right" headers="Socglobjure">864</td>
+<td class="gt_row gt_right" headers="Polglobfacto">939</td>
+<td class="gt_row gt_right" headers="Polglobjure">973</td>
+<td class="gt_row gt_right" headers="IUCN">0.59</td>
+<td class="gt_row gt_right" headers="GreenP">0.115</td>
+<td class="gt_row gt_right" headers="EnvConflicts">0.7</td>
+<td class="gt_row gt_right" headers="ClassGHG">3.4</td>
+<td class="gt_row gt_right" headers="EnvReg">6.2</td>
+<td class="gt_row gt_right" headers="EnvTreaties">25</td>
+<td class="gt_row gt_right" headers="EnfEnvReg">6.1</td>
+<td class="gt_row gt_right" headers="EnerGDP">0.079</td>
+<td class="gt_row gt_right" headers="GHGGdp">190</td>
+<td class="gt_row gt_right" headers="MatGDP">0.42</td>
+<td class="gt_row gt_right" headers="MatEmb">56.9</td>
+<td class="gt_row gt_right" headers="EnerEmb">8.4</td>
+<td class="gt_row gt_right" headers="CO2Emb">25.9</td>
+<td class="gt_row gt_right" headers="Wshare">63.7</td>
+<td class="gt_row gt_right" headers="DistProf">16.8</td>
+<td class="gt_row gt_right" headers="Labprotec">2.4</td>
+<td class="gt_row gt_right" headers="CollBarg">98.0</td>
+<td class="gt_row gt_right" headers="Unions">27.4</td>
+<td class="gt_row gt_right" headers="Unemp">5.7</td>
+<td class="gt_row gt_right" headers="IncomeIneq">0.3</td>
+<td class="gt_row gt_right" headers="WorkingHours">35</td>
+<td class="gt_row gt_right" headers="Gender">17.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="SCP">2.60</td>
+<td class="gt_row gt_right" headers="GIN">2.59</td>
+<td class="gt_row gt_right" headers="DCB">1.16</td>
+<td class="gt_row gt_right" headers="GOV">3.00</td>
+<td class="gt_row gt_right" headers="PCT">1.17</td>
+<td class="gt_row gt_right" headers="CCR">2.92</td>
+<td class="gt_row gt_right" headers="ABC">2.2</td>
+<td class="gt_row gt_right" headers="ABP">1.0</td>
+<td class="gt_row gt_right" headers="BSS">4.40</td>
+<td class="gt_row gt_right" headers="LPS">2</td>
+<td class="gt_row gt_right" headers="CSR">0.94</td>
+<td class="gt_row gt_right" headers="LBR">1.50</td>
+<td class="gt_row gt_right" headers="ATX">0.00</td>
+<td class="gt_row gt_right" headers="BEN">2.52</td>
+<td class="gt_row gt_right" headers="FDI">0.24</td>
+<td class="gt_row gt_right" headers="TRF">0</td>
+<td class="gt_row gt_right" headers="TFS">0.50</td>
+<td class="gt_row gt_right" headers="TRD">0.00</td>
+<td class="gt_row gt_right" headers="Telec_struc">1.51</td>
+<td class="gt_row gt_right" headers="Elec_struc">1.5</td>
+<td class="gt_row gt_right" headers="Gas_struc">0.00</td>
+<td class="gt_row gt_right" headers="Post_struc">2</td>
+<td class="gt_row gt_right" headers="Rail_struc">3.0</td>
+<td class="gt_row gt_right" headers="Hstat">0.68</td>
+<td class="gt_row gt_right" headers="LernerIndex">0.17</td>
+<td class="gt_row gt_right" headers="StateControl">2.19</td>
+<td class="gt_row gt_right" headers="Taxes">24.7</td>
+<td class="gt_row gt_right" headers="HealthGDP">8.6</td>
+<td class="gt_row gt_right" headers="EducGDP">6.55</td>
+<td class="gt_row gt_right" headers="MilitaryGDP">0.92</td>
+<td class="gt_row gt_right" headers="Finalcons">23.9</td>
+<td class="gt_row gt_right" headers="HealthGOV">16.02</td>
+<td class="gt_row gt_right" headers="EducGOV">12.17</td>
+<td class="gt_row gt_right" headers="MilitaryGOV">1.71</td>
+<td class="gt_row gt_right" headers="Int_rate">-0.02</td>
+<td class="gt_row gt_right" headers="Inf_rate">0.56</td>
+<td class="gt_row gt_right" headers="Fin_reg">1869</td>
+<td class="gt_row gt_right" headers="LLR">2.88</td>
+<td class="gt_row gt_right" headers="FinOpen">1.00</td>
+<td class="gt_row gt_right" headers="Liq">2081</td>
+<td class="gt_row gt_right" headers="PrimAgri">0.01</td>
+<td class="gt_row gt_right" headers="PrimIndus">0.03</td>
+<td class="gt_row gt_right" headers="SecManuf">0.13</td>
+<td class="gt_row gt_right" headers="SecConst">0.06</td>
+<td class="gt_row gt_right" headers="Ter_Serv">0.63</td>
+<td class="gt_row gt_right" headers="Ter_FIRE">0.15</td>
+<td class="gt_row gt_right" headers="Tradeglobfacto">932</td>
+<td class="gt_row gt_right" headers="Finglobfacto">936</td>
+<td class="gt_row gt_right" headers="Tradeglobjure">880</td>
+<td class="gt_row gt_right" headers="Finglobjure">818</td>
+<td class="gt_row gt_right" headers="Socglobfacto">826</td>
+<td class="gt_row gt_right" headers="Socglobjure">899</td>
+<td class="gt_row gt_right" headers="Polglobfacto">926</td>
+<td class="gt_row gt_right" headers="Polglobjure">990</td>
+<td class="gt_row gt_right" headers="IUCN">1.16</td>
+<td class="gt_row gt_right" headers="GreenP">0.846</td>
+<td class="gt_row gt_right" headers="EnvConflicts">0.4</td>
+<td class="gt_row gt_right" headers="ClassGHG">3.6</td>
+<td class="gt_row gt_right" headers="EnvReg">5.5</td>
+<td class="gt_row gt_right" headers="EnvTreaties">26</td>
+<td class="gt_row gt_right" headers="EnfEnvReg">5.2</td>
+<td class="gt_row gt_right" headers="EnerGDP">0.104</td>
+<td class="gt_row gt_right" headers="GHGGdp">231</td>
+<td class="gt_row gt_right" headers="MatGDP">0.29</td>
+<td class="gt_row gt_right" headers="MatEmb">53.7</td>
+<td class="gt_row gt_right" headers="EnerEmb">-81.4</td>
+<td class="gt_row gt_right" headers="CO2Emb">-1.4</td>
+<td class="gt_row gt_right" headers="Wshare">66.8</td>
+<td class="gt_row gt_right" headers="DistProf">15.9</td>
+<td class="gt_row gt_right" headers="Labprotec">3.0</td>
+<td class="gt_row gt_right" headers="CollBarg">96.0</td>
+<td class="gt_row gt_right" headers="Unions">54.2</td>
+<td class="gt_row gt_right" headers="Unemp">8.5</td>
+<td class="gt_row gt_right" headers="IncomeIneq">0.3</td>
+<td class="gt_row gt_right" headers="WorkingHours">35</td>
+<td class="gt_row gt_right" headers="Gender">4.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="SCP">2.64</td>
+<td class="gt_row gt_right" headers="GIN">1.77</td>
+<td class="gt_row gt_right" headers="DCB">2.29</td>
+<td class="gt_row gt_right" headers="GOV">4.00</td>
+<td class="gt_row gt_right" headers="PCT">2.53</td>
+<td class="gt_row gt_right" headers="CCR">2.17</td>
+<td class="gt_row gt_right" headers="ABC">3.6</td>
+<td class="gt_row gt_right" headers="ABP">2.0</td>
+<td class="gt_row gt_right" headers="BSS">3.43</td>
+<td class="gt_row gt_right" headers="LPS">6</td>
+<td class="gt_row gt_right" headers="CSR">1.57</td>
+<td class="gt_row gt_right" headers="LBR">2.07</td>
+<td class="gt_row gt_right" headers="ATX">0.00</td>
+<td class="gt_row gt_right" headers="BEN">3.44</td>
+<td class="gt_row gt_right" headers="FDI">0.61</td>
+<td class="gt_row gt_right" headers="TRF">4</td>
+<td class="gt_row gt_right" headers="TFS">0.80</td>
+<td class="gt_row gt_right" headers="TRD">3.55</td>
+<td class="gt_row gt_right" headers="Telec_struc">1.93</td>
+<td class="gt_row gt_right" headers="Elec_struc">0.0</td>
+<td class="gt_row gt_right" headers="Gas_struc">6.00</td>
+<td class="gt_row gt_right" headers="Post_struc">3</td>
+<td class="gt_row gt_right" headers="Rail_struc">6.0</td>
+<td class="gt_row gt_right" headers="Hstat">0.74</td>
+<td class="gt_row gt_right" headers="LernerIndex">0.01</td>
+<td class="gt_row gt_right" headers="StateControl">2.51</td>
+<td class="gt_row gt_right" headers="Taxes">12.8</td>
+<td class="gt_row gt_right" headers="HealthGDP">3.8</td>
+<td class="gt_row gt_right" headers="EducGDP">6.24</td>
+<td class="gt_row gt_right" headers="MilitaryGDP">1.36</td>
+<td class="gt_row gt_right" headers="Finalcons">19.7</td>
+<td class="gt_row gt_right" headers="HealthGOV">7.66</td>
+<td class="gt_row gt_right" headers="EducGOV">16.25</td>
+<td class="gt_row gt_right" headers="MilitaryGOV">3.57</td>
+<td class="gt_row gt_right" headers="Int_rate">14.25</td>
+<td class="gt_row gt_right" headers="Inf_rate">9.03</td>
+<td class="gt_row gt_right" headers="Fin_reg">1636</td>
+<td class="gt_row gt_right" headers="LLR">20.40</td>
+<td class="gt_row gt_right" headers="FinOpen">0.17</td>
+<td class="gt_row gt_right" headers="Liq">6135</td>
+<td class="gt_row gt_right" headers="PrimAgri">0.05</td>
+<td class="gt_row gt_right" headers="PrimIndus">0.07</td>
+<td class="gt_row gt_right" headers="SecManuf">0.14</td>
+<td class="gt_row gt_right" headers="SecConst">0.06</td>
+<td class="gt_row gt_right" headers="Ter_Serv">0.53</td>
+<td class="gt_row gt_right" headers="Ter_FIRE">0.15</td>
+<td class="gt_row gt_right" headers="Tradeglobfacto">191</td>
+<td class="gt_row gt_right" headers="Finglobfacto">501</td>
+<td class="gt_row gt_right" headers="Tradeglobjure">479</td>
+<td class="gt_row gt_right" headers="Finglobjure">285</td>
+<td class="gt_row gt_right" headers="Socglobfacto">453</td>
+<td class="gt_row gt_right" headers="Socglobjure">766</td>
+<td class="gt_row gt_right" headers="Polglobfacto">955</td>
+<td class="gt_row gt_right" headers="Polglobjure">676</td>
+<td class="gt_row gt_right" headers="IUCN">0.10</td>
+<td class="gt_row gt_right" headers="GreenP">0.017</td>
+<td class="gt_row gt_right" headers="EnvConflicts">0.5</td>
+<td class="gt_row gt_right" headers="ClassGHG">14.4</td>
+<td class="gt_row gt_right" headers="EnvReg">4.7</td>
+<td class="gt_row gt_right" headers="EnvTreaties">24</td>
+<td class="gt_row gt_right" headers="EnfEnvReg">3.7</td>
+<td class="gt_row gt_right" headers="EnerGDP">0.125</td>
+<td class="gt_row gt_right" headers="GHGGdp">439</td>
+<td class="gt_row gt_right" headers="MatGDP">1.47</td>
+<td class="gt_row gt_right" headers="MatEmb">-13.8</td>
+<td class="gt_row gt_right" headers="EnerEmb">4.6</td>
+<td class="gt_row gt_right" headers="CO2Emb">12.1</td>
+<td class="gt_row gt_right" headers="Wshare">50.3</td>
+<td class="gt_row gt_right" headers="DistProf">21.1</td>
+<td class="gt_row gt_right" headers="Labprotec">1.7</td>
+<td class="gt_row gt_right" headers="CollBarg">70.5</td>
+<td class="gt_row gt_right" headers="Unions">19.5</td>
+<td class="gt_row gt_right" headers="Unemp">8.4</td>
+<td class="gt_row gt_right" headers="IncomeIneq">0.5</td>
+<td class="gt_row gt_right" headers="WorkingHours">39</td>
+<td class="gt_row gt_right" headers="Gender">16.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="SCP">2.60</td>
+<td class="gt_row gt_right" headers="GIN">1.92</td>
+<td class="gt_row gt_right" headers="DCB">0.59</td>
+<td class="gt_row gt_right" headers="GOV">3.75</td>
+<td class="gt_row gt_right" headers="PCT">1.95</td>
+<td class="gt_row gt_right" headers="CCR">1.30</td>
+<td class="gt_row gt_right" headers="ABC">0.0</td>
+<td class="gt_row gt_right" headers="ABP">0.2</td>
+<td class="gt_row gt_right" headers="BSS">3.75</td>
+<td class="gt_row gt_right" headers="LPS">2</td>
+<td class="gt_row gt_right" headers="CSR">0.57</td>
+<td class="gt_row gt_right" headers="LBR">0.69</td>
+<td class="gt_row gt_right" headers="ATX">0.65</td>
+<td class="gt_row gt_right" headers="BEN">2.95</td>
+<td class="gt_row gt_right" headers="FDI">1.04</td>
+<td class="gt_row gt_right" headers="TRF">0</td>
+<td class="gt_row gt_right" headers="TFS">1.84</td>
+<td class="gt_row gt_right" headers="TRD">1.17</td>
+<td class="gt_row gt_right" headers="Telec_struc">1.57</td>
+<td class="gt_row gt_right" headers="Elec_struc">3.0</td>
+<td class="gt_row gt_right" headers="Gas_struc">0.00</td>
+<td class="gt_row gt_right" headers="Post_struc">2</td>
+<td class="gt_row gt_right" headers="Rail_struc">1.5</td>
+<td class="gt_row gt_right" headers="Hstat">0.81</td>
+<td class="gt_row gt_right" headers="LernerIndex">0.39</td>
+<td class="gt_row gt_right" headers="StateControl">1.92</td>
+<td class="gt_row gt_right" headers="Taxes">12.3</td>
+<td class="gt_row gt_right" headers="HealthGDP">7.7</td>
+<td class="gt_row gt_right" headers="EducGDP">5.27</td>
+<td class="gt_row gt_right" headers="MilitaryGDP">1.16</td>
+<td class="gt_row gt_right" headers="Finalcons">20.9</td>
+<td class="gt_row gt_right" headers="HealthGOV">19.07</td>
+<td class="gt_row gt_right" headers="EducGOV">12.22</td>
+<td class="gt_row gt_right" headers="MilitaryGOV">2.87</td>
+<td class="gt_row gt_right" headers="Int_rate">0.82</td>
+<td class="gt_row gt_right" headers="Inf_rate">1.13</td>
+<td class="gt_row gt_right" headers="Fin_reg">142</td>
+<td class="gt_row gt_right" headers="LLR">4.69</td>
+<td class="gt_row gt_right" headers="FinOpen">1.00</td>
+<td class="gt_row gt_right" headers="Liq">3762</td>
+<td class="gt_row gt_right" headers="PrimAgri">0.02</td>
+<td class="gt_row gt_right" headers="PrimIndus">0.10</td>
+<td class="gt_row gt_right" headers="SecManuf">0.11</td>
+<td class="gt_row gt_right" headers="SecConst">0.07</td>
+<td class="gt_row gt_right" headers="Ter_Serv">0.52</td>
+<td class="gt_row gt_right" headers="Ter_FIRE">0.19</td>
+<td class="gt_row gt_right" headers="Tradeglobfacto">365</td>
+<td class="gt_row gt_right" headers="Finglobfacto">841</td>
+<td class="gt_row gt_right" headers="Tradeglobjure">859</td>
+<td class="gt_row gt_right" headers="Finglobjure">748</td>
+<td class="gt_row gt_right" headers="Socglobfacto">888</td>
+<td class="gt_row gt_right" headers="Socglobjure">842</td>
+<td class="gt_row gt_right" headers="Polglobfacto">933</td>
+<td class="gt_row gt_right" headers="Polglobjure">937</td>
+<td class="gt_row gt_right" headers="IUCN">0.62</td>
+<td class="gt_row gt_right" headers="GreenP">0.253</td>
+<td class="gt_row gt_right" headers="EnvConflicts">0.7</td>
+<td class="gt_row gt_right" headers="ClassGHG">6.8</td>
+<td class="gt_row gt_right" headers="EnvReg">5.0</td>
+<td class="gt_row gt_right" headers="EnvTreaties">19</td>
+<td class="gt_row gt_right" headers="EnfEnvReg">5.0</td>
+<td class="gt_row gt_right" headers="EnerGDP">0.151</td>
+<td class="gt_row gt_right" headers="GHGGdp">400</td>
+<td class="gt_row gt_right" headers="MatGDP">0.58</td>
+<td class="gt_row gt_right" headers="MatEmb">13.7</td>
+<td class="gt_row gt_right" headers="EnerEmb">3.8</td>
+<td class="gt_row gt_right" headers="CO2Emb">3.5</td>
+<td class="gt_row gt_right" headers="Wshare">63.4</td>
+<td class="gt_row gt_right" headers="DistProf">16.0</td>
+<td class="gt_row gt_right" headers="Labprotec">1.5</td>
+<td class="gt_row gt_right" headers="CollBarg">30.6</td>
+<td class="gt_row gt_right" headers="Unions">28.6</td>
+<td class="gt_row gt_right" headers="Unemp">6.9</td>
+<td class="gt_row gt_right" headers="IncomeIneq">0.3</td>
+<td class="gt_row gt_right" headers="WorkingHours">35</td>
+<td class="gt_row gt_right" headers="Gender">18.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="SCP">2.47</td>
+<td class="gt_row gt_right" headers="GIN">1.79</td>
+<td class="gt_row gt_right" headers="DCB">0.96</td>
+<td class="gt_row gt_right" headers="GOV">3.75</td>
+<td class="gt_row gt_right" headers="PCT">2.39</td>
+<td class="gt_row gt_right" headers="CCR">1.50</td>
+<td class="gt_row gt_right" headers="ABC">1.2</td>
+<td class="gt_row gt_right" headers="ABP">0.8</td>
+<td class="gt_row gt_right" headers="BSS">1.37</td>
+<td class="gt_row gt_right" headers="LPS">6</td>
+<td class="gt_row gt_right" headers="CSR">1.50</td>
+<td class="gt_row gt_right" headers="LBR">0.47</td>
+<td class="gt_row gt_right" headers="ATX">0.00</td>
+<td class="gt_row gt_right" headers="BEN">3.11</td>
+<td class="gt_row gt_right" headers="FDI">0.34</td>
+<td class="gt_row gt_right" headers="TRF">0</td>
+<td class="gt_row gt_right" headers="TFS">0.10</td>
+<td class="gt_row gt_right" headers="TRD">1.26</td>
+<td class="gt_row gt_right" headers="Telec_struc">1.30</td>
+<td class="gt_row gt_right" headers="Elec_struc">0.0</td>
+<td class="gt_row gt_right" headers="Gas_struc">0.75</td>
+<td class="gt_row gt_right" headers="Post_struc">1</td>
+<td class="gt_row gt_right" headers="Rail_struc">4.5</td>
+<td class="gt_row gt_right" headers="Hstat">0.81</td>
+<td class="gt_row gt_right" headers="LernerIndex">0.40</td>
+<td class="gt_row gt_right" headers="StateControl">2.10</td>
+<td class="gt_row gt_right" headers="Taxes">17.5</td>
+<td class="gt_row gt_right" headers="HealthGDP">4.9</td>
+<td class="gt_row gt_right" headers="EducGDP">4.87</td>
+<td class="gt_row gt_right" headers="MilitaryGDP">1.91</td>
+<td class="gt_row gt_right" headers="Finalcons">13.2</td>
+<td class="gt_row gt_right" headers="HealthGOV">19.58</td>
+<td class="gt_row gt_right" headers="EducGOV">19.59</td>
+<td class="gt_row gt_right" headers="MilitaryGOV">7.62</td>
+<td class="gt_row gt_right" headers="Int_rate">4.94</td>
+<td class="gt_row gt_right" headers="Inf_rate">4.35</td>
+<td class="gt_row gt_right" headers="Fin_reg">1262</td>
+<td class="gt_row gt_right" headers="LLR">0.52</td>
+<td class="gt_row gt_right" headers="FinOpen">0.70</td>
+<td class="gt_row gt_right" headers="Liq">1929</td>
+<td class="gt_row gt_right" headers="PrimAgri">0.04</td>
+<td class="gt_row gt_right" headers="PrimIndus">0.14</td>
+<td class="gt_row gt_right" headers="SecManuf">0.11</td>
+<td class="gt_row gt_right" headers="SecConst">0.08</td>
+<td class="gt_row gt_right" headers="Ter_Serv">0.43</td>
+<td class="gt_row gt_right" headers="Ter_FIRE">0.05</td>
+<td class="gt_row gt_right" headers="Tradeglobfacto">382</td>
+<td class="gt_row gt_right" headers="Finglobfacto">769</td>
+<td class="gt_row gt_right" headers="Tradeglobjure">772</td>
+<td class="gt_row gt_right" headers="Finglobjure">643</td>
+<td class="gt_row gt_right" headers="Socglobfacto">581</td>
+<td class="gt_row gt_right" headers="Socglobjure">819</td>
+<td class="gt_row gt_right" headers="Polglobfacto">853</td>
+<td class="gt_row gt_right" headers="Polglobjure">913</td>
+<td class="gt_row gt_right" headers="IUCN">0.17</td>
+<td class="gt_row gt_right" headers="GreenP">0.039</td>
+<td class="gt_row gt_right" headers="EnvConflicts">2.8</td>
+<td class="gt_row gt_right" headers="ClassGHG">8.5</td>
+<td class="gt_row gt_right" headers="EnvReg">4.7</td>
+<td class="gt_row gt_right" headers="EnvTreaties">22</td>
+<td class="gt_row gt_right" headers="EnfEnvReg">4.7</td>
+<td class="gt_row gt_right" headers="EnerGDP">0.136</td>
+<td class="gt_row gt_right" headers="GHGGdp">433</td>
+<td class="gt_row gt_right" headers="MatGDP">2.77</td>
+<td class="gt_row gt_right" headers="MatEmb">-188.5</td>
+<td class="gt_row gt_right" headers="EnerEmb">5.5</td>
+<td class="gt_row gt_right" headers="CO2Emb">8.2</td>
+<td class="gt_row gt_right" headers="Wshare">44.8</td>
+<td class="gt_row gt_right" headers="DistProf">25.3</td>
+<td class="gt_row gt_right" headers="Labprotec">1.8</td>
+<td class="gt_row gt_right" headers="CollBarg">17.6</td>
+<td class="gt_row gt_right" headers="Unions">17.9</td>
+<td class="gt_row gt_right" headers="Unemp">6.5</td>
+<td class="gt_row gt_right" headers="IncomeIneq">0.5</td>
+<td class="gt_row gt_right" headers="WorkingHours">42</td>
+<td class="gt_row gt_right" headers="Gender">21.1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The first 25 variables concern the form of competition. In regulation theory, the form of competition (akin to product market competition in the varities of capitalism literature) captures the nature and degree of competition in the socio-economic model. Institutions which constitute this form are administrative burdens to for corporation (ABC), sole proprietor firms (ABP), entry barriers, price controls (PCT), or the degree of competition (measured here by the Lerner index).</p>
+<p>The next 9 variables are for the wage-labour nexus, which comprises all institutions regulating employment relationships, wage setting, work organization and social protection.</p>
+<p>The monetary regime, defined as all the institutions regulating money, credit and finance, is summarized by 6 variables (interbank 3-months interest rate, inflation rate…) while 14 variables describe the insertion into the international regime such as the importance of agriculture (PrimAgri), extractive industries (PrimIndus), manufacture (SecManuf) and the so-called globalization index from the KOF economic institute. Finally, the social relations to the environment is captured by the remaining 9 variables such as environmental regulation stringency (EnvReg), GDP intensity in greenhouse gas (GHGGDP).</p>
+<p>To run MFA in R, one just needs to load the FactoMineR package and use its MFA() function. The only complication of this function is the <code>group</code> argument it needs to be a vector of numbers which describe how the variables are grouped. It works as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">group_name <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Competition"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"State"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Money"</span>, </span>
+<span id="cb2-2">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"International regime"</span>, </span>
+<span id="cb2-3">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Environment"</span>,</span>
+<span id="cb2-4">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wage-labour nexus"</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create a vector with the name of the groups (ie the 6 institutional forms)</span></span>
+<span id="cb2-5"></span>
+<span id="cb2-6">MFA_CF2020 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">MFA</span>(data, </span>
+<span id="cb2-7">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>), </span>
+<span id="cb2-8">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"s"</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>), </span>
+<span id="cb2-9">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ncp =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># manumber of principal components to keep </span></span>
+<span id="cb2-10">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name.group =</span> group_name, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">graph =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span></code></pre></div>
+</div>
+<p><code>group = c(25, 9, 6, 14, 13, 9)</code> tells the function that the first 25 variables are the first group, the second group then contains the following 9, then the third the following 6 etc. One can also give the groups name with the <code>group_name</code> argument. <code>type = rep("s", 6)</code> tells the nature of the variables for each group. “s” is for quantitative variables and thus we have to repeat this string 6 time for the six groups (hence the rep function).</p>
+<p>Apart from the group argument, we can appreciate of simple it is to implement MFA in R, while conducting separate analyses using 6 PCA and MCA six time would have required much more time and code.</p>
+</section>
+<section id="exploring-separate-pca" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-separate-pca">Exploring separate PCA</h2>
+<p>The MFA function returns an list with two main elements:</p>
+<ul>
+<li><p>separate.analyses: those are PCA analyses for each group. We have thus 6 separate PCA analyses for each institutional forms and we can analyse, visualize and perform cluster analysis on each of them if we are interested.</p></li>
+<li><p>global.analysis which is the global PCA with the variables weighted accordingly to their group.</p></li>
+</ul>
+<p>For instance, let’s have a look the to the social relations to the environment. Two useful graphs for PCA are the circular plots (also called graph of variables), which show the correlation of the variables with the principal components (usually the first two); and the plot of the observations on these first two principal components. factoextra is a useful package to draw quick visualization of the PCA:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>One can also combine the two graph into a single plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">factoextra<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fviz_pca_biplot</span>(MFA_CF2020<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>separate.analyses<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Environment)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From the graphs above, one can make the following observations regarding the position of countries on the two dimensions. On the upper right quadrant, we have countries which are characterized by (relatively) a lot of climate activism (measured by IUCN and GreenP), environmental regulations and enforcement, but are also characterized by some important degree of CO2 offshoring (EnerEmb and CO2Emb measure energy and CO2 in net imports, they measure the degree of offshoring of GHG emissions). On the upper left quadrant, we have countries such as China and India with high domestic GHG emissions (EnerGDP, GHGGDP…), high carbon inequalities, low offshoring and climate activism. On the lower right quadrant, we have countries such as France and the UK which have relatively lower domestic GHG emissions but with high offshoring and low activism.</p>
+<p>Applying hierachical clustering is also very easy through the <code>HCPC()</code> function. Note that it is not possible to run this function in quarto since the function asks to cut the dendogram tree to determine the number of clusters. I thus ran the code first in a R script to get the number of clusters which is four:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">cluster_env <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">HCPC</span>(MFA_CF2020<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>separate.analyses<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Environment, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nb.clust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">graph =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fviz_cluster</span>(cluster_env) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The clusterization confirms the obervations we made above: we have a group of domestic polluters (cluster 1), low offshoring (which makes sense since they export their domestic pollution to rich countries of cluster 4 and 3) and lower activism. Cluster 3 gathers countries with high carbon inequalities and relatively higher carbon emissions (lower than cluster one but higher than cluster 4) and low activism. Cluster 4 is mostly composed of rich countries with high degree of offshoring, activism, lower inequality and GHG emissions.</p>
+</section>
+<section id="exploring-global-pca" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-global-pca">Exploring global PCA</h2>
+<p>Let’s now have a look to the global weighted PCA. Let’s start with the contribution of the variables on the first two dimensions. Since there are a lot of variables, it is useful to make an interative plot with the <code>ggplotly</code> function from the <code>plotly</code> package so that we can zoom on the graph:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">plot_MFA1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fviz_mfa_var</span>(MFA_CF2020)</span>
+<span id="cb5-2"></span>
+<span id="cb5-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplotly</span>(plot_MFA1)</span></code></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-36b4a9ba79436253b34b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-36b4a9ba79436253b34b">{"x":{"data":[{"x":[0.52632637200381105,0.31507262843479539,0.33003599885742535,0.20712744063112251,0.83082499295129353,0.42747201327366025,0.61318555581740952,0.74906932814177507,-0.0039866494292422321,0.45395519465633388,0.50690888996276884,0.23535227641010453,0.28333311703627595,0.68791525553157984,0.60368078464945152,0.74371180280382909,0.5240394207849326,0.50766063246417004,-0.028852619897022265,0.37765911912013195,0.29445006106551946,-0.16799194593158534,0.5255761753973438,0.18649838144022005,-0.081783482411782585],"y":[0.348067039704202,0.41975348497392995,-0.0039133293729054375,-0.47076262607937236,-0.15438069949990116,0.55427198007501954,0.5342375648562282,0.3135198401816055,0.62124908152502767,-0.11031819048827082,0.12307800561485488,-0.010295122781929195,-0.45987360005242334,-0.16338361085674125,-0.29546685636294862,-0.11015994055779117,-0.080216328436174725,0.071998303302800437,-0.022823282367666547,0.0163214456742116,0.16038559414019579,0.20211223789950666,-0.23303324980172568,0.3732276508185593,0.02036109147692991],"text":["SCP","GIN","DCB","GOV","PCT","CCR","ABC","ABP","BSS","LPS","CSR","LBR","ATX","BEN","FDI","TRF","TFS","TRD","Telec_struc","Elec_struc","Gas_struc","Post_struc","Rail_struc","Hstat","LernerIndex"],"hovertext":["x:  0.526326372<br />y:  0.348067040<br />Groups: Competition<br />name: SCP","x:  0.315072628<br />y:  0.419753485<br />Groups: Competition<br />name: GIN","x:  0.330035999<br />y: -0.003913329<br />Groups: Competition<br />name: DCB","x:  0.207127441<br />y: -0.470762626<br />Groups: Competition<br />name: GOV","x:  0.830824993<br />y: -0.154380699<br />Groups: Competition<br />name: PCT","x:  0.427472013<br />y:  0.554271980<br />Groups: Competition<br />name: CCR","x:  0.613185556<br />y:  0.534237565<br />Groups: Competition<br />name: ABC","x:  0.749069328<br />y:  0.313519840<br />Groups: Competition<br />name: ABP","x: -0.003986649<br />y:  0.621249082<br />Groups: Competition<br />name: BSS","x:  0.453955195<br />y: -0.110318190<br />Groups: Competition<br />name: LPS","x:  0.506908890<br />y:  0.123078006<br />Groups: Competition<br />name: CSR","x:  0.235352276<br />y: -0.010295123<br />Groups: Competition<br />name: LBR","x:  0.283333117<br />y: -0.459873600<br />Groups: Competition<br />name: ATX","x:  0.687915256<br />y: -0.163383611<br />Groups: Competition<br />name: BEN","x:  0.603680785<br />y: -0.295466856<br />Groups: Competition<br />name: FDI","x:  0.743711803<br />y: -0.110159941<br />Groups: Competition<br />name: TRF","x:  0.524039421<br />y: -0.080216328<br />Groups: Competition<br />name: TFS","x:  0.507660632<br />y:  0.071998303<br />Groups: Competition<br />name: TRD","x: -0.028852620<br />y: -0.022823282<br />Groups: Competition<br />name: Telec_struc","x:  0.377659119<br />y:  0.016321446<br />Groups: Competition<br />name: Elec_struc","x:  0.294450061<br />y:  0.160385594<br />Groups: Competition<br />name: Gas_struc","x: -0.167991946<br />y:  0.202112238<br />Groups: Competition<br />name: Post_struc","x:  0.525576175<br />y: -0.233033250<br />Groups: Competition<br />name: Rail_struc","x:  0.186498381<br />y:  0.373227651<br />Groups: Competition<br />name: Hstat","x: -0.081783482<br />y:  0.020361091<br />Groups: Competition<br />name: LernerIndex"],"textfont":{"size":15.118110236220474,"color":"rgba(248,118,109,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Competition","legendgroup":"Competition","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-0.59581197645926309,-0.45345772242349253,-0.10206860384847539,0.65276237532459513,-0.75999081868334184,-0.55686251403358544,-0.69501344856664471,0.78518165826857089,0.84229443433387841,0.79876292760815537,-0.47955854296742823,-0.2183591803730634,-0.60559133404358545],"y":[-0.18272064317364536,-0.16125655950151546,0.19386959022714972,-0.39352805319927925,-0.23995928131957961,0.43605190772302155,-0.36376560808828878,-0.0090072653933156183,0.022538852771871586,0.043399065487883415,0.30159127389675705,0.067828959002630487,0.13022540838140306],"text":["IUCN","GreenP","EnvConflicts","ClassGHG","EnvReg","EnvTreaties","EnfEnvReg","EnerGDP","GHGGdp","MatGDP","MatEmb","EnerEmb","CO2Emb"],"hovertext":["x: -0.595811976<br />y: -0.182720643<br />Groups: Environment<br />name: IUCN","x: -0.453457722<br />y: -0.161256560<br />Groups: Environment<br />name: GreenP","x: -0.102068604<br />y:  0.193869590<br />Groups: Environment<br />name: EnvConflicts","x:  0.652762375<br />y: -0.393528053<br />Groups: Environment<br />name: ClassGHG","x: -0.759990819<br />y: -0.239959281<br />Groups: Environment<br />name: EnvReg","x: -0.556862514<br />y:  0.436051908<br />Groups: Environment<br />name: EnvTreaties","x: -0.695013449<br />y: -0.363765608<br />Groups: Environment<br />name: EnfEnvReg","x:  0.785181658<br />y: -0.009007265<br />Groups: Environment<br />name: EnerGDP","x:  0.842294434<br />y:  0.022538853<br />Groups: Environment<br />name: GHGGdp","x:  0.798762928<br />y:  0.043399065<br />Groups: Environment<br />name: MatGDP","x: -0.479558543<br />y:  0.301591274<br />Groups: Environment<br />name: MatEmb","x: -0.218359180<br />y:  0.067828959<br />Groups: Environment<br />name: EnerEmb","x: -0.605591334<br />y:  0.130225408<br />Groups: Environment<br />name: CO2Emb"],"textfont":{"size":15.118110236220474,"color":"rgba(183,159,0,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Environment","legendgroup":"Environment","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.64808935494610775,0.13936187928164753,0.24961131495991931,0.1298430880653417,-0.82054912423214155,-0.0013515009746279153,-0.56352444310926464,-0.91477189298938977,-0.88776392369535773,-0.87440646197130012,-0.84892975737459397,-0.88830134504751268,0.023190559725234261,-0.33750212889890413],"y":[0.34317481052723309,0.033057889783109737,0.18267462230281073,0.076937491859407209,0.081718833222522741,-0.21029987276509796,0.44834929994186634,-0.045262343771203126,0.1219567355785971,-0.15833330692716593,-0.2739877280023395,-0.053270014790907837,0.020504686198224979,0.31874265604365543],"text":["PrimAgri","PrimIndus","SecManuf","SecConst","Ter_Serv","Ter_FIRE","Tradeglobfacto","Finglobfacto","Tradeglobjure","Finglobjure","Socglobfacto","Socglobjure","Polglobfacto","Polglobjure"],"hovertext":["x:  0.648089355<br />y:  0.343174811<br />Groups: International regime<br />name: PrimAgri","x:  0.139361879<br />y:  0.033057890<br />Groups: International regime<br />name: PrimIndus","x:  0.249611315<br />y:  0.182674622<br />Groups: International regime<br />name: SecManuf","x:  0.129843088<br />y:  0.076937492<br />Groups: International regime<br />name: SecConst","x: -0.820549124<br />y:  0.081718833<br />Groups: International regime<br />name: Ter_Serv","x: -0.001351501<br />y: -0.210299873<br />Groups: International regime<br />name: Ter_FIRE","x: -0.563524443<br />y:  0.448349300<br />Groups: International regime<br />name: Tradeglobfacto","x: -0.914771893<br />y: -0.045262344<br />Groups: International regime<br />name: Finglobfacto","x: -0.887763924<br />y:  0.121956736<br />Groups: International regime<br />name: Tradeglobjure","x: -0.874406462<br />y: -0.158333307<br />Groups: International regime<br />name: Finglobjure","x: -0.848929757<br />y: -0.273987728<br />Groups: International regime<br />name: Socglobfacto","x: -0.888301345<br />y: -0.053270015<br />Groups: International regime<br />name: Socglobjure","x:  0.023190560<br />y:  0.020504686<br />Groups: International regime<br />name: Polglobfacto","x: -0.337502129<br />y:  0.318742656<br />Groups: International regime<br />name: Polglobjure"],"textfont":{"size":15.118110236220474,"color":"rgba(0,186,56,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"International regime","legendgroup":"International regime","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.78944574574728643,0.674884935985962,-0.38080607279228812,-0.010948631486908993,-0.87379352661693288,-0.21326103539315328],"y":[-0.18092364264657795,-0.21067707799463012,0.29371674392502439,-0.23364283565888788,-0.14911608045315428,-0.34965303031815054],"text":["Int_rate","Inf_rate","Fin_reg","LLR","FinOpen","Liq"],"hovertext":["x:  0.789445746<br />y: -0.180923643<br />Groups: Money<br />name: Int_rate","x:  0.674884936<br />y: -0.210677078<br />Groups: Money<br />name: Inf_rate","x: -0.380806073<br />y:  0.293716744<br />Groups: Money<br />name: Fin_reg","x: -0.010948631<br />y: -0.233642836<br />Groups: Money<br />name: LLR","x: -0.873793527<br />y: -0.149116080<br />Groups: Money<br />name: FinOpen","x: -0.213261035<br />y: -0.349653030<br />Groups: Money<br />name: Liq"],"textfont":{"size":15.118110236220474,"color":"rgba(0,191,196,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Money","legendgroup":"Money","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.78608373338321524,-0.42272618829538311,-0.87512852301857513,-0.36254241590195513,0.39176408353093001,-0.59890839086685976,-0.62950786943725434,0.3507694732268532,0.54658943062805787],"y":[0.1727927488837491,0.15705419713993368,-0.23813891279541852,-0.21033511864117396,-0.18678139899890744,0.12190391016874161,-0.58079032946944842,-0.54470844432505716,-0.2877717462559567],"text":["StateControl","Taxes","HealthGDP","EducGDP","MilitaryGDP","Finalcons","HealthGOV","EducGOV","MilitaryGOV"],"hovertext":["x:  0.786083733<br />y:  0.172792749<br />Groups: State<br />name: StateControl","x: -0.422726188<br />y:  0.157054197<br />Groups: State<br />name: Taxes","x: -0.875128523<br />y: -0.238138913<br />Groups: State<br />name: HealthGDP","x: -0.362542416<br />y: -0.210335119<br />Groups: State<br />name: EducGDP","x:  0.391764084<br />y: -0.186781399<br />Groups: State<br />name: MilitaryGDP","x: -0.598908391<br />y:  0.121903910<br />Groups: State<br />name: Finalcons","x: -0.629507869<br />y: -0.580790329<br />Groups: State<br />name: HealthGOV","x:  0.350769473<br />y: -0.544708444<br />Groups: State<br />name: EducGOV","x:  0.546589431<br />y: -0.287771746<br />Groups: State<br />name: MilitaryGOV"],"textfont":{"size":15.118110236220474,"color":"rgba(97,156,255,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"State","legendgroup":"State","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-0.64810468521235765,0.1242469134233922,0.020917816727722791,-0.57880520162379312,-0.28396574016758636,0.0022167187436105394,0.78836670391588048,0.85499267464352435,0.51874420435145496],"y":[-0.11332453547497394,0.28904751289263653,0.69456113351189586,0.26226512354916559,0.036550067487956292,0.45045077487701235,-0.19241774572444048,0.16824380569525157,-0.31364892884776457],"text":["Wshare","DistProf","Labprotec","CollBarg","Unions","Unemp","IncomeIneq","WorkingHours","Gender"],"hovertext":["x: -0.648104685<br />y: -0.113324535<br />Groups: Wage-labour nexus<br />name: Wshare","x:  0.124246913<br />y:  0.289047513<br />Groups: Wage-labour nexus<br />name: DistProf","x:  0.020917817<br />y:  0.694561134<br />Groups: Wage-labour nexus<br />name: Labprotec","x: -0.578805202<br />y:  0.262265124<br />Groups: Wage-labour nexus<br />name: CollBarg","x: -0.283965740<br />y:  0.036550067<br />Groups: Wage-labour nexus<br />name: Unions","x:  0.002216719<br />y:  0.450450775<br />Groups: Wage-labour nexus<br />name: Unemp","x:  0.788366704<br />y: -0.192417746<br />Groups: Wage-labour nexus<br />name: IncomeIneq","x:  0.854992675<br />y:  0.168243806<br />Groups: Wage-labour nexus<br />name: WorkingHours","x:  0.518744204<br />y: -0.313648929<br />Groups: Wage-labour nexus<br />name: Gender"],"textfont":{"size":15.118110236220474,"color":"rgba(245,100,227,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Wage-labour nexus","legendgroup":"Wage-labour nexus","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0.52632637200381105,null,0,0.31507262843479539,null,0,0.33003599885742535,null,0,0.20712744063112251,null,0,0.83082499295129353,null,0,0.42747201327366025,null,0,0.61318555581740952,null,0,0.74906932814177507,null,0,-0.0039866494292422321,null,0,0.45395519465633388,null,0,0.50690888996276884,null,0,0.23535227641010453,null,0,0.28333311703627595,null,0,0.68791525553157984,null,0,0.60368078464945152,null,0,0.74371180280382909,null,0,0.5240394207849326,null,0,0.50766063246417004,null,0,-0.028852619897022265,null,0,0.37765911912013195,null,0,0.29445006106551946,null,0,-0.16799194593158534,null,0,0.5255761753973438,null,0,0.18649838144022005,null,0,-0.081783482411782585],"y":[0,0.348067039704202,null,0,0.41975348497392995,null,0,-0.0039133293729054375,null,0,-0.47076262607937236,null,0,-0.15438069949990116,null,0,0.55427198007501954,null,0,0.5342375648562282,null,0,0.3135198401816055,null,0,0.62124908152502767,null,0,-0.11031819048827082,null,0,0.12307800561485488,null,0,-0.010295122781929195,null,0,-0.45987360005242334,null,0,-0.16338361085674125,null,0,-0.29546685636294862,null,0,-0.11015994055779117,null,0,-0.080216328436174725,null,0,0.071998303302800437,null,0,-0.022823282367666547,null,0,0.0163214456742116,null,0,0.16038559414019579,null,0,0.20211223789950666,null,0,-0.23303324980172568,null,0,0.3732276508185593,null,0,0.02036109147692991],"text":["xstart: 0<br />ystart: 0<br />x:  0.526326372<br />y:  0.348067040<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.526326372<br />y:  0.348067040<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.315072628<br />y:  0.419753485<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.315072628<br />y:  0.419753485<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.330035999<br />y: -0.003913329<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.330035999<br />y: -0.003913329<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.207127441<br />y: -0.470762626<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.207127441<br />y: -0.470762626<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.830824993<br />y: -0.154380699<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.830824993<br />y: -0.154380699<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.427472013<br />y:  0.554271980<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.427472013<br />y:  0.554271980<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.613185556<br />y:  0.534237565<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.613185556<br />y:  0.534237565<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.749069328<br />y:  0.313519840<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.749069328<br />y:  0.313519840<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x: -0.003986649<br />y:  0.621249082<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x: -0.003986649<br />y:  0.621249082<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.453955195<br />y: -0.110318190<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.453955195<br />y: -0.110318190<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.506908890<br />y:  0.123078006<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.506908890<br />y:  0.123078006<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.235352276<br />y: -0.010295123<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.235352276<br />y: -0.010295123<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.283333117<br />y: -0.459873600<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.283333117<br />y: -0.459873600<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.687915256<br />y: -0.163383611<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.687915256<br />y: -0.163383611<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.603680785<br />y: -0.295466856<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.603680785<br />y: -0.295466856<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.743711803<br />y: -0.110159941<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.743711803<br />y: -0.110159941<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.524039421<br />y: -0.080216328<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.524039421<br />y: -0.080216328<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.507660632<br />y:  0.071998303<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.507660632<br />y:  0.071998303<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x: -0.028852620<br />y: -0.022823282<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x: -0.028852620<br />y: -0.022823282<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.377659119<br />y:  0.016321446<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.377659119<br />y:  0.016321446<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.294450061<br />y:  0.160385594<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.294450061<br />y:  0.160385594<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x: -0.167991946<br />y:  0.202112238<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x: -0.167991946<br />y:  0.202112238<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.525576175<br />y: -0.233033250<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.525576175<br />y: -0.233033250<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x:  0.186498381<br />y:  0.373227651<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x:  0.186498381<br />y:  0.373227651<br />Groups: Competition",null,"xstart: 0<br />ystart: 0<br />x: -0.081783482<br />y:  0.020361091<br />Groups: Competition","xstart: 0<br />ystart: 0<br />x: -0.081783482<br />y:  0.020361091<br />Groups: Competition"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"Competition","legendgroup":"Competition","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,-0.59581197645926309,null,0,-0.45345772242349253,null,0,-0.10206860384847539,null,0,0.65276237532459513,null,0,-0.75999081868334184,null,0,-0.55686251403358544,null,0,-0.69501344856664471,null,0,0.78518165826857089,null,0,0.84229443433387841,null,0,0.79876292760815537,null,0,-0.47955854296742823,null,0,-0.2183591803730634,null,0,-0.60559133404358545],"y":[0,-0.18272064317364536,null,0,-0.16125655950151546,null,0,0.19386959022714972,null,0,-0.39352805319927925,null,0,-0.23995928131957961,null,0,0.43605190772302155,null,0,-0.36376560808828878,null,0,-0.0090072653933156183,null,0,0.022538852771871586,null,0,0.043399065487883415,null,0,0.30159127389675705,null,0,0.067828959002630487,null,0,0.13022540838140306],"text":["xstart: 0<br />ystart: 0<br />x: -0.595811976<br />y: -0.182720643<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.595811976<br />y: -0.182720643<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.453457722<br />y: -0.161256560<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.453457722<br />y: -0.161256560<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.102068604<br />y:  0.193869590<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.102068604<br />y:  0.193869590<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x:  0.652762375<br />y: -0.393528053<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x:  0.652762375<br />y: -0.393528053<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.759990819<br />y: -0.239959281<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.759990819<br />y: -0.239959281<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.556862514<br />y:  0.436051908<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.556862514<br />y:  0.436051908<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.695013449<br />y: -0.363765608<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.695013449<br />y: -0.363765608<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x:  0.785181658<br />y: -0.009007265<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x:  0.785181658<br />y: -0.009007265<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x:  0.842294434<br />y:  0.022538853<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x:  0.842294434<br />y:  0.022538853<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x:  0.798762928<br />y:  0.043399065<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x:  0.798762928<br />y:  0.043399065<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.479558543<br />y:  0.301591274<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.479558543<br />y:  0.301591274<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.218359180<br />y:  0.067828959<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.218359180<br />y:  0.067828959<br />Groups: Environment",null,"xstart: 0<br />ystart: 0<br />x: -0.605591334<br />y:  0.130225408<br />Groups: Environment","xstart: 0<br />ystart: 0<br />x: -0.605591334<br />y:  0.130225408<br />Groups: Environment"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(183,159,0,1)","dash":"solid"},"hoveron":"points","name":"Environment","legendgroup":"Environment","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0.64808935494610775,null,0,0.13936187928164753,null,0,0.24961131495991931,null,0,0.1298430880653417,null,0,-0.82054912423214155,null,0,-0.0013515009746279153,null,0,-0.56352444310926464,null,0,-0.91477189298938977,null,0,-0.88776392369535773,null,0,-0.87440646197130012,null,0,-0.84892975737459397,null,0,-0.88830134504751268,null,0,0.023190559725234261,null,0,-0.33750212889890413],"y":[0,0.34317481052723309,null,0,0.033057889783109737,null,0,0.18267462230281073,null,0,0.076937491859407209,null,0,0.081718833222522741,null,0,-0.21029987276509796,null,0,0.44834929994186634,null,0,-0.045262343771203126,null,0,0.1219567355785971,null,0,-0.15833330692716593,null,0,-0.2739877280023395,null,0,-0.053270014790907837,null,0,0.020504686198224979,null,0,0.31874265604365543],"text":["xstart: 0<br />ystart: 0<br />x:  0.648089355<br />y:  0.343174811<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x:  0.648089355<br />y:  0.343174811<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x:  0.139361879<br />y:  0.033057890<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x:  0.139361879<br />y:  0.033057890<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x:  0.249611315<br />y:  0.182674622<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x:  0.249611315<br />y:  0.182674622<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x:  0.129843088<br />y:  0.076937492<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x:  0.129843088<br />y:  0.076937492<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.820549124<br />y:  0.081718833<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.820549124<br />y:  0.081718833<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.001351501<br />y: -0.210299873<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.001351501<br />y: -0.210299873<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.563524443<br />y:  0.448349300<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.563524443<br />y:  0.448349300<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.914771893<br />y: -0.045262344<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.914771893<br />y: -0.045262344<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.887763924<br />y:  0.121956736<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.887763924<br />y:  0.121956736<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.874406462<br />y: -0.158333307<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.874406462<br />y: -0.158333307<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.848929757<br />y: -0.273987728<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.848929757<br />y: -0.273987728<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.888301345<br />y: -0.053270015<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.888301345<br />y: -0.053270015<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x:  0.023190560<br />y:  0.020504686<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x:  0.023190560<br />y:  0.020504686<br />Groups: International regime",null,"xstart: 0<br />ystart: 0<br />x: -0.337502129<br />y:  0.318742656<br />Groups: International regime","xstart: 0<br />ystart: 0<br />x: -0.337502129<br />y:  0.318742656<br />Groups: International regime"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)","dash":"solid"},"hoveron":"points","name":"International regime","legendgroup":"International regime","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0.78944574574728643,null,0,0.674884935985962,null,0,-0.38080607279228812,null,0,-0.010948631486908993,null,0,-0.87379352661693288,null,0,-0.21326103539315328],"y":[0,-0.18092364264657795,null,0,-0.21067707799463012,null,0,0.29371674392502439,null,0,-0.23364283565888788,null,0,-0.14911608045315428,null,0,-0.34965303031815054],"text":["xstart: 0<br />ystart: 0<br />x:  0.789445746<br />y: -0.180923643<br />Groups: Money","xstart: 0<br />ystart: 0<br />x:  0.789445746<br />y: -0.180923643<br />Groups: Money",null,"xstart: 0<br />ystart: 0<br />x:  0.674884936<br />y: -0.210677078<br />Groups: Money","xstart: 0<br />ystart: 0<br />x:  0.674884936<br />y: -0.210677078<br />Groups: Money",null,"xstart: 0<br />ystart: 0<br />x: -0.380806073<br />y:  0.293716744<br />Groups: Money","xstart: 0<br />ystart: 0<br />x: -0.380806073<br />y:  0.293716744<br />Groups: Money",null,"xstart: 0<br />ystart: 0<br />x: -0.010948631<br />y: -0.233642836<br />Groups: Money","xstart: 0<br />ystart: 0<br />x: -0.010948631<br />y: -0.233642836<br />Groups: Money",null,"xstart: 0<br />ystart: 0<br />x: -0.873793527<br />y: -0.149116080<br />Groups: Money","xstart: 0<br />ystart: 0<br />x: -0.873793527<br />y: -0.149116080<br />Groups: Money",null,"xstart: 0<br />ystart: 0<br />x: -0.213261035<br />y: -0.349653030<br />Groups: Money","xstart: 0<br />ystart: 0<br />x: -0.213261035<br />y: -0.349653030<br />Groups: Money"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"Money","legendgroup":"Money","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0.78608373338321524,null,0,-0.42272618829538311,null,0,-0.87512852301857513,null,0,-0.36254241590195513,null,0,0.39176408353093001,null,0,-0.59890839086685976,null,0,-0.62950786943725434,null,0,0.3507694732268532,null,0,0.54658943062805787],"y":[0,0.1727927488837491,null,0,0.15705419713993368,null,0,-0.23813891279541852,null,0,-0.21033511864117396,null,0,-0.18678139899890744,null,0,0.12190391016874161,null,0,-0.58079032946944842,null,0,-0.54470844432505716,null,0,-0.2877717462559567],"text":["xstart: 0<br />ystart: 0<br />x:  0.786083733<br />y:  0.172792749<br />Groups: State","xstart: 0<br />ystart: 0<br />x:  0.786083733<br />y:  0.172792749<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x: -0.422726188<br />y:  0.157054197<br />Groups: State","xstart: 0<br />ystart: 0<br />x: -0.422726188<br />y:  0.157054197<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x: -0.875128523<br />y: -0.238138913<br />Groups: State","xstart: 0<br />ystart: 0<br />x: -0.875128523<br />y: -0.238138913<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x: -0.362542416<br />y: -0.210335119<br />Groups: State","xstart: 0<br />ystart: 0<br />x: -0.362542416<br />y: -0.210335119<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x:  0.391764084<br />y: -0.186781399<br />Groups: State","xstart: 0<br />ystart: 0<br />x:  0.391764084<br />y: -0.186781399<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x: -0.598908391<br />y:  0.121903910<br />Groups: State","xstart: 0<br />ystart: 0<br />x: -0.598908391<br />y:  0.121903910<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x: -0.629507869<br />y: -0.580790329<br />Groups: State","xstart: 0<br />ystart: 0<br />x: -0.629507869<br />y: -0.580790329<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x:  0.350769473<br />y: -0.544708444<br />Groups: State","xstart: 0<br />ystart: 0<br />x:  0.350769473<br />y: -0.544708444<br />Groups: State",null,"xstart: 0<br />ystart: 0<br />x:  0.546589431<br />y: -0.287771746<br />Groups: State","xstart: 0<br />ystart: 0<br />x:  0.546589431<br />y: -0.287771746<br />Groups: State"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)","dash":"solid"},"hoveron":"points","name":"State","legendgroup":"State","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,-0.64810468521235765,null,0,0.1242469134233922,null,0,0.020917816727722791,null,0,-0.57880520162379312,null,0,-0.28396574016758636,null,0,0.0022167187436105394,null,0,0.78836670391588048,null,0,0.85499267464352435,null,0,0.51874420435145496],"y":[0,-0.11332453547497394,null,0,0.28904751289263653,null,0,0.69456113351189586,null,0,0.26226512354916559,null,0,0.036550067487956292,null,0,0.45045077487701235,null,0,-0.19241774572444048,null,0,0.16824380569525157,null,0,-0.31364892884776457],"text":["xstart: 0<br />ystart: 0<br />x: -0.648104685<br />y: -0.113324535<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x: -0.648104685<br />y: -0.113324535<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x:  0.124246913<br />y:  0.289047513<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x:  0.124246913<br />y:  0.289047513<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x:  0.020917817<br />y:  0.694561134<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x:  0.020917817<br />y:  0.694561134<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x: -0.578805202<br />y:  0.262265124<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x: -0.578805202<br />y:  0.262265124<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x: -0.283965740<br />y:  0.036550067<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x: -0.283965740<br />y:  0.036550067<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x:  0.002216719<br />y:  0.450450775<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x:  0.002216719<br />y:  0.450450775<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x:  0.788366704<br />y: -0.192417746<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x:  0.788366704<br />y: -0.192417746<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x:  0.854992675<br />y:  0.168243806<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x:  0.854992675<br />y:  0.168243806<br />Groups: Wage-labour nexus",null,"xstart: 0<br />ystart: 0<br />x:  0.518744204<br />y: -0.313648929<br />Groups: Wage-labour nexus","xstart: 0<br />ystart: 0<br />x:  0.518744204<br />y: -0.313648929<br />Groups: Wage-labour nexus"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(245,100,227,1)","dash":"solid"},"hoveron":"points","name":"Wage-labour nexus","legendgroup":"Wage-labour nexus","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1,-0.99179001382324605,-0.96729486303902945,-0.92691675734602175,-0.87131870412338941,-0.8014136218679565,-0.71834935009772749,-0.62348980185873348,-0.51839256831052505,-0.40478334312239383,-0.28452758663103256,-0.15959989503337918,-0.032051577571655207,0.096023025907681664,0.22252093395631445,0.3453650544213076,0.4625382902408352,0.57211666012216955,0.67230089026131667,0.7614459583691342,0.83808810489184049,0.90096886790241915,0.94905574701066864,0.98155915699106533,0.99794539275033634,0.99794539275033634,0.98155915699106544,0.94905574701066875,0.90096886790241915,0.83808810489184071,0.76144595836913453,0.67230089026131701,0.57211666012216988,0.4625382902408352,0.34536505442130805,0.22252093395631445,0.09602302590768233,-0.032051577571654985,-0.15959989503337854,-0.28452758663103211,-0.40478334312239306,-0.5183925683105246,-0.62348980185873348,-0.71834935009772716,-0.8014136218679565,-0.87131870412338897,-0.92691675734602164,-0.96729486303902923,-0.99179001382324605,-1,-1,-0.99179001382324605,-0.96729486303902945,-0.92691675734602175,-0.87131870412338941,-0.8014136218679565,-0.71834935009772749,-0.62348980185873348,-0.51839256831052505,-0.40478334312239383,-0.28452758663103256,-0.15959989503337918,-0.032051577571655207,0.096023025907681664,0.22252093395631445,0.3453650544213076,0.4625382902408352,0.57211666012216955,0.67230089026131667,0.7614459583691342,0.83808810489184049,0.90096886790241915,0.94905574701066864,0.98155915699106533,0.99794539275033634,0.99794539275033634,0.98155915699106544,0.94905574701066875,0.90096886790241915,0.83808810489184071,0.76144595836913453,0.67230089026131701,0.57211666012216988,0.4625382902408352,0.34536505442130805,0.22252093395631445,0.09602302590768233,-0.032051577571654985,-0.15959989503337854,-0.28452758663103211,-0.40478334312239306,-0.5183925683105246,-0.62348980185873348,-0.71834935009772716,-0.8014136218679565,-0.87131870412338897,-0.92691675734602164,-0.96729486303902923,-0.99179001382324605,-1],"y":[-1.2246063538223773e-16,-0.12787716168450605,-0.25365458390950735,-0.37526700487937403,-0.49071755200393774,-0.5981105304912161,-0.69568255060348649,-0.78183148246802991,-0.8551427630053462,-0.9144126230158125,-0.95866785303666058,-0.98718178341445018,-0.99948621620068789,-0.99537911294919823,-0.97492791218182362,-0.93846842204976044,-0.88659930637300011,-0.82017225459695597,-0.74027799707531572,-0.64822839530778864,-0.54553490121054893,-0.43388373911755812,-0.31510821802362071,-0.19115862870137243,-0.064070219980713106,0.064070219980712662,0.19115862870137199,0.31510821802362032,0.43388373911755812,0.5455349012105486,0.64822839530778831,0.74027799707531539,0.82017225459695575,0.88659930637300011,0.93846842204976022,0.97492791218182362,0.99537911294919812,0.99948621620068789,0.98718178341445029,0.95866785303666069,0.91441262301581283,0.85514276300534642,0.78183148246802991,0.69568255060348683,0.5981105304912161,0.49071755200393852,0.37526700487937448,0.25365458390950824,0.1278771616845065,1.2246063538223773e-16,1.2246063538223773e-16,0.12787716168450605,0.25365458390950735,0.37526700487937403,0.49071755200393774,0.5981105304912161,0.69568255060348649,0.78183148246802991,0.8551427630053462,0.9144126230158125,0.95866785303666058,0.98718178341445018,0.99948621620068789,0.99537911294919823,0.97492791218182362,0.93846842204976044,0.88659930637300011,0.82017225459695597,0.74027799707531572,0.64822839530778864,0.54553490121054893,0.43388373911755812,0.31510821802362071,0.19115862870137243,0.064070219980713106,-0.064070219980712662,-0.19115862870137199,-0.31510821802362032,-0.43388373911755812,-0.5455349012105486,-0.64822839530778831,-0.74027799707531539,-0.82017225459695575,-0.88659930637300011,-0.93846842204976022,-0.97492791218182362,-0.99537911294919812,-0.99948621620068789,-0.98718178341445029,-0.95866785303666069,-0.91441262301581283,-0.85514276300534642,-0.78183148246802991,-0.69568255060348683,-0.5981105304912161,-0.49071755200393852,-0.37526700487937448,-0.25365458390950824,-0.1278771616845065,-1.2246063538223773e-16],"text":["xcircle: -1.00000000<br />ycircle: -1.224606e-16","xcircle: -0.99179001<br />ycircle: -1.278772e-01","xcircle: -0.96729486<br />ycircle: -2.536546e-01","xcircle: -0.92691676<br />ycircle: -3.752670e-01","xcircle: -0.87131870<br />ycircle: -4.907176e-01","xcircle: -0.80141362<br />ycircle: -5.981105e-01","xcircle: -0.71834935<br />ycircle: -6.956826e-01","xcircle: -0.62348980<br />ycircle: -7.818315e-01","xcircle: -0.51839257<br />ycircle: -8.551428e-01","xcircle: -0.40478334<br />ycircle: -9.144126e-01","xcircle: -0.28452759<br />ycircle: -9.586679e-01","xcircle: -0.15959990<br />ycircle: -9.871818e-01","xcircle: -0.03205158<br />ycircle: -9.994862e-01","xcircle:  0.09602303<br />ycircle: -9.953791e-01","xcircle:  0.22252093<br />ycircle: -9.749279e-01","xcircle:  0.34536505<br />ycircle: -9.384684e-01","xcircle:  0.46253829<br />ycircle: -8.865993e-01","xcircle:  0.57211666<br />ycircle: -8.201723e-01","xcircle:  0.67230089<br />ycircle: -7.402780e-01","xcircle:  0.76144596<br />ycircle: -6.482284e-01","xcircle:  0.83808810<br />ycircle: -5.455349e-01","xcircle:  0.90096887<br />ycircle: -4.338837e-01","xcircle:  0.94905575<br />ycircle: -3.151082e-01","xcircle:  0.98155916<br />ycircle: -1.911586e-01","xcircle:  0.99794539<br />ycircle: -6.407022e-02","xcircle:  0.99794539<br />ycircle:  6.407022e-02","xcircle:  0.98155916<br />ycircle:  1.911586e-01","xcircle:  0.94905575<br />ycircle:  3.151082e-01","xcircle:  0.90096887<br />ycircle:  4.338837e-01","xcircle:  0.83808810<br />ycircle:  5.455349e-01","xcircle:  0.76144596<br />ycircle:  6.482284e-01","xcircle:  0.67230089<br />ycircle:  7.402780e-01","xcircle:  0.57211666<br />ycircle:  8.201723e-01","xcircle:  0.46253829<br />ycircle:  8.865993e-01","xcircle:  0.34536505<br />ycircle:  9.384684e-01","xcircle:  0.22252093<br />ycircle:  9.749279e-01","xcircle:  0.09602303<br />ycircle:  9.953791e-01","xcircle: -0.03205158<br />ycircle:  9.994862e-01","xcircle: -0.15959990<br />ycircle:  9.871818e-01","xcircle: -0.28452759<br />ycircle:  9.586679e-01","xcircle: -0.40478334<br />ycircle:  9.144126e-01","xcircle: -0.51839257<br />ycircle:  8.551428e-01","xcircle: -0.62348980<br />ycircle:  7.818315e-01","xcircle: -0.71834935<br />ycircle:  6.956826e-01","xcircle: -0.80141362<br />ycircle:  5.981105e-01","xcircle: -0.87131870<br />ycircle:  4.907176e-01","xcircle: -0.92691676<br />ycircle:  3.752670e-01","xcircle: -0.96729486<br />ycircle:  2.536546e-01","xcircle: -0.99179001<br />ycircle:  1.278772e-01","xcircle: -1.00000000<br />ycircle:  1.224606e-16","xcircle: -1.00000000<br />ycircle:  1.224606e-16","xcircle: -0.99179001<br />ycircle:  1.278772e-01","xcircle: -0.96729486<br />ycircle:  2.536546e-01","xcircle: -0.92691676<br />ycircle:  3.752670e-01","xcircle: -0.87131870<br />ycircle:  4.907176e-01","xcircle: -0.80141362<br />ycircle:  5.981105e-01","xcircle: -0.71834935<br />ycircle:  6.956826e-01","xcircle: -0.62348980<br />ycircle:  7.818315e-01","xcircle: -0.51839257<br />ycircle:  8.551428e-01","xcircle: -0.40478334<br />ycircle:  9.144126e-01","xcircle: -0.28452759<br />ycircle:  9.586679e-01","xcircle: -0.15959990<br />ycircle:  9.871818e-01","xcircle: -0.03205158<br />ycircle:  9.994862e-01","xcircle:  0.09602303<br />ycircle:  9.953791e-01","xcircle:  0.22252093<br />ycircle:  9.749279e-01","xcircle:  0.34536505<br />ycircle:  9.384684e-01","xcircle:  0.46253829<br />ycircle:  8.865993e-01","xcircle:  0.57211666<br />ycircle:  8.201723e-01","xcircle:  0.67230089<br />ycircle:  7.402780e-01","xcircle:  0.76144596<br />ycircle:  6.482284e-01","xcircle:  0.83808810<br />ycircle:  5.455349e-01","xcircle:  0.90096887<br />ycircle:  4.338837e-01","xcircle:  0.94905575<br />ycircle:  3.151082e-01","xcircle:  0.98155916<br />ycircle:  1.911586e-01","xcircle:  0.99794539<br />ycircle:  6.407022e-02","xcircle:  0.99794539<br />ycircle: -6.407022e-02","xcircle:  0.98155916<br />ycircle: -1.911586e-01","xcircle:  0.94905575<br />ycircle: -3.151082e-01","xcircle:  0.90096887<br />ycircle: -4.338837e-01","xcircle:  0.83808810<br />ycircle: -5.455349e-01","xcircle:  0.76144596<br />ycircle: -6.482284e-01","xcircle:  0.67230089<br />ycircle: -7.402780e-01","xcircle:  0.57211666<br />ycircle: -8.201723e-01","xcircle:  0.46253829<br />ycircle: -8.865993e-01","xcircle:  0.34536505<br />ycircle: -9.384684e-01","xcircle:  0.22252093<br />ycircle: -9.749279e-01","xcircle:  0.09602303<br />ycircle: -9.953791e-01","xcircle: -0.03205158<br />ycircle: -9.994862e-01","xcircle: -0.15959990<br />ycircle: -9.871818e-01","xcircle: -0.28452759<br />ycircle: -9.586679e-01","xcircle: -0.40478334<br />ycircle: -9.144126e-01","xcircle: -0.51839257<br />ycircle: -8.551428e-01","xcircle: -0.62348980<br />ycircle: -7.818315e-01","xcircle: -0.71834935<br />ycircle: -6.956826e-01","xcircle: -0.80141362<br />ycircle: -5.981105e-01","xcircle: -0.87131870<br />ycircle: -4.907176e-01","xcircle: -0.92691676<br />ycircle: -3.752670e-01","xcircle: -0.96729486<br />ycircle: -2.536546e-01","xcircle: -0.99179001<br />ycircle: -1.278772e-01","xcircle: -1.00000000<br />ycircle: -1.224606e-16"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(179,179,179,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-1.0998972696375169,1.0978426623878532],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0],"y":[-1.0994348378207568,1.0994348378207568],"text":"xintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826491,"l":48.949771689497723},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Quantitative variables - MFA","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.0998972696375169,1.0978426623878532],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.49999999999999989,0,0.5,1.0000000000000002],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Dim1 (31.2%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"scaleanchor":"y","scaleratio":1,"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.0994348378207568,1.0994348378207568],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.5,0,0.5,1],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Dim2 (8.1%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"scaleanchor":"x","scaleratio":1,"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Groups","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"2cf863a84dc1":{"x":{},"y":{},"colour":{},"label":{},"type":"scatter"},"2cf84284acf":{"x":{},"y":{},"xend":{},"yend":{},"colour":{}},"2cf82177251d":{"x":{},"y":{}},"2cf82cfe1fcf":{"yintercept":{}},"2cf81f307400":{"xintercept":{}}},"cur_data":"2cf863a84dc1","visdat":{"2cf863a84dc1":["function (y) ","x"],"2cf84284acf":["function (y) ","x"],"2cf82177251d":["function (y) ","x"],"2cf82cfe1fcf":["function (y) ","x"],"2cf81f307400":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>We can see that the first principal component is highly positively correlated with the degree of labour protection and BSS (entry barriers in professional services, freight transport services and retail distribution) while the second is highly correlated with the variables measuring the degree of domestic pollution and negatively correlated with globalization indicators, collective bargaining, the wage share and climate activisms (among other…).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">plot_MFA2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fviz_mfa_ind</span>(MFA_CF2020, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">geom =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>)</span>
+<span id="cb6-2"></span>
+<span id="cb6-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplotly</span>(plot_MFA2)</span></code></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5c22e93cfa2a55866c9c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-5c22e93cfa2a55866c9c">{"x":{"data":[{"x":[-0.62404495680578331,-2.0542538847588578,-2.078365334283919,3.3515241689415576,-0.67519715878805975,1.7942838065739959,4.9558143314496457,-0.4937961609230398,-2.8192135664425155,-0.46999694991502239,-1.9656815543063018,-1.5357003913447547,-1.7709363431040626,0.044245328639880448,-0.45864900336942843,6.0871413619431474,-1.0385414965949067,0.75849825601075394,-1.09360856263289,-0.82893472993050854,2.5309562674277548,-2.6799641118414383,-0.94048441411618655,-1.6823006575063686,0.69410902146098352,-0.68099515590791804,4.0817797766339794,-0.38110359015075673,-0.63168792326995438,3.2221520780534947,1.64000991156884,-1.237823484643688,-2.4524332755731399,-2.012690521255589,3.3162788957884053,-1.918313615718747,0.047923638691411211],"y":[-1.5176989983666034,0.44707814553244213,0.94166771742800881,-0.82952178376276231,-1.4690582812808441,-1.274780109410204,0.53533279349915541,0.26067271146171705,-0.24309382172729987,0.056664990097375349,0.2223066535616772,0.57852676168153283,-0.21310943773167318,1.8530915268892254,1.1425538798354009,1.2569379132484204,-0.11987276859901511,-0.56442040485617351,1.6920364164810329,-1.2337417301083691,-0.43427277401503472,0.247242298397057,-2.1815594137479093,-0.21368942154432308,1.3131180129796549,1.3431879867608607,-1.2807742468027259,1.3386590046607536,1.7742508771272396,-0.32825238786301797,-0.85891726260471335,1.2507391629724089,-0.003060456686216136,-1.0924436023817341,1.1271647163828311,-1.0898547543039088,-2.433109913204266],"text":["Australia","Austria","Belgium","Brazil","Canada","Chile","China","Czechia","Denmark","Estonia","Finland","France","Germany","Greece","Hungary","India","Ireland","Israel","Italy","Japan","Mexico","Netherlands","New Zealand","Norway","Poland","Portugal","Russia","Slovakia","Slovenia","South Africa","South Korea","Spain","Sweden","Switzerland","Turkey","United Kingdom","United States"],"hovertext":["x: -0.62404496<br />y: -1.517698998<br />name: Australia","x: -2.05425388<br />y:  0.447078146<br />name: Austria","x: -2.07836533<br />y:  0.941667717<br />name: Belgium","x:  3.35152417<br />y: -0.829521784<br />name: Brazil","x: -0.67519716<br />y: -1.469058281<br />name: Canada","x:  1.79428381<br />y: -1.274780109<br />name: Chile","x:  4.95581433<br />y:  0.535332793<br />name: China","x: -0.49379616<br />y:  0.260672711<br />name: Czechia","x: -2.81921357<br />y: -0.243093822<br />name: Denmark","x: -0.46999695<br />y:  0.056664990<br />name: Estonia","x: -1.96568155<br />y:  0.222306654<br />name: Finland","x: -1.53570039<br />y:  0.578526762<br />name: France","x: -1.77093634<br />y: -0.213109438<br />name: Germany","x:  0.04424533<br />y:  1.853091527<br />name: Greece","x: -0.45864900<br />y:  1.142553880<br />name: Hungary","x:  6.08714136<br />y:  1.256937913<br />name: India","x: -1.03854150<br />y: -0.119872769<br />name: Ireland","x:  0.75849826<br />y: -0.564420405<br />name: Israel","x: -1.09360856<br />y:  1.692036416<br />name: Italy","x: -0.82893473<br />y: -1.233741730<br />name: Japan","x:  2.53095627<br />y: -0.434272774<br />name: Mexico","x: -2.67996411<br />y:  0.247242298<br />name: Netherlands","x: -0.94048441<br />y: -2.181559414<br />name: New Zealand","x: -1.68230066<br />y: -0.213689422<br />name: Norway","x:  0.69410902<br />y:  1.313118013<br />name: Poland","x: -0.68099516<br />y:  1.343187987<br />name: Portugal","x:  4.08177978<br />y: -1.280774247<br />name: Russia","x: -0.38110359<br />y:  1.338659005<br />name: Slovakia","x: -0.63168792<br />y:  1.774250877<br />name: Slovenia","x:  3.22215208<br />y: -0.328252388<br />name: South Africa","x:  1.64000991<br />y: -0.858917263<br />name: South Korea","x: -1.23782348<br />y:  1.250739163<br />name: Spain","x: -2.45243328<br />y: -0.003060457<br />name: Sweden","x: -2.01269052<br />y: -1.092443602<br />name: Switzerland","x:  3.31627890<br />y:  1.127164716<br />name: Turkey","x: -1.91831362<br />y: -1.089854754<br />name: United Kingdom","x:  0.04792364<br />y: -2.433109913<br />name: United States"],"textfont":{"size":15.118110236220474,"color":"rgba(0,0,255,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-3.2645313128617985,6.5324591083624304],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0],"y":[-2.6474199852089404,2.0674015988939001],"text":"xintercept: 0","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826491,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Individuals - MFA","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-3.2645313128617985,6.5324591083624304],"tickmode":"array","ticktext":["-2","0","2","4","6"],"tickvals":[-2,0,2,4,6],"categoryorder":"array","categoryarray":["-2","0","2","4","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Dim1 (31.2%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.6474199852089404,2.0674015988939001],"tickmode":"array","ticktext":["-2","-1","0","1","2"],"tickvals":[-2,-1.0000000000000002,0,1,2],"categoryorder":"array","categoryarray":["-2","-1","0","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Dim2 (8.1%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"2cf835af658c":{"x":{},"y":{},"label":{},"type":"scatter"},"2cf83842760":{"yintercept":{}},"2cf86f32377a":{"xintercept":{}}},"cur_data":"2cf835af658c","visdat":{"2cf835af658c":["function (y) ","x"],"2cf83842760":["function (y) ","x"],"2cf86f32377a":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-amable_diversity_2003" class="csl-entry">
+Amable, Bruno. 2003. <em>The Diversity of Modern Capitalism</em>. <span>OUP</span> Oxford.
+</div>
+<div id="ref-cahen-fourot_contemporary_2020" class="csl-entry">
+Cahen-Fourot, Louison. 2020. <span>“Contemporary Capitalisms and Their Social Relation to the Environment.”</span> <em>Ecological Economics</em> 172 (June): 106634. <a href="https://doi.org/10.1016/j.ecolecon.2020.106634">https://doi.org/10.1016/j.ecolecon.2020.106634</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>Statistics</category>
+  <category>Political Economy</category>
+  <guid>https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020.html</guid>
+  <pubDate>Sat, 22 Feb 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/cluster.png" medium="image" type="image/png" height="103" width="144"/>
+</item>
+<item>
+  <title>Post-election and panel Selects 2023 studies: what can we learn ?</title>
+  <dc:creator>Celâl Güney</dc:creator>
+  <link>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This post is still in progress and will be updated</p>
+</div>
+</div>
+<p>In Switzerland, survey data are, compared to other countries, scarce, but of very good quality. More specifically, the so-called “Swiss Election Studies” (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let’s have a look to what they offer.</p>
+<section id="a-little-context-on-the-2023-swiss-election" class="level2">
+<h2 class="anchored" data-anchor-id="a-little-context-on-the-2023-swiss-election">A little context on the 2023 Swiss election</h2>
+<p>Since the Selects studies are about politics and elections, let’s first remind ourselves what happened during the 2023 Swiss national election. Switzerland is not famous for the turbulence of its political scene, which is often considered as boring and stationary due to direct and consensus democracy, proportional representation, federalism, a highly “diversified” government (the so-called <em>magic formula</em>), referendums, a high abstention rate…</p>
+<p>But still, the stability of the Swiss model makes the small changes which tend to appear slowly and unnoticed even more interesting to analyze: because why would any political and institutional change happen in one of the most rich and successful countries in the world ?</p>
+<p>And some change <em>did</em> happen in the last few years. An illustrative example are the turmoils of the governmental bourgeois-right parties, the Liberal-Radicals (FDP) and the Christian-Democrats (CVP, now “The Center”). Both these parties suffer from long-term decline in vote shares since the post-war period, and they have attempted multiple strategies to try avoiding the fall. The Christian-Democrats were the ones who suffered the most from this trend, which peaked when they lost their second seat at the federal council in favor of the SVP (Swiss People’s party, Switzerland’s extreme right party) in 2003. In 2021, the party merged with another small bourgeois party to create “The Center”, in the hope that this new look would benefit them. In terms of political program, The Center is still promotes some forms of “soft neoliberalism”, that is to say, a neoliberal transformation of the Swiss model with some compensation measures. The program is close to that of the FDP, although the latter seeks less compromises. Why would the history of these two parties interest us ? Because in the last 2023 election, The Center almost surpassed the FDP in terms of vote shares (14,25% for FDP vs 14% for Center, The Center was actually above before a calculation mistake was corrected) for the first time in Swiss history. Actually, The Center did surpassed the FDP in terms of seats in the National Council, which is still an important shift in the political landscape: does that mean that there is a successful “centrist” strategy now in Switzerland ? Is that strategy destined to succeed in the future ?</p>
+<p>Another important element of the 2023 election is the downfall of ecological parties. There are two ecological parties in Switzerland: the Greens and the Liberal Greens. Whereas other countries generally have only one Green party, Switzerland has the peculiarity of having a Liberal Green party, which wants to dissociate itself from the Greens, considered as to extreme on the left in terms of economic policy. However, both these parties suffered from important backlash in the election: the Greens lost around 3% points and the Liberals 0,3% (with 6 lost MPs). Can we see and understand this drop of interest for ecological issues in the Selects data ?</p>
+<p>Finally, the winners of the election are the SVP and the Socialist Party (SP). The latter has won some battles in the last few years, for instance during the vote for a third rent pension rent. Was the SP successful in broadening its social basis ? What about the SVP ? Let’s have a look.</p>
+<p>In this post, I will first offer a descriptive analysis of party support. Then, the preferences of Swiss citizen regarding a set of policy preferences will be analyzed.</p>
+</section>
+<section id="party-support" class="level2">
+<h2 class="anchored" data-anchor-id="party-support">Party support</h2>
+<p>Figure&nbsp;1 shows voting intention of individuals who responded to the survey (before the election). To visualize the difference between the sample’s voting intentions and the final results of the election, I added the latter on the graph (as black dots). Some discrepancies between the sample and the final results are striking, especially for SVP’s support. In the sample, only 17,8% Swiss citizen declared voting for the SVP, whereas the party gathered 28% of the votes, more than 10 percentage points difference. Two hypotheses could explain this discrepancy: first, the SVP’s social basis, as most far right parties’ supporters, tend to hide their favorite party in surveys (what is known as “desirability bias”). Another explanation could be that SVP’s voters were undecided or changed their mind at the last time. The score of the SP and FDP are aligned with the survey responses, whereas the Center was underestimated and the vote for the Greens overestimated.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-voteint2023" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-voteint2023-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Voting intentions (above) and vote choice (below) for the Swiss 2023 national election. Hypothetical vote choices were added to those who were sure to vote or had voted in the election. Data source: Selects panel and post-election 2023
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, if we replicate the same graph using post-election rather than pre-election data, the percentages are more aligned with the final results. However, the support for the SVP is still underestimated, while the support for the Center and the FDP is overestimated and underestimated for the two green parties and the SP. The discrepancies could come from the fact the variable includes the hypothetical vote choice of those who did not vote at the election.</p>
+<p>The descriptive statistics of party choice thus confirm the slight changes in Switzerland’s politics: the green parties have experienced a strong electoral defeat while the Center seems to have found a strategy to halt its long-run decline, which is not the FDP’s case,</p>
+<p>How does the variable of voting intention to the 2023 election compares with the previous election (2019) ? Swinging voters between elections are often represented in sankey diagrams, which is what Figure&nbsp;2 shows. The sankey diagram shows that there is no tremendous between-parties flows: the blocs at both end of the diagram stay more or less the same. However, one can still notice some small flows: SP and the Greens seem to exchange their supporters, which means that the flows of left-wing voters happen as exchanges between the SP and the Greens. The SVP draw some voters from the undecided and the FDP. Interestingly, some parts of former SP and FDP supporters moved to the Liberal Greens.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sankey" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-sankey-1.png" id="fig-sankey" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="party-support-and-socio-economic-characteristics" class="level2">
+<h2 class="anchored" data-anchor-id="party-support-and-socio-economic-characteristics">Party support and socio-economic characteristics</h2>
+<p>From which parts of the population does each party draw support ? What are the social bases of the Swiss left, center and right parties ? How do socio-economic characteristics influence party support in Switzerland ? Social conflict is often considered as highly pacified in Switzerland. As a result, observers tend to consider that there is no important social divide based on class and socio-economic characteristics in the country. Considered to be a very rich and “post-materialist” country, social conflict in Switzerland should play at the level of cultural preferences rather than economic policy preferences. As explained by <span class="citation" data-cites="piketty_capital_2019">Piketty (2019)</span> and various other social scientists, European left-wing parties used to draw strong support from lower and dominated social classes and this support had economic motives since the working class supported the left in hope that the latter would increase its standard of living, while right-wing parties were draw more support from high income voters. However, <span class="citation" data-cites="rennwald2016">Rennwald and Zimmermann (2016)</span>, <span class="citation" data-cites="rennwald_class_2014">Rennwald (2014)</span>, <span class="citation" data-cites="rennwald_social_2020">Rennwald (2020)</span> showed that party support was more complex. For instance, in the post-war period the support for each Swiss party was more hybrid that bases only on one particular social class. The Swiss left was thereby supported not only by the working class, but also by “socio-cultural professionals” (teachers, researchers, journalists…) while the right gathered managers, self-employed, artisans, shop-keepers and large employers. Thus, as demonstrated by <span class="citation" data-cites="amable_structural_2017">Amable (2017)</span>, <span class="citation" data-cites="amable_illusion_2018">Amable and Palombarini (2018)</span> for France, the left and right blocs were heterogeneous in their social composition, a fact which is often under-estimated.</p>
+<p>What is the situation now ? Is the Swiss socialist party still supported by the working class and socio-cultural professionals, and the right by managers, self-employed, artisans and large employers ? We can descriptively explore these hypotheses by taking a social class variable from the dataset (I used here the Oesch class schema, because it is directly available in the post-election dataset), computing the percentage of party support for each party across these classes, and comparing these proportions with the overall proportions: if a social class supports a party with a proportion higher than the overall proportion, one can say that this social class is an important supporter of this party. To do so, the so-called diverging bar charts are a useful visualization.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-divbarcharts" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-divbarcharts-1.png" id="fig-divbarcharts" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure&nbsp;3 thus show the percentage difference in party support across social classes compared to the overall mean. One can see that the FDP draws strong above-average support from large employers and managers, the Center from managers, technical professionals, clerks and production workers (even though the positive differences are not that large), the SP above all from socio-cultural professionals, the SVP from production and service workers and from clerks and small-business owners; the Greens from from technical and socio-cultural professionals; and the Liberal Greens from large employers and slightly from managers, technical professionals, small business owners and technical professionals. It is also important to note that service and production workers also tend to not support any party, as shown in the no answer (NA) graph.</p>
+<p>If one does not trust the Oesch class schema, one can also look at more simple socio-economic factors such as income deciles. Figure&nbsp;4 shows the support for each swiss party for each income decile.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-decileplot" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-decileplot-1.png" id="fig-decileplot" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
+<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP. However, when one looks at income deciles, the SP gathers above-average support from each decile except the tenth.</p>
+</section>
+<section id="policy-preferences" class="level2">
+<h2 class="anchored" data-anchor-id="policy-preferences">Policy preferences</h2>
+<p>An advantage of post-election Selects data is the wide variety of questions which capture the preferences of Swiss citizen on a set of cultural economic issues. Figure&nbsp;5 shows the responses to these questions. For simplicity I reduced the number of categories when possible (for instance merging the “rather in favor” and “strongly in favor” responses).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-likertchart" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-likertchart-1.png" id="fig-likertchart" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Several remarks can be made looking at Figure&nbsp;5. First, Swiss citizen tend to be conservative regarding immigration issues, except when asked about whether foreigners should have voting rights. This seems paradoxical at first sight: why anti-immigrants would accept foreigners to vote ? In <em>Capitalism, Alone</em> (2019), Milanovic explains that such paradox makes sense when one considers the trade-off between immigration and foreigners’ rights from the point of view of the native population. The idea is that there is a negative relationship between foreigners’ rights and immigration: natives would accept more immigration if immigrants are not granted much rights and, conversely, they would grant more rights to the existing foreigners, but only if immigration is limited. The responses to the immigration-issues questions in Figure&nbsp;5 show that Swiss people chose the latter point of the immigration-right trade-off curve.</p>
+<p>Second, anti-EU membership is a structuring preference of Swiss citizen, who rejected the membership to the European Economic Area in 1992 and have been rather anti-EU ever since. Figure&nbsp;5 shows that, despite the fact that Swiss citizen still are agaisnt EU membership, they are in favor of European integration (but in the sense of integration through bilateral agreements.)</p>
+<p>Third, regarding so-called “cultural issues”, Swiss people are rather conservative regarding new cultural issues, while being rather progressive on issues which are now decades old. They are thus against imposing gender sensitive language, but are in favor of equal rights for same-sex couples.</p>
+<p>Finally, Swiss citizen are, overall, rather on the left on economic issues. 77% of the sample supports a raise in minimum wages, 70% are against raising the retirement age and 63% are in favor of increasing taxes on high income. This stands in stark contrast with the idea that Swiss citizen have one of the most “liberal spirit”.</p>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-amable_structural_2017" class="csl-entry">
+Amable, Bruno. 2017. <em>Structural Crisis and Institutional Change in Modern Capitalism: French Capitalism in Transition</em>. Oxford University Press. <a href="https://doi.org/10.1093/acprof:oso/9780198787815.001.0001">https://doi.org/10.1093/acprof:oso/9780198787815.001.0001</a>.
+</div>
+<div id="ref-amable_illusion_2018" class="csl-entry">
+Amable, Bruno, and Stefano Palombarini. 2018. <em>L’illusion Du Bloc Bourgeois: Alliances Sociales Et Avenir Du Modèle Français</em>. Raisons d’Agir. Paris.
+</div>
+<div id="ref-piketty_capital_2019" class="csl-entry">
+Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
+</div>
+<div id="ref-rennwald_class_2014" class="csl-entry">
+Rennwald, Line. 2014. <span>“Class (Non)voting in Switzerland 1971-2011: Ruptures and Continuities in a Changing Political Landscape.”</span> <em>Swiss Political Science Review</em> 20 (4): 550–72. <a href="https://doi.org/10.1111/spsr.12124">https://doi.org/10.1111/spsr.12124</a>.
+</div>
+<div id="ref-rennwald_social_2020" class="csl-entry">
+———. 2020. <em>Social Democratic Parties and the Working Class: New Voting Patterns</em>. 1st ed. Challenges to Democracy in the 21st Century. Springer International Publishing;Palgrave Macmillan. <a href="http://gen.lib.rus.ec/book/index.php?md5=DC2AFED8958B9AE0932FFEFEAB45546C">http://gen.lib.rus.ec/book/index.php?md5=DC2AFED8958B9AE0932FFEFEAB45546C</a>.
+</div>
+<div id="ref-rennwald2016" class="csl-entry">
+Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse, 1971-2011.”</span> <em>Social Change in Switzerland</em>, no. 4. https://doi.org/<a href="http://doi.org/10.22019/SC-2016-00001">http://doi.org/10.22019/SC-2016-00001</a>.
+</div>
+</div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Social blocs</category>
+  <category>Political economy</category>
+  <category>Politics</category>
+  <category>Political Science</category>
+  <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
+  <pubDate>Sat, 09 Nov 2024 23:00:00 GMT</pubDate>
+  <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
+</item>
 <item>
   <title>Economic stagnation in Switzerland: discussion of a growing debate</title>
   <dc:creator>Celâl Güney</dc:creator>
@@ -17145,168 +18607,6 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
   <guid>https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html</guid>
   <pubDate>Tue, 04 Oct 2022 22:00:00 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" medium="image"/>
-</item>
-<item>
-  <title>Post-election and panel Selects 2023 studies: what can we learn ?</title>
-  <dc:creator>Celâl Güney</dc:creator>
-  <link>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This post is still in progress and will be updated</p>
-</div>
-</div>
-<p>In Switzerland, survey data are, compared to other countries, scarce, but of very good quality. More specifically, the so-called “Swiss Election Studies” (Selects) are of world-class quality and usually published one year after each Swiss national election. This summer, the last Selects studies that were made available are of utmost importance for my research on Swiss social blocs. The studies contain large samples and very interesting variables, so let’s have a look to what they offer.</p>
-<section id="a-little-context-on-the-2023-swiss-election" class="level2">
-<h2 class="anchored" data-anchor-id="a-little-context-on-the-2023-swiss-election">A little context on the 2023 Swiss election</h2>
-<p>Since the Selects studies are about politics and elections, let’s first remind ourselves what happened during the 2023 Swiss national election. Switzerland is not famous for the turbulence of its political scene, which is often considered as boring and stationary due to direct and consensus democracy, proportional representation, federalism, a highly “diversified” government (the so-called <em>magic formula</em>), referendums, a high abstention rate…</p>
-<p>But still, the stability of the Swiss model makes the small changes which tend to appear slowly and unnoticed even more interesting to analyze: because why would any political and institutional change happen in one of the most rich and successful countries in the world ?</p>
-<p>And some change <em>did</em> happen in the last few years. An illustrative example are the turmoils of the governmental bourgeois-right parties, the Liberal-Radicals (FDP) and the Christian-Democrats (CVP, now “The Center”). Both these parties suffer from long-term decline in vote shares since the post-war period, and they have attempted multiple strategies to try avoiding the fall. The Christian-Democrats were the ones who suffered the most from this trend, which peaked when they lost their second seat at the federal council in favor of the SVP (Swiss People’s party, Switzerland’s extreme right party) in 2003. In 2021, the party merged with another small bourgeois party to create “The Center”, in the hope that this new look would benefit them. In terms of political program, The Center is still promotes some forms of “soft neoliberalism”, that is to say, a neoliberal transformation of the Swiss model with some compensation measures. The program is close to that of the FDP, although the latter seeks less compromises. Why would the history of these two parties interest us ? Because in the last 2023 election, The Center almost surpassed the FDP in terms of vote shares (14,25% for FDP vs 14% for Center, The Center was actually above before a calculation mistake was corrected) for the first time in Swiss history. Actually, The Center did surpassed the FDP in terms of seats in the National Council, which is still an important shift in the political landscape: does that mean that there is a successful “centrist” strategy now in Switzerland ? Is that strategy destined to succeed in the future ?</p>
-<p>Another important element of the 2023 election is the downfall of ecological parties. There are two ecological parties in Switzerland: the Greens and the Liberal Greens. Whereas other countries generally have only one Green party, Switzerland has the peculiarity of having a Liberal Green party, which wants to dissociate itself from the Greens, considered as to extreme on the left in terms of economic policy. However, both these parties suffered from important backlash in the election: the Greens lost around 3% points and the Liberals 0,3% (with 6 lost MPs). Can we see and understand this drop of interest for ecological issues in the Selects data ?</p>
-<p>Finally, the winners of the election are the SVP and the Socialist Party (SP). The latter has won some battles in the last few years, for instance during the vote for a third rent pension rent. Was the SP successful in broadening its social basis ? What about the SVP ? Let’s have a look.</p>
-<p>In this post, I will first offer a descriptive analysis of party support. Then, the preferences of Swiss citizen regarding a set of policy preferences will be analyzed.</p>
-</section>
-<section id="party-support" class="level2">
-<h2 class="anchored" data-anchor-id="party-support">Party support</h2>
-<p>Figure&nbsp;1 shows voting intention of individuals who responded to the survey (before the election). To visualize the difference between the sample’s voting intentions and the final results of the election, I added the latter on the graph (as black dots). Some discrepancies between the sample and the final results are striking, especially for SVP’s support. In the sample, only 17,8% Swiss citizen declared voting for the SVP, whereas the party gathered 28% of the votes, more than 10 percentage points difference. Two hypotheses could explain this discrepancy: first, the SVP’s social basis, as most far right parties’ supporters, tend to hide their favorite party in surveys (what is known as “desirability bias”). Another explanation could be that SVP’s voters were undecided or changed their mind at the last time. The score of the SP and FDP are aligned with the survey responses, whereas the Center was underestimated and the vote for the Greens overestimated.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-voteint2023" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-voteint2023-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-voteint2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Voting intentions (above) and vote choice (below) for the Swiss 2023 national election. Hypothetical vote choices were added to those who were sure to vote or had voted in the election. Data source: Selects panel and post-election 2023
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>As expected, if we replicate the same graph using post-election rather than pre-election data, the percentages are more aligned with the final results. However, the support for the SVP is still underestimated, while the support for the Center and the FDP is overestimated and underestimated for the two green parties and the SP. The discrepancies could come from the fact the variable includes the hypothetical vote choice of those who did not vote at the election.</p>
-<p>The descriptive statistics of party choice thus confirm the slight changes in Switzerland’s politics: the green parties have experienced a strong electoral defeat while the Center seems to have found a strategy to halt its long-run decline, which is not the FDP’s case,</p>
-<p>How does the variable of voting intention to the 2023 election compares with the previous election (2019) ? Swinging voters between elections are often represented in sankey diagrams, which is what Figure&nbsp;2 shows. The sankey diagram shows that there is no tremendous between-parties flows: the blocs at both end of the diagram stay more or less the same. However, one can still notice some small flows: SP and the Greens seem to exchange their supporters, which means that the flows of left-wing voters happen as exchanges between the SP and the Greens. The SVP draw some voters from the undecided and the FDP. Interestingly, some parts of former SP and FDP supporters moved to the Liberal Greens.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-sankey" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-sankey-1.png" id="fig-sankey" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="party-support-and-socio-economic-characteristics" class="level2">
-<h2 class="anchored" data-anchor-id="party-support-and-socio-economic-characteristics">Party support and socio-economic characteristics</h2>
-<p>From which parts of the population does each party draw support ? What are the social bases of the Swiss left, center and right parties ? How do socio-economic characteristics influence party support in Switzerland ? Social conflict is often considered as highly pacified in Switzerland. As a result, observers tend to consider that there is no important social divide based on class and socio-economic characteristics in the country. Considered to be a very rich and “post-materialist” country, social conflict in Switzerland should play at the level of cultural preferences rather than economic policy preferences. As explained by <span class="citation" data-cites="piketty_capital_2019">Piketty (2019)</span> and various other social scientists, European left-wing parties used to draw strong support from lower and dominated social classes and this support had economic motives since the working class supported the left in hope that the latter would increase its standard of living, while right-wing parties were draw more support from high income voters. However, <span class="citation" data-cites="rennwald2016">Rennwald and Zimmermann (2016)</span>, <span class="citation" data-cites="rennwald_class_2014">Rennwald (2014)</span>, <span class="citation" data-cites="rennwald_social_2020">Rennwald (2020)</span> showed that party support was more complex. For instance, in the post-war period the support for each Swiss party was more hybrid that bases only on one particular social class. The Swiss left was thereby supported not only by the working class, but also by “socio-cultural professionals” (teachers, researchers, journalists…) while the right gathered managers, self-employed, artisans, shop-keepers and large employers. Thus, as demonstrated by <span class="citation" data-cites="amable_structural_2017">Amable (2017)</span>, <span class="citation" data-cites="amable_illusion_2018">Amable and Palombarini (2018)</span> for France, the left and right blocs were heterogeneous in their social composition, a fact which is often under-estimated.</p>
-<p>What is the situation now ? Is the Swiss socialist party still supported by the working class and socio-cultural professionals, and the right by managers, self-employed, artisans and large employers ? We can descriptively explore these hypotheses by taking a social class variable from the dataset (I used here the Oesch class schema, because it is directly available in the post-election dataset), computing the percentage of party support for each party across these classes, and comparing these proportions with the overall proportions: if a social class supports a party with a proportion higher than the overall proportion, one can say that this social class is an important supporter of this party. To do so, the so-called diverging bar charts are a useful visualization.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-divbarcharts" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-divbarcharts-1.png" id="fig-divbarcharts" class="img-fluid figure-img" width="960">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-divbarcharts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Figure&nbsp;3 thus show the percentage difference in party support across social classes compared to the overall mean. One can see that the FDP draws strong above-average support from large employers and managers, the Center from managers, technical professionals, clerks and production workers (even though the positive differences are not that large), the SP above all from socio-cultural professionals, the SVP from production and service workers and from clerks and small-business owners; the Greens from from technical and socio-cultural professionals; and the Liberal Greens from large employers and slightly from managers, technical professionals, small business owners and technical professionals. It is also important to note that service and production workers also tend to not support any party, as shown in the no answer (NA) graph.</p>
-<p>If one does not trust the Oesch class schema, one can also look at more simple socio-economic factors such as income deciles. Figure&nbsp;4 shows the support for each swiss party for each income decile.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-decileplot" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-decileplot-1.png" id="fig-decileplot" class="img-fluid figure-img" width="960">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decileplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The parties for which the support clearly increases as income increases are the FDP and the Liberal Greens. This means that both these parties are supported by wealthy Swiss citizen. The correlation seems to be negative for the SVP, whereas the support for the SP and the Greens does not significantly change across income deciles (although it slighlty increases for the Greens). The correlation is also positive for the Center, but support drops at the highest decile.</p>
-<p>From Figure&nbsp;3 and Figure&nbsp;4, we can conclude that the SP is now above all supported by socio-cultural professionals and does not draw above average support from production workers, which tend to rather support the SVP. However, when one looks at income deciles, the SP gathers above-average support from each decile except the tenth.</p>
-</section>
-<section id="policy-preferences" class="level2">
-<h2 class="anchored" data-anchor-id="policy-preferences">Policy preferences</h2>
-<p>An advantage of post-election Selects data is the wide variety of questions which capture the preferences of Swiss citizen on a set of cultural economic issues. Figure&nbsp;5 shows the responses to these questions. For simplicity I reduced the number of categories when possible (for instance merging the “rather in favor” and “strongly in favor” responses).</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-likertchart" class="quarto-float quarto-figure quarto-figure-center anchored" width="960">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jeylal.github.io/celalguney/posts/selects2023/selects2023_files/figure-html/fig-likertchart-1.png" id="fig-likertchart" class="img-fluid figure-img" width="960">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-likertchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Several remarks can be made looking at Figure&nbsp;5. First, Swiss citizen tend to be conservative regarding immigration issues, except when asked about whether foreigners should have voting rights. This seems paradoxical at first sight: why anti-immigrants would accept foreigners to vote ? In <em>Capitalism, Alone</em> (2019), Milanovic explains that such paradox makes sense when one considers the trade-off between immigration and foreigners’ rights from the point of view of the native population. The idea is that there is a negative relationship between foreigners’ rights and immigration: natives would accept more immigration if immigrants are not granted much rights and, conversely, they would grant more rights to the existing foreigners, but only if immigration is limited. The responses to the immigration-issues questions in Figure&nbsp;5 show that Swiss people chose the latter point of the immigration-right trade-off curve.</p>
-<p>Second, anti-EU membership is a structuring preference of Swiss citizen, who rejected the membership to the European Economic Area in 1992 and have been rather anti-EU ever since. Figure&nbsp;5 shows that, despite the fact that Swiss citizen still are agaisnt EU membership, they are in favor of European integration (but in the sense of integration through bilateral agreements.)</p>
-<p>Third, regarding so-called “cultural issues”, Swiss people are rather conservative regarding new cultural issues, while being rather progressive on issues which are now decades old. They are thus against imposing gender sensitive language, but are in favor of equal rights for same-sex couples.</p>
-<p>Finally, Swiss citizen are, overall, rather on the left on economic issues. 77% of the sample supports a raise in minimum wages, 70% are against raising the retirement age and 63% are in favor of increasing taxes on high income. This stands in stark contrast with the idea that Swiss citizen have one of the most “liberal spirit”.</p>
-<section id="references" class="level3">
-<h3 class="anchored" data-anchor-id="references">References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
-<div id="ref-amable_structural_2017" class="csl-entry">
-Amable, Bruno. 2017. <em>Structural Crisis and Institutional Change in Modern Capitalism: French Capitalism in Transition</em>. Oxford University Press. <a href="https://doi.org/10.1093/acprof:oso/9780198787815.001.0001">https://doi.org/10.1093/acprof:oso/9780198787815.001.0001</a>.
-</div>
-<div id="ref-amable_illusion_2018" class="csl-entry">
-Amable, Bruno, and Stefano Palombarini. 2018. <em>L’illusion Du Bloc Bourgeois: Alliances Sociales Et Avenir Du Modèle Français</em>. Raisons d’Agir. Paris.
-</div>
-<div id="ref-piketty_capital_2019" class="csl-entry">
-Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
-</div>
-<div id="ref-rennwald_class_2014" class="csl-entry">
-Rennwald, Line. 2014. <span>“Class (Non)voting in Switzerland 1971-2011: Ruptures and Continuities in a Changing Political Landscape.”</span> <em>Swiss Political Science Review</em> 20 (4): 550–72. <a href="https://doi.org/10.1111/spsr.12124">https://doi.org/10.1111/spsr.12124</a>.
-</div>
-<div id="ref-rennwald_social_2020" class="csl-entry">
-———. 2020. <em>Social Democratic Parties and the Working Class: New Voting Patterns</em>. 1st ed. Challenges to Democracy in the 21st Century. Springer International Publishing;Palgrave Macmillan. <a href="http://gen.lib.rus.ec/book/index.php?md5=DC2AFED8958B9AE0932FFEFEAB45546C">http://gen.lib.rus.ec/book/index.php?md5=DC2AFED8958B9AE0932FFEFEAB45546C</a>.
-</div>
-<div id="ref-rennwald2016" class="csl-entry">
-Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse, 1971-2011.”</span> <em>Social Change in Switzerland</em>, no. 4. https://doi.org/<a href="http://doi.org/10.22019/SC-2016-00001">http://doi.org/10.22019/SC-2016-00001</a>.
-</div>
-</div>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>Social blocs</category>
-  <category>Political economy</category>
-  <category>Politics</category>
-  <category>Political Science</category>
-  <guid>https://jeylal.github.io/celalguney/posts/selects2023/selects2023.html</guid>
-  <pubDate>Sun, 26 Jan 2025 12:05:48 GMT</pubDate>
-  <media:content url="https://jeylal.github.io/celalguney/posts/selects2023/fig-divbarcharts-1.png" medium="image" type="image/png" height="72" width="144"/>
 </item>
 </channel>
 </rss>

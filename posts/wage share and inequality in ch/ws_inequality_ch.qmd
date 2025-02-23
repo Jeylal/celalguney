@@ -13,6 +13,7 @@ draft: true
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 rm(list = ls())
 library(rnaturalearth)
@@ -32,6 +33,7 @@ library(readxl)
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 ULC <- read_csv("data_inequality/ULC_ameco.csv")
 
@@ -90,6 +92,7 @@ wageShare_ameco %>%
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 siegen2024 <- read_excel("data_inequality/siegenthaler_etal_2024.xlsx", 
     skip = 1)
@@ -110,6 +113,7 @@ siegen2024 %>%
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 AFC_data_CH = read.csv("AFC_data_CH.csv")
 
@@ -127,6 +131,7 @@ AFC_data_CH %>%
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 switzerland = bfs_get_base_maps(geom = "kant")
 AFC_data_canton <- read_csv("AFC_data_canton.csv") %>% 
@@ -149,6 +154,7 @@ map_data_ch %>%
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 AFC_data_canton %>% 
   ggplot()+
@@ -166,6 +172,7 @@ AFC_data_canton %>%
 #| echo: false
 #| warning: false
 #| message: false
+#| eval: false
 
 library(ggrepel)
 

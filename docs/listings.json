@@ -1,18 +1,8 @@
 [
   {
-    "listing": "/economics.html",
-    "items": [
-      "/economics_series/neo-kaleckian models/neo-kaleckian models.html",
-      "/economics_series/neo-keynesian models/Neo-keynesian-models.html",
-      "/economics_series/classical-marxian model/classical-marxian model.html",
-      "/economics_series/is-lm model/is-lm model.html",
-      "/economics_series/production theory/mainstream_production_theory.html",
-      "/economics_series/consumer theory/consumer theory.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
+      "/posts/MFA_cahenfourot2020/mfaCahenFourot2020.html",
       "/posts/selects2023/selects2023.html",
       "/posts/growth debate switzerland/growth debate switzerland.html",
       "/posts/political compass/pol_compass.html",
@@ -24,6 +14,17 @@
       "/posts/Sugar, Cochineal and Power/sugar cochineal power.html",
       "/posts/About cycles and crises/cycles_crises.html",
       "/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html"
+    ]
+  },
+  {
+    "listing": "/economics.html",
+    "items": [
+      "/economics_series/neo-kaleckian models/neo-kaleckian models.html",
+      "/economics_series/neo-keynesian models/Neo-keynesian-models.html",
+      "/economics_series/classical-marxian model/classical-marxian model.html",
+      "/economics_series/is-lm model/is-lm model.html",
+      "/economics_series/production theory/mainstream_production_theory.html",
+      "/economics_series/consumer theory/consumer theory.html"
     ]
   },
   {

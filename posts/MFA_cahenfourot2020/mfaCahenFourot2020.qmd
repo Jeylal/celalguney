@@ -1,0 +1,159 @@
+---
+title: "How to run multiple factor analysis in R"
+author: "Celâl Güney"
+format: 
+  html:
+    toc: true
+editor: visual
+execute: 
+  freeze: true
+categories: [Statistics, Political Economy]
+draft: false
+image: cluster.png
+date: "23 February 2025"
+bibliography: references.bib
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+#install.packages("explor")
+setwd("C:/Users/celal/OneDrive/Bureau/celalguney/posts/MFA_cahenfourot2020")
+library(tidyverse) # for data wrangling
+library(FactoMineR) # contains MFA function
+library(Factoshiny) # allows interactive exploration of MFA 
+library(explor) # allows interactive exploration of PCA and MCA
+library(gt) # for tables
+library(plotly) # for interactive graphs
+```
+
+::: callout-warning
+## Writing still in progress
+:::
+
+In social sciences, factor analysis is a very useful set of methods to analyze data for a wide variety of topics. The most well-known method is principal component analysis (PCA), which allows to reduce a set of variables into a few "principal components" which are linear combinations of the datasets' variables. The components are ordered according to the percentage of variance captured by it and components are orthogonal (not correlated) with each other. PCA applies only to quantitative variables, but there are many options to include qualitative and ordinal variables: multiple correspondence analysis (MCA) which applies to qualitative variables only, and mixed methods which applies to both qualitative and quantitative variables. Factor analysis is also useful to run cluster analysis. Once the principal components are estimated, hierarchical cluster (HC) can be conducted to groups the observations into clusters.
+
+However, what happens when our variables correspond to different group ? Running a PCA directly would ignore this grouping and thus loose a lot of information. To give an example I am studying, the literature on comparative capitalism often uses clustering through PCA and MCA to identify empirically the varieties of socio-economic models which exist across countries. One of the main ideas of comparative capitalism is that social, political and economic institutions come with different forms, hierarchy as well as complementarities within countries, leading thus to different forms of capitalism between them, that we can clusterize. This is what has been done by, for instance, @amable_diversity_2003 who identified five types of capitalism by the analysis of five institutional domains: the wage-labour nexus; the financial system; the education system; product-market competition; the welfare state & social protection system. @cahen-fourot_contemporary_2020 offers a similar typology, but with slighlty different institutional domains (which he calls "institutional forms" because they are taken from Régulation Theory): the monetary regime; the wage-labour nexus; the form of competition; the form of the state and the insertion into the international regime. What is interesting in @cahen-fourot_contemporary_2020 is that he includes an additional institutional form: the social relations to the environment.
+
+To identify and cluster different types of capitalism, this literature uses a combination of PCA and MCA through the following steps:
+
+1.  Run a PCA for each institutional domain separately
+2.  Cluster the countries on this institutional domain using HC on the PCA and attribute each country to their cluster
+3.  Run a MCA on the cluster classification
+
+Despite the fact that this approach is acceptable, it can be very time consuming especially when the steps 1 and 2 above must be repeated a lot (in the example above, 5 or 6 times). There exists another principal component method which allows to do that in a much simpler way: multiple factor analysis. Using this method would allow to run a single principal components dimension reduction while taking into account the fact that the data are grouped into categories (in that case the institutional forms) and thus avoiding to run a separate analysis for each one of them. In very simple terms, MFA can be considered as a weighted PCA in which each variable is divided by the square root of the first eigenvalue of the group it belongs to. By doing so, the group structure is preserved while running the analysis over the whole variables.
+
+The present post will not explain further details on MFA, but will focus on its practical implementation and visualization in R using the FactoMineR and FactoShiny packages. There are many resources online to learn all technical details about MFA, as this [series of youtube tutorials done by François Husson](https://www.youtube.com/watch?v=MOl0Aw1TTFE&list=PLnZgp6epRBbRX8TEp1HlFGqfMf_AxYEj7&index=1). this [post](https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/116-mfa-multiple-factor-analysis-in-r-essentials/) is also very useful.
+
+## How to run MFA in R
+
+To show of to run MFA in R, I will use the data compiled by @cahen-fourot_contemporary_2020 to analyze the diversity of capitalisms in 2015. This data contain 76 variables covering 37 countries.
+
+```{r}
+#| message: false
+#| warning: false
+library(readr)
+data <- read_csv("data_full_CF2020.csv") %>%
+    column_to_rownames(var = "Country") %>% # important to have countries as rownames or the MFA will consider them as qualitative indicator variable
+    select(-c(MatfootGDP, CO2footGDP, EnerfootGDP)) # remove three variables which are present in the dataset but will not be used
+
+head(data) %>% 
+  gt()
+```
+
+The first 25 variables concern the form of competition. In regulation theory, the form of competition (akin to product market competition in the varities of capitalism literature) captures the nature and degree of competition in the socio-economic model. Institutions which constitute this form are administrative burdens to for corporation (ABC), sole proprietor firms (ABP), entry barriers, price controls (PCT), or the degree of competition (measured here by the Lerner index).
+
+The next 9 variables are for the wage-labour nexus, which comprises all institutions regulating employment relationships, wage setting, work organization and social protection.
+
+The monetary regime, defined as all the institutions regulating money, credit and finance, is summarized by 6 variables (interbank 3-months interest rate, inflation rate...) while 14 variables describe the insertion into the international regime such as the importance of agriculture (PrimAgri), extractive industries (PrimIndus), manufacture (SecManuf) and the so-called globalization index from the KOF economic institute. Finally, the social relations to the environment is captured by the remaining 9 variables such as environmental regulation stringency (EnvReg), GDP intensity in greenhouse gas (GHGGDP).
+
+To run MFA in R, one just needs to load the FactoMineR package and use its MFA() function. The only complication of this function is the `group` argument it needs to be a vector of numbers which describe how the variables are grouped. It works as follows:
+
+```{r}
+#| warning: false
+#| message: false
+
+
+group_name <- c("Competition", "State", "Money", 
+                "International regime", 
+                "Environment",
+                "Wage-labour nexus") # create a vector with the name of the groups (ie the 6 institutional forms)
+
+MFA_CF2020 <- MFA(data, 
+                  group = c(25, 9, 6, 14, 13, 9), 
+                  type = rep("s", 6), 
+                  ncp = 5, # manumber of principal components to keep 
+                  name.group = group_name, graph = FALSE)
+```
+
+`group = c(25, 9, 6, 14, 13, 9)` tells the function that the first 25 variables are the first group, the second group then contains the following 9, then the third the following 6 etc. One can also give the groups name with the `group_name` argument. `type = rep("s", 6)` tells the nature of the variables for each group. "s" is for quantitative variables and thus we have to repeat this string 6 time for the six groups (hence the rep function).
+
+Apart from the group argument, we can appreciate of simple it is to implement MFA in R, while conducting separate analyses using 6 PCA and MCA six time would have required much more time and code.
+
+## Exploring separate PCA
+
+The MFA function returns an list with two main elements:
+
+-   separate.analyses: those are PCA analyses for each group. We have thus 6 separate PCA analyses for each institutional forms and we can analyse, visualize and perform cluster analysis on each of them if we are interested.
+
+-   global.analysis which is the global PCA with the variables weighted accordingly to their group.
+
+For instance, let's have a look the to the social relations to the environment. Two useful graphs for PCA are the circular plots (also called graph of variables), which show the correlation of the variables with the principal components (usually the first two); and the plot of the observations on these first two principal components. factoextra is a useful package to draw quick visualization of the PCA:
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(factoextra)
+fviz_pca_var(MFA_CF2020$separate.analyses$Environment) # graph of the variables and their contribution to the dimensions
+fviz_pca_ind(MFA_CF2020$separate.analyses$Environment) # graph of individuals (here countries)
+```
+
+One can also combine the two graph into a single plot:
+
+```{r}
+factoextra::fviz_pca_biplot(MFA_CF2020$separate.analyses$Environment)
+```
+
+From the graphs above, one can make the following observations regarding the position of countries on the two dimensions. On the upper right quadrant, we have countries which are characterized by (relatively) a lot of climate activism (measured by IUCN and GreenP), environmental regulations and enforcement, but are also characterized by some important degree of CO2 offshoring (EnerEmb and CO2Emb measure energy and CO2 in net imports, they measure the degree of offshoring of GHG emissions). On the upper left quadrant, we have countries such as China and India with high domestic GHG emissions (EnerGDP, GHGGDP...), high carbon inequalities, low offshoring and climate activism. On the lower right quadrant, we have countries such as France and the UK which have relatively lower domestic GHG emissions but with high offshoring and low activism.
+
+Applying hierachical clustering is also very easy through the `HCPC()` function. Note that it is not possible to run this function in quarto since the function asks to cut the dendogram tree to determine the number of clusters. I thus ran the code first in a R script to get the number of clusters which is four:
+
+```{r}
+#| message: false
+#| warning: false
+cluster_env = HCPC(MFA_CF2020$separate.analyses$Environment, nb.clust = 4, graph = FALSE)
+fviz_cluster(cluster_env) +
+  theme_minimal()
+```
+
+The clusterization confirms the obervations we made above: we have a group of domestic polluters (cluster 1), low offshoring (which makes sense since they export their domestic pollution to rich countries of cluster 4 and 3) and lower activism. Cluster 3 gathers countries with high carbon inequalities and relatively higher carbon emissions (lower than cluster one but higher than cluster 4) and low activism. Cluster 4 is mostly composed of rich countries with high degree of offshoring, activism, lower inequality and GHG emissions.
+
+## Exploring global PCA
+
+Let's now have a look to the global weighted PCA. Let's start with the contribution of the variables on the first two dimensions. Since there are a lot of variables, it is useful to make an interative plot with the `ggplotly` function from the `plotly` package so that we can zoom on the graph:
+
+```{r}
+plot_MFA1 = fviz_mfa_var(MFA_CF2020)
+
+ggplotly(plot_MFA1)
+```
+
+We can see that the first principal component is highly positively correlated with the degree of labour protection and BSS (entry barriers in professional services, freight transport services and retail distribution) while the second is highly correlated with the variables measuring the degree of domestic pollution and negatively correlated with globalization indicators, collective bargaining, the wage share and climate activisms (among other...).
+
+```{r}
+plot_MFA2 = fviz_mfa_ind(MFA_CF2020, geom = "text")
+
+ggplotly(plot_MFA2)
+```
+
+
+
+
+
+
+
+
+
