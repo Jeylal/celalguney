@@ -27,6 +27,7 @@ library(Factoshiny) # allows interactive exploration of MFA
 library(explor) # allows interactive exploration of PCA and MCA
 library(gt) # for tables
 library(plotly) # for interactive graphs
+library(factoextra) # to make PCA graphs
 ```
 
 ::: callout-warning
@@ -63,7 +64,7 @@ head(data) %>%
   gt()
 ```
 
-The first 25 variables concern the form of competition. In regulation theory, the form of competition (akin to product market competition in the varities of capitalism literature) captures the nature and degree of competition in the socio-economic model. Institutions which constitute this form are for instance administrative burdens to for corporation (ABC), sole proprietor firms (ABP), entry barriers, price controls (PCT), or the degree of competition (measured here by the Lerner index).
+The first 25 variables concern the form of competition. In Regulation Theory, the form of competition (akin to product market competition in the varieties of capitalism framework) captures the nature and degree of competition in the socio-economic model. Institutions which constitute this form are for instance administrative burdens to for corporation (ABC), sole proprietor firms (ABP), entry barriers, price controls (PCT), or the degree of competition (measured here by the Lerner index).
 
 The next 9 variables are for the wage-labour nexus, which comprises all institutions regulating employment relationships, wage setting, work organization and social protection.
 
@@ -75,13 +76,13 @@ To run MFA in R, one just needs to load the FactoMineR package and use its MFA()
 #| warning: false
 #| message: false
 
-
+# create a vector with the name of the groups (ie the 6 institutional forms)
 group_name <- c("Competition", 
                 "State",
                 "Money", 
                 "International regime", 
                 "Environment",
-                "Wage-labour nexus") # create a vector with the name of the groups (ie the 6 institutional forms)
+                "Wage-labour nexus") 
 
 MFA_CF2020 <- MFA(data, 
                   group = c(25, 9, 6, 14, 13, 9), 
@@ -102,46 +103,77 @@ The MFA function returns an list with two main elements:
 
 -   global.analysis which is the global PCA with the variables weighted accordingly to their group.
 
-For instance, let's have a look the to the social relations to the environment. Two useful graphs for PCA are the circular plots (also called graph of variables), which show the correlation of the variables with the principal components (usually the first two); and the plot of the observations on these first two principal components. `factoextra` is a useful package to draw quick visualization of the PCA:
+<!--
+Two useful graphs for PCA are the circular plots (also called graph of variables), which show the correlation of the variables with the principal components (usually the first two); and the plot of the observations on these first two principal components. `factoextra` is a useful package to draw quick visualization of the PCA:.
+-->
+
+
+For instance, let's have a look the to the social relations to the environment. It is common practice in factor analysis to first have a look to the contribution of the dataframe's variables to the principal components. There are two graphs which help to visualize this: a barplot plotting the variables' eigenvalues and the circular plot. It is very straightforward to produce such a barplot in R thanks to the `factoextra` package and its `fviz_contrib` function. Below, I show how to generate these graphs for the first 5 principal components, store them into a list and plot them together with the `ggarange` function from `ggpubr` package:
 
 ```{r}
-#| echo: false
 #| warning: false
 #| message: false
+#| fig-width: 10
+#| fig-height: 10
 
 
-data_dim = MFA_CF2020$separate.analyses$Environment$ind$coord |> 
-  as.data.frame() |> 
-  rownames_to_column()
+library(ggpubr)
+
+barplots_contrib_env <- 
+  1:5 |> # we want 5 plots for the first 5 PC, so I provide a vector which will integrated in the map function through axes = .x argument
+    map(~fviz_contrib(MFA_CF2020$separate.analyses$Environment, 
+                      choice = "var", 
+                      axes = .x))
+
+ggarrange(plotlist = barplots_contrib_env)
+```
+
+We have now an overview to how the first five PCs are structured. The first PC is highly correlated with variables such as GDP intensity in GHG (GHGGdp) and energy (EnerGDP), as well as environmental regulation stringency (EnvReg). The second PC is correlated with embodied energy in net imports relatively to energy consumption (EnerEmb) and organizations member of IUCN per millions inhabitants. The variable capturing environmental conflict contribute more than 50% to the third PC.
+
+However, the barplots do not tell us to whether the variables which contribute the most to the PCs are correlated negatively or positively to the latter. To see that, circular plots are a good visualization. Here, the code is slighlty more complex because we need to provide a five elements list in which there are the combinations of the PCs represented in the circular plot:
 
 
-comb = list(
-  one = c(1,2)
-)
-
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 15
+#| fig-height: 14
 
 axes_list <- combn(1:5, 2, simplify = FALSE)
 
-# Boucle pour afficher les graphiques
+circplots_contrib_env <- 
+  axes_list |> 
+    map(~fviz_pca_var(MFA_CF2020$separate.analyses$Environment,
+                      axes = .x)+
+          labs(title = ""))
 
-varplot = function(...){lapply(axes_list, function(a) fviz_pca_var(MFA_CF2020$separate.analyses$Environment, axes = a))}
-plots <- lapply(axes_list, function(a) fviz_pca_var(MFA_CF2020$separate.analyses$Environment, axes = a))
-
-
-
-ggpairs(data_dim, columns = 2:6,
-        lower = list(continuous = lapply(axes_list, function(a) fviz_pca_var(MFA_CF2020$separate.analyses$Environment, axes = a))),
-        diag = NULL, upper = list(continuous = "points"),
-        mapping = aes(color = rowname))
+ggarrange(plotlist = circplots_contrib_env)
 
 
-library(factoextra)
-fviz_pca_var(MFA_CF2020$separate.analyses$Environment) # graph of the variables and their contribution to the dimensions
-fviz_pca_ind(MFA_CF2020$separate.analyses$Environment,
-             axes = c(1,2)) # graph of individuals (here countries)
+
 ```
 
-One can also combine the two graph into a single plot:
+The next step is to see how the countries are distributed along these PCs. To do so, we just use `fviz_pca_ind` instead of `fviz_pca_var`:
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 10
+
+axes_list <- combn(1:3, 2, simplify = FALSE)
+
+countries_plot_env <- 
+  axes_list |> 
+    map(~fviz_pca_ind(MFA_CF2020$separate.analyses$Environment,
+                      axes = .x)+
+          labs(title = ""))
+
+ggarrange(plotlist = countries_plot_env)
+```
+
+
+One can also combine the countries and circular graphs into a single plot:
 
 ```{r}
 factoextra::fviz_pca_biplot(MFA_CF2020$separate.analyses$Environment)
@@ -149,32 +181,6 @@ factoextra::fviz_pca_biplot(MFA_CF2020$separate.analyses$Environment)
 
 From the graphs above, one can make the following observations regarding the position of countries on the two dimensions. On the upper right quadrant, we have countries which are characterized by (relatively) a lot of climate activism (measured by IUCN and GreenP), environmental regulations and enforcement, but are also characterized by some important degree of CO2 offshoring (EnerEmb and CO2Emb measure energy and CO2 in net imports, they measure the degree of offshoring of GHG emissions). On the upper left quadrant, we have countries such as China and India with high domestic GHG emissions (EnerGDP, GHGGDP...), high carbon inequalities, low offshoring and climate activism. On the lower right quadrant, we have countries such as France and the UK which have relatively lower domestic GHG emissions but with high offshoring and low activism.
 
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-library(BiocManager)
-#BiocManager::install('PCAtools')
-library(PCAtools)
-library(GGally)
-
-# Extraction des coordonnées des individus sur les 5 premiers axes
-coords <- as.data.frame(MFA_CF2020$ind$contrib[, 1:4])
-MFA_CF2020$ind$contrib
-# Pairs plot avec base R
-pairs(coords, main="Pairs Plot des 5 premières dimensions de la MFA")
-
-# Pairs plot avec GGally (ggplot2)
-ggpairs(coords,
-        upper = list(continuous = wrap("points")),  # Scatter plots en haut
-        lower = list(continuous = wrap("points")),  # Scatter plots en bas
-        diag = list(continuous = wrap("barDiag")))
-
-
-
-```
 
 
 Applying hierachical clustering is also very easy through the `HCPC()` function. Note that it is not possible to run this function in quarto since the function asks to cut the dendogram tree to determine the number of clusters. I thus ran the code first in a R script to get the number of clusters which is four:

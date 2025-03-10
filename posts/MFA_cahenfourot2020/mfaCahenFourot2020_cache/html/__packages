@@ -16,3 +16,8 @@ explor
 gt
 factoextra
 plotly
+ggpubr
+BiocManager
+ggrepel
+PCAtools
+GGally
