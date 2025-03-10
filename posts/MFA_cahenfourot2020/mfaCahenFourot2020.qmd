@@ -20,7 +20,7 @@ bibliography: references.bib
 #| message: false
 
 #install.packages("explor")
-setwd("C:/Users/celal/OneDrive/Bureau/celalguney/posts/MFA_cahenfourot2020")
+#setwd("C:/Users/celal/OneDrive/Bureau/celalguney/posts/MFA_cahenfourot2020")
 library(tidyverse) # for data wrangling
 library(FactoMineR) # contains MFA function
 library(Factoshiny) # allows interactive exploration of MFA 
@@ -33,7 +33,7 @@ library(plotly) # for interactive graphs
 ## Writing still in progress
 :::
 
-In social sciences, factor analysis is a very useful set of methods to analyze data for a wide variety of topics. The most well-known method is principal component analysis (PCA), which allows to reduce a set of variables into a few "principal components" which are linear combinations of the datasets' variables. The components are ordered according to the percentage of variance captured by it and components are orthogonal (not correlated) with each other. PCA applies only to quantitative variables, but there are many options to include qualitative and ordinal variables: multiple correspondence analysis (MCA) which applies to qualitative variables only, and mixed methods which applies to both qualitative and quantitative variables. Factor analysis is also useful to run cluster analysis. Once the principal components are estimated, hierarchical cluster (HC) can be conducted to groups the observations into clusters.
+In economics and social sciences in general, factor analysis is a very useful set of methods used to analyze data for a wide variety of topics. The most well-known method is principal component analysis (PCA), which allows to reduce a set of variables into a few "principal components" which are linear combinations of the datasets' variables. The components are ordered according to the percentage of variance captured by it and components are orthogonal (not correlated) with each other. PCA applies only to quantitative variables, but there are many options to include qualitative and ordinal variables: multiple correspondence analysis (MCA) which applies to qualitative variables only, and mixed methods which applies to both qualitative and quantitative variables. Factor analysis is also useful to run cluster analysis. Once the principal components are estimated, hierarchical cluster (HC) can be conducted to groups the observations into clusters.
 
 However, what happens when our variables correspond to different group ? Running a PCA directly would ignore this grouping and thus loose a lot of information. To give an example I am studying, the literature on comparative capitalism often uses clustering through PCA and MCA to identify empirically the varieties of socio-economic models which exist across countries. One of the main ideas of comparative capitalism is that social, political and economic institutions come with different forms, hierarchy as well as complementarities within countries, leading thus to different forms of capitalism between them, that we can clusterize. This is what has been done by, for instance, @amable_diversity_2003 who identified five types of capitalism by the analysis of five institutional domains: the wage-labour nexus; the financial system; the education system; product-market competition; the welfare state & social protection system. @cahen-fourot_contemporary_2020 offers a similar typology, but with slighlty different institutional domains (which he calls "institutional forms" because they are taken from Régulation Theory): the monetary regime; the wage-labour nexus; the form of competition; the form of the state and the insertion into the international regime. What is interesting in @cahen-fourot_contemporary_2020 is that he includes an additional institutional form: the social relations to the environment.
 
@@ -43,7 +43,7 @@ To identify and cluster different types of capitalism, this literature uses a co
 2.  Cluster the countries on this institutional domain using HC on the PCA and attribute each country to their cluster
 3.  Run a MCA on the cluster classification
 
-Despite the fact that this approach is acceptable, it can be very time consuming especially when the steps 1 and 2 above must be repeated a lot (in the example above, 5 or 6 times). There exists another principal component method which allows to do that in a much simpler way: multiple factor analysis. Using this method would allow to run a single principal components dimension reduction while taking into account the fact that the data are grouped into categories (in that case the institutional forms) and thus avoiding to run a separate analysis for each one of them. In very simple terms, MFA can be considered as a weighted PCA in which each variable is divided by the square root of the first eigenvalue of the group it belongs to. By doing so, the group structure is preserved while running the analysis over the whole variables.
+Despite the fact that this approach is acceptable, it can be very time consuming especially when the steps 1 and 2 above must be repeated a lot (in the example above, 5 or 6 times). There exists another principal component method which allows to do that in a much simpler way: multiple factor analysis. Using this method would allow to run a single principal components dimension reduction while taking into account the fact that the data are grouped into categories (in that case the institutional forms) and thus avoiding to run a separate analysis for each one of them. In very simple terms, MFA can be considered as a weighted PCA in which each variable is divided by the square root of the first eigenvalue of the group it belongs to. By doing so, the group structure is preserved while running the analysis over all the variables.
 
 The present post will not explain further details on MFA, but will focus on its practical implementation and visualization in R using the FactoMineR and FactoShiny packages. There are many resources online to learn all technical details about MFA, as this [series of youtube tutorials done by François Husson](https://www.youtube.com/watch?v=MOl0Aw1TTFE&list=PLnZgp6epRBbRX8TEp1HlFGqfMf_AxYEj7&index=1). this [post](https://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/116-mfa-multiple-factor-analysis-in-r-essentials/) is also very useful.
 
@@ -63,7 +63,7 @@ head(data) %>%
   gt()
 ```
 
-The first 25 variables concern the form of competition. In regulation theory, the form of competition (akin to product market competition in the varities of capitalism literature) captures the nature and degree of competition in the socio-economic model. Institutions which constitute this form are administrative burdens to for corporation (ABC), sole proprietor firms (ABP), entry barriers, price controls (PCT), or the degree of competition (measured here by the Lerner index).
+The first 25 variables concern the form of competition. In regulation theory, the form of competition (akin to product market competition in the varities of capitalism literature) captures the nature and degree of competition in the socio-economic model. Institutions which constitute this form are for instance administrative burdens to for corporation (ABC), sole proprietor firms (ABP), entry barriers, price controls (PCT), or the degree of competition (measured here by the Lerner index).
 
 The next 9 variables are for the wage-labour nexus, which comprises all institutions regulating employment relationships, wage setting, work organization and social protection.
 
@@ -76,7 +76,9 @@ To run MFA in R, one just needs to load the FactoMineR package and use its MFA()
 #| message: false
 
 
-group_name <- c("Competition", "State", "Money", 
+group_name <- c("Competition", 
+                "State",
+                "Money", 
                 "International regime", 
                 "Environment",
                 "Wage-labour nexus") # create a vector with the name of the groups (ie the 6 institutional forms)
@@ -88,9 +90,9 @@ MFA_CF2020 <- MFA(data,
                   name.group = group_name, graph = FALSE)
 ```
 
-`group = c(25, 9, 6, 14, 13, 9)` tells the function that the first 25 variables are the first group, the second group then contains the following 9, then the third the following 6 etc. One can also give the groups name with the `group_name` argument. `type = rep("s", 6)` tells the nature of the variables for each group. "s" is for quantitative variables and thus we have to repeat this string 6 time for the six groups (hence the rep function).
+`group = c(25, 9, 6, 14, 13, 9)` tells the function that the first 25 variables are the first group, the second group then contains the following 9, then the third the following 6 etc. One can also give the groups name with the `group_name` argument. `type = rep("s", 6)` tells the nature of the variables for each group. "s" is for quantitative variables and thus we have to repeat this string 6 time for the six groups (hence the rep function). 
 
-Apart from the group argument, we can appreciate of simple it is to implement MFA in R, while conducting separate analyses using 6 PCA and MCA six time would have required much more time and code.
+Apart from the group argument, we can appreciate of simple it is to implement MFA in R, while conducting separate analyses using 6 PCA and MCA six time would have required much more time and code. The only drawback of the `MFA()` function is that it requires the variables to be ordered by groups in the dataframe.
 
 ## Exploring separate PCA
 
@@ -100,15 +102,43 @@ The MFA function returns an list with two main elements:
 
 -   global.analysis which is the global PCA with the variables weighted accordingly to their group.
 
-For instance, let's have a look the to the social relations to the environment. Two useful graphs for PCA are the circular plots (also called graph of variables), which show the correlation of the variables with the principal components (usually the first two); and the plot of the observations on these first two principal components. factoextra is a useful package to draw quick visualization of the PCA:
+For instance, let's have a look the to the social relations to the environment. Two useful graphs for PCA are the circular plots (also called graph of variables), which show the correlation of the variables with the principal components (usually the first two); and the plot of the observations on these first two principal components. `factoextra` is a useful package to draw quick visualization of the PCA:
 
 ```{r}
 #| echo: false
 #| warning: false
+#| message: false
+
+
+data_dim = MFA_CF2020$separate.analyses$Environment$ind$coord |> 
+  as.data.frame() |> 
+  rownames_to_column()
+
+
+comb = list(
+  one = c(1,2)
+)
+
+
+axes_list <- combn(1:5, 2, simplify = FALSE)
+
+# Boucle pour afficher les graphiques
+
+varplot = function(...){lapply(axes_list, function(a) fviz_pca_var(MFA_CF2020$separate.analyses$Environment, axes = a))}
+plots <- lapply(axes_list, function(a) fviz_pca_var(MFA_CF2020$separate.analyses$Environment, axes = a))
+
+
+
+ggpairs(data_dim, columns = 2:6,
+        lower = list(continuous = lapply(axes_list, function(a) fviz_pca_var(MFA_CF2020$separate.analyses$Environment, axes = a))),
+        diag = NULL, upper = list(continuous = "points"),
+        mapping = aes(color = rowname))
+
 
 library(factoextra)
 fviz_pca_var(MFA_CF2020$separate.analyses$Environment) # graph of the variables and their contribution to the dimensions
-fviz_pca_ind(MFA_CF2020$separate.analyses$Environment) # graph of individuals (here countries)
+fviz_pca_ind(MFA_CF2020$separate.analyses$Environment,
+             axes = c(1,2)) # graph of individuals (here countries)
 ```
 
 One can also combine the two graph into a single plot:
@@ -118,6 +148,34 @@ factoextra::fviz_pca_biplot(MFA_CF2020$separate.analyses$Environment)
 ```
 
 From the graphs above, one can make the following observations regarding the position of countries on the two dimensions. On the upper right quadrant, we have countries which are characterized by (relatively) a lot of climate activism (measured by IUCN and GreenP), environmental regulations and enforcement, but are also characterized by some important degree of CO2 offshoring (EnerEmb and CO2Emb measure energy and CO2 in net imports, they measure the degree of offshoring of GHG emissions). On the upper left quadrant, we have countries such as China and India with high domestic GHG emissions (EnerGDP, GHGGDP...), high carbon inequalities, low offshoring and climate activism. On the lower right quadrant, we have countries such as France and the UK which have relatively lower domestic GHG emissions but with high offshoring and low activism.
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(BiocManager)
+#BiocManager::install('PCAtools')
+library(PCAtools)
+library(GGally)
+
+# Extraction des coordonnées des individus sur les 5 premiers axes
+coords <- as.data.frame(MFA_CF2020$ind$contrib[, 1:4])
+MFA_CF2020$ind$contrib
+# Pairs plot avec base R
+pairs(coords, main="Pairs Plot des 5 premières dimensions de la MFA")
+
+# Pairs plot avec GGally (ggplot2)
+ggpairs(coords,
+        upper = list(continuous = wrap("points")),  # Scatter plots en haut
+        lower = list(continuous = wrap("points")),  # Scatter plots en bas
+        diag = list(continuous = wrap("barDiag")))
+
+
+
+```
+
 
 Applying hierachical clustering is also very easy through the `HCPC()` function. Note that it is not possible to run this function in quarto since the function asks to cut the dendogram tree to determine the number of clusters. I thus ran the code first in a R script to get the number of clusters which is four:
 
@@ -148,12 +206,3 @@ plot_MFA2 = fviz_mfa_ind(MFA_CF2020, geom = "text")
 
 ggplotly(plot_MFA2)
 ```
-
-
-
-
-
-
-
-
-
