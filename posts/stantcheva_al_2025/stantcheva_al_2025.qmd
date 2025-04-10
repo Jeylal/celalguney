@@ -1,0 +1,69 @@
+---
+title: "Stantcheva et al 2025"
+author: "Celâl Güney"
+format: html
+editor: visual
+execute: 
+  freeze: true
+date: "8 may 2024"
+categories: [Ecology; Political Economy]
+draft: true
+---
+
+
+
+```{r}
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+library(haven)
+library(tidyverse)
+library(gt)
+library(xlsx)
+library(gtExtras)
+# writexl::write_xlsx(codebook, path = "~/GitHub/celalguney/posts/stantcheva_al_2025/codebook.xlsx")
+data <- read_dta("all.dta")
+
+
+#gt::data_color(
+#   columns = mpg:disp, colors = c("white", "red"))
+# gt_hulk_col_numeric(columns = 2:3)
+
+data |> 
+  group_by(country) |> 
+  count(left_right) |> 
+  mutate(prop = n/sum(n)) |> 
+  filter(left_right %in% c(1,2)) |> 
+  summarise(
+    n = sum(n),
+    prop = sum(prop)
+  ) |> 
+  ungroup() |> 
+  gt() 
+
+
+table_fun = function(data, var, group){
+  
+  {{data}} |> 
+  group_by({{group}}) |> 
+  count({{var}}) |> 
+  mutate(prop = n/sum(n)) |> 
+  filter({{var}} %in% c(1,2)) |> 
+  summarise(
+    n = sum(n),
+    prop = sum(prop)
+  ) |> 
+  ungroup() |> 
+  gt() 
+  
+  
+  
+}
+
+table_fun(data = data, var = left_right, group = country)
+
+
+
+```
+
