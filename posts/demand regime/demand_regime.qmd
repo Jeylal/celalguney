@@ -143,7 +143,7 @@ macroch <- read_csv("macroch.csv")
 
 ## Abstract
 
-Despite a flourishing and growing litterature on the identification of demand and growth regimes, Switzerland remains little studied. This is all the more odd given that the Swiss model is often considered one of the most successful and stable in the world. From the Kaleckian approach to demand and growth regimes, which started with the seminal contribution of @bhaduri_unemployment_1990, only one study tried to identify the Swiss demand and growth regimes [@hartwig_distribution_2013]. This paper tries to fill this gap by conducting a comprehensive identification of the Swiss acummulation regime. It finds that, from 1960 to 2022, as predicted by the model for small-open economies, the Swiss demand regime is profit led due a strong effect of the profit share on net exports.
+Despite a flourishing and growing litterature on the identification of demand and growth regimes, Switzerland remains little studied. This is all the more odd given that the Swiss model is often considered one of the most successful and stable in the world. From the Kaleckian approach to demand and growth regimes, which started with the seminal contribution of @bhaduri_unemployment_1990, only one study tried to identify the Swiss demand and growth regimes [@hartwig_distribution_2013]. This blog post tries to fill this gap by conducting a comprehensive identification of the Swiss accumulation regime. It finds that, from 1960 to 2022, as predicted by the model for small-open economies, the Swiss demand regime is profit led due a strong effect of the profit share on net exports.
 
 ## Introduction
 
