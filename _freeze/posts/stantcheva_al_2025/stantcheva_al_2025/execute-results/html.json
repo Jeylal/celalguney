@@ -1,0 +1,15 @@
+{
+  "hash": "fbaaf47b0b7dc8eb5adfb48ceba3ec17",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Stantcheva et al 2025\"\nauthor: \"Celâl Güney\"\nformat: html\neditor: visual\nexecute: \n  freeze: true\ndate: \"8 may 2024\"\ncategories: [Ecology; Political Economy]\ndraft: true\n---\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

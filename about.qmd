@@ -34,9 +34,9 @@ h1 {
 
 ## Welcome ! 👋
 
-My name is Celâl and I am a social sciences researcher in economics, macroeconomics and survey data analysis. I am an expert in the analysis of macroeconomic dynamics, socio-political expectations/preferences, institutional change and in programming, especially with R. I am currently a research and teaching assistant at the department of History-Economics-Society at the University of Geneva, where I obtained a master in political economy and a certificate in applied statistics. I have several years of experience in data analysis and applied research in economics with R and other tools such as Stata, SPSS or Julia.
+My name is Celâl and I am a social sciences researcher in macroeconomics, political economy and survey data analysis. I am an expert in the analysis of macroeconomic dynamics, socio-political expectations/preferences, institutional change and in programming, especially with R. I have a background in economics, political economy and economic history as well as several years of experience in data analysis and applied research in economics with R and other tools such as Stata, SPSS or Julia. My field of interest concerns the analysis of institutional change of contemporary socio-economic models such as the French and Swiss models. I am also interested in the analysis of demand and productivity regimes from a post-Keynesian perspective and in comparative capitalism.
 
-Since my contract will end next July, I am actively looking for an internship, a Phd position or a job linked to my studies and areas of expertise, so don't hesitate to have a look to my [CV](https://raw.githubusercontent.com/Jeylal/celalguney/master/cv.pdf) or to my blog [posts](https://jeylal.github.io/celalguney/) where I publish stuff related to my studies, readings and research interests. You can have a look to my master's thesis [here](https://jeylal.github.io/master-thesis/), which analyzes institutional change in Switzerland and the political demands of Swiss citizen since the 80s and offers a clustering analysis of the Swiss socio-political groups in the 90s.
+I am actively looking for job opportunities in research and/or teaching so do not hesitate to have a look to my  [CV](https://raw.githubusercontent.com/Jeylal/celalguney/master/cv.pdf), to my current research projects, or to my blog [posts](https://jeylal.github.io/celalguney/), where I publish stuff related to my studies, readings and research interests. You can have a look to my master's thesis [here](https://jeylal.github.io/master-thesis/), which analyzes institutional change in Switzerland and the political demands of Swiss citizen since the 80s and offers a clustering analysis of the Swiss socio-political groups in the 90s.
 
 ------------------------------------------------------------------------
 
@@ -52,7 +52,17 @@ Since my contract will end next July, I am actively looking for an internship, a
 
 ## 💼 Work Experience
 
-- 🏫 **Research and teaching assistant, department of History-Economics-Society, Unige** | (2023 - July 2025)
+- 🏫 **Research and teaching auxiliary, department of History-Economics-Society, University of Geneva** (August 2023 - January 2024)
+
+- 🏫 **Research and teaching assistant, department of History-Economics-Society, University of Geneva** (August 2024 - July 2025)
+
+## 💼 Teaching Experience
+
+- Économie, état et institutions (tutorats)
+- Histoire économique contemporaine, la Suisse dans une perspective internationale (tutorats)
+- International economic history (tutorats)
+- Économie et histoire (tutorats)
+- Séminaire d'histoire économique et sociale des pays en voie de développement 
 
 ::::: grid
 ::: g-col-6
@@ -68,9 +78,9 @@ Since my contract will end next July, I am actively looking for an internship, a
 ### 💡 Interests
 
 -   Macroeconomics\
--   Survey data analysis \| Econometrics \| Statistics\
 -   Institutional economics\
 -   Political economy and comparative capitalism\
+-   Survey data analysis \| Econometrics \| Statistics\
 -   Economic history \| History of economic thought\
 :::
 :::::

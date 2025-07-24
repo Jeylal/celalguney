@@ -1,0 +1,22 @@
+---
+title: "Research"
+format: html
+editor: visual
+---
+
+## 📚 Publications
+
+- ### "The Political Economy of Institutional Change and Social Blocs in Switzerland: a Neorealist Approach"
+https://archive-ouverte.unige.ch/unige:176868
+
+## 📌 Current Projects
+
+- ### "À la recherche des trois blocs: une analyse empirique de la tripolarisation de l'espace politique français"  
+  *Avec Bruno Amable*  
+
+- ### "Demand and Productivity Regimes in Switzerland: 1950–2024"  
+
+- ### "For a Neorealist Political Ecology"  
+  The political conditions of the social-ecological transformation.
+  
+- ### PhD thesis proposal: "Institutional Change in the Swiss Political Economy: Forces of Transformation and Stability"

@@ -9,13 +9,14 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.13</generator>
+<generator>quarto-1.7.29</generator>
 <lastBuildDate>Sat, 22 Feb 2025 23:00:00 GMT</lastBuildDate>
 <item>
   <title>How to run multiple factor analysis in R</title>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/posts/MFA_cahenfourot2020/mfaCahenFourot2020.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -542,7 +543,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="SCP" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SCP</th>
 <th id="GIN" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">GIN</th>
 <th id="DCB" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">DCB</th>
@@ -1490,6 +1491,7 @@ Cahen-Fourot, Louison. 2020. <span>“Contemporary Capitalisms and Their Social 
 
 
 
+
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1652,6 +1654,7 @@ Rennwald, Line, and Adrian Zimmermann. 2016. <span>“Le Vote Ouvrier En Suisse,
 
 
 
+
 <p>In the last years, recurring debates are emerging in Switzerland regarding the future of the country’s socio-economic model, showing a rising concern of the Swiss elites for their country’s economic performance. One of the most growing debates is about economic growth: does Switzerland, as in other Western countries, suffer from economic slow-down, or even stagnation ? This was suggested by an article published in 2022 in the renown Swiss-German newspaper <em>Neue Zürcher Zeitung</em>. This article, written by Thomas Fuster and entitled <em>“Immigration: The Swiss economy is primarily growing extensively”</em> argued that the Swiss economy is solely growing “extensively”, that is, only thanks to demographic growth and hence immigration. While economic growth, measured by the famous gross domestic product (GDP) indicator, is still growing due to immigration, gdp per capita growth remains near-stagnant because of the decline in productivity growth. This article provoked heated reactions among the neoliberal think thank <em>Avenir Suisse</em> and the business interest association <em>EconomieSuisse</em>, which responded through a series of articles offering an overview and a discussion of the performance of the Swiss economy in the last decades. Both EconomieSuisse and Avenir Suisse were eager to prove that Switzerland’s economy is resilient, that intensive growth based on productivity gains is still a fact, and that the country still holds its privileged position as the so-called Swiss miracle.</p>
 <p><a href="https://www.economiesuisse.ch/fr/articles/la-croissance-de-la-suisse-est-elle-avant-tout-quantitative">EconomieSuisse’s argument and empirical evidence</a> <span class="citation" data-cites="minsch_croissance_2023">(Minsch 2023)</span> are first based on a graph showing the evolution of Switzerland’s real gdp per capita growth in international comparison. The graph shows that Swiss gdp per capita is well advanced compared to other Western countries such as the US, Germany or France, and continues to grow despite its advanced level. However there are several issues with EconomieSuisse’s figure. First, the choice of the countries which are compared to Switzerland biases the advance of the Swiss real gdp per capita. Second, the choice of the time interval (from 1970-2022) also overstates the advance of the Swiss economy. Using data offering a longer time frame (going back to 1950) and including other countries, one can arrive at totally different conclusions from what is shown by EconomieSuisse.</p>
 <div class="cell">
@@ -1760,6 +1763,7 @@ Minsch, Rudolf. 2023. <span>“La croissance suisse est-elle avant tout quantita
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/posts/political compass/pol_compass.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3099,6 +3103,7 @@ Sciarini, Pascal. 2023. <em>Politique Suisse - Institutions, Acteurs, Processus<
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/posts/vox and voto analysis/vox_voto_analysis.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -6570,6 +6575,7 @@ Piketty, Thomas. 2019. <em>Capital Et Idéologie</em>. Le Seuil.
 
 
 
+
 <section id="an-introduction-to-web-scraping-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="an-introduction-to-web-scraping-in-r">An introduction to web scraping in R</h2>
 <p>Web scraping is nowadays rife in statistics and data science. This data collection method has become fashionable not only in computer and data science, but also in economics, sociology and social sciences in general. The reasons for the success of web scraping need hardly to be told at length: the usefulness of web scrapping, extracting data from whatever website we visit, is self-evident. Go to any Wikipedia page, and you can extract whatever data table in contains into your favorite statistical software. The potential of web scraping is huge and will be increasingly used in social sciences.</p>
@@ -8790,6 +8796,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 
 
 
+
 <section id="political-stability-and-crisis-in-switzerland" class="level2">
 <h2 class="anchored" data-anchor-id="political-stability-and-crisis-in-switzerland">Political stability and crisis in Switzerland</h2>
 <p>Switzerland is often considered as a successful and well-performing economy. The country typically ranks among the firsts in a wide variety of living standard measures such as the human development index, GDP per capita and so on. Along with the good performances of the economy, one expects that Swiss people also have more trust in their institutions compared with other countries. If one looks at, for instance, the data provided by the OECD on the confidence in government and other institutions, Switzerland is indeed one of the countries with the highest level of trust:</p>
@@ -8797,7 +8804,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Source: OECD (Government at Glance, 2021)"></a></p>
+<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <figcaption>Source: OECD (Government at Glance, 2021)</figcaption>
@@ -8808,7 +8815,7 @@ font-style: inherit;">str</span>(data2)</span></code></pre></div>
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Source: OECD (Government at Glance, 2021)"></a></p>
+<p><a href="https://www.oecd.org/gov/government-at-a-glance-22214399.htm"><img src="https://jeylal.github.io/celalguney/posts/trust institution switzerland/graph_ocde.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <figcaption>Source: OECD (Government at Glance, 2021)</figcaption>
@@ -9069,6 +9076,7 @@ Kriesi, Hanspeter, Matthias Brunner, and François Lorétan. 2017. <span>“Enqu
   <title>Income, education and voting outcome: a cross-sectional analysis of voting outcome in Switzerland</title>
   <link>https://jeylal.github.io/celalguney/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -9983,7 +9991,6 @@ font-style: inherit;">3</span>)</span></code></pre></div>
 </tr>
 
 </tbody></table>
-
 </div>
 </div>
 <p>The random effects coefficients at the cantons level for income and education are 0, which implies that there is very low variation between cantons. Furthermore, the fixed effect coefficients are almost the same than the previous model: this new model is thus not a big improvement and shows that including cantons as a group does not change the model a lot.</p>
@@ -10201,6 +10208,7 @@ Inglehart, Ronald. 1971. <span>“The Silent Revolution in Europe: Intergenerati
   <title>From income brackets to income decile</title>
   <link>https://jeylal.github.io/celalguney/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -18637,6 +18645,7 @@ font-style: inherit;">$</span>share_rest))</span>
 
 
 
+
 <section id="comments-on-sidney-mintzs-sweetness-and-power-and-carlos-marichals-mexican-cochineal-and-the-european-demand-for-american-dyes-1550-1850" class="level2">
 <h2 class="anchored" data-anchor-id="comments-on-sidney-mintzs-sweetness-and-power-and-carlos-marichals-mexican-cochineal-and-the-european-demand-for-american-dyes-1550-1850">Comments on Sidney Mintz’s “Sweetness and Power” and Carlos Marichal’s “Mexican Cochineal and the European Demand for American Dyes, 1550-1850”</h2>
 <p>“The wealth of societies in which the capitalist mode of production prevails appears as an ‘immense collection of commodities’ […] Our investigation therefore begins with the analysis of the commodity” <span class="citation" data-cites="marx_capital_1990">(Marx 1990, 124)</span>. So is the incipit of one of the most famous and important books in political economy. If Marx saw in the commodity the most crucial and elementary unit of abstraction in the capitalist mode of production, so much that he spent the first and most tedious pages of his magnus opus dedicated to its analysis and decortication, the commodity per se, that is, as a focus of historical and economic analysis, is rather rare in economics and economic history. For instance, mainstream economics reduces commodities to any objects or services bringing utility to consumers, abstracting from its historical and political dimensions.</p>
@@ -18649,7 +18658,7 @@ font-style: inherit;">$</span>share_rest))</span>
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.worldhistory.org/article/1795/life-on-a-colonial-sugar-plantation/"><img src="https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Colonial sugar cane manufacturing"></a></p>
+<p><a href="https://www.worldhistory.org/article/1795/life-on-a-colonial-sugar-plantation/"><img src="https://jeylal.github.io/celalguney/posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <figcaption>Colonial sugar cane manufacturing</figcaption>
@@ -18701,6 +18710,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
 
 
+
 <section id="crises-cycles" class="level1">
 <h1>Crises &amp; cycles</h1>
 <p>One of the most striking phenomena in capitalist mode of production is certainly the recurring and systematic outbreak of financial and economic crises. Since the emergence of capitalism as a mode production in England during the 18th century and its progressive spread in Europe in the 19th and then in the world in the 20th and 21th centuries, the economy of capitalist countries must endure what economists call “business cycles”, that is to say, cyclical appearances of economic booms in production, employment and prices and busts (decline in production, employment and prices).</p>
@@ -18719,7 +18729,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/celalguney/posts/About cycles and crises/babsonchart.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Babson presenting one of his famous babsoncharts on business cycles"></a></p>
+<p><a href="https://centennial.babson.edu/past/roger-babson/"><img src="https://jeylal.github.io/celalguney/posts/About cycles and crises/babsonchart.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <figcaption>Babson presenting one of his famous babsoncharts on business cycles</figcaption>
@@ -18750,6 +18760,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 
 
 
+
 <section id="book-review-africans-and-the-industrial-revolution-in-england-a-study-in-international-trade-and-economic-development.-by-joseph-e.-inikori.-cambridge-cambridge-university-press-2002.-576-p." class="level1">
 <h1>Book Review Africans and the Industrial Revolution in England: A Study in International Trade and Economic Development. By JOSEPH E. INIKORI. Cambridge: Cambridge University Press, 2002. 576 p.</h1>
 <p>Africans and the Industrial Revolution in England written and published in 2002 by Joseph Inikori is certainly one of the major contributions on the role of Africans and international trade in England’s industrialization and long run economic development. Joseph Inikori is an Anglo-Nigerian historian currently professor in the university of Rochester and conducting research in Atlantic World Economic History. He has published several articles on Atlantic slave trade and its impact on England economic development, the culmination of his work and research being Africans and the Industrial Revolution in England which received the Association of African Studies Best Book Prize in 2003, one year after publication. This illustrates the importance of Inikori’s book for African scholars and researchers who are eager to demonstrate the historical importance of Africa and slavery of Africans in the rise of Western Europe (but mostly here England) modernity, economic supremacy and development.</p>
@@ -18760,7 +18771,7 @@ Mintz, Sidney. 1985. <span>“Power.”</span> In <em>Sweetness and Power: The P
 <p>Regardless, it was the access to new markets in Africa and in America’s colonies which enabled England to further its industrialization through import substitution strategies. Imports of cotton textile from India, for instance, gave impetus to local English entrepreneurs to try to venture into cotton textile manufacturing. Protectionist policies, access to outlets in British American colonies and Africa and raw cotton provided by American colonies where production in plantations were based on Africans slaves labor permitted England to successfully achieve import substitution in the cotton industry which is recognized as one of the most crucial sectors of the Industrial Revolution. The reader could be surprised of the relatively few pages focusing on cotton industry in chapter 9 (about 20 pages: pp.427-451) since the Industrial Revolution mostly began with the cotton industry and its technological improvements, but Inikori is right when he argues that this industry developed under the impetus of access to overseas African and American markets and based on raw cotton provided by slave labor in British American colonies. Nonetheless, I think we could also consider the possibility of counterfactual although it may sound speculative: could have England developed its revolutionary cotton industry without African slave labor? This question is a matter of substitutability degree of labor and imports: one could argue that the specialization of Egypt in raw cotton production in the middle of the 19th shows that imports of raw cotton was perhaps more flexible than what Inikori seems to consider.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://en.wikipedia.org/wiki/Atlantic_slave_trade#/media/File:Slaves_resting_by_Rugendas_01.jpg"><img src="https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/slavery.jpg" class="img-fluid figure-img" alt="Recently bought slaves in Brazil on their way to the farms of the landowners who bought them c.&nbsp;1830 (credit: wikipedia)"></a></p>
+<p><a href="https://en.wikipedia.org/wiki/Atlantic_slave_trade#/media/File:Slaves_resting_by_Rugendas_01.jpg"><img src="https://jeylal.github.io/celalguney/posts/Inikori about Slavery and the Industrial Revolution/slavery.jpg" class="img-fluid figure-img"></a></p>
 <figcaption>Recently bought slaves in Brazil on their way to the farms of the landowners who bought them c.&nbsp;1830 (credit: wikipedia)</figcaption>
 </figure>
 </div>

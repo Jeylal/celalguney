@@ -10,13 +10,12 @@ categories: [Ecology; Political Economy]
 draft: true
 ---
 
-
-
 ```{r}
 #| include: false
 #| echo: false
 #| message: false
 #| warning: false
+#| eval: false
 library(haven)
 library(tidyverse)
 library(gt)
@@ -66,4 +65,3 @@ table_fun(data = data, var = left_right, group = country)
 
 
 ```
-
