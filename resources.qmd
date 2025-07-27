@@ -6,7 +6,7 @@ editor: visual
 
 ## Books/Resources
 
--   [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations ](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
+-   [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
 
 -   [Blecker and Setterfield (2019) Heterodox Economics: Models of Demand, Distribution and Growth](resources_books/heterodox%20economics%20manual.pdf)
 
@@ -16,7 +16,7 @@ editor: visual
 
 ## Post-Keynesian journals
 
-::: columns
+:::::::::::::::::::: columns
 ::: {.column width="15%"}
 [![Cambridge Journal of Economics](resources_pictures/m_cover.jpeg){width="94"}](https://academic.oup.com/cje)
 :::
@@ -84,11 +84,11 @@ editor: visual
 ::: {.column width="15%"}
 [![Analytical Political Economy](resources_pictures/ape.jpg){width="102"}](https://www.wiley.com/en-us/Analytical+Political+Economy-p-9781119483311)
 :::
-:::
+::::::::::::::::::::
 
 ## Mainstream Journals
 
-::: columns
+::::::::::: columns
 ::: {.column width="15%"}
 [![Econometrica](resources_pictures/econometrica.jpg){width="95"}](https://onlinelibrary.wiley.com/journal/14680262)
 :::
@@ -118,11 +118,11 @@ editor: visual
 
 ::: {.column width="15%"}
 :::
-:::
+:::::::::::
 
 ## Economic History
 
-::: columns
+:::::: columns
 ::: {.column width="15%"}
 [![Journal of Economic History](resources_pictures/the_journal%20of%20economic%20history.jpg){width="80"}](https://www.cambridge.org/core/journals/journal-of-economic-history)
 :::
@@ -133,11 +133,11 @@ editor: visual
 
 ::: {.column width="15%"}
 :::
-:::
+::::::
 
 ## Political Science
 
-::: columns
+:::::::::: columns
 ::: {.column width="15%"}
 [![Swiss Political Science Review](resources_pictures/spsr.jpg){width="109"}](https://onlinelibrary.wiley.com/journal/16626370)
 :::
@@ -162,4 +162,32 @@ editor: visual
 
 ::: {.column width="15%"}
 :::
+::::::::::
+
+## Methods
+
+:::::::::: columns
+::: {.column width="15%"}
+[![International Journal of Social Research Methodology](resources_pictures/ijrsm.png){width="103"}](https://www.tandfonline.com/journals/tsrm20)
 :::
+
+::: {.column width="15%"}
+[![Political analysis](resources_pictures/political_analysis.jpg){width="115"}](https://www.cambridge.org/core/journals/political-analysis)
+:::
+
+::: {.column width="15%"}
+[![The American statistician](resources_pictures/american_statistician.png){width="107"}](https://www.tandfonline.com/journals/utas20)
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+
+::: {.column width="15%"}
+:::
+::::::::::
