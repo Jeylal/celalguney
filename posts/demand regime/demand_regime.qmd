@@ -1,5 +1,5 @@
 ---
-title: "The Swiss Growth Model: a Structural Approach"
+title: "The Swiss Demand and Growth Regimes: 1960-2022"
 author: "Celâl Gûney"
 format: 
   html:
@@ -7,16 +7,15 @@ format:
 editor: visual
 execute: 
   freeze: true
-categories: [Macroeconomics, Post-Keynesian Economics]
+categories: [Macroeconomics, Post-Keynesian Economics, Econometrics]
 draft: true
 bibliography: references.bib
 ---
 
 ```{r set up and loading data from dbnomics}
 #| echo: false
-#| message: false
 #| warning: false
-#| include: false
+#| message: false
 
 library(tidyverse)
 library(ARDL)
@@ -30,12 +29,18 @@ library(latex2exp)
 library(gt)
 library(stats)
 library(marginaleffects)
+library(tseries)
+library(aTSA)
+library(kableExtra)
+library(bimets)
 
 # Loading data from ameco and oecd using rdbnomics
 
 # [UVGD] Gross domestic product at current prices, annually, mrd chf AMECO/UVGD/CHE.1.0.0.0.UVGD
 GDP_n <- rdb(ids = "AMECO/UVGD/CHE.1.0.0.0.UVGD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
+#[RVGDP] Gross domestic product at 2015 reference levels per head of population AMECO/RVGDP/CHE.1.1.0.0.RVGDP, annually, 1000 chf
+GDP_cap <- rdb(ids = "AMECO/RVGDP/CHE.1.1.0.0.RVGDP") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
 # [PVGD] Price deflator gross domestic product, national currency, 2015 = 100 AMECO/PVGD/CHE.3.1.0.0.PVGD
 GDP_deflator <- rdb(ids = "AMECO/PVGD/CHE.3.1.0.0.PVGD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
@@ -89,6 +94,7 @@ G_real <- rdb(ids = "AMECO/OCTG/CHE.1.1.0.0.OCTG") %>% filter(original_period %i
 
 # [CHE.IRL.A] Switzerland – Long-term interest rate on government bonds – Annual OECD/EO/CHE.IRL.A
 i <- rdb(ids = "OECD/EO/CHE.IRL.A") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+i_real = i - diff(log(cpi))
 
 # [OTO.GDPV.A] OECD - Total – Gross domestic product, volume, market prices – Annual OECD/EO/OTO.GDPV.A
 oecd_real <- rdb(ids = "OECD/EO/OTO.GDPV.A") %>% 
@@ -104,6 +110,32 @@ y <- rdb(ids = "AMECO/RVGDE/CHE.1.1.0.0.RVGDE") %>%
   select(value) %>% 
   ts(start = 1960, end = 2022)
 
+# [NECN] Civilian employment, persons (national) AMECO/NECN/CHE.1.0.0.0.NECN, annually, 1000 persons
+N <- rdb(ids = "AMECO/NECN/CHE.1.0.0.0.NECN") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
+
+
+# [NLCN] Civilian labour force (Labour force statistics), annually, 1000 persons
+
+L <- rdb(ids = "AMECO/NLCN/CHE.1.0.0.0.NLCN") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
+
+# [NPAN] Population: 15 to 64 years working age population, annually 1000
+
+wap <- rdb(ids = "AMECO/NPAN/CHE.1.0.0.0.NPAN") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
+
+# load productivity data from dbnomics
+# [RVGDE] Gross domestic product at 2015 reference levels per person employed AMECO/RVGDE/CHE.1.1.0.0.RVGDE
+
+prod <- rdb(ids = "AMECO/RVGDE/CHE.1.1.0.0.RVGDE") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
+
 # compute profit share, wage share and the share of government and private expenditures, net exports and investment in GDP
 
 wageShare = W_n/GDP_n
@@ -112,79 +144,205 @@ G_share = G_n/GDP_n
 I_share = I_n/GDP_n
 C_share = C_n/GDP_n
 NX_share = NX/GDP_n
-
+employment_rate = N/wap
+NX_real = (NX/GDP_deflator)*100
 
 #macroch <- cbind(GDP_n, GDP_deflator, GDP_real, C_n, C_deflator, C_real, I_n, I_deflator, I_real, cpi, W_n, W_real, R_n, R_real, NX, G_n, i, wageShare, profitShare, G_share, I_share, C_share, NX_share, oecd_real = oecd_real/10^9) # divide oecd_real by one billion to have same scale as others
 
 #macroch <- as_tibble(macroch)
 
-# working age population 15-64
-
-WAP <- rdb(ids = "AMECO/NPAN/CHE.1.0.0.0.NPAN") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
-
-# total employment in 1000 AMECO/NETD/CHE.1.0.0.0.NETD
-
-E <- rdb(ids = "AMECO/NETD/CHE.1.0.0.0.NETD") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
 
-e = E/WAP
 ```
 
 ```{r import data}
 #| echo: false
-#| message: false
 #| warning: false
+#| message: false
+
 
 macroch <- read_csv("macroch.csv")
 
-
-
 ```
 
-## Abstract
+## Summary
 
-Despite a flourishing and growing litterature on the identification of demand and growth regimes, Switzerland remains little studied. This is all the more odd given that the Swiss model is often considered one of the most successful and stable in the world. From the Kaleckian approach to demand and growth regimes, which started with the seminal contribution of @bhaduri_unemployment_1990, only one study tried to identify the Swiss demand and growth regimes [@hartwig_distribution_2013]. This blog post tries to fill this gap by conducting a comprehensive identification of the Swiss accumulation regime. It finds that, from 1960 to 2022, as predicted by the model for small-open economies, the Swiss demand regime is profit led due a strong effect of the profit share on net exports.
+Despite a flourishing literature on the identification of demand and growth regimes, Switzerland remains little studied. This is all the more odd given that the Swiss economy is often considered one of the most successful and stable economies in the world. In the Kaleckian approach to demand and growth regimes, which started with the seminal contribution of @bhaduri_unemployment_1990, only one study tried to identify the Swiss demand and growth regimes [@hartwig_distribution_2013]. This paper tries to fill this gap by conducting a comprehensive identification of the Swiss demand and growth regimes. It finds that, from 1960 to 2022, as predicted by the model for small-open economies, the Swiss demand regime is profit led due a strong effect of the profit share on net exports.
 
 ## Introduction
 
-Since the development of neo-Kaleckian models, following the seminal contributions of @bhaduri_unemployment_1990 and their extension to open-economy models [@blecker_international_1989], an enormous empirical literature trying to identify the demand and growth regimes of real-world economies has emerged. Unlike New Classical and New Keynesian economics, in which only one type of relationships between distribution and growth is described, Heterodox theories have emphasized the diversity of growth models. @bhaduri_unemployment_1990 notably extended Kalecki's model of wage-led growth to allow for both profit-led and wage-led regimes. The diversity of growth regimes is also a central focus of French Régulation Theory (FRT), which conceives the diversity of capitalisms as evolutionary systems characterized by successive growth regimes, defined as interactions between demand and productivity regimes [@boyer_political_2022].
+Since the development of neo-Kaleckian models, following the seminal contribution of @bhaduri_unemployment_1990 and the extension of Kalecki-Steindl's model to integrate external trade [@blecker_international_1989] and technical progress [@hein_distribution_2014; @naastepad_technology_2006], an enormous empirical literature trying to identify demand and growth regimes of real-world economies emerged. Unlike New Classical and New Keynesian economics, in which only a negative relationship between the wage share and growth is allowed, Heterodox theories have emphasized the diversity of demand regimes. @bhaduri_unemployment_1990 notably extended Kalecki-Steindl's model of wage-led growth to allow for both profit-led and wage-led demand regimes. The diversity of demand and growth regimes is also a central focus of French Régulation Theory (FRT), which conceives the diversity of capitalism as evolutionary systems characterized by successive accumulation regimes, defined as interactions between demand and productivity regimes [@boyer_political_2022].
 
-### Consumption function
+However, Switzerland remains little studied in both FRT and neo-Kaleckian traditions regarding the identification of the country's growth regime and the relationship between functional income distribution and aggregate demand. To the author's knowledge, only one study, by @hartwig_distribution_2013, has conducted an estimation of the Swiss demand and productivity regimes. This lack of empirical investigation is strange, given the interesting features of the Swiss economy which makes the latter a particularly interesting case study. Switzerland is often considered among the best performing economies: it has the highest human development index, the second highest economic complexity index, and has one of the highest real GDP per capita. Switzerland is also interesting regarding income distribution since the country is relatively equal in that matter and, unlike most developed countries, has seen its wage share rise tendentially during both the post-war Fordist and financialization periods [@siegenthaler_langfristige_2024]. The Swiss model also stands out for its economic and political institutions. The comparative political economy literature emphasized the uniqueness of Swiss institutions. While @hall_varieties_2001 classified the Swiss model into the coordinated market economies (CMEs), @trampusch_switzerland_2011 argued that Swiss institutions display an important degree of liberal traits and market mechanisms, especially since the liberalization wave of the 1990s: weak trade unions, flexible labour market and low generous welfare state, making Switzerland a special case between coordinated and liberal market economy, in other words, a hybrid model.
+
+The present contribution seeks to fill this gap by conducting an identification the Swiss demand regimes since the post-war period. To do so, an empirical estimation following the so-called structural approach (also called single equation estimations) is conducted using data ranging from 1960 to 2022.
+
+## Model and theoretical framework
+
+One major advantage of the neo-Kaleckian model is that it synthesizes core Marxian and (neo)Kaleckian ideas about the relationships between distribution and growth. In classical-Marxian and neo-Keynesian models, investment and capital accumulation are driven by profits. Consequently, aggregate demand is "profit-led" in the sense that higher demand and economic growth require a higher profit share and hence a more unequal distribution of national income. However, as explained in @blecker_heterodox_2019, classical-Marxian theories do not consider the positive effect of a redistribution of income towards wages on aggregate consumption by privileging the importance of saving and investment decisions of capitalists. Conversely, neo-Kaleckian models give a central role to the consumption demand of workers, but originally assumed a closed economy or underestimated the possible negative effect of a decline of the profit share on investment. The following empirical analysis of the Swiss regime is based on the open-economy variant of the neo-Kaleckian model[^1] which reconciles both the classical-Marxian and neo-Kaleckian frameworks by allowing different effects of distribution on aggregate demand and growth. Originally develped by @bhaduri_unemployment_1990, this model was then taken-up and extended by many neo-Kaleckian scholars. One notable extension relaxes the assumption of constant technological progress by making labour productivity growth endogenous through the inclusion of a productivity equation into the model [@naastepad_technology_2006; @hein_distribution_2010].
+
+[^1]: Throughout this paper, the term "neo-Kaleckian" will be used to refer to the models based on the work of @kalecki_theory_1954 and @steindl_maturity_1976, which are also refered to as "post-Keynesian" models. For a comprehensive overview of the classical Kalecki-Steindl and neo-Kaleckian models, see @hein_distribution_2014, @lavoie_post-keynesian_2014 or @blecker_heterodox_2019.
+
+The present paper is based on this extended neo-Kaleckian model, presented in detail in chapter 8 of @hein_distribution_2014. In this model, productivity growth is introduced in three steps. As a first step, labour productivity growth is taken as exogenous and the effect of income distribution on the equilibrium rate of utilization is considered. Then, technical progress is endogenized by analyzing the effect of output and distribution on labour productivity growth. Finally, the demand and productivity regimes are integrated and the effect of distribution on both of these regimes is analyzed [@hein_distribution_2014, p.313]. To summarize the model very shortly, the latter consists of four equation with three endogenous variables, the investment rate ($g \equiv I/K$), the net exports rate ($b \equiv NX/K$) and labour productivity growth ($\hat y$):
 
 $$
-C = f(W, R)
+g = g_0 + g_1h + g_2u + g_3\hat y, \qquad g_0, g_1, g_2 > 0
+$$ {#eq-investmentrate}
+
 $$
+b = b_0 + b_1 e - b_2u, \qquad b_0, b_1, b_2 >0
+$$ {#eq-nxrate}
 
-With $C$ the real private final consumption expenditures, $W$ the real compensation of employees and $R$ real gross profits (gross operating surplus).
+$$
+\hat{y} = y_0 + y_1 u - y_2h, \qquad y_0,y_1,y_2 > 0
+$$ {#eq-productivity}
 
-I first estimate an ardl model, selecting the number of lags using the Schwarz information criteria (BIC). In R, one can use the function auto_ardl from the package ARDL. Once the best model is selected, the bounds t test and f tests are conducted to test for cointegration and assess whether an ecm model can be estimated.
+$$
+\sigma = [s_h h + s_w (1-h)]u/a_1 = g + b
+$$ {#eq-equilibrium}
 
-```{r}
+The investment rate $g$ is modeled following the neo-Kaleckian approach developed by @bhaduri_unemployment_1990. $g$ depends positively on the profit share $h$, reflecting the positive effect of profitability on investment; and positively on utilization $u$, reflecting the positive effect of demand on investment. The investment function also includes productivity growth $\hat y$.
+
+Net export rate $b$ is a positive function of international competitiveness, assuming that the Marshall-Lerner condition holds. Thus, $b$ depends positively on the real exchange rate $e \equiv \frac{EP^f}{P}$ (with $E$ the nominal exchange rate, $P^f, P$ the foreign and domestic price levels) which in turn depends positively in the profit share, assumed to be exogenously determined by the mark-up rate: $e = e(h), \frac{\partial e}{\partial h} \geq 0$.
+
+Productivity growth $\hat y$ is, according to the so-called Kaldor-Verdoorn law, a positive function of utilization ($u$). Following @hein_distribution_2010, with insights from Marx, the profit share $h$ is expected to have a negative effect on labour productivity growth: a decline of profit share, meaning a rise in the wage share, gives incentives for firms to boost labour productivity growth to prevent the decline in their profit share.
+
+The last equation (@eq-equilibrium) reflects the goods market equilibrium condition which closes the model. The solutions of the model on the equilibrium utilization and investment rates and on equilibrium productivity growth and their partial derivatives with respect to the profit share will not be shown here as they were already presented in detail in @hein_distribution_2014. However, we can still briefly describe the conditions under which wage-led or profit-led regimes are more likely to appear depending on the signs and magnitude of the model's parameters.
+
+First, a high discrepancy between the propensities to save out of profits and wages makes domestic demand more likely to be wage-led, since a redistribution of income towards wages will boost consumption demand. Second, a high sensitivity of investment with respect to profits makes the domestic economy more likely to be profit-led. Third, it is important to note that, even if domestic demand is wage-led, total aggregate demand can be profit-led due to the potential negative effect of ULC and the wage share on international competitiveness. Whether the positive effect of profit share on net exports will surpass its negative effect on domestic consumption depends on the degree of openness to international trade. For small open economies like Switzerland, the model typically predicts a strong and positive effect of the profit share on net exports. This prediction was confirmed by @hartwig_distribution_2013, who found that, while Swiss domestic demand is wage-led due to a higher propensity to consume out of wages than profits, and a non very significant effect of profits on investment, the overall Swiss demand regime is profit-led due to the negative effect of ULC on net exports. Finally, while the demand regime can be either wage-led or profit-led for the reasons exposed above, @hein_distribution_2014 considers that the effect of the profit share will in any case have a negative effect on productivity growth. This pattern of a domestically wage-led demand regime which transforms into a profit-led regime under the pressure of international trade was one of the main results of @bowles_wages_1995 for France, Japan and Germany. @hein_distribution_2008 found the same results for Austria, while they found wage-led demand for France, Germany, the UK and USA. Their result for Germany was confirmed by @stockhammer_globalization_2011 which explored in detail the effect of globalization on Germany's demand regime.
+
+## Empirical strategy and data
+
+The objective of the present study is thus to conduct a fresh analysis of the Swiss growth regimes, using a single-equations structural approach. The data come from AMECO and cover the period 1960-2022[^2]. Following Hein and Vogel [-@hein_distribution_2008; -@hein_distribution_2009], direct partial effects are estimated for each component of aggregate demand and added up to obtain the final marginal effect of the profit share on real GDP, used as a proxy for the utilization rate. All the variables are in real terms, except when expressed in terms of share of GDP.
+
+[^2]: To build his series covering the period 1948-2010, @hartwig_distribution_2013 took official data from the Federal Statistical Office (FSO) and the State Secretariat for Economic Affairs (SECO). However, data from FSO or SECO rarely go back further than 1990, because the swiss statistical structure and system of national accounts were entirely revised during this period. @hartwig_distribution_2013 's series were thus back-cast to 1948 using data from the old system of national accounts. It would be possible to construct a dataset merging series from the new and old systems, thus covering a wider period from 1948 to 2022. However, this would not guarantee methodological coherence for the whole period and the author thus preferred to used data directly from AMECO.
+
+$$
+\frac{\partial Y/Y}{\partial h} = \frac{\partial C/Y}{\partial h} + \frac{\partial I/Y}{\partial h} + \frac{\partial NX/Y}{\partial h}
+$$ {#eq-addup}
+
+In coherence with the model outlined above and the results of @hartwig_distribution_2013, one expects the marginal effect on consumption to be negative $\frac{\partial C/Y}{\partial h} < 0$ since the marginal propensity to consume is lower for profits than wages. We expect the marginal effects on investment and net exports to be positive.
+
+The empirical strategy for the estimation of the functions for the components of aggregate demand and for the productivity regime is based on the followings steps, as described in @hill_principles_2018. First, variables need to be tested for stationarity using unit root tests to see whether first-difference transformations are needed to avoid spurious and serial correlations problems. When most of the model's variables are integrated of order one, the bounds f and t tests devised by @pesaran_bounds_2001 are conducted to test for cointegration and see whether long-run relationships can be estimated by the means of an error correction model (ECM). When the bounds f and t tests rejected the null hypothesis of no cointegration, the retained model is thus an ECM and, otherwise, first-difference auto-regressive distributed lag (ARDL) models were conducted. The choice of the appropriate number of lags of the dependent and independent variables was based on the Schwarz information criteria (SIC) because it tends to select more parsimonious models than other selection criteria such as the AIC. For econometric reasons, all variables excepts shares were transformed into logarithms.
+
+Since the seminal contribution of @bhaduri_unemployment_1990, dozen of empirical papers have offered contrasted demand regimes identifications depending on the countries studied, the available data used, but most importantly, on the methodology employed. Surveys on this literature [@blecker_wage-led_2016; @stockhammer_wage-led_2017; @blecker_heterodox_2019] have emphasized the contradictory results between structural and aggregative approaches. While structural studies have converged towards finding wage-led domestic and total demand in most countries (with a few exceptions for small-open economies whose total demand is found to be profit-led when foreign demand is taken into account), aggregative studies have converged towards finding profit-led demand. Both of these approaches have their own defaults and advantages. The structural approach allows to explore precisely each component of aggregate demand, but takes distribution as exogenous and ignore the interaction between the demand components. As a results, structural estimates have been criticized for being biased towards finding wage-led demand regimes. On the other hand, the aggregative approach allows to endogenize distribution and estimate both distribution and demand functions. However, critics have also underlined several sources of bias peculiar to aggregative studies. On the one hand, measures of utilization based on HP filter have been put into question. On the other hand, @lavoie_origins_2017 argued that aggregative estimates finding profit-led results may suffer from spurious correlation problem since they fail to take into account the impact of cyclical fluctuations of output on labour productivity and the wage share. Correcting for this potential source of bias, @cauvel_neo-goodwinian_2023 found the US demand regime to be wage-led.
+
+To partially overcome the limitations of the structural approach, the last section presents simulations using estimated coefficients, as done by @hein_distribution_2009 to try to take into account interactions between demand components. Correcting for potential bias due to the exogeneity of functional income distribution shares is left out to further research. However, as shown by @blecker_systems_2022, considering distribution as exogenous does not lead to overestimated coefficients biased towards finding wage-led results, rather the contrary.
+
+## Some stylized facts of the Swiss economy
+
+Even though Switzerland can be considered one of the wealthiest countries in the world and is often praised by international organisations for the resilience of its economy, the latter has not escaped the global trend towards stagnation that Western countries have been experiencing since the 70s. In the two decades following World War II, the Swiss economy grew by 4,56% for its real GDP and 3% for its Real GDP per capita. During the crisis of Fordism in the 70s and 80s, average real GDP per capita growth fell to 0,8% and decreased even further during the 90s, which corresponded to an important period of economic crisis in the country. Average growth rates of real GDP and national income per capita remain near-stagnant around 0,8% since that period.
+
+```{r gdp table}
 #| echo: false
-#| message: false
 #| warning: false
-logC = log(macroch$C_real)
-logR = log(macroch$R_real)
-logW = log(macroch$W_real)
+#| message: false
+#| label: tbl-growthRates
+#| tbl-cap: "Average growth rates for different periods. Constant 2023 euros corrected for purchasing power parities. Author's computations using World Inequality Database (WID) data."
+#| tbl-cap-location: bottom
+library(readxl)
+wid_data <- read_excel("wid_data.xlsx", 
+    col_types = c("numeric", "numeric", "numeric", 
+        "numeric", "numeric"))
+
+seco <- read_excel("Daten für Kapitel4.xlsx", 
+    skip = 1)
 
 
-C_fun = auto_ardl(data = cbind(logC, logR, logW),
-                  logC ~ logR + logW,
-                  max_order = 4, selection = "BIC")$best_model
+wid_data$Period = cut(wid_data$Year, breaks = c(1950, 1970, 1989, 2000, 2010, 2023), include.lowest = TRUE, dig.lab = 5)
+
+
+wid_data %>% 
+  group_by(Period) %>% 
+  summarise("Real GDP" = mean(diff(log(GDP))),
+            "Real GDP \
+            per cap" = mean(diff(log(GDP_cap))),
+            "Real national \
+            income" = mean(diff(log(national_income))),
+            "Real national \
+            income per cap" = mean(diff(log(`national_income_cap\r\n`)))) %>% 
+
+  gt() %>% 
+  fmt_percent() %>% 
+  tab_header(title = "Economic Growth in Switzerland")
+
 ```
 
-Both the bounds t and f tests do not reject the null hypothesis of no integration. Hence, the consumption function was estimated using first differences:
+After the crisis of the 90s, the Swiss government was deeply concerned with the growth stagnation that the country was experiencing. Regular comments from international organizations such as the OECD and the State Secretariat for Economic Affairs (SECO) repeatedly stated that the country should "revitalize" its economy to avoid "stagnation at a high level". The debate was not so much about a sense of decline as about the fear of being caught up economically by other countries, and thus progressively losing ground and being deprived of its status of economic success.
+
+Since Switzerland's rate of unemployment is very low, the debate about the revitalization of the Swiss economy was first and foremost a debate about labour productivity growth, whose slow-down was considered as the main source of stagnation of the Swiss economy. The internal sector, which had been gradually more protected and cartelized since the inter-war period, was considered as the main culprit behind the slow down in productivity gains.
+
+```{r productivity growth table}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: tbl-prod
+#| fig-cap: ""
+
+
+year = 1960:2022
+year_cat = cut(year, c(1960, 1970, 1989, 2000, 2010, 2022), include.lowest = TRUE, dig.lab = 5)
+
+cbind(prod, employment_rate, year = 1960:2022) %>% 
+  as_tibble() %>% 
+  mutate(Period = cut(year, c(1960, 1970, 1989, 2000, 2010, 2022), include.lowest = TRUE, dig.lab = 5)) %>% 
+group_by(Period) %>% 
+  summarise(
+    y = mean(diff(log(prod))),
+    n = mean(diff(log(employment_rate)))
+  ) %>% 
+  gt() %>% 
+  fmt_percent() %>% 
+  tab_header(title = "Labour Productivity (y) and Employment (n) Growth in Switzerland")
+
+```
+
+Adopted during the 90s, the "revitalization program" devised by Swiss economists from SECO and from business interest associations aimed precisely at liberalizing the public and private internal sectors. This program was partly implemented and led to waves of privatizations and liberalizations in the transport and telecommunication sectors. In 1995, the Competition Commission (Comco) was created to reinforce competition in the domestic sectors. In short, the idea was that the highly protected internal sector was responsible for the slow-down of the economy, and that opening domestic and public markets to free-trade and competition would boost productivity growth. The idea was also to protect the interests of the export-oriented industries by limiting the development of the welfare state and the growth in the wage share which, unlike many Western countries, shows an increasing trend since the post-war period.
+
+```{r relative contribution to growth}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+
+gdp_growth = diff(GDP_real)/GDP_real
+cgnx = diff(NX_real)/GDP_real
+cgc = diff(C_real)/GDP_real
+icg = diff(I_real)/GDP_real
+gcg = diff(G_real)/GDP_real
+
+contr = cbind(cgnx, cgc, icg, gcg)
+
+rcgnx = diff(NX_real)/diff(GDP_real)
+rcgc = diff(C_real)/diff(GDP_real)
+rcgi = diff(I_real)/diff(GDP_real)
+rcgg = diff(G_real)/diff(GDP_real)
+
+relcontr = cbind(rcgnx, rcgc, rcgi, rcgg)
+
+
+
+
+
+```
+
+## Consumption function
+
+The first function to be estimated is the aggregate consumption function. Following most of single-equations studies (for instance @hein_distribution_2008; @hein_distribution_2009; @stockhammer_globalization_2011), the consumption function takes the following form:
 
 $$
-d[log(C_t)] = \alpha + \beta_1d[log(R_t)] + \beta_2d[log(W_t)]
-$$
+C = C(W, R)
+$$ {#eq-consumption}
 
-```{r}
+$C$ represents final private consumption expenditures at constant 2015 Swiss francs. $W$ and $R$ are, respectively, compensation of employees (total economy) and gross operating surplus (total economy), both deflated by the consumer price index. Since all three variables are in logarithms, the estimated coefficients are elasticities. Since the bounds t and f tests failed to reject the null hypothesis of no cointegration, the model was estimated using first differences.
+
+```{r consumption equation}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: tbl-C
-#| tbl-cap: "Estimation results for the consumption function"
+#| tbl-cap: "Estimation results for the consumption function: $D[log(C_t)] = c_0 + c_1D[log(R_t)] + c_2D[log(W_t)]$"
 
 dlogC = diff(log(macroch$C_real)) %>% ts(start = 1960, end = 2022)
 dlogR = diff(log(macroch$R_real)) %>% ts(start = 1960, end = 2022)
@@ -193,15 +351,13 @@ dlogW = diff(log(macroch$W_real)) %>% ts(start = 1960, end = 2022)
 C_fun_diff <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)),
            dlogC ~ dlogR + dlogW)
 
-C_fun_diff2 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[1:30,]),
+C_fun_diff2 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[1:28,]),
            dlogC ~ dlogR + dlogW)
 
-C_fun_diff3 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[31:62,]),
+C_fun_diff3 <- lm(data = as_tibble(cbind(dlogC, dlogR, dlogW)[29:62,]),
            dlogC ~ dlogR + dlogW)
 
 modelsCfun = list("C_fun_diff" = C_fun_diff, "C_fun_diff2" = C_fun_diff2, "C_fun_diff3" = C_fun_diff3)
-
-
 
 
 
@@ -227,139 +383,193 @@ diagnostic = t(data.frame(
 diagnosticdf = as.data.frame(diagnostic)
 diagnosticdf2 = rownames_to_column(diagnosticdf)
 
-modelsummary(list("1961-2022" = C_fun_diff, "1961-1991" = C_fun_diff2,
-                  "1992-2022" = C_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
-             title = "Consumption Function (dlog[C])")
-
+modelsummary(list("1961-2022" = C_fun_diff, "1961-1989" = C_fun_diff2,
+                  "1990-2022" = C_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
+             escape = FALSE)
 ```
 
-To compute the partial effect of the profit share on the share of consumption in aggregate demand, the coefficients are weighted by the sample average of the ratio of consumption to profits and the share of consumption to wages:
+@tbl-C shows the result of the model over the whole time period and for two subperiods which are interesting to investigate since it is likely that structural change happened during the 90s, which corresponded to period of important socio-political crisis in Switzerland. As expected the elasticity of consumption with respect to wages is higher than to profits. All coefficients are statistically significant at least at the 5% level, except for the elasticity of consumption with respect to profit for the period 1990-2022. The elasticity of consumption with regards to wages is 0.47% for the whole sample. This elasticity seems to have slightly fallen since the 90s.
 
-$$\frac{\partial C/Y}{\partial h} = \beta_1 \frac{C}{R} - \beta_2 \frac{C}{W}$$
+As shown by @hein_distribution_2008, the marginal effect of the profit share on total consumption can be obtained by multiplying the elasticities by the average share of total consumption in wages (for wage elasticity) and by the average of total consumption in profits (for profit elasticity).
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| results: asis
-#| label: tbl-C_effects
-#| tbl-cap: "Partial effects of profit share on consumption"
-C_table = tibble(
-  
-  "C/R" = mean(macroch$C_n/macroch$R_n),
-  "C/W" = mean(macroch$C_n/macroch$W_n),
-  "𝛽1(C/R)" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n),
-  "𝛽2(C/W)" = coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
-  "𝜕C/Y/𝜕h" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n)
-  
-)
-C_table %>% gt
-```
+$$\frac{\partial C/Y}{\partial h} = c_1 \frac{C}{R} - c_2 \frac{C}{W}$$ {#eq-convertionC}
 
 ```{r tableC}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: tbl-C_effects
+#| label: tbl-effectsC
 #| tbl-cap: "Partial effects of profit share on consumption"
+
+CRshare = mean(macroch$C_n/macroch$R_n) # compute average share of consumption in profits for the whole period
+CRshare2 = mean(macroch$C_n[1:29]/macroch$R_n[1:29]) # compute for sub-period 1
+CRshare3 = mean(macroch$C_n[30:63]/macroch$R_n[30:63]) # compute for sub-period 2
+
+CWshare = mean(macroch$C_n/macroch$W_n) # compute average share of consumption in wages for the whole period 
+CWshare2 = mean(macroch$C_n[1:29]/macroch$W_n[1:29]) # compute for sub-period 1 
+CWshare3 = mean(macroch$C_n[30:63]/macroch$W_n[30:63]) # compute for sub-period 2
+
+elasticityProfits = coef(C_fun_diff)[2] # get elasticity of consumption to profits etimates for the whole period
+elasticityProfits2 = coef(C_fun_diff2)[2] # get it for first sub-period
+elasticityProfits3 = coef(C_fun_diff3)[2] # get it for second sub-period
+
+elasticityWages = coef(C_fun_diff)[3] # get elasticity of consumption to wages estimate for the whole period
+elasticityWages2 = coef(C_fun_diff2)[3] # for first period
+elasticityWages3 = coef(C_fun_diff3)[3] # for second period
+
+MEprofits = c(elasticityProfits*CRshare, elasticityProfits2*CRshare2, elasticityProfits3*CRshare3)
+MEwages = c(elasticityWages*CWshare, elasticityWages2*CWshare2, elasticityWages3*CWshare3)
+
+finalEffect = MEprofits - MEwages
+
 C_table = tibble(
-  "$C/R$" = mean(macroch$C_n/macroch$R_n),
-  "$C/W$" = mean(macroch$C_n/macroch$W_n),
-  "$c1(C/R)$" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n),
-  "$c2(C/W)$" = coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
-  "Final effect" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n)
+  "Period" = c("1961-2022", "1961-1989", "1990-2022"),
+  "$$C/R$$" = c(CRshare, CRshare2, CRshare3),
+  "$$C/W$$" = c(CWshare, CWshare2, CWshare3),
+  "$$c_1 (C/R)$$" = MEprofits,
+  "$$c_2 (C/W)$$" = MEwages,
+  "$$\\partial{C/Y} / \\partial h$$" = finalEffect
   
 )
-C_table %>% kbl(escape = FALSE)
+
+C_table %>% gt
 ```
 
-$\beta_1*\frac{C}{R}$
+Using the average share of consumption to profits and wages over the whole sample, the effect of the profit share on aggregate consumption is -0.35. In comparison to other OECD countries, this negative effect seems rather strong. @hein_distribution_2008 found this effect to be -0.238 for Austria, -0.218 for the Netherlands, -0.317 for Germany and -0.35 for France.
 
-### Investment function
+## Investment
 
-$$
-I_t = f(Y, h, i)
-$$
+In our theoretical model, the rate of investment is a function of output, the profit share and productivity growth. This function is estimated using the log of real investment ($I$), output ($Y$) and gross operating surplus ($R$). Gross domestic product at 2015 Swiss francs per person employed is used as a measure of labour productivity ($y$) and the real interest rate, ($i$), is also included in the model:
 
-```{r investment function ardl}
+$$I = I(Y, R, y, i)$$ {#eq-investment}
+
+$$D[log(I_t)] = I_0 +  I_1 log(I_{t-1}) + I_2 log(Y_{t-1}) + I_3 log(R_{t}) + I_4 D[log(I_{t-1})] + I_5 D[log(Y_t)]$$ {#eq-investmentECM}
+
+```{r investment equation}
 #| echo: false
 #| warning: false
 #| message: false
-#| label: tbl-I
-#| tbl-cap: "Estimation results for the investment function"
-lY = log(macroch$GDP_real) %>% ts(start = 1960, end = 2022)
+#| label: tbl-investmentECM
+#| tbl-cap: "Investment function"
 
-data_Idiff = cbind(dlogY = diff(lY), dh = diff(macroch$profitShare), dlogI = diff(log(macroch$I_real)), dlogR = diff(logR))
+dataI = cbind(LogI = log(I_real), LogY = log(GDP_real), LogR = log(R_real), y = y, i = i_real, h = profitShare)
 
-data_I2 = cbind(logI = macroch$I_real, logY = macroch$GDP_real, logR = macroch$R_real)
+I_ardl = auto_ardl(data = dataI,
+                   LogI ~ LogY + LogR,
+                   selection = "BIC", max_order = 4)$best_model
 
 
-I_fun_diff = lm(data = data_I,
-                dlogI ~ dlogY + dlogR)
 
-I_fun_diff2 = lm(data = as_tibble(data_I[1:31,]),
-                dlogI ~  dlogY + dlogR)
 
-I_fun_diff3 = lm(data = as_tibble(data_I[32:62,]),
-                dlogI ~  dlogY + dlogR)
+#bounds_f_test(I_ardl_h, case = 3)
+#bounds_t_test(I_ardl_h, case = 3)
 
-models_I = list(I_fun_diff, I_fun_diff2, I_fun_diff3)
+share_IR = mean(macroch$I_n/macroch$R_n)
+I_uecm <- uecm(I_ardl, case = 3)
 
-diagnostic_I = t(data.frame(
-  "Adj R2" = sapply(models_I, function(x){
+
+data_Idiff = cbind(dlogY = diff(log(GDP_real)), dlogR = diff(log(R_real)), dlogI = diff(log(I_real)))
+
+
+
+I_fun_diff = lm(data = data_Idiff,
+                dlogI ~ lag(dlogI) + dlogY + dlogR)
+
+I_fun_diff2 = lm(data = as_tibble(data_Idiff[1:28,]),
+                dlogI ~ lag(dlogI) +  dlogY + dlogR - 1)
+
+I_fun_diff3 = lm(data = as_tibble(data_Idiff[29:62,]),
+                dlogI ~ dlogY + dlogR - 1)
+
+
+
+modelsIfun = list("I_ecm" = I_uecm, I_fun_diff, I_fun_diff2, I_fun_diff3)
+
+
+
+
+
+
+diagnosticI = t(data.frame(
+  "Adj R2" = sapply(modelsIfun, function(x){
     summary(x)$adj.r.squared
   }),
-  "Durbin-Watson statistics" = sapply(models_I, function(x){
+  "Durbin-Watson statistics" = sapply(modelsIfun, function(x){
     dwtest(x)[["statistic"]]
   }),
-  "RESET test" = sapply(models_I, function(x){
+  "RESET test" = sapply(modelsIfun, function(x){
     resettest(x)[["statistic"]]
   }),
-  "BG tests" = sapply(models_I, function(x){
+  "BG tests" = sapply(modelsIfun, function(x){
     bgtest(x, order = 4)[["p.value"]]
   }),
-  "BP tests" = sapply(models_I, function(x){
+  "BP tests" = sapply(modelsIfun, function(x){
     bptest(x)[["p.value"]]
   })
 ))
+diagnosticI = as.data.frame(diagnosticI)
+diagnosticI2 = rownames_to_column(diagnosticI)
 
 
-diagnosti_Idf = as.data.frame(diagnostic_I)
-diagnostic_I_df2 = rownames_to_column(diagnosti_Idf)
+modelsummary(list("ECM" = I_uecm, "1961-2022" = I_fun_diff, "1961-1989" = I_fun_diff2, "1990-2022" = I_fun_diff3), stars = TRUE, gof_map = NA,
+             escape = FALSE, add_rows = diagnosticI2)
 
-modelsummary(list("1961-2022" = I_fun_diff, "1961-1982" = I_fun_diff2,
-                  "1983-2022" = I_fun_diff3), stars = TRUE, add_rows = diagnosticdf2, gof_map = NA,
-             title = "Investment function")
 ```
 
-We cannot conclude anything regarding the effect of profit share on investment, the effect will thus be condsidered to be equal to zero.
+Since all variables were found to be stationary of order 1, an ardl model was run in level and tested for cointegration. Cointegration was confirmed, but the coefficient for labour productivity and the real interest rate were not significant. Running the model once again with only real profits and output as explanatory variables, cointegration was confirmed, but real profits are not included in the long-run relationship the long-run relationship only concern real investment and output. @tbl-investmentECM reports the result of the estimated coefficients. The coefficients for output are significant and have the expected signs, while the coefficient for profits is only significant at 10% level and has unexpected negative sign, which appears to be surprisingly high. To see whether other specifications would also lead to the rather puzzling result of the ECM model regarding the elasticity of profits, @tbl-investmentECM also includes first differences regression for the whole and different subperiods. For the first difference models, the coefficients for profits have expected positive signs but are insignificant even at the 10% level. The results thus indicate that, when controlled for the effect of demand, profits are not an important factor for investment at the aggregate level in the Swiss economy, or are even negative. Since the elasticity of profits is not very significant in the ECM model and is in contradiction with the results of the first difference models, the effect of the profit share on investment will assume the effect of the profit share on real investments to be null. As we will see, this assumption will not change the conclusion of this study.
 
-### Net exports function
+## Net exports function
+
+The share of net exports is a function of real domestic and foreign products ($Y$ and $Y^f$) and of the profit share. The measure of foreign domestic product is the real GDP of OECD minus the real GDP of Switzerland.
 
 $$
-NX_t/Y_t = f(h, Y^f, Y)
-$$
+NX_t/Y_t = f(Y, y^f, h)
+$$ {#eq-netexports}
+
+Here again the bounds t and f test rejected the null hypothesis for no cointegration between the variables so that an ECM could be estimated. As for the consumption and investment function, first difference models for the total period and subperiods are also considered. Both the ECM and first difference models show evidence of a very strong effect of the profit share on net exports.
 
 ```{r net exports function}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: tbl-NX_ecm
-#| tbl-cap: "Estimation results of the error correction model for the net export function."
-NX = macroch$NX_share 
-logOECD = log(macroch$oecd_real) 
-logY = log(macroch$GDP_real)
-h = macroch$profitShare
+#| output: asis
+#| label: tbl-NXecm
+#| tbl-cap: "Estimation results of the error correction model for the net export function"
+NX = macroch$NX_share %>% ts(start = 1960, end = 2022)
+logYf = log(macroch$oecd_real) %>% ts(start = 1960, end = 2022)
+logY = log(macroch$GDP_real )%>% ts(start = 1960, end = 2022)
+h = macroch$profitShare %>% ts(start = 1960, end = 2022)
 
-data_NX = cbind(NX, logOECD, logY, h)
+dNX = macroch$NX_share %>% ts(start = 1960, end = 2022) %>% diff()
+dlogYf = log(macroch$oecd_real) %>% ts(start = 1960, end = 2022) %>% diff()
+dlogY = log(macroch$GDP_real )%>% ts(start = 1960, end = 2022) %>% diff()
+dh = macroch$profitShare %>% ts(start = 1960, end = 2022) %>% diff()
+
+data_nx_diff = cbind(dNX, "d(logY)" = dlogY, "d(logYf)" = dlogYf, "d(h)" = dh)
+
+data_NX = cbind(NX, logYf, logY, h)
 nx_fun = auto_ardl(data = data_NX,
-                   formula = NX ~  logOECD + logY + h ,
-                   max_order = 4, selection = "BIC")$best_model
+                   formula = NX ~  h + logYf + logY ,
+                   max_order = 4, selection = "BIC",
+                   start = "1960", end = "2022")$best_model
+
+nx_fun_diff <- lm(data = as_tibble(data_nx_diff),
+                 dNX ~ `d(logY)` + `d(logYf)` + `d(h)` - 1)
+
+nx_fun_diff1 <- lm(data = as_tibble(data_nx_diff)[1:28,],
+                 dNX ~ `d(logY)` + `d(logYf)` + `d(h)` - 1)
+
+nx_fun_diff2 <- lm(data = as_tibble(data_nx_diff)[29:62,],
+                 dNX ~ `d(logY)` + `d(logYf)` + `d(h)` - 1)
+
+
+#bounds_f_test(nx_fun, case = 3)
+#bounds_t_test(nx_fun, case = 3)
 
 nx_uecm <- uecm(nx_fun, case = 3)
 nx_recm <- recm(nx_fun, case = 3)
 
-modelsnxuecm <- list(nx_uecm)
+modelsnxuecm <- list(nx_uecm, nx_fun_diff, nx_fun_diff1, nx_fun_diff2)
 
 diagnostic_NXuecm = t(data.frame(
   "Adj R2" = sapply(modelsnxuecm, function(x){
@@ -382,29 +592,20 @@ diagnostic_NXuecm = t(data.frame(
 diagnosti_NXuecmdf = as.data.frame(diagnostic_NXuecm)
 diagnostic_NXuecm_df2 = rownames_to_column(diagnosti_NXuecmdf)
 
-modelsummary(list("d[NX/Y]" = nx_uecm), stars = TRUE, add_rows = diagnostic_NXuecm_df2, gof_map = NA)
+modelsummary(list("ECM" = nx_uecm, "FD 1961-2022" = nx_fun_diff, "FD 1961-1989" = nx_fun_diff1, "FD 1990-2022" = nx_fun_diff2), stars = TRUE, add_rows = diagnostic_NXuecm_df2, gof_map = NA)
 ```
 
-The long-run effect of the profit share on net export can be obtained by dividing the coefficient of the profit share, divided by the absolute value of the lag effect of the endogenous independent variable:
+From the results of the ECM model, the long-run effect of the profit share on output can be computed by dividing the long-run coefficient of the profit share by the absolute value of the lagged independent variable. By doing so, the effect is estimated to be 1.1, which seems to be very strong. Estimated coefficient from the first-difference model for the whole period leads to a lower effect, which remains very strong nonetheless (0.877). Estimating the first difference model for two sub-periods leads to an interesting evolution: the positive effect of the profit share on net exports was on average 0.569 and only slightly significant at the 10% level. This effect became then stronger and very significant after the 90s (0.83).
 
-$$\frac{\partial NX_t/Y_t}{\partial h} = \frac{\beta_4}{\lvert \beta_2 \rvert} = 0.51/0.457 = 1.116$$
+## Productivity regime
 
-```{r final results table}
-#| echo: false
-#| message: false
-#| warning: false
-finalresult <- tibble(
-  "𝜕C/Y/𝜕h" = coef(C_fun_diff)[2]*mean(macroch$C_n/macroch$R_n) - coef(C_fun_diff)[3]*mean(macroch$C_n/macroch$W_n),
-  "𝜕I/Y/𝜕h" = "/",
-  "𝜕NX/Y/𝜕h" = "1.116",
-  "𝜕Y/Y/𝜕h" = "0.766"
-  
-)
+Finally, productivity, measured here as domestic GDP per person employed, is a function of output ($Y$) and the profit share ($h$).
 
-finalresult %>% gt
-```
+$$y = y(Y, h)$$
 
-### Productivity
+The first studies which have integrated a productivity function originally used real wage as the measure of wage-push productivity growth [@naastepad_technology_2006; @hartwig_distribution_2013]. However, @hein_distribution_2010 argued that the wage-push effect is better captured by the profit share. In fact, real wage growth may not be perceived as a problem by capitalists if it grows slower than productivity and thus does not lead to a fall in the profit share.
+
+ARDL models were run in level and the best model was selected through BIC and then tested for cointegration, but the bounds t test failed to reject the null hypothesis of no cointegration.
 
 ```{r productivity}
 #| echo: false
@@ -413,261 +614,157 @@ finalresult %>% gt
 
 # Import real wage from fso
 
-salaire_reel_ofs <- read_csv("C:/Users/celal/OneDrive/Bureau/celalguney/posts/demand regime/salaire_reel_ofs.csv")
+salaire_reel_ofs <- read_csv("salaire_reel_ofs.csv")
 
 salaire_reel_ofs2 <- salaire_reel_ofs %>% 
   filter(SEX == "T" & WAGE_TYPE == "R") %>% 
   select(VALUE) %>% 
   ts(start = 1942, end = 2023)
-# load productivity data from dbnomics
-# [RVGDE] Gross domestic product at 2015 reference levels per person employed AMECO/RVGDE/CHE.1.1.0.0.RVGDE
 
-prod <- rdb(ids = "AMECO/RVGDE/CHE.1.1.0.0.RVGDE") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
 
 # [CHE.GDPHRWKD.TOT.IDX2015.A] Switzerland – GDP per hour worked – Total – 2015=100 – Annual
+`log(y)` = log(y)
+`log(Y)` = log(GDP_real)
+`log(w)` = log(salaire_reel_ofs2)
 
-dlogProd = diff(log(prod))
-dlY = diff(lY)
-dh = diff(profitShare)
-dlogw = diff(log(salaire_reel_ofs2))
-dataprod = cbind(dlogProd, dlY, dh, dlogw)
+`dlog(y)` = diff(log(y))
+`dlog(Y)` = diff(log(GDP_real))
+`dlog(w)` = diff(log(salaire_reel_ofs2))
 
-prod_fun = auto_ardl(data = dataprod,
-                     dlogProd ~ dlY + dh-1,
+dataprod = cbind(logy =`log(y)`, logY = `log(Y)`, logw = `log(w)`, h)
+dataprod_diff = cbind(`dlog(y)`, `dlog(Y)`, `dlog(w)`, dh)
+dataprod_diff2 = cbind(dlogy = `dlog(y)`, dlogY = `dlog(Y)`, dlogw = `dlog(w)`, dh)
+
+y_fun = auto_ardl(data = dataprod,
+                     logy ~ logY + h,
                      max_order = 4, selection = "BIC",
                      start = "1960", end = "2022")$best_model
 
-summary(prodols <- lm(data = dataprod,
-                      dlogProd ~ dlY + dh + lag(dlY) + lag(dlogProd)))
-
-summary(prod_fun)
-```
-
-### Appendix
-
-```{r nx first difference}
-#| echo: false
-#| message: false
-#| warning: false
-#| label: tbl-NX
-#| tbl-cap: "Estimation results for the net export function (first differences)"
-
-library(nlWaldTest)
+y_funWage = auto_ardl(data = dataprod,
+                     logy ~ logY + logw,
+                     max_order = 4, selection = "BIC",
+                     start = "1960", end = "2022")$best_model
 
 
+y_funWage_diff = ardl(data = dataprod_diff2,
+                           dlogy ~ dlogY + dlogw,
+                           order = c(1,1,0),
+                           )
 
 
-dNX = diff(macroch$NX_share)
-dlogOECD = diff(log(macroch$oecd_real))
-dlogY = diff(log(macroch$GDP_real))
-dh = diff(macroch$profitShare)
+#summary(y_fun_wage_lm)
+#bounds_f_test(y_fun, case = 3)
+#bounds_t_test(y_fun, case = 3) no cointegration
 
-data_nx_diff = cbind(dNX, dlogOECD, dlogY, dh)
+#bounds_f_test(y_funWage, case = 3) no cointegration
+#bounds_t_test(y_funWage, case = 3) no cointegration
 
-nxfun_diff = auto_ardl(data = data_nx_diff,
-                       dNX ~ dlogOECD + dlogY + dh -1,
-                       max_order = 4, selection = "BIC")$best_model
+y_fun_lm = lm(data = dataprod_diff2,
+            dlogy ~ dlogY + dh + lag(dlogY)-1)
 
-nxfun_diff_ols = lm(data = as_tibble(data_nx_diff),
-                    dNX ~ dlogOECD + lag(dlogOECD) + dlogY + lag(dlogY) + dh-1)
+y_fun_wage_lm = lm(data = dataprod_diff2,
+            dlogy ~ dlogY + dlogw + lag(dlogY)-1)
 
-nxfun_diff_ols2 = lm(data = as_tibble(data_nx_diff)[1:32,],
-                    dNX ~ dlogOECD + dlogY + lag(dlogY) + dh -1)
+y_fun_wage_lm2 = lm(data = as_tibble(dataprod_diff2[1:28,]),
+            dlogy ~ dlogY + dlogw-1)
 
-nxfun_diff_ols3 = lm(data = as_tibble(data_nx_diff)[33:63,],
-                    dNX ~ dlogOECD + dlogY + dh - 1)
+y_fun_wage_lm3 = lm(data = as_tibble(dataprod_diff2[29:62,]),
+            dlogy ~ dlogY + dlogw + lag(dlogY)-1)
+
+modelsProd = list("1961-2022" = y_fun_lm, "1961-2022" = y_fun_wage_lm,"1961-1989" = y_fun_wage_lm2, "1990-2022" = y_fun_wage_lm3)
 
 
-models_NX = list(nxfun_diff_ols, nxfun_diff_ols2, nxfun_diff_ols3)
 
-diagnostic_NX = t(data.frame(
-  "Adj R2" = sapply(models_NX, function(x){
+diagnostic_prod = t(data.frame(
+  "Adj R2" = sapply(modelsProd, function(x){
     summary(x)$adj.r.squared
   }),
-  "Durbin-Watson statistics" = sapply(models_NX, function(x){
+  "Durbin-Watson statistics" = sapply(modelsProd, function(x){
     dwtest(x)[["statistic"]]
   }),
-  "RESET test" = sapply(models_NX, function(x){
+  "RESET test" = sapply(modelsProd, function(x){
     resettest(x)[["statistic"]]
   }),
-  "BG tests" = sapply(models_NX, function(x){
+  "BG tests" = sapply(modelsProd, function(x){
     bgtest(x, order = 4)[["p.value"]]
   }),
-  "BP tests" = sapply(models_NX, function(x){
+  "BP tests" = sapply(modelsProd, function(x){
     bptest(x)[["p.value"]]
   })
 ))
 
-diagnosti_NXdf = as.data.frame(diagnostic_NX)
-diagnostic_NX_df2 = rownames_to_column(diagnosti_NXdf)
+diagnosti_prod_df = as.data.frame(diagnostic_prod)
+diagnostic_prod_df2 = rownames_to_column(diagnosti_prod_df)
+
+modelsummary(modelsProd, stars = TRUE, add_rows = diagnostic_prod_df2, gof_map = NA)
 
 
-modelsummary(list("1961-2022" = nxfun_diff_ols, "1960-1982" = nxfun_diff_ols2,
-                  "1983-2022" = nxfun_diff_ols3), stars = TRUE, gof_map = NA,
-             title = "d[NX/Y]", add_rows = diagnostic_NX_df2)
 
 
 
 ```
 
-```{r relative contribution to growth}
+## Final effect
+
+```{r final effect demand regime}
 #| echo: false
 #| warning: false
 #| message: false
 
-# [CVGD9] Contribution to the increase of GDP at constant prices of the balance of goods and services AMECO/CVGD9/CHE.1.0.0.0.CVGD9
+library(tibble)
+library(gt)
 
-nx_contr <- rdb(ids = "AMECO/CVGD9/CHE.1.0.0.0.CVGD9") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
+# Création du tableau
+demandRegime <- tibble(
+  Period = c("1961–2022", "1961–2022 (no ECM)", "1961–1989", "1990–2022"),
+  `∂C/Y / ∂h` = c(-0.35, -0.35, -0.23, -0.26),
+  `∂I/Y / ∂h` = c(NA, NA, NA, NA),
+  `∂NX/Y / ∂h` = c(1.1, 0.877, 0.569, 0.83),
+  `∂Y/Y / ∂h` = c(0.75, 0.527, 0.34, 0.57)
+)
 
-#[CVGD2] Contribution to the increase of GDP at constant prices of gross fixed capital formation AMECO/CVGD2/CHE.1.0.0.0.CVGD2
-
-I_contr <- rdb(ids = "AMECO/CVGD2/CHE.1.0.0.0.CVGD2") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
-
-# [CVGD0] Contribution to the increase of GDP at constant prices of private consumption AMECO/CVGD0/CHE.1.0.0.0.CVGD0
-
-C_contr <- rdb(ids = "AMECO/CVGD0/CHE.1.0.0.0.CVGD0") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
-
-# [CVGD1] Contribution to the increase of GDP at constant prices of public consumption AMECO/CVGD1/CHE.1.0.0.0.CVGD1
-
-G_contr <- rdb(ids = "AMECO/CVGD1/CHE.1.0.0.0.CVGD1") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
-
-# [CVGD4] Contribution to the increase of GDP at constant prices of changes in inventories and acquisitions less disposals of valuables AMECO/CVGD4/CHE.1.0.0.0.CVGD4
-
-inv_contr <- rdb(ids = "AMECO/CVGD4/CHE.1.0.0.0.CVGD4") %>% filter(original_period %in% c(1961:2022)) %>% select(value) %>% ts(start = 1961, end = 2022)
-
-y_real = diff(log(GDP_real))*100
-
-nxcontr = nx_contr/y_real
-ccontr = C_contr/y_real
-icontr = I_contr/y_real
-gcontr = G_contr/y_real
-invcontr = inv_contr/y_real
-
-data_contr1990 = cbind(nxcontr, ccontr, icontr, gcontr, invcontr)[1:39,]
-data_contr2009 = cbind(nxcontr, ccontr, icontr, gcontr, invcontr)[40:48,]
-data_contr2022 = cbind(nxcontr, ccontr, icontr, gcontr, invcontr)[49:62,]
-contr1990 <- apply(data_contr1990,2, function(x){sum(x)/length(x)})
-contr2009 <- apply(data_contr2022,2, function(x){sum(x)/length(x)})
-contr2022 <- apply(data_contr2022,2, function(x){sum(x)/length(x)})
-
-apply(as_tibble(contr1990), 2, sum)
-```
-
-```{r sectoral balance}
-#| echo: false
-#| warning: false
-#| message: false
-
-
-# [CHE.CBGDPR.A] Switzerland – Current account balance as a percentage of GDP – Annual
-
-CAB <- rdb(ids = "OECD/EO/CHE.CBGDPR.A") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
-
-
-# governemt balance
-
-Government_balance <- rdb(ids = "OECD/NAAG/CHE.B9S13S") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
-
-
-# [CHE.B9S14_​S15S] Switzerland – Net lending/net borrowing, Households and NPISHs, percentage of GDP
-
-household_balance <- rdb(ids = "OECD/NAAG/CHE.B9S14_S15S") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
-
-
-# [CHE.B9S11_​S12S] Switzerland – Net lending/net borrowing, Corporations, percentage of GDP
-
-corporation_balance <- rdb(ids = "OECD/NAAG/CHE.B9S11_S12S") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
-
-private_sector_balance = corporation_balance + household_balance
-
-sectoralBalance = as_tibble(cbind(private_sector_balance, Government_balance, -CAB)) %>% 
-  drop_na() %>% 
-  mutate(year = 1995:2022)
-
-autoplot(cbind(Government_balance, private_sector_balance, -CAB), facets = FALSE)
-
-
-apply(sectoralBalance[,1:3], 1, sum)
+# Formatage du tableau avec gt
+demandRegime %>%
+  gt() %>%
+  fmt_missing(everything(), missing_text = "-") %>%
+  tab_header(
+    title = md("**Effets marginaux des chocs de demande (`∂/∂h`)**")
+  ) %>%
+  cols_label(
+    Period = "Period",
+    `∂C/Y / ∂h` = md("$\\partial C/Y / \\partial h$"),
+    `∂I/Y / ∂h` = md("$\\partial I/Y / \\partial h$"),
+    `∂NX/Y / ∂h` = md("$\\partial NX/Y / \\partial h$"),
+    `∂Y/Y / ∂h` = md("$\\partial Y/Y / \\partial h$")
+  )
 
 ```
 
-```{r}
+## Model simulation
 
-# [UVGN] Gross national income at current prices
-GNI <- rdb(ids = "AMECO/UVGN/CHE.1.0.0.0.UVGN") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
-# [UBLA] Net lending (+) or net borrowing (-): total economy AMECO/UBLA/CHE.1.0.0.0.UBLA
+$$
+Y_t = C_t + I_t + NX_t
+$$ {#eq-sim1}
 
-CAB <- rdb(ids = "AMECO/UBLA/CHE.1.0.0.0.UBLA") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+$$
+Y_t = W_t + R_t
+$$ {#eq-sim2}
 
-# [UBLG] Net lending (+) or net borrowing (-): general government :- ESA 2010 AMECO/UBLG/CHE.1.0.0.0.UBLG
+$$
+R_t = h_t Y_t
+$$ {#eq-sim3}
 
-public_balance <- rdb(ids = "AMECO/UBLG/CHE.1.0.0.0.UBLG") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+$$
+D[log(C_t)] = 0.006 + 0.112D[log(R_t)] + 0.471D[log(W_t)]
+$$ {#eq-simC}
 
-# [UBLH] Net lending (+) or net borrowing (-): households and NPISH AMECO/UBLH/CHE.1.0.0.0.UBLH
+$$
+D[log(I_t)] = -0.012 + 0.2D[log(I_{t-1})] + 1.3D[log(Y_t)]
+$$ {#eq-simI}
 
-household_balance <- rdb(ids = "AMECO/UBLH/CHE.1.0.0.0.UBLH") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
+$$
+D[NX_t/Y_t] = 0.877D[log(h_t)] + 0.5D[log(y^f_t)] - 0.51d[log(Y_t)]
+$$ {#eq-simNX}
 
-# [UBLC] Net lending (+) or net borrowing (-): corporations AMECO/UBLC/CHE.1.0.0.0.UBLC
-
-corporation_balance <- rdb(ids = "AMECO/UBLC/CHE.1.0.0.0.UBLC") %>% filter(original_period %in% c(1995:2022)) %>% select(value) %>% ts(start = 1995, end = 2022)
-
-cab = CAB/GNI
-public_balance2 = public_balance/GNI
-
-household_balance2 = (household_balance/GNI)
-
-private_sector_balance2 = (private_sector_balance/GNI)
-
-data =cbind(private = household_balance2,private_sector_balance2,-cab,public_balance2)
-
-apply(data, 1, sum)
-
-
-autoplot(data, facets = FALSE)
-
-
-```
-
-```{r}
-# philips curve
-
-autoplot(cbind(e, salaire_reel_ofs2))
-
-pcdata = as_tibble(cbind(e = diff(log(E)), w = diff(log(salaire_reel_ofs2)))) %>% 
-  drop_na()
-
-summary(lm(data = as_tibble(pcdata[,]),
-           w ~ e))
-
-plot(pcdata$e[1:30], pcdata$w[1:30])
-plot(pcdata$e[40:62], pcdata$w[40:62])
-```
-
-```{r profit rate}
-#| echo: false
-#| message: false
-#| warning: false
-# net gross operating surplus nominal AMECO/UOND/CHE.1.0.0.0.UOND
-profits <- rdb(ids = "AMECO/UOND/CHE.1.0.0.0.UOND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
-
-# [OKND] Net capital stock at 2015 prices: total economy AMECO/OKND/CHE.1.0.0.0.OKND
-
-K <- rdb(ids = "AMECO/OKND/CHE.1.0.0.0.OKND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
-
-# net gross operating surplus nominal AMECO/UOND/FRA.1.0.0.0.UOND FRANCE
-profits <- rdb(ids = "AMECO/UOND/FRA.1.0.0.0.UOND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
-
-# [OKND] Net capital stock at 2015 prices: total economy AMECO/OKND/FRA.1.0.0.0.OKND FRANCE
-
-K <- rdb(ids = "AMECO/OKND/FRA.1.0.0.0.OKND") %>% filter(original_period %in% c(1960:2022)) %>% select(value) %>% ts(start = 1960, end = 2022)
-
-profits_real = (profits/GDP_deflator)*100
-profits_real2 = (profits/cpi)*100
-profitRate = profits_real/K
-autoplot(profitRate)+
-  labs(title = "General rate of profit in Switzerland")+
-  theme_minimal()+
-  scale_y_continuous(labels = scales::percent)
-```
 
 ### References

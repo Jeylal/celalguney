@@ -20,3 +20,10 @@ gt
 marginaleffects
 nlWaldTest
 flextable
+ggfortify
+tseries
+aTSA
+kableExtra
+xts
+bimets
+readxl
