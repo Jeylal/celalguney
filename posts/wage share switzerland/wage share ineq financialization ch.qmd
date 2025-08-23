@@ -1,5 +1,5 @@
 ---
-title: "Wage share, Inequality and Financialization in Switzerland"
+title: "The wage share paradox in Switzerland"
 author: "Celâl Güney"
 format: 
   html:
@@ -7,7 +7,7 @@ format:
 editor: visual
 execute: 
   freeze: true
-categories: [Social blocs, Political economy, Politics, Political Science]
+categories: [Economics, Inequality]
 image: fig-divbarcharts-1.png
 draft: true
 bibliography: references.bib
@@ -19,25 +19,27 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
+library(mbreaks)
+library(readxl)
+library(marginaleffects)
+salaire_ofs <- read_excel("salaire_ofs.xlsx", 
+    sheet = "total")
+salaire_ofs$logrw = log(salaire_ofs$real_wage_total)
 
-library(readr)
-WID_data_CH <- read_delim("wid_switzerland/WID_data_CH.csv", 
-    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-namesVariables <- tibble(unique(WID_data_CH$variable))
-# see variables code and definition at https://wid.world/summary-table/ 
-# sptincj992 = share pretaxe national income
-# sdiincj992 share post tax national income
-# shwealj992 = share of wealth
-data_shares <- 
-WID_data_CH %>% 
-  filter(variable %in% c("sptincj992", "sdiincj992", "shwealj992")
-         & percentile %in% c("p90p100"))
-```
+realwage = ts(salaire_ofs$real_wage_total, start = 1942, end = 2024)
+autoplot(log(realwage))
 
-```{r}
-data_shares %>% 
-  ggplot()+
-  aes(x = year, y = value, color = variable)+
-  geom_line()
+model_rw = lm(data = salaire_ofs,
+           logrw ~ year*I(year > 1978))
+
+
+coef(model_rw)[2] 
+
+plot_predictions(model_rw, by = "year")+
+  geom_line(data = salaire_ofs, aes(x = year, y = logrw), color = "red", size = 1)+
+  theme_minimal()+
+  labs(title = "Évolution de l'indice des salaires réels suisses")+
+  annotate("text", x = 1980, y = 4.7, label = "logrw = -50 + 0.0286*year + 45.76*D1978 + -0.0231*year*D1978")
+
 ```
