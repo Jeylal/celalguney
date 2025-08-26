@@ -14,6 +14,8 @@ editor: visual
 
 -   [Aglietta M. (1979) A Theory of Capitalist Regulation. The US Experience](resources_books/aglietta1979.pdf)
 
+-   [Giovanni Dosi, Andrea Roventini (2025) Agent-based Macroeconomics. The Schumpeter Meeting keynes Models](resources_books/agent%20bases%20macroeconomics.pdf)
+
 ## Post-Keynesian journals
 
 :::::::::::::::::::: columns
