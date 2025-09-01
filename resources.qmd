@@ -43,15 +43,15 @@ editor: visual
 
 - [Eichengreen, Barry (2008) Globalizing Capital. A History of the International Monetary System](resources_books/eichengreen2008.pdf)
 
-- [Harvey, David (2005) A Brief History of Neoliberalism](resources_books/Harvey2005.pdf)
-
-- [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/Eckhard Hein - Distribution and Growth after Keynes_ A Post-Keynesian Guide (2014, Edward Elgar Publishing) - libgen.li.pdf)
-
 - [Fine, Ben (1986) The Value Dimension. Marx versus Ricardo and Sraffa](resources_books/fine1986.pdf)
 
 - [Fine Ben, Dimakou Ourania (2016) Macroecnomics a Critical Companion](resources_books/finemacro2016.pdf)
 
 - [Fine Ben, Dimakou Ourania (2016) Microecnomics a Critical Companion](resources_books/finemicro.pdf)
+
+- [Foley D.K. (1986) Understanding Capital: Marx's Economic Theory](resources_books/duncan86.pdf)
+
+- [Giovanni Dosi, Andrea Roventini (2025) Agent-based Macroeconomics. The Schumpeter Meeting Keynes Models](resources_books/agent%20bases%20macroeconomics.pdf)
 
 - [Harold, James (2023) Seven Crashes. The Economic Crises that Shaped Globalization](resources_books/harold2023.pdf)
 
@@ -61,16 +61,83 @@ editor: visual
 
 - [Harvey, David (2003) The Enigma of Capital and the Crises of Capitalism](resources_books/harvey2003.pdf)
 
-- [Foley D.K. (1986) Understanding Capital: Marx's Economic Theory](resources_books/duncan86.pdf)
+- [Harvey, David (2005) A Brief History of Neoliberalism](resources_books/Harvey2005.pdf)
 
-- [Giovanni Dosi, Andrea Roventini (2025) Agent-based Macroeconomics. The Schumpeter Meeting Keynes Models](resources_books/agent%20bases%20macroeconomics.pdf)
+- [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/Eckhard Hein - Distribution and Growth after Keynes_ A Post-Keynesian Guide (2014, Edward Elgar Publishing) - libgen.li.pdf)
+
+- [Hilferding, Rudolf (1910) Le capital financier](resources_books/hilf1910_capitalfinancier.pdf)
+
+- [Hobson, J. A. (1902) Imperialism A Study](resources_books/hobson1902.pdf)
+
+- [Kalecki Collected Work I](resources_books/kalecki-collected_i_1990.pdf)
+
+- [Kalecki Collected Work II](resources_books/kalecki-collected_ii_1991.pdf)
+
+- [Kalecki Collected Work IV](resources_books/kalecki-collected_iv_1992.pdf)
+
+- [Kalecki Collected Work VI](resources_books/kalecki-cllected_vi_1996.pdf)
+
+- [Kalecki Collected Work VII](resources_books/kalecki-collected_vii_1997.pdf)
+
+- [Kalecki, Michal (1971) Selected Essays on the Dynamics of the Capitalist Economy](resources_books/kalecki1971_selectedessays.pdf)
+
+- [Kalecki, Michal (1976) Essays on Developing Economies](resources_books/kalecki1976.pdf)
+
+- [Kindleberger, Charles P. (2005) Manias, Panics, and Crashes. A History of Financial Crises](resources_books/kindleberger2005.pdf)
+
+- [Lipietz, Alain (1979) Crise et inflation, pourquoi ?](resources_books/lipietz1979.pdf)
+
+- [Lipietz, Alain (1985) The Enchanted World. Inflation, Credit and the World Crisis](resources_books/lipietz85.pdf)
+
+- [Lipietz, Alain (1987) Mirage and Miracles. The Crises of Global Fordism](resources_books/lipietz87.pdf)
 
 - [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
 
+- [Mandel, Ernest (1995) Long Waves of Capitalist Development. A Marxist Interpretation](resources_books/mandel1995.pdf)
 
 - [Milanovic, Branko (2010) The Haves and Have-Nots](resources_books/branko2010.pdf)
 
 - [Milanovic, Branko (2016) Global Inequality. A New Approach for the Age of Globalization](resources_books/branko16.pdf)
+
+- [Minsky, Hyman (1982) Can "it" Happen Again ? Essays on Instability and Finance](resources_books/minsky1982.pdf)
+
+- [Mitchell, W. C. (1913) Business Cycles. The Problem and its Setting](resources_books/mitchell1913_businesscycles.pdf)
+
+- [Mody, Ashoka (2018) Euro Tragey. A Drama in Nine Acts](resources_books/mody2018.pdf)
+
+- [Mokyr, Joel (2017) The Origin of the Economy](resources_books/mokyr2017.pdf)
+
+- [Morishima, Michio (1968) Theory of Economic Growth](resources_books/morishima1969.pdf)
+
+- [Morishima, Michio (1973) Marx's Economics. A Dual Theory of Value and Growth](resources_books/morishimarx1973.pdf)
+
+- [Morishima, Michio (1982) Why has Japan "succeeded" ? Western Technology and the Japanese ethos](resources_books/morishima1982.pdf)
+
+- [Morishima, Michio (1996) Dynamic Economic Theory](resources_books/moridyn1996.pdf)
+
+- [North, Douglass C. (1990) Institutions, Institutional Change and Economic Performance](resources_books/north1990.pdf)
+
+- [North, Douglass C. (2005) Understanding the Process of Economic Change](resources_books/north2005.pdf)
+
+- [North Douglass C., Wallis J. J., Weingast Barry R (2009) Violence and Social Orders. A Conceptual Framework for Interpreting Recorded Human History](resources_books/north_wallis_weingast_2009.pdf)
+
+- [Pomeranz, Kenneth (2001) The Great Divergence. China, Europe and the Making of the Modern World Economy](resources_books/pomeranz2001.pdf)
+
+- [Schmelzer, Matthias (2016) The Hegemony of Growth. The OECD and the Making of the Economic Growth Paradigm](resources_books/schmelzer2016.pdf)
+
+- [Shaikh, Anwar (2016) Capitalism. Competition, Conflict, Crises](resources_books/shaikh2016.pdf)
+
+- [Storm Servass, Naastepad, C.W.M. (2012) Macroeconomics Beyond the NAIRU](resources_books/storm_naastepad_2012_beyondnairu.pdf)
+
+- [Tooze, Adam (2006) The Wages of Destruction. The Making and Breaking of the Nazi Economy](resources_books/tooze2006.pdf)
+
+- [Tooze, Adam (2018) Crashed. How a Decade of Financial Crises changed the World](resources_books/tooze2018.pdf)
+
+- [Wallerstein, Immanuel (1974) The Modern World-System I](resources_books/wallerstein_WS1_1974.pdf)
+
+- [Wallerstein, Immanuel (1980) The Modern World-System II](resources_books/wallersteini_WS_2_1980.pdf)
+
+- [Wallerstein, Immanuel (1989) The Modern World-System III](resources_books/wallerstein_WS_3_1989.pdf)
 
 
 ## Heterodox journals
