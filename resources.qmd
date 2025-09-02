@@ -102,6 +102,8 @@ editor: visual
 
 -   [Lipietz, Alain (1987) Mirage and Miracles. The Crises of Global Fordism](resources_books/lipietz87.pdf)
 
+- [Maddala & In-Moo (1998) Unit Roots, Cointegration and Structural Change](resources_books/maddala_inmookim_1998.pdf)
+
 -   [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
 
 -   [Mandel, Ernest (1995) Long Waves of Capitalist Development. A Marxist Interpretation](resources_books/mandel1995.pdf)
