@@ -117,9 +117,9 @@ N <- rdb(ids = "AMECO/NECN/CHE.1.0.0.0.NECN") %>%
   ts(start = 1960, end = 2022)
 
 
-# [NLCN] Civilian labour force (Labour force statistics), annually, 1000 persons
-
-L <- rdb(ids = "AMECO/NLCN/CHE.1.0.0.0.NLCN") %>% 
+# [NLCN] Civilian labour force (Labour force statistics), annually, 1000 persons ==> not used
+# Better to use population from 15 to 74 (below)
+L <- rdb(ids = "AMECO/NPAN1/CHE.1.0.0.0.NPAN1") %>% 
   filter(original_period %in% c(1960:2022)) %>% 
   select(value) %>% 
   ts(start = 1960, end = 2022)
@@ -151,7 +151,16 @@ NX_real = (NX/GDP_deflator)*100
 
 #macroch <- as_tibble(macroch)
 
+u = rdb(ids = "AMECO/ZUTN/CHE.1.0.0.0.ZUTN") %>% 
+  filter(original_period %in% c(1960:2022)) %>% 
+  select(value) %>% 
+  ts(start = 1960, end = 2022)
 
+
+real_wage_index = read_csv("salaire_reel_ofs.csv") %>% 
+  filter(YEAR %in% c(1960:2022) & SEX == "T" & WAGE_TYPE == "R") %>% 
+  select(VALUE) %>% 
+  ts(start = 1960, end = 2022)
 
 ```
 
@@ -173,7 +182,7 @@ Despite a flourishing literature on the identification of demand and growth regi
 
 Since the development of neo-Kaleckian models, following the seminal contribution of @bhaduri_unemployment_1990 and the extension of Kalecki-Steindl's model to integrate external trade [@blecker_international_1989] and technical progress [@hein_distribution_2014; @naastepad_technology_2006], an enormous empirical literature trying to identify demand and growth regimes of real-world economies emerged. Unlike New Classical and New Keynesian economics, in which only a negative relationship between the wage share and growth is allowed, Heterodox theories have emphasized the diversity of demand regimes. @bhaduri_unemployment_1990 notably extended Kalecki-Steindl's model of wage-led growth to allow for both profit-led and wage-led demand regimes. The diversity of demand and growth regimes is also a central focus of French Régulation Theory (FRT), which conceives the diversity of capitalism as evolutionary systems characterized by successive accumulation regimes, defined as interactions between demand and productivity regimes [@boyer_political_2022].
 
-However, Switzerland remains little studied in both FRT and neo-Kaleckian traditions regarding the identification of the country's growth regime and the relationship between functional income distribution and aggregate demand. To the author's knowledge, only one study, by @hartwig_distribution_2013, has conducted an estimation of the Swiss demand and productivity regimes. This lack of empirical investigation is strange, given the interesting features of the Swiss economy which makes the latter a particularly interesting case study. Switzerland is often considered among the best performing economies: it has the highest human development index, the second highest economic complexity index, and has one of the highest real GDP per capita. Switzerland is also interesting regarding income distribution since the country is relatively equal in that matter and, unlike most developed countries, has seen its wage share rise tendentially during both the post-war Fordist and financialization periods [@siegenthaler_langfristige_2024]. The Swiss model also stands out for its economic and political institutions. The comparative political economy literature emphasized the uniqueness of Swiss institutions. While @hall_varieties_2001 classified the Swiss model into the coordinated market economies (CMEs), @trampusch_switzerland_2011 argued that Swiss institutions display an important degree of liberal traits and market mechanisms, especially since the liberalization wave of the 1990s: weak trade unions, flexible labour market and low generous welfare state, making Switzerland a special case between coordinated and liberal market economy, in other words, a hybrid model.
+However, Switzerland remains little studied in both FRT and neo-Kaleckian traditions regarding the identification of the country's growth regime and the relationship between functional income distribution and aggregate demand. To the author's knowledge, only one study, by @hartwig_distribution_2013, has conducted an estimation of the Swiss demand and productivity regimes. This lack of empirical investigation is strange, given the interesting features of the Swiss economy which makes the latter a particularly interesting case study. Switzerland is often considered among the best performing economies: it has the highest human development index, the second highest economic complexity index, and has one of the highest real GDP per capita. Switzerland is also interesting regarding income distribution since the country is relatively equal in that matter and, unlike most developed countries, has seen its wage share rise tendentially during both the post-war Fordist and neoliberal periods [@siegenthaler_langfristige_2024]. The Swiss model also stands out for its economic and political institutions. The comparative political economy literature emphasized the uniqueness of Swiss institutions. While @hall_varieties_2001 classified the Swiss model into the coordinated market economies (CMEs), @trampusch_switzerland_2011 argued that Swiss institutions display an important degree of liberal traits and market mechanisms, especially since the liberalization wave of the 1990s: weak trade unions, flexible labour market and low generous welfare state, making Switzerland a special case between coordinated and liberal market economy, in other words, a hybrid model.
 
 The present contribution seeks to fill this gap by conducting an identification the Swiss demand regimes since the post-war period. To do so, an empirical estimation following the so-called structural approach (also called single equation estimations) is conducted using data ranging from 1960 to 2022.
 
@@ -327,6 +336,8 @@ relcontr = cbind(rcgnx, rcgc, rcgi, rcgg)
 
 ```
 
+
+
 ## Consumption function
 
 The first function to be estimated is the aggregate consumption function. Following most of single-equations studies (for instance @hein_distribution_2008; @hein_distribution_2009; @stockhammer_globalization_2011), the consumption function takes the following form:
@@ -460,7 +471,13 @@ I_ardl = auto_ardl(data = dataI,
 
 
 
+I_ardl_h = auto_ardl(data = dataI,
+                     LogI ~ LogY + h,
+                     selection = "BIC", max_order = 4)$best_model
 
+I_ardl_h %>% summary
+bounds_f_test(I_ardl_h, case = 3)
+summary(uecm(I_ardl_h))
 #bounds_f_test(I_ardl_h, case = 3)
 #bounds_t_test(I_ardl_h, case = 3)
 
@@ -765,6 +782,5 @@ $$ {#eq-simI}
 $$
 D[NX_t/Y_t] = 0.877D[log(h_t)] + 0.5D[log(y^f_t)] - 0.51d[log(Y_t)]
 $$ {#eq-simNX}
-
 
 ### References
