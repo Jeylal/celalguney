@@ -475,9 +475,9 @@ I_ardl_h = auto_ardl(data = dataI,
                      LogI ~ LogY + h,
                      selection = "BIC", max_order = 4)$best_model
 
-I_ardl_h %>% summary
-bounds_f_test(I_ardl_h, case = 3)
-summary(uecm(I_ardl_h))
+#I_ardl_h %>% summary
+#bounds_f_test(I_ardl_h, case = 3)
+#summary(uecm(I_ardl_h))
 #bounds_f_test(I_ardl_h, case = 3)
 #bounds_t_test(I_ardl_h, case = 3)
 
@@ -720,6 +720,9 @@ modelsummary(modelsProd, stars = TRUE, add_rows = diagnostic_prod_df2, gof_map =
 
 
 ```
+
+
+
 
 ## Final effect
 

@@ -62,6 +62,8 @@ editor: visual
 
 -   [Giovanni Dosi, Andrea Roventini (2025) Agent-based Macroeconomics. The Schumpeter Meeting Keynes Models](resources_books/agent%20bases%20macroeconomics.pdf)
 
+- [Godley, Wynne & Lavoie, Marc (2007) Monetary Economics. An Integrated Approach to Credit, Money, Income, Production and Wealth](resources_books/godleyLavoie2007.pdf)
+
 -   [Harold, James (2023) Seven Crashes. The Economic Crises that Shaped Globalization](resources_books/harold2023.pdf)
 
 -   [Harold, James (2001) The End of Globalization. The Lessons from the Great Depression](resources_books/haroldjames2001.pdf)
