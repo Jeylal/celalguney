@@ -160,7 +160,7 @@ editor: visual
 
 ## Presentations
 
-- [Présentation aux étudiant de Rethinking Economics Genève](resources_books/FRENCH RE Presentation.pptx)
+- [Présentation de Rethinking Economics Genève aux étudiants](resources_books/FRENCH RE Presentation.pptx)
 
 ## Heterodox journals
 
