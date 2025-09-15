@@ -3,7 +3,5 @@ title: "Curriculum Vitae - Celâl Güney"
 format: html
 editor: visual
 ---
+<embed src="CV_celal_guney-16.pdf" style="width:100%; height:100vh;" />
 
-<iframe width="100%" height="800" src="https://raw.githubusercontent.com/Jeylal/celalguney/master/cv.pdf">
-
-</iframe>
