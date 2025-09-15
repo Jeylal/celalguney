@@ -12,6 +12,8 @@ editor: visual
 
 -   [Aglietta, Michel (2016) La Monnaie Entre dettes et souveraineté](resources_books/aglietta2016_monnairedettesouv.pdf)
 
+- [Aglietta & Espagne (2024) Pour une écologie politique Au-delà du Capitalocène](resources_books/agmiettaespagne2024.pdf)
+
 -   [Agresti (2002) Categorical Data Analysis](resources_books/agresti2002.pdf)
 
 -   [Amable, Bruno (2003) The Diversity of Modern Capitalism](resources_books/amable2003.pdf)
@@ -34,7 +36,7 @@ editor: visual
 
 -   [Boyer, Robert (2022) Political Economy of Capitalisms](resources_books/Political%20Economy%20Of%20Capitalisms%20--%20Robert%20Boyer,%20Roger%20Froane%20Miller%20_%20Translator%20--%201st%20ed_%202022,%20Singapore,%20Singapore,%202022%20--%20Palgrave%20Macmillan,%20--%209789811935350%20--%20314c8d10360339a0be2acc0d116fcb83%20--%20Anna’s%20Archive.pdf)
 
-- [Casson & Hashimzade (2013) Large Databases in Economic History](resources_books/casson_hashimzade_2013.pdf)
+-   [Casson & Hashimzade (2013) Large Databases in Economic History](resources_books/casson_hashimzade_2013.pdf)
 
 -   [Chamayou, Grégoire (2018) La société ingouvernable. Une généalogie du libéralisme autoritaire](resources_books/chamayou2018.pdf)
 
@@ -52,17 +54,17 @@ editor: visual
 
 -   [Foley D.K. (1986) Understanding Capital: Marx's Economic Theory](resources_books/duncan86.pdf)
 
-- [Gelman et al. (1995) Bayesian Data Analysis](resources_books/gelman_etal_bayesian_data_analysis.pdf)
+-   [Gelman et al. (1995) Bayesian Data Analysis](resources_books/gelman_etal_bayesian_data_analysis.pdf)
 
-- [Gelman & Hill (2007) Data Analysis using Regression and Multilevel/Hierarchical Models](resources_books/gelman%20hill%202007.pdf)
+-   [Gelman & Hill (2007) Data Analysis using Regression and Multilevel/Hierarchical Models](resources_books/gelman%20hill%202007.pdf)
 
-- [Gelman et al. (2008) Red State, Blue State, Rich State, Poor State. Why American Vote The Way they Do](resources_books/gelman_et_all_2008.pdf)
+-   [Gelman et al. (2008) Red State, Blue State, Rich State, Poor State. Why American Vote The Way they Do](resources_books/gelman_et_all_2008.pdf)
 
-- [Gelman, Hill & Vethari (2020) Regression and Other Stories](resources_books/gelman_hill_vethari_2020.pdf)
+-   [Gelman, Hill & Vethari (2020) Regression and Other Stories](resources_books/gelman_hill_vethari_2020.pdf)
 
 -   [Giovanni Dosi, Andrea Roventini (2025) Agent-based Macroeconomics. The Schumpeter Meeting Keynes Models](resources_books/agent%20bases%20macroeconomics.pdf)
 
-- [Godley, Wynne & Lavoie, Marc (2007) Monetary Economics. An Integrated Approach to Credit, Money, Income, Production and Wealth](resources_books/godleyLavoie2007.pdf)
+-   [Godley, Wynne & Lavoie, Marc (2007) Monetary Economics. An Integrated Approach to Credit, Money, Income, Production and Wealth](resources_books/godleyLavoie2007.pdf)
 
 -   [Harold, James (2023) Seven Crashes. The Economic Crises that Shaped Globalization](resources_books/harold2023.pdf)
 
@@ -80,6 +82,8 @@ editor: visual
 
 -   [Hobson, J. A. (1902) Imperialism A Study](resources_books/hobson1902.pdf)
 
+- [Huber, Matt (2023) Causal Analysis Impact Evaluation and Causal Machine Learning with Applications in R](resources_books/huber2023causalanalysis.pdf)
+
 -   [Kalecki Collected Work I](resources_books/kalecki-collected_i_1990.pdf)
 
 -   [Kalecki Collected Work II](resources_books/kalecki-collected_ii_1991.pdf)
@@ -96,7 +100,7 @@ editor: visual
 
 -   [Kindleberger, Charles P. (2005) Manias, Panics, and Crashes. A History of Financial Crises](resources_books/kindleberger2005.pdf)
 
-- [Kruschke, John K. (2015) Doing Bayesian Data Analysis. A Tutorial with R, JAGS and Stan](resources_books/kruschke_bayesian_in_R_2015.pdf)
+-   [Kruschke, John K. (2015) Doing Bayesian Data Analysis. A Tutorial with R, JAGS and Stan](resources_books/kruschke_bayesian_in_R_2015.pdf)
 
 -   [Lipietz, Alain (1979) Crise et inflation, pourquoi ?](resources_books/lipietz1979.pdf)
 
@@ -104,7 +108,7 @@ editor: visual
 
 -   [Lipietz, Alain (1987) Mirage and Miracles. The Crises of Global Fordism](resources_books/lipietz87.pdf)
 
-- [Maddala & In-Moo (1998) Unit Roots, Cointegration and Structural Change](resources_books/maddala_inmookim_1998.pdf)
+-   [Maddala & In-Moo (1998) Unit Roots, Cointegration and Structural Change](resources_books/maddala_inmookim_1998.pdf)
 
 -   [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
 
