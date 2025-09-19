@@ -142,6 +142,15 @@ editor: visual
 
 -   [Pomeranz, Kenneth (2001) The Great Divergence. China, Europe and the Making of the Modern World Economy](resources_books/pomeranz2001.pdf)
 
+- [Roemer, John E. (1981) Analytical Foundations of Marxian Economic Theory](resources_books/roemer1981.pdf)
+
+- [Roemer, John E. (1982) A General Theory of Exploitation and Class](resources_books/roemer1982.pdf)
+
+- [Roemer, John E. (1986) Analytical Marxism](resources_books/roemer1986.pdf)
+
+- [Roemer, John E. (1986) Political Competition. Theories and Applications](resources_books/roemer2001.pdf)
+
+
 -   [Schmelzer, Matthias (2016) The Hegemony of Growth. The OECD and the Making of the Economic Growth Paradigm](resources_books/schmelzer2016.pdf)
 
 -   [Shaikh, Anwar (2016) Capitalism. Competition, Conflict, Crises](resources_books/shaikh2016.pdf)
