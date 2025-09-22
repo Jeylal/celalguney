@@ -1,0 +1,251 @@
+---
+title: "For a Neorealist Political Ecology"
+subtitle: "An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation"
+author: "Celâl Güney"
+format: 
+  revealjs:
+    theme: serif
+    page-layout: full
+    embed-resources: true
+editor: visual
+bibliography: socio-ecological bloc.bib
+---
+
+## Motivation
+
+Multiplication of proposals for a social-ecological transformation and degrowth based on ecological planning
+
+-   Mainly dedicated to find the good institutions and reforms to make the social-ecological transformation technically possible
+
+-   But one major blind spot: the socio-political limits of those proposals
+
+-   Finding the "good" institutions and policies is not enough, one needs to analyze institutional (ecological) change in a non-normative way
+
+## The fundamental question
+
+::::: columns
+::: {.column width="70%"}
+> > "Obviously, many areas remain to be explored, including the crucial one of the specific political conditions that make such an aspiration \[i.e. ecological planning\] possible. (p. 247, author's translation)
+:::
+
+::: {.column width="30%"}
+![](commentbifurquer.png){fig-align="right"}
+:::
+:::::
+
+## 
+
+::::: columns
+::: {.column width="70%"}
+> > "The question would be the following: to what extent could a social-ecological bloc seize upon ecological planning to establish itself as a hegemonic political force ?" (p. 247, author's translation).
+:::
+
+::: {.column width="30%"}
+![](commentbifurquer.png){fig-align="right"}
+:::
+
+In other words, could a political strategy based on social-ecological planning aggregate a dominant social bloc ?
+:::::
+
+## Objective
+
+Use the neorealist approach to institutional change [@amable_leconomie_2005; @amable_neorealist_2008; @amable_blocs_2024] to answer this question
+
+-   An approach which has been proven useful to analyze institutional change from a political economy perspective
+
+-   Institutional change conceived as the result of political, institutional and ideological conflict in a non-normative way
+
+-   But how can "the environment" be integrated into this approach ?
+
+## But how can "the environment" be integrated into this approach ?
+
+1.  Through the identification of socio-political groups
+2.  Through the three dimensions of social conflict: institutions, political mediation and ideology
+
+## 1. Identification of socio-political groups {auto-animate="true" auto-animate-easing="linear"}
+
+:::::: r-hstack
+::: {data-id="box1" auto-animate-delay="0" style="background: #0aeaf0; width: 200px; height: 150px; margin: 10px;"}
+SPG1
+:::
+
+::: {data-id="box2" auto-animate-delay="0.1" style="background: #30999c; width: 200px; height: 150px; margin: 10px;"}
+SPG2
+:::
+
+::: {data-id="box3" auto-animate-delay="0.2" style="background: #204445; width: 200px; height: 150px; margin: 10px;"}
+SPG3
+:::
+::::::
+
+:::::: r-hstack
+::: {data-id="box4" auto-animate-delay="0" style="background: #ff9999; width: 200px; height: 150px; margin: 10px;"}
+SPG4
+:::
+
+::: {data-id="box5" auto-animate-delay="0.1" style="background: #cc3333; width: 200px; height: 150px; margin: 10px;;"}
+SPG5
+:::
+
+::: {data-id="box6" auto-animate-delay="0.2" style="background: #660000; width: 200px; height: 150px; margin: 10px;"}
+SPG6
+:::
+::::::
+
+Socio-political groups: groups of individuals sharing similar expectations regarding public policies and their prefered socio-economic model
+
+## 1. Identification of socio-political groups {.smaller auto-animate="true" auto-animate-easing="linear"}
+
+::::::::::::: columns
+::::::: column
+Political strategy 1
+
+:::::: r-stack
+::: {data-id="box1" style="background: #0aeaf0; width: 450px; height: 400px;"}
+Marginal group
+:::
+
+::: {data-id="box2" style="background: #30999c; width: 400; height: 250px;"}
+Well-integrated group
+:::
+
+::: {data-id="box3" style="background: #204445; width: 150; height: 100px;"}
+Core group
+:::
+::::::
+:::::::
+
+::::::: column
+Political strategy 2
+
+:::::: r-stack
+::: {data-id="box4" style="background: #ff9999; width: 350px; height: 350px;"}
+:::
+
+::: {data-id="box5" style="background: #cc3333; width: 250px; height: 250px;"}
+:::
+
+::: {data-id="box6" style="background: #660000; width: 150px; height: 150px;"}
+:::
+::::::
+:::::::
+:::::::::::::
+
+Social bloc: socio-political groups aggregated by a political strategy
+
+::: fragment
+Dominant social bloc: social bloc aggregated by the winning political strategy
+:::
+
+## Socio-political groups: what indicators ?
+
+::::: columns
+::: {.column width="50%"}
+```{mermaid}
+flowchart LR
+    %% Déclaration des nœuds
+SPG["Socio-political groups"]
+I1["Labour Market"]
+I2["Product market"]
+I3["Financial system"]
+I4["Social protection"]
+I5["Education system"]
+I6["Broad economic policy orientation"]
+
+
+SPG --> I1
+SPG --> I2
+SPG --> I3
+SPG --> I4
+SPG --> I5
+SPG --> I6
+```
+:::
+
+::: {.column width="50%"}
+Indicators used to define the socio-political groups relate to the five institutional domains considered in @amable_diversity_2003, along with broad economic policies
+:::
+:::::
+
+## Example: @amable_search_2021
+
+::::: columns
+::: {.column width="50%"}
+![](amable2018.png){fig-align="left"}
+:::
+
+::: {.column width="50%"}
+![](clustersamable2021.png){fig-align="right"}
+:::
+:::::
+
+# My argument
+
+Further identifications of socio-political groups must take more indicators related to ecological issues
+
+::: fragment
+Problem: what ecological issues should be taken into account ?
+:::
+
+## Identification of socio-political groups {.smaller}
+
+:::::: columns
+::: {.column width="50%"}
+```{mermaid}
+flowchart LR
+    %% Déclaration des nœuds
+SPG["Socio-political groups"]
+I1["Wage-labour nexus"]
+I2["Forms of competition"]
+I3["Monetary regime"]
+I4["International integration"]
+I5["Form of the state"]
+I6["Social relation to the environment"]
+
+
+SPG --> I1
+SPG --> I2
+SPG --> I3
+SPG --> I4
+SPG --> I5
+SPG --> I6
+```
+:::
+
+:::: {.column width="50%"}
+Social relation to the environment as a sixth institutional form
+
+> The political aspects of how societies regulate their relation to the environment and how they manage constraints imposed by ecosystems [@cahen-fourot_chapitre_2023]
+
+::: fragment
+Indicators related to the environment should capture individuals' expectations regarding their prefered social relation to the environment
+:::
+::::
+::::::
+
+## 2. The three dimensions of social conflict
+
+![How the social relation to the environment ("environment") integrates in relation to the three dimensions of social conflict (ideology, institutions, political mediation). Elaboration based on Amable and Palombarini (2024, figure 5.2, p.123)](diagram_translated_english.svg){fig-align="center"}
+
+## Conclusion {.smaller}
+
+An institutional ecological change approach ("neorealist political ecology") can be build on the neorealist approach by:
+
+1. Considering more indicators related to ecological issues in the identification of socio-political groups
+
+2. Considering the relationships between the social relation to the environment and the three dimensions of social conflict (ideology, institutions, political mediation)
+
+::: fragment
+
+Further issues:
+
+- Finding good survey data with the good questions can be hard
+- Still puzzled by the definition of "the environment" and the "social relation to the environment"
+
+:::
+
+
+## References
+
+::: {#refs}
+:::

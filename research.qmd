@@ -16,7 +16,7 @@ editor: visual
 
 -   
 
-    ### "À la recherche des trois blocs: une analyse empirique de la tripolarisation de l'espace politique français" [draft 📄](resources_books/les_trois_blocs c.pdf)
+    ### "À la recherche des trois blocs: une analyse empirique de la tripolarisation de l'espace politique français" [draft 📄](resources_books/les_trois_blocs%20c.pdf)
 
     *Avec Bruno Amable*
 
@@ -24,7 +24,7 @@ editor: visual
 
 -   
 
-    ### "For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation" [draft 📄](resources_books/neorealist%20political%20ecology-2.pdf)
+    ### "For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation" [draft 📄](resources_books/neorealist%20political%20ecology-2.pdf), [presentation at epita (ecological planning in the anthropocene)](resources_books/presentation_epita.html)
 
 -   
 
