@@ -852,5 +852,103 @@
     "title": "For a Neorealist Political Ecology",
     "section": "References",
     "text": "References\n\n\nAmable, Bruno. 2003. The Diversity of Modern Capitalism. Oxford ; New York: Oxford University Press.\n\n\n———. 2021. “In Search of the Bloc Bourgeois.” Revue de La Régulation. Capitalisme, Institutions, Pouvoirs, no. 31 (August). https://doi.org/10.4000/regulation.20350.\n\n\nAmable, Bruno, and Stefano Palombarini. 2005. L’économie Politique n’est Pas Une Science Morale. Raisons d’Agir. Paris.\n\n\n———. 2008. “A Neorealist Approach to Institutional Change and the Diversity of Capitalism.” Socio-Economic Review 7 (1): 123–43. https://doi.org/10.1093/ser/mwn018.\n\n\n———. 2024. Blocs Sociaux Et Domination: Pour Une Économie Politique Néoréaliste. 1er édition. Paris: Liber/Raisons d’agir.\n\n\nCahen-Fourot, Louison. 2023. “Chapitre 9. Économie et écologie : le rapport social à l’environnement.” In Théorie de la régulation, 87–95. Dunod. https://doi.org/10.3917/dunod.boyer.2023.01.0087."
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html",
+    "href": "presentation epita/presentation_epita.html",
+    "title": "For a Neorealist Political Ecology",
+    "section": "",
+    "text": "Multiplication of proposals for a social-ecological transformation and degrowth based on ecological planning\n\nMainly dedicated to find the good institutions and reforms to make the social-ecological transformation technically possible\nBut one major blind spot: the socio-political limits of those proposals\nFinding the “good” institutions and policies is not enough, one needs to analyze institutional (ecological) change in a non-normative way"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#motivation",
+    "href": "presentation epita/presentation_epita.html#motivation",
+    "title": "For a Neorealist Political Ecology",
+    "section": "",
+    "text": "Multiplication of proposals for a social-ecological transformation and degrowth based on ecological planning\n\nMainly dedicated to find the good institutions and reforms to make the social-ecological transformation technically possible\nBut one major blind spot: the socio-political limits of those proposals\nFinding the “good” institutions and policies is not enough, one needs to analyze institutional (ecological) change in a non-normative way"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#the-fundamental-question",
+    "href": "presentation epita/presentation_epita.html#the-fundamental-question",
+    "title": "For a Neorealist Political Ecology",
+    "section": "The fundamental question",
+    "text": "The fundamental question\n\n\n\n\n“Obviously, many areas remain to be explored, including the crucial one of the specific political conditions that make such an aspiration [i.e. ecological planning] possible. (p. 247, author’s translation)"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#section",
+    "href": "presentation epita/presentation_epita.html#section",
+    "title": "For a Neorealist Political Ecology",
+    "section": "",
+    "text": "“The question would be the following: to what extent could a social-ecological bloc seize upon ecological planning to establish itself as a hegemonic political force ?” (p. 247, author’s translation).\n\n\n\n\n\n\n\n\nIn other words, could a political strategy based on social-ecological planning aggregate a dominant social bloc ?"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#objective",
+    "href": "presentation epita/presentation_epita.html#objective",
+    "title": "For a Neorealist Political Ecology",
+    "section": "Objective",
+    "text": "Objective\nUse the neorealist approach to institutional change (Amable and Palombarini 2005, 2008, 2024) to answer this question\n\nAn approach which has been proven useful to analyze institutional change from a political economy perspective\nInstitutional change conceived as the result of political, institutional and ideological conflict in a non-normative way\nBut how can “the environment” be integrated into this approach ?"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#but-how-can-the-environment-be-integrated-into-this-approach",
+    "href": "presentation epita/presentation_epita.html#but-how-can-the-environment-be-integrated-into-this-approach",
+    "title": "For a Neorealist Political Ecology",
+    "section": "But how can “the environment” be integrated into this approach ?",
+    "text": "But how can “the environment” be integrated into this approach ?\n\nThrough the identification of socio-political groups\nThrough the three dimensions of social conflict: institutions, political mediation and ideology"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#identification-of-socio-political-groups",
+    "href": "presentation epita/presentation_epita.html#identification-of-socio-political-groups",
+    "title": "For a Neorealist Political Ecology",
+    "section": "1. Identification of socio-political groups",
+    "text": "1. Identification of socio-political groups\n\n\nSPG1\n\n\nSPG2\n\n\nSPG3\n\n\n\n\nSPG4\n\n\nSPG5\n\n\nSPG6\n\n\nSocio-political groups: groups of individuals sharing similar expectations regarding public policies and their prefered socio-economic model"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#identification-of-socio-political-groups-1",
+    "href": "presentation epita/presentation_epita.html#identification-of-socio-political-groups-1",
+    "title": "For a Neorealist Political Ecology",
+    "section": "1. Identification of socio-political groups",
+    "text": "1. Identification of socio-political groups\n\n\nPolitical strategy 1\n\n\nMarginal group\n\n\nWell-integrated group\n\n\nCore group\n\n\n\nPolitical strategy 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nSocial bloc: socio-political groups aggregated by a political strategy\n\nDominant social bloc: social bloc aggregated by the winning political strategy"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#socio-political-groups-what-indicators",
+    "href": "presentation epita/presentation_epita.html#socio-political-groups-what-indicators",
+    "title": "For a Neorealist Political Ecology",
+    "section": "Socio-political groups: what indicators ?",
+    "text": "Socio-political groups: what indicators ?\n\n\n\n\n\n\n\nflowchart LR\n    %% Déclaration des nœuds\nSPG[\"Socio-political groups\"]\nI1[\"Labour Market\"]\nI2[\"Product market\"]\nI3[\"Financial system\"]\nI4[\"Social protection\"]\nI5[\"Education system\"]\nI6[\"Broad economic policy orientation\"]\n\n\nSPG --&gt; I1\nSPG --&gt; I2\nSPG --&gt; I3\nSPG --&gt; I4\nSPG --&gt; I5\nSPG --&gt; I6\n\n\n\n\n\n\n\nIndicators used to define the socio-political groups relate to the five institutional domains considered in Amable (2003), along with broad economic policies"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#example-amable_search_2021",
+    "href": "presentation epita/presentation_epita.html#example-amable_search_2021",
+    "title": "For a Neorealist Political Ecology",
+    "section": "Example: Amable (2021)",
+    "text": "Example: Amable (2021)"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#identification-of-socio-political-groups-2",
+    "href": "presentation epita/presentation_epita.html#identification-of-socio-political-groups-2",
+    "title": "For a Neorealist Political Ecology",
+    "section": "Identification of socio-political groups",
+    "text": "Identification of socio-political groups\n\n\n\n\n\n\n\nflowchart LR\n    %% Déclaration des nœuds\nSPG[\"Socio-political groups\"]\nI1[\"Wage-labour nexus\"]\nI2[\"Forms of competition\"]\nI3[\"Monetary regime\"]\nI4[\"International integration\"]\nI5[\"Form of the state\"]\nI6[\"Social relation to the environment\"]\n\n\nSPG --&gt; I1\nSPG --&gt; I2\nSPG --&gt; I3\nSPG --&gt; I4\nSPG --&gt; I5\nSPG --&gt; I6\n\n\n\n\n\n\n\nSocial relation to the environment as a sixth institutional form\n\nThe political aspects of how societies regulate their relation to the environment and how they manage constraints imposed by ecosystems (Cahen-Fourot 2023)\n\n\nIndicators related to the environment should capture individuals’ expectations regarding their prefered social relation to the environment"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#the-three-dimensions-of-social-conflict",
+    "href": "presentation epita/presentation_epita.html#the-three-dimensions-of-social-conflict",
+    "title": "For a Neorealist Political Ecology",
+    "section": "2. The three dimensions of social conflict",
+    "text": "2. The three dimensions of social conflict\n\n\n\nHow the social relation to the environment (“environment”) integrates in relation to the three dimensions of social conflict (ideology, institutions, political mediation). Elaboration based on Amable and Palombarini (2024, figure 5.2, p.123)"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#conclusion",
+    "href": "presentation epita/presentation_epita.html#conclusion",
+    "title": "For a Neorealist Political Ecology",
+    "section": "Conclusion",
+    "text": "Conclusion\nAn institutional ecological change approach (“neorealist political ecology”) can be build on the neorealist approach by:\n\nConsidering more indicators related to ecological issues in the identification of socio-political groups\nConsidering the relationships between the social relation to the environment and the three dimensions of social conflict (ideology, institutions, political mediation)\n\n\nFurther issues:\n\nFinding good survey data with the good questions can be hard\nStill puzzled by the definition of “the environment” and the “social relation to the environment”"
+  },
+  {
+    "objectID": "presentation epita/presentation_epita.html#references",
+    "href": "presentation epita/presentation_epita.html#references",
+    "title": "For a Neorealist Political Ecology",
+    "section": "References",
+    "text": "References\n\n\nAmable, Bruno. 2003. The Diversity of Modern Capitalism. Oxford ; New York: Oxford University Press.\n\n\n———. 2021. “In Search of the Bloc Bourgeois.” Revue de La Régulation. Capitalisme, Institutions, Pouvoirs, no. 31 (August). https://doi.org/10.4000/regulation.20350.\n\n\nAmable, Bruno, and Stefano Palombarini. 2005. L’économie Politique n’est Pas Une Science Morale. Raisons d’Agir. Paris.\n\n\n———. 2008. “A Neorealist Approach to Institutional Change and the Diversity of Capitalism.” Socio-Economic Review 7 (1): 123–43. https://doi.org/10.1093/ser/mwn018.\n\n\n———. 2024. Blocs Sociaux Et Domination: Pour Une Économie Politique Néoréaliste. 1er édition. Paris: Liber/Raisons d’agir.\n\n\nCahen-Fourot, Louison. 2023. “Chapitre 9. Économie et écologie : le rapport social à l’environnement.” In Théorie de la régulation, 87–95. Dunod. https://doi.org/10.3917/dunod.boyer.2023.01.0087."
   }
 ]
