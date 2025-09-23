@@ -1,19 +1,8 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/reWorkshops.html",
     "items": [
-      "/posts/MFA_cahenfourot2020/mfaCahenFourot2020.html",
-      "/posts/selects2023/selects2023.html",
-      "/posts/growth debate switzerland/growth debate switzerland.html",
-      "/posts/political compass/pol_compass.html",
-      "/posts/vox and voto analysis/vox_voto_analysis.html",
-      "/posts/web scraping/web_scraping.html",
-      "/posts/trust institution switzerland/trust institution switzerland.html",
-      "/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html",
-      "/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html",
-      "/posts/Sugar, Cochineal and Power/sugar cochineal power.html",
-      "/posts/About cycles and crises/cycles_crises.html",
-      "/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html"
+      "/reWorkshopsPosts/capitalism/capitalism.html"
     ]
   },
   {
@@ -28,9 +17,20 @@
     ]
   },
   {
-    "listing": "/reWorkshops.html",
+    "listing": "/index.html",
     "items": [
-      "/reWorkshopsPosts/capitalism/capitalism.html"
+      "/posts/MFA_cahenfourot2020/mfaCahenFourot2020.html",
+      "/posts/selects2023/selects2023.html",
+      "/posts/growth debate switzerland/growth debate switzerland.html",
+      "/posts/political compass/pol_compass.html",
+      "/posts/vox and voto analysis/vox_voto_analysis.html",
+      "/posts/web scraping/web_scraping.html",
+      "/posts/trust institution switzerland/trust institution switzerland.html",
+      "/posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html",
+      "/posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html",
+      "/posts/Sugar, Cochineal and Power/sugar cochineal power.html",
+      "/posts/About cycles and crises/cycles_crises.html",
+      "/posts/Inikori about Slavery and the Industrial Revolution/Inikori.html"
     ]
   }
 ]
