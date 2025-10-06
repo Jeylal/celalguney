@@ -82,7 +82,7 @@ editor: visual
 
 -   [Hobson, J. A. (1902) Imperialism A Study](resources_books/hobson1902.pdf)
 
--   [Huber, Matt (2023) Causal Analysis Impact Evaluation and Causal Machine Learning with Applications in R](resources_books/huber2023causalanalysis.pdf)
+-   [Huber, Martin (2023) Causal Analysis Impact Evaluation and Causal Machine Learning with Applications in R](resources_books/huber2023causalanalysis.pdf)
 
 -   [Kalecki Collected Work I](resources_books/kalecki-collected_i_1990.pdf)
 
@@ -159,6 +159,10 @@ editor: visual
 -   [Tooze, Adam (2006) The Wages of Destruction. The Making and Breaking of the Nazi Economy](resources_books/tooze2006.pdf)
 
 -   [Tooze, Adam (2018) Crashed. How a Decade of Financial Crises changed the World](resources_books/tooze2018.pdf)
+
+- [Turchin, Peter (2016) Ultra Society. How 10000 Years of War made Humans the Greatest Cooperators on Earth](resources_books/turchin2016.pdf)
+
+- [Turchin, Peter (2023) End Times. Elites, Counter-Elites and the Path to Political Desintegration](resources_books/turchin2023.pdf)
 
 -   [Wallerstein, Immanuel (1974) The Modern World-System I](resources_books/wallerstein_WS1_1974.pdf)
 
