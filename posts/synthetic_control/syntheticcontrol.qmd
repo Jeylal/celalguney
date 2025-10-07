@@ -19,9 +19,9 @@ But once different socio-economic and political regimes are identified at one po
 
 This is the purpose of the synthetic control method which, according to its main creator Alberto Abadie, is a useful method to complement and facilitate qualitative analysis in comparative case studies [@abadie_comparative_2015]. Another interesting property of this method is that it is designed to study the very specific case in which a policy, reform of any "intervention" happens in the case of interest but not in the comparison units.
 
-The core ideas of the synthetic control method are the following[^presentation]:
+The core ideas of the synthetic control method are the following[^1]:
 
-[^presentation]: I am repeating here the formalization of the method as presented in Abadie, Diamond, and Hainmueller [-@abadie_synthetic_2010; -@abadie_comparative_2015]
+[^1]: I am repeating here the formalization of the method as presented in Abadie, Diamond, and Hainmueller [-@abadie_synthetic_2010; -@abadie_comparative_2015]
 
 We face the fundamental problem of causal inference in the context of an intervention/event/treatment which happened to a single or small number of units at an aggregate level (countries, regions or cities), the causal effect that we want to estimate is:
 
@@ -53,7 +53,7 @@ To sum up:
 
 I will now show how the synthetic control method can be run in R by comparing three different packages `Synth`, `tidysynth` and `synthdid`. I will reproduce Abadie [-@abadie_comparative_2015]'s results on the negative effects of German reunification on West Germany's economic growth.
 
-The data used are panel data for West Germany and 16 other countries such as Switzerland, the UK, USA and France:
+The data used are panel data for West Germany and 16 other countries such as Switzerland, the UK, USA and France. The data set can be downloaded [here](https://github.com/Jeylal/celalguney/raw/ec36bc6ec0c660de5c7a208d567ea345cb3bb9f3/posts/synthetic_control/repgermany.dta).
 
 ```{r set-up}
 #| message: false
@@ -73,9 +73,9 @@ country = unique(as_label(data$country)) # save the country names for later
 glimpse(data) # have a quick look at the date
 ```
 
-The `repgermany` data set contains 10 variables for 17 countries including West Germany. The variables needed to conduct a synthetic control analysis are a time index, the outcome of interest, a set of countries (or any aggregated entities) and a set of variables which will be used to construct the synthetic control. Here, the time frame are the years spanning from 1960 to 2003, which is good because the synthetic control method need to go back several years before the time of intervention. `gdp`, the real gdp per capita at purchasing power parity, is the outcome of interest; `infrate` is the inflation rate; `trade` is exports plus imports as percentage of gdp (a standard measure of trade openness); `schooling` the percentage of secondary school attained in the total population aged 25 and older; the set of `invest` variables a measure of investment rate and `industry` the industry share of value added[^1].
+The `repgermany` data set contains 10 variables for 17 countries including West Germany. The variables needed to conduct a synthetic control analysis are a time index, the outcome of interest, a set of countries (or any aggregated entities) and a set of variables which will be used to construct the synthetic control. Here, the time frame are the years spanning from 1960 to 2003, which is good because the synthetic control method need to go back several years before the time of intervention. `gdp`, the real gdp per capita at purchasing power parity, is the outcome of interest; `infrate` is the inflation rate; `trade` is exports plus imports as percentage of gdp (a standard measure of trade openness); `schooling` the percentage of secondary school attained in the total population aged 25 and older; the set of `invest` variables a measure of investment rate and `industry` the industry share of value added[^2].
 
-[^1]: For more information on data sources of the repgermany data set, see the appendix of @abadie_comparative_2015
+[^2]: For more information on data sources of the repgermany data set, see the appendix of @abadie_comparative_2015
 
 ## Synthetic control with the Synth package
 
@@ -464,13 +464,12 @@ setup <- panel.matrices(
 
 panel.matrices returns a list with four objects: Y which is the observation matrix; N0 the number of control units (countries); T0 the number of pre-treatment periods and W the treatment indicator.
 
-
 For synthdid_estimate to work, Y, N0 and T0 must be passed into the function as follows:
+
 ```{r}
 synthdid_results = synthdid_estimate(setup$Y, setup$N0, setup$T0)
 
 ```
-
 
 And we can have a quick look at the result with:
 
@@ -479,7 +478,6 @@ plot(synthdid_results)
 ```
 
 We can see that the SDiD estimates give similar results than the synthetic control estimates computed with the Synth and tidysynth packages. A good feature of the synthdid package is that we can also run the estimates for the classical DiD and synthetic control methods and plot the results together:
-
 
 ```{r}
 
@@ -492,18 +490,4 @@ names(estimates) = c('Diff-in-Diff', 'Synthetic Control', 'Synthetic Diff-in-Dif
 synthdid_plot(estimates)
 ```
 
-
 The synthdid package looks promising, but is still under development and the documentation is thus for now incomplete. Until it is further improved, tidysynth remains by far the best package to run synthetic control analysis in R.
-
-
-
-
-
-
-
-
-
-
-
-
-
