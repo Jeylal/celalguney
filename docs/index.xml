@@ -37,9 +37,9 @@
 <p>To sum up:</p>
 <ul>
 <li><p>The method is applied when an “intervention” (for instance a policy, reform or any historical event) happened in an aggregated unit such as a country or a region, but not in the units used for comparison.</p></li>
-<li><p>We have enough information coming from a sample of comparison units to construct a weighted average that at best compares with the characteristics of the case of interest. The point of this method, as argued by Abadie (2015), is that this weighted average (synthetic control) will be a better counterfactual than a single comparison entity.</p></li>
+<li><p>We have enough information coming from a sample of comparison units to construct a weighted average that at best compares with the characteristics of the case of interest. The point of this method, as argued by Abadie and his coauthors, is that this weighted average (synthetic control) will be a better counterfactual than a single comparison entity.</p></li>
 </ul>
-<p>I will now show how the synthetic control method can be run in R by comparing three different packages <code>Synth</code>, <code>tidysynth</code> and <code>synthdid</code>. I will reproduce Abadie <span class="citation" data-cites="abadie_comparative_2015">(2015)</span>’s results on the negative effects of German reunification on West Germany’s economic growth.</p>
+<p>I will now show how the synthetic control method can be run in R by comparing three different packages <code>Synth</code>, <code>tidysynth</code> and <code>synthdid</code>. I will reproduce <span class="citation" data-cites="abadie_comparative_2015">Abadie, Diamond, and Hainmueller (2015)</span> ’s results on the negative effects of German reunification on West Germany’s economic growth.</p>
 <p>The data used are panel data for West Germany and 16 other countries such as Switzerland, the UK, USA and France. The data set can be downloaded <a href="https://github.com/Jeylal/celalguney/raw/ec36bc6ec0c660de5c7a208d567ea345cb3bb9f3/posts/synthetic_control/repgermany.dta">here</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
@@ -112,7 +112,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <h2 class="anchored" data-anchor-id="synthetic-control-with-the-synth-package">Synthetic control with the Synth package</h2>
 <p>Running synthetic control analysis with the Synth package is a bit tedious. There are two main functions: the <code>dataprep()</code> function which transform the data into a suitable format for the <code>synth()</code> function which will run the computation. It is important to note that the dataframe must be transformed into a dataframe object with the function <code>as.data.frame()</code>.</p>
 <p>The dataprep function takes a lot of arguments and some of them are not easy to grasp at first sight. <code>predictors</code> takes the variables that we want for the whole computation, including the dependent variable which needs also to be specified with <code>dependent</code>. special.predictors is for the variables that we want only for specific periods. treatment.identifier takes the value of the country of interest, here West Germany, which is coded as 17 in the country variable. <code>control.identifier</code> does the same for the comparison units.</p>
-<p>The time of intervention is included through the <code>time.optimize.ssr</code> and <code>time.predictors.prior</code> arguments by specifying <code>1960:1989</code>. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.</p>
+<p>The time of intervention is included through the <code>time.optimize.ssr</code> and <code>time.predictors.prior</code> arguments by specifying <code>1960:1990</code>. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.</p>
 <p>The dataprep function is the main drawback of the Synth package because the specification of the country of interest and the comparisons units is very buggy: the arguments only accept numerical variables and even labelled numerical variables need to be transformed into a strictly numeric. Once an object is created through this function, it can be passed through <code>synth</code> to run the computation, which returns a list with 6 objects.</p>
 <p>The first object are the <img src="https://latex.codecogs.com/png.latex?v"> weights for the predictors:</p>
 <div class="cell">
@@ -1307,11 +1307,6 @@ background-color: null;
 font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">element_blank</span>())</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-3.5.0.
-ℹ Please use the `legend.position.inside` argument of `theme()` instead.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1323,14 +1318,14 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div>
 <p>We can see that before reunification happened in 1990, the line for synthetic West Germany closely follows the line for actual West Germany, meaning that the synthetic index is a good approximation. After 1990, we can see that reunificated West Germany performed better than not-reunificated West Germany, but not for long as synthetic West Germany then grows faster than reunificated West Germany.</p>
 <p>The synth package offers a built-in function to plot the exact same graph, but in base R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">path.plot</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">synth.res =</span> synth.out, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">dataprep.res =</span> dataprep.out,</span>
-<span id="cb8-2">          <span class="at" style="color: #657422;
+<span id="cb7-2">          <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">Ylab =</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -1339,7 +1334,7 @@ background-color: null;
 font-style: inherit;">Xlab =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Year"</span>,</span>
-<span id="cb8-3">          <span class="at" style="color: #657422;
+<span id="cb7-3">          <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">Ylim =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1360,7 +1355,7 @@ background-color: null;
 font-style: inherit;">Legend.position =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"bottomright"</span>,</span>
-<span id="cb8-4">          <span class="at" style="color: #657422;
+<span id="cb7-4">          <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">tr.intake =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1375,10 +1370,10 @@ font-style: inherit;">1990</span>)</span></code></pre></div>
 </div>
 <p>One can also plot the gaps between the two lines to have a better view of the causal effect:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">data2 <span class="sc" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">data2 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
-<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1389,12 +1384,12 @@ background-color: null;
 font-style: inherit;">y =</span> gap))<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb9-3">  <span class="fu" style="color: #4758AB;
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>()<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb9-4">  <span class="fu" style="color: #4758AB;
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1407,7 +1402,7 @@ background-color: null;
 font-style: inherit;">0.5</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb9-5">  <span class="fu" style="color: #4758AB;
+<span id="cb8-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1420,12 +1415,12 @@ background-color: null;
 font-style: inherit;">0.5</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb9-6">  <span class="fu" style="color: #4758AB;
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb9-7">  <span class="fu" style="color: #4758AB;
+<span id="cb8-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1449,7 +1444,7 @@ font-style: inherit;">"Gap"</span>)</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="placebo-and-inferential-tests">Placebo and inferential tests</h2>
 <p>As any models, the synthetic control method comes with several important assumptions that need to be checked. The most important one is that the intervention/event/treatment was not anticipated. This assumption can be checked with an “in-time placebo” check by re-assigning the treatment in a period before 1990. This can be done simply by changing the <code>time.prior.predictor</code> and <code>time.optimize.ssr</code> arguments in the dataprep function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">synthetic_west_germany2 <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">synthetic_west_germany2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> dataprep.out2<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1458,18 +1453,18 @@ background-color: null;
 font-style: inherit;">%*%</span> synth.out2<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>solution.w</span>
-<span id="cb10-2"></span>
-<span id="cb10-3">data3 <span class="ot" style="color: #003B4F;
+<span id="cb9-2"></span>
+<span id="cb9-3">data3 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> synthetic_west_germany2 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
-<span id="cb10-4">  <span class="fu" style="color: #4758AB;
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">as_tibble</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
-<span id="cb10-5">  <span class="fu" style="color: #4758AB;
+<span id="cb9-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1478,10 +1473,10 @@ background-color: null;
 font-style: inherit;">"w.weight"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
-<span id="cb10-6">  <span class="fu" style="color: #4758AB;
+<span id="cb9-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(</span>
-<span id="cb10-7">    <span class="at" style="color: #657422;
+<span id="cb9-7">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">west_germany =</span> data<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1492,7 +1487,7 @@ background-color: null;
 font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">17</span>],</span>
-<span id="cb10-8">    <span class="at" style="color: #657422;
+<span id="cb9-8">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">year =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1501,23 +1496,23 @@ background-color: null;
 font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2003</span>,</span>
-<span id="cb10-9">    <span class="at" style="color: #657422;
+<span id="cb9-9">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gap =</span> west_germany <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span> synthetic_west_germany</span>
-<span id="cb10-10">  )</span>
-<span id="cb10-11"></span>
-<span id="cb10-12"></span>
-<span id="cb10-13">data3 <span class="sc" style="color: #5E5E5E;
+<span id="cb9-10">  )</span>
+<span id="cb9-11"></span>
+<span id="cb9-12"></span>
+<span id="cb9-13">data3 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb10-14">  <span class="fu" style="color: #4758AB;
+<span id="cb9-14">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-15">  <span class="fu" style="color: #4758AB;
+<span id="cb9-15">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1530,12 +1525,12 @@ background-color: null;
 font-style: inherit;">"Actual West Germany"</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-16">  <span class="fu" style="color: #4758AB;
+<span id="cb9-16">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>()<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-17">  <span class="fu" style="color: #4758AB;
+<span id="cb9-17">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1548,7 +1543,7 @@ background-color: null;
 font-style: inherit;">"Synthetic West Germany"</span>))<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-18">  <span class="fu" style="color: #4758AB;
+<span id="cb9-18">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1557,7 +1552,7 @@ background-color: null;
 font-style: inherit;">1990</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-19">  <span class="fu" style="color: #4758AB;
+<span id="cb9-19">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1566,12 +1561,12 @@ background-color: null;
 font-style: inherit;">1975</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-20">  <span class="fu" style="color: #4758AB;
+<span id="cb9-20">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-21">  <span class="fu" style="color: #4758AB;
+<span id="cb9-21">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1582,14 +1577,14 @@ background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"GDP per Capita"</span>,</span>
-<span id="cb10-22">       <span class="at" style="color: #657422;
+<span id="cb9-22">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Placebo test with treatment starting at 1975"</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb10-23">  <span class="fu" style="color: #4758AB;
+<span id="cb9-23">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1600,7 +1595,7 @@ background-color: null;
 font-style: inherit;">0.1</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.7</span>),</span>
-<span id="cb10-24">        <span class="at" style="color: #657422;
+<span id="cb9-24">        <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1616,6 +1611,225 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div>
 <p>We can see that the estimation is very robust to the in-time robustness check as re-assigning the treatment to 1975 does not change the overall picture at all.</p>
 <p>Another way to test for the significance and robustness of the estimates is a cross-entity placebo test. This is essentially a permutation test in which we run the same analysis by assigning the same treatment to each country in the sample. If the results from these permutations create gaps of similar magnitude than for our treated unit, this implies that our result for West Germany is not really significant.</p>
 <p>It is however here that the Synth package reaches its limits, because it does not include any function to do this directly. Here is how to do it manually through a for loop which assigns the treatment for each country and collects the gaps.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">gaps <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>()</span>
+<span id="cb10-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">17</span>) {</span>
+<span id="cb10-3">  dataprep.out <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span></span>
+<span id="cb10-4">  Synth<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dataprep</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">foo =</span> data,</span>
+<span id="cb10-5">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predictors    =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gdp"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"trade"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"infrate"</span>),</span>
+<span id="cb10-6">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predictors.op =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mean"</span>,</span>
+<span id="cb10-7">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time.predictors.prior =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1960</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1990</span>,</span>
+<span id="cb10-8">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dependent     =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gdp"</span>,</span>
+<span id="cb10-9">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">unit.variable =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb10-10">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">special.predictors =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb10-11">             <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"industry"</span> ,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1981</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1990</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mean"</span>)),</span>
+<span id="cb10-12">             <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"schooling"</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1980</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1985</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mean"</span>)),</span>
+<span id="cb10-13">             <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"invest80"</span> ,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1980</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mean"</span>))),</span>
+<span id="cb10-14">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time.variable =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"year"</span>,</span>
+<span id="cb10-15">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">treatment.identifier =</span> i,</span>
+<span id="cb10-16">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">controls.identifier =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>country)[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>i],</span>
+<span id="cb10-17">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time.optimize.ssr =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1960</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1990</span>,</span>
+<span id="cb10-18">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time.plot =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1960</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2003</span></span>
+<span id="cb10-19">  )</span>
+<span id="cb10-20"></span>
+<span id="cb10-21">synth.out <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">synth</span>(dataprep.out)</span>
+<span id="cb10-22"></span>
+<span id="cb10-23">gaps[[i]] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> dataprep.out<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Y1plot <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> dataprep.out<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Y0plot <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%*%</span> synth.out<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>solution.w</span>
+<span id="cb10-24"></span>
+<span id="cb10-25"></span>
+<span id="cb10-26">}</span>
+<span id="cb10-27"></span>
+<span id="cb10-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># transform the gaps list into a (tibble) dataframe, also adding the years and transforming into long format for ggplot</span></span>
+<span id="cb10-29">gaps2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_tibble</span>(gaps, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.name_repair =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"unique_quiet"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb10-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">year =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1960</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2003</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb10-31">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">17</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"country"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gaps"</span>) </span></code></pre></div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1686,7 +1900,7 @@ font-style: inherit;">1990</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1912,7 +2126,7 @@ font-style: inherit;">plot_trends</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1925,7 +2139,7 @@ font-style: inherit;">plot_differences</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1941,7 +2155,7 @@ font-style: inherit;">plot_weights</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1962,7 +2176,7 @@ font-style: inherit;">FALSE</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1978,7 +2192,7 @@ font-style: inherit;">plot_mspe_ratio</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2716,7 +2930,7 @@ font-style: inherit;">plot</span>(synthdid_results)</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2771,7 +2985,7 @@ font-style: inherit;">synthdid_plot</span>(estimates)</span></code></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

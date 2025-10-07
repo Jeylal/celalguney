@@ -470,9 +470,9 @@ window.Quarto = {
 <p>To sum up:</p>
 <ul>
 <li><p>The method is applied when an “intervention” (for instance a policy, reform or any historical event) happened in an aggregated unit such as a country or a region, but not in the units used for comparison.</p></li>
-<li><p>We have enough information coming from a sample of comparison units to construct a weighted average that at best compares with the characteristics of the case of interest. The point of this method, as argued by Abadie (2015), is that this weighted average (synthetic control) will be a better counterfactual than a single comparison entity.</p></li>
+<li><p>We have enough information coming from a sample of comparison units to construct a weighted average that at best compares with the characteristics of the case of interest. The point of this method, as argued by Abadie and his coauthors, is that this weighted average (synthetic control) will be a better counterfactual than a single comparison entity.</p></li>
 </ul>
-<p>I will now show how the synthetic control method can be run in R by comparing three different packages <code>Synth</code>, <code>tidysynth</code> and <code>synthdid</code>. I will reproduce Abadie <span class="citation" data-cites="abadie_comparative_2015">(<a href="#ref-abadie_comparative_2015" role="doc-biblioref">2015</a>)</span>’s results on the negative effects of German reunification on West Germany’s economic growth.</p>
+<p>I will now show how the synthetic control method can be run in R by comparing three different packages <code>Synth</code>, <code>tidysynth</code> and <code>synthdid</code>. I will reproduce <span class="citation" data-cites="abadie_comparative_2015">Abadie, Diamond, and Hainmueller (<a href="#ref-abadie_comparative_2015" role="doc-biblioref">2015</a>)</span> ’s results on the negative effects of German reunification on West Germany’s economic growth.</p>
 <p>The data used are panel data for West Germany and 16 other countries such as Switzerland, the UK, USA and France. The data set can be downloaded <a href="https://github.com/Jeylal/celalguney/raw/ec36bc6ec0c660de5c7a208d567ea345cb3bb9f3/posts/synthetic_control/repgermany.dta">here</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("Synth")</span></span>
@@ -507,7 +507,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <h2 class="anchored" data-anchor-id="synthetic-control-with-the-synth-package">Synthetic control with the Synth package</h2>
 <p>Running synthetic control analysis with the Synth package is a bit tedious. There are two main functions: the <code>dataprep()</code> function which transform the data into a suitable format for the <code>synth()</code> function which will run the computation. It is important to note that the dataframe must be transformed into a dataframe object with the function <code>as.data.frame()</code>.</p>
 <p>The dataprep function takes a lot of arguments and some of them are not easy to grasp at first sight. <code>predictors</code> takes the variables that we want for the whole computation, including the dependent variable which needs also to be specified with <code>dependent</code>. special.predictors is for the variables that we want only for specific periods. treatment.identifier takes the value of the country of interest, here West Germany, which is coded as 17 in the country variable. <code>control.identifier</code> does the same for the comparison units.</p>
-<p>The time of intervention is included through the <code>time.optimize.ssr</code> and <code>time.predictors.prior</code> arguments by specifying <code>1960:1989</code>. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.</p>
+<p>The time of intervention is included through the <code>time.optimize.ssr</code> and <code>time.predictors.prior</code> arguments by specifying <code>1960:1990</code>. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.</p>
 <p>The dataprep function is the main drawback of the Synth package because the specification of the country of interest and the comparisons units is very buggy: the arguments only accept numerical variables and even labelled numerical variables need to be transformed into a strictly numeric. Once an object is created through this function, it can be passed through <code>synth</code> to run the computation, which returns a list with 6 objects.</p>
 <p>The first object are the <span class="math inline">\(v\)</span> weights for the predictors:</p>
 <div class="cell">
@@ -1554,11 +1554,6 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"GDP per Capita"</span>)<span class="sc">+</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.7</span>),</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-3.5.0.
-ℹ Please use the `legend.position.inside` argument of `theme()` instead.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1570,10 +1565,10 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <p>We can see that before reunification happened in 1990, the line for synthetic West Germany closely follows the line for actual West Germany, meaning that the synthetic index is a good approximation. After 1990, we can see that reunificated West Germany performed better than not-reunificated West Germany, but not for long as synthetic West Germany then grows faster than reunificated West Germany.</p>
 <p>The synth package offers a built-in function to plot the exact same graph, but in base R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">path.plot</span>(<span class="at">synth.res =</span> synth.out, <span class="at">dataprep.res =</span> dataprep.out,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylab =</span> <span class="st">"Per capita GDP (PPP, 2002 USD)"</span>, <span class="at">Xlab =</span> <span class="st">"Year"</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">35000</span>), <span class="at">Legend =</span> <span class="fu">c</span>(<span class="st">"West Germany"</span>,<span class="st">"Synthetic West Germany"</span>), <span class="at">Legend.position =</span> <span class="st">"bottomright"</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">tr.intake =</span> <span class="dv">1990</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">path.plot</span>(<span class="at">synth.res =</span> synth.out, <span class="at">dataprep.res =</span> dataprep.out,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylab =</span> <span class="st">"Per capita GDP (PPP, 2002 USD)"</span>, <span class="at">Xlab =</span> <span class="st">"Year"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">35000</span>), <span class="at">Legend =</span> <span class="fu">c</span>(<span class="st">"West Germany"</span>,<span class="st">"Synthetic West Germany"</span>), <span class="at">Legend.position =</span> <span class="st">"bottomright"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">tr.intake =</span> <span class="dv">1990</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1584,13 +1579,13 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 </div>
 <p>One can also plot the gaps between the two lines to have a better view of the causal effect:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gap))<span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1990</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Gap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gap))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1990</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Gap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1604,30 +1599,30 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <h2 class="anchored" data-anchor-id="placebo-and-inferential-tests">Placebo and inferential tests</h2>
 <p>As any models, the synthetic control method comes with several important assumptions that need to be checked. The most important one is that the intervention/event/treatment was not anticipated. This assumption can be checked with an “in-time placebo” check by re-assigning the treatment in a period before 1990. This can be done simply by changing the <code>time.prior.predictor</code> and <code>time.optimize.ssr</code> arguments in the dataprep function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>synthetic_west_germany2 <span class="ot">=</span> dataprep.out2<span class="sc">$</span>Y0plot <span class="sc">%*%</span> synth.out2<span class="sc">$</span>solution.w</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> synthetic_west_germany2 <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">synthetic_west_germany =</span> <span class="st">"w.weight"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">west_germany =</span> data<span class="sc">$</span>gdp[data<span class="sc">$</span>country <span class="sc">==</span> <span class="dv">17</span>],</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="dv">1960</span><span class="sc">:</span><span class="dv">2003</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">gap =</span> west_germany <span class="sc">-</span> synthetic_west_germany</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>data3 <span class="sc">%&gt;%</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> west_germany, <span class="at">color =</span> <span class="st">"Actual West Germany"</span>)<span class="sc">+</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> synthetic_west_germany, <span class="at">color =</span> <span class="st">"Synthetic West Germany"</span>))<span class="sc">+</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1990</span>)<span class="sc">+</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1975</span>)<span class="sc">+</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"GDP per Capita"</span>,</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Placebo test with treatment starting at 1975"</span>)<span class="sc">+</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.7</span>),</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>synthetic_west_germany2 <span class="ot">=</span> dataprep.out2<span class="sc">$</span>Y0plot <span class="sc">%*%</span> synth.out2<span class="sc">$</span>solution.w</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> synthetic_west_germany2 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">synthetic_west_germany =</span> <span class="st">"w.weight"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">west_germany =</span> data<span class="sc">$</span>gdp[data<span class="sc">$</span>country <span class="sc">==</span> <span class="dv">17</span>],</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="dv">1960</span><span class="sc">:</span><span class="dv">2003</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">gap =</span> west_germany <span class="sc">-</span> synthetic_west_germany</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>data3 <span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> west_germany, <span class="at">color =</span> <span class="st">"Actual West Germany"</span>)<span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> synthetic_west_germany, <span class="at">color =</span> <span class="st">"Synthetic West Germany"</span>))<span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1990</span>)<span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1975</span>)<span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"GDP per Capita"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Placebo test with treatment starting at 1975"</span>)<span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.7</span>),</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1640,6 +1635,39 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <p>Another way to test for the significance and robustness of the estimates is a cross-entity placebo test. This is essentially a permutation test in which we run the same analysis by assigning the same treatment to each country in the sample. If the results from these permutations create gaps of similar magnitude than for our treated unit, this implies that our result for West Germany is not really significant.</p>
 <p>It is however here that the Synth package reaches its limits, because it does not include any function to do this directly. Here is how to do it manually through a for loop which assigns the treatment for each country and collects the gaps.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gaps <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  dataprep.out <span class="ot">&lt;-</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  Synth<span class="sc">::</span><span class="fu">dataprep</span>(<span class="at">foo =</span> data,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">predictors    =</span> <span class="fu">c</span>(<span class="st">"gdp"</span>,<span class="st">"trade"</span>,<span class="st">"infrate"</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">predictors.op =</span> <span class="st">"mean"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">time.predictors.prior =</span> <span class="dv">1960</span><span class="sc">:</span><span class="dv">1990</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">dependent     =</span> <span class="st">"gdp"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">unit.variable =</span> <span class="dv">10</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">special.predictors =</span> <span class="fu">list</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"industry"</span> ,<span class="dv">1981</span><span class="sc">:</span><span class="dv">1990</span>, <span class="fu">c</span>(<span class="st">"mean"</span>)),</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"schooling"</span>,<span class="fu">c</span>(<span class="dv">1980</span>,<span class="dv">1985</span>), <span class="fu">c</span>(<span class="st">"mean"</span>)),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="st">"invest80"</span> ,<span class="dv">1980</span>, <span class="fu">c</span>(<span class="st">"mean"</span>))),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">time.variable =</span> <span class="st">"year"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">treatment.identifier =</span> i,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">controls.identifier =</span> <span class="fu">unique</span>(data<span class="sc">$</span>country)[<span class="sc">-</span>i],</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">time.optimize.ssr =</span> <span class="dv">1960</span><span class="sc">:</span><span class="dv">1990</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">time.plot =</span> <span class="dv">1960</span><span class="sc">:</span><span class="dv">2003</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>synth.out <span class="ot">=</span> <span class="fu">synth</span>(dataprep.out)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>gaps[[i]] <span class="ot">=</span> dataprep.out<span class="sc">$</span>Y1plot <span class="sc">-</span> dataprep.out<span class="sc">$</span>Y0plot <span class="sc">%*%</span> synth.out<span class="sc">$</span>solution.w</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># transform the gaps list into a (tibble) dataframe, also adding the years and transforming into long format for ggplot</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>gaps2 <span class="ot">=</span> <span class="fu">as_tibble</span>(gaps, <span class="at">.name_repair =</span> <span class="fu">c</span>(<span class="st">"unique_quiet"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1960</span><span class="sc">:</span><span class="dv">2003</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>, <span class="at">names_to =</span> <span class="st">"country"</span>, <span class="at">values_to =</span> <span class="st">"gaps"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gghighlight) <span class="co"># use gghighlight to highlight West Germany</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gaps2 <span class="sc">%&gt;%</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gaps, <span class="at">group =</span> country, <span class="at">colour =</span> country))<span class="sc">+</span></span>
@@ -1651,7 +1679,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1717,7 +1745,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1726,7 +1754,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1738,7 +1766,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1751,7 +1779,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1763,7 +1791,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2445,7 +2473,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2462,7 +2490,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="syntheticcontrol_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
