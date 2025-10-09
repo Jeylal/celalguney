@@ -85,11 +85,46 @@ The dataprep function takes a lot of arguments and some of them are not easy to 
 
 The time of intervention is included through the `time.optimize.ssr` and `time.predictors.prior` arguments by specifying `1960:1990`. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.
 
+
+
+```{r}
+#| warning: false
+#| message: false
+#| error: false
+#| eval: false
+#| echo: true
+data <- as.data.frame(data)
+data$country <- as.numeric(data$country)
+
+dataprep.out <-
+  Synth::dataprep(foo = data,
+           predictors    = c("gdp","trade","infrate"),
+           predictors.op = "mean",
+           time.predictors.prior = 1960:1990,
+           dependent     = "gdp",
+           unit.variable = 10,
+           special.predictors = list(
+             list("industry" ,1981:1990, c("mean")),
+             list("schooling",c(1980,1985), c("mean")),
+             list("invest80" ,1980, c("mean"))),
+           time.variable = "year",
+           treatment.identifier = 17,
+           controls.identifier = unique(data$country)[-17],
+           time.optimize.ssr = 1960:1990,
+           time.plot = 1960:2003
+  )
+
+synth.out = synth(dataprep.out)
+```
+
+
+
 ```{r}
 #| warning: false
 #| message: false
 #| error: false
 #| include: false
+
 data <- as.data.frame(data)
 data$country <- as.numeric(data$country)
 
@@ -206,6 +241,34 @@ As any models, the synthetic control method comes with several important assumpt
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: true
+
+dataprep.out2 <-
+  Synth::dataprep(foo = data,
+           predictors    = c("gdp","trade","infrate"),
+           predictors.op = "mean",
+           time.predictors.prior = 1975:1990,
+           dependent     = "gdp",
+           unit.variable = 10,
+           special.predictors = list(
+             list("industry" ,1981:1990, c("mean")),
+             list("schooling",c(1980,1985), c("mean")),
+             list("invest80" ,1980, c("mean"))),
+           time.variable = "year",
+           treatment.identifier = 17,
+           controls.identifier = unique(data$country)[-17],
+           time.optimize.ssr = 1975:1990,
+           time.plot = 1960:2003
+  )
+
+synth.out2 = synth(dataprep.out2)
+```
+
+
+```{r}
+#| warning: false
+#| message: false
 #| include: false
 
 dataprep.out2 <-
@@ -228,6 +291,9 @@ dataprep.out2 <-
 
 synth.out2 = synth(dataprep.out2)
 ```
+
+
+
 
 ```{r}
 
