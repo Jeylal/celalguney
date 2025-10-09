@@ -1,45 +1,120 @@
 ---
-title: "Celâl Güney"
-image: photoChandoling.png
-about:
-  template: trestles
-  image-width: 15em
-  image-shape: round
-  links:
-    - icon: twitter
-      href: https://twitter.com/jey_lal
-    - icon: envelope-fill
-      text: celal.98@outlook.com
-      href: mailto:celal.98@outlook.com
-    - icon: github
-      href: https://github.com/Jeylal
-    - icon: linkedin
-      href: https://www.linkedin.com/in/cel%C3%A2l-g%C3%BCney-90b508285/?originalSubdomain=ch
-    - icon: file-bar-graph-fill
-      text: Survey Data shiny app
-      href: https://celalguney.shinyapps.io/Projet_Data_Science/?_ga=2.255792968.1974330428.1680436983-1453518093.1673880491 
+title: ""
 page-layout: full
 ---
 
 ```{=html}
 <style>
 body {
-  font-size: 19px;
+  font-size: 20px;
 }
 h1 {
   font-size: 2.5em;
 }
 </style>
+
+<style>
+.section-card {
+  background-color: transparent; 
+  border: 1px solid #ddd;   
+  border-radius: 20px;           /* Rounded corners */
+  padding: 1.5em;                /* Inner spacing */
+  margin-bottom: 1.5em;          /* Space between sections */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+</style>
+<style>
+.profile {
+  text-align: center;
+  padding: 1em;
+}
+
+.profile img {
+  border-radius: 5%;
+  width: 300px;
+  margin-bottom: 1em;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.profile p {
+  margin: 0.3em 0;
+  font-size: 1em;
+}
+</style>
+
+<style>
+.center-text {
+  text-align: justify;
+}
+</style>
+
+<style>
+.center-text {
+  text-align: justify;
+}
+
+/* Icon container */
+.links-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Icon styles */
+.links-grid img {
+  width: 15px;
+  height: 15px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  vertical-align: middle;
+}
+
+/* Hover effect */
+.links-grid img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Theme-specific visibility */
+.icon-light { display: none; }
+.icon-dark { display: inline; }
+
+@media (prefers-color-scheme: dark) {
+  .icon-dark { display: none; }
+  .icon-light { display: inline; }
+}
+</style>
+
+
 ```
 
-## Welcome ! 👋
+::::::::: grid
+::: {.g-col-12 .g-col-md-3 .profile}
+![](photoChandoling.png){width="489"}
 
-My name is Celâl and I am a social sciences researcher in macroeconomics, political economy and survey data analysis. I specialize in the analysis of macroeconomic dynamics, socio-political expectations/preferences, institutional change and in programming, especially with R. I have a background in economics, political economy and economic history as well as in data analysis and applied research in economics with R and other tools such as Stata, SPSS or Julia. My field of interest concerns the analysis of institutional change of contemporary socio-economic models such as the French and Swiss models. I am also interested in the analysis of demand and productivity regimes from a post-Keynesian perspective and in comparative capitalisms.
+📍 Geneva, Switzerland
 
-I am actively looking for job opportunities in research and/or teaching so do not hesitate to have a look to my  [CV](https://jeylal.github.io/celalguney/CV.html), to my current  [research projects](https://jeylal.github.io/celalguney/research.html), or to my blog [posts](https://jeylal.github.io/celalguney/), where I publish stuff related to my studies, readings and research interests. You can have a look to my master's thesis [here](https://jeylal.github.io/master-thesis/), which analyzes institutional change in Switzerland by exploring the political demands of Swiss citizen since the 80s and by offering a clustering analysis of the Swiss socio-political groups in the 90s.
+✉️ celal.98\@outlook.com
 
-------------------------------------------------------------------------
 
+:::
+
+::: {.g-col-12 .g-col-md-9 .center-text style="border-radius: 30px;"}
+# About me
+
+My name is Celâl and I am a social sciences researcher in macroeconomics, political economy and survey data analysis. I specialize in the analysis of macroeconomic dynamics, socio-political expectations/preferences, institutional change and in programming, especially with R. I have a background in economics, political economy and economic history as well as in data analysis and applied research in economics with R. My field of interest concerns the analysis of institutional change of contemporary socio-economic models such as the French and Swiss models. I am also interested in the analysis of demand and productivity regimes from a post-Keynesian perspective and in comparative capitalisms.
+
+I am actively looking for job opportunities in research and/or teaching so do not hesitate to have a look to my [CV](https://jeylal.github.io/celalguney/CV.html), to my current [research projects](https://jeylal.github.io/celalguney/research.html), or to my blog [posts](https://jeylal.github.io/celalguney/), where I publish stuff related to social sciences, statistical programming and my research. You can have a look to my master's thesis [here](https://jeylal.github.io/master-thesis/), which analyzes institutional change in Switzerland by exploring the political demands of Swiss citizen since the 80s and by offering a clustering analysis of the Swiss socio-political groups in the 90s.
+:::
+
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .section-card}
 ## 📖 Education
 
 🎓 Bachelor in History-Economics-Society (now BA in Political Economy and Economic History) \| University of Geneva \| 2017-2020
@@ -47,26 +122,18 @@ I am actively looking for job opportunities in research and/or teaching so do no
 🎓 Complementary Certificate in Applied Statistics \| University of Geneva (GSEM) \| 2021-2022
 
 🎓 Master in The Political Economy of Capitalism \| University of Geneva \| 2022 - 2024
+:::
 
-------------------------------------------------------------------------
-
+::: {.g-col-12 .g-col-md-5 .section-card}
 ## 💼 Work Experience
 
-- 🏫 **Research and teaching auxiliary, department of History-Economics-Society, University of Geneva** (August 2023 - January 2024)
+🏫 Research and teaching auxiliary, department of History-Economics-Society, University of Geneva (August 2023 - January 2024)
 
-- 🏫 **Research and teaching assistant, department of History-Economics-Society, University of Geneva** (August 2024 - July 2025)
+🏫 Research and teaching assistant, department of History-Economics-Society, University of Geneva (August 2024 - July 2025)
+:::
 
-## 💼 Teaching Experience
-
-- Économie, état et institutions (tutorats)
-- Histoire économique contemporaine, la Suisse dans une perspective internationale (tutorats)
-- International economic history (tutorats)
-- Économie et histoire (tutorats)
-- Séminaire d'histoire économique et sociale des pays en voie de développement 
-
-::::: grid
-::: g-col-6
-### 🌍 Languages
+::: {.g-col-12 .g-col-md-5 .g-start-md-2 .section-card}
+## 🌍 Languages
 
 -   French - Native\
 -   English - Very proficient\
@@ -74,8 +141,8 @@ I am actively looking for job opportunities in research and/or teaching so do no
 -   German - Good knowledge\
 :::
 
-::: g-col-6
-### 💡 Interests
+::: {.g-col-12 .g-col-md-5 .section-card}
+## 💡 Interests
 
 -   Macroeconomics\
 -   Institutional economics\
@@ -83,4 +150,25 @@ I am actively looking for job opportunities in research and/or teaching so do no
 -   Survey data analysis \| Econometrics \| Statistics\
 -   Economic history \| History of economic thought\
 :::
-:::::
+:::::::::
+
+::: {.section-card}
+## 📚 Publications 
+
+-   "The Political Economy of Institutional Change and Social Blocs in Switzerland: a Neorealist Approach"
+
+    https://archive-ouverte.unige.ch/unige:176868 [link](https://jeylal.github.io/master-thesis/)
+
+
+
+## 📌 Current Projects 
+
+-   "À la recherche des trois blocs: une analyse empirique de la tripolarisation de l'espace politique français" *Avec Bruno Amable*
+
+-   "Demand and Productivity Regimes in Switzerland: 1950–2024"
+
+-   "For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation" [draft 📄](resources_books/neorealist%20political%20ecology-2.pdf), [presentation at epita (ecological planning in the anthropocene)](resources_books/presentation_epita.html)
+
+-   "Institutional Change in the Swiss Political Economy: Forces of Transformation and Stability"
+
+:::
