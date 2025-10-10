@@ -136,21 +136,21 @@ I am actively looking for job opportunities in research and/or teaching so do no
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2 .section-card}
 ## 🌍 Languages
 
--   French - Native\
--   English - Very proficient\
--   Spanish - Very proficient\
--   German - Good knowledge\
+🇫🇷 **French** — Native  
+🇬🇧 **English** — Very proficient  
+🇪🇸 **Spanish** — Very proficient  
+🇩🇪 **German** — Good knowledge  
 :::
 
 ::: {.g-col-12 .g-col-md-5 .section-card}
 ## 💡 Interests
 
--   Macroeconomics\
--   Institutional economics\
-- Political Science, comparative politics, cleavage politics
--   Political economy and comparative capitalism\
--   Survey data analysis \| Econometrics \| Statistics\
--   Economic history \| History of economic thought\
+   Macroeconomics\
+  Institutional economics\
+ Political Science, comparative politics, cleavage politics
+  Political economy and comparative capitalism\
+ Survey data analysis \| Econometrics \| Statistics\
+  Economic history \| History of economic thought\
 :::
 :::::::::
 

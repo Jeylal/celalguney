@@ -336,8 +336,6 @@ relcontr = cbind(rcgnx, rcgc, rcgi, rcgg)
 
 ```
 
-
-
 ## Consumption function
 
 The first function to be estimated is the aggregate consumption function. Following most of single-equations studies (for instance @hein_distribution_2008; @hein_distribution_2009; @stockhammer_globalization_2011), the consumption function takes the following form:
@@ -720,9 +718,6 @@ modelsummary(modelsProd, stars = TRUE, add_rows = diagnostic_prod_df2, gof_map =
 
 
 ```
-
-
-
 
 ## Final effect
 
