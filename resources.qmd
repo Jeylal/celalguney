@@ -76,7 +76,7 @@ editor: visual
 
 -   [Harvey, David (2005) A Brief History of Neoliberalism](resources_books/Harvey2005.pdf)
 
--   [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/Eckhard%20Hein%20-%20Distribution%20and%20Growth%20after%20Keynes_%20A%20Post-Keynesian%20Guide%20(2014,%20Edward%20Elgar%20Publishing)%20-%20libgen.li.pdf)
+-   [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/hein_distribution_growth_2014.pdf.pdf)
 
 -   [Hilferding, Rudolf (1910) Le capital financier](resources_books/hilf1910_capitalfinancier.pdf)
 
@@ -102,6 +102,10 @@ editor: visual
 
 -   [Kruschke, John K. (2015) Doing Bayesian Data Analysis. A Tutorial with R, JAGS and Stan](resources_books/kruschke_bayesian_in_R_2015.pdf)
 
+
+-   [Lavoie, Marc (2014) Post-Keynesian Economics: New Foundations](resources_books/lavoie_postkeynesian_economics_2014.pdf)
+
+
 -   [Lipietz, Alain (1979) Crise et inflation, pourquoi ?](resources_books/lipietz1979.pdf)
 
 -   [Lipietz, Alain (1985) The Enchanted World. Inflation, Credit and the World Crisis](resources_books/lipietz85.pdf)
@@ -109,8 +113,6 @@ editor: visual
 -   [Lipietz, Alain (1987) Mirage and Miracles. The Crises of Global Fordism](resources_books/lipietz87.pdf)
 
 -   [Maddala & In-Moo (1998) Unit Roots, Cointegration and Structural Change](resources_books/maddala_inmookim_1998.pdf)
-
--   [Marc Lavoie (2014) Post-Keynesian Economics: New Foundations](resources_books/Marc%20Lavoie%20-%20Post-Keynesian%20Economics_%20New%20Foundations-Edward%20Elgar%20(2014).pdf)
 
 -   [Mandel, Ernest (1995) Long Waves of Capitalist Development. A Marxist Interpretation](resources_books/mandel1995.pdf)
 
