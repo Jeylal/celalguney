@@ -84,6 +84,8 @@ editor: visual
 
 -   [Huber, Martin (2023) Causal Analysis Impact Evaluation and Causal Machine Learning with Applications in R](resources_books/huber2023causalanalysis.pdf)
 
+- [Isikara, Güney and Patrick Moore (2025) Marx's Theory of Value at the Frontier. Classical Political Economics, Imperialism and Ecological Breakdown](resources_books/isikaea_mokre_2025.pdf)
+
 -   [Kalecki Collected Work I](resources_books/kalecki-collected_i_1990.pdf)
 
 -   [Kalecki Collected Work II](resources_books/kalecki-collected_ii_1991.pdf)
@@ -151,6 +153,9 @@ editor: visual
 -   [Roemer, John E. (1986) Analytical Marxism](resources_books/roemer1986.pdf)
 
 -   [Roemer, John E. (1986) Political Competition. Theories and Applications](resources_books/roemer2001.pdf)
+
+- [Sayama, Hiroki (2015) Introduction to the Modelling and Analysis of Complex Systems](resources_books/sayama_2015.pdf) [(solutions)](resources_books/sayama_2015_solutions.pdf)
+
 
 -   [Schmelzer, Matthias (2016) The Hegemony of Growth. The OECD and the Making of the Economic Growth Paradigm](resources_books/schmelzer2016.pdf)
 

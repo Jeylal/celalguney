@@ -9,15 +9,267 @@
 <link>https://jeylal.github.io/celalguney/reWorkshops.html</link>
 <atom:link href="https://jeylal.github.io/celalguney/reWorkshops.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.29</generator>
-<lastBuildDate>Fri, 10 Oct 2025 12:41:47 GMT</lastBuildDate>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Sun, 09 Nov 2025 19:55:49 GMT</lastBuildDate>
 <item>
-  <title></title>
+  <title>Rethinking Economics Geneva Workshops</title>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/capitalism.html</link>
-  <description><![CDATA[ undefined ]]></description>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="about-the-workshops" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-workshops">About the Workshops</h2>
+<ul>
+<li>Designed to introduce and debate/discuss some heterodox schools of thoughts/ authors in economics by exploring some topics:
+<ul>
+<li>Capitalism (today and next session)</li>
+<li>Neoliberalism</li>
+<li>History of economics as a discipline</li>
+</ul></li>
+<li>These workshops won’t be “ex cathedra” courses, they are based on participation, discussions, etc
+<ul>
+<li>So do not hesitate to interrupt, ask questions, etc…</li>
+</ul></li>
+</ul>
+</section>
+<section id="capitalism-concepts-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="capitalism-concepts-approaches">Capitalism: Concepts &amp; Approaches</h2>
+<section id="why-do-we-start-with-capitalism" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-we-start-with-capitalism">Why do we start with capitalism ?</h3>
+<ul>
+<li>It is a good way to explore different schools of thought/thinkers, since they differ a lot in how they define, conceive and analyze capitalism</li>
+</ul>
+</section>
+</section>
+<section id="plan" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="plan">Plan</h2>
+<ol type="1">
+<li>Capitalism: debated definitions
+<ul>
+<li>What is capitalism for you ?</li>
+<li>Standard definitions of capitalism</li>
+<li>Conceptualizing capitalism</li>
+<li>Liberal vs political capitalism</li>
+</ul></li>
+<li>Analyzing capitalism
+<ul>
+<li>Marxist approaches</li>
+<li>Comparative capitalism</li>
+<li>Régulation approach</li>
+<li>Post-Keynesian approaches</li>
+</ul></li>
+</ol>
+</section>
+<section id="what-is-capitalism-for-you-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-capitalism-for-you-discussion">What is capitalism for you ? (Discussion)</h2>
+<ul>
+<li>Take some time to think about what would be your definition of capitalism</li>
+<li>What influenced your definition of capitalism (which authors, readings etc) ?</li>
+</ul>
+</section>
+<section id="standard-definition" class="level2">
+<h2 class="anchored" data-anchor-id="standard-definition">Standard definition</h2>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“capitalism, economic system, dominant in the Western world since the breakup of feudalism, in which most means of production are privately owned and production is guided and income distributed largely through the operation of markets.” (Britannica)</p>
+</blockquote>
+</blockquote>
+<div class="notes">
+<p>2 elements: 1. means of production privately owned 2. Production and distribution through markets</p>
+</div>
+</section>
+<section id="standard-definitions-mainstream-macroeconomics" class="level2">
+<h2 class="anchored" data-anchor-id="standard-definitions-mainstream-macroeconomics">Standard definitions: mainstream macroeconomics</h2>
+<p>Macroeconomics manuals usually never or rarely mention capitalism at all, but we can find an exception in Carlin and Soskice manual:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“Capitalism is an economic system in which the capital stock is privately owned and where employers hire workers to produce goods and services with the aim of making a profit.” (Carlin and Soskice 2015, p.264)</p>
+</blockquote>
+</blockquote>
+</section>
+<section id="standard-definitions-mainstream-macroeconomics-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="standard-definitions-mainstream-macroeconomics-1">Standard definitions: mainstream macroeconomics</h2>
+<p>Followed by a definition of central planning and (of course) some normative views:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“Under central planning, production takes place in state-owned enterprises, and resources are allocated to different sectors according to the decisions of planning bureaucrats. There was no incentive for people to take the risk of introducing new products, services or methods of production since they would not reap the rewards if the venture was successful. The potential for large gains from innovation in a capitalist economy was absent in a planned economy. There was also no penalty for failure.” (Carlin and Soskice 2015, p.264)</p>
+</blockquote>
+</blockquote>
+</section>
+<section id="standard-definition-1" class="level2">
+<h2 class="anchored" data-anchor-id="standard-definition-1">Standard definition</h2>
+<p>What do you think about this definition ? Is anything missing ?</p>
+<ul>
+<li>According to this definition, capitalism has more or less always existed and is rooted in human nature</li>
+<li>Several implied assumptions about human nature:
+<ul>
+<li>Driven by personal interests, profit-making</li>
+<li>Rationality</li>
+<li>Human nature is fixed</li>
+</ul></li>
+</ul>
+</section>
+<section id="problems-with-standard-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="problems-with-standard-definitions">Problems with standard definitions</h2>
+<p>If we trust these definitions, capitalism has existed for thousands of years</p>
+<ul>
+<li>Some early civilizations (ancient China for instance) already had some elements of private capital and strongly developed markets, were they capitalists ?</li>
+</ul>
+</section>
+<section id="what-was-new-in-the-beginning-of-capitalism-late-18th-century" class="level2">
+<h2 class="anchored" data-anchor-id="what-was-new-in-the-beginning-of-capitalism-late-18th-century">What was new in the beginning of capitalism ? (late 18th century)</h2>
+<p>Markets, profit-seeking, private property have always more or less existed, so what made the difference ?</p>
+</section>
+<section id="a-new-spirit" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="a-new-spirit">A new Spirit ?</h2>
+<p>For Max Weber, (modern) capitalism is different from other economic systems because of:</p>
+<ol type="1">
+<li>The existence of a disciplined labour force, which is rationally organized and formally/legally free</li>
+<li>A regularized investment of capital</li>
+</ol>
+<ul>
+<li>The existence and diffusion of capitalism was helped by the existence of a “protestant ethic” which favored behaviors benefiting a capitalistic system</li>
+</ul>
+</section>
+<section id="a-specific-way-to-extract-surplus-value" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="a-specific-way-to-extract-surplus-value">A specific way to extract surplus value ?</h2>
+<p>Marx almost never used the word capitalism per se, but words such as “capitalist mode of production” or “capitalist production”.</p>
+<ul>
+<li><p>In marxian perspective, capitalism is a particular mode of production, defined as an economic system based on a specific way to extract surplus-value.</p></li>
+<li><p>What makes the capitalist mode of production “capitalism” is extraction of surplus value in the form of profit, with a separation between the workers, which are (in appearance) legally and formally free, from the means of production owned by another social group.</p></li>
+</ul>
+</section>
+<section id="régulation-theory" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="régulation-theory">Régulation Theory</h2>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“There are two features of capitalism, which differ markedly from other modes of production. Firstly, the domination of a market relationship— to the point where a price is even fixed for non-commodities—contrasts with other modes of the distribution of wealth. Secondly and more importantly, the social relations of production are characterized by the capital–labor conflict. The proletarians with no access to capital are forced to sell their labor-power to “Mr.&nbsp;Moneybags”, the capitalist. Under the veil of an apparent exchange relationship (labor for wages) labor is actually exploited by capital, in the sense that the value created by the wage earners is greater than the value of the reproduction of their labor-power” Robert Boyer, Political Economy of Capitalisms (2022), p.38</p>
+</blockquote>
+</blockquote>
+</section>
+<section id="ernest-mandels-view" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="ernest-mandels-view">Ernest Mandel’s view</h2>
+<p>In its introduction to Marx’s capital, Mandel gives a fair overview of what capitalism is about:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“Capitalism […] is a specific relation between wage-labour and capital, a social organization in which social labour is fragmented into firms independent of each other, which take independent decisions about investment, prices and forms of financing growth, which compete with each other for shares of markets and profits […] and which therefore buy and exploit wage-labour under specific economic conditions, compulsions and constraints” (p.58)</p>
+</blockquote>
+</blockquote>
+</section>
+<section id="the-m-definition" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="the-m-definition">The “M-definition”</h2>
+<p>According to Hodgson, Marx’s definition of capitalism contains the following points:</p>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ol type="1">
+<li>A legal system supporting individual rights to own and exchange private property</li>
+<li>Widespread commodity exchange and markets</li>
+<li>Widespread private ownership of the means of production by firms producing goods under the motivation of profits</li>
+<li>Production is organized outside the home and the family</li>
+<li>Widespread wage labor and employment contracts</li>
+</ol>
+</div><div class="column" style="width:30%;">
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/9780226168005.jpg" class="img-fluid" width="260"></p>
+</div>
+</div>
+</section>
+<section id="the-contribution-of-schumpeter" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="the-contribution-of-schumpeter">The contribution of Schumpeter</h2>
+<p>According to Hodgson, the marxist definition omits an important point stressed by Schumpeter: the crucial role of money markets, finance and money which underlie capitalism</p>
+<p>Hodgson thus adds a 6th point:</p>
+<ul>
+<li>A developed financial system with banking institutions, the widespread use of credit with property as collateral, and the selling of debt (Hodgson 2015, p.256)</li>
+</ul>
+</section>
+<section id="more-important-than-a-set-of-characteristics" class="level2">
+<h2 class="anchored" data-anchor-id="more-important-than-a-set-of-characteristics">More important than a set of characteristics</h2>
+<section id="capital-as-value-in-motion" class="level4">
+<h4 class="anchored" data-anchor-id="capital-as-value-in-motion">capital as <em>value in motion</em></h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/fine_saad_filho_2004_55.png" class="img-fluid figure-img" width="354"></p>
+<figcaption>Fine and Saad-Filho (2004, p.55)</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/saadfilho_62.png" class="img-fluid figure-img" width="357"></p>
+<figcaption>Fine and Saad-Filho (2004, p.62)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="milanovics-definition-2019" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="milanovics-definition-2019">Milanovic’s definition (2019)</h2>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“System where most production is carried out with privately owned means of production of production, capital hires legally free labor, and coordination is decentralized. […] Most investment decisions are made by private companies or individual entrepreneurs” (p.15)</p>
+</blockquote>
+</blockquote>
+<p>3 Criteria, which have the advantage of being measurable (1) Most production carried privately; (2) capital hires legally free labor; (3) investment decisions are in majority decentralized and carried by entrepreneurs</p>
+</section>
+<section id="example-is-china-capitalist" class="level2">
+<h2 class="anchored" data-anchor-id="example-is-china-capitalist">Example: is China capitalist ?</h2>
+<div class="r-stack">
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/milanovic2019_1.png" class="fragment" width="450" height="300"></p>
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/milanovic2019_2.png" class="fragment" width="400" height="450"></p>
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/milanovic2019_3.png" class="fragment" width="500" height="500"></p>
+</div>
+</section>
+<section id="from-capitalism-to-capitalisms-concluding-activity" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="from-capitalism-to-capitalisms-concluding-activity">From capitalism to capitalisms: concluding activity</h2>
+<ul>
+<li><p>As a concluding activity, I propose that we read an interesting passage from <a href="https://github.com/Jeylal/celalguney/blob/master/reWorkshopsPosts/capitalism/texts/milanovic2019book.pdf">Milanovic’s Capitalism, Alone (2019)</a></p></li>
+<li><p>Read pages 91-98 (Key features of political capitalism). <a href="https://github.com/Jeylal/celalguney/blob/master/reWorkshopsPosts/capitalism/texts/milanovic2019.pdf">Download the text here for the french version</a></p></li>
+<li><p>If you are fast, you can also have a look at the parts on liberal meritocratic capitalism</p></li>
+<li><p>What are the differences between political capitalism and the definition of capitalism we have seen ?</p></li>
+<li><p>What are the key features of political capitalism ?</p></li>
+<li><p>What do you think about this dual typology of capitalism (liberal meritocratic vs political capitalism) ?</p></li>
+</ul>
+<div class="notes">
+<p>Political capitalism</p>
+<ul>
+<li>Domination of a bureaucracy</li>
+<li>Absence of binding rule of law</li>
+<li>Autonomy of the state</li>
+</ul>
+<p>Contradiction of political capitalism:</p>
+</div>
+</section>
+<section id="feedback" class="level2">
+<h2 class="anchored" data-anchor-id="feedback">Feedback</h2>
+</section>
+<section id="planning" class="level2">
+<h2 class="anchored" data-anchor-id="planning">Planning</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/Planning d'Octobre 2024 3ème version.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="capitalism-concepts-approaches-part-2-analyzing-capitalism" class="level2">
+<h2 class="anchored" data-anchor-id="capitalism-concepts-approaches-part-2-analyzing-capitalism">Capitalism: concepts &amp; approaches Part 2: analyzing capitalism</h2>
+<ul>
+<li>Marxist approach</li>
+<li>Régulation approach</li>
+<li>Comparative capitalism</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
   <guid>https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/capitalism.html</guid>
-  <pubDate>Fri, 10 Oct 2025 12:41:47 GMT</pubDate>
+  <pubDate>Sun, 09 Nov 2025 19:55:49 GMT</pubDate>
   <media:content url="https://jeylal.github.io/celalguney/reWorkshopsPosts/capitalism/images/cover.png" medium="image" type="image/png" height="77" width="144"/>
 </item>
 </channel>
