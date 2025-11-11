@@ -251,6 +251,11 @@ editor: visual
 ::: {.column width="15%"}
 [![Analytical Political Economy](resources_pictures/ape.jpg){width="102"}](https://www.wiley.com/en-us/Analytical+Political+Economy-p-9781119483311)
 :::
+
+::: {.column width="15%"}
+[![Ecological Economics](resources_pictures/ee.png)](https://www.sciencedirect.com/journal/ecological-economics)
+:::
+
 ::::::::::::::::::::
 
 ## Mainstream Journals
@@ -281,10 +286,37 @@ editor: visual
 :::
 
 ::: {.column width="15%"}
+[![Journal of Economic Literature](resources_pictures/jel.png)](https://www.aeaweb.org/issues/819)
 :::
 
 ::: {.column width="15%"}
+[![The American Economist](resources_pictures/tae.png)](https://journals.sagepub.com/home/AEX)
 :::
+
+
+::: {.column width="15%"}
+:::
+
+
+::: {.column width="15%"}
+:::
+
+
+
+::: {.column width="15%"}
+:::
+
+
+
+::: {.column width="15%"}
+:::
+
+
+
+::: {.column width="15%"}
+:::
+
+
 :::::::::::
 
 ## Economic History
@@ -322,13 +354,38 @@ editor: visual
 :::
 
 ::: {.column width="15%"}
+[![West European Politics](resources_pictures/wep.png)](https://www.tandfonline.com/journals/fwep20)
 :::
+
+::: {.column width="15%"}
+[![Environmental Politics](resources_pictures/ep.png)](https://www.tandfonline.com/journals/fenp20)
+:::
+
+::: {.column width="15%"}
+[![American Political Science Review](resources_pictures/apsr.png)](https://www.cambridge.org/core/journals/american-political-science-review)
+:::
+
+
+::: {.column width="15%"}
+[![American Journal of Political Science](resources_pictures/ajps.png)](https://onlinelibrary.wiley.com/journal/15405907)
+:::
+
+
+::: {.column width="15%"}
+[![Journal of Political Science](resources_pictures/jop.png)](https://www.journals.uchicago.edu/toc/jop/current)
+:::
+
+
 
 ::: {.column width="15%"}
 :::
 
+
+
 ::: {.column width="15%"}
 :::
+
+
 ::::::::::
 
 ## Methods
@@ -347,6 +404,7 @@ editor: visual
 :::
 
 ::: {.column width="15%"}
+[![Journal of Statistical Software](resources_pictures/jss.png)](https://www.jstatsoft.org/index)
 :::
 
 ::: {.column width="15%"}
