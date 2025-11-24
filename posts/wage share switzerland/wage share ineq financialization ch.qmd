@@ -13,7 +13,7 @@ draft: true
 bibliography: references.bib
 ---
 
-```{r}
+```{r set up}
 #| echo: false
 #| warning: false
 #| message: false
@@ -22,24 +22,96 @@ library(tidyverse)
 library(mbreaks)
 library(readxl)
 library(marginaleffects)
-salaire_ofs <- read_excel("salaire_ofs.xlsx", 
-    sheet = "total")
-salaire_ofs$logrw = log(salaire_ofs$real_wage_total)
+
+setwd("~/GitHub/celalguney/posts/wage share switzerland")
 
 
-realwage = ts(salaire_ofs$real_wage_total, start = 1942, end = 2024)
-autoplot(log(realwage))
-
-model_rw = lm(data = salaire_ofs,
-           logrw ~ year*I(year > 1978))
-
-
-coef(model_rw)[2] 
-
-plot_predictions(model_rw, by = "year")+
-  geom_line(data = salaire_ofs, aes(x = year, y = logrw), color = "red", size = 1)+
-  theme_minimal()+
-  labs(title = "Évolution de l'indice des salaires réels suisses")+
-  annotate("text", x = 1980, y = 4.7, label = "logrw = -50 + 0.0286*year + 45.76*D1978 + -0.0231*year*D1978")
 
 ```
+
+
+```{r data import}
+#| echo: false
+#| warning: false
+#| message: false
+
+# Siegenthaler et al sheet 1
+sheet1 <- read_excel("Daten für Kapitel4.xlsx", 
+    skip = 1) %>% 
+  select(Jahr, `Reales BIP (Mio. CHF 2005)`, `Anzahl Erwerbstätige (in 1000)`) %>% 
+  rename("year" = Jahr,
+         "real_gdp_cap_2005" = `Reales BIP (Mio. CHF 2005)`,
+         "total_employment_in1000" = `Anzahl Erwerbstätige (in 1000)`)
+
+
+#glimpse(sheet1)
+
+# population total found in sheet 13
+
+population_total <- read_excel("Daten für Kapitel4.xlsx", 
+    sheet = "Quelle_Var11") %>% 
+  select(Jahr, `Bevölkerung_total`) %>% 
+  rename("population_total" = `Bevölkerung_total`,
+         "year" = Jahr)
+
+# import nominal gdp and compensation of employees
+
+compensation_employees <- read_excel("Daten für Kapitel4.xlsx", 
+    sheet = "Quelle_Var2", skip = 1) %>% 
+  select(Jahr, `Zusammengesetzte Reihe: Nominal, zu laufenden Preisen`) %>% 
+  rename("year" = Jahr,
+         "compensation_employees" = `Zusammengesetzte Reihe: Nominal, zu laufenden Preisen`)
+
+
+gdp_nominal <- read_excel("Daten für Kapitel4.xlsx", 
+    sheet = "Quelle_Var1", skip = 1) %>% 
+  select(Jahr, `BIP zu laufenden Preisen, in Millionen Franken`, `BIP-Deflator (Quelle: SECO)`) %>% 
+  rename(
+    'year' = Jahr,
+    'gdp_nominal' = `BIP zu laufenden Preisen, in Millionen Franken`,
+    'gdp_deflator2005' = `BIP-Deflator (Quelle: SECO)`
+  )
+
+
+data1 = cbind(sheet1, population_total[-1])
+data2 = cbind(compensation_employees, gdp_nominal[-75,-1])
+
+# merging the variables into a single dataframe
+
+data = data1 %>% 
+  left_join(data2, by = "year")
+
+# compute unadjusted and adjusted wage share
+
+data3 = data %>% 
+  mutate(
+    wage_share = compensation_employees/gdp_nominal,
+    adj_wage_share = (compensation_employees/population_total)*(gdp_deflator2005*(real_gdp_cap_2005/(total_employment_in1000*1000))),
+    adj_wage_share2 = (compensation_employees/population_total)*((total_employment_in1000*1000)/population_total)
+  )
+
+```
+
+
+```{r plot wage share}
+data3 %>% 
+  filter(year %in% c(1991:2022)) %>% 
+  ggplot(aes(x = year, y = wage_share))+
+  geom_line()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
