@@ -84,7 +84,7 @@ editor: visual
 
 -   [Huber, Martin (2023) Causal Analysis Impact Evaluation and Causal Machine Learning with Applications in R](resources_books/huber2023causalanalysis.pdf)
 
-- [Isikara, Güney and Patrick Moore (2025) Marx's Theory of Value at the Frontier. Classical Political Economics, Imperialism and Ecological Breakdown](resources_books/isikaea_mokre_2025.pdf)
+-   [Isikara, Güney and Patrick Moore (2025) Marx's Theory of Value at the Frontier. Classical Political Economics, Imperialism and Ecological Breakdown](resources_books/isikaea_mokre_2025.pdf)
 
 -   [Kalecki Collected Work I](resources_books/kalecki-collected_i_1990.pdf)
 
@@ -104,9 +104,7 @@ editor: visual
 
 -   [Kruschke, John K. (2015) Doing Bayesian Data Analysis. A Tutorial with R, JAGS and Stan](resources_books/kruschke_bayesian_in_R_2015.pdf)
 
-
 -   [Lavoie, Marc (2014) Post-Keynesian Economics: New Foundations](resources_books/lavoie_postkeynesian_economics_2014.pdf)
-
 
 -   [Lipietz, Alain (1979) Crise et inflation, pourquoi ?](resources_books/lipietz1979.pdf)
 
@@ -154,8 +152,7 @@ editor: visual
 
 -   [Roemer, John E. (1986) Political Competition. Theories and Applications](resources_books/roemer2001.pdf)
 
-- [Sayama, Hiroki (2015) Introduction to the Modelling and Analysis of Complex Systems](resources_books/sayama_2015.pdf) [(solutions)](resources_books/sayama_2015_solutions.pdf)
-
+-   [Sayama, Hiroki (2015) Introduction to the Modelling and Analysis of Complex Systems](resources_books/sayama_2015.pdf) [(solutions)](resources_books/sayama_2015_solutions.pdf)
 
 -   [Schmelzer, Matthias (2016) The Hegemony of Growth. The OECD and the Making of the Economic Growth Paradigm](resources_books/schmelzer2016.pdf)
 
@@ -167,9 +164,9 @@ editor: visual
 
 -   [Tooze, Adam (2018) Crashed. How a Decade of Financial Crises changed the World](resources_books/tooze2018.pdf)
 
-- [Turchin, Peter (2016) Ultra Society. How 10000 Years of War made Humans the Greatest Cooperators on Earth](resources_books/turchin2016.pdf)
+-   [Turchin, Peter (2016) Ultra Society. How 10000 Years of War made Humans the Greatest Cooperators on Earth](resources_books/turchin2016.pdf)
 
-- [Turchin, Peter (2023) End Times. Elites, Counter-Elites and the Path to Political Desintegration](resources_books/turchin2023.pdf)
+-   [Turchin, Peter (2023) End Times. Elites, Counter-Elites and the Path to Political Desintegration](resources_books/turchin2023.pdf)
 
 -   [Wallerstein, Immanuel (1974) The Modern World-System I](resources_books/wallerstein_WS1_1974.pdf)
 
@@ -183,7 +180,7 @@ editor: visual
 
 ## Heterodox journals
 
-:::::::::::::::::::: columns
+::::::::::::::::::::: columns
 ::: {.column width="15%"}
 [![Cambridge Journal of Economics](resources_pictures/m_cover.jpeg){width="94"}](https://academic.oup.com/cje)
 :::
@@ -255,12 +252,11 @@ editor: visual
 ::: {.column width="15%"}
 [![Ecological Economics](resources_pictures/ee.png)](https://www.sciencedirect.com/journal/ecological-economics)
 :::
-
-::::::::::::::::::::
+:::::::::::::::::::::
 
 ## Mainstream Journals
 
-::::::::::: columns
+:::::::::::::::: columns
 ::: {.column width="15%"}
 [![Econometrica](resources_pictures/econometrica.jpg){width="95"}](https://onlinelibrary.wiley.com/journal/14680262)
 :::
@@ -293,31 +289,21 @@ editor: visual
 [![The American Economist](resources_pictures/tae.png)](https://journals.sagepub.com/home/AEX)
 :::
 
+::: {.column width="15%"}
+:::
 
 ::: {.column width="15%"}
 :::
 
+::: {.column width="15%"}
+:::
 
 ::: {.column width="15%"}
 :::
 
-
-
 ::: {.column width="15%"}
 :::
-
-
-
-::: {.column width="15%"}
-:::
-
-
-
-::: {.column width="15%"}
-:::
-
-
-:::::::::::
+::::::::::::::::
 
 ## Economic History
 
@@ -336,7 +322,7 @@ editor: visual
 
 ## Political Science
 
-:::::::::: columns
+:::::::::::::: columns
 ::: {.column width="15%"}
 [![Swiss Political Science Review](resources_pictures/spsr.jpg){width="109"}](https://onlinelibrary.wiley.com/journal/16626370)
 :::
@@ -365,28 +351,20 @@ editor: visual
 [![American Political Science Review](resources_pictures/apsr.png)](https://www.cambridge.org/core/journals/american-political-science-review)
 :::
 
-
 ::: {.column width="15%"}
 [![American Journal of Political Science](resources_pictures/ajps.png)](https://onlinelibrary.wiley.com/journal/15405907)
 :::
-
 
 ::: {.column width="15%"}
 [![Journal of Political Science](resources_pictures/jop.png)](https://www.journals.uchicago.edu/toc/jop/current)
 :::
 
-
-
 ::: {.column width="15%"}
 :::
 
-
-
 ::: {.column width="15%"}
 :::
-
-
-::::::::::
+::::::::::::::
 
 ## Methods
 

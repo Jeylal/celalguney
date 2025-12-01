@@ -9,14 +9,13 @@
 <link>https://jeylal.github.io/celalguney/</link>
 <atom:link href="https://jeylal.github.io/celalguney/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.32</generator>
+<generator>quarto-1.8.26</generator>
 <lastBuildDate>Mon, 06 Oct 2025 22:00:00 GMT</lastBuildDate>
 <item>
   <title>An introduction to the synthetic control method in R</title>
   <dc:creator>Celâl Güney</dc:creator>
   <link>https://jeylal.github.io/celalguney/posts/synthetic_control/syntheticcontrol.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -42,7 +41,7 @@
 <p>I will now show how the synthetic control method can be run in R by comparing three different packages <code>Synth</code>, <code>tidysynth</code> and <code>synthdid</code>. I will reproduce <span class="citation" data-cites="abadie_comparative_2015">Abadie, Diamond, and Hainmueller (2015)</span> ’s results on the negative effects of German reunification on West Germany’s economic growth.</p>
 <p>The data used are panel data for West Germany and 16 other countries such as Switzerland, the UK, USA and France. The data set can be downloaded <a href="https://github.com/Jeylal/celalguney/raw/ec36bc6ec0c660de5c7a208d567ea345cb3bb9f3/posts/synthetic_control/repgermany.dta">here</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#install.packages("Synth")</span></span>
 <span id="cb1-2"></span>
@@ -91,7 +90,7 @@ font-style: inherit;"># save the country names for later</span></span>
 background-color: null;
 font-style: inherit;">glimpse</span>(data) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># have a quick look at the date</span></span></code></pre></div>
+font-style: inherit;"># have a quick look at the date</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 748
 Columns: 10
@@ -114,7 +113,7 @@ $ country   &lt;dbl+lbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 <p>The dataprep function takes a lot of arguments and some of them are not easy to grasp at first sight. <code>predictors</code> takes the variables that we want for the whole computation, including the dependent variable which needs also to be specified with <code>dependent</code>. special.predictors is for the variables that we want only for specific periods. treatment.identifier takes the value of the country of interest, here West Germany, which is coded as 17 in the country variable. <code>control.identifier</code> does the same for the comparison units.</p>
 <p>The time of intervention is included through the <code>time.optimize.ssr</code> and <code>time.predictors.prior</code> arguments by specifying <code>1960:1990</code>. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -265,19 +264,19 @@ font-style: inherit;">2003</span></span>
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">synth</span>(dataprep.out)</span></code></pre></div>
+font-style: inherit;">synth</span>(dataprep.out)</span></code></pre></div></div>
 </div>
 <p>The dataprep function is the main drawback of the Synth package because the specification of the country of interest and the comparisons units is very buggy: the arguments only accept numerical variables and even labelled numerical variables need to be transformed into a strictly numeric. Once an object is created through this function, it can be passed through <code>synth</code> to run the computation, which returns a list with 6 objects.</p>
 <p>The first object are the <img src="https://latex.codecogs.com/png.latex?v"> weights for the predictors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">synth.out[[<span class="st" style="color: #20794D;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">synth.out[[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"solution.v"</span>]] <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb4-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">gt</span>()</span></code></pre></div>
+font-style: inherit;">gt</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div id="tnqrxivurp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#tnqrxivurp table {
@@ -729,7 +728,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="gdp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gdp</th>
@@ -758,7 +757,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 <p>We can see that GDP accounts for most of the weights (0.817).</p>
 <p>The country-weights are:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">v <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">v <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -783,7 +782,7 @@ background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb5-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">gt</span>()</span></code></pre></div>
+font-style: inherit;">gt</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div id="itksnnuace" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#itksnnuace table {
@@ -1235,7 +1234,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="Country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Country</th>
@@ -1317,7 +1316,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 <p>Now that we have the predictors-weights and the country-weights, we can compute the synthetic West Germany for the period 1960-2003.</p>
 <p>With the information stored in dataprep.out and synth.out, we can now compute the quantities of interest. The synthetic index can be computed by multiplying <code>dataprep.out$Y0plot</code>, the gdp per capita of untreated countries, with <code>synth.out$solution.w</code>, the country-weights. We are here computing <img src="https://latex.codecogs.com/png.latex?%5Chat%7BY%7D_%7B1t%7D%5EN%20=%20%5Csum%5E%7Bj+1%7D_%7Bj=2%7Dw_j%20Y_%7Bjt%7D">, our estimator of the counterfactual:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">synthetic_west_germany <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">synthetic_west_germany <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> dataprep.out<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1325,11 +1324,11 @@ font-style: inherit;">$</span>Y0plot <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%*%</span> synth.out<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>solution.w</span></code></pre></div>
+font-style: inherit;">$</span>solution.w</span></code></pre></div></div>
 </div>
 <p>We can now compare our synthetic West Germany with actual West Germany by plotting the actual gdp of West Germany with its synthetic counterpart:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">data2 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">data2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> synthetic_west_germany <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1460,7 +1459,7 @@ font-style: inherit;">0.7</span>),</span>
 background-color: null;
 font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">element_blank</span>())</span></code></pre></div>
+font-style: inherit;">element_blank</span>())</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1472,7 +1471,7 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div>
 <p>We can see that before reunification happened in 1990, the line for synthetic West Germany closely follows the line for actual West Germany, meaning that the synthetic index is a good approximation. After 1990, we can see that reunificated West Germany performed better than not-reunificated West Germany, but not for long as synthetic West Germany then grows faster than reunificated West Germany.</p>
 <p>The synth package offers a built-in function to plot the exact same graph, but in base R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">path.plot</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1513,7 +1512,7 @@ font-style: inherit;">"bottomright"</span>,</span>
 background-color: null;
 font-style: inherit;">tr.intake =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1990</span>)</span></code></pre></div>
+font-style: inherit;">1990</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1524,7 +1523,7 @@ font-style: inherit;">1990</span>)</span></code></pre></div>
 </div>
 <p>One can also plot the gaps between the two lines to have a better view of the causal effect:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">data2 <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">data2 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb9-2">  <span class="fu" style="color: #4758AB;
@@ -1584,7 +1583,7 @@ font-style: inherit;">""</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Gap"</span>)</span></code></pre></div>
+font-style: inherit;">"Gap"</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1598,7 +1597,7 @@ font-style: inherit;">"Gap"</span>)</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="placebo-and-inferential-tests">Placebo and inferential tests</h2>
 <p>As any models, the synthetic control method comes with several important assumptions that need to be checked. The most important one is that the intervention/event/treatment was not anticipated. This assumption can be checked with an “in-time placebo” check by re-assigning the treatment in a period before 1990. This can be done simply by changing the <code>time.prior.predictor</code> and <code>time.optimize.ssr</code> arguments in the dataprep function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">dataprep.out2 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">dataprep.out2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span></span>
 <span id="cb10-2">  Synth<span class="sc" style="color: #5E5E5E;
@@ -1734,10 +1733,10 @@ font-style: inherit;">2003</span></span>
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">synth</span>(dataprep.out2)</span></code></pre></div>
+font-style: inherit;">synth</span>(dataprep.out2)</span></code></pre></div></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">synthetic_west_germany2 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">synthetic_west_germany2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> dataprep.out2<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1892,7 +1891,7 @@ font-style: inherit;">0.7</span>),</span>
 background-color: null;
 font-style: inherit;">legend.title =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">element_blank</span>())</span></code></pre></div>
+font-style: inherit;">element_blank</span>())</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1905,7 +1904,7 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div>
 <p>Another way to test for the significance and robustness of the estimates is a cross-entity placebo test. This is essentially a permutation test in which we run the same analysis by assigning the same treatment to each country in the sample. If the results from these permutations create gaps of similar magnitude than for our treated unit, this implies that our result for West Germany is not really significant.</p>
 <p>It is however here that the Synth package reaches its limits, because it does not include any function to do this directly. Here is how to do it manually through a for loop which assigns the treatment for each country and collects the gaps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">gaps <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">gaps <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2121,10 +2120,10 @@ font-style: inherit;">"country"</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"gaps"</span>) </span></code></pre></div>
+font-style: inherit;">"gaps"</span>) </span></code></pre></div></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(gghighlight) <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2189,7 +2188,7 @@ font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">xintercept =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1990</span>)</span></code></pre></div>
+font-style: inherit;">1990</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2205,7 +2204,7 @@ font-style: inherit;">1990</span>)</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="tidysynth">Tidysynth</h2>
 <p>Tidysynth is essentially an improvement over Synth and makes synthetic control analysis far more simple in R. It includes more built-in function which are compatible for instance with ggplot and direclty compute placebo and inferential tests. The functions are also far more intuitive and the main computation can be done in a single workflow:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#install.packages("tidysynth")</span></span>
 <span id="cb14-2"></span>
@@ -2406,16 +2405,16 @@ background-color: null;
 font-style: inherit;"># Generate the synthetic control</span></span>
 <span id="cb14-46">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">generate_control</span>()</span></code></pre></div>
+font-style: inherit;">generate_control</span>()</span></code></pre></div></div>
 </div>
 <p>Tidysynth offers many plot functions. For instance <code>plot_trends</code> and <code>plot_difference</code> which produce the same plots as above:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb15-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot_trends</span>()</span></code></pre></div>
+font-style: inherit;">plot_trends</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2423,12 +2422,12 @@ font-style: inherit;">plot_trends</span>()</span></code></pre></div>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb16-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot_differences</span>()</span></code></pre></div>
+font-style: inherit;">plot_differences</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2439,12 +2438,12 @@ font-style: inherit;">plot_differences</span>()</span></code></pre></div>
 </div>
 <p>In addition, we can also plot the weights:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb17-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot_weights</span>()</span></code></pre></div>
+font-style: inherit;">plot_weights</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2456,7 +2455,7 @@ font-style: inherit;">plot_weights</span>()</span></code></pre></div>
 <p>The attentive reader will notice the difference in weights compared with the Synth package. The different results between weights calculated across packages is recurrent in synthetic control analysis. Even though tidysynth is built on Synth, there are still some small differences in some default parameters, especially regarding the optimizer algorithm for the weights. However, this difference does not dramatically impact the overall results.</p>
 <p>The cross-country placebo test, which took a lot of coding with the synth package can now be done in a single line with <code>plot_placebos()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb18-2">  <span class="fu" style="color: #4758AB;
@@ -2465,7 +2464,7 @@ font-style: inherit;">plot_placebos</span>(<span class="at" style="color: #65742
 background-color: null;
 font-style: inherit;">prune =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">FALSE</span>)</span></code></pre></div>
+font-style: inherit;">FALSE</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2476,12 +2475,12 @@ font-style: inherit;">FALSE</span>)</span></code></pre></div>
 </div>
 <p>We can also plot the ratio between post and pre-treatment mean squared predictive errors (MSPE). This ratio captures the difference between pre-intervention fit and post-intervention divergence of the trend. A higher ratio for the treated unit compared to untreated units is a good sign, because it implies that the difference between the actual and synthetic outcomes is higher for the treated unit.</p>
 <div class="cell" data-renderings="[&quot;light&quot;,&quot;dark&quot;]">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb19-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot_mspe_ratio</span>()</span></code></pre></div>
+font-style: inherit;">plot_mspe_ratio</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2492,7 +2491,7 @@ font-style: inherit;">plot_mspe_ratio</span>()</span></code></pre></div>
 </div>
 <p>With <code>grab_significance()</code>, we can have a table with the MSPEs and other statistics such as the Fisher exact p-value, which is computed by ranking the ratios for the treated and placebo units and dividing the rank over the total. This test measures how often placebo effects are as large as the observed treatment effect.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">results_tidysynth <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb20-2">  <span class="fu" style="color: #4758AB;
@@ -2502,7 +2501,7 @@ background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb20-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">gt</span>()</span></code></pre></div>
+font-style: inherit;">gt</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div id="hyqdtoteot" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#hyqdtoteot table {
@@ -2954,7 +2953,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="unit_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">unit_name</th>
@@ -3151,7 +3150,7 @@ font-style: inherit;">gt</span>()</span></code></pre></div>
 <p>Another package which deserves to be mentioned here is <code>synthdid</code> which implements the synthetic control method presented above and one of its extension, synthetic difference in differences, elaborated by <span class="citation" data-cites="arkhangelsky_synthetic_2021">Arkhangelsky et al. (2021)</span>. The main difference with the synthetic control method is that synthetic difference in differences (SDiD) includes weights for time periods, motivated by the idea that time weights can remove bias and increase accuracy by eliminating the role of time periods that are very different from the post-treatment periods.</p>
 <p>The main functions are <code>panel.matrices</code> which prepares the data and <code>synthdid_estimate</code> which runs the computations. In contrast to Synth and tidysynth, the data must be augmented to include a binary variable for the treatment argument in panel.matrices:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#devtools::install_github("synth-inference/synthdid") </span></span>
 <span id="cb21-2"></span>
@@ -3197,13 +3196,13 @@ background-color: null;
 font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>)</span>
-<span id="cb21-11">    )</span></code></pre></div>
+<span id="cb21-11">    )</span></code></pre></div></div>
 </div>
 <p>The data preparation is rather simple and intuitive compared to synth:</p>
 <p>panel.matrices returns a list with four objects: Y which is the observation matrix; N0 the number of control units (countries); T0 the number of pre-treatment periods and W the treatment indicator.</p>
 <p>For synthdid_estimate to work, Y, N0 and T0 must be passed into the function as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1">synthdid_results <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1">synthdid_results <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3213,13 +3212,13 @@ font-style: inherit;">$</span>Y, setup<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>N0, setup<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>T0)</span></code></pre></div>
+font-style: inherit;">$</span>T0)</span></code></pre></div></div>
 </div>
 <p>And we can have a quick look at the result with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot</span>(synthdid_results)</span></code></pre></div>
+font-style: inherit;">plot</span>(synthdid_results)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3230,7 +3229,7 @@ font-style: inherit;">plot</span>(synthdid_results)</span></code></pre></div>
 </div>
 <p>We can see that the SDiD estimates give similar results than the synthetic control estimates computed with the Synth and tidysynth packages. A good feature of the synthdid package is that we can also run the estimates for the classical DiD and synthetic control methods and plot the results together:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">sc_results   <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">sc_results   <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3274,7 +3273,7 @@ background-color: null;
 font-style: inherit;">'Synthetic Diff-in-Diff'</span>)</span>
 <span id="cb24-7"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">synthdid_plot</span>(estimates)</span></code></pre></div>
+font-style: inherit;">synthdid_plot</span>(estimates)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
