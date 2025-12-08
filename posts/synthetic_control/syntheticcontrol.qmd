@@ -66,8 +66,8 @@ library(Synth)
 library(tidyverse)
 library(sjlabelled)
 library(gt)
-
-setwd("~/Documents/R training/synthetic_control")
+setwd("~/GitHub/celalguney/posts/synthetic_control")
+#setwd("~/Documents/R training/synthetic_control")
 data <- read_dta("repgermany.dta")
 country = unique(as_label(data$country)) # save the country names for later
 glimpse(data) # have a quick look at the date
@@ -84,8 +84,6 @@ Running synthetic control analysis with the Synth package is a bit tedious. Ther
 The dataprep function takes a lot of arguments and some of them are not easy to grasp at first sight. `predictors` takes the variables that we want for the whole computation, including the dependent variable which needs also to be specified with `dependent`. special.predictors is for the variables that we want only for specific periods. treatment.identifier takes the value of the country of interest, here West Germany, which is coded as 17 in the country variable. `control.identifier` does the same for the comparison units.
 
 The time of intervention is included through the `time.optimize.ssr` and `time.predictors.prior` arguments by specifying `1960:1990`. This means that the function synth will construct the synthetic West Germany for the period 1960-1990.
-
-
 
 ```{r}
 #| warning: false
@@ -116,8 +114,6 @@ dataprep.out <-
 
 synth.out = synth(dataprep.out)
 ```
-
-
 
 ```{r}
 #| warning: false
@@ -265,7 +261,6 @@ dataprep.out2 <-
 synth.out2 = synth(dataprep.out2)
 ```
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -291,9 +286,6 @@ dataprep.out2 <-
 
 synth.out2 = synth(dataprep.out2)
 ```
-
-
-
 
 ```{r}
 
@@ -371,7 +363,6 @@ gaps2 = as_tibble(gaps, .name_repair = c("unique_quiet")) %>%
   pivot_longer(cols = 1:17, names_to = "country", values_to = "gaps") 
 
 ```
-
 
 ```{r}
 #| warning: false
@@ -602,3 +593,43 @@ synthdid_plot(estimates)
 ```
 
 The synthdid package looks promising, but is still under development and the documentation is thus for now incomplete. Until it is further improved, tidysynth remains by far the best package to run synthetic control analysis in R.
+
+
+
+
+
+
+
+```{r}
+library("bsynth")
+
+results_bsynth <- bayesianSynth$new(data = data,
+                                   time = year,
+                                   id = country,
+                                   treated = treatment,
+                                   outcome = gdp,
+                                   ci_width = 0.95,
+                                   predictor_match = FALSE)
+```
+
+```{r}
+results_bsynth$timeTiles + ggplot2::xlab("Year") + ggplot2::ylab("Country")
+```
+
+
+
+```{r}
+results_bsynth$fit(cores = 4)
+
+# Vizualize the Bayesian Synthetic Control
+results_bsynth$synthetic + 
+  ggplot2::xlab("Year") +
+  ggplot2::ylab("Per Capita GDP (PPP, 2002 USD)") +
+  ggplot2::scale_y_continuous(labels=scales::dollar_format())
+```
+
+```{r}
+results_bsynth$weightDraws()
+results_bsynth$effectPlot(facet = TRUE, subset = NULL)
+```
+

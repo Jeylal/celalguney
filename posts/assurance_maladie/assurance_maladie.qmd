@@ -1,0 +1,73 @@
+---
+title: "Assurance Maladie"
+author: "Celâl Güney"
+format: html
+editor: visual
+draft: true
+---
+
+```{r set up}
+
+options(scipen = 100, digits = 4)
+library(tidyverse)
+library(readr)
+votation_allegement_prime <- read_delim("~/GitHub/celalguney/posts/assurance_maladie/data/votation_allegement_prime.csv", 
+    delim = ";", escape_double = FALSE, trim_ws = TRUE)
+```
+
+
+
+```{r}
+votation_allegement_prime = votation_allegement_prime %>% 
+  mutate(
+    freincouts_oui = if_else(VOTE1 == 1, 1,
+                             if_else(VOTE1 %in% c(2, 3), 0,
+                                     if_else(VOTE1 == 8, NA, 0))),
+    income = case_when(
+      INCOME == 98 ~ NA,
+      INCOME != 98 ~ INCOME
+    ),
+    
+    gender = case_when(
+      S11 == 1 ~ "Man",
+      S11 == 2 ~ "Woman",
+      S11 == 8 | 3 ~ NA
+    ),
+    
+    isced6 = case_when(
+    EDUC %in% c(10, 21) ~ 1,            # Primaire
+    EDUC %in% c(22, 31) ~ 2,            # Secondaire I
+    EDUC %in% c(32, 33) ~ 3,            # Secondaire II
+    EDUC == 40 ~ 4,                     # Post-secondaire non tertiaire
+    EDUC %in% c(51, 52) ~ 5,            # Tertiaire (sans doctorat)
+    EDUC == 60 ~ 6,                     # Doctorat
+    EDUC %in% c(97, 98) ~ NA
+  ),
+  
+  lr = if_else(LRSP == 98, NA, LRSP)
+  
+  )
+
+
+
+votation_allegement_prime %>% 
+  count(VALUE3)
+
+```
+
+```{r}
+model1 = glm(data = votation_allegement_prime,
+             freincouts_oui ~ income + isced6 + lr,
+             family = binomial(link = "logit"))
+
+summary(model1)
+library(marginaleffects)
+model1 %>% 
+  plot_predictions(by = c("income"))
+  
+   model1 %>% 
+    plot_slopes(variables = "income", condition = "lr")
+```
+
+
+
