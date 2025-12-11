@@ -15,8 +15,6 @@ votation_allegement_prime <- read_delim("~/GitHub/celalguney/posts/assurance_mal
     delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
-
-
 ```{r}
 votation_allegement_prime = votation_allegement_prime %>% 
   mutate(
@@ -68,6 +66,193 @@ model1 %>%
    model1 %>% 
     plot_slopes(variables = "income", condition = "lr")
 ```
+
+## Selects panel 2023
+
+```{r setup selects2023 panel}
+library(haven)
+library(tidyverse)
+library(marginaleffects)
+library(sjlabelled)
+library(DIGCLASS)
+
+selects2023panel <- haven::read_sav("~/GitHub/celalguney/posts/assurance_maladie/data/selects2023panel/selects2023panel.sav")
+
+selects2023panel$isco08 = selects2023panel$W1_ISCO08prof_2dig*100
+
+selects2023panel2 = selects2023panel %>% 
+  rename(
+    "assurance_maladie_franchise_pour" = W1_f15340f,
+    "op_limit_immigration" = W1_f15340b,
+    "op_funding_childcare" = W1_f15340c,
+    "op_protec_env" = W1_f15340d,
+    'op_state_interv' = W1_f15435,
+    'op_social_expenses' = W1_f15420,
+    'op_eu_integration' = W1_f15425,
+    'op_chances_foreigners' = W1_f15440,
+    'op_gender_equality' = W1_f15475,
+    'op_taxes_high_income' = W1_f15480,
+    'op_traditions' = W1_f15485,
+    'op_min_wage' = W1_f15815,
+    'op_incr_retirementAge' = W1_f15811,
+    'probs_vote_plr' = W1_f14400a,
+    'probs_vote_centre' = W1_f14400j,
+    'probs_vote_ps' = W1_f14400c,
+    'probs_vote_udc' = W1_f14400d,
+    'probs_vote_verts' = W1_f14400e,
+    'probs_vote_vertsliberaux' = W1_f14400f,
+    'lr' = W1_f15200
+    
+  ) %>% 
+  mutate(
+    income = case_when(
+  W1_f28910 == 1  ~ (0+2000)/2,
+  W1_f28910 == 2  ~ (2001+3000)/2,
+  W1_f28910 == 3  ~ (3001+4000)/2,
+  W1_f28910 == 4  ~ (4001+5000)/2,
+  W1_f28910 == 5  ~ (5001+6000)/2,
+  W1_f28910 == 6  ~ (6001+7000)/2,
+  W1_f28910 == 7  ~ (7001+8000)/2,
+  W1_f28910 == 8  ~ (8001+9000)/2,
+  W1_f28910 == 9  ~ (9001+10000)/2,
+  W1_f28910 == 10 ~ (10001+11000)/2,
+  W1_f28910 == 11 ~ (11001+12000)/2,
+  W1_f28910 == 12 ~ (12001+13000)/2,
+  W1_f28910 == 13 ~ (13001+14000)/2,
+  W1_f28910 == 14 ~ (14001+15000)/2,
+  W1_f28910 == 15 ~ (15001+16000)/2,
+  W1_f28910 == 16 ~ (16001+17000)/2,
+  W1_f28910 == 17 ~ (17001+18000)/2,
+  W1_f28910 == 18 ~ (18001+19000)/2,
+  W1_f28910 == 19 ~ (19001+20000)/2,
+  W1_f28910 == 20 ~ 20001         
+),
+income_decile = ntile(income, n = 10),
+income_adjusted = income/sqrt(W1_hhsize_sample),
+income_adj_decile = ntile(income_adjusted, n = 10),
+
+education_ISCED = case_when(
+  W1_f21310rec %in% c(1, 2) ~ 1,  # No education, Primary = ISCED 1
+  W1_f21310rec == 3        ~ 2,  # Secondary school = ISCED 2
+  W1_f21310rec %in% c(4,5) ~ 3,  # Basic vocational, apprenticeship = ISCED 3
+  W1_f21310rec %in% c(6,7,8) ~ 4, # Upper secondary specialised, trade, vocational = ISCED 4 baccalaureate → ISCED 4
+  W1_f21310rec == 9        ~ 5,  # Baccalaureate → ISCED 5
+  W1_f21310rec == 10       ~ 5,  # Higher vocational education with federal diploma → ISCED 5
+  W1_f21310rec == 11       ~ 6,  # College of higher education → ISCED 6
+  W1_f21310rec == 12       ~ 6,  # Univ. of applied sciences → ISCED 6 (Bachelor level)
+  W1_f21310rec == 13       ~ 7,  # University / Federal Institute of Technology → ISCED 7 (Master)
+  W1_f21310rec == 14       ~ NA   # other
+),
+
+public_sector = if_else(W1_f21700 == 2, 1, 0),
+canton = as_character(W1_canton_sample),
+langue = relevel(factor(as_character(W1_munilang_sample)), ref = "German"),
+
+#isco08_4d = isco08_swap(W1_ISCO08prof_2dig, from = 2, to = 3),
+
+main_activity = case_when(
+  
+  W1_f21400 %in% c(1, 2, 7) ~ 1, # working
+  W1_f21400 %in% c(3) ~ 2, # in training/education
+  W1_f21400 %in% c(6) ~ 3, # disability
+  W1_f21400 %in% c(4, 8) ~ 4, # no paid work
+  W1_f21400 %in% c(5) ~ 5 # retired
+  
+),
+
+work_status = case_when(
+  W1_f21500 == 4 ~ 1, # selfemployed
+  W1_f21500 %in% c(1, 2, 3) ~ 0, # employee
+  is.na(W1_f21500) ~ 2 # not employed
+),
+
+eseg = isco08_to_eseg(isco08, work_status = work_status, main_activity = main_activity, age = W1_age, to_factor = TRUE, type = "two-digit", label = TRUE)
+
+)
+
+selects2023panel2 %>% count(eseg)
+
+selects2023panel2$assurance_maladie_franchise_pour = selects2023panel2$assurance_maladie_franchise_pour %>% 
+  as.ordered()
+```
+
+
+
+
+```{r}
+library(MASS)
+summary(model1 <- polr(data = selects2023panel2,
+           assurance_maladie_franchise_pour ~ 1 + canton,
+           Hess = TRUE), method = "logit")
+
+
+library(brms)
+
+model2 = brm(
+  data = selects2023panel2,
+  formula = assurance_maladie_franchise_pour ~ 1 + (1|canton),
+  family = cumulative(link = 'logit')
+)
+
+summary(model2)
+library(collapse)
+ranefmodel2 = ranef(model2)["canton"]
+```
+
+```{r}
+p = avg_predictions(model1, by = "canton")
+
+p2 = avg_predictions(model2, by = c("canton"))
+
+p %>% ggplot()+
+  aes(x = group, y = estimate, group = canton)+
+  geom_line()+
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.1)+
+  facet_wrap(~canton)
+
+
+p2 %>% 
+  #filter(canton %in% c("Geneva", "Ticino")) %>% 
+  ggplot()+
+  aes(x = group, y = estimate, group = canton)+
+  geom_line()+
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.1)+
+  facet_wrap(~canton)
+  
+  
+```
+
+```{r}
+
+
+summary(model3 <- polr(data = selects2023panel2,
+           assurance_maladie_franchise_pour ~ 1 + factor(W1_sex) + income_adj_decile + education_ISCED + lr + probs_vote_udc + probs_vote_plr + probs_vote_ps + probs_vote_centre + op_limit_immigration + op_state_interv + op_social_expenses + op_min_wage + op_incr_retirementAge + op_taxes_high_income + canton,
+           Hess = TRUE), method = "logit")
+
+library(gt)
+library(gtsummary)
+
+model3 %>% 
+  tbl_regression()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
