@@ -76,7 +76,9 @@ library(marginaleffects)
 library(sjlabelled)
 library(DIGCLASS)
 
-selects2023panel <- haven::read_sav("~/GitHub/celalguney/posts/assurance_maladie/data/selects2023panel/selects2023panel.sav")
+#selects2023panel <- haven::read_sav("~/GitHub/celalguney/posts/assurance_maladie/data/selects2023panel/selects2023panel.sav") # windows
+
+selects2023panel <- read_sav("Documents/GitHub/celalguney/posts/assurance_maladie/data/selects2023panel/selects2023panel.sav") #linux
 
 selects2023panel$isco08 = selects2023panel$W1_ISCO08prof_2dig*100
 
@@ -135,13 +137,13 @@ education_ISCED = case_when(
   W1_f21310rec %in% c(1, 2) ~ 1,  # No education, Primary = ISCED 1
   W1_f21310rec == 3        ~ 2,  # Secondary school = ISCED 2
   W1_f21310rec %in% c(4,5) ~ 3,  # Basic vocational, apprenticeship = ISCED 3
-  W1_f21310rec %in% c(6,7,8) ~ 4, # Upper secondary specialised, trade, vocational = ISCED 4 baccalaureate → ISCED 4
-  W1_f21310rec == 9        ~ 5,  # Baccalaureate → ISCED 5
-  W1_f21310rec == 10       ~ 5,  # Higher vocational education with federal diploma → ISCED 5
-  W1_f21310rec == 11       ~ 6,  # College of higher education → ISCED 6
-  W1_f21310rec == 12       ~ 6,  # Univ. of applied sciences → ISCED 6 (Bachelor level)
-  W1_f21310rec == 13       ~ 7,  # University / Federal Institute of Technology → ISCED 7 (Master)
-  W1_f21310rec == 14       ~ NA   # other
+  W1_f21310rec %in% c(6,7,8) ~ 4, # Upper secondary specialized, trade, vocational = ISCED 4 
+  W1_f21310rec == 9 ~ 5,  # Matu = ISCED 5
+  W1_f21310rec == 10 ~ 5,  # Higher vocational education with federal diploma = ISCED 5
+  W1_f21310rec == 11 ~ 6,  # College of higher education = ISCED 6
+  W1_f21310rec == 12 ~ 6,  # Uni of applied sciences = ISCED 6 (Bachelor level)
+  W1_f21310rec == 13 ~ 7,  # University / Federal Institute of Technology = ISCED 7 (Master)
+  W1_f21310rec == 14 ~ NA   # other
 ),
 
 public_sector = if_else(W1_f21700 == 2, 1, 0),
@@ -161,36 +163,80 @@ main_activity = case_when(
 ),
 
 work_status = case_when(
-  W1_f21500 == 4 ~ 1, # selfemployed
+  W1_f21500 == 4 ~ 1, # self-employed
   W1_f21500 %in% c(1, 2, 3) ~ 0, # employee
   is.na(W1_f21500) ~ 2 # not employed
 ),
 
-eseg = isco08_to_eseg(isco08, work_status = work_status, main_activity = main_activity, age = W1_age, to_factor = TRUE, type = "two-digit", label = TRUE)
+eseg = isco08_to_eseg(isco08, work_status = work_status, main_activity = main_activity, age = W1_age, to_factor = FALSE, type = "two-digit", label = FALSE)
 
 )
 
-selects2023panel2 %>% count(eseg)
-
 selects2023panel2$assurance_maladie_franchise_pour = selects2023panel2$assurance_maladie_franchise_pour %>% 
   as.ordered()
+
+
+selects2023panel2 = selects2023panel2 %>% 
+  mutate(
+     eseg9 = case_when(
+       eseg %in% c(1.1, 1.2, 1.3, 1.4) ~ "Managers",
+       eseg %in% c(2.1, 2.2, 2.3, 2.4, 2.5) ~ "Professionals",
+       eseg %in% c(3.1, 3.2, 3.3, 3.4, 3.5) ~ "Technicians and associated professionals employees",
+       eseg %in% c(4.1, 4.2, 4.3) ~ "small entrepreneurs",
+       eseg %in% c(5.1, 5.2, 5.3, 5.4) ~ "Clerks and skilled service employees",
+       eseg %in% c(6.1, 6.2, 6.3, 6.4, 6.5) ~ "Skilled industrial employees",
+       eseg %in% c(7.1, 7.2, 7.3, 7.4) ~ "Lower status employees",
+       eseg %in% c(8.8) ~ "Retired",
+       eseg %in% c(9.1) ~ "Student",
+       eseg %in% c(9.2, 9.3) ~ "Unemployed or disabled"
+     ),
+     
+     eseg10 = case_when(
+       eseg %in% c(1.1, 1.2, 1.3, 1.4) ~ "Managers",
+       eseg %in% c(2.1, 2.2, 2.4, 2.5) ~ "Professionals",
+       eseg == 2.3 ~ "Business and administration professionals",
+       eseg %in% c(3.1, 3.2, 3.3, 3.4, 3.5) ~ "Technicians and associated professionals employees",
+       eseg %in% c(4.1, 4.2, 4.3) ~ "small entrepreneurs",
+       eseg %in% c(5.1, 5.2, 5.3, 5.4) ~ "Clerks and skilled service employees",
+       eseg %in% c(6.1, 6.2, 6.3, 6.4, 6.5) ~ "Skilled industrial employees",
+       eseg %in% c(7.1, 7.2, 7.3, 7.4) ~ "Lower status employees",
+       eseg %in% c(8.8) ~ "Retired",
+       eseg %in% c(9.1) ~ "Student",
+       eseg %in% c(9.2, 9.3) ~ "Unemployed or disabled"
+     )
+  )
+
+selects2023panel2 %>% 
+  group_by(eseg10) %>% 
+  count(assurance_maladie_franchise_pour %in% c(1, 2)) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  ungroup() %>% 
+  filter(`assurance_maladie_franchise_pour %in% c(1, 2)` == TRUE) %>% 
+  ggplot(aes(x = prop, y = eseg10))+
+  geom_point()
 ```
-
-
-
 
 ```{r}
 library(MASS)
+
+selects2023panel2$eseg10 = relevel(factor(selects2023panel2$eseg10), ref = "Business and administration professionals")
+
 summary(model1 <- polr(data = selects2023panel2,
-           assurance_maladie_franchise_pour ~ 1 + canton,
+           assurance_maladie_franchise_pour ~ eseg10 + canton,
            Hess = TRUE), method = "logit")
 
+
+summary(model2 <- polr(data = selects2023panel2,
+           assurance_maladie_franchise_pour ~ eseg10 + income_adj_decile + education_ISCED + canton,
+           Hess = TRUE), method = "logit")
+
+anova(model1, model2)
 
 library(brms)
 
 model2 = brm(
   data = selects2023panel2,
-  formula = assurance_maladie_franchise_pour ~ 1 + (1|canton),
+  formula = assurance_maladie_franchise_pour ~ eseg10 + (1|canton),
   family = cumulative(link = 'logit')
 )
 
@@ -200,25 +246,20 @@ ranefmodel2 = ranef(model2)["canton"]
 ```
 
 ```{r}
-p = avg_predictions(model1, by = "canton")
+p = avg_predictions(model2, by = "eseg10")
+p2 = avg_predictions(model2, by = "income_adj_decile")
 
-p2 = avg_predictions(model2, by = c("canton"))
 
 p %>% ggplot()+
-  aes(x = group, y = estimate, group = canton)+
-  geom_line()+
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.1)+
-  facet_wrap(~canton)
-
+  aes(x = estimate, y = eseg10, color = group)+
+  geom_point()+
+  geom_errorbar(aes(xmin = conf.low, xmax = conf.high))+
+  facet_wrap(~group)
 
 p2 %>% 
-  #filter(canton %in% c("Geneva", "Ticino")) %>% 
-  ggplot()+
-  aes(x = group, y = estimate, group = canton)+
+  ggplot(aes(x = income_adj_decile, y = estimate, color = group))+
   geom_line()+
-  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.1)+
-  facet_wrap(~canton)
-  
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.2)
   
 ```
 
@@ -235,24 +276,3 @@ library(gtsummary)
 model3 %>% 
   tbl_regression()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
