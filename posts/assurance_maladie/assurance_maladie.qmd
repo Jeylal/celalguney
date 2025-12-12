@@ -70,15 +70,14 @@ model1 %>%
 ## Selects panel 2023
 
 ```{r setup selects2023 panel}
+rm(list=ls())
 library(haven)
 library(tidyverse)
 library(marginaleffects)
 library(sjlabelled)
 library(DIGCLASS)
 
-#selects2023panel <- haven::read_sav("~/GitHub/celalguney/posts/assurance_maladie/data/selects2023panel/selects2023panel.sav") # windows
-
-selects2023panel <- read_sav("Documents/GitHub/celalguney/posts/assurance_maladie/data/selects2023panel/selects2023panel.sav") #linux
+selects2023panel <- haven::read_sav("selects2023panel.sav") #linux
 
 selects2023panel$isco08 = selects2023panel$W1_ISCO08prof_2dig*100
 
@@ -103,8 +102,7 @@ selects2023panel2 = selects2023panel %>%
     'probs_vote_udc' = W1_f14400d,
     'probs_vote_verts' = W1_f14400e,
     'probs_vote_vertsliberaux' = W1_f14400f,
-    'lr' = W1_f15200
-    
+
   ) %>% 
   mutate(
     income = case_when(
@@ -132,6 +130,8 @@ selects2023panel2 = selects2023panel %>%
 income_decile = ntile(income, n = 10),
 income_adjusted = income/sqrt(W1_hhsize_sample),
 income_adj_decile = ntile(income_adjusted, n = 10),
+
+lr = if_else(W1_f15200 == 98 | is.na(W1_f15200), NA, W1_f15200),
 
 education_ISCED = case_when(
   W1_f21310rec %in% c(1, 2) ~ 1,  # No education, Primary = ISCED 1
@@ -227,7 +227,7 @@ summary(model1 <- polr(data = selects2023panel2,
 
 
 summary(model2 <- polr(data = selects2023panel2,
-           assurance_maladie_franchise_pour ~ eseg10 + income_adj_decile + education_ISCED + canton,
+           assurance_maladie_franchise_pour ~ eseg10 + income_adj_decile*lr + education_ISCED + canton,
            Hess = TRUE), method = "logit")
 
 anova(model1, model2)
@@ -247,7 +247,7 @@ ranefmodel2 = ranef(model2)["canton"]
 
 ```{r}
 p = avg_predictions(model2, by = "eseg10")
-p2 = avg_predictions(model2, by = "income_adj_decile")
+p2 = avg_predictions(model2, by = "lr")
 
 
 p %>% ggplot()+
@@ -257,7 +257,7 @@ p %>% ggplot()+
   facet_wrap(~group)
 
 p2 %>% 
-  ggplot(aes(x = income_adj_decile, y = estimate, color = group))+
+  ggplot(aes(x = lr, y = estimate, color = group))+
   geom_line()+
   geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.2)
   
