@@ -15,6 +15,111 @@ votation_allegement_prime <- read_delim("~/GitHub/celalguney/posts/assurance_mal
     delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
+```{r votation merging}
+library(tidyverse)
+library(readr)
+
+votations2024 <- read_excel("votations2024.xlsx", 
+    col_types = c("numeric", "text", "numeric", 
+        "numeric"))
+
+afc_chiffrescles_2022 <- read_excel("afc_chiffrescles_2022.xlsx", 
+    sheet = "Gemeinden - Communes")
+
+
+data = votations2024 %>% 
+  left_join(afc_chiffrescles_2022, by = c("Gemeindenummer" = "Gemeindenummer\r\nCode commune"))
+
+data %>% 
+  ggplot()+
+  aes(x = decile_mean_reinka, y = freincouts_oui, group = decile_mean_reinka) %>% 
+  geom_boxplot()
+
+data %>% 
+  ggplot(aes(x = perc_mean_reinka, y = freincouts_oui)) +
+  geom_point()
+
+data %>% 
+  ggplot(aes(x = gini_reinka, y = freincouts_oui, group = `Kanton\r\nCanton`)) +
+  geom_point()+
+  facet_wrap(~`Kanton\r\nCanton`)
+
+data = data %>% 
+  mutate(
+    decile_mean_reinka = ntile(mean_reinka, 10),
+    perc_mean_reinka = ntile(mean_reinka, 100)
+  )
+
+```
+
+
+
+
+
+
+```{r maps}
+library(BFS)
+library(ggplot2)
+library(sf)
+library(mapview)
+
+communes_sf <- bfs_get_base_maps(geom = "polg", date = "20240101")
+communes_sf$id = as.numeric(communes_sf$id)
+datamap = data %>% 
+  left_join(communes_sf, by = c("Gemeindenummer" = "id"))
+
+
+datamap2 = efas_votation_commune[, c(1, 3, 4, 13)] %>% 
+  left_join(datamap, by = c("No commune" = "Gemeindenummer")) %>% 
+  rename("efas_oui" = `Oui en %`)
+
+datamap %>% 
+  ggplot()+ 
+  geom_sf(aes(geometry = geometry, fill = allegement_primes_oui))+
+  theme_void()+
+  scale_fill_viridis_b()+
+  theme(legend.position = "bottom") 
+
+datamap2 %>% 
+  ggplot()+ 
+  geom_sf(aes(geometry = geometry, fill = efas_oui))+
+  theme_void()+
+  scale_fill_viridis_c(option = "turbo", direction = -1)+
+  theme(legend.position = "bottom") 
+
+
+library(biscale)
+
+biclass = bi_class(datamap2, x = median_reinka, y = efas_oui, style = "quantile", dim = 3, na_rm = TRUE)
+
+bimap = 
+ggplot() +
+  geom_sf(data = biclass, mapping = aes(geometry = geometry, fill = bi_class), color = "white", size = 0.1, show.legend = F) +
+  bi_scale_fill(pal = "GrPink", dim = 3) +
+  bi_theme(base_size = 10)+
+  labs(
+    title = "Votation sur le financement uniforme des prestations de santé",
+    caption = " Pour chaque commune, le pourcentage de oui à la votation de novembre 2024 
+    sur l'uniformation du financement des prestations de santé.
+    Le revenu médian correspond à la médiane du revenu équivalent net en 2022 (en franc). Source: OFS"
+  )
+
+legend <- bi_legend(pal = "GrPink",
+                    dim = 3,
+                    xlab = "Revenu médian",
+                    ylab = "Oui en %",
+                    size = 8)
+library(cowplot)
+
+ggdraw() +
+  draw_plot(bimap, 0, 0, 1, 1) +
+  draw_plot(legend, 0.05, .65, 0.2, 0.2)
+
+```
+
+
+
+
 ```{r}
 votation_allegement_prime = votation_allegement_prime %>% 
   mutate(
@@ -276,3 +381,8 @@ library(gtsummary)
 model3 %>% 
   tbl_regression()
 ```
+
+
+
+
+
