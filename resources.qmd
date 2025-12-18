@@ -160,11 +160,11 @@ editor: visual
 
 -   [Storm Servass, Naastepad, C.W.M. (2012) Macroeconomics Beyond the NAIRU](resources_books/storm_naastepad_2012_beyondnairu.pdf)
 
-- [Strogatz, Steven H. (2025) Nonlinear Dynamics and Chaos](resources_books/Nonlinear_Dynamics_and_Chaos_2018_Steven_H._Strogatz.pdf)
+-   [Strogatz, Steven H. (2025) Nonlinear Dynamics and Chaos](resources_books/Nonlinear_Dynamics_and_Chaos_2018_Steven_H._Strogatz.pdf)
 
-- [SydsaeterKnut et al. (2016) Essential Mathematics for Econ, omic Analysis](resources_books/essential_mathematics_5ed_2016.pdf)
+-   [SydsaeterKnut et al. (2016) Essential Mathematics for Econ, omic Analysis](resources_books/essential_mathematics_5ed_2016.pdf)
 
-- [Sydsaet, Knut et al (2008) Further Mathematics for Economic Analysis (second edition)](resources_books/further_math.pdf)
+-   [Sydsaet, Knut et al (2008) Further Mathematics for Economic Analysis (second edition)](resources_books/further_math.pdf)
 
 -   [Tooze, Adam (2006) The Wages of Destruction. The Making and Breaking of the Nazi Economy](resources_books/tooze2006.pdf)
 

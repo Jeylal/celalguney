@@ -28,6 +28,7 @@ website:
         - text: "RE Geneva Workshops"
           file: reWorkshops.qmd
 
+
 format:
   html:
     theme: 
