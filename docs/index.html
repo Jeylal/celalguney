@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d5e9c6d8000d3b19624af8e28a34f811.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-510ec66235f5c098401515cbff15dbed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d5e9c6d8000d3b19624af8e28a34f811.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -84,7 +85,8 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+      page: 18,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
@@ -117,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -289,6 +291,7 @@ window.Quarto = {
       toggleColorMode(toAlternate);
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
     };
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
@@ -393,7 +396,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(14)</span></div><div class="category" data-category="Q29kaW5n">Coding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMHNjaWVuY2U=">data science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWNvbm9taWMlMjBIaXN0b3J5">Economic History <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RWNvbm9taWNz">Economics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwRWNvbm9teQ==">Political Economy <span class="quarto-category-count">(6)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwZWNvbm9teQ==">Political economy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwU2NpZW5jZQ==">Political Science <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9saXRpY3M=">Politics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U29jaWFsJTIwYmxvY3M=">Social blocs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGljcw==">Statistics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="U3RhdHM=">Stats <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2ViJTIwc2NyYXBpbmc=">web scraping <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(21)</span></div><div class="category" data-category="Q29kaW5n">Coding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMHNjaWVuY2U=">data science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWNvbG9neSUzQiUyMFBvbGl0aWNhbCUyMEVjb25vbXk=">Ecology; Political Economy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWNvbm9tZXRyaWNz">Econometrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWNvbm9taWMlMjBIaXN0b3J5">Economic History <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RWNvbm9taWNz">Economics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SW5lcXVhbGl0eQ==">Inequality <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjcm9lY29ub21pY3M=">Macroeconomics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwZWNvbm9teQ==">Political economy <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwRWNvbm9teQ==">Political Economy <span class="quarto-category-count">(7)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwc2NpZW5jZQ==">Political science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9saXRpY2FsJTIwU2NpZW5jZQ==">Political Science <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9saXRpY3M=">Politics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9zdC1LZXluZXNpYW4lMjBFY29ub21pY3M=">Post-Keynesian Economics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U29jaWFsJTIwYmxvY3M=">Social blocs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGljcw==">Statistics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="U3RhdHM=">Stats <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2ViJTIwc2NyYXBpbmc=">web scraping <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -408,7 +411,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1766066336601" data-listing-reading-time-sort="11" data-listing-word-count-sort="2084">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1766088054589" data-listing-reading-time-sort="11" data-listing-word-count-sort="2084">
 <a href="./posts/assurance_maladie/assurance_maladie.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -418,10 +421,10 @@ Assurance Maladie
 </h5>
 <div class="card-text listing-description delink">
 
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">4</span>)</span>
 <span id="cb1-2"><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><span class="fu">library</span>(readr)</span>
-<span id="cb1-4">votation_allegement_prime <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"~/GitHub/celalguney/posts/assurance_maladie/data/votation_allege…</span></span><span id="cb1-5"><span class="at"></span><span class="st"></span><span class="at"></span><span class="cn"></span><span class="at"></span><span class="cn"></span></span></code></pre></div>
+<span id="cb1-4">votation_allegement_prime <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"~/GitHub/celalguney/posts/assurance_maladie/data/votation_allege…</span></span><span id="cb1-5"><span class="at"></span><span class="st"></span><span class="at"></span><span class="cn"></span><span class="at"></span><span class="cn"></span></span></code></pre></div></div>
 </div>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
@@ -431,10 +434,137 @@ Celâl Güney
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="U3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1759788000000" data-listing-file-modified-sort="1765271345782" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5053">
+<div class="g-col-1" data-index="1" data-categories="TWFjcm9lY29ub21pY3MlMkNQb3N0LUtleW5lc2lhbiUyMEVjb25vbWljcyUyQ0Vjb25vbWV0cmljcw==" data-listing-file-modified-sort="1761640438486" data-listing-reading-time-sort="34" data-listing-word-count-sort="6791">
+<a href="./posts/demand regime/demand_regime.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+The Swiss Demand and Growth Regimes: 1960-2022
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjcm9lY29ub21pY3M='); return false;">Macroeconomics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9zdC1LZXluZXNpYW4lMjBFY29ub21pY3M='); return false;">Post-Keynesian Economics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWNvbm9tZXRyaWNz'); return false;">Econometrics</div>
+
+</div>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Celâl Gûney
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="TWFjcm9lY29ub21pY3M=" data-listing-file-modified-sort="1761640438558" data-listing-reading-time-sort="1" data-listing-word-count-sort="186">
+<a href="./posts/global macro database/globalmacrodatabase.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Exploring the Global Macro Database
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjcm9lY29ub21pY3M='); return false;">Macroeconomics</div>
+
+</div>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Celâl Gûney
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1761640438074" data-listing-reading-time-sort="4" data-listing-word-count-sort="627">
+<a href="./posts/The ideological gender divide in Switzerland/ideological gender divide switzerland.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+The ideological gender divide in Switzerland
+</h5>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Celâl Güney
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="UG9saXRpY2FsJTIwZWNvbm9teSUyQ1BvbGl0aWNhbCUyMHNjaWVuY2UlMkNzdGF0aXN0aWNz" data-listing-file-modified-sort="1761640439467" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<a href="./posts/traditional social blocs/traditionalsocialblocs.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+The Left and Liberal-conservative blocs in Switzerland
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9saXRpY2FsJTIwZWNvbm9teQ=='); return false;">Political economy</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9saXRpY2FsJTIwc2NpZW5jZQ=='); return false;">Political science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
+
+</div>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Celâl Güney
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="RWNvbm9taWNzJTJDSW5lcXVhbGl0eQ==" data-listing-file-modified-sort="1764016970553" data-listing-reading-time-sort="2" data-listing-word-count-sort="304">
+<a href="./posts/wage share switzerland/wage share ineq financialization ch.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/wage share switzerland/fig-divbarcharts-1.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+The wage share paradox in Switzerland
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWNvbm9taWNz'); return false;">Economics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW5lcXVhbGl0eQ=='); return false;">Inequality</div>
+
+</div>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Celâl Güney
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="U3RhdGlzdGljcyUyQ1I=" data-listing-date-sort="1759788000000" data-listing-file-modified-sort="1765218534430" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5053">
 <a href="./posts/synthetic_control/syntheticcontrol.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/synthetic_control/syntheticcontrol_files/figure-html/unnamed-chunk-6-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="posts\synthetic_control\syntheticcontrol_files\figure-html\unnamed-chunk-6-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 An introduction to the synthetic control method in R
@@ -460,7 +590,7 @@ Oct 7, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="U3RhdGlzdGljcyUyQ1BvbGl0aWNhbCUyMEVjb25vbXk=" data-listing-date-sort="1740265200000" data-listing-file-modified-sort="1746092619642" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2325">
+<div class="g-col-1" data-index="7" data-categories="U3RhdGlzdGljcyUyQ1BvbGl0aWNhbCUyMEVjb25vbXk=" data-listing-date-sort="1740265200000" data-listing-file-modified-sort="1761640437216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2325">
 <a href="./posts/MFA_cahenfourot2020/mfaCahenFourot2020.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -491,7 +621,7 @@ Feb 23, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="U29jaWFsJTIwYmxvY3MlMkNQb2xpdGljYWwlMjBlY29ub215JTJDUG9saXRpY3MlMkNQb2xpdGljYWwlMjBTY2llbmNl" data-listing-date-sort="1731193200000" data-listing-file-modified-sort="1746092622201" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3689">
+<div class="g-col-1" data-index="8" data-categories="U29jaWFsJTIwYmxvY3MlMkNQb2xpdGljYWwlMjBlY29ub215JTJDUG9saXRpY3MlMkNQb2xpdGljYWwlMjBTY2llbmNl" data-listing-date-sort="1731193200000" data-listing-file-modified-sort="1761640438873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3689">
 <a href="./posts/selects2023/selects2023.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -526,7 +656,7 @@ Nov 10, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="RWNvbm9taWNz" data-listing-date-sort="1715119200000" data-listing-file-modified-sort="1746092621885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2705">
+<div class="g-col-1" data-index="9" data-categories="RWNvbm9taWNz" data-listing-date-sort="1715119200000" data-listing-file-modified-sort="1761640438579" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2705">
 <a href="./posts/growth debate switzerland/growth debate switzerland.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -555,10 +685,37 @@ May 8, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="UG9saXRpY2FsJTIwU2NpZW5jZSUyQ1N0YXRpc3RpY3M=" data-listing-date-sort="1689890400000" data-listing-file-modified-sort="1746092621931" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3478">
+<div class="g-col-1" data-index="10" data-categories="RWNvbG9neSUzQiUyMFBvbGl0aWNhbCUyMEVjb25vbXk=" data-listing-date-sort="1715119200000" data-listing-file-modified-sort="1761640439247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="141">
+<a href="./posts/stantcheva_al_2025/stantcheva_al_2025.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Stantcheva et al 2025
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWNvbG9neSUzQiUyMFBvbGl0aWNhbCUyMEVjb25vbXk='); return false;">Ecology; Political Economy</div>
+
+</div>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Celâl Güney
+</div>
+<div class="listing-date">
+May 8, 2024
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="UG9saXRpY2FsJTIwU2NpZW5jZSUyQ1N0YXRpc3RpY3M=" data-listing-date-sort="1689890400000" data-listing-file-modified-sort="1761640438664" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3478">
 <a href="./posts/political compass/pol_compass.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/political compass/pol_compass_files/figure-html/corrplot-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="posts\political compass\pol_compass_files\figure-html\corrplot-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Political Compass: what lies behind political science’s most famous graphs
@@ -584,10 +741,10 @@ Jul 21, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRpc3RpY3M=" data-listing-date-sort="1688853600000" data-listing-file-modified-sort="1746092624021" data-listing-date-modified-sort="1689890400000" data-listing-reading-time-sort="46" data-listing-word-count-sort="9050">
+<div class="g-col-1" data-index="12" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRpc3RpY3M=" data-listing-date-sort="1688853600000" data-listing-file-modified-sort="1761640440001" data-listing-date-modified-sort="1689890400000" data-listing-reading-time-sort="46" data-listing-word-count-sort="9050">
 <a href="./posts/vox and voto analysis/vox_voto_analysis.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/vox and voto analysis/vox_voto_analysis_files/figure-html/vote for the left by income group-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="posts\vox and voto analysis\vox_voto_analysis_files\figure-html\vote for the left by income group-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Political Conflict and Inequality in Switzerland
@@ -613,7 +770,7 @@ Jul 9, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="d2ViJTIwc2NyYXBpbmclMkNkYXRhJTIwc2NpZW5jZQ==" data-listing-date-sort="1688421600000" data-listing-file-modified-sort="1746092624382" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1587">
+<div class="g-col-1" data-index="13" data-categories="d2ViJTIwc2NyYXBpbmclMkNkYXRhJTIwc2NpZW5jZQ==" data-listing-date-sort="1688421600000" data-listing-file-modified-sort="1761640440043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1587">
 <a href="./posts/web scraping/web_scraping.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -644,7 +801,34 @@ Jul 4, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRz" data-listing-date-sort="1687644000000" data-listing-file-modified-sort="1746092623821" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4343">
+<div class="g-col-1" data-index="14" data-categories="UG9saXRpY2FsJTIwRWNvbm9teQ==" data-listing-date-sort="1688248800000" data-listing-file-modified-sort="1761640437592" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="78">
+<a href="./posts/Reproducing WPID's results/wpid results.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Reproducing WPID’s results
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9saXRpY2FsJTIwRWNvbm9teQ=='); return false;">Political Economy</div>
+
+</div>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jul 2, 2023
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="15" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRz" data-listing-date-sort="1687644000000" data-listing-file-modified-sort="1761640439883" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4343">
 <a href="./posts/trust institution switzerland/trust institution switzerland.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -675,7 +859,7 @@ Jun 25, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRz" data-listing-date-sort="1683669600000" data-listing-file-modified-sort="1746092621790" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3722">
+<div class="g-col-1" data-index="16" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRz" data-listing-date-sort="1683669600000" data-listing-file-modified-sort="1761640438483" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3722">
 <a href="./posts/Vote for the left in Switzerland a simple analysis/select2019analysis.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -706,7 +890,7 @@ May 10, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRzJTJDQ29kaW5n" data-listing-date-sort="1681682400000" data-listing-file-modified-sort="1746092621098" data-listing-date-modified-sort="1689631200000" data-listing-reading-time-sort="33" data-listing-word-count-sort="6582">
+<div class="g-col-1" data-index="17" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ1N0YXRzJTJDQ29kaW5n" data-listing-date-sort="1681682400000" data-listing-file-modified-sort="1761640438065" data-listing-date-modified-sort="1689631200000" data-listing-reading-time-sort="33" data-listing-word-count-sort="6582">
 <a href="./posts/Techinal notes of political cleavages and inequality/technical note piketty 2021.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -739,11 +923,11 @@ Apr 17, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="RWNvbm9taWMlMjBIaXN0b3J5" data-listing-date-sort="1670626800000" data-listing-file-modified-sort="1746092620356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1887">
+<div class="g-col-1" data-index="18" data-categories="RWNvbm9taWMlMjBIaXN0b3J5" data-listing-date-sort="1670626800000" data-listing-file-modified-sort="1761640437612" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1887">
 <a href="./posts/Sugar, Cochineal and Power/sugar cochineal power.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="./posts/Sugar, Cochineal and Power/colonialsugarmanufacturing.jpg" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -768,11 +952,11 @@ Dec 10, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="12" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ0Vjb25vbWljJTIwSGlzdG9yeQ==" data-listing-date-sort="1669849200000" data-listing-file-modified-sort="1746092619637" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1908">
+<div class="g-col-1" data-index="19" data-categories="UG9saXRpY2FsJTIwRWNvbm9teSUyQ0Vjb25vbWljJTIwSGlzdG9yeQ==" data-listing-date-sort="1669849200000" data-listing-file-modified-sort="1761640437209" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1908">
 <a href="./posts/About cycles and crises/cycles_crises.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/About cycles and crises/crises_cycles.JPG" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="./posts/About cycles and crises/crises_cycles.JPG" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -799,11 +983,11 @@ Dec 1, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="13" data-categories="RWNvbm9taWMlMjBIaXN0b3J5" data-listing-date-sort="1664920800000" data-listing-file-modified-sort="1746092619637" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1789">
+<div class="g-col-1" data-index="20" data-categories="RWNvbm9taWMlMjBIaXN0b3J5" data-listing-date-sort="1664920800000" data-listing-file-modified-sort="1761640437210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1789">
 <a href="./posts/Inikori about Slavery and the Industrial Revolution/Inikori.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" data-src="./posts/Inikori about Slavery and the Industrial Revolution/inikori.JPG" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -830,6 +1014,9 @@ Oct 5, 2022
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -895,13 +1082,14 @@ Oct 5, 2022
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
