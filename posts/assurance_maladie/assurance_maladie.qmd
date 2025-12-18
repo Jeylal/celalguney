@@ -3,7 +3,8 @@ title: "Assurance Maladie"
 author: "Celâl Güney"
 format: html
 editor: visual
-draft: true
+execute: 
+  eval: false
 ---
 
 ```{r set up}
@@ -51,11 +52,6 @@ data = data %>%
   )
 
 ```
-
-
-
-
-
 
 ```{r maps}
 library(BFS)
@@ -116,9 +112,6 @@ ggdraw() +
   draw_plot(legend, 0.05, .65, 0.2, 0.2)
 
 ```
-
-
-
 
 ```{r}
 votation_allegement_prime = votation_allegement_prime %>% 
@@ -381,8 +374,3 @@ library(gtsummary)
 model3 %>% 
   tbl_regression()
 ```
-
-
-
-
-

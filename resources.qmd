@@ -76,7 +76,7 @@ editor: visual
 
 -   [Harvey, David (2005) A Brief History of Neoliberalism](resources_books/Harvey2005.pdf)
 
--   [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/hein_distribution_growth_2014.pdf.pdf)
+-   [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/hein_distribution_growth_2014.pdf)
 
 -   [Hilferding, Rudolf (1910) Le capital financier](resources_books/hilf1910_capitalfinancier.pdf)
 
@@ -159,6 +159,10 @@ editor: visual
 -   [Shaikh, Anwar (2016) Capitalism. Competition, Conflict, Crises](resources_books/shaikh2016.pdf)
 
 -   [Storm Servass, Naastepad, C.W.M. (2012) Macroeconomics Beyond the NAIRU](resources_books/storm_naastepad_2012_beyondnairu.pdf)
+
+- [SydsaeterKnut et al. (2016) Essential Mathematics for Econ, omic Analysis](resources_books/essential_mathematics_5ed_2016.pdf)
+
+- [Sydsaet, Knut et al (2008) Further Mathematics for Economic Analysis (second edition)](resources_books/further_math.pdf)
 
 -   [Tooze, Adam (2006) The Wages of Destruction. The Making and Breaking of the Nazi Economy](resources_books/tooze2006.pdf)
 
