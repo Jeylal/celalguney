@@ -34,7 +34,7 @@ editor: visual
 
 -   [Blecker and Setterfield (2019) Heterodox Economics: Models of Demand, Distribution and Growth](resources_books/heterodox%20economics%20manual.pdf)
 
--   [Boyer, Robert (2022) Political Economy of Capitalisms](resources_books/Political%20Economy%20Of%20Capitalisms%20--%20Robert%20Boyer,%20Roger%20Froane%20Miller%20_%20Translator%20--%201st%20ed_%202022,%20Singapore,%20Singapore,%202022%20--%20Palgrave%20Macmillan,%20--%209789811935350%20--%20314c8d10360339a0be2acc0d116fcb83%20--%20Anna’s%20Archive.pdf)
+-   [Boyer, Robert (2022) Political Economy of Capitalisms](resources_books/boyer2022_poleconcap.pdf)
 
 -   [Casson & Hashimzade (2013) Large Databases in Economic History](resources_books/casson_hashimzade_2013.pdf)
 
@@ -157,6 +157,8 @@ editor: visual
 -   [Sayama, Hiroki (2015) Introduction to the Modelling and Analysis of Complex Systems](resources_books/sayama_2015.pdf) [(solutions)](resources_books/sayama_2015_solutions.pdf)
 
 -   [Schmelzer, Matthias (2016) The Hegemony of Growth. The OECD and the Making of the Economic Growth Paradigm](resources_books/schmelzer2016.pdf)
+
+- [Shaikh, Anwar & E. Ahmet Tonak (1994): Measuring the Wealth of Nations. The political economy of national accounts](resources_books/shaikh_tonak_1994.pdf)
 
 -   [Shaikh, Anwar (2016) Capitalism. Competition, Conflict, Crises](resources_books/shaikh2016.pdf)
 
