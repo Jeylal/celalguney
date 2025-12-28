@@ -54,6 +54,8 @@ editor: visual
 
 -   [Foley D.K. (1986) Understanding Capital: Marx's Economic Theory](resources_books/duncan86.pdf)
 
+- [Freyssenet, Michel (2000) Les modèles productifs](resources_books/freyssenet2000.pdf)
+
 -   [Gelman et al. (1995) Bayesian Data Analysis](resources_books/gelman_etal_bayesian_data_analysis.pdf)
 
 -   [Gelman & Hill (2007) Data Analysis using Regression and Multilevel/Hierarchical Models](resources_books/gelman%20hill%202007.pdf)
