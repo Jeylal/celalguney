@@ -82,6 +82,8 @@ editor: visual
 
 -   [Hein, Eckhard (2014) Distribution and Growth after Keynes. A Post-Keynesian Guide](resources_books/hein_distribution_growth_2014.pdf)
 
+- [Heummann, Christian et al. (2016) Introduction to Statistics and Data Analysis With Exercises, Solutions and Applications in R Second Edition](resources_books/heumannetal_introstats_2016.pdf)
+
 -   [Hilferding, Rudolf (1910) Le capital financier](resources_books/hilf1910_capitalfinancier.pdf)
 
 -   [Hobson, J. A. (1902) Imperialism A Study](resources_books/hobson1902.pdf)
