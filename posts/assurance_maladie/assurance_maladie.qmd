@@ -18,6 +18,35 @@ votation_allegement_prime <- read_delim("~/GitHub/celalguney/posts/assurance_mal
     delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
+## Swissvotes 
+
+```{r}
+library(readr)
+swissvotes <- read_delim("data/swissvotes.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(d1e3 = col_double()), 
+    trim_ws = TRUE)
+
+
+swissvotes %>% 
+  count(d1e3)
+swissvotes2 <- 
+swissvotes %>% 
+  filter(d1e3 == "10.24") %>% 
+  select(datum, titel_kurz_f, annahme, `volkja-proz`)
+
+swissvotes3 = swissvotes %>% filter(anr == 676.0)
+
+swissvotes4 <- 
+swissvotes %>% 
+  filter(d1e3 %in% c("10.24", "10.11")) %>% 
+  select(datum, titel_kurz_f, annahme, `volkja-proz`)
+```
+
+
+
+
+## Votation
+
 ```{r votation merging}
 library(tidyverse)
 library(readr)
