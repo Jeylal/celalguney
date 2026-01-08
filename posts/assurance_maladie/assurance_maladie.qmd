@@ -6,7 +6,6 @@ editor: visual
 execute: 
   eval: false
 draft: true
-
 ---
 
 ```{r set up}
@@ -18,7 +17,7 @@ votation_allegement_prime <- read_delim("~/GitHub/celalguney/posts/assurance_mal
     delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
-## Swissvotes 
+## Swissvotes
 
 ```{r}
 library(readr)
@@ -39,10 +38,100 @@ swissvotes3 = swissvotes %>% filter(anr == 676.0)
 swissvotes4 <- 
 swissvotes %>% 
   filter(d1e3 %in% c("10.24", "10.11")) %>% 
-  select(datum, titel_kurz_f, annahme, `volkja-proz`)
+  select(datum, titel_kurz_f, annahme, `volkja-proz`) %>% 
+  rename(
+    Date = "datum",
+    Votation = "titel_kurz_f",
+    `Résultat` = "annahme",
+    `% Oui` = "volkja-proz"
+  )
+
+library(gt)
+
+swissvotes_table <- 
+swissvotes4 %>% 
+  gt()
+
+
+gtsave(swissvotes_table, "table_votations.png", expand = 15)
+
 ```
 
 
+## Faits stylisés
+
+```{r set up faits stylises}
+library(readxl)
+library(tidyverse)
+data_final_am <- read_excel("data_final_am.xlsx", 
+    sheet = "graphique 1") %>% 
+  pivot_longer(
+    cols = 2:15,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+
+
+
+
+```
+
+
+```{r graphique 1 faits stylises}
+
+plot1 <- 
+data_final_am %>% 
+  filter(variable %in% c("indice_cout_sante_hab100", "salaire_reel100", "salaire_nominal100", "pib_reel_100", "ipam_total")) %>% 
+  ggplot(aes(x = Year, y = value, color = variable, linetype = variable))+
+  geom_line(size = 1)+
+  labs(y = "1999 = 100",
+       x = "",
+       title = "Évolution de l'indice des primes d'assurance-maladie")+
+  theme_minimal()+
+  scale_color_discrete(labels = c("Coûts de la santé par habitants",
+                                  "Indice des primes d'assurance-maladie",
+                                  "PIB réel",
+                                  "Indice des salaires nominaux",
+                                  "Indice des salaires réels"))+
+  scale_linetype_discrete(labels = c("Coûts de la santé par habitants",
+                                    "Indice des primes d'assurance-maladie",
+                                     "PIB réel",
+                                     "Indice des salaires nominaux",
+                                     "Indice des salaires réels"))+
+  theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        text = element_text(size = 11.6))+
+  guides(color = guide_legend(nrow = 2)) 
+
+plot1
+
+ggsave("plot_ipam.jpg", plot1)
+
+```
+
+```{r graph faits stylises 2}
+
+library(viridis)
+library(paletteer)
+
+dep_quantiles <- data_final_am <- read_excel("data_final_am.xlsx", 
+    sheet = "graphique2", skip = 3) %>% 
+  pivot_longer(cols = -1)
+
+plot2 <- 
+dep_quantiles %>% 
+  ggplot(aes(x = annee, y = value, fill = name))+
+  geom_col(position = "dodge", color = "white")+
+  theme_minimal()+
+  labs(x = "",
+       y = "Pourcentage du revenu disponible brut",
+       subtitle = "Dépense des ménages suisses pour les primes de l'assurance-maladie de base")+
+  scale_fill_paletteer_d("nationalparkcolors::Acadia",
+                         name = "Quintile")
+
+ggsave("graph_budget_menages.png", plot2)
+```
 
 
 ## Votation

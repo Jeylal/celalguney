@@ -392,350 +392,456 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>votation_allegement_prime <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"~/GitHub/celalguney/posts/assurance_maladie/data/votation_allegement_prime.csv"</span>, </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">";"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<section id="swissvotes" class="level2">
+<h2 class="anchored" data-anchor-id="swissvotes">Swissvotes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>votations2024 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"votations2024.xlsx"</span>, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">"numeric"</span>, <span class="st">"text"</span>, <span class="st">"numeric"</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"numeric"</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>afc_chiffrescles_2022 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"afc_chiffrescles_2022.xlsx"</span>, </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Gemeinden - Communes"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> votations2024 <span class="sc">%&gt;%</span> </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(afc_chiffrescles_2022, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Gemeindenummer"</span> <span class="ot">=</span> <span class="st">"Gemeindenummer</span><span class="sc">\r\n</span><span class="st">Code commune"</span>))</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> decile_mean_reinka, <span class="at">y =</span> freincouts_oui, <span class="at">group =</span> decile_mean_reinka) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc_mean_reinka, <span class="at">y =</span> freincouts_oui)) <span class="sc">+</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gini_reinka, <span class="at">y =</span> freincouts_oui, <span class="at">group =</span> <span class="st">`</span><span class="at">Kanton</span><span class="sc">\r\n</span><span class="at">Canton</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="st">`</span><span class="at">Kanton</span><span class="sc">\r\n</span><span class="at">Canton</span><span class="st">`</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>swissvotes <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/swissvotes.csv"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">";"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">d1e3 =</span> <span class="fu">col_double</span>()), </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>swissvotes <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(d1e3)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>swissvotes2 <span class="ot">&lt;-</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>swissvotes <span class="sc">%&gt;%</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(d1e3 <span class="sc">==</span> <span class="st">"10.24"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(datum, titel_kurz_f, annahme, <span class="st">`</span><span class="at">volkja-proz</span><span class="st">`</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>swissvotes3 <span class="ot">=</span> swissvotes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(anr <span class="sc">==</span> <span class="fl">676.0</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>swissvotes4 <span class="ot">&lt;-</span> </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>swissvotes <span class="sc">%&gt;%</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(d1e3 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"10.24"</span>, <span class="st">"10.11"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(datum, titel_kurz_f, annahme, <span class="st">`</span><span class="at">volkja-proz</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="st">"datum"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Votation =</span> <span class="st">"titel_kurz_f"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Résultat</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"annahme"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">% Oui</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"volkja-proz"</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">decile_mean_reinka =</span> <span class="fu">ntile</span>(mean_reinka, <span class="dv">10</span>),</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_mean_reinka =</span> <span class="fu">ntile</span>(mean_reinka, <span class="dv">100</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>swissvotes_table <span class="ot">&lt;-</span> </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>swissvotes4 <span class="sc">%&gt;%</span> </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(swissvotes_table, <span class="st">"table_votations.png"</span>, <span class="at">expand =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="faits-stylisés" class="level2">
+<h2 class="anchored" data-anchor-id="faits-stylisés">Faits stylisés</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_final_am <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data_final_am.xlsx"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"graphique 1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BFS)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapview)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>communes_sf <span class="ot">&lt;-</span> <span class="fu">bfs_get_base_maps</span>(<span class="at">geom =</span> <span class="st">"polg"</span>, <span class="at">date =</span> <span class="st">"20240101"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>communes_sf<span class="sc">$</span>id <span class="ot">=</span> <span class="fu">as.numeric</span>(communes_sf<span class="sc">$</span>id)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>datamap <span class="ot">=</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(communes_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Gemeindenummer"</span> <span class="ot">=</span> <span class="st">"id"</span>))</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>datamap2 <span class="ot">=</span> efas_votation_commune[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">13</span>)] <span class="sc">%&gt;%</span> </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(datamap, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"No commune"</span> <span class="ot">=</span> <span class="st">"Gemeindenummer"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"efas_oui"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Oui en %</span><span class="st">`</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>datamap <span class="sc">%&gt;%</span> </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> allegement_primes_oui))<span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_b</span>()<span class="sc">+</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>datamap2 <span class="sc">%&gt;%</span> </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> efas_oui))<span class="sc">+</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"turbo"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) </span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biscale)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>biclass <span class="ot">=</span> <span class="fu">bi_class</span>(datamap2, <span class="at">x =</span> median_reinka, <span class="at">y =</span> efas_oui, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">dim =</span> <span class="dv">3</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>bimap <span class="ot">=</span> </span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> biclass, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> bi_class), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bi_scale_fill</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>, <span class="at">dim =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bi_theme</span>(<span class="at">base_size =</span> <span class="dv">10</span>)<span class="sc">+</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Votation sur le financement uniforme des prestations de santé"</span>,</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">" Pour chaque commune, le pourcentage de oui à la votation de novembre 2024 </span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="st">    sur l'uniformation du financement des prestations de santé.</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="st">    Le revenu médian correspond à la médiane du revenu équivalent net en 2022 (en franc). Source: OFS"</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>legend <span class="ot">&lt;-</span> <span class="fu">bi_legend</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>,</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dim =</span> <span class="dv">3</span>,</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">"Revenu médian"</span>,</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ylab =</span> <span class="st">"Oui en %"</span>,</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">8</span>)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdraw</span>() <span class="sc">+</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(bimap, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(legend, <span class="fl">0.05</span>, .<span class="dv">65</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_final_am <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"indice_cout_sante_hab100"</span>, <span class="st">"salaire_reel100"</span>, <span class="st">"salaire_nominal100"</span>, <span class="st">"pib_reel_100"</span>, <span class="st">"ipam_total"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> value, <span class="at">color =</span> variable, <span class="at">linetype =</span> variable))<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"1999 = 100"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Évolution de l'indice des primes d'assurance-maladie"</span>)<span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Coûts de la santé par habitants"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Indice des primes d'assurance-maladie"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"PIB réel"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Indice des salaires nominaux"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Indice des salaires réels"</span>))<span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Coûts de la santé par habitants"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Indice des primes d'assurance-maladie"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"PIB réel"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"Indice des salaires nominaux"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"Indice des salaires réels"</span>))<span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">11.6</span>))<span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>)) </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>plot1</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"plot_ipam.jpg"</span>, plot1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>votation_allegement_prime <span class="ot">=</span> votation_allegement_prime <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">freincouts_oui =</span> <span class="fu">if_else</span>(VOTE1 <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">if_else</span>(VOTE1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dv">0</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">if_else</span>(VOTE1 <span class="sc">==</span> <span class="dv">8</span>, <span class="cn">NA</span>, <span class="dv">0</span>))),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">income =</span> <span class="fu">case_when</span>(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      INCOME <span class="sc">==</span> <span class="dv">98</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      INCOME <span class="sc">!=</span> <span class="dv">98</span> <span class="sc">~</span> INCOME</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">case_when</span>(</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      S11 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Man"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      S11 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      S11 <span class="sc">==</span> <span class="dv">8</span> <span class="sc">|</span> <span class="dv">3</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">isced6 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">21</span>) <span class="sc">~</span> <span class="dv">1</span>,            <span class="co"># Primaire</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">31</span>) <span class="sc">~</span> <span class="dv">2</span>,            <span class="co"># Secondaire I</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">33</span>) <span class="sc">~</span> <span class="dv">3</span>,            <span class="co"># Secondaire II</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">==</span> <span class="dv">40</span> <span class="sc">~</span> <span class="dv">4</span>,                     <span class="co"># Post-secondaire non tertiaire</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">51</span>, <span class="dv">52</span>) <span class="sc">~</span> <span class="dv">5</span>,            <span class="co"># Tertiaire (sans doctorat)</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">==</span> <span class="dv">60</span> <span class="sc">~</span> <span class="dv">6</span>,                     <span class="co"># Doctorat</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">97</span>, <span class="dv">98</span>) <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">lr =</span> <span class="fu">if_else</span>(LRSP <span class="sc">==</span> <span class="dv">98</span>, <span class="cn">NA</span>, LRSP)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>votation_allegement_prime <span class="sc">%&gt;%</span> </span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(VALUE3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paletteer)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dep_quantiles <span class="ot">&lt;-</span> data_final_am <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data_final_am.xlsx"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"graphique2"</span>, <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>dep_quantiles <span class="sc">%&gt;%</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> annee, <span class="at">y =</span> value, <span class="at">fill =</span> name))<span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">color =</span> <span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pourcentage du revenu disponible brut"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dépense des ménages suisses pour les primes de l'assurance-maladie de base"</span>)<span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_paletteer_d</span>(<span class="st">"nationalparkcolors::Acadia"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                         <span class="at">name =</span> <span class="st">"Quintile"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"graph_budget_menages.png"</span>, plot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="votation" class="level2">
+<h2 class="anchored" data-anchor-id="votation">Votation</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>votations2024 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"votations2024.xlsx"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">"numeric"</span>, <span class="st">"text"</span>, <span class="st">"numeric"</span>, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"numeric"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>afc_chiffrescles_2022 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"afc_chiffrescles_2022.xlsx"</span>, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Gemeinden - Communes"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> votations2024 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(afc_chiffrescles_2022, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Gemeindenummer"</span> <span class="ot">=</span> <span class="st">"Gemeindenummer</span><span class="sc">\r\n</span><span class="st">Code commune"</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> decile_mean_reinka, <span class="at">y =</span> freincouts_oui, <span class="at">group =</span> decile_mean_reinka) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc_mean_reinka, <span class="at">y =</span> freincouts_oui)) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gini_reinka, <span class="at">y =</span> freincouts_oui, <span class="at">group =</span> <span class="st">`</span><span class="at">Kanton</span><span class="sc">\r\n</span><span class="at">Canton</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="st">`</span><span class="at">Kanton</span><span class="sc">\r\n</span><span class="at">Canton</span><span class="st">`</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">decile_mean_reinka =</span> <span class="fu">ntile</span>(mean_reinka, <span class="dv">10</span>),</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_mean_reinka =</span> <span class="fu">ntile</span>(mean_reinka, <span class="dv">100</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">glm</span>(<span class="at">data =</span> votation_allegement_prime,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>             freincouts_oui <span class="sc">~</span> income <span class="sc">+</span> isced6 <span class="sc">+</span> lr,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="sc">%&gt;%</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_predictions</span>(<span class="at">by =</span> <span class="fu">c</span>(<span class="st">"income"</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>   model1 <span class="sc">%&gt;%</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_slopes</span>(<span class="at">variables =</span> <span class="st">"income"</span>, <span class="at">condition =</span> <span class="st">"lr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BFS)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapview)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>communes_sf <span class="ot">&lt;-</span> <span class="fu">bfs_get_base_maps</span>(<span class="at">geom =</span> <span class="st">"polg"</span>, <span class="at">date =</span> <span class="st">"20240101"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>communes_sf<span class="sc">$</span>id <span class="ot">=</span> <span class="fu">as.numeric</span>(communes_sf<span class="sc">$</span>id)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>datamap <span class="ot">=</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(communes_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Gemeindenummer"</span> <span class="ot">=</span> <span class="st">"id"</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>datamap2 <span class="ot">=</span> efas_votation_commune[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">13</span>)] <span class="sc">%&gt;%</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(datamap, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"No commune"</span> <span class="ot">=</span> <span class="st">"Gemeindenummer"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"efas_oui"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Oui en %</span><span class="st">`</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>datamap <span class="sc">%&gt;%</span> </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> allegement_primes_oui))<span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_b</span>()<span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>datamap2 <span class="sc">%&gt;%</span> </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> efas_oui))<span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"turbo"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biscale)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>biclass <span class="ot">=</span> <span class="fu">bi_class</span>(datamap2, <span class="at">x =</span> median_reinka, <span class="at">y =</span> efas_oui, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">dim =</span> <span class="dv">3</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>bimap <span class="ot">=</span> </span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> biclass, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> bi_class), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bi_scale_fill</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>, <span class="at">dim =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bi_theme</span>(<span class="at">base_size =</span> <span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Votation sur le financement uniforme des prestations de santé"</span>,</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">" Pour chaque commune, le pourcentage de oui à la votation de novembre 2024 </span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="st">    sur l'uniformation du financement des prestations de santé.</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="st">    Le revenu médian correspond à la médiane du revenu équivalent net en 2022 (en franc). Source: OFS"</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>legend <span class="ot">&lt;-</span> <span class="fu">bi_legend</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>,</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dim =</span> <span class="dv">3</span>,</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">"Revenu médian"</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ylab =</span> <span class="st">"Oui en %"</span>,</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdraw</span>() <span class="sc">+</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(bimap, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(legend, <span class="fl">0.05</span>, .<span class="dv">65</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>votation_allegement_prime <span class="ot">=</span> votation_allegement_prime <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">freincouts_oui =</span> <span class="fu">if_else</span>(VOTE1 <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">if_else</span>(VOTE1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dv">0</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">if_else</span>(VOTE1 <span class="sc">==</span> <span class="dv">8</span>, <span class="cn">NA</span>, <span class="dv">0</span>))),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">income =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      INCOME <span class="sc">==</span> <span class="dv">98</span> <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      INCOME <span class="sc">!=</span> <span class="dv">98</span> <span class="sc">~</span> INCOME</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      S11 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Man"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      S11 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Woman"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      S11 <span class="sc">==</span> <span class="dv">8</span> <span class="sc">|</span> <span class="dv">3</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">isced6 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">21</span>) <span class="sc">~</span> <span class="dv">1</span>,            <span class="co"># Primaire</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">31</span>) <span class="sc">~</span> <span class="dv">2</span>,            <span class="co"># Secondaire I</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">33</span>) <span class="sc">~</span> <span class="dv">3</span>,            <span class="co"># Secondaire II</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">==</span> <span class="dv">40</span> <span class="sc">~</span> <span class="dv">4</span>,                     <span class="co"># Post-secondaire non tertiaire</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">51</span>, <span class="dv">52</span>) <span class="sc">~</span> <span class="dv">5</span>,            <span class="co"># Tertiaire (sans doctorat)</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">==</span> <span class="dv">60</span> <span class="sc">~</span> <span class="dv">6</span>,                     <span class="co"># Doctorat</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    EDUC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">97</span>, <span class="dv">98</span>) <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">lr =</span> <span class="fu">if_else</span>(LRSP <span class="sc">==</span> <span class="dv">98</span>, <span class="cn">NA</span>, LRSP)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>votation_allegement_prime <span class="sc">%&gt;%</span> </span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(VALUE3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">glm</span>(<span class="at">data =</span> votation_allegement_prime,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>             freincouts_oui <span class="sc">~</span> income <span class="sc">+</span> isced6 <span class="sc">+</span> lr,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_predictions</span>(<span class="at">by =</span> <span class="fu">c</span>(<span class="st">"income"</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>   model1 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_slopes</span>(<span class="at">variables =</span> <span class="st">"income"</span>, <span class="at">condition =</span> <span class="st">"lr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="selects-panel-2023" class="level2">
 <h2 class="anchored" data-anchor-id="selects-panel-2023">Selects panel 2023</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjlabelled)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DIGCLASS)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>selects2023panel <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"selects2023panel.sav"</span>) <span class="co">#linux</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>selects2023panel<span class="sc">$</span>isco08 <span class="ot">=</span> selects2023panel<span class="sc">$</span>W1_ISCO08prof_2dig<span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>selects2023panel2 <span class="ot">=</span> selects2023panel <span class="sc">%&gt;%</span> </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assurance_maladie_franchise_pour"</span> <span class="ot">=</span> W1_f15340f,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"op_limit_immigration"</span> <span class="ot">=</span> W1_f15340b,</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"op_funding_childcare"</span> <span class="ot">=</span> W1_f15340c,</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"op_protec_env"</span> <span class="ot">=</span> W1_f15340d,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_state_interv'</span> <span class="ot">=</span> W1_f15435,</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_social_expenses'</span> <span class="ot">=</span> W1_f15420,</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_eu_integration'</span> <span class="ot">=</span> W1_f15425,</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_chances_foreigners'</span> <span class="ot">=</span> W1_f15440,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_gender_equality'</span> <span class="ot">=</span> W1_f15475,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_taxes_high_income'</span> <span class="ot">=</span> W1_f15480,</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_traditions'</span> <span class="ot">=</span> W1_f15485,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_min_wage'</span> <span class="ot">=</span> W1_f15815,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_incr_retirementAge'</span> <span class="ot">=</span> W1_f15811,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_plr'</span> <span class="ot">=</span> W1_f14400a,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_centre'</span> <span class="ot">=</span> W1_f14400j,</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_ps'</span> <span class="ot">=</span> W1_f14400c,</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_udc'</span> <span class="ot">=</span> W1_f14400d,</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_verts'</span> <span class="ot">=</span> W1_f14400e,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_vertsliberaux'</span> <span class="ot">=</span> W1_f14400f,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">income =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">1</span>  <span class="sc">~</span> (<span class="dv">0</span><span class="sc">+</span><span class="dv">2000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">2</span>  <span class="sc">~</span> (<span class="dv">2001</span><span class="sc">+</span><span class="dv">3000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">3</span>  <span class="sc">~</span> (<span class="dv">3001</span><span class="sc">+</span><span class="dv">4000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">4</span>  <span class="sc">~</span> (<span class="dv">4001</span><span class="sc">+</span><span class="dv">5000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">5</span>  <span class="sc">~</span> (<span class="dv">5001</span><span class="sc">+</span><span class="dv">6000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">6</span>  <span class="sc">~</span> (<span class="dv">6001</span><span class="sc">+</span><span class="dv">7000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">7</span>  <span class="sc">~</span> (<span class="dv">7001</span><span class="sc">+</span><span class="dv">8000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">8</span>  <span class="sc">~</span> (<span class="dv">8001</span><span class="sc">+</span><span class="dv">9000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">9</span>  <span class="sc">~</span> (<span class="dv">9001</span><span class="sc">+</span><span class="dv">10000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">10</span> <span class="sc">~</span> (<span class="dv">10001</span><span class="sc">+</span><span class="dv">11000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">11</span> <span class="sc">~</span> (<span class="dv">11001</span><span class="sc">+</span><span class="dv">12000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">12</span> <span class="sc">~</span> (<span class="dv">12001</span><span class="sc">+</span><span class="dv">13000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">13</span> <span class="sc">~</span> (<span class="dv">13001</span><span class="sc">+</span><span class="dv">14000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">14</span> <span class="sc">~</span> (<span class="dv">14001</span><span class="sc">+</span><span class="dv">15000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">15</span> <span class="sc">~</span> (<span class="dv">15001</span><span class="sc">+</span><span class="dv">16000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">16</span> <span class="sc">~</span> (<span class="dv">16001</span><span class="sc">+</span><span class="dv">17000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">17</span> <span class="sc">~</span> (<span class="dv">17001</span><span class="sc">+</span><span class="dv">18000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">18</span> <span class="sc">~</span> (<span class="dv">18001</span><span class="sc">+</span><span class="dv">19000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">19</span> <span class="sc">~</span> (<span class="dv">19001</span><span class="sc">+</span><span class="dv">20000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">20</span> <span class="sc">~</span> <span class="dv">20001</span>         </span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="at">income_decile =</span> <span class="fu">ntile</span>(income, <span class="at">n =</span> <span class="dv">10</span>),</span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="at">income_adjusted =</span> income<span class="sc">/</span><span class="fu">sqrt</span>(W1_hhsize_sample),</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="at">income_adj_decile =</span> <span class="fu">ntile</span>(income_adjusted, <span class="at">n =</span> <span class="dv">10</span>),</span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="at">lr =</span> <span class="fu">if_else</span>(W1_f15200 <span class="sc">==</span> <span class="dv">98</span> <span class="sc">|</span> <span class="fu">is.na</span>(W1_f15200), <span class="cn">NA</span>, W1_f15200),</span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="at">education_ISCED =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">~</span> <span class="dv">1</span>,  <span class="co"># No education, Primary = ISCED 1</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">3</span>        <span class="sc">~</span> <span class="dv">2</span>,  <span class="co"># Secondary school = ISCED 2</span></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>) <span class="sc">~</span> <span class="dv">3</span>,  <span class="co"># Basic vocational, apprenticeship = ISCED 3</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>) <span class="sc">~</span> <span class="dv">4</span>, <span class="co"># Upper secondary specialized, trade, vocational = ISCED 4 </span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="dv">5</span>,  <span class="co"># Matu = ISCED 5</span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">10</span> <span class="sc">~</span> <span class="dv">5</span>,  <span class="co"># Higher vocational education with federal diploma = ISCED 5</span></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">11</span> <span class="sc">~</span> <span class="dv">6</span>,  <span class="co"># College of higher education = ISCED 6</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">12</span> <span class="sc">~</span> <span class="dv">6</span>,  <span class="co"># Uni of applied sciences = ISCED 6 (Bachelor level)</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">13</span> <span class="sc">~</span> <span class="dv">7</span>,  <span class="co"># University / Federal Institute of Technology = ISCED 7 (Master)</span></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">14</span> <span class="sc">~</span> <span class="cn">NA</span>   <span class="co"># other</span></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="at">public_sector =</span> <span class="fu">if_else</span>(W1_f21700 <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="at">canton =</span> <span class="fu">as_character</span>(W1_canton_sample),</span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="at">langue =</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(<span class="fu">as_character</span>(W1_munilang_sample)), <span class="at">ref =</span> <span class="st">"German"</span>),</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co">#isco08_4d = isco08_swap(W1_ISCO08prof_2dig, from = 2, to = 3),</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="at">main_activity =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>) <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># working</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>) <span class="sc">~</span> <span class="dv">2</span>, <span class="co"># in training/education</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">6</span>) <span class="sc">~</span> <span class="dv">3</span>, <span class="co"># disability</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>) <span class="sc">~</span> <span class="dv">4</span>, <span class="co"># no paid work</span></span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>) <span class="sc">~</span> <span class="dv">5</span> <span class="co"># retired</span></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="at">work_status =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  W1_f21500 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># self-employed</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  W1_f21500 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">~</span> <span class="dv">0</span>, <span class="co"># employee</span></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(W1_f21500) <span class="sc">~</span> <span class="dv">2</span> <span class="co"># not employed</span></span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="at">eseg =</span> <span class="fu">isco08_to_eseg</span>(isco08, <span class="at">work_status =</span> work_status, <span class="at">main_activity =</span> main_activity, <span class="at">age =</span> W1_age, <span class="at">to_factor =</span> <span class="cn">FALSE</span>, <span class="at">type =</span> <span class="st">"two-digit"</span>, <span class="at">label =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>selects2023panel2<span class="sc">$</span>assurance_maladie_franchise_pour <span class="ot">=</span> selects2023panel2<span class="sc">$</span>assurance_maladie_franchise_pour <span class="sc">%&gt;%</span> </span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.ordered</span>()</span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>selects2023panel2 <span class="ot">=</span> selects2023panel2 <span class="sc">%&gt;%</span> </span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>     <span class="at">eseg9 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>) <span class="sc">~</span> <span class="st">"Managers"</span>,</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">2.3</span>, <span class="fl">2.4</span>, <span class="fl">2.5</span>) <span class="sc">~</span> <span class="st">"Professionals"</span>,</span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>, <span class="fl">3.4</span>, <span class="fl">3.5</span>) <span class="sc">~</span> <span class="st">"Technicians and associated professionals employees"</span>,</span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.2</span>, <span class="fl">4.3</span>) <span class="sc">~</span> <span class="st">"small entrepreneurs"</span>,</span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">5.2</span>, <span class="fl">5.3</span>, <span class="fl">5.4</span>) <span class="sc">~</span> <span class="st">"Clerks and skilled service employees"</span>,</span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">6.1</span>, <span class="fl">6.2</span>, <span class="fl">6.3</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>) <span class="sc">~</span> <span class="st">"Skilled industrial employees"</span>,</span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">7.1</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">7.4</span>) <span class="sc">~</span> <span class="st">"Lower status employees"</span>,</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">8.8</span>) <span class="sc">~</span> <span class="st">"Retired"</span>,</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.1</span>) <span class="sc">~</span> <span class="st">"Student"</span>,</span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">9.3</span>) <span class="sc">~</span> <span class="st">"Unemployed or disabled"</span></span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>     ),</span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>     <span class="at">eseg10 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>) <span class="sc">~</span> <span class="st">"Managers"</span>,</span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.5</span>) <span class="sc">~</span> <span class="st">"Professionals"</span>,</span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">==</span> <span class="fl">2.3</span> <span class="sc">~</span> <span class="st">"Business and administration professionals"</span>,</span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>, <span class="fl">3.4</span>, <span class="fl">3.5</span>) <span class="sc">~</span> <span class="st">"Technicians and associated professionals employees"</span>,</span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.2</span>, <span class="fl">4.3</span>) <span class="sc">~</span> <span class="st">"small entrepreneurs"</span>,</span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">5.2</span>, <span class="fl">5.3</span>, <span class="fl">5.4</span>) <span class="sc">~</span> <span class="st">"Clerks and skilled service employees"</span>,</span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">6.1</span>, <span class="fl">6.2</span>, <span class="fl">6.3</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>) <span class="sc">~</span> <span class="st">"Skilled industrial employees"</span>,</span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">7.1</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">7.4</span>) <span class="sc">~</span> <span class="st">"Lower status employees"</span>,</span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">8.8</span>) <span class="sc">~</span> <span class="st">"Retired"</span>,</span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.1</span>) <span class="sc">~</span> <span class="st">"Student"</span>,</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">9.3</span>) <span class="sc">~</span> <span class="st">"Unemployed or disabled"</span></span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>     )</span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>selects2023panel2 <span class="sc">%&gt;%</span> </span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(eseg10) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(assurance_maladie_franchise_pour <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">assurance_maladie_franchise_pour %in% c(1, 2)</span><span class="st">`</span> <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prop, <span class="at">y =</span> eseg10))<span class="sc">+</span></span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjlabelled)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DIGCLASS)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>selects2023panel <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"selects2023panel.sav"</span>) <span class="co">#linux</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>selects2023panel<span class="sc">$</span>isco08 <span class="ot">=</span> selects2023panel<span class="sc">$</span>W1_ISCO08prof_2dig<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>selects2023panel2 <span class="ot">=</span> selects2023panel <span class="sc">%&gt;%</span> </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assurance_maladie_franchise_pour"</span> <span class="ot">=</span> W1_f15340f,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"op_limit_immigration"</span> <span class="ot">=</span> W1_f15340b,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"op_funding_childcare"</span> <span class="ot">=</span> W1_f15340c,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"op_protec_env"</span> <span class="ot">=</span> W1_f15340d,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_state_interv'</span> <span class="ot">=</span> W1_f15435,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_social_expenses'</span> <span class="ot">=</span> W1_f15420,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_eu_integration'</span> <span class="ot">=</span> W1_f15425,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_chances_foreigners'</span> <span class="ot">=</span> W1_f15440,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_gender_equality'</span> <span class="ot">=</span> W1_f15475,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_taxes_high_income'</span> <span class="ot">=</span> W1_f15480,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_traditions'</span> <span class="ot">=</span> W1_f15485,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_min_wage'</span> <span class="ot">=</span> W1_f15815,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'op_incr_retirementAge'</span> <span class="ot">=</span> W1_f15811,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_plr'</span> <span class="ot">=</span> W1_f14400a,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_centre'</span> <span class="ot">=</span> W1_f14400j,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_ps'</span> <span class="ot">=</span> W1_f14400c,</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_udc'</span> <span class="ot">=</span> W1_f14400d,</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_verts'</span> <span class="ot">=</span> W1_f14400e,</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'probs_vote_vertsliberaux'</span> <span class="ot">=</span> W1_f14400f,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">income =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">1</span>  <span class="sc">~</span> (<span class="dv">0</span><span class="sc">+</span><span class="dv">2000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">2</span>  <span class="sc">~</span> (<span class="dv">2001</span><span class="sc">+</span><span class="dv">3000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">3</span>  <span class="sc">~</span> (<span class="dv">3001</span><span class="sc">+</span><span class="dv">4000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">4</span>  <span class="sc">~</span> (<span class="dv">4001</span><span class="sc">+</span><span class="dv">5000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">5</span>  <span class="sc">~</span> (<span class="dv">5001</span><span class="sc">+</span><span class="dv">6000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">6</span>  <span class="sc">~</span> (<span class="dv">6001</span><span class="sc">+</span><span class="dv">7000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">7</span>  <span class="sc">~</span> (<span class="dv">7001</span><span class="sc">+</span><span class="dv">8000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">8</span>  <span class="sc">~</span> (<span class="dv">8001</span><span class="sc">+</span><span class="dv">9000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">9</span>  <span class="sc">~</span> (<span class="dv">9001</span><span class="sc">+</span><span class="dv">10000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">10</span> <span class="sc">~</span> (<span class="dv">10001</span><span class="sc">+</span><span class="dv">11000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">11</span> <span class="sc">~</span> (<span class="dv">11001</span><span class="sc">+</span><span class="dv">12000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">12</span> <span class="sc">~</span> (<span class="dv">12001</span><span class="sc">+</span><span class="dv">13000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">13</span> <span class="sc">~</span> (<span class="dv">13001</span><span class="sc">+</span><span class="dv">14000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">14</span> <span class="sc">~</span> (<span class="dv">14001</span><span class="sc">+</span><span class="dv">15000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">15</span> <span class="sc">~</span> (<span class="dv">15001</span><span class="sc">+</span><span class="dv">16000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">16</span> <span class="sc">~</span> (<span class="dv">16001</span><span class="sc">+</span><span class="dv">17000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">17</span> <span class="sc">~</span> (<span class="dv">17001</span><span class="sc">+</span><span class="dv">18000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">18</span> <span class="sc">~</span> (<span class="dv">18001</span><span class="sc">+</span><span class="dv">19000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">19</span> <span class="sc">~</span> (<span class="dv">19001</span><span class="sc">+</span><span class="dv">20000</span>)<span class="sc">/</span><span class="dv">2</span>,</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>  W1_f28910 <span class="sc">==</span> <span class="dv">20</span> <span class="sc">~</span> <span class="dv">20001</span>         </span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="at">income_decile =</span> <span class="fu">ntile</span>(income, <span class="at">n =</span> <span class="dv">10</span>),</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="at">income_adjusted =</span> income<span class="sc">/</span><span class="fu">sqrt</span>(W1_hhsize_sample),</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="at">income_adj_decile =</span> <span class="fu">ntile</span>(income_adjusted, <span class="at">n =</span> <span class="dv">10</span>),</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="at">lr =</span> <span class="fu">if_else</span>(W1_f15200 <span class="sc">==</span> <span class="dv">98</span> <span class="sc">|</span> <span class="fu">is.na</span>(W1_f15200), <span class="cn">NA</span>, W1_f15200),</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="at">education_ISCED =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">~</span> <span class="dv">1</span>,  <span class="co"># No education, Primary = ISCED 1</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">3</span>        <span class="sc">~</span> <span class="dv">2</span>,  <span class="co"># Secondary school = ISCED 2</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>) <span class="sc">~</span> <span class="dv">3</span>,  <span class="co"># Basic vocational, apprenticeship = ISCED 3</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>) <span class="sc">~</span> <span class="dv">4</span>, <span class="co"># Upper secondary specialized, trade, vocational = ISCED 4 </span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="dv">5</span>,  <span class="co"># Matu = ISCED 5</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">10</span> <span class="sc">~</span> <span class="dv">5</span>,  <span class="co"># Higher vocational education with federal diploma = ISCED 5</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">11</span> <span class="sc">~</span> <span class="dv">6</span>,  <span class="co"># College of higher education = ISCED 6</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">12</span> <span class="sc">~</span> <span class="dv">6</span>,  <span class="co"># Uni of applied sciences = ISCED 6 (Bachelor level)</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">13</span> <span class="sc">~</span> <span class="dv">7</span>,  <span class="co"># University / Federal Institute of Technology = ISCED 7 (Master)</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>  W1_f21310rec <span class="sc">==</span> <span class="dv">14</span> <span class="sc">~</span> <span class="cn">NA</span>   <span class="co"># other</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="at">public_sector =</span> <span class="fu">if_else</span>(W1_f21700 <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="at">canton =</span> <span class="fu">as_character</span>(W1_canton_sample),</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="at">langue =</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(<span class="fu">as_character</span>(W1_munilang_sample)), <span class="at">ref =</span> <span class="st">"German"</span>),</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="co">#isco08_4d = isco08_swap(W1_ISCO08prof_2dig, from = 2, to = 3),</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="at">main_activity =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>) <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># working</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>) <span class="sc">~</span> <span class="dv">2</span>, <span class="co"># in training/education</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">6</span>) <span class="sc">~</span> <span class="dv">3</span>, <span class="co"># disability</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>) <span class="sc">~</span> <span class="dv">4</span>, <span class="co"># no paid work</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>  W1_f21400 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>) <span class="sc">~</span> <span class="dv">5</span> <span class="co"># retired</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="at">work_status =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>  W1_f21500 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># self-employed</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>  W1_f21500 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">~</span> <span class="dv">0</span>, <span class="co"># employee</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(W1_f21500) <span class="sc">~</span> <span class="dv">2</span> <span class="co"># not employed</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="at">eseg =</span> <span class="fu">isco08_to_eseg</span>(isco08, <span class="at">work_status =</span> work_status, <span class="at">main_activity =</span> main_activity, <span class="at">age =</span> W1_age, <span class="at">to_factor =</span> <span class="cn">FALSE</span>, <span class="at">type =</span> <span class="st">"two-digit"</span>, <span class="at">label =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>selects2023panel2<span class="sc">$</span>assurance_maladie_franchise_pour <span class="ot">=</span> selects2023panel2<span class="sc">$</span>assurance_maladie_franchise_pour <span class="sc">%&gt;%</span> </span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.ordered</span>()</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a>selects2023panel2 <span class="ot">=</span> selects2023panel2 <span class="sc">%&gt;%</span> </span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>     <span class="at">eseg9 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>) <span class="sc">~</span> <span class="st">"Managers"</span>,</span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">2.3</span>, <span class="fl">2.4</span>, <span class="fl">2.5</span>) <span class="sc">~</span> <span class="st">"Professionals"</span>,</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>, <span class="fl">3.4</span>, <span class="fl">3.5</span>) <span class="sc">~</span> <span class="st">"Technicians and associated professionals employees"</span>,</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.2</span>, <span class="fl">4.3</span>) <span class="sc">~</span> <span class="st">"small entrepreneurs"</span>,</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">5.2</span>, <span class="fl">5.3</span>, <span class="fl">5.4</span>) <span class="sc">~</span> <span class="st">"Clerks and skilled service employees"</span>,</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">6.1</span>, <span class="fl">6.2</span>, <span class="fl">6.3</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>) <span class="sc">~</span> <span class="st">"Skilled industrial employees"</span>,</span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">7.1</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">7.4</span>) <span class="sc">~</span> <span class="st">"Lower status employees"</span>,</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">8.8</span>) <span class="sc">~</span> <span class="st">"Retired"</span>,</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.1</span>) <span class="sc">~</span> <span class="st">"Student"</span>,</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">9.3</span>) <span class="sc">~</span> <span class="st">"Unemployed or disabled"</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>     ),</span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>     <span class="at">eseg10 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>) <span class="sc">~</span> <span class="st">"Managers"</span>,</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.5</span>) <span class="sc">~</span> <span class="st">"Professionals"</span>,</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">==</span> <span class="fl">2.3</span> <span class="sc">~</span> <span class="st">"Business and administration professionals"</span>,</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>, <span class="fl">3.4</span>, <span class="fl">3.5</span>) <span class="sc">~</span> <span class="st">"Technicians and associated professionals employees"</span>,</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.2</span>, <span class="fl">4.3</span>) <span class="sc">~</span> <span class="st">"small entrepreneurs"</span>,</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">5.2</span>, <span class="fl">5.3</span>, <span class="fl">5.4</span>) <span class="sc">~</span> <span class="st">"Clerks and skilled service employees"</span>,</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">6.1</span>, <span class="fl">6.2</span>, <span class="fl">6.3</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>) <span class="sc">~</span> <span class="st">"Skilled industrial employees"</span>,</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">7.1</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">7.4</span>) <span class="sc">~</span> <span class="st">"Lower status employees"</span>,</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">8.8</span>) <span class="sc">~</span> <span class="st">"Retired"</span>,</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.1</span>) <span class="sc">~</span> <span class="st">"Student"</span>,</span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>       eseg <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">9.3</span>) <span class="sc">~</span> <span class="st">"Unemployed or disabled"</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>selects2023panel2 <span class="sc">%&gt;%</span> </span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(eseg10) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(assurance_maladie_franchise_pour <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">assurance_maladie_franchise_pour %in% c(1, 2)</span><span class="st">`</span> <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prop, <span class="at">y =</span> eseg10))<span class="sc">+</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>selects2023panel2<span class="sc">$</span>eseg10 <span class="ot">=</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(selects2023panel2<span class="sc">$</span>eseg10), <span class="at">ref =</span> <span class="st">"Business and administration professionals"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1 <span class="ot">&lt;-</span> <span class="fu">polr</span>(<span class="at">data =</span> selects2023panel2,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>           assurance_maladie_franchise_pour <span class="sc">~</span> eseg10 <span class="sc">+</span> canton,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">Hess =</span> <span class="cn">TRUE</span>), <span class="at">method =</span> <span class="st">"logit"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2 <span class="ot">&lt;-</span> <span class="fu">polr</span>(<span class="at">data =</span> selects2023panel2,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>           assurance_maladie_franchise_pour <span class="sc">~</span> eseg10 <span class="sc">+</span> income_adj_decile<span class="sc">*</span>lr <span class="sc">+</span> education_ISCED <span class="sc">+</span> canton,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">Hess =</span> <span class="cn">TRUE</span>), <span class="at">method =</span> <span class="st">"logit"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1, model2)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">=</span> <span class="fu">brm</span>(</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> selects2023panel2,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> assurance_maladie_franchise_pour <span class="sc">~</span> eseg10 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>canton),</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">cumulative</span>(<span class="at">link =</span> <span class="st">'logit'</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(collapse)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>ranefmodel2 <span class="ot">=</span> <span class="fu">ranef</span>(model2)[<span class="st">"canton"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>selects2023panel2<span class="sc">$</span>eseg10 <span class="ot">=</span> <span class="fu">relevel</span>(<span class="fu">factor</span>(selects2023panel2<span class="sc">$</span>eseg10), <span class="at">ref =</span> <span class="st">"Business and administration professionals"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1 <span class="ot">&lt;-</span> <span class="fu">polr</span>(<span class="at">data =</span> selects2023panel2,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>           assurance_maladie_franchise_pour <span class="sc">~</span> eseg10 <span class="sc">+</span> canton,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">Hess =</span> <span class="cn">TRUE</span>), <span class="at">method =</span> <span class="st">"logit"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2 <span class="ot">&lt;-</span> <span class="fu">polr</span>(<span class="at">data =</span> selects2023panel2,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>           assurance_maladie_franchise_pour <span class="sc">~</span> eseg10 <span class="sc">+</span> income_adj_decile<span class="sc">*</span>lr <span class="sc">+</span> education_ISCED <span class="sc">+</span> canton,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">Hess =</span> <span class="cn">TRUE</span>), <span class="at">method =</span> <span class="st">"logit"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1, model2)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">=</span> <span class="fu">brm</span>(</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> selects2023panel2,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> assurance_maladie_franchise_pour <span class="sc">~</span> eseg10 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>canton),</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">cumulative</span>(<span class="at">link =</span> <span class="st">'logit'</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(collapse)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>ranefmodel2 <span class="ot">=</span> <span class="fu">ranef</span>(model2)[<span class="st">"canton"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">avg_predictions</span>(model2, <span class="at">by =</span> <span class="st">"eseg10"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">avg_predictions</span>(model2, <span class="at">by =</span> <span class="st">"lr"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>p <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> eseg10, <span class="at">color =</span> group)<span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> conf.low, <span class="at">xmax =</span> conf.high))<span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">%&gt;%</span> </span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lr, <span class="at">y =</span> estimate, <span class="at">color =</span> group))<span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">fill =</span> group), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">avg_predictions</span>(model2, <span class="at">by =</span> <span class="st">"eseg10"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">avg_predictions</span>(model2, <span class="at">by =</span> <span class="st">"lr"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> eseg10, <span class="at">color =</span> group)<span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> conf.low, <span class="at">xmax =</span> conf.high))<span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>group)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">%&gt;%</span> </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lr, <span class="at">y =</span> estimate, <span class="at">color =</span> group))<span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">fill =</span> group), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3 <span class="ot">&lt;-</span> <span class="fu">polr</span>(<span class="at">data =</span> selects2023panel2,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>           assurance_maladie_franchise_pour <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">factor</span>(W1_sex) <span class="sc">+</span> income_adj_decile <span class="sc">+</span> education_ISCED <span class="sc">+</span> lr <span class="sc">+</span> probs_vote_udc <span class="sc">+</span> probs_vote_plr <span class="sc">+</span> probs_vote_ps <span class="sc">+</span> probs_vote_centre <span class="sc">+</span> op_limit_immigration <span class="sc">+</span> op_state_interv <span class="sc">+</span> op_social_expenses <span class="sc">+</span> op_min_wage <span class="sc">+</span> op_incr_retirementAge <span class="sc">+</span> op_taxes_high_income <span class="sc">+</span> canton,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">Hess =</span> <span class="cn">TRUE</span>), <span class="at">method =</span> <span class="st">"logit"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>model3 <span class="sc">%&gt;%</span> </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3 <span class="ot">&lt;-</span> <span class="fu">polr</span>(<span class="at">data =</span> selects2023panel2,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           assurance_maladie_franchise_pour <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">factor</span>(W1_sex) <span class="sc">+</span> income_adj_decile <span class="sc">+</span> education_ISCED <span class="sc">+</span> lr <span class="sc">+</span> probs_vote_udc <span class="sc">+</span> probs_vote_plr <span class="sc">+</span> probs_vote_ps <span class="sc">+</span> probs_vote_centre <span class="sc">+</span> op_limit_immigration <span class="sc">+</span> op_state_interv <span class="sc">+</span> op_social_expenses <span class="sc">+</span> op_min_wage <span class="sc">+</span> op_incr_retirementAge <span class="sc">+</span> op_taxes_high_income <span class="sc">+</span> canton,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">Hess =</span> <span class="cn">TRUE</span>), <span class="at">method =</span> <span class="st">"logit"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>model3 <span class="sc">%&gt;%</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
