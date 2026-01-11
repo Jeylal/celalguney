@@ -133,6 +133,51 @@ dep_quantiles %>%
 ggsave("graph_budget_menages.png", plot2)
 ```
 
+```{r graph 3 financement sante}
+library(readr)
+library(ggtext)
+library(ggrepel)
+financement_sante <- read_csv("data/financement_sante.csv")
+
+
+financement_sante2 = financement_sante %>% 
+  pivot_longer(cols = -1) %>% 
+  rename(annee = "Label_FR") %>% 
+  group_by(annee) %>% 
+  mutate(
+    total = sum(value),
+  ) %>% 
+  group_by(annee, name) %>% 
+  mutate(
+    part = value/total
+  )
+
+
+graph_financement <- 
+financement_sante2 %>% 
+  ggplot()+
+  aes(x = annee, y = part, color = name)+
+  geom_line(size = 1.2)+
+  scale_y_continuous(labels = scales::percent)+
+  scale_color_paletteer_d("ggthemes::Classic_10")+
+  theme_minimal()+
+  geom_label_repel(
+    data = financement_sante2 %>% filter(annee == 2023),
+    aes(label = name, x = annee, y = part),
+    direction = "y",
+    nudge_y = 0.001,
+    nudge_x = 10,
+    size = 2.8
+  )+
+  theme(legend.position = "none")+
+  labs(x = "", y = "",
+       subtitle = "Financement du système de santé selon la source")
+
+graph_financement
+ggsave("graph_financement.png", graph_financement)  
+  
+```
+
 
 ## Votation
 
