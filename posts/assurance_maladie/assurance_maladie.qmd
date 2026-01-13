@@ -4,11 +4,18 @@ author: "Celâl Güney"
 format: html
 editor: visual
 execute: 
-  eval: false
+  eval: true
+  warning: false
+  message: false
+  echo: false 
 draft: true
 ---
 
 ```{r set up}
+#| echo: false
+#| message: false
+#| warning: false
+rm(list = ls())
 
 options(scipen = 100, digits = 4)
 library(tidyverse)
@@ -19,7 +26,11 @@ votation_allegement_prime <- read_delim("~/GitHub/celalguney/posts/assurance_mal
 
 ## Swissvotes
 
-```{r}
+```{r tableau votation}
+#| echo: false
+#| message: false
+#| warning: false
+
 library(readr)
 swissvotes <- read_delim("data/swissvotes.csv", 
     delim = ";", escape_double = FALSE, col_types = cols(d1e3 = col_double()), 
@@ -53,7 +64,7 @@ swissvotes4 %>%
   gt()
 
 
-gtsave(swissvotes_table, "table_votations.png", expand = 15)
+#gtsave(swissvotes_table, "table_votations.png", expand = 15)
 
 ```
 
@@ -61,8 +72,14 @@ gtsave(swissvotes_table, "table_votations.png", expand = 15)
 ## Faits stylisés
 
 ```{r set up faits stylises}
+#| echo: false
+#| message: false
+#| warning: false
+
+
 library(readxl)
 library(tidyverse)
+
 data_final_am <- read_excel("data_final_am.xlsx", 
     sheet = "graphique 1") %>% 
   pivot_longer(
@@ -79,6 +96,11 @@ data_final_am <- read_excel("data_final_am.xlsx",
 
 
 ```{r graphique 1 faits stylises}
+#| echo: false
+#| message: false
+#| warning: false
+
+
 
 plot1 <- 
 data_final_am %>% 
@@ -106,11 +128,16 @@ data_final_am %>%
 
 plot1
 
-ggsave("plot_ipam.jpg", plot1)
+#ggsave("plot_ipam.jpg", plot1)
 
 ```
 
 ```{r graph faits stylises 2}
+
+#| echo: false
+#| message: false
+#| warning: false
+
 
 library(viridis)
 library(paletteer)
@@ -130,10 +157,16 @@ dep_quantiles %>%
   scale_fill_paletteer_d("nationalparkcolors::Acadia",
                          name = "Quintile")
 
-ggsave("graph_budget_menages.png", plot2)
+#ggsave("graph_budget_menages.png", plot2)
 ```
 
 ```{r graph 3 financement sante}
+
+#| echo: false
+#| message: false
+#| warning: false
+
+
 library(readr)
 library(ggtext)
 library(ggrepel)
@@ -174,7 +207,7 @@ financement_sante2 %>%
        subtitle = "Financement du système de santé selon la source")
 
 graph_financement
-ggsave("graph_financement.png", graph_financement)  
+#ggsave("graph_financement.png", graph_financement)  
   
 ```
 
@@ -182,19 +215,32 @@ ggsave("graph_financement.png", graph_financement)
 ## Votation
 
 ```{r votation merging}
+
+#| echo: false
+#| message: false
+#| warning: false
+
+
 library(tidyverse)
 library(readr)
 
-votations2024 <- read_excel("votations2024.xlsx", 
+votations2024 <- read_excel("data/votations2024.xlsx", 
     col_types = c("numeric", "text", "numeric", 
         "numeric"))
 
-afc_chiffrescles_2022 <- read_excel("afc_chiffrescles_2022.xlsx", 
+afc_chiffrescles_2022 <- read_excel("data/afc_chiffrescles_2022.xlsx", 
     sheet = "Gemeinden - Communes")
 
 
 data = votations2024 %>% 
   left_join(afc_chiffrescles_2022, by = c("Gemeindenummer" = "Gemeindenummer\r\nCode commune"))
+
+
+data = data %>% 
+  mutate(
+    decile_mean_reinka = ntile(mean_reinka, 10),
+    perc_mean_reinka = ntile(mean_reinka, 100)
+  )
 
 data %>% 
   ggplot()+
@@ -210,15 +256,16 @@ data %>%
   geom_point()+
   facet_wrap(~`Kanton\r\nCanton`)
 
-data = data %>% 
-  mutate(
-    decile_mean_reinka = ntile(mean_reinka, 10),
-    perc_mean_reinka = ntile(mean_reinka, 100)
-  )
 
 ```
 
 ```{r maps}
+
+#| echo: false
+#| message: false
+#| warning: false
+
+
 library(BFS)
 library(ggplot2)
 library(sf)
@@ -229,6 +276,8 @@ communes_sf$id = as.numeric(communes_sf$id)
 datamap = data %>% 
   left_join(communes_sf, by = c("Gemeindenummer" = "id"))
 
+efas_votation_commune <- read_excel("data/efas_votation_commune.xlsx", 
+    skip = 4)
 
 datamap2 = efas_votation_commune[, c(1, 3, 4, 13)] %>% 
   left_join(datamap, by = c("No commune" = "Gemeindenummer")) %>% 
@@ -279,6 +328,11 @@ ggdraw() +
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
 votation_allegement_prime = votation_allegement_prime %>% 
   mutate(
     freincouts_oui = if_else(VOTE1 == 1, 1,
@@ -317,6 +371,11 @@ votation_allegement_prime %>%
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
 model1 = glm(data = votation_allegement_prime,
              freincouts_oui ~ income + isced6 + lr,
              family = binomial(link = "logit"))
@@ -333,6 +392,11 @@ model1 %>%
 ## Selects panel 2023
 
 ```{r setup selects2023 panel}
+#| echo: false
+#| message: false
+#| warning: false
+
+
 rm(list=ls())
 library(haven)
 library(tidyverse)
@@ -340,7 +404,7 @@ library(marginaleffects)
 library(sjlabelled)
 library(DIGCLASS)
 
-selects2023panel <- haven::read_sav("selects2023panel.sav") #linux
+selects2023panel <- haven::read_sav("data/selects2023panel/selects2023panel.sav") #linux
 
 selects2023panel$isco08 = selects2023panel$W1_ISCO08prof_2dig*100
 
@@ -480,6 +544,11 @@ selects2023panel2 %>%
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
 library(MASS)
 
 selects2023panel2$eseg10 = relevel(factor(selects2023panel2$eseg10), ref = "Business and administration professionals")
@@ -489,28 +558,18 @@ summary(model1 <- polr(data = selects2023panel2,
            Hess = TRUE), method = "logit")
 
 
-summary(model2 <- polr(data = selects2023panel2,
-           assurance_maladie_franchise_pour ~ eseg10 + income_adj_decile*lr + education_ISCED + canton,
-           Hess = TRUE), method = "logit")
 
-anova(model1, model2)
-
-library(brms)
-
-model2 = brm(
-  data = selects2023panel2,
-  formula = assurance_maladie_franchise_pour ~ eseg10 + (1|canton),
-  family = cumulative(link = 'logit')
-)
-
-summary(model2)
-library(collapse)
-ranefmodel2 = ranef(model2)["canton"]
 ```
 
 ```{r}
-p = avg_predictions(model2, by = "eseg10")
-p2 = avg_predictions(model2, by = "lr")
+#| echo: false
+#| message: false
+#| warning: false
+#| eval: false
+
+
+p = avg_predictions(model1, by = "eseg10")
+p2 = avg_predictions(model1, by = "lr")
 
 
 p %>% ggplot()+
@@ -527,15 +586,18 @@ p2 %>%
 ```
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| eval: false
+
+library(gt)
+library(gtsummary)
 
 
 summary(model3 <- polr(data = selects2023panel2,
            assurance_maladie_franchise_pour ~ 1 + factor(W1_sex) + income_adj_decile + education_ISCED + lr + probs_vote_udc + probs_vote_plr + probs_vote_ps + probs_vote_centre + op_limit_immigration + op_state_interv + op_social_expenses + op_min_wage + op_incr_retirementAge + op_taxes_high_income + canton,
            Hess = TRUE), method = "logit")
 
-library(gt)
-library(gtsummary)
 
-model3 %>% 
-  tbl_regression()
 ```

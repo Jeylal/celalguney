@@ -1,0 +1,16 @@
+---------------CHECKSUM-----------------------
+
+1) 688_VoxIt_Data_CumulatedFile_Projets_15_121_F.sav (SHA-1):
+
+C1F00708D095612AC01BB8DB0346ABF1BBE6F38A
+
+2) 688_VoxIt_Data_CumulatedFile_Projets_15_121_F.dta (SHA-1):
+
+F75B1A39E3F8E0909BDED3475E2493CD8F5B9606
+
+
+-----------------INFOS-------------------------
+
+Checksum allows you to verify the integrity of a data file
+using a specific tool, for example D5 & SHA-1 Checksum Utility,
+which is available for free download on several websites.
