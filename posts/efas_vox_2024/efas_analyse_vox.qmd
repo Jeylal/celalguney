@@ -1,0 +1,256 @@
+---
+title: "Analyse des données Vox sur l'Initiative EFAS (24.11.2024)"
+author: "Celâl Güney"
+format: html
+editor: visual
+draft: true
+---
+
+```{r fonction}
+
+make_gglikert <- function(data,
+                          cols,
+                          labels_fr,
+                          facet_var = NULL,
+                          sort      = "ascending") {
+
+  lvl_de <- c(
+    "voll und ganz einverstanden",
+    "eher einverstanden",
+    "eher nicht einverstanden",
+    "überhaupt nicht einverstanden"
+  )
+  lvl_fr <- c(
+    "Tout à fait d'accord",
+    "Plutôt d'accord",
+    "Plutôt pas d'accord",
+    "Pas du tout d'accord"
+  )
+  colors <- c("#018571", "#80CDC1", "#DFC27D", "#A6611A")
+
+  cols_sel <- if (!is.null(facet_var)) c(cols, facet_var) else cols
+
+  df <- data |>
+    dplyr::select(dplyr::all_of(cols_sel)) |>
+    dplyr::mutate(dplyr::across(dplyr::all_of(cols), \(x) {
+      # Convertir uniquement si haven_labelled (données brutes)
+      if (inherits(x, "haven_labelled")) {
+        x <- haven::as_factor(x, levels = "labels")
+        nsp <- grep("weiss nicht", levels(x), value = TRUE)
+        if (length(nsp)) levels(x)[levels(x) %in% nsp] <- NA
+        x <- forcats::fct_relevel(x, lvl_de)
+        x <- forcats::fct_recode(x,
+          "Tout à fait d'accord" = "voll und ganz einverstanden",
+          "Plutôt d'accord"      = "eher einverstanden",
+          "Plutôt pas d'accord"  = "eher nicht einverstanden",
+          "Pas du tout d'accord" = "überhaupt nicht einverstanden"
+        )
+      }
+      x
+    })) |>
+    dplyr::rename_with(\(x) labels_fr, dplyr::all_of(cols)) |>
+    labelled::remove_var_label()
+
+  if (!is.null(facet_var)) {
+    df <- dplyr::filter(df, !is.na(.data[[facet_var]]))
+
+    n_labs <- df |>
+      dplyr::count(.data[[facet_var]]) |>
+      dplyr::mutate(
+        old = as.character(.data[[facet_var]]),
+        new = paste0(.data[[facet_var]], "\n(n = ", n, ")")
+      )
+
+    df[[facet_var]] <- forcats::fct_recode(
+      as.factor(df[[facet_var]]),
+      !!!setNames(n_labs$old, n_labs$new)
+    )
+  }
+
+  p <- ggstats::gglikert_stacked(df,
+                                 include = dplyr::all_of(labels_fr),
+                                 sort    = sort) +
+    ggplot2::scale_fill_manual(values = colors, labels = lvl_fr) +
+    ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2))
+
+  if (!is.null(facet_var)) {
+    p <- p +
+      ggplot2::facet_wrap(ggplot2::vars(.data[[facet_var]])) +
+      ggplot2::theme(strip.text = ggplot2::element_text(size = 10, face = "bold"))
+  }
+
+  p
+}
+
+# Ajouter vote_efas directement dans vox_efas pour pouvoir l'utiliser comme facet_var
+vox_efas <- vox_efas |>
+  dplyr::mutate(vote_efas = haven::as_factor(VOTE4, levels = "labels") |>
+    forcats::fct_recode(
+      "Oui" = "ja (angenommen)",
+      "Non" = "nein (abgelehnt)",
+      NULL  = "leer eingelegt / nicht bei dieser Vorlage abgestimmt",
+      NULL  = "keine Angabe"
+    ))
+
+```
+
+
+
+```{r set up}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(haven)
+library(sjlabelled)
+
+setwd("~/GitHub/celalguney/posts/efas_vox_2024")
+
+vox_efas <- read_sav("efas_vox.sav")
+
+vox_efas %>% 
+  count(as_label(ZUSATZ4A241124_1)) %>% 
+  mutate(prop = n/sum(n))
+
+
+
+
+vox_efas %>% 
+  count(as_label(ZUSATZ5A241124_03)) %>% 
+  mutate(prop = n/sum(n))
+
+```
+
+
+```{r recodage}
+
+# création d'une variable canton
+
+
+vox_efas <- vox_efas |>
+  dplyr::mutate(canton = dplyr::case_when(
+    dplyr::between(GDENR,    1,  298) ~ "Zürich",
+    dplyr::between(GDENR,  301,  996) ~ "Bern",
+    dplyr::between(GDENR, 1001, 1150) ~ "Luzern",
+    dplyr::between(GDENR, 1201, 1220) ~ "Uri",
+    dplyr::between(GDENR, 1301, 1375) ~ "Schwyz",
+    dplyr::between(GDENR, 1401, 1407) ~ "Obwalden",
+    dplyr::between(GDENR, 1501, 1511) ~ "Nidwalden",
+    dplyr::between(GDENR, 1601, 1632) ~ "Glarus",
+    dplyr::between(GDENR, 1701, 1711) ~ "Zug",
+    dplyr::between(GDENR, 2001, 2336) ~ "Fribourg",
+    dplyr::between(GDENR, 2401, 2622) ~ "Solothurn",
+    dplyr::between(GDENR, 2701, 2703) ~ "Basel-Stadt",
+    dplyr::between(GDENR, 2761, 2895) ~ "Basel-Landschaft",
+    dplyr::between(GDENR, 2901, 2974) ~ "Schaffhausen",
+    dplyr::between(GDENR, 3001, 3038) ~ "Appenzell Ausserrhoden",
+    dplyr::between(GDENR, 3101, 3111) ~ "Appenzell Innerrhoden",
+    dplyr::between(GDENR, 3201, 3444) ~ "St. Gallen",
+    dplyr::between(GDENR, 3501, 3987) ~ "Graubünden",
+    dplyr::between(GDENR, 4001, 4323) ~ "Aargau",
+    dplyr::between(GDENR, 4401, 4951) ~ "Thurgau",
+    dplyr::between(GDENR, 5001, 5399) ~ "Tessin",
+    dplyr::between(GDENR, 5401, 5939) ~ "Vaud",
+    dplyr::between(GDENR, 6001, 6300) ~ "Valais",
+    dplyr::between(GDENR, 6401, 6511) ~ "Neuchâtel",
+    dplyr::between(GDENR, 6601, 6645) ~ "Genève",
+    dplyr::between(GDENR, 6701, 6806) ~ "Jura",
+    .default = NA_character_
+  ))
+
+# Vérification
+vox_efas |>
+  dplyr::count(canton, sort = TRUE)
+
+
+```
+
+
+
+```{r}
+
+library(ggstats)
+library(haven)
+library(dplyr)
+library(forcats)
+library(labelled)
+
+efas_cols <- paste0("ZUSATZ4A241124_", 1:6)
+
+efas_names_fr <- c(
+  "La réforme EFAS contribue\nà freiner la hausse des primes",
+  "Il serait judicieux de développer\nles soins ambulatoires et réduire les hospitalisations",
+  "Peu m'importe que les soins soient\nfinancés par mes impôts ou mes primes",
+  "Le financement uniforme améliorera\nles conditions du personnel soignant",
+  "Pour freiner les primes, chacun doit prendre\nses responsabilités envers le système de santé",
+  "Une caisse unique est la meilleure\nsolution pour réduire les coûts de santé"
+)
+
+df_efas <- vox_efas |>
+  select(all_of(efas_cols)) |>
+  mutate(across(everything(), \(x) {
+    x <- haven::as_factor(x, levels = "labels")
+    levels(x)[levels(x) == "weiss nicht/keine Antwort"] <- NA
+    x <- fct_relevel(x, likert_levels_de)
+    fct_recode(x,
+      "Tout à fait d'accord" = "voll und ganz einverstanden",
+      "Plutôt d'accord"      = "eher einverstanden",
+      "Plutôt pas d'accord"  = "eher nicht einverstanden",
+      "Pas du tout d'accord" = "überhaupt nicht einverstanden"
+    )
+  })) |>
+  rename_with(\(x) efas_names_fr, all_of(efas_cols)) |>
+  remove_var_label()
+
+gglikert_stacked(df_efas, sort = "ascending") +
+  scale_fill_manual(values = rev(default_colors), labels = likert_levels_fr) +
+  guides(fill = guide_legend(nrow = 2))
+```
+
+
+
+```{r likert argu4}
+
+
+argu4_names_fr <- c(
+  "Le déplacement vers l'ambulatoire est rendu\nplus équitable grâce à la participation des cantons",
+  "Les cantons et assureurs choisiront\nla prise en charge la plus efficiente sans perte de qualité",
+  "Davantage de soins ambulatoires est judicieux\ncar cela est aussi moins pénible pour les patients",
+  "La réforme transfère trop de responsabilités\naux caisses maladie, qui ne doivent pas contrôler le système",
+  "La réforme risque d'entraîner des primes encore\nplus élevées en transférant des coûts vers les assurés",
+  "La pression sur les coûts détériorera la qualité\ndu système de santé sans résoudre les problèmes existants"
+)
+
+df_argu4 <- vox_efas |>
+  dplyr::select(dplyr::all_of(argu4_cols)) |>
+  dplyr::mutate(dplyr::across(dplyr::everything(), \(x) {
+    x <- haven::as_factor(x, levels = "labels")
+    levels(x)[levels(x) == "weiss nicht/keine Antwort"] <- NA
+    x <- forcats::fct_relevel(x, likert_levels_de)
+    forcats::fct_recode(x,
+      "Tout à fait d'accord" = "voll und ganz einverstanden",
+      "Plutôt d'accord"      = "eher einverstanden",
+      "Plutôt pas d'accord"  = "eher nicht einverstanden",
+      "Pas du tout d'accord" = "überhaupt nicht einverstanden"
+    )
+  })) |>
+  dplyr::rename_with(\(x) argu4_names_fr, dplyr::all_of(argu4_cols)) |>
+  labelled::remove_var_label()
+
+ggstats::gglikert_stacked(df_argu4, sort = "ascending") +
+  ggplot2::scale_fill_manual(values = rev(default_colors), labels = likert_levels_fr) +
+  ggplot2::guides(fill = ggplot2::guide_legend(nrow = 2))
+
+
+```
+
+
+```{r}
+# Sans facette
+make_gglikert(data = vox_efas, cols = argu4_cols, labels_fr = argu4_names_fr)
+
+# Avec facette (la variable doit déjà exister dans data avec des labels lisibles)
+make_gglikert(data = vox_efas, cols = argu4_cols, labels_fr = argu4_names_fr,
+              facet_var = "vote_efas")
+```
+

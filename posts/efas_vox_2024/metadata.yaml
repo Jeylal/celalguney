@@ -1,0 +1,1093 @@
+Metadata information:
+  Format: yaml
+  Version: v2
+  Application: swissubase
+  Date created: '2026-02-11T12:42:18Z'
+Project version:
+  Overview:
+    Reference number: 225
+    UUID: 591f89bd-a176-434d-a683-85ad548e5a9e
+    Version number: '6.2'
+    Version notes: Author added
+    Project language:
+      id: 4
+      code: de
+      translations:
+      - languageCode: de
+        translation: Deutsch
+      - languageCode: en
+        translation: German
+      - languageCode: fr
+        translation: Allemand
+      extendedTranslations: []
+    Title:
+    - languageCode: en
+      translation: 'VOX analyses of federal votes: Survey among voters after federal
+        votes from 1981 to 2016'
+    - languageCode: fr
+      translation: Analyses VOX des votations fédérales de 1981 à 2016
+    - languageCode: de
+      translation: 'VOX-Analysen eidgenössischer Urnengänge: Befragung von Stimmberechtigten
+        nach eidgenössischen Abstimmungen von 1981 bis 2016'
+    Domain: Social sciences
+    Data curated by: FORS
+    Institutions:
+    - publicName: University of Bern, Institute of Political Science
+    - publicName: gfs.bern
+    - publicName: University of Geneva, Department of Political Science and International
+        Relations
+    - publicName: University of Zurich, Department of Political Science, Chair of
+        Comparative Politics
+    Mandating institutions: {}
+    Bibliographical references:
+    - title: 'Zehn Jahre politische Befragungen in der Schweiz: Abstimmungsanalysen
+        anhand von VOX-Daten.'
+      authors:
+      - Klöti, U.
+      - 'Schloeth, D. '
+      doi: ''
+      publicationYear: '1993'
+      reference: 'In: Kleine Studie zur Politischen Wissenschaft, 1993, S. 284-286.'
+      url: ''
+      bibliographyType:
+        id: 4
+        code: journal-article
+        translations:
+        - languageCode: de
+          translation: Zeitschriftenartikel
+        - languageCode: en
+          translation: Journal article
+        - languageCode: fr
+          translation: Article de revue
+        extendedTranslations: []
+      comments: ''
+      secondaryAnalysis: false
+    - title: Citoyenneté et démocratie directe. Compétence, participation et décisions
+        des citoyens et citoyennes suisses.
+      authors:
+      - Kriesi, Hanspeter
+      doi: ''
+      publicationYear: '1993'
+      reference: Zürich, Seismo, 1993.
+      url: ''
+      bibliographyType:
+        id: 2
+        code: book
+        translations:
+        - languageCode: de
+          translation: Buch
+        - languageCode: en
+          translation: Book
+        - languageCode: fr
+          translation: Livre
+        extendedTranslations: []
+      comments: ''
+      secondaryAnalysis: false
+    - title: Die politische Sozialforschung der Schweiz am Beispiel der VOX-Analysen.
+      authors:
+      - Longchamp, Claude
+      doi: ''
+      publicationYear: '1987'
+      reference: 'In: VSMF (Hrsg.): Handbuch Marktforschung Schweiz. Einsiedeln, 1987.'
+      url: ''
+      bibliographyType:
+        id: 3
+        code: book-section
+        translations:
+        - languageCode: de
+          translation: Buchkapitel
+        - languageCode: en
+          translation: Book section
+        - languageCode: fr
+          translation: Chapitre de livre
+        extendedTranslations: []
+      comments: ''
+      secondaryAnalysis: false
+    - title: Was wissen wir mehr nach 10 Jahren VOX-Analysen.
+      authors:
+      - Linder, Wolf
+      doi: ''
+      publicationYear: '1989'
+      reference: 'Referat zum GfS-Seminar: "Die Bürger und ihr Staat", Bern, 1989.'
+      url: ''
+      bibliographyType:
+        id: 27
+        code: presentation
+        translations:
+        - languageCode: de
+          translation: Vortrag
+        - languageCode: en
+          translation: Presentation
+        - languageCode: fr
+          translation: Présentation
+        extendedTranslations: []
+      comments: ''
+      secondaryAnalysis: false
+    - title: VOX-Analysen eidg. Urnengänge.
+      authors:
+      - 'GfS-Forschungsinstitut, '
+      doi: ''
+      publicationYear: '1977'
+      reference: GfS-Forschungsinstitut (Hrsg.) in Zusammenarbeit mit den politikwissenschaftlichen
+        Instituten der Universitäten Bern, Genf und Zürich, Adliswil, 1977ff.
+      url: ''
+      bibliographyType:
+        id: 34
+        code: document
+        translations:
+        - languageCode: de
+          translation: Dokument
+        - languageCode: en
+          translation: Document
+        - languageCode: fr
+          translation: Document
+        extendedTranslations: []
+      comments: ''
+      secondaryAnalysis: false
+    Authors:
+    - First name: Claude
+      Last name: Longchamp
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Adrian
+      Last name: Vatter
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Thomas
+      Last name: Widmer
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Pascal
+      Last name: Sciarini
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Ulrich
+      Last name: Klöti
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Sibylle
+      Last name: Hardmeier
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Wolf
+      Last name: Linder
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Hanspeter
+      Last name: Kriesi
+      Role:
+        id: 343
+        code: principal-investigator
+        translations:
+        - languageCode: de
+          translation: Projektleiter/in
+        - languageCode: en
+          translation: Principal investigator
+        - languageCode: fr
+          translation: Responsable du projet
+        extendedTranslations: []
+    - First name: Dominique
+      Last name: Wisler
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Hans
+      Last name: Hirter
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Thanh-Huyen
+      Last name: Ballmer-Cao
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Daniel
+      Last name: Kübler
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Bianca
+      Last name: Rousselot
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Alessandro
+      Last name: Naï
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Martina
+      Last name: Mousson
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Marina
+      Last name: Delgrande Jordan
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Lionel
+      Last name: Marquis
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Thomas
+      Last name: Milic
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Archive
+      Last name: Team FORS
+      Role:
+        id: 345
+        code: administrative-collaborator
+        translations:
+        - languageCode: de
+          translation: Administrative/r Mitarbeiter/in
+        - languageCode: en
+          translation: Administrative collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice administratif/ve
+        extendedTranslations: []
+    - First name: Lukas
+      Last name: Golder
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Urs
+      Last name: Bieri
+      Role:
+        id: 343
+        code: principal-investigator
+        translations:
+        - languageCode: de
+          translation: Projektleiter/in
+        - languageCode: en
+          translation: Principal investigator
+        - languageCode: fr
+          translation: Responsable du projet
+        extendedTranslations: []
+    - First name: Sara
+      Last name: Rellstab
+      Role:
+        id: 344
+        code: scientific-collaborator
+        translations:
+        - languageCode: de
+          translation: Wissenschaftl. Mitarbeiter/in
+        - languageCode: en
+          translation: Scientific collaborator
+        - languageCode: fr
+          translation: Collaborateur/trice scientifique
+        extendedTranslations: []
+    - First name: Marielle
+      Last name: Kappeler
+      Role:
+        id: 1001
+        code: curator
+        translations:
+        - languageCode: de
+          translation: Curator
+        - languageCode: en
+          translation: Curator
+        - languageCode: fr
+          translation: Curator
+        extendedTranslations: []
+    Main disciplines:
+    - id: 32
+      code: political-science
+      translations:
+      - languageCode: de
+        translation: Politikwissenschaften
+      - languageCode: en
+        translation: Political science
+      - languageCode: fr
+        translation: Sciences politiques
+      extendedTranslations: []
+    - id: 1
+      code: humanities-and-social-sciences
+      translations:
+      - languageCode: de
+        translation: Geistes- und Sozialwissenschaften
+      - languageCode: en
+        translation: Humanities and Social Sciences
+      - languageCode: fr
+        translation: Sciences humaines et sociales
+      extendedTranslations: []
+    - id: 30
+      code: sociology-social-work-political-sciences-media-and-communication-studies-health
+      translations:
+      - languageCode: de
+        translation: Soziologie, Soziale Arbeit, Politikwissenschaften, Medien- und
+          Kommunikationswissenschaften, Gesundheit
+      - languageCode: en
+        translation: Sociology, social work, political sciences, media and communication
+          studies, health
+      - languageCode: fr
+        translation: Sociologie, travail social, sciences politiques, sciences de
+          la communication et des médias, santé
+      extendedTranslations: []
+    Project progress: Periodic
+    Start date: 1977-01-01 00:00:00
+    Data availability: {}
+  Description:
+    Period:
+    - languageCode: de
+      translation: Seit 1977 regelmässig nach eidgenössischen Urnengängen
+    Additional Geographical Information:
+    - languageCode: fr
+      translation: Suisse
+    - languageCode: de
+      translation: Schweiz
+    Abstract:
+    - languageCode: en
+      translation: 'Follow-up surveyof voters; continuous investigation of the voting
+        behavior; theoretical references: sociological and socio-psychological approach.
+        Essential variables of the questionnaire: Voting behavior according to political
+        and social characteristics, political dimensions such as party affiliation,
+        left-right orientation, values, updates through the voting campaign (knowledge,
+        arguments).'
+    - languageCode: de
+      translation: 'Nachbefragung von Stimmberechtigten; kontinuierliches Erforschen
+        des Abstimmungsverhaltens; theoretische Bezüge: soziologischer und sozialpsychologischer
+        Ansatz. Wesentliche Variablen des Fragebogens: Abstimmungsverhalten nach politischen
+        und gesellschaftlichen Merkmalen, politischen Dimensionen wie Parteibindung,
+        Links-Rechts-Orientierung, Werthaltungen, Aktualisierungen durch die Abstimmungskampagne
+        (Kenntnisse, Argumente).'
+  Funding:
+    Project type:
+    - type:
+        id: 188
+        code: institutional
+        translations:
+        - languageCode: de
+          translation: Eigenprojekt der genannten Institution(en)
+        - languageCode: en
+          translation: Research of the indicated institution(s)
+        - languageCode: fr
+          translation: Recherche de la/des institution(s) mentionnée(s)
+        extendedTranslations: []
+      otherStudyType: null
+    Funding:
+    - financedBy:
+        id: 75
+        code: other
+        translations:
+        - languageCode: de
+          translation: Andere
+        - languageCode: en
+          translation: Other
+        - languageCode: fr
+          translation: Autre
+        extendedTranslations: []
+      otherFinancing: Abonnemente
+      snfNumber: ''
+      nrpType: null
+      nccrType: null
+    - financedBy:
+        id: 67
+        code: institutional
+        translations:
+        - languageCode: de
+          translation: Genannte Institution
+        - languageCode: en
+          translation: Indicated institution
+        - languageCode: fr
+          translation: Institution indiquée
+        extendedTranslations: []
+      otherFinancing: ''
+      snfNumber: ''
+      nrpType: null
+      nccrType: null
+  Bibliographical references: {}
+  Domain specific metadata:
+    Methods:
+      Method description:
+        DE: "Grundgesamtheit: Stimmberechtigte Schweizer Bevölkerung im Alter zwischen\
+          \ 18 und 84 Jahren. Geographischer Bezugsraum: ganze Schweiz (Sprachräume:\
+          \ deutsch, französisch, italienisch). Zeitbezug: seit 1997, jeweils erste\
+          \ bis dritte Woche nach jedem eidg. Urnengang (3-4x pro Jahr).\r\nAuswahlverfahren:\
+          \ Random-Quota. Stichprobengrösse: ca. 1000 Befragte. Juni: telefonische\
+          \ Befragung.\r\nBis 2 Wochen nach der Abstimmung; Standardisierter Fragebogen\
+          \ mit einigen offenen Fragen. Datenerhebung durch gfs.bern. \r\nAnalysemethoden:\
+          \ Statistische Analyse mit SPSS; statistische Fehlerspanne +/- 3%.\r\nErhebungsverfahren:\
+          \ Standardisierte Befragung telephonisch, standardisierte Fragebogen"
+      Method (instruments):
+      - Method instrument: by telephone
+      - Other method instrument: 'Anderes Verfahren: standardisierte Fragebogen'
+        Method instrument: Other (specify)
+Dataset version:
+  Overview:
+    UUID: 694a79cc-6bff-47a9-b35a-8448688e5865
+    Dataset title:
+    - languageCode: de
+      translation: Vox 147 - Abstimmung 24.11.2024
+    Canonical DOI: 10.48573/swwk-x341
+    DOI: 10.48573/p8nz-7f40
+    Dataset description language:
+      id: 4
+      code: de
+      translations:
+      - languageCode: de
+        translation: Deutsch
+      - languageCode: en
+        translation: German
+      - languageCode: fr
+        translation: Allemand
+      extendedTranslations: []
+    Dataset description: 'Nachabstimmungsbefragung der Schweizer Stimmbevölkerung
+      VOX Nr. 147 zu den Vorlagen:
+
+      1. Bundesbeschluss über den Ausbauschritt 2023 für die Nationalstrassen
+
+      2. Änderung des Obligationenrechts (Mietrecht: Untermiete)
+
+      3. Änderung des Obligationenrechts (Mietrecht: Kündigung wegen Eigenbedarfs)
+
+      4. Änderung des Bundesgesetzes über die Krankenversicherung (KVG)'
+    Version number: '1.0'
+    Version notes: Version 1.0
+    Bibliographical citation: Longchamp, C., Vatter, A., Widmer, T., Sciarini, P.,
+      Klöti, U., Hardmeier, S., Linder, W., Kriesi, H., Wisler, D., Hirter, H., Golder,
+      L., Ballmer-Cao, T.-H., Kübler, D., Rousselot, B., Naï, A., Mousson, M., Delgrande
+      Jordan, M., Marquis, L., Bieri, U., … Rellstab, S. (2026). Vox 147 - Abstimmung
+      24.11.2024 (Version 1.0) [Data set]. FORS. https://doi.org/10.48573/p8nz-7f40
+  Curation: {}
+  Deposit contract:
+    Contract body: "1. Anwendungsbereich\n\nNutzer*innen der SWISSUbase-Plattform\
+      \ (nachfolgend «Plattform») und der weiteren von SWISSUbase angebotenen Dienste\
+      \ (zusammen nachfolgend «SWISSUbase-Dienste»), die Nutzer-Uploads (1) auf die\
+      \ Plattform hochladen (nachfolgend «Datenhinterleger*in» oder «Sie»), schliessen\
+      \ diesen Hinterlegungsvertrag ab.\n\nBitte beachten Sie zudem die Bestimmungen\
+      \ der allgemeinen Nutzungsbedingungen (2) in ihrer jeweils gültigen Fassung,\
+      \ die zusätzlich zu diesem Hinterlegungsvertrag anwendbar sind. Alle in diesem\
+      \ Hinterlegungsvertrag verwendeten, aber nicht definierten Begriffe haben die\
+      \ gleiche Bedeutung wie in den Nutzungsbedingungen.\n \n\n2. Vertragsparteien\n\
+      \nVertragsparteien dieses Vertrags sind:\n- Sie als Datenhinterleger*in; und\n\
+      - die SWISSUbase-Partnerinstitutionen des SWISSUbase-Konsortiums (nachfolgend\
+      \ «SWISSUbase» oder «wir»), bestehend aus dem Schweizerischen Kompetenzzentrum\
+      \ für Sozialwissenschaften (FORS), der Universität Neuenburg (UNINE), der Universität\
+      \ Zürich (UZH), und\n- sofern die Nutzer-Uploads einer bestimmten Domäne oder\
+      \ Institution zugewiesen sind (siehe Anhang A), der/die zuständige Kooperationspartner*in\
+      \ (nachfolgend «Kooperationspartner*in» oder “wir”).\n\nFORS (mit Sitz im Bâtiment\
+      \ Géopolis, CH-1015 Lausanne) vertritt die einfache Gesellschaft (Art. 530 ff.\
+      \ OR) SWISSUbase gegenüber Dritten.\n\n\n3. Datenhinterleger*in, Projekt, Datensatz,\
+      \ Projektleiter*in\n\t \nDatenhinterleger*in: Sara Rellstab, gfs.bern\nProjekt:\
+      \ VOX-Analysen eidgenössischer Urnengänge: Befragung von Stimmberechtigten nach\
+      \ eidgenössischen Abstimmungen von 1981 bis 2016, 225\nDatensatz: Vox 147 -\
+      \ Abstimmung 24.11.2024, 3228, 1.0\nProjektleiter*in (Principal Investigator):\
+      \ Urs Bieri, Hanspeter Kriesi \n\n*Sie bestätigen, dass Sie berechtigt sind,\
+      \ diesen Hinterlegungsvertrag zu unterzeichnen, sei es in eigenem Namen, im\
+      \ Namen einer Schweizer Hochschule oder einer Drittpartei und, falls zutreffend,\
+      \ in Übereinstimmung mit vorgängigen Kooperationsvereinbarungen mit anderen\
+      \ Forschungspartnern.\n\n\n4. Data Service Units\nJede SWISSUbase-Partnerinstitution\
+      \ (FORS, UNINE, UZH) sowie jeder Kooperationspartner richtet eine Data Service\
+      \ Unit (nachfolgend “DSU”) ein. Die zuständige DSU ist die erste Ansprechstelle\
+      \ für Fragen zur Vorbereitung, Veröffentlichung und Nutzung von Nutzer-Uploads\
+      \ durch Dritte auf der Plattform. Die jeweilige DSU ist keine Vertragspartei\
+      \ dieses Vertrages.\n\nJede DSU kann in einer separaten DSU-Richtlinie weitere\
+      \ Anforderungen an Nutzer-Uploads (z. B. akzeptierte Dateitypen) festlegen,\
+      \ berechtigte Datenhinterleger*innen definieren oder weitere Bedingungen für\
+      \ die Hinterlegung von Nutzer-Uploads in der jeweiligen Disziplin oder Institution\
+      \ bestimmen. DSU-Richtlinien sind auf der Info-Website (3) verfügbar.\n\n\n\
+      5. Allgemeine Anforderungen an Nutzer-Uploads\n\nAls Datenhinterleger*in bestätigen\
+      \ Sie hiermit insbesondere, dass:\n\na) die Nutzer-Uploads rechtmässig erlangt\
+      \ wurden und, falls relevant, zur Hinterlegung auf der Plattform rechtlich zulässig\
+      \ verarbeitet wurden (insbesondere in Übereinstimmung mit dem anwendbaren schweizerischen\
+      \ Datenschutz- und Urheberrecht);\n\nb) die Nutzer-Uploads anonymisiert sind\
+      \ oder keine Personendaten, einschliesslich besonders schützenswerter Personendaten\
+      \ (4) , enthalten, ausgenommen die Projektmetadaten, oder dass Sie nach dem\
+      \ anwendbaren Datenschutzrecht berechtigt sind, Nutzer-Uploads mit personenbezogenen\
+      \ und/oder besonders schützenswerten Daten hochzuladen (5)  (insbesondere aufgrund\
+      \ einer Rechtsgrundlage oder der Einwilligung der betroffenen Personen in Einzelfällen\
+      \ (6) );\n\nc) Sie berechtigt sind, die Nutzer-Uploads auf der Plattform durch\
+      \ SWISSUbase und die Kooperationspartner veröffentlichen und archivieren zu\
+      \ lassen, falls erforderlich, unter bestimmten Bedingungen (7);\n\nd) die Nutzer-Uploads\
+      \ keine Schadsoftware enthalten (z. B. Viren, Trojaner).\nErfüllen die Nutzer-Uploads\
+      \ die vorstehenden Anforderungen nicht oder bestehen Zweifel an deren Einhaltung,\
+      \ behalten sich SWISSUbase und die Kooperationspartner das Recht vor, die Nutzer-Uploads\
+      \ nicht zu veröffentlichen oder zu archivieren.\n\n\n6. Urheberrechte an den\
+      \ Nutzer-Uploads\n\nMit dem Hochladen der Nutzer-Uploads werden die Urheberrechte\
+      \ an den Nutzer-Uploads nicht an uns übertragen. Die Urheberrechte verbleiben\
+      \ vollständig bei Ihnen als Datenhinterleger*in oder gegebenenfalls bei betroffenen\
+      \ Drittparteien, sofern nicht gesetzlich oder vertraglich etwas anderes geregelt\
+      \ ist.\n\n\n7. Lizenz an SWISSUbase und die Kooperationspartner\n\nSie erteilen\
+      \ SWISSUbase und den Kooperationspartnern das Recht, die Nutzer-Uploads zu veröffentlichen\
+      \ und zu bewahren sowie sämtliche für Veröffentlichung und Langzeitarchivierung\
+      \ erforderlichen Bearbeitungen an den Nutzer-Uploads vorzunehmen. Insbesondere\
+      \ gewähren Sie SWISSUbase und den Kooperationspartnern das Recht:\n\na) die\
+      \ Nutzer-Uploads zu beschreiben, zu katalogisieren und zu dokumentieren;\n\n\
+      b) Metadaten und Dokumentation zu den Nutzer-Uploads hinzuzufügen;\n\nc) die\
+      \ Metadaten der Nutzer-Uploads auf der Plattform zu veröffentlichen;\n\nd) die\
+      \ Metadaten der Nutzer-Uploads Dritten (z. B. CLARIN, CESSDA) für Auffindbarkeit\
+      \ und Analysen zur Verfügung zu stellen;\n\ne) innerhalb der bestehenden SWISSUbase-Infrastruktur\
+      \ und -Dienste Nutzer-Uploads zur Sicherstellung der künftigen Langzeitarchivierung\
+      \ und Zugänglichkeit sowie zur Verbesserung der Nutzbarkeit und/oder zum Schutz\
+      \ der Vertraulichkeit zu speichern, zu übersetzen, zu kopieren und zu migrieren.\n\
+      \nSie gestatten SWISSUbase und den Kooperationspartnern ferner, Datenanalysen\
+      \ zur Erstellung von Downloadstatistiken sowie zur Ermittlung von Datenvolumina\
+      \ und weiteren Metriken durchzuführen.\n\n\n8. Nutzungsvertrag\n\nSie schliessen\
+      \ mit den jeweiligen Datenkonsumenten/Datenkonsumentinnen einen Nutzungsvertrag\
+      \ ab, in dem Sie die Weiterverwendung Ihrer Nutzer-Uploads (z. B. Urheberrechtsbedingungen)\
+      \ regeln.\n\nWir übernehmen keine Haftung dafür, dass der zwischen Ihnen und\
+      \ den Datenkonsumenten/Datenkonsumentinnen geschlossene Nutzungsvertrag die\
+      \ Weiterverwendung Ihrer Nutzer-Uploads umfassend und zu Ihren Gunsten regelt.\
+      \ Sie sind verantwortlich für die Auswahl und das Verständnis des geeigneten\
+      \ Nutzungsvertrags (es stehen unterschiedliche Optionen zur Verfügung). Die\
+      \ zuständige DSU unterstützt den/die Datenhinterleger*in bei der Auswahl des\
+      \ Nutzungsvertrags. Für Verstösse der Datenkonsumenten/Datenkonsumentinnen gegen\
+      \ den Nutzungsvertrag übernehmen wir keine Haftung.\n\n\n9. Nutzung der Nutzer-Uploads\
+      \ durch Dritte\n\nAls Datenhinterleger*in verpflichten Sie sich sicherzustellen,\
+      \ dass Ihre Nutzer-Uploads keine Rechte Dritter verletzen und auf der Plattform\
+      \ entsprechend veröffentlicht oder archiviert werden können und dass die Datenkonsumenten/Datenkonsumentinnen\
+      \ Ihre Nutzer-Uploads in Übereinstimmung mit den von Ihnen im Nutzungsvertrag\
+      \ festgelegten Bedingungen verwenden dürfen.\nSie stellen uns von sämtlichen\
+      \ Drittansprüchen frei, die sich aus datenschutzrechtlichen, urheberrechtlichen\
+      \ oder sonstigen rechtlichen Streitigkeiten in Zusammenhang mit Ihrer nicht\
+      \ vertraglich gedeckten oder rechtswidrigen Nutzung der SWISSUbase-Dienste ergeben.\n\
+      \n\n10. Änderung der Nutzer-Uploads\n\nGrundsätzlich ist die jeweilige DSU nur\
+      \ mit Zustimmung oder auf Veranlassung der Datenhinterleger*innen berechtigt,\
+      \ Nutzer-Uploads zu ändern.\n\nDie jeweilige DSU ist jedoch befugt, Metadaten\
+      \ der Nutzer-Uploads ohne Zustimmung des/der Datenhinterleger*in zu ändern,\
+      \ sofern diese Änderungen der Verbesserung der Auffindbarkeit, Wiederverwendbarkeit\
+      \ und der Langzeitarchivierung des Datensatzes dienen.\n\n\n11. Entfernung von\
+      \ Nutzer-Uploads von der Plattform\n\nAls Datenhinterleger*in können Sie die\
+      \ zuständige DSU um Löschung Ihrer Nutzer-Uploads ersuchen. Der/Die Datenhinterleger*in\
+      \ muss einen plausiblen Grund für die Löschung vorlegen. Bei Löschung eines\
+      \ Datensatzes behalten sich SWISSUbase und die Kooperationspartner das Recht\
+      \ vor, bestimmte mit den Nutzer-Uploads verbundene Metadaten (z. B. Zitation\
+      \ bereits veröffentlichter Datensätze) zwecks Nachvollziehbarkeit (z. B. «Tombstone-Seite»\
+      \ des vormals veröffentlichten Datensatzes) aufzubewahren. Ein formeller Prozess\
+      \ für Löschanträge, deren Genehmigung und Dokumentation ist eingerichtet.\n\n\
+      Grundsätzlich darf die zuständige DSU-Nutzer-Uploads nur mit Zustimmung der\
+      \ Datenhinterleger*innen löschen. Es bestehen jedoch Fälle, in denen die DSU-Nutzer-Uploads\
+      \ (oder Teile davon) ohne Zustimmung der Datenhinterleger*innen löschen wird,\
+      \ etwa:\n\n– bei Verletzung dieses Hinterlegungsvertrags;\n\n– aus rechtlichen\
+      \ Gründen: rechtswidrige Inhalte in den Nutzer-Uploads (z. B. Datenschutzverletzungen,\
+      \ Urheberrechtsverletzungen) oder wissenschaftliches Fehlverhalten (z. B. Fälschung,\
+      \ Erfindung, Plagiat);\n\n– wenn Nutzer-Uploads sensible oder personenbezogene\
+      \ Daten enthalten, die entfernt werden müssen;\n\n– bei Publikationsfehlern;\n\
+      \n– wenn der/die Datenhinterleger*in oder deren Vertreter*innen nicht mehr erreichbar\
+      \ sind;\n\n– wenn die maximale Archivierungsdauer erreicht ist (8);\n\n– aus\
+      \ den in den Nutzungsbedingungen (Ziff. 6) genannten Gründen.\n\n\n12. Datenschutz\n\
+      \nBezüglich der von uns als Verantwortlicher verarbeiteten personenbezogenen\
+      \ Daten verweisen wir auf unsere Datenschutzerklärung (9).\n\nEnthalten Ihre\
+      \ Nutzer-Uploads Personendaten (vgl. Ziff. 5 b), können wir diese im Rahmen\
+      \ dieses Vertrags als Auftragsbearbeiter verarbeiten. In diesem Fall gelten\
+      \ die nachfolgenden Ziff. 13 und 14.\n\nJede SWISSUbase-Partnerinstitution und\
+      \ die Kooperationspartner halten die für sie anwendbaren kantonalen oder eidgenössischen\
+      \ Datenschutzbestimmungen ein.\n\n\n13. Bedingungen zur Datenbearbeitung\n\n\
+      13.1. Anwendungsbereich\n\nDiese Bedingungen gelten für die Verarbeitung personenbezogener\
+      \ Daten (einschliesslich besonders schützenswerter Personendaten) durch die\
+      \ jeweiligen SWISSUbase-Partnerinstitutionen und die Kooperationspartner (Auftragsbearbeiter)\
+      \ im Auftrag der Datenhinterleger*innen. In diesem Zusammenhang gelten die Datenhinterleger*innen\
+      \ als Verantwortliche.\n\n13.2. Einzelheiten der Verarbeitung\n\nArt und Zweck\
+      \ der Verarbeitung richten sich nach den von SWISSUbase und den Kooperationspartnern\
+      \ im Rahmen dieses Vertrags erbrachten Leistungen. SWISSUbase und die Kooperationspartner\
+      \ verarbeiten die personenbezogenen Daten ausschliesslich im Rahmen dieses Vertrags\
+      \ und gemäss den Instruktionen der Datenhinterleger*innen. Eine Verarbeitung\
+      \ zu anderen Zwecken findet nicht statt.\n\nSWISSUbase und die Kooperationspartner\
+      \ verarbeiten Inhaltsdaten, d. h. personenbezogene Daten, die in den Nutzer-Uploads\
+      \ enthalten sind (Metadaten, Datensätze, Dateien). Zu den betroffenen Personengruppen\
+      \ gehören Autoren/Autorinnen, Forscher*innen, Studienteilnehmende, Interviewpartner*innen\
+      \ und weitere in den Nutzer-Uploads genannte Personen. SWISSUbase verarbeitet\
+      \ Inhaltsdaten bis zur Beendigung dieses Hinterlegungsvertrags gemäss Ziff.\
+      \ 16 oder bis die Nutzer-Uploads aus anderen in Ziff. 11 genannten Gründen gelöscht\
+      \ werden.\n\n13.3. Unterauftragsverarbeitung\n\nEine Liste der aktuell von SWISSUbase\
+      \ eingesetzten Subprozessoren ist unter Drittanbieter (10) veröffentlicht.\n\
+      \nDie zum Zeitpunkt der Vertragsunterzeichnung eingesetzten Subprozessoren gelten\
+      \ mit der Nutzung der SWISSUbase-Dienste als vom/von der Datenhinterleger*in\
+      \ genehmigt. SWISSUbase kann zusätzliche Subprozessoren einsetzen oder bestehende\
+      \ ersetzen. In solchen Fällen informiert SWISSUbase die Datenhinterleger*innen\
+      \ in geeigneter Weise über die vorgesehene Änderung, bevor die Subprozessoren\
+      \ ihre Tätigkeit aufnehmen. Der/Die Datenhinterleger*in hat das Recht, der Einsetzung\
+      \ eines Subprozessoren schriftlich innerhalb von 20 Tagen nach Mitteilung durch\
+      \ SWISSUbase zu widersprechen. Kommt es zu einem Widerspruch, behalten sich\
+      \ SWISSUbase und die Kooperationspartner das Recht vor, den Hinterlegungsvertrag\
+      \ mit dem/der betreffenden Datenhinterleger*in zu kündigen.\n\nSWISSUbase verpflichtet\
+      \ vertraglich sämtliche eingesetzten Subprozessoren zur Einhaltung der datenschutz-\
+      \ und datensicherheitsrelevanten Verpflichtungen gemäss diesem Vertrag. SWISSUbase\
+      \ bleibt gegenüber dem/der Datenhinterleger*in verantwortlich und verpflichtet,\
+      \ die Einhaltung dieser Verpflichtungen durch die Subprozessoren sicherzustellen.\n\
+      \n13.4. Grenzüberschreitende Datenbearbeitung\n\nSWISSUbase und die Kooperationspartner\
+      \ verpflichten sich, personenbezogene Daten ausschliesslich in der Schweiz oder\
+      \ in Mitgliedstaaten des Europäischen Wirtschaftsraums (EWR) zu verarbeiten.\
+      \ Jede Verarbeitung personenbezogener Daten in einem Drittstaat ausserhalb der\
+      \ Schweiz oder des EWR erfolgt ausschliesslich in Übereinstimmung mit den Voraussetzungen\
+      \ von Art. 16 und 17 DSG.\n\n13.5. Rechte betroffener Personen\n\nSWISSUbase\
+      \ und die Kooperationspartner sind nicht primär verantwortlich für die Gewährleistung\
+      \ der Rechte betroffener Personen. Erhält SWISSUbase eine Anfrage einer betroffenen\
+      \ Person, für welche SWISSUbase oder ein Kooperationspartner gemäss diesem Vertrag\
+      \ als Auftragsbearbeiter tätig ist, verweist SWISSUbase die betroffene Person\
+      \ an die jeweiligen Datenhinterleger*innen.\n\nSWISSUbase und die Kooperationspartner\
+      \ unterstützen die Datenhinterleger*innen in angemessener Weise bei der Wahrung\
+      \ der Rechte betroffener Personen.\n\n\n14. Datensicherheit\n\nWir treffen geeignete\
+      \ technische und organisatorische Massnahmen gemäss dem aktuellen Stand der\
+      \ Technik und den anwendbaren gesetzlichen Vorgaben, die geeignet sind, Verletzungen\
+      \ der Datensicherheit zu verhindern.\n\nDie derzeit implementierten technischen\
+      \ und organisatorischen Massnahmen sind auf der SWISSUbase Info-Website (11)\
+      \ publiziert. Diese Massnahmen können weiterentwickelt und angepasst werden.\n\
+      \nIm Falle einer Verletzung der Datensicherheit im Zusammenhang mit der Erbringung\
+      \ der SWISSUbase-Dienste informiert SWISSUbase die betroffenen Datenhinterleger*innen\
+      \ unverzüglich schriftlich. SWISSUbase ergreift unverzüglich die notwendigen\
+      \ Massnahmen innerhalb ihres Verantwortungsbereichs, um die Datensicherheit\
+      \ wiederherzustellen und mögliche nachteilige Folgen für betroffene Personen\
+      \ zu minimieren.\n\n\n15.\tHaftung\nSoweit gesetzlich zulässig, haften wir und\
+      \ unsere Hilfspersonen nicht für direkte oder indirekte Schäden, insbesondere\
+      \ nicht für Datenverlust oder sonstige immaterielle Schäden oder entgangenen\
+      \ Gewinn, die sich ergeben aus (nicht abschliessende Aufzählung):\n\n- der Nutzung\
+      \ oder dem Herunterladen unrichtiger, unvollständiger oder rechtswidriger Inhalte\
+      \ aus den SWISSUbase-Diensten;\n\n- der Nutzung oder dem Herunterladen unrichtiger,\
+      \ unvollständiger oder rechtswidriger Inhalte in den Nutzer-Uploads;\n\n- dem\
+      \ Verlust oder der Beschädigung von Nutzer-Uploads;\n\n- der Nichtverfügbarkeit\
+      \ der SWISSUbase-Dienste, z. B. infolge technischer Probleme;\n\n- den auf der\
+      \ Plattform verfügbaren Inhalten sowie allen verlinkten Drittwebsites und deren\
+      \ Inhalten;\n\n- der Einstellung aller oder einzelner SWISSUbase-Dienste oder\
+      \ deren Änderung;\n\n- dem Verhalten Dritter, z. B. durch Missbrauch von Daten;\n\
+      \n- unbefugtem Zugriff auf oder Änderungen Ihrer Daten.\n\n\n16. Beendigung\
+      \ des Hinterlegungsvertrags\n\nDieser Hinterlegungsvertrag kann jederzeit gekündigt\
+      \ werden. Die Kündigung ist schriftlich an support@swissubase.ch zu richten.\n\
+      \nBei Kündigung werden sämtliche Ihre Nutzer-Uploads gelöscht, sofern keine\
+      \ gesetzliche Aufbewahrungspflicht für Personendaten besteht. SWISSUbase und\
+      \ die Kooperationspartner behalten sich jedoch das Recht vor, bestimmte Metadaten\
+      \ im Zusammenhang mit den Nutzer-Uploads (z. B. Zitation bereits veröffentlichter\
+      \ Datensätze) zwecks Nachvollziehbarkeit aufzubewahren (z. B. «Tombstone-Seite»\
+      \ für zuvor veröffentlichte Datensätze).\n\nDieser Hinterlegungsvertrag endet\
+      \ ohne weiteres, falls Ihre Nutzer-Uploads gemäss Ziff. 11 von der Plattform\
+      \ gelöscht werden.\n\nIm Falle der Beendigung dieses Hinterlegungsvertrags,\
+      \ unabhängig vom Grund, bleiben sämtliche Verpflichtungen aus diesem Vertrag,\
+      \ die ihrer Natur nach über die Beendigung des Vertragsverhältnisses hinaus\
+      \ fortbestehen sollen, unberührt. Dies gilt insbesondere für Haftungsbestimmungen.\n\
+      \n\n17. Salvatorische Klausel\n\nDie Ungültigkeit einzelner Bestimmungen dieses\
+      \ Hinterlegungsvertrags berührt nicht die Rechtsgültigkeit der übrigen Bestimmungen.\
+      \ In diesem Fall kann jede Partei verlangen, dass die ungültige Bestimmung durch\
+      \ eine Bestimmung ersetzt wird, die dem angestrebten wirtschaftlichen Zweck\
+      \ am nächsten kommt.\n\n\n18. Anwendbares Recht und Gerichtsstand\n\nDieses\
+      \ Vertragsverhältnis (Hinterlegungsvertrag) untersteht materiellem schweizerischem\
+      \ Recht.\nDie Bestimmungen des Wiener Kaufrechts (Übereinkommen der Vereinten\
+      \ Nationen über Verträge über den internationalen Warenkauf vom 11. April 1980)\
+      \ sind ausgeschlossen. Für alle Streitigkeiten aus diesem Vertrag sind die Gerichte\
+      \ in Lausanne zuständig.\n\n\n19. Sprachversionen\n\nDie Originalsprache dieses\
+      \ Hinterlegungsvertrags ist Englisch. Im Falle von Widersprüchen zwischen der\
+      \ englischen Version und der Übersetzung geht die englische Version vor.\n\n\
+      \n__________\n\n(1) Nutzer-Uploads bestehen aus: der Beschreibung (Metadaten)\
+      \ des Projekts und des Datensatzes, den hochgeladenen Dateien, Datensammlungen\
+      \ sowie der Dokumentation. In bestimmten Fällen können Nutzer-Uploads ausschliesslich\
+      \ aus der Beschreibung (Metadaten) des Projekts und des Datensatzes bestehen,\
+      \ ohne dass physische Dateien hochgeladen werden (die Dateien werden in diesem\
+      \ Fall an einem anderen Ort ausserhalb von SWISSUbase gespeichert).\n(2) https://info.swissubase.ch/resources/?sr=2529\
+      \ [10.09.2025]\n(3) https://info.swissubase.ch/resources/?sr=2537 [10.09.2025]\n\
+      (4) Personendaten sind alle Angaben, die sich auf eine bestimmte oder bestimmbare\
+      \ natürliche Person beziehen. Besonders schützenswerte Personendaten sind insbesondere\
+      \ Daten über religiöse, weltanschauliche, politische oder gewerkschaftliche\
+      \ Ansichten oder Tätigkeiten, zur Gesundheit, zur Intimsphäre oder zur Zugehörigkeit\
+      \ zu einer Rasse oder Ethnie, genetische Daten, biometrische Daten, die eine\
+      \ natürliche Person eindeutig identifizieren, sowie Daten zu Verwaltungs- und\
+      \ Strafverfahren oder Sanktionen und zu Massnahmen der sozialen Hilfe.\n(5)\
+      \ Hochladen umfasst hier auch die Weiterverarbeitung der Nutzer-Uploads durch\
+      \ SWISSUbase und die Kooperationspartner, insbesondere: Überprüfung durch die\
+      \ zuständige DSU, Veröffentlichung auf der Plattform und Archivierung.\n(6)\
+      \ SWISSUbase behält sich das Recht vor, Stichproben zur Überprüfung der Anonymität\
+      \ von Nutzer-Uploads durchzuführen und kann, falls die Nutzer-Uploads Personendaten\
+      \ enthalten, den Nachweis verlangen, dass Sie und wir zur Verarbeitung berechtigt\
+      \ sind.\n(7) Siehe Ziff. 8.\n(8) Die maximale Dauer der Langzeitarchivierung\
+      \ der Nutzer-Uploads wird von der jeweiligen DSU festgelegt. Nutzer-Uploads\
+      \ werden mindestens 10 Jahre aufbewahrt, sofern sie nicht vorher gelöscht werden.\n\
+      (9) https://info.swissubase.ch/privacy-notice/ [10.09.2025]\n(10) https://info.swissubase.ch/resources/?sr=2317#Technical_Integrations_and_Service_Providers_\
+      \ [10.09.2025]\n(11) https://info.swissubase.ch/resources/?sr=2323 [10.09.2025]\n\
+      \n__________\n\n\nANHANG A: LISTE DER KOOPERATIONSPARTNER VON SWISSUBASE\n\n\
+      1. Swiss National Data and Service Center for the Humanities (DaSCH)\n\nDas\
+      \ Swiss National Data and Service Center for the Humanities (DaSCH) ist Kooperationspartner\
+      \ von SWISSUbase im Fachbereich:\n\n- Humanities"
+    Signed date: 2026-02-04 00:00:00
+    Signed by: Sara Rellstab
+    Template: 24
+  Usage license:
+    Usage license URL: https://www.swissubase.ch/en/catalogue/studies/225/21165/datasets/3228/4248/contract/usage-license
+    Usage Purposes:
+    - id: 1
+      code: research
+      translations:
+      - languageCode: de
+        translation: Forschungszwecke
+      - languageCode: en
+        translation: Research purposes
+      - languageCode: fr
+        translation: Fins de recherche
+      extendedTranslations: []
+    - id: 2
+      code: teaching
+      translations:
+      - languageCode: de
+        translation: Lehrzwecke
+      - languageCode: en
+        translation: Teaching purposes
+      - languageCode: fr
+        translation: Fins d’enseignement
+      extendedTranslations: []
+    - id: 3
+      code: educational
+      translations:
+      - languageCode: de
+        translation: Bildungs- und Ausbilundszwecke
+      - languageCode: en
+        translation: Education and training purposes
+      - languageCode: fr
+        translation: Fins d’éducation et de formation
+      extendedTranslations: []
+    - id: 5
+      code: other
+      translations:
+      - languageCode: de
+        translation: Andere nicht-kommerzielle Zwecke
+      - languageCode: en
+        translation: Other non-commercial purposes
+      - languageCode: fr
+        translation: Autres fins non commerciales
+      extendedTranslations: []
+    Special permissions:
+      id: 1480
+      code: none
+      translations:
+      - languageCode: de
+        translation: Keine
+      - languageCode: en
+        translation: None
+      - languageCode: fr
+        translation: Aucune
+      extendedTranslations:
+      - languageCode: de
+        translation: 'Sondergenehmigung: Keine'
+      - languageCode: en
+        translation: 'Special permission: None'
+      - languageCode: fr
+        translation: 'Permission spéciale: Aucune'
+  Domain specific metadata:
+    Collection mode:
+      Media:
+      - id: 1468
+        code: digitalized-data-file
+        translations:
+        - languageCode: en
+          translation: Digitalized data file
+        - languageCode: fr
+          translation: Fichier de données informatisé
+        - languageCode: de
+          translation: Datei mit digitalisierten Daten
+      Data type:
+        id: 463
+        code: quantitative-data
+        translations:
+        - languageCode: en
+          translation: Quantitative data
+        - languageCode: fr
+          translation: Données quantitatives
+        - languageCode: de
+          translation: Quantitative Daten
+      Time method:
+        id: 465
+        code: cross-section
+        translations:
+        - languageCode: en
+          translation: Cross-section
+        - languageCode: fr
+          translation: Transversale
+        - languageCode: de
+          translation: Querschnitt
+      Data collector:
+        id: 84
+        code: gfs-bern
+        translations:
+        - languageCode: en
+          translation: gfs.bern
+        - languageCode: fr
+          translation: gfs.bern
+        - languageCode: de
+          translation: gfs.bern
+  Data objects:
+  - Overview:
+      Title: Schlussbericht Vox 147
+      Reference number: 34493
+      Data object type: document
+      File size: 2957504
+      Upload date: 2026-02-05 00:00:00
+      MD5: 49d5462339e22dcb5c41e13f1f959d37
+      File name: 3228_Vox_147_Doc_FinalReport_DE-FR-IT.7z
+      Is preservation: 'False'
+    Access info:
+      Block id: 1
+      Lifecycle: work
+      Storage identifier: 70e96539-36a3-48b4-a820-875adb5971f9/3228_Vox_147_Doc_FinalReport.7z
+      Storage container name: swissubase-prod-work
+    Data object metadata:
+      documentation:
+        Documentation type: Publications (final report, articles)
+    Domain specific metadata: {}
+  - Overview:
+      Title: Fragebogen Vox 147
+      Reference number: 34494
+      Data object type: document
+      File size: 9398596
+      Upload date: 2026-02-05 00:00:00
+      MD5: 38bea645fdc94dbb8241e4dcc10e37f0
+      File name: 3228_Vox_147_Doc_Questionnaire_DE-FR-IT.xlsx
+      Is preservation: 'False'
+    Access info:
+      Block id: 1
+      Lifecycle: work
+      Storage identifier: d0f3027d-3693-4bfb-aad8-4ee39373d877/3228_Vox_147_Doc_Questionnaire_DE-FR-IT.xlsx
+      Storage container name: swissubase-prod-work
+    Data object metadata:
+      documentation:
+        Documentation type: Collection instruments
+    Domain specific metadata: {}
+  - Overview:
+      Title: Codebook Vox 147
+      Reference number: 34495
+      Data object type: document
+      File size: 93486
+      Upload date: 2026-02-05 00:00:00
+      MD5: f38592ab1d67199f5d44e37a11e6fb64
+      File name: 3228_Vox_147_Doc_Codebook_DE-FR-IT.xlsx
+      Is preservation: 'False'
+    Access info:
+      Block id: 1
+      Lifecycle: work
+      Storage identifier: ac279abb-7765-4702-932b-98c3f21a1e8b/3228_Vox_147_Doc_Codebook_DE-FR-IT.xlsx
+      Storage container name: swissubase-prod-work
+    Data object metadata:
+      documentation:
+        Documentation type: Codebook
+    Domain specific metadata: {}
+  - Overview:
+      Title: Daten Vox 147
+      Reference number: 34496
+      Data object type: data
+      File size: 3865352
+      Upload date: 2026-02-05 00:00:00
+      MD5: 9e3a1a5402e50e3e2a18844e5695c781
+      File name: 3228_Vox_147_Data_v1.0.7z
+      Is preservation: 'False'
+    Access info:
+      Block id: 1
+      Lifecycle: work
+      Storage identifier: c25e55c4-1ead-4b60-b138-788a89317c10/3228_Vox_147_Data_v1.0.7z
+      Storage container name: swissubase-prod-work
+    Data object metadata:
+      Data anonymised: true
+    Domain specific metadata:
+      Data collection:
+        Universe: Schweizer Stimmbevölkerung wohnhaft in der Schweiz
+        Analysis Unit:
+        - id: 1505
+          code: individual
+          translations:
+          - languageCode: en
+            translation: Individual
+          - languageCode: fr
+            translation: Individu
+          - languageCode: de
+            translation: Individuum
+        CollectionDate:
+          Collection date - end: '2024-12-15'
+          Collection date - begin: '2024-11-25'
+        Sampling method:
+          id: 1824
+          code: random-sampling
+          translations:
+          - languageCode: en
+            translation: Random sampling
+          - languageCode: fr
+            translation: Echantillon aléatoire
+          - languageCode: de
+            translation: Zufallsstichprobe
+        Sampling description: Ziehung der Stichprobe durch das BFS aus dem SRPH (https://www.bfs.admin.ch/bfs/de/home/grundlagen/volkszaehlung/volkszaehlung-teil-gesamtsystem/stichprobenrahmen.html)
+          geschichtet nach Sprachregion, Alter und Geschlecht.
+        Mode of data collection:
+        - id: 1520
+          code: self-administered-questionnaire-paper
+          translations:
+          - languageCode: en
+            translation: 'Self-administered questionnaire: Paper'
+          - languageCode: fr
+            translation: 'Questionnaire auto-administré: papier'
+          - languageCode: de
+            translation: 'Selbst ausgefüllter Fragebogen: Papier'
+        - id: 1522
+          code: self-administered-questionnaire-web-based
+          translations:
+          - languageCode: en
+            translation: 'Self-administered questionnaire: Web-based'
+          - languageCode: fr
+            translation: 'Questionnaire auto-administré: par Internet'
+          - languageCode: de
+            translation: 'Selbst ausgefüllter Fragebogen: internetbasiert'
+        Weighting information: "Der Datensatz enthält 2 Gewichtungsvariablen: \n-\
+          \ gewvorl1 (Gewicht für Vorlage 1)\n- gewvorl2 (Gewicht für Vorlage 2)\n\
+          - gewvorl3 (Gewicht für Vorlage 3)\n- gewvorl4 (Gewicht für Vorlage 4)\n\
+          Vorlagenunabhängige Variablen sollten mit dem Gewicht der Vorlage gewichtet\
+          \ werden, bei der die Beteiligung am höchsten ist."
+        NumberOfCaseAndVariable:
+          Number of cases: 3212
+          Number of variables: 266
+        Data collection instruments:
+        - id: 1533
+          code: questionnaire
+          translations:
+          - languageCode: en
+            translation: Questionnaire
+          - languageCode: fr
+            translation: Questionnaire
+          - languageCode: de
+            translation: Fragebogen
