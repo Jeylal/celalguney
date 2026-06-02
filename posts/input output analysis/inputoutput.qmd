@@ -1,0 +1,92 @@
+---
+title: "Input output analysis"
+author: "Celâl Güney"
+format: html
+editor: visual
+draft: true
+---
+
+```{r}
+library(tidyverse)
+options(scipen = 999)
+setwd("~/GitHub/celalguney/posts/input output analysis")
+
+CHE2022ttl <- read_csv("CHE2022ttl.csv") %>% column_to_rownames(var = "...1")
+```
+
+
+```{r compute technical coefficient}
+
+Z <- as.matrix(CHE2022ttl[1:50, 1:50])       
+x <- as.numeric(CHE2022ttl["OUTPUT", 1:50])   
+
+technical_coef <- sweep(Z, 2, x, "/")        
+
+technical_coef[is.nan(technical_coef)] <- 0
+
+```
+
+## Leontief Inverse
+
+The Leontief inverse $$L = (I - A)^{-1}$$ captures both direct and indirect production requirements. An element $$l_{ij}$$ gives the total output required from sector $$i$$ to satisfy one unit of final demand for sector $$j$$.
+
+```{r leontief inverse}
+
+n <- nrow(technical_coef)
+leontief_inverse <- solve(diag(n) - technical_coef)
+
+```
+
+## Leontief Price Model
+
+The demand-pull model simulates quantity effects. To capture how an external oil price shock propagates as **cost increases** across sectors, we use the Leontief price model:
+
+$$\Delta p = L^T \cdot \Delta v$$
+
+where $$\Delta v_j = \sum_{k \in \text{oil}} a_{kj} \cdot \Delta p^{ext}_k$$ is the direct cost increase per unit of output in sector $$j$$ due to the oil price shock, and $$L^T$$ is the transpose of the domestic Leontief inverse.
+
+We use the OECD official domestic Leontief inverse to ensure correctness.
+
+```{r price model}
+
+# Load OECD domestic Leontief inverse
+CHE2022LEONTFD <- read_csv("CHE2022LEONTFD.csv")
+
+leontief_dom <- CHE2022LEONTFD |>
+  tibble::column_to_rownames("...1") |>
+  as.matrix()
+
+leontief_dom_50 <- leontief_dom[1:50, ]   # drop TOTAL row
+
+# Derive A_dom from the OECD domestic Leontief: A = I - L^{-1}
+A_dom <- diag(50) - solve(leontief_dom_50)
+
+# Oil/energy sectors: B06 (crude extraction), C19 (petroleum refining), D (energy supply)
+oil_sectors <- c("B06", "C19", "D")
+oil_idx     <- which(colnames(leontief_dom_50) %in% oil_sectors)
+
+# Direct cost shock per unit of output in each sector j
+# = oil input share × 20% external price increase
+shock_pct <- 0.20
+delta_v   <- colSums(A_dom[oil_idx, , drop = FALSE]) * shock_pct
+
+# Price model propagation: Δp = L^T · Δv
+delta_p <- t(leontief_dom_50) %*% delta_v
+
+price_shock_result <- data.frame(
+  sector  = colnames(leontief_dom_50),
+  delta_p = as.numeric(delta_p) * 100   # in percent
+) |>
+  arrange(desc(delta_p))
+
+ggplot(price_shock_result, aes(x = delta_p, y = reorder(sector, delta_p))) +
+  geom_col() +
+  geom_vline(xintercept = 0, linewidth = 0.4) +
+  labs(
+    title    = "Price Impact of a +20% External Oil Price Shock",
+    subtitle = "Leontief price model \u2014 OECD domestic Leontief inverse",
+    x        = "Estimated price increase (%)",
+    y        = NULL
+  )
+
+```
