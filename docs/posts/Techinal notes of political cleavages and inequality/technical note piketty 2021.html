@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,16 +68,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-08799928d293638fe9563d5c5a2794e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -120,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -138,7 +141,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -280,8 +283,10 @@ window.Quarto = {
         changeGiscusTheme();
       }
     };
-    const authorPrefersDark = true;
+    const authorPrefersDark = false;
     const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
     // Dark / light mode switch
     window.quartoToggleColorScheme = () => {
@@ -426,13 +431,13 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="from-brackets-to-decile">From brackets to decile</h3>
 <p>The wpid is based on an impressive <a href="https://wpid.world/resources/en/zip/wpid-micro.zip">dataset</a> compiling electoral survey data of 500 elections since 1948. Since the technical note takes Canada’s 2015 election as an example, I will use the latter here.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ca <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"ca.dta"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="ot">&lt;-</span> ca <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2015</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(ca)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(ca2015<span class="sc">$</span>inc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(ca2015<span class="sc">$</span>inc))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 </div>
@@ -440,7 +445,7 @@ window.Quarto = {
 <p>Note that there is already something going on here: in the dataset, the variable income has 19 brackets/categories here whereas it has 18 in the technical note. Furthermore, income brackets “jump” from 8 to 10. I will ignore these issues and still work with this dataset, we just won’t have the same results as in Piketty &amp; al’s example.</p>
 <p>A first step in analyzing such a variable is to compute the frequency, relative frequency and the cumulative frequencies. More precisely, I will construct two tables. On the one hand, I compute the descriptive statistics for the NDP’s voters within each income brackets. On the other hand, I construct a table for the overall distribution of income brackets for the NPD’s voters only. Note that I directly add the proportion of NDP’s voters from the first table to the second one to simplify further calculations:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(inc) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(votendp) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
@@ -463,7 +468,7 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>table.income.pervote <span class="sc">%&gt;%</span> </span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">caption =</span> <span class="st">"Distribution of the vote for the NDP by income group"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="eootzamcou" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -880,7 +885,7 @@ html {
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small">
 <caption>Distribution of the vote for the NDP by income group</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -1163,9 +1168,9 @@ html {
 
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">caption =</span>  <span class="st">"Distribution of income group among NDP's voters"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="lkhyqcowsj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -1582,7 +1587,7 @@ html {
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small">
 <caption>Distribution of income group among NDP's voters</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -1815,7 +1820,7 @@ html {
 </div>
 <p>We can then plot income groups against their proportion</p>
 <div class="cell fig-cap-location-top">
-<div class="sourceCode cell-code" id="cb5" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table.income.pervote <span class="sc">%&gt;%</span> <span class="fu">filter</span>(votendp <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table.income.pervote <span class="sc">%&gt;%</span> <span class="fu">filter</span>(votendp <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(inc), <span class="at">y =</span> prop)<span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
@@ -1831,7 +1836,7 @@ html {
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="ot">-&gt;</span> income.group.plot2</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(income.group.plot, income.group.plot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(income.group.plot, income.group.plot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1845,14 +1850,14 @@ html {
 <p>What makes Piketty’s team approach special and interesting is their systematic analysis in terms of quantile groups. This is, according to them, their main contribution and this approach has the advantage to allow for systematic comparison accross space and time. We will try to reproduce here their conversion of income group into quantiles.</p>
 <p>In R, the decile for each observation can be added to the dataset with the function ntile():</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="ot">&lt;-</span> ca2015 <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="ot">&lt;-</span> ca2015 <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">decile =</span> <span class="fu">ntile</span>(inc, <span class="dv">10</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now, the last column of ca2015 is the decile for each observation in the dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ca2015 <span class="sc">%&gt;%</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(decile) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(votendp) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(votendp <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
@@ -1864,7 +1869,7 @@ html {
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>table.income.vote <span class="sc">%&gt;%</span> </span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">caption =</span> <span class="st">"Decile and income bracket"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="qxdwzszvbf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -2281,7 +2286,7 @@ html {
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small">
 <caption>Decile and income bracket</caption>
 <thead class="gt_col_headings">
 <tr class="header">
@@ -2384,9 +2389,9 @@ html {
 <p>More generally, computing income decile when the income variable is in brackets seems complicated, but the technical note proposes a re-weighting average approach to partially solve this problem.</p>
 <p>To see how the re-weighing approach works, let’s go back to the first table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="vjchorkwhg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -2803,7 +2808,7 @@ html {
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="inc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">inc</th>
@@ -3037,22 +3042,22 @@ html {
 <p>To estimate this, let’s assume the distribution of B2 is uniform <span class="math inline">\(x \sim U[0.0723; 0.1487]\)</span>, with x the observation within this range. We want to know <span class="math inline">\(P(x&lt;0.1)\)</span>, that is to say, the probability that x belongs to the first decile. We use the uniform cumulative distribution function with parameters min = 0.073 and max = 0.1487: <span class="math inline">\(P(x&lt;0.1) = \frac{0.1-0.0723}{0.1487-0.0723} = 0.3626\)</span>. This means that 36.26% of B2 belongs to D10. Then, the weighted average for the proportion of observation within D10: <span class="math inline">\(\frac{1*0.317+0.3626*0.26}{1+0.3626} = 0.3018\)</span>. 30.2% the first decile voters voted for the NDP in 2015.</p>
 <p>Here are the computations in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">0.1</span>, table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">1</span>], table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">punif</span>(<span class="fl">0.1</span>, table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">1</span>], table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3625</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">*</span><span class="fl">0.317+0.3626</span><span class="sc">*</span><span class="fl">0.26</span>)<span class="sc">/</span>(<span class="dv">1</span><span class="fl">+0.3626</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">*</span><span class="fl">0.317+0.3626</span><span class="sc">*</span><span class="fl">0.26</span>)<span class="sc">/</span>(<span class="dv">1</span><span class="fl">+0.3626</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3018318</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[<span class="dv">1</span>], table.income<span class="sc">$</span>prop_vote[<span class="dv">2</span>]), <span class="at">w =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">punif</span>(<span class="fl">0.1</span>, table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">1</span>], table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[<span class="dv">1</span>], table.income<span class="sc">$</span>prop_vote[<span class="dv">2</span>]), <span class="at">w =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">punif</span>(<span class="fl">0.1</span>, table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">1</span>], table.income<span class="sc">$</span>cumrelfreqN[<span class="dv">2</span>])))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.301588</code></pre>
 </div>
 </div>
 <p>Unfortunately, there is to my knowledge no function in R that will compute the weights automatically. I can nonetheless compute them through a tedious for loop:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(table.income<span class="sc">$</span>inc))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(table.income<span class="sc">$</span>inc))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(table.income<span class="sc">$</span>inc)) {</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  weight[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(table.income<span class="sc">$</span>cumrelfreqN[i] <span class="sc">&lt;</span> <span class="fl">0.1</span> <span class="sc">|</span> table.income<span class="sc">$</span>cumrelfreqN[i] <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>,</span>
@@ -3066,7 +3071,7 @@ html {
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="fu">ifelse</span>(table.income<span class="sc">$</span>cumrelfreqN[i] <span class="sc">&gt;</span> <span class="fl">0.8</span> <span class="sc">&amp;</span> table.income<span class="sc">$</span>cumrelfreqN[i] <span class="sc">&lt;</span> <span class="fl">0.9</span>, <span class="fu">punif</span>(<span class="fl">0.8</span>, <span class="at">min =</span> table.income<span class="sc">$</span>cumrelfreqN[i<span class="dv">-1</span>], <span class="at">max =</span> table.income<span class="sc">$</span>cumrelfreqN[i]), </span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                                                                          <span class="fu">ifelse</span>(table.income<span class="sc">$</span>cumrelfreqN[i] <span class="sc">&gt;</span> <span class="fl">0.9</span> <span class="sc">&amp;</span> table.income<span class="sc">$</span>cumrelfreqN[i] <span class="sc">&lt;</span> <span class="dv">1</span>, <span class="fu">punif</span>(<span class="fl">0.9</span>, <span class="at">min =</span> table.income<span class="sc">$</span>cumrelfreqN[i<span class="dv">-1</span>], <span class="at">max =</span> table.income<span class="sc">$</span>cumrelfreqN[i]), <span class="dv">1</span>))))))))))</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 1.0000000 0.3625000 0.0000000 0.6457143 0.0000000 0.1680851 0.7772727
  [8] 0.8943662 0.0000000 0.9085714 0.0000000 0.7178571 0.0000000 0.4947368
@@ -3075,7 +3080,7 @@ html {
 </div>
 <p>I replace the 0 with 1:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(weight <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, weight)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(weight <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, weight)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>table.income <span class="ot">&lt;-</span> table.income <span class="sc">%&gt;%</span> </span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_decile =</span> weight)</span>
@@ -3086,7 +3091,7 @@ html {
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">prop_vote =</span> table.income.pervote<span class="sc">$</span>prop[table.income.pervote<span class="sc">$</span>votendp <span class="sc">==</span> <span class="dv">1</span>]</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="dppjczzkbs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -3503,7 +3508,7 @@ html {
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="inc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">inc</th>
@@ -3776,7 +3781,7 @@ html {
 <p>There can be mistakes, but the results seem to make sense</p>
 <p>Since I do not want to ever do this computation again (😅), I put all of this into a function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>weight_share <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>weight_share <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  weight <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
@@ -3793,11 +3798,11 @@ html {
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  weight <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(weight <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, weight)</span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(weight)</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s check if the function works</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weight_share</span>(<span class="at">x =</span> table.income<span class="sc">$</span>cumrelfreqN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weight_share</span>(<span class="at">x =</span> table.income<span class="sc">$</span>cumrelfreqN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 1.0000000 0.3625000 1.0000000 0.6457143 1.0000000 0.1680851 0.7772727
  [8] 0.8943662 1.0000000 0.9085714 1.0000000 0.7178571 1.0000000 0.4947368
@@ -3806,7 +3811,7 @@ html {
 </div>
 <p>We are almost done, there are only the weighted averages for each decile left to compute. One further step is to compute dummy variables to show to which decile income brackets belong to. This will produce a table close to the one from the technical note.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d1 =</span> <span class="fu">ifelse</span>(table.income<span class="sc">$</span>rangeleft <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> table.income<span class="sc">$</span>rangeleft <span class="sc">&lt;</span> <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">d2 =</span> <span class="fu">ifelse</span>(table.income<span class="sc">$</span>rangeleft <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>) <span class="sc">|</span> table.income<span class="sc">$</span>cumrelfreqN <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>), <span class="dv">1</span>, <span class="dv">0</span>),  <span class="co"># the %[]% is an "between" operator from the Desctools package. for example, x %[]% c(a, b) checks whether x belong to the interval [a, b] with a&lt;b </span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">d3 =</span> <span class="fu">ifelse</span>(table.income<span class="sc">$</span>rangeleft <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>) <span class="sc">|</span> table.income<span class="sc">$</span>cumrelfreqN <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>), <span class="dv">1</span>, <span class="dv">0</span>),</span>
@@ -3820,7 +3825,7 @@ html {
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>table.income <span class="sc">%&gt;%</span> </span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_dark</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="bxakpibikv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -4237,7 +4242,7 @@ html {
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="gt_table caption-top table table-sm table-striped small">
 <thead class="gt_col_headings">
 <tr class="header">
 <th id="inc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="color: #FFFFFF; font-family: 'Source Sans Pro'; text-transform: uppercase" scope="col">inc</th>
@@ -4709,7 +4714,7 @@ html {
 </div>
 <p>Tu put the code above into a function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>decile_dummies <span class="ot">&lt;-</span> <span class="cf">function</span>(data, rangeleft, rangeright){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>decile_dummies <span class="ot">&lt;-</span> <span class="cf">function</span>(data, rangeleft, rangeright){</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d1 =</span> <span class="fu">ifelse</span>({{rangeleft}} <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> {{rangeleft}} <span class="sc">&lt;</span> <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
@@ -4723,40 +4728,40 @@ html {
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">d9 =</span> <span class="fu">ifelse</span>({{rangeleft}} <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.9</span>) <span class="sc">|</span> {{rangeright}} <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.9</span>), <span class="dv">1</span>, <span class="dv">0</span>),</span>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">d10 =</span> <span class="fu">ifelse</span>({{rangeleft}} <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="dv">1</span>) <span class="sc">|</span> {{rangeright}} <span class="sc">%[]%</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="dv">1</span>), <span class="dv">1</span>, <span class="dv">0</span>))</span>
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This compute the proportion of the first decile directly from the table above:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> table.income<span class="sc">$</span>prop_vote[table.income<span class="sc">$</span>d1 <span class="sc">==</span> <span class="dv">1</span>], <span class="at">w =</span> table.income<span class="sc">$</span>share_decile[table.income<span class="sc">$</span>d1 <span class="sc">==</span> <span class="dv">1</span>]) <span class="co"># d1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> table.income<span class="sc">$</span>prop_vote[table.income<span class="sc">$</span>d1 <span class="sc">==</span> <span class="dv">1</span>], <span class="at">w =</span> table.income<span class="sc">$</span>share_decile[table.income<span class="sc">$</span>d1 <span class="sc">==</span> <span class="dv">1</span>]) <span class="co"># d1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.301588</code></pre>
 </div>
 </div>
 <p>Let’s try to compute the 3 first decile in a way that can then be put into a for loop or even into a function later</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for d_i</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for d_i</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[table.income[,<span class="dv">12</span>] <span class="sc">==</span> <span class="dv">1</span>]),</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">w =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>share_decile[table.income[,<span class="dv">12</span>] <span class="sc">==</span> <span class="dv">1</span>])) <span class="co">#d1: take columns 11 (D1) and the values of prop vote and share decile for which D11 == 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">w =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>share_decile[table.income[,<span class="dv">12</span>] <span class="sc">==</span> <span class="dv">1</span>])) <span class="co">#d1: take columns 11 (D1) and the values of prop vote and share decile for which D11 == 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.301588</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[table.income[,<span class="dv">13</span>] <span class="sc">==</span> <span class="dv">1</span>]),</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[table.income[,<span class="dv">13</span>] <span class="sc">==</span> <span class="dv">1</span>]),</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">w =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>share_rest[table.income[,<span class="dv">12</span>] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> table.income[, <span class="dv">13</span>] <span class="sc">==</span> <span class="dv">1</span>],</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                    table.income<span class="sc">$</span>share_decile[table.income[,<span class="dv">12</span>] <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> table.income[,<span class="dv">13</span>] <span class="sc">==</span> <span class="dv">1</span>])) <span class="co">#d2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                    table.income<span class="sc">$</span>share_decile[table.income[,<span class="dv">12</span>] <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> table.income[,<span class="dv">13</span>] <span class="sc">==</span> <span class="dv">1</span>])) <span class="co">#d2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2350616</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[table.income[,<span class="dv">14</span>] <span class="sc">==</span> <span class="dv">1</span>]),</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(<span class="at">x =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>prop_vote[table.income[,<span class="dv">14</span>] <span class="sc">==</span> <span class="dv">1</span>]),</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">w =</span> <span class="fu">c</span>(table.income<span class="sc">$</span>share_rest[table.income[,<span class="dv">14-1</span>] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> table.income[, <span class="dv">14</span>] <span class="sc">==</span> <span class="dv">1</span>], <span class="co">#d3</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                    table.income<span class="sc">$</span>share_decile[table.income[<span class="dv">14-1</span>] <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> table.income[,<span class="dv">14</span>] <span class="sc">==</span> <span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                    table.income<span class="sc">$</span>share_decile[table.income[<span class="dv">14-1</span>] <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> table.income[,<span class="dv">14</span>] <span class="sc">==</span> <span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2985395</code></pre>
 </div>
 </div>
 <p>Let’s try the for loop</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>decile_vec <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>decile_vec <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>decile <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#11:20 are the decile dummies columns in the dataset</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>decile_vec <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">21</span>) {</span>
@@ -4778,7 +4783,7 @@ html {
 <span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>decile_vec <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(decile_vec)</span>
 <span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>decile <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">decile =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
 <span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>                         <span class="at">prop =</span> decile_vec)</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>decile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>decile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   decile      prop
 1       1 0.3015880
@@ -4795,11 +4800,11 @@ html {
 </div>
 <p>This seems to work, the 3 first values are the same as the ones computed above</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>decile <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>decile <span class="sc">%&gt;%</span> </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(decile), <span class="at">y =</span> prop)<span class="sc">+</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -4816,7 +4821,7 @@ html {
 </div>
 <p>For now, let’s put the for loop into a function: this function would require the decile dummies columns, the columns for the proportion, the column for decile share and the column for the rest’s share:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>decile <span class="ot">&lt;-</span> <span class="cf">function</span>(data, columns, prop, share_decile, share_rest){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>decile <span class="ot">&lt;-</span> <span class="cf">function</span>(data, columns, prop, share_decile, share_rest){</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  decile_vec <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>decile <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
@@ -4842,10 +4847,10 @@ html {
 <span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">prop =</span> decile_vec)</span>
 <span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>decile <span class="ot">&lt;-</span> decile <span class="sc">%&gt;%</span> </span>
 <span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">replace</span>(.x, <span class="fu">is.nan</span>(.x), <span class="dv">0</span>))) <span class="co"># if an income group has no individuals who has votendp == 1, make the function return 0 instead of NaNs</span></span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">decile</span>(<span class="at">data =</span> table.income, <span class="at">columns =</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">21</span>, <span class="at">prop =</span> table.income<span class="sc">$</span>prop_vote, <span class="at">share_decile =</span> table.income<span class="sc">$</span>share_decile, <span class="at">share_rest =</span> table.income<span class="sc">$</span>share_rest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">decile</span>(<span class="at">data =</span> table.income, <span class="at">columns =</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">21</span>, <span class="at">prop =</span> table.income<span class="sc">$</span>prop_vote, <span class="at">share_decile =</span> table.income<span class="sc">$</span>share_decile, <span class="at">share_rest =</span> table.income<span class="sc">$</span>share_rest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The function seems to work, but requires a specific dataframe (formatted as table.income).</p>
 </section>
@@ -4854,7 +4859,7 @@ html {
 <h2 class="anchored" data-anchor-id="summing-up-all-of-this-into-one-function">Summing up all of this into one function</h2>
 <p>The goal here is to write all the steps above into one function, such that only the variable from the dataset must be given to compute the deciles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note: the function needs the weight_share() function and the decile_dummies function and the decile function</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note: the function needs the weight_share() function and the decile_dummies function and the decile function</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>weight_share <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  weight <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
@@ -4956,10 +4961,10 @@ html {
 <span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a><span class="fu">decile</span>(<span class="at">data =</span> table, <span class="at">columns =</span> decile_columns, <span class="at">prop =</span> table<span class="sc">$</span>prop_x, <span class="at">share_decile =</span> table<span class="sc">$</span>share_decile, <span class="at">share_rest =</span> table<span class="sc">$</span>share_rest)</span>
 <span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">decile_final</span>(<span class="at">data =</span> ca2015, <span class="at">by =</span> inc, <span class="at">x =</span> votendp, <span class="at">value =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">decile_final</span>(<span class="at">data =</span> ca2015, <span class="at">by =</span> inc, <span class="at">x =</span> votendp, <span class="at">value =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   decile      prop
 1       1 0.3015880
@@ -4973,7 +4978,7 @@ html {
 9       9 0.1779249
 10     10 0.1737567</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">decile_final</span>(<span class="at">data =</span> ca2015, <span class="at">by =</span> inc, <span class="at">x =</span> votelib, <span class="at">value =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">decile_final</span>(<span class="at">data =</span> ca2015, <span class="at">by =</span> inc, <span class="at">x =</span> votelib, <span class="at">value =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   decile      prop
 1       1 0.3807777
@@ -4997,7 +5002,7 @@ html {
 <li><p>Create a function which assigns each individual of the dataset to a quantile group (Piketty and Co-authors provide the function only in Stata…)</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note: the function needs the weight_share() function and the decile_dummies function and the decile function</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note: the function needs the weight_share() function and the decile_dummies function and the decile function</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I am Still working on improving these functions: simplify the code and allow for a lot more flexibility, for instance:</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. compute different quantile groups (quartile, quintiles... instead of always deciles)</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>weight_share <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -5099,7 +5104,7 @@ html {
 <span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a>     <span class="at">decile =</span> <span class="fu">decile</span>(<span class="at">data =</span> table, <span class="at">columns =</span> decile_columns, <span class="at">prop =</span> table<span class="sc">$</span>prop_x, <span class="at">share_decile =</span> table<span class="sc">$</span>share_decile, <span class="at">share_rest =</span> table<span class="sc">$</span>share_rest))</span>
 <span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -5171,13 +5176,14 @@ html {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

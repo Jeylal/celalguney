@@ -1,0 +1,15 @@
+{
+  "hash": "f6d28659cd125d3d58f0dab1833d8f09",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Analyse des données Vox sur l'Initiative EFAS (24.11.2024)\"\nauthor: \"Celâl Güney\"\nformat: html\neditor: visual\ndraft: true\n---\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,511 @@
+---
+title: "Inflation and Price Level in Switzerland"
+format: html
+editor: visual
+draft: true
+bibliography: inflation_switzerland.bib
+---
+
+## 
+
+```{r fig-cpi-ameco}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(rdbnomics)
+library(tidyverse)
+
+codes_variables = c("CHE.1.0.0.0.ZCPIH", "DEU.1.0.0.0.ZCPIH", "EU27.1.0.0.0.ZCPIH", "FRA.1.0.0.0.ZCPIH", "AUT.1.0.0.0.ZCPIH")
+
+data <- 
+codes_variables %>% 
+  map_dfr(~rdb(paste("AMECO/ZCPIH", .x, sep = "/"))) %>% 
+  select(Country, original_period, value) %>% 
+  drop_na()
+
+data$original_period = as.numeric(data$original_period)
+
+
+data %>% 
+  filter(original_period %in% c(2005:2025)) %>% 
+  ggplot(aes(x = original_period, y = value, color = Country, group = Country))+
+  geom_line()+
+  geom_point()+
+  theme_minimal()
+
+
+```
+
+```{r fig-inflation-ameco}
+#| echo: false
+#| warning: false
+#| message: false
+
+codes_variables <- c("BEL.3.0.0.0.ZCPIN", "CHE.3.0.0.0.ZCPIN", "DEU.3.0.0.0.ZCPIN", "DNK.3.0.0.0.ZCPIN", "FRA.3.0.0.0.ZCPIN", "GBR.3.0.0.0.ZCPIN", "ITA.3.0.0.0.ZCPIN", "LUX.3.0.0.0.ZCPIN", "USA.3.0.0.0.ZCPIN", "JPN.3.0.0.0.ZCPIN", "FIN.3.0.0.0.ZCPIN", "AUT.3.0.0.0.ZCPIN", "NOR.3.0.0.0.ZCPIN", "SWE.3.0.0.0.ZCPIN", "DNK.3.0.0.0.ZCPIN", "NLD.3.0.0.0.ZCPIN", "KOR.3.0.0.0.ZCPIN", "ESP.3.0.0.0.ZCPIN", "ISL.3.0.0.0.ZCPIN")
+
+
+data_cpi_ameco <- 
+codes_variables %>% 
+  map_dfr(~rdb(paste("AMECO/ZCPIN", .x, sep = "/"))) %>% 
+  select(Country, original_period, value) %>% 
+  drop_na()
+
+data_cpi_ameco$original_period = as.numeric(data_cpi_ameco$original_period)
+
+data_cpi_ameco <- 
+  data_cpi_ameco %>% 
+  group_by(Country) %>% 
+  mutate(
+    inflation_rate = c(NA, diff(log(value)))
+  ) %>% 
+  ungroup()
+
+library(gghighlight)
+
+data_cpi_ameco %>% 
+  filter(original_period %in% c(1961:2025)) %>% 
+  ggplot(aes(x = original_period, y = inflation_rate, color = Country))+
+  geom_line(size = 1)+
+  geom_point()+
+  gghighlight(Country %in% c("Switzerland"))
+
+
+
+```
+
+L'économie suisse est connue pour sa forte résistance à l'inflation. Depuis les années 2000, le taux d'inflation annuel de l'indice des prix à la consommation harmonisé (IPCH) est en Suisse systématiquement parmi les plus faibles vis-à-vis des autres pays développés. En comparaison international, seul le Japon a tendance a connaître des taux d'inflation plus faible suite à l'éclatement de la bulle spéculative nipponne de 1990.
+
+```{r tbl-growth-rates}
+#| echo: false
+#| warning: false
+#| message: false
+
+data_cpi_ameco |>
+  filter(original_period %in% c(2000:2025)) %>% 
+  group_by(Country) |>
+  summarise(taux_moyen = mean(inflation_rate, na.rm = TRUE), .groups = "drop") |>
+  arrange(taux_moyen)
+
+```
+
+Qu'est-ce qui explique cette forte résilience de la Suisse face aux pressions inflationnistes ? Les explications les plus souvent mobilisées dans la littérature sont les suivantes:
+
+## Hypothèse appréciation du franc (reserve currency)
+
+Le franc suisse est en effet considéré comme une monnaie forte servant de refuge lors des périodes de crise. Le statut du franc suisse en tant que "safe haven currency" date depuis au moins la première guerre mondiale. La Suisse ayant relativement mieux résisté à l'instabilité monétaire généralisée à la suite de la Grande Guerre. La non participation active de la Suisse à la Grande Guerre a aussi beaucoup contribué à l'attractivité du franc suisse, renforcé par la stabilité de ses institutions socio-politiques. Si ce statut de monnaie refuge se renforce graduellement lors de la période d'après-guerre, il se dévoile complètement avec la fin du système de Bretton-Woods en 1973, la fin de la parité fixe du franc vis-à-vis du dollar conduisant à une très forte appréciation du franc suisse. En théorie, l'appréciation tendancielle du franc suisse devrait avoir un effet négatif sur le taux d'inflation en réduisant le prix relatif des biens et services importés. Néanomoins, les estimations empirique de l'impact de l'appréciation du franc suisse invalident cette hypothèse. L'effet de "l'exchange rate pass-through" sur l'indice des prix à la consommation est en outre faible. @auer_exchange_2021 montrent  qu'une appréciation du franc suisse de 1 % se traduit par une baisse des prix de détail des biens importés de seulement 0,55 % après deux trimestres. @oktay_heterogeneity_2022 trouve exchange rate pass-through de 0,12 sur tous les biens et services de l'IPC, ce qui implique que seulement 12% d'un choc du taux de change EUR/CHF se répercute sur l'IPC suisse. Le pass-through est donc largement incomplet.
+
+
+## Hypothèse contrôle des prix
+
+Certains observateurs interprètent la grande part des prix administrés dans l'indice des prix à la consommation harmonisé comme preuve d'une forte pratique de contrôle des prix en Suisse. En effet, la part des prix complètement ou partiellement administrés atteint une très forte proportion en Suisse en comparaison avec les autres pays européens. Suite aux chocs d'offre provoqués par la crise du covid et la guerre d'Ukraine, les économistes post-Keynésiens, notamment Isabella Weber, ont défendu le contrôle des prix comme une mesure permettant de combattre l'inflation tirée par l'augmentation des coûts de production, qui est d'autant plus renforcée par l'inflation des vendeurs profitant de la crise afin d'augmenter leurs taux de marge [@weber_sellers_2023]. L'importance des prix administrés permettraient donc à la Suisse de limiter l'impact de la hausse des prix.
+
+Des études récentes tendent à montrer que cette part importante des prix administrés n'est pas la raison principale derrière la faible inflation en Suisse. La très grande majorité des prix administrés sont ceux des produits de santé, qui sont soit classés comme non administrés dans certains pays membres de la zone euro, soit comptabilisés comme relevant du secteur public, plutôt que de la consommation privée, car ils sont financés par des fonds publics. Si les prix administrés ont en Suisse moins augmenté que dans la zone euro, les prix non administrés ont eu aussi moins augmenté que dans la zone euro. L'estimation conduite par @auer_how_2025 montre que les prix administrés n'expliquent que moins d'un quart des différences de taux d'inflation entre la Suisse et la zone euro. Par conséquent, les faibles taux d'inflations suisses s'expliquent avant tout par la faible augmentation des prix non-administrés
+
+
+
+## Hypothèse construction de l'IPC
+
+La faible inflation suisse est un artefact statistique résultant de la faible pondération de certains items clés (par exemple l'énergie) ainsi que de la non prise en compte de certaines dépenses importantes comme les primes d'assurance-maladie. Certains économistes n'hésitent pas à ré-estimer l'IPC suisse avec des pondérations d'autres pays, par exemple allemands. Toutefois, malgré ces ré-estimations utilisant les poids d'autres pays, l'inflation reste nettement plus faible en Suisse.
+
+## Hypothèse d'une faible spirale salaires-prix et d'une faible inflation des vendeurs
+
+La production suisse étant très orientée vers les exportations, une augmentation du coût du travail se répercute avant tout sur le prix des exportations, pas tant sur le prix des biens et services finaux domestiques. De plus, 40% des biens et services de l'IPC suisse ne sont pas sujets aux mécanismes de spirale salaire-prix (loyers et santé). @leutert_wageprice_2026 trouvent qu'une augmentation du coût unitaire du travail sur l'indice des prix à la consommation n'est que très faible en Suisse, lorsque l'on contrôle pour l'inflation importée et les anticipations d'inflation. Ces auteurs considèrent que les dynamiques de l'IPC suisse sont avant tout tirés par la fluctuation des prix des importations causés par les fluctuations des prix du pétrole, l'inflation étrangère, du taux de change et des anticipations d'inflation.
+
+
+```{r sellers-inflation-data}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(eurostat)
+library(tidyverse)
+
+sectors_wb <- c(
+  "G47"   = "Commerce de détail (G47)",
+  "G46"   = "Commerce de gros (G46)",
+  "C"     = "Industrie manuf. (C)",
+  "TOTAL" = "Ensemble de l'économie"
+)
+
+# Valeur ajoutée en prix courants (CHF) : B1G et D1
+nom_wb <- get_eurostat("nama_10_a64",
+  filters = list(geo = "CH", unit = "CP_MNAC",
+                 na_item = c("B1G", "D1"),
+                 nace_r2 = names(sectors_wb)),
+  time_format = "num"
+) |> select(sector = nace_r2, na_item, year = time, value = values)
+
+# Valeur ajoutée en volume (CHF 2010) pour les profits unitaires
+real_wb <- get_eurostat("nama_10_a64",
+  filters = list(geo = "CH", unit = "CLV10_MNAC",
+                 na_item = "B1G",
+                 nace_r2 = names(sectors_wb)),
+  time_format = "num"
+) |> select(sector = nace_r2, year = time, real_gva = values)
+
+# Calcul du profit share et des coûts unitaires
+wide_wb <- nom_wb |>
+  pivot_wider(names_from = na_item, values_from = value) |>
+  left_join(real_wb, by = c("sector", "year")) |>
+  arrange(sector, year) |>
+  filter(!is.na(B1G), !is.na(D1), !is.na(real_gva)) |>
+  mutate(
+    ebe          = B1G - D1,
+    profit_share = ebe / B1G,
+    labor_share  = D1  / B1G,
+    unit_profit  = ebe / real_gva,
+    pgva         = B1G / real_gva,
+    .by = sector
+  )
+
+# Baseline 2015–2019 (Weber & Wasner : moyenne pré-choc)
+baseline_wb <- wide_wb |>
+  filter(year %in% 2015:2019) |>
+  summarise(ps_baseline = mean(profit_share, na.rm = TRUE), .by = sector)
+
+wb <- wide_wb |>
+  left_join(baseline_wb, by = "sector") |>
+  mutate(
+    ps_deviation  = profit_share - ps_baseline,
+    d_unit_profit = (unit_profit / lag(unit_profit) - 1) * 100,
+    d_pgva        = (pgva        / lag(pgva)        - 1) * 100,
+    sector_label  = sectors_wb[sector],
+    .by = sector
+  ) |>
+  filter(year >= 2010)
+```
+
+```{r fig-sellers-inflation-deviation}
+#| echo: false
+#| warning: false
+#| message: false
+
+# Déviation du profit share par rapport à la baseline 2015–2019
+wb |>
+  filter(year >= 2019) |>
+  mutate(sector_label = factor(sector_label, levels = c(
+    "Commerce de gros (G46)", "Commerce de détail (G47)",
+    "Industrie manuf. (C)", "Ensemble de l'économie"
+  ))) |>
+  ggplot(aes(x = year, y = ps_deviation * 100, fill = ps_deviation > 0)) +
+  geom_col(width = 0.6) +
+  geom_hline(yintercept = 0, linewidth = 0.5, colour = "grey30") +
+  scale_fill_manual(
+    values = c("TRUE" = "#e74c3c", "FALSE" = "#2980b9"),
+    labels = c("TRUE" = "Au-dessus du baseline", "FALSE" = "En dessous du baseline"),
+    name   = NULL
+  ) +
+  scale_x_continuous(breaks = 2019:2024) +
+  facet_wrap(~sector_label, ncol = 2) +
+  labs(
+    title   = "Déviation du profit share par rapport à la baseline 2015–2019",
+    subtitle = "Méthode Weber & Wasner (2023) — sellers' inflation par secteur",
+    y       = "Points de pourcentage",
+    x       = NULL,
+    caption = "Source : OFS / Eurostat, nama_10_a64. Baseline = moyenne 2015–2019."
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position  = "top",
+    strip.text       = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    axis.text.x      = element_text(angle = 45, hjust = 1)
+  )
+```
+
+```{r fig-profit-share-niveau}
+#| echo: false
+#| warning: false
+#| message: false
+
+# Profit share en niveau : G46 vs G47 (2010–2024)
+wb |>
+  filter(year >= 2010, sector %in% c("G47", "G46")) |>
+  mutate(sector_label = factor(sector_label, levels = c(
+    "Commerce de gros (G46)", "Commerce de détail (G47)"
+  ))) |>
+  ggplot(aes(x = year, y = profit_share * 100)) +
+  geom_line(linewidth = 0.9, colour = "#2c3e50") +
+  geom_point(aes(colour = year %in% 2020:2022), size = 2.5, show.legend = FALSE) +
+  geom_hline(aes(yintercept = ps_baseline * 100),
+             linetype = "dashed", colour = "#e74c3c", linewidth = 0.7) +
+  annotate("rect", xmin = 2019.5, xmax = 2022.5,
+           ymin = -Inf, ymax = Inf, alpha = 0.07, fill = "#e74c3c") +
+  scale_colour_manual(values = c("FALSE" = "#2c3e50", "TRUE" = "#e74c3c")) +
+  scale_x_continuous(breaks = seq(2010, 2024, 2)) +
+  facet_wrap(~sector_label, scales = "free_y", ncol = 2) +
+  labs(
+    title    = "Évolution du profit share — G46 vs G47 (2010–2024)",
+    subtitle = "Ligne pointillée = baseline 2015–2019 | Zone ombrée = épisode inflationniste 2020–2022",
+    y        = "Part de l'excédent brut dans la VA (%)",
+    x        = NULL,
+    caption  = "Source : OFS / Eurostat, nama_10_a64."
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    strip.text       = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    axis.text.x      = element_text(angle = 45, hjust = 1)
+  )
+```
+
+## Hypothèse mix énergétique. 
+
+Les fluctuations des prix du gaz et du pétrole ont des répercussions dramatiques sur l'inflation. Comme ces sources d'énergie fossile constituent une part extrêmement importante des intrans de production pour une très large quantité de biens et services, leurs prix influencent fortement l'évolution de l'IPC. Les chocs résultants de la crise du covid et de la guerre d'Ukraine ont en outre marqué le retour de l'inflation en EUrope.
+
+La suisse étant relativement peu dépendante des énergies fossiles (gaz et pétrole) grâce à l'énergie hydraulique et nucléaire, les chocs pétrolier et du prix du gaz ont un impact plus faible en Suisse que dans d'autres pays plus dépendants aux énergies fossiles.
+
+Cette explication paraît convaincante. Toutefois, certains pays ayant un meilleur mix energétique que la Suisse comme l'Islande, la Suède, la Norvège, ou la Finlande ont des taux d'inflation plus élevés qu'en Suisse. Néanmoins, la Suisse bénéficie d'un marché publique de l'énergie qui permet de garder le prix de l'énergie au niveau des coûts de production, alors que pour les pays nordiques le prix de leur énergie n'est pas découplé de celle des énergies fossiles à cause du marché européen de l'énergie (dans lequel les prix s'alignent sur le coût marginal, souvent du gaz et du charbon importé). Leur énergie est verte, mais est leur prix et donc alignée sur celui des énergies fossiles, ce qui n'est pas le cas en Suisse grâce à la régulation publique du marché de l'énergie et de l'électricité.
+
+De plus, la Suisse est l'économie développée avec la plus faible intensité énergétique. Cela veut dire qu'elle consomme en réalité que peu d'énergie dans la production de sa valeur ajoutée grâce à une forte efficacité énergétique dans ses secteurs clés. Avec une intensité énergétique très faible, un choc d'offre se répercute moins directement sur l'IPC ainsi que sur les chaînes de valeurs. Une étude récente du Seco montre que cette faible intensité est présente dans tous les secteurs de l'économie suisse (agriculture, industrie, services et ménages). Par exemple, l'industrie manufacturière suissse consomme moins d'un tiers de l'énergie de la France et moins de la moitié de l'énergie de l'Allemagne pour chaque unité de valeur ajoutée brute. Cette faible intensité a été renforcée depuis 2010 par la croissance de l'industrie pharmaceutique (qui a relativement une faible intensité énergétique) dont la part dans la valeur ajoutée du secteur manufacturier suisse a augmenté de 15 à 31% entre 2010 et 2019.
+
+
+```{r fig-energy-mix-comparison}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+df_lc <- read.csv("low-carbon-share-energy.csv")
+
+df_lc |>
+  mutate(
+    Entity = fct_reorder(Entity, Low.carbon.energy),
+    groupe = case_when(
+      Entity == "Switzerland" ~ "Suisse",
+      Entity == "Europe"      ~ "Moyenne Europe",
+      TRUE                    ~ "Autres pays"
+    )
+  ) |>
+  ggplot(aes(y = Entity, x = Low.carbon.energy, fill = groupe)) +
+  geom_col(width = 0.6) +
+  geom_vline(
+    xintercept = df_lc$Low.carbon.energy[df_lc$Entity == "Europe"],
+    linetype = "dashed", colour = "grey40", linewidth = 0.6
+  ) +
+  geom_text(aes(label = paste0(round(Low.carbon.energy, 1), "%")),
+            hjust = -0.2, size = 3.2) +
+  scale_x_continuous(limits = c(0, 92), labels = scales::label_percent(scale = 1)) +
+  scale_fill_manual(values = c(
+    "Suisse"         = "#c0392b",
+    "Moyenne Europe" = "#7f8c8d",
+    "Autres pays"    = "#2980b9"
+  )) +
+  labs(
+    title   = "Part des énergies bas carbone dans la consommation primaire (2024)",
+    x       = "% de l'énergie primaire",
+    y       = NULL,
+    fill    = NULL,
+    caption = "Source : Our World in Data / Energy Institute"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top", panel.grid.major.y = element_blank())
+```
+
+
+
+
+```{r fig-energy-mix}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(jsonlite)
+
+# Fetch the data
+df <- read.csv("https://ourworldindata.org/grapher/share-energy-source-sub.csv?v=1&csvType=full&useColumnShortNames=true")
+
+# Fetch the metadata
+metadata <- fromJSON("https://ourworldindata.org/grapher/share-energy-source-sub.metadata.json?v=1&csvType=full&useColumnShortNames=true")
+
+
+energy_colors <- c(
+  "Oil"              = "#4e3b2e",
+  "Coal"             = "#6b6b6b",
+  "Gas"              = "#e07b39",
+  "Nuclear"          = "#8e44ad",
+  "Hydro"            = "#2980b9",
+  "Wind"             = "#1abc9c",
+  "Solar"            = "#f1c40f",
+  "Other Renewables" = "#27ae60"
+)
+
+df %>%
+  filter(entity == "Switzerland") %>%
+  pivot_longer(
+    cols = ends_with("_pct_equivalent_primary_energy"),
+    names_to = "source",
+    values_to = "share"
+  ) %>%
+  mutate(source = source %>%
+           str_remove("__pct_equivalent_primary_energy") %>%
+           str_replace_all("_", " ") %>%
+           str_to_title()) %>%
+  ggplot(aes(x = year, y = share, color = source)) +
+  geom_line(linewidth = 0.8) +
+  scale_color_manual(values = energy_colors) +
+  labs(
+    title = "Switzerland: Energy Mix",
+    subtitle = "Share of primary energy by source",
+    x = NULL, y = "% of primary energy",
+    color = NULL,
+    caption = "Source: Our World in Data, Energy Institute"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position   = "right",
+    plot.title        = element_text(face = "bold"),
+    panel.grid.minor  = element_blank()
+  )
+
+```
+
+
+
+
+
+
+
+
+
+
+
+```{r fig-inflation-hcpi}
+#| echo: false
+#| warning: false
+#| message: false
+
+data2 <- 
+data %>% 
+  group_by(Country) %>% 
+  mutate(
+    inflation_rate = c(NA,diff(log(value)))
+  ) %>% 
+  ungroup()
+
+data2 %>% 
+  filter(original_period %in% c(2005:2025)) %>% 
+  ggplot(aes(x = original_period, y = inflation_rate, color = Country, group = Country))+
+  geom_line()+
+  geom_point()
+
+```
+
+```{r fig-taux-directeur}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(rdbnomics)
+library(tidyverse)
+library(patchwork)
+
+# --- Import données ---
+hicp_ch_ea <- rdb("Eurostat", "PRC_HICP_MIDX",
+                  dimensions = list(coicop = "CP00", unit = "I05", geo = c("CH", "EA")))
+
+rates_raw <- rdb("BIS", "WS_CBPOL", dimensions = list(REF_AREA = c("CH", "XM")))
+
+# --- Mise en forme taux directeurs (mensuel) ---
+rates <- rates_raw |>
+  filter(str_detect(series_name, "Monthly")) |>
+  select(country = REF_AREA, period, value) |>
+  mutate(
+    country = case_when(
+      country == "CH" ~ "BNS (Suisse)",
+      country == "XM" ~ "BCE (Zone euro)"
+    ),
+    period = as.Date(period)
+  ) |>
+  filter(period >= as.Date("2005-01-01"))
+
+# --- Inflation glissement annuel ---
+hicp_yoy <- hicp_ch_ea |>
+  select(geo, period, value) |>
+  mutate(
+    country = if_else(geo == "CH", "Suisse", "Zone euro"),
+    yoy     = (value / lag(value, 12) - 1) * 100,
+    .by = geo
+  ) |>
+  filter(!is.na(yoy), period >= as.Date("2005-01-01"))
+
+# --- Zone grisée 2008-2015 ---
+shade <- data.frame(
+  xmin = as.Date("2008-09-01"), xmax = as.Date("2015-01-01"),
+  ymin = -Inf, ymax = Inf
+)
+
+# --- Graphique 1 : inflation ---
+p1 <- ggplot(hicp_yoy, aes(x = period, y = yoy, colour = country)) +
+  geom_rect(data = shade, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+            inherit.aes = FALSE, fill = "grey85", alpha = 0.5) +
+  geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey50") +
+  geom_line(linewidth = 0.7) +
+  scale_colour_manual(values = c("Suisse" = "#c0392b", "Zone euro" = "#2980b9")) +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  labs(title = "Inflation (HICP, glissement annuel)", y = "%", x = NULL, colour = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+
+# --- Graphique 2 : taux directeurs ---
+p2 <- ggplot(rates, aes(x = period, y = value, colour = country)) +
+  geom_rect(data = shade, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+            inherit.aes = FALSE, fill = "grey85", alpha = 0.5) +
+  geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey50") +
+  geom_line(linewidth = 0.7) +
+  scale_colour_manual(values = c("BNS (Suisse)" = "#c0392b", "BCE (Zone euro)" = "#2980b9")) +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  labs(title = "Taux directeurs (BNS vs BCE)", y = "%", x = NULL, colour = NULL,
+       caption = "Zone grisée : 2008–2015   |   Source : Eurostat, BIS via DBnomics") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+
+p2_inset <- p2 + labs(caption = NULL, title = "Taux directeurs") +
+  theme(legend.key.size = unit(0.4, "cm"),
+        legend.text = element_text(size = 7),
+        plot.title = element_text(size = 9),
+        axis.text = element_text(size = 7))
+
+p1 + inset_element(p2_inset, left = 0, bottom = 0.52, right = 0.44, top = 1)
+```
+
+```{r fig-admin-prices}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+library(tidyverse)
+hicp_admin_prices <- read_csv("hicp_admin_prices.csv") 
+
+hicp_admin_prices %>% 
+  filter(geo %in% c("Switzerland", "European Union - 27 countries (from 2020)") & coicop18 %in% c("Administered prices", "Fully administered prices", "Mainly administered prices", "Administered prices - energy and food") & TIME_PERIOD %in% c(2015:2025)) %>% 
+  ggplot(aes(x = TIME_PERIOD, y = OBS_VALUE/10, color = geo, shape = coicop18))+
+  geom_line()+
+  geom_point()+
+  facet_wrap(~geo)
+```
+
+
+
+
+
+## Références
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

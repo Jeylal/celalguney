@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "**/*.qmd"
+    - "!archives_posts/**"
+    - "!Bureau/**"
+    - "!presentation epita/**"
 website:
   title: "Celâl Güney"
   site-url: "https://jeylal.github.io/celalguney/"

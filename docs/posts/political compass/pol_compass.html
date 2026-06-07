@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,16 +89,19 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-08799928d293638fe9563d5c5a2794e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -132,7 +135,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -274,8 +277,10 @@ div.csl-indent {
         changeGiscusTheme();
       }
     };
-    const authorPrefersDark = true;
+    const authorPrefersDark = false;
     const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
     // Dark / light mode switch
     window.quartoToggleColorScheme = () => {
@@ -456,7 +461,7 @@ div.csl-indent {
 <p>To construct the economic axis, I will use the “state vs market” variable. “Open vs closed Switzerland” will be used for the cultural axis.</p>
 <p>Here are all the steps to transform the variable, compute the average values for each year for each political party support and how to plot the final political compass.</p>
 <div class="cell" data-hash="pol_compass_cache/html/political compass_6fe8769a866c2574fbef6cdaee6af4b6">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>strdz <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>strdz <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">/</span>(<span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>} <span class="co"># create a function which transfrom x into standardize variable by subtracting the mean and dividing by standard deviation</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -486,14 +491,14 @@ div.csl-indent {
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">no_chance_foreign =</span> <span class="fu">mean</span>(no_chance_foreign, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"party"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">as_character(p02)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"party"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">as_character(p02)</span><span class="st">`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Before plotting the political compass, it could be interesting to see the correlation between the average values through the years. If two variables are positively correlated, that means there are chances that, given any year, when one has high value (average of the standardized issue position variable for each respondent having declared to support the Swiss’s People party for instance) the other will have a high value as well:</p>
 <div class="cell" data-hash="pol_compass_cache/html/corrplot_a7202aa12d96c61b9258888952dd9edc">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>annee, <span class="sc">-</span>party) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">order =</span> <span class="st">"hclust"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">order =</span> <span class="st">"hclust"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -508,7 +513,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="plotting-the-graph">Plotting the Graph</h3>
 <p>Let’s now plot a political compass for a given year. I choose the first year available: 1996. I also filter political parties to select only the most important ones: the Swiss Social Democratic Party (PSS/SPS), the Radicals (PRD), The Swiss Peoples Party (UDC/SVP), the Liberals, The Catholic-Conservatives (PDC), the Greens (PES/GPS), the Evangelical party (PEP/EVP).</p>
 <div class="cell" data-hash="pol_compass_cache/html/pol compass plot 1_77d78d271d1883cd0b9b165baf130bef">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(annee <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span>) <span class="sc">&amp;</span> party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UDC/SVP"</span>, <span class="st">"PDC/CVP"</span>, <span class="st">"PLS/LPS"</span>, <span class="st">"PSS/SPS"</span>, <span class="st">"PRD/FDP"</span>, <span class="st">"PES/GPS"</span>, <span class="st">"PEP/EVP"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> state_market, <span class="at">y =</span> open_closed, <span class="at">label =</span> party, <span class="at">color =</span> party)<span class="sc">+</span></span>
@@ -524,7 +529,7 @@ div.csl-indent {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">+</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"PSS/SPS"</span> <span class="ot">=</span> <span class="st">"darkred"</span>, <span class="st">"PES/GPS"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"UDC/SVP"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>, <span class="st">"PEP/EVP"</span> <span class="ot">=</span> <span class="st">"gold"</span>, <span class="st">"PLS/LPS"</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"PLR"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>, <span class="st">"PDC/CVP"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>, <span class="st">"PRD/FDP"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"PLR"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>, <span class="st">"PDC/CVP"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>, <span class="st">"PRD/FDP"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -539,7 +544,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="time-comparisons">Time Comparisons</h3>
 <p>Next, let’s take advantage of what can be done with such data and visualization. It would be interesting to compare 1996 with 2016 (the last year of the dataset) to see the evolution: is the tripolar political space described above stable?</p>
 <div class="cell" data-hash="pol_compass_cache/html/pol compass plot 2_abf34625f191996e9fbf968cca956a8b">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(annee <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span>, <span class="dv">2016</span>) <span class="sc">&amp;</span> party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UDC/SVP"</span>, <span class="st">"PDC/CVP"</span>, <span class="st">"PLS/LPS"</span>, <span class="st">"PSS/SPS"</span>, <span class="st">"PRD/FDP"</span>, <span class="st">"PES/GPS"</span>, <span class="st">"PEP/EVP"</span>, <span class="st">"PLR"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> state_market, <span class="at">y =</span> open_closed, <span class="at">label =</span> party, <span class="at">color =</span> party, <span class="at">group =</span> party)<span class="sc">+</span></span>
@@ -554,7 +559,7 @@ div.csl-indent {
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data source: Voxit"</span>)<span class="sc">+</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"PSS/SPS"</span> <span class="ot">=</span> <span class="st">"darkred"</span>, <span class="st">"PES/GPS"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"UDC/SVP"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>, <span class="st">"PEP/EVP"</span> <span class="ot">=</span> <span class="st">"gold"</span>, <span class="st">"PLS/LPS"</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"PLR"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>, <span class="st">"PDC/CVP"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>, <span class="st">"PRD/FDP"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"PLR"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>, <span class="st">"PDC/CVP"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>, <span class="st">"PRD/FDP"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -569,7 +574,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="making-a-video">Making a Video</h3>
 <p>However, a great deal of information is hidden behind this graph. In effect, we also want to know the transition every year. This would allow to check whether the tripolar division was stable or not. To do so, we have few choices but to create an animated graph that would display the graphs every year from 1996 to 2016. Fortunaly, the package gganimate allows to rather easily make such animations in R. In my case, I will simply add the function transition_time():</p>
 <div class="cell" data-hash="pol_compass_cache/html/polcompass animation_2cd0f59d691f97c8d32b03d743475b83">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>values <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UDC/SVP"</span>, <span class="st">"PDC/CVP"</span>, <span class="st">"PLS/LPS"</span>, <span class="st">"PSS/SPS"</span>, <span class="st">"PRD/FDP"</span>, <span class="st">"PES/GPS"</span>, <span class="st">"PEP/EVP"</span>, <span class="st">"PLR"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
@@ -582,11 +587,11 @@ div.csl-indent {
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"PLR"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>, <span class="st">"PDC/CVP"</span> <span class="ot">=</span> <span class="st">"darkorange"</span>, <span class="st">"PRD/FDP"</span> <span class="ot">=</span> <span class="st">"darkblue"</span>))<span class="sc">+</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(<span class="at">time =</span> <span class="fu">round</span>(annee))<span class="sc">+</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Year: {frame_time}'</span>)<span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">'linear'</span>, <span class="at">interval =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">'linear'</span>, <span class="at">interval =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then use animate() to improve the fps, add a pause at the end and slow down the animation</p>
 <div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-4_480c505174de1764f88a318bc10daa64">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(anim, <span class="at">duration =</span> <span class="dv">30</span>, <span class="at">fps =</span> <span class="dv">30</span>, <span class="at">end_pause =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(anim, <span class="at">duration =</span> <span class="dv">30</span>, <span class="at">fps =</span> <span class="dv">30</span>, <span class="at">end_pause =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -603,7 +608,7 @@ div.csl-indent {
 <p>What if we average variables across income group instead of party support? We would then see how each income group situates on average on the economic and cultural axes. Have the lowest income groups become more conservative in terms of cultural values? How do the rich situate on the graph? Those are all interesting questions that can be answered by repeating the same steps above, but changing the group (part ==&gt; income group).</p>
 <p>The income variable that I will use is a variable I created from two income variables of the dataset (look <a href="https://jeylal.github.io/myblog/posts/vox%20and%20voto%20analysis/vox_voto_analysis.html">here</a> if you want to see the details). The income variable has four groups.</p>
 <div class="cell" data-hash="pol_compass_cache/html/table income values_fd40a48459ad04c35e62088b874272bd">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>vox<span class="sc">$</span>income_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(vox<span class="sc">$</span>income, <span class="at">levels =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"lower middle"</span>, <span class="st">"upper middle"</span>, <span class="st">"high"</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>vox<span class="sc">$</span>income_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(vox<span class="sc">$</span>income, <span class="at">levels =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"lower middle"</span>, <span class="st">"upper middle"</span>, <span class="st">"high"</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>values_inc <span class="ot">&lt;-</span> </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>vox <span class="sc">%&gt;%</span> </span>
@@ -617,13 +622,13 @@ div.csl-indent {
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">no_chance_foreign =</span> <span class="fu">mean</span>(no_chance_foreign, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"income_group"</span> <span class="ot">=</span> income_f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"income_group"</span> <span class="ot">=</span> income_f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-5_fc132dc93a6d00c28d1795b798d0d146">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>values_inc <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>values_inc <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>annee, <span class="sc">-</span>income_group) <span class="sc">%&gt;%</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">order =</span> <span class="st">"hclust"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">order =</span> <span class="st">"hclust"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -633,7 +638,7 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell" data-hash="pol_compass_cache/html/plot polcompass income group_8722316470050c65ec81d8e2b0c2365e">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>values_inc <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>values_inc <span class="sc">%&gt;%</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(annee <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span>, <span class="dv">2016</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> state_market, <span class="at">y =</span> open_closed, <span class="at">label =</span> income_group, <span class="at">fill =</span> income_group, <span class="at">group =</span> income_group)<span class="sc">+</span></span>
@@ -647,7 +652,7 @@ div.csl-indent {
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Average by income group, 1996"</span>,</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data source: Voxit"</span>)<span class="sc">+</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -657,7 +662,7 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell" data-hash="pol_compass_cache/html/unnamed-chunk-6_381c5c3118f7185adeb1789de14f1a9f">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>anim2 <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>anim2 <span class="ot">&lt;-</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>values_inc <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> state_market, <span class="at">y =</span> open_closed, <span class="at">label =</span> income_group, <span class="at">fill =</span> income_group)<span class="sc">+</span></span>
@@ -673,7 +678,7 @@ div.csl-indent {
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Average by income group, 1996-2016"</span>,</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data source: Voxit"</span>)</span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(anim2, <span class="at">duration =</span> <span class="dv">30</span>, <span class="at">fps =</span> <span class="dv">30</span>, <span class="at">end_pause =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(anim2, <span class="at">duration =</span> <span class="dv">30</span>, <span class="at">fps =</span> <span class="dv">30</span>, <span class="at">end_pause =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://raw.githubusercontent.com/Jeylal/myblog/master/posts/political%20compass/polcomp2.mp4"></video></div>
 
@@ -760,13 +765,14 @@ Sciarini, Pascal. 2023. <em>Politique Suisse - Institutions, Acteurs, Processus<
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
