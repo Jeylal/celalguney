@@ -355,5 +355,61 @@
     "title": "Inflation and Price Level in Switzerland",
     "section": "Hypothèse mix énergétique.",
     "text": "Hypothèse mix énergétique.\nLes fluctuations des prix du gaz et du pétrole ont des répercussions dramatiques sur l’inflation. Comme ces sources d’énergie fossile constituent une part extrêmement importante des intrans de production pour une très large quantité de biens et services, leurs prix influencent fortement l’évolution de l’IPC. Les chocs résultants de la crise du covid et de la guerre d’Ukraine ont en outre marqué le retour de l’inflation en EUrope.\nLa suisse étant relativement peu dépendante des énergies fossiles (gaz et pétrole) grâce à l’énergie hydraulique et nucléaire, les chocs pétrolier et du prix du gaz ont un impact plus faible en Suisse que dans d’autres pays plus dépendants aux énergies fossiles.\nCette explication paraît convaincante. Toutefois, certains pays ayant un meilleur mix energétique que la Suisse comme l’Islande, la Suède, la Norvège, ou la Finlande ont des taux d’inflation plus élevés qu’en Suisse. Néanmoins, la Suisse bénéficie d’un marché publique de l’énergie qui permet de garder le prix de l’énergie au niveau des coûts de production, alors que pour les pays nordiques le prix de leur énergie n’est pas découplé de celle des énergies fossiles à cause du marché européen de l’énergie (dans lequel les prix s’alignent sur le coût marginal, souvent du gaz et du charbon importé). Leur énergie est verte, mais est leur prix et donc alignée sur celui des énergies fossiles, ce qui n’est pas le cas en Suisse grâce à la régulation publique du marché de l’énergie et de l’électricité.\nDe plus, la Suisse est l’économie développée avec la plus faible intensité énergétique. Cela veut dire qu’elle consomme en réalité que peu d’énergie dans la production de sa valeur ajoutée grâce à une forte efficacité énergétique dans ses secteurs clés. Avec une intensité énergétique très faible, un choc d’offre se répercute moins directement sur l’IPC ainsi que sur les chaînes de valeurs. Une étude récente du Seco montre que cette faible intensité est présente dans tous les secteurs de l’économie suisse (agriculture, industrie, services et ménages). Par exemple, l’industrie manufacturière suissse consomme moins d’un tiers de l’énergie de la France et moins de la moitié de l’énergie de l’Allemagne pour chaque unité de valeur ajoutée brute. Cette faible intensité a été renforcée depuis 2010 par la croissance de l’industrie pharmaceutique (qui a relativement une faible intensité énergétique) dont la part dans la valeur ajoutée du secteur manufacturier suisse a augmenté de 15 à 31% entre 2010 et 2019.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 7\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 8\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 9"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "An introduction to the synthetic control method in R\n\n\n\nStatistics\n\nR\n\n\n\n\n\n\n\nCelâl Güney\n\n\nOct 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow to run multiple factor analysis in R\n\n\n\nStatistics\n\nPolitical Economy\n\n\n\n\n\n\n\nCelâl Güney\n\n\nFeb 23, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost-election and panel Selects 2023 studies: what can we learn ?\n\n\n\nSocial blocs\n\nPolitical economy\n\nPolitics\n\nPolitical Science\n\n\n\n\n\n\n\nCelâl Güney\n\n\nNov 10, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nEconomic stagnation in Switzerland: discussion of a growing debate\n\n\n\nEconomics\n\n\n\n\n\n\n\nCelâl Güney\n\n\nMay 8, 2024\n\n\n\n\n\n\n\n\n\n\n\nPolitical Compass: what lies behind political science’s most famous graphs\n\n\n\nPolitical Science\n\nStatistics\n\n\n\n\n\n\n\nCelâl Güney\n\n\nJul 21, 2023\n\n\n\n\n\n\n\n\n\n\n\nPolitical Conflict and Inequality in Switzerland\n\n\n\nPolitical Economy\n\nStatistics\n\n\n\n\n\n\n\nCelâl Güney\n\n\nJul 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping with R\n\n\n\nweb scraping\n\ndata science\n\n\n\n\n\n\n\nCelâl Güney\n\n\nJul 4, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolitical stability and political crises in Switzerland: empirical evidence\n\n\n\nPolitical Economy\n\nStats\n\n\n\n\n\n\n\n\n\n\nJun 25, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome, education and voting outcome: a cross-sectional analysis of voting outcome in Switzerland\n\n\n\nPolitical Economy\n\nStats\n\n\n\n\n\n\n\n\n\n\nMay 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nFrom income brackets to income decile\n\n\n\nPolitical Economy\n\nStats\n\nCoding\n\n\n\n\n\n\n\n\n\n\nApr 17, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nSugar, Cochineal and power\n\n\n\nEconomic History\n\n\n\n\n\n\n\n\n\n\nDec 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nCrises & cycles\n\n\n\nPolitical Economy\n\nEconomic History\n\n\n\n\n\n\n\n\n\n\nDec 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nInikori about Slavery and the Industrial Revolution\n\n\n\nEconomic History\n\n\n\n\n\n\n\n\n\n\nOct 5, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About me",
+    "section": "",
+    "text": "📍 Geneva, Switzerland\n✉️ celal.98@outlook.com\nPolitical economy, Political Science, Macroeconomics\n\n\n\nMy name is Celâl and I am a research-teaching assistant and PhD candidate at the University of Geneva. I specialize in the analysis of macroeconomic dynamics, socio-political expectations/preferences and political attitudes. I have a background in economics, political economy and economic history as well as in survey data analysis and statistical programming with R, SPSS and Stata. My field of interest concerns the analysis of institutional change of contemporary Western socio-economic models. I am also interested in the analysis of demand and productivity regimes from a post-Keynesian perspective; in the transformation of political cleavages; and in comparative politics/political economy.\n\n\n\n\n\nGÜNEY, Celâl. Operationalizing Social Blocs: A Metaclustering Approach. In: Political economy working papers, 2026, n° 3, p. 23. https://archive-ouverte.unige.ch/unige:193806\n“AMABLE, Bruno, GÜNEY, Celâl. À la recherche des trois blocs : une analyse empirique de la tripolarisation de l’espace politique français. 2025”\nhttps://archive-ouverte.unige.ch/unige:189320\n“The Political Economy of Institutional Change and Social Blocs in Switzerland: a Neorealist Approach”\nhttps://archive-ouverte.unige.ch/unige:176868 link\n\n\n\n\n\n“Low inflation in an island of high prices. The factors behind price stability in Switzerland”\n“Demand and Productivity Regimes in Switzerland: 1950–2024”\n“For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation” draft 📄, presentation at epita (ecological planning in the anthropocene)\n“Institutional Change in the Swiss Political Economy: Forces of Transformation and Stability”\n\n\n\n\n\n🎓 Bachelor in History-Economics-Society (now BA in Political Economy and Economic History) | University of Geneva | 2017-2020\n🎓 Complementary Certificate in Applied Statistics | University of Geneva (GSEM) | 2021-2022\n🎓 Master in The Political Economy of Capitalism | University of Geneva | 2022 - 2024\n\n\n\n🏫 Research and teaching auxiliary, department of History-Economics-Society, University of Geneva (August 2023 - January 2024)\n🏫 Research and teaching assistant, department of History-Economics-Society, University of Geneva (August 2024 - July 2025)\n\n\n\n🇫🇷 French — Native\n🇬🇧 English — Very proficient\n🇪🇸 Spanish — Very proficient\n🇩🇪 German — Good knowledge\n\n\n\nMacroeconomics\nInstitutional economics\nPolitical Science, comparative politics, cleavage politics Political economy and comparative capitalism\nSurvey data analysis | Econometrics | Statistics\nEconomic history | History of economic thought"
+  },
+  {
+    "objectID": "about.html#publications",
+    "href": "about.html#publications",
+    "title": "About me",
+    "section": "",
+    "text": "GÜNEY, Celâl. Operationalizing Social Blocs: A Metaclustering Approach. In: Political economy working papers, 2026, n° 3, p. 23. https://archive-ouverte.unige.ch/unige:193806\n“AMABLE, Bruno, GÜNEY, Celâl. À la recherche des trois blocs : une analyse empirique de la tripolarisation de l’espace politique français. 2025”\nhttps://archive-ouverte.unige.ch/unige:189320\n“The Political Economy of Institutional Change and Social Blocs in Switzerland: a Neorealist Approach”\nhttps://archive-ouverte.unige.ch/unige:176868 link"
+  },
+  {
+    "objectID": "about.html#current-projects",
+    "href": "about.html#current-projects",
+    "title": "About me",
+    "section": "",
+    "text": "“Low inflation in an island of high prices. The factors behind price stability in Switzerland”\n“Demand and Productivity Regimes in Switzerland: 1950–2024”\n“For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation” draft 📄, presentation at epita (ecological planning in the anthropocene)\n“Institutional Change in the Swiss Political Economy: Forces of Transformation and Stability”"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About me",
+    "section": "",
+    "text": "🎓 Bachelor in History-Economics-Society (now BA in Political Economy and Economic History) | University of Geneva | 2017-2020\n🎓 Complementary Certificate in Applied Statistics | University of Geneva (GSEM) | 2021-2022\n🎓 Master in The Political Economy of Capitalism | University of Geneva | 2022 - 2024"
+  },
+  {
+    "objectID": "about.html#work-experience",
+    "href": "about.html#work-experience",
+    "title": "About me",
+    "section": "",
+    "text": "🏫 Research and teaching auxiliary, department of History-Economics-Society, University of Geneva (August 2023 - January 2024)\n🏫 Research and teaching assistant, department of History-Economics-Society, University of Geneva (August 2024 - July 2025)"
+  },
+  {
+    "objectID": "about.html#languages",
+    "href": "about.html#languages",
+    "title": "About me",
+    "section": "",
+    "text": "🇫🇷 French — Native\n🇬🇧 English — Very proficient\n🇪🇸 Spanish — Very proficient\n🇩🇪 German — Good knowledge"
+  },
+  {
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "About me",
+    "section": "",
+    "text": "Macroeconomics\nInstitutional economics\nPolitical Science, comparative politics, cleavage politics Political economy and comparative capitalism\nSurvey data analysis | Econometrics | Statistics\nEconomic history | History of economic thought"
   }
 ]

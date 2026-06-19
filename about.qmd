@@ -114,6 +114,34 @@ My name is Celâl and I am a research-teaching assistant and PhD candidate at th
 
 :::
 
+::: {.section-card .g-col-15 .g-col-md-12}
+## 📚 Publications 
+
+- GÜNEY, Celâl. Operationalizing Social Blocs: A Metaclustering Approach. In: Political economy working papers, 2026, n° 3, p. 23. <https://archive-ouverte.unige.ch/unige:193806>
+
+- "AMABLE, Bruno, GÜNEY, Celâl. À la recherche des trois blocs : une analyse empirique de la tripolarisation de l’espace politique français. 2025"
+    
+     [https://archive-ouverte.unige.ch/unige:189320](https://archive-ouverte.unige.ch/unige:189320)
+
+-   "The Political Economy of Institutional Change and Social Blocs in Switzerland: a Neorealist Approach"
+
+    https://archive-ouverte.unige.ch/unige:176868 [link](https://jeylal.github.io/master-thesis/)
+
+
+## 📌 Current Projects 
+
+- "Low inflation in an island of high prices. The factors behind price stability in Switzerland"
+
+-   "Demand and Productivity Regimes in Switzerland: 1950–2024"
+
+-   "For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation" [draft 📄](resources_books/neorealist%20political%20ecology-2.pdf), [presentation at epita (ecological planning in the anthropocene)](resources_books/presentation_epita.html)
+
+-   "Institutional Change in the Swiss Political Economy: Forces of Transformation and Stability"
+
+:::
+
+
+
 ::: {.g-col-12 .g-col-md-5 .g-start-md-2 .section-card}
 ## 📖 Education
 
@@ -153,23 +181,3 @@ My name is Celâl and I am a research-teaching assistant and PhD candidate at th
 :::
 :::::::::
 
-::: {.section-card}
-## 📚 Publications 
-
--   "The Political Economy of Institutional Change and Social Blocs in Switzerland: a Neorealist Approach"
-
-    https://archive-ouverte.unige.ch/unige:176868 [link](https://jeylal.github.io/master-thesis/)
-
-- "AMABLE, Bruno, GÜNEY, Celâl. À la recherche des trois blocs : une analyse empirique de la tripolarisation de l’espace politique français. 2025"
-    
-     [https://archive-ouverte.unige.ch/unige:189320](https://archive-ouverte.unige.ch/unige:189320)
-
-## 📌 Current Projects 
-
--   "Demand and Productivity Regimes in Switzerland: 1950–2024"
-
--   "For a Neorealist Political Ecology. An Institutional Ecological Change Approach to Analyze the Socio-political Conditions for the Ecological Bifurcation" [draft 📄](resources_books/neorealist%20political%20ecology-2.pdf), [presentation at epita (ecological planning in the anthropocene)](resources_books/presentation_epita.html)
-
--   "Institutional Change in the Swiss Political Economy: Forces of Transformation and Stability"
-
-:::
