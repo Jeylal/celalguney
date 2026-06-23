@@ -6,43 +6,20 @@ draft: true
 bibliography: inflation_switzerland.bib
 ---
 
-## 
+## Introduction
 
-```{r fig-cpi-ameco}
+
+
+
+
+
+
+```{r fig-inflation-ameco-cpi}
 #| echo: false
 #| warning: false
 #| message: false
 
-library(rdbnomics)
-library(tidyverse)
-
-codes_variables = c("CHE.1.0.0.0.ZCPIH", "DEU.1.0.0.0.ZCPIH", "EU27.1.0.0.0.ZCPIH", "FRA.1.0.0.0.ZCPIH", "AUT.1.0.0.0.ZCPIH")
-
-data <- 
-codes_variables %>% 
-  map_dfr(~rdb(paste("AMECO/ZCPIH", .x, sep = "/"))) %>% 
-  select(Country, original_period, value) %>% 
-  drop_na()
-
-data$original_period = as.numeric(data$original_period)
-
-
-data %>% 
-  filter(original_period %in% c(2005:2025)) %>% 
-  ggplot(aes(x = original_period, y = value, color = Country, group = Country))+
-  geom_line()+
-  geom_point()+
-  theme_minimal()
-
-
-```
-
-```{r fig-inflation-ameco}
-#| echo: false
-#| warning: false
-#| message: false
-
-codes_variables <- c("BEL.3.0.0.0.ZCPIN", "CHE.3.0.0.0.ZCPIN", "DEU.3.0.0.0.ZCPIN", "DNK.3.0.0.0.ZCPIN", "FRA.3.0.0.0.ZCPIN", "GBR.3.0.0.0.ZCPIN", "ITA.3.0.0.0.ZCPIN", "LUX.3.0.0.0.ZCPIN", "USA.3.0.0.0.ZCPIN", "JPN.3.0.0.0.ZCPIN", "FIN.3.0.0.0.ZCPIN", "AUT.3.0.0.0.ZCPIN", "NOR.3.0.0.0.ZCPIN", "SWE.3.0.0.0.ZCPIN", "DNK.3.0.0.0.ZCPIN", "NLD.3.0.0.0.ZCPIN", "KOR.3.0.0.0.ZCPIN", "ESP.3.0.0.0.ZCPIN", "ISL.3.0.0.0.ZCPIN")
+codes_variables <- c("BEL.3.0.0.0.ZCPIN", "CHE.3.0.0.0.ZCPIN", "DEU.3.0.0.0.ZCPIN", "DNK.3.0.0.0.ZCPIN", "FRA.3.0.0.0.ZCPIN", "GBR.3.0.0.0.ZCPIN", "ITA.3.0.0.0.ZCPIN", "LUX.3.0.0.0.ZCPIN", "USA.3.0.0.0.ZCPIN", "JPN.3.0.0.0.ZCPIN", "FIN.3.0.0.0.ZCPIN", "AUT.3.0.0.0.ZCPIN", "NOR.3.0.0.0.ZCPIN", "SWE.3.0.0.0.ZCPIN", "DNK.3.0.0.0.ZCPIN", "NLD.3.0.0.0.ZCPIN", "KOR.3.0.0.0.ZCPIN", "ESP.3.0.0.0.ZCPIN", "ISL.3.0.0.0.ZCPIN", "EA21.3.0.0.0.ZCPIN")
 
 
 data_cpi_ameco <- 
@@ -74,44 +51,77 @@ data_cpi_ameco %>%
 
 ```
 
-L'économie suisse est connue pour sa forte résistance à l'inflation. Depuis les années 2000, le taux d'inflation annuel de l'indice des prix à la consommation harmonisé (IPCH) est en Suisse systématiquement parmi les plus faibles vis-à-vis des autres pays développés. En comparaison international, seul le Japon a tendance a connaître des taux d'inflation plus faible suite à l'éclatement de la bulle spéculative nipponne de 1990.
+In the last two decades, inflation has remained remarkably low in Switzerland. From 2000 to 2025, the national Swiss consumer price index (CPI) has remained nearly constant, with an average annual growth rate of 0,6%. In international comparison, only Japan has experienced lower inflation (0,5%), while average inflation rates ranged from 1,5 to 2,5% in developed economies (for instance 2% for the Eurozone and 2,5% for the United States). In Europe, 
+
+*Pointer la resistance particuliere en cas de crise en citant rapport ocde, fmi, seco. Voir si resistance plus élevée qu'au japon*
+
+
 
 ```{r tbl-growth-rates}
 #| echo: false
 #| warning: false
 #| message: false
+#| label: tbl-averageinflation
 
 data_cpi_ameco |>
   filter(original_period %in% c(2000:2025)) %>% 
   group_by(Country) |>
-  summarise(taux_moyen = mean(inflation_rate, na.rm = TRUE), .groups = "drop") |>
-  arrange(taux_moyen)
+  summarise(avg_inflation = mean(inflation_rate, na.rm = TRUE), .groups = "drop") |>
+  arrange(avg_inflation)
 
 ```
 
-Qu'est-ce qui explique cette forte résilience de la Suisse face aux pressions inflationnistes ? Les explications les plus souvent mobilisées dans la littérature sont les suivantes:
-
-## Hypothèse appréciation du franc (reserve currency)
-
-Le franc suisse est en effet considéré comme une monnaie forte servant de refuge lors des périodes de crise. Le statut du franc suisse en tant que "safe haven currency" date depuis au moins la première guerre mondiale. La Suisse ayant relativement mieux résisté à l'instabilité monétaire généralisée à la suite de la Grande Guerre. La non participation active de la Suisse à la Grande Guerre a aussi beaucoup contribué à l'attractivité du franc suisse, renforcé par la stabilité de ses institutions socio-politiques. Si ce statut de monnaie refuge se renforce graduellement lors de la période d'après-guerre, il se dévoile complètement avec la fin du système de Bretton-Woods en 1973, la fin de la parité fixe du franc vis-à-vis du dollar conduisant à une très forte appréciation du franc suisse. En théorie, l'appréciation tendancielle du franc suisse devrait avoir un effet négatif sur le taux d'inflation en réduisant le prix relatif des biens et services importés. Néanomoins, les estimations empirique de l'impact de l'appréciation du franc suisse invalident cette hypothèse. L'effet de "l'exchange rate pass-through" sur l'indice des prix à la consommation est en outre faible. @auer_exchange_2021 montrent  qu'une appréciation du franc suisse de 1 % se traduit par une baisse des prix de détail des biens importés de seulement 0,55 % après deux trimestres. @oktay_heterogeneity_2022 trouve exchange rate pass-through de 0,12 sur tous les biens et services de l'IPC, ce qui implique que seulement 12% d'un choc du taux de change EUR/CHF se répercute sur l'IPC suisse. Le pass-through est donc largement incomplet.
 
 
-## Hypothèse contrôle des prix
+```{r fig-hcpi-ameco}
+#| echo: false
+#| warning: false
+#| message: false
 
-Certains observateurs interprètent la grande part des prix administrés dans l'indice des prix à la consommation harmonisé comme preuve d'une forte pratique de contrôle des prix en Suisse. En effet, la part des prix complètement ou partiellement administrés atteint une très forte proportion en Suisse en comparaison avec les autres pays européens. Suite aux chocs d'offre provoqués par la crise du covid et la guerre d'Ukraine, les économistes post-Keynésiens, notamment Isabella Weber, ont défendu le contrôle des prix comme une mesure permettant de combattre l'inflation tirée par l'augmentation des coûts de production, qui est d'autant plus renforcée par l'inflation des vendeurs profitant de la crise afin d'augmenter leurs taux de marge [@weber_sellers_2023]. L'importance des prix administrés permettraient donc à la Suisse de limiter l'impact de la hausse des prix.
+library(rdbnomics)
+library(tidyverse)
 
-Des études récentes tendent à montrer que cette part importante des prix administrés n'est pas la raison principale derrière la faible inflation en Suisse. La très grande majorité des prix administrés sont ceux des produits de santé, qui sont soit classés comme non administrés dans certains pays membres de la zone euro, soit comptabilisés comme relevant du secteur public, plutôt que de la consommation privée, car ils sont financés par des fonds publics. Si les prix administrés ont en Suisse moins augmenté que dans la zone euro, les prix non administrés ont eu aussi moins augmenté que dans la zone euro. L'estimation conduite par @auer_how_2025 montre que les prix administrés n'expliquent que moins d'un quart des différences de taux d'inflation entre la Suisse et la zone euro. Par conséquent, les faibles taux d'inflations suisses s'expliquent avant tout par la faible augmentation des prix non-administrés
+codes_variables = c("CHE.1.0.0.0.ZCPIH", "DEU.1.0.0.0.ZCPIH", "EU27.1.0.0.0.ZCPIH", "FRA.1.0.0.0.ZCPIH", "AUT.1.0.0.0.ZCPIH")
+
+data_hcpi_ameco <- 
+codes_variables %>% 
+  map_dfr(~rdb(paste("AMECO/ZCPIH", .x, sep = "/"))) %>% 
+  select(Country, original_period, value) %>% 
+  drop_na()
+
+data_hcpi_ameco$original_period = as.numeric(data_hcpi_ameco$original_period)
 
 
+data_hcpi_ameco %>% 
+  filter(original_period %in% c(2005:2025)) %>% 
+  ggplot(aes(x = original_period, y = value, color = Country, group = Country))+
+  geom_line()+
+  geom_point()+
+  theme_minimal()
 
-## Hypothèse construction de l'IPC
 
-La faible inflation suisse est un artefact statistique résultant de la faible pondération de certains items clés (par exemple l'énergie) ainsi que de la non prise en compte de certaines dépenses importantes comme les primes d'assurance-maladie. Certains économistes n'hésitent pas à ré-estimer l'IPC suisse avec des pondérations d'autres pays, par exemple allemands. Toutefois, malgré ces ré-estimations utilisant les poids d'autres pays, l'inflation reste nettement plus faible en Suisse.
+```
 
-## Hypothèse d'une faible spirale salaires-prix et d'une faible inflation des vendeurs
 
-La production suisse étant très orientée vers les exportations, une augmentation du coût du travail se répercute avant tout sur le prix des exportations, pas tant sur le prix des biens et services finaux domestiques. De plus, 40% des biens et services de l'IPC suisse ne sont pas sujets aux mécanismes de spirale salaire-prix (loyers et santé). @leutert_wageprice_2026 trouvent qu'une augmentation du coût unitaire du travail sur l'indice des prix à la consommation n'est que très faible en Suisse, lorsque l'on contrôle pour l'inflation importée et les anticipations d'inflation. Ces auteurs considèrent que les dynamiques de l'IPC suisse sont avant tout tirés par la fluctuation des prix des importations causés par les fluctuations des prix du pétrole, l'inflation étrangère, du taux de change et des anticipations d'inflation.
+What accounts for Switzerland's remarkable and enduring resilience to inflationary pressures? The literature has advanced several competing hypotheses, each emphasising different structural, institutional, or macroeconomic mechanisms. The most prominent of these are examined in turn below.
 
+## The Safe-Haven Currency Hypothesis
+
+The Swiss franc is widely regarded as a safe-haven currency, serving as a global store of value during periods of economic and geopolitical uncertainty. Its status as a refuge currency dates back to at least the First World War, when Switzerland's comparative monetary stability stood in sharp contrast to the widespread currency upheaval that followed the Great War. Switzerland's non-belligerence contributed substantially to the franc's attractiveness, a status further consolidated by the stability of Swiss socio-political institutions. While the franc's safe-haven role was reinforced progressively throughout the post-war period, it became fully manifest with the collapse of the Bretton Woods system in 1973: the dissolution of the dollar peg triggered a sustained and substantial nominal appreciation of the Swiss franc. In theory, this secular appreciation should exert downward pressure on inflation by lowering the relative price of imported goods and services. However, the empirical literature has called this mechanism into question by documenting a strikingly incomplete exchange rate pass-through. @auer_exchange_2021 find that a 1% appreciation of the Swiss franc translates into a decline in retail import prices of only 0.55% after two quarters. @oktay_heterogeneity_2022 estimates an overall pass-through coefficient of 0.12 across the full CPI basket, implying that only 12% of an EUR/CHF exchange rate shock is transmitted to Swiss consumer prices. The pass-through is thus substantially incomplete, which considerably weakens the case for currency appreciation as a primary driver of Switzerland's low inflation performance.
+
+## The Administered Prices Hypothesis
+
+A second line of explanation points to the comparatively large share of administered prices within Switzerland's HICP basket. Switzerland exhibits one of the highest proportions of fully or partially regulated prices among European economies. In the wake of the supply shocks triggered by the COVID-19 pandemic and the Russian invasion of Ukraine, post-Keynesian economists — most prominently Isabella Weber — argued in favour of price controls as an instrument to combat cost-push inflation, particularly when amplified by sellers' inflation dynamics in which firms exploit crisis conditions to expand profit margins [@weber_sellers_2023]. On this reading, the prevalence of administered prices in Switzerland constitutes a structural mechanism that dampens inflationary pressures by insulating a significant portion of the consumption basket from market price volatility.
+
+However, recent empirical evidence suggests that administered prices are not the primary driver of Switzerland's low inflation performance. The vast majority of Swiss administered prices correspond to healthcare goods and services, which are classified as non-administered in several euro area countries, or attributed to the public sector rather than private consumption on account of their public funding. Crucially, not only have administered prices risen less in Switzerland than in the euro area, but so have non-administered prices. @auer_how_2025 show that administered prices account for less than one quarter of the observed inflation differential between Switzerland and the euro area. The dominant share of the differential is therefore explained by subdued price dynamics in the non-administered segment, pointing to deeper structural factors at work.
+
+## The CPI Construction Hypothesis
+
+A third hypothesis holds that Switzerland's low measured inflation is in part a statistical artefact, reflecting the specific structure and expenditure weights of the Swiss CPI basket. Critics point, in particular, to the relatively low weight assigned to energy and to the exclusion of certain major expenditure items — most notably compulsory health insurance premiums — from the standard consumer price index. Some economists have addressed this by re-estimating Swiss inflation using the expenditure weights applied in other countries, such as Germany. Nevertheless, even under these counterfactual weighting schemes, Swiss inflation remains substantially lower than in comparable economies, suggesting that measurement conventions account for only a modest fraction of the observed differential.
+
+## The Wage-Price Spiral and Sellers' Inflation Hypothesis
+
+A fourth explanation focuses on the limited role played by domestic wage-price dynamics in Switzerland. Given the strongly export-oriented character of Swiss production, increases in unit labour costs tend to be reflected primarily in export prices rather than in domestic consumer prices. Moreover, approximately 40% of the Swiss CPI basket — notably rents and healthcare — lies outside the typical scope of wage-price spiral mechanisms. @leutert_wageprice_2026 find that, once imported inflation and inflation expectations are controlled for, the pass-through from unit labour costs to the CPI is negligible in Switzerland. These authors conclude that Swiss CPI dynamics are driven predominantly by fluctuations in import prices — themselves shaped by movements in oil prices, foreign inflation, the exchange rate, and inflation expectations — rather than by domestic wage-setting processes. This finding is broadly consistent with the sellers' inflation framework developed by @weber_sellers_2023: while the data do not support a significant spiral between wages and domestic consumer prices, the question of whether Swiss firms have exploited supply-side disruptions to expand profit margins warrants closer empirical scrutiny.
 
 ```{r sellers-inflation-data}
 #| echo: false
@@ -250,16 +260,15 @@ wb |>
   )
 ```
 
-## Hypothèse mix énergétique. 
+## The Energy Mix Hypothesis
 
-Les fluctuations des prix du gaz et du pétrole ont des répercussions dramatiques sur l'inflation. Comme ces sources d'énergie fossile constituent une part extrêmement importante des intrans de production pour une très large quantité de biens et services, leurs prix influencent fortement l'évolution de l'IPC. Les chocs résultants de la crise du covid et de la guerre d'Ukraine ont en outre marqué le retour de l'inflation en EUrope.
+Fluctuations in oil and natural gas prices rank among the most powerful drivers of consumer price inflation. As fossil fuels constitute a critical intermediate input in the production of a wide range of goods and services, energy price shocks propagate rapidly through value chains and into the broader price level. The supply disruptions triggered by the COVID-19 pandemic and, more forcefully, by the Russian invasion of Ukraine, were instrumental in the resurgence of inflation across Europe from 2021 onwards.
 
-La suisse étant relativement peu dépendante des énergies fossiles (gaz et pétrole) grâce à l'énergie hydraulique et nucléaire, les chocs pétrolier et du prix du gaz ont un impact plus faible en Suisse que dans d'autres pays plus dépendants aux énergies fossiles.
+Switzerland's comparatively limited dependence on fossil fuels — owing to its substantial reliance on hydroelectric and nuclear power generation — implies that energy price shocks transmit less forcefully to domestic consumer prices than in more fossil-fuel-dependent economies. This structural characteristic provides a natural buffer against the kind of cost-push dynamics that drove the post-pandemic inflation episode across much of the continent.
 
-Cette explication paraît convaincante. Toutefois, certains pays ayant un meilleur mix energétique que la Suisse comme l'Islande, la Suède, la Norvège, ou la Finlande ont des taux d'inflation plus élevés qu'en Suisse. Néanmoins, la Suisse bénéficie d'un marché publique de l'énergie qui permet de garder le prix de l'énergie au niveau des coûts de production, alors que pour les pays nordiques le prix de leur énergie n'est pas découplé de celle des énergies fossiles à cause du marché européen de l'énergie (dans lequel les prix s'alignent sur le coût marginal, souvent du gaz et du charbon importé). Leur énergie est verte, mais est leur prix et donc alignée sur celui des énergies fossiles, ce qui n'est pas le cas en Suisse grâce à la régulation publique du marché de l'énergie et de l'électricité.
+While this explanation is intuitively compelling, it is complicated by the observation that several countries with even greener energy mixes — Iceland, Sweden, Norway, and Finland — nonetheless experienced higher inflation rates than Switzerland. The relevant distinguishing factor appears to be institutional rather than merely technical: Switzerland operates a regulated public energy market that anchors electricity and energy retail prices to domestic production costs. By contrast, the Nordic countries — despite their predominantly renewable generation capacity — are integrated into the European internal energy market, where prices are set at the marginal cost of the most expensive dispatched source, typically imported gas or coal. Their generation is low-carbon, but the price of that energy is nonetheless aligned with fossil fuel benchmarks. Switzerland's institutional insulation from this pricing mechanism provides an additional anti-inflationary buffer that a green energy mix alone cannot replicate.
 
-De plus, la Suisse est l'économie développée avec la plus faible intensité énergétique. Cela veut dire qu'elle consomme en réalité que peu d'énergie dans la production de sa valeur ajoutée grâce à une forte efficacité énergétique dans ses secteurs clés. Avec une intensité énergétique très faible, un choc d'offre se répercute moins directement sur l'IPC ainsi que sur les chaînes de valeurs. Une étude récente du Seco montre que cette faible intensité est présente dans tous les secteurs de l'économie suisse (agriculture, industrie, services et ménages). Par exemple, l'industrie manufacturière suissse consomme moins d'un tiers de l'énergie de la France et moins de la moitié de l'énergie de l'Allemagne pour chaque unité de valeur ajoutée brute. Cette faible intensité a été renforcée depuis 2010 par la croissance de l'industrie pharmaceutique (qui a relativement une faible intensité énergétique) dont la part dans la valeur ajoutée du secteur manufacturier suisse a augmenté de 15 à 31% entre 2010 et 2019.
-
+A further dimension of this hypothesis concerns energy intensity. Switzerland ranks as the advanced economy with the lowest energy intensity of production, consuming exceptionally little energy per unit of gross value added. Low energy intensity implies that supply-side price shocks translate less directly into consumer price inflation and propagate less extensively through domestic value chains. A recent study by the State Secretariat for Economic Affairs (SECO) confirms that this efficiency advantage is pervasive across all sectors of the Swiss economy — agriculture, industry, services, and households alike. Swiss manufacturing, for instance, consumes less than one-third of the energy used in French manufacturing and less than half of that used in German manufacturing per unit of gross value added. This structural advantage has been further reinforced since 2010 by the expansion of the pharmaceutical sector, which is characterised by relatively low energy intensity and whose share of Swiss manufacturing value added rose from 15% to 31% between 2010 and 2019.
 
 ```{r fig-energy-mix-comparison}
 #| echo: false
@@ -303,9 +312,6 @@ df_lc |>
   theme_minimal(base_size = 11) +
   theme(legend.position = "top", panel.grid.major.y = element_blank())
 ```
-
-
-
 
 ```{r fig-energy-mix}
 #| echo: false
@@ -361,16 +367,6 @@ df %>%
   )
 
 ```
-
-
-
-
-
-
-
-
-
-
 
 ```{r fig-inflation-hcpi}
 #| echo: false
@@ -488,24 +484,4 @@ hicp_admin_prices %>%
   facet_wrap(~geo)
 ```
 
-
-
-
-
-## Références
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## References
