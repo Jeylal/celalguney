@@ -414,34 +414,18 @@ library(tidyverse)
 CHE2022ttl <- read_csv("CHE2022ttl.csv")
 
 # ── Dimensions ────────────────────────────────────────────────────────────────
-n          <- 50                                     # number of industries
-col_labels <- names(CHE2022ttl)[2:(n + 1)]           # A01 … T
+n          <- 50
+col_labels <- names(CHE2022ttl)[2:(n + 1)]
 
 # ── Intermediate transaction matrix Z and total output x ─────────────────────
-Z <- CHE2022ttl[1:n, 2:(n + 1)] |> as.matrix()
-x <- CHE2022ttl[CHE2022ttl$...1 == "OUTPUT", 2:(n + 1)] |> as.numeric()
+Z      <- CHE2022ttl[1:n, 2:(n + 1)] |> as.matrix()
+x      <- CHE2022ttl[CHE2022ttl$...1 == "OUTPUT", 2:(n + 1)] |> as.numeric()
+x_safe <- ifelse(x == 0, 1, x)          # B05 (coal) has zero output in CH
 
-# B05 (coal mining) has zero output in Switzerland; avoid division by zero
-x_safe <- ifelse(x == 0, 1, x)
-
-# ── Technical coefficients A and Leontief inverse L ───────────────────────────
-A <- sweep(Z, 2, x_safe, "/")           # a_ij = z_ij / x_j
-L <- solve(diag(n) - A)                 # L = (I – A)^{-1}
-
-# ── Price multipliers (Leontief price model) ──────────────────────────────────
-# A 1-unit cost shock to sector j raises all downstream prices by L[j, i].
-# Unweighted forward price multiplier = row-sum of L.
-price_mult <- rowSums(L)
-names(price_mult) <- col_labels
-
-# ── HFCE-weighted inflation impact ────────────────────────────────────────────
-# Weight each sector's price effect by its share in household consumption (HFCE),
-# so the metric reflects the impact on the consumer price basket.
-hfce       <- CHE2022ttl[1:n, "HFCE"] |> pull() |> as.numeric()
-hfce_share <- hfce / sum(hfce, na.rm = TRUE)
-
-wt_impact           <- as.vector(L %*% hfce_share)
-names(wt_impact)    <- col_labels
+# ── Technical coefficients A ──────────────────────────────────────────────────
+A    <- sweep(Z, 2, x_safe, "/")         # a_ij = z_ij / x_j
+hfce <- CHE2022ttl[1:n, "HFCE"] |> pull() |> as.numeric()
+names(hfce) <- col_labels
 
 # ── Sector labels ─────────────────────────────────────────────────────────────
 sector_names <- c(
@@ -471,17 +455,49 @@ sector_names <- c(
   S="Other services", T="Household services"
 )
 
-# ── Results table ─────────────────────────────────────────────────────────────
-results <- tibble(
-  sector     = col_labels,
-  name       = sector_names[col_labels],
-  price_mult = price_mult,
-  wt_impact  = wt_impact,
-  hfce_share = hfce_share
-) |>
-  arrange(desc(wt_impact))
+# ── Partition: endogenous vs. exogenous sectors ───────────────────────────────
+# Following Weber et al. (2024): commodity sectors (mining, energy, petroleum)
+# and rent-extracting FIRE activities are treated as exogenous — their prices
+# do not respond to cost shocks originating in the domestic endogenous system.
+exog_sectors  <- c("B05", "B06", "B07", "B08", "B09", "C19", "D", "K", "L")
+endog_sectors <- setdiff(col_labels, exog_sectors)
 
-# ── Plot: systemically significant prices ────────────────────────────────────
+exog_idx  <- which(col_labels %in% exog_sectors)
+endog_idx <- which(col_labels %in% endog_sectors)
+n_E       <- length(endog_idx)
+
+# Endogenous ← endogenous sub-matrix; exogenous inputs into endogenous sectors
+A_EE <- A[endog_idx, endog_idx]
+A_XE <- A[exog_idx,  endog_idx]
+
+# ── Leontief inverse for the endogenous sub-system ───────────────────────────
+L_EE <- solve(diag(n_E) - A_EE)
+
+# ── HFCE weights (denominator = total HFCE across all sectors) ───────────────
+total_hfce <- sum(hfce)
+w_E <- hfce[endog_idx] / total_hfce
+w_X <- hfce[exog_idx]  / total_hfce
+
+# ── Price multipliers and HFCE-weighted inflation impacts ────────────────────
+# Endogenous sector j: shock to v_j raises sector i's price by L_EE[j, i]
+price_mult_E <- rowSums(L_EE)
+wt_impact_E  <- as.vector(L_EE %*% w_E)
+
+# Exogenous sector k: shock to p_k propagates into endogenous system via A_XE;
+# consumers also pay more directly for k (w_X term)
+price_mult_X <- 1 + as.vector(A_XE %*% rowSums(L_EE))
+wt_impact_X  <- w_X + as.vector(A_XE %*% wt_impact_E)
+
+# ── Combined results ──────────────────────────────────────────────────────────
+results <- bind_rows(
+  tibble(sector = endog_sectors, name = sector_names[endog_sectors],
+         type = "Endogenous", price_mult = price_mult_E, wt_impact = wt_impact_E),
+  tibble(sector = exog_sectors,  name = sector_names[exog_sectors],
+         type = "Exogenous (commodity / FIRE)",
+         price_mult = price_mult_X, wt_impact = wt_impact_X)
+) |> arrange(desc(wt_impact))
+
+# ── Plot ──────────────────────────────────────────────────────────────────────
 threshold <- mean(results$wt_impact) + sd(results$wt_impact)
 
 results |>
@@ -491,7 +507,7 @@ results |>
     label       = fct_reorder(label, wt_impact),
     significant = wt_impact >= threshold
   ) |>
-  ggplot(aes(x = wt_impact, y = label, fill = significant)) +
+  ggplot(aes(x = wt_impact, y = label, fill = significant, alpha = type)) +
   geom_col(width = 0.7) +
   geom_vline(xintercept = threshold, linetype = "dashed",
              colour = "grey40", linewidth = 0.5) +
@@ -500,21 +516,25 @@ results |>
     labels = c("TRUE" = "Systemically significant", "FALSE" = "Other"),
     name   = NULL
   ) +
+  scale_alpha_manual(
+    values = c("Endogenous" = 1, "Exogenous (commodity / FIRE)" = 0.5),
+    name   = "Treatment"
+  ) +
   scale_x_continuous(labels = scales::percent_format(accuracy = 1),
                      expand = expansion(mult = c(0, 0.08))) +
   labs(
     title    = "Systemically Significant Prices — Switzerland (2022)",
-    subtitle = "HFCE-weighted total inflation impact of a 1% cost shock (top 25 sectors)",
-    x        = "Weighted price multiplier",
+    subtitle = "Faded bars = exogenous sectors (commodity / FIRE); dashed line = mean + 1 SD",
+    x        = "HFCE-weighted price multiplier",
     y        = NULL,
-    caption  = "Source: OECD ICIO CHE2022ttl. Method: Leontief price model (Weber et al. 2024)."
+    caption  = "Source: OECD ICIO CHE2022ttl. Method: partitioned Leontief price model (Weber et al. 2024)."
   ) +
   theme_minimal(base_size = 10) +
   theme(
     legend.position    = "top",
     panel.grid.major.y = element_blank(),
     axis.text.y        = element_text(size = 9),
-    plot.title         = element_text(size = 12, face = "bold"),
+    plot.title         = element_text(size = 11, face = "bold"),
     plot.caption       = element_text(colour = "grey50", size = 7)
   )
 ```
