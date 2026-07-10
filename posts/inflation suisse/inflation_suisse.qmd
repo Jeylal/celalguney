@@ -17,6 +17,51 @@ We first review the existing literature on Swiss inflation and price stability, 
 ## Literature Review
 
 
+```{r inflation capture by profit and labor}
+
+library(tidyverse)
+library(readxl)
+library(lubridate)
+
+inflation_income_decomposition <- read_excel("inflation_income_decomposition.xlsx", 
+    sheet = "results")
+
+inflation_income_decomposition <- 
+  inflation_income_decomposition |>
+  mutate(period = yq(period))
+
+
+inflation_income_decomposition |>
+  pivot_longer(c(Labor, Profit), names_to = "component", values_to = "value") |>
+  ggplot(aes(x = period, y = value, fill = component)) +
+  geom_col(position = "stack", width = 70) +
+  geom_line(
+    data = inflation_income_decomposition,
+    aes(x = period, y = Inflation, color = "Inflation"),
+    linewidth = 0.8, inherit.aes = FALSE
+  ) +
+  scale_fill_manual(
+    values = c("Labor" = "#2980b9", "Profit" = "#e07b39"),
+    name = NULL
+  ) +
+  scale_color_manual(values = c("Inflation" = "#c0392b"), name = NULL) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -541,6 +586,305 @@ results |>
 
 
 
+```{r input output analysis 2017 ofs}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+siot_raw <- read_excel("IO_table_ofs_2017.xlsx", sheet = "siot")
+
+# ── Dimensions ────────────────────────────────────────────────────────────────
+n <- 51   # sectors in the FSO 2017 symmetric IO table
+
+# ── Sector codes and labels (rows 6 to 56, cols 1–2) ─────────────────────────
+s_codes <- siot_raw[6:(5 + n), 1] |> pull()
+s_names <- siot_raw[6:(5 + n), 2] |> pull()
+
+# ── Intermediate transaction matrix Z, output x, HFCE ────────────────────────
+# Z: rows 1:n × cols 3:(n+2); x: col 79 "Total use at basic prices";
+# hfce: col 67 "Total final consumption expenditure by households"
+Z    <- siot_raw[6:(5 + n), 3:(n + 2)] |> as.matrix() |> apply(c(1, 2), as.numeric)
+x    <- siot_raw[6:(5 + n), 79] |> pull() |> as.numeric()
+hfce <- siot_raw[6:(5 + n), 67] |> pull() |> as.numeric()
+
+# ── Technical coefficients A ──────────────────────────────────────────────────
+x_safe <- ifelse(x == 0, 1, x)
+A      <- sweep(Z, 2, x_safe, "/")
+
+# ── Partition: exogenous (commodity / FIRE) vs. endogenous ───────────────────
+# Following Weber et al. (2024): mining, energy, petroleum+chemicals, finance,
+# real estate treated as exogenous price-setters.
+exog_sectors_2017  <- c("05 - 09", "19 - 20", "35", "64", "65", "68")
+endog_sectors_2017 <- setdiff(s_codes, exog_sectors_2017)
+
+exog_idx  <- which(s_codes %in% exog_sectors_2017)
+endog_idx <- which(s_codes %in% endog_sectors_2017)
+n_E       <- length(endog_idx)
+
+A_EE <- A[endog_idx, endog_idx]
+A_XE <- A[exog_idx,  endog_idx]
+
+# ── Leontief inverse (endogenous sub-system) ──────────────────────────────────
+L_EE <- solve(diag(n_E) - A_EE)
+
+# ── HFCE weights and price multipliers ───────────────────────────────────────
+total_hfce   <- sum(hfce)
+w_E          <- hfce[endog_idx] / total_hfce
+w_X          <- hfce[exog_idx]  / total_hfce
+price_mult_E <- rowSums(L_EE)
+wt_impact_E  <- as.vector(L_EE %*% w_E)
+price_mult_X <- 1 + as.vector(A_XE %*% rowSums(L_EE))
+wt_impact_X  <- w_X + as.vector(A_XE %*% wt_impact_E)
+
+# ── Combined results ──────────────────────────────────────────────────────────
+results_2017 <- bind_rows(
+  tibble(sector = endog_sectors_2017, name = s_names[endog_idx],
+         type = "Endogenous", price_mult = price_mult_E, wt_impact = wt_impact_E),
+  tibble(sector = exog_sectors_2017,  name = s_names[exog_idx],
+         type = "Exogenous (commodity / FIRE)",
+         price_mult = price_mult_X, wt_impact = wt_impact_X)
+) |> arrange(desc(wt_impact))
+
+# ── Plot ──────────────────────────────────────────────────────────────────────
+threshold_2017 <- mean(results_2017$wt_impact) + sd(results_2017$wt_impact)
+
+results_2017 |>
+  slice_max(wt_impact, n = 25) |>
+  mutate(
+    label       = paste0(sector, " — ", str_trunc(name, 34, ellipsis = "…")),
+    label       = fct_reorder(label, wt_impact),
+    significant = wt_impact >= threshold_2017
+  ) |>
+  ggplot(aes(x = wt_impact, y = label, fill = significant, alpha = type)) +
+  geom_col(width = 0.7) +
+  geom_vline(xintercept = threshold_2017, linetype = "dashed",
+             colour = "grey40", linewidth = 0.5) +
+  scale_fill_manual(
+    values = c("TRUE" = "#c0392b", "FALSE" = "#aab7b8"),
+    labels = c("TRUE" = "Systemically significant", "FALSE" = "Other"),
+    name   = NULL
+  ) +
+  scale_alpha_manual(
+    values = c("Endogenous" = 1, "Exogenous (commodity / FIRE)" = 0.5),
+    name   = "Treatment"
+  ) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1),
+                     expand = expansion(mult = c(0, 0.08))) +
+  labs(
+    title    = "Systemically Significant Prices — Switzerland (2017)",
+    subtitle = "Faded bars = exogenous sectors (commodity / FIRE); dashed line = mean + 1 SD",
+    x        = "HFCE-weighted price multiplier",
+    y        = NULL,
+    caption  = "Source: FSO Swiss IO table 2017. Method: partitioned Leontief price model (Weber et al. 2024)."
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    legend.position    = "top",
+    panel.grid.major.y = element_blank(),
+    axis.text.y        = element_text(size = 9),
+    plot.title         = element_text(size = 11, face = "bold"),
+    plot.caption       = element_text(colour = "grey50", size = 7)
+  )
+```
+
+
+
+```{r network analysis io 2017}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(tidyverse)
+
+# ── Short display labels ───────────────────────────────────────────────────────
+short_labels <- c(
+  "01"="Agriculture", "02"="Forestry", "03"="Fishing",
+  "05 - 09"="Mining", "10 - 12"="Food & tobacco",
+  "13 - 15"="Textiles", "16"="Wood", "17"="Paper",
+  "18"="Printing", "19 - 20"="Petrol. & chem.",
+  "21"="Pharma", "22"="Rubber & plastics",
+  "23"="Non-met. minerals", "24"="Basic metals",
+  "25"="Fab. metals", "26"="Computer & electr.",
+  "27"="Electrical equip.", "28"="Machinery",
+  "29"="Motor vehicles", "30"="Other transport eq.",
+  "31"="Furniture", "32"="Other manuf.",
+  "33"="Repair & install.", "35"="Electricity & gas",
+  "36 - 39"="Water & waste", "41 - 43"="Construction",
+  "45"="Motor trade", "46"="Wholesale",
+  "47"="Retail", "49 - 51"="Transport",
+  "52"="Warehousing", "53"="Postal",
+  "55"="Accommodation", "56"="Food service",
+  "58 - 60"="Publishing & broadcast.", "61"="Telecom",
+  "62 - 63"="IT services", "64"="Finance",
+  "65"="Insurance", "68"="Real estate",
+  "69 - 71"="Legal & engineering", "72"="R&D",
+  "73 - 75"="Advertising & prof.", "77 - 82"="Admin. services",
+  "84"="Public admin.", "85"="Education",
+  "86"="Health", "87 - 88"="Residential care",
+  "90 - 93"="Arts & recreation", "94 - 96"="Other services",
+  "97 - 98"="Household services"
+)
+
+# ── Build directed network (supplier → buyer) from A matrix ───────────────────
+# Edge i → j: sector i provides inputs to sector j
+# Keep edges where A_ij ≥ 1% (sector i supplies ≥ 1% of j's total input)
+edge_df_net <- which(A >= 0.01 & row(A) != col(A), arr.ind = TRUE) |>
+  as.data.frame() |>
+  dplyr::rename(from_i = row, to_j = col) |>
+  dplyr::mutate(
+    from   = s_codes[from_i],
+    to     = s_codes[to_j],
+    weight = Z[cbind(from_i, to_j)],
+    a_coef = A[cbind(from_i, to_j)]
+  )
+
+node_df_net <- data.frame(
+  name  = s_codes,
+  label = unname(short_labels[s_codes]),
+  exog  = s_codes %in% exog_sectors_2017
+)
+
+g_net <- igraph::graph_from_data_frame(
+  d        = edge_df_net[, c("from", "to", "weight", "a_coef")],
+  vertices = node_df_net,
+  directed = TRUE
+)
+
+# ── Centrality measures ───────────────────────────────────────────────────────
+igraph::V(g_net)$pagerank     <- igraph::page_rank(g_net, weights = igraph::E(g_net)$weight)$vector
+igraph::V(g_net)$in_strength  <- igraph::strength(g_net, mode = "in",  weights = igraph::E(g_net)$weight)
+igraph::V(g_net)$out_strength <- igraph::strength(g_net, mode = "out", weights = igraph::E(g_net)$weight)
+igraph::V(g_net)$betweenness  <- igraph::betweenness(g_net, weights = 1 / igraph::E(g_net)$a_coef,
+                                                      normalized = TRUE)
+
+centrality_df_net <- igraph::as_data_frame(g_net, what = "vertices") |>
+  dplyr::rename(sector = name) |>
+  dplyr::mutate(
+    short = short_labels[sector],
+    type  = ifelse(exog, "Exogenous", "Endogenous")
+  )
+
+# ── Plot 1: Multi-measure centrality bar chart ────────────────────────────────
+top_net <- centrality_df_net |>
+  dplyr::filter(
+    dplyr::percent_rank(pagerank)     > 0.70 |
+    dplyr::percent_rank(betweenness)  > 0.70 |
+    dplyr::percent_rank(in_strength)  > 0.70 |
+    dplyr::percent_rank(out_strength) > 0.70
+  ) |>
+  dplyr::pull(sector)
+
+centrality_df_net |>
+  dplyr::filter(sector %in% top_net) |>
+  dplyr::select(sector, short, type, pagerank, in_strength, out_strength, betweenness) |>
+  dplyr::mutate(dplyr::across(pagerank:betweenness,
+                              \(x) (x - min(x)) / (max(x) - min(x)))) |>
+  tidyr::pivot_longer(pagerank:betweenness, names_to = "metric", values_to = "score") |>
+  dplyr::mutate(
+    metric = dplyr::recode(metric,
+      pagerank     = "PageRank",
+      in_strength  = "In-strength\n(backward linkages)",
+      out_strength = "Out-strength\n(forward linkages)",
+      betweenness  = "Betweenness"
+    ),
+    label = paste0(sector, " — ", short),
+    label = forcats::fct_reorder(label, score, .fun = mean)
+  ) |>
+  ggplot(aes(x = score, y = label, fill = type)) +
+  geom_col(width = 0.7) +
+  facet_wrap(~metric, nrow = 1, scales = "free_x") +
+  scale_fill_manual(
+    values = c("Endogenous" = "#1a6faf", "Exogenous" = "#c0392b"),
+    name = NULL
+  ) +
+  scale_x_continuous(labels = NULL, expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    title    = "Supply-chain network centrality by measure — Switzerland 2017",
+    subtitle = "Each metric normalised to [0,1] | Edge threshold: A ≥ 1%",
+    x        = "Normalised score →",
+    y        = NULL,
+    caption  = "Source: FSO 2017 IO table. Direction: supplier → buyer (Z matrix, MCHF weights)."
+  ) +
+  theme_minimal(base_size = 9) +
+  theme(
+    legend.position    = "top",
+    panel.grid.major.y = element_blank(),
+    strip.text         = element_text(face = "bold", size = 8.5),
+    plot.title         = element_text(face = "bold", size = 10.5),
+    plot.caption       = element_text(colour = "grey50", size = 7),
+    axis.text.y        = element_text(size = 8)
+  )
+
+# ── Plot 2: Network graph ─────────────────────────────────────────────────────
+sector_group <- dplyr::case_when(
+  s_codes %in% c("01","02","03","10 - 12") ~ "Agri. & food",
+  s_codes %in% c("05 - 09","19 - 20","35","36 - 39") ~ "Energy & resources",
+  s_codes %in% c("13 - 15","16","17","18","21","22","23","24","25",
+                  "26","27","28","29","30","31","32","33") ~ "Manufacturing",
+  s_codes %in% c("41 - 43") ~ "Construction",
+  s_codes %in% c("45","46","47","49 - 51","52","53") ~ "Trade & transport",
+  s_codes %in% c("55","56","58 - 60","61","62 - 63",
+                  "64","65","68","69 - 71","72","73 - 75","77 - 82") ~ "Services (private)",
+  TRUE ~ "Public & other services"
+)
+
+tg_net <- as_tbl_graph(g_net) |>
+  tidygraph::activate(nodes) |>
+  dplyr::mutate(
+    group     = sector_group,
+    pr        = igraph::page_rank(g_net, weights = igraph::E(g_net)$weight)$vector,
+    short_lbl = short_labels[name]
+  ) |>
+  tidygraph::activate(edges) |>
+  dplyr::filter(a_coef >= 0.04)   # show only stronger edges for clarity
+
+group_colors <- c(
+  "Agri. & food"            = "#2ecc71",
+  "Energy & resources"      = "#e67e22",
+  "Manufacturing"           = "#3498db",
+  "Construction"            = "#8e44ad",
+  "Trade & transport"       = "#1abc9c",
+  "Services (private)"      = "#c0392b",
+  "Public & other services" = "#7f8c8d"
+)
+
+set.seed(4201)
+ggraph(tg_net, layout = "stress") +
+  geom_edge_arc(aes(width = a_coef, alpha = a_coef),
+                arrow = arrow(length = unit(2, "mm"), type = "closed"),
+                end_cap = circle(3, "mm"),
+                color = "grey60", strength = 0.15) +
+  geom_node_point(aes(size = pr, fill = group), shape = 21,
+                  color = "white", stroke = 0.4) +
+  geom_node_text(aes(label = ifelse(pr > quantile(pr, 0.72), short_lbl, "")),
+                 size = 2.4, repel = TRUE, max.overlaps = 20,
+                 color = "grey15", fontface = "bold") +
+  scale_edge_width(range = c(0.3, 2.5), guide = "none") +
+  scale_edge_alpha(range = c(0.25, 0.8), guide = "none") +
+  scale_size(range = c(2, 12), name = "PageRank", guide = "none") +
+  scale_fill_manual(values = group_colors, name = NULL) +
+  labs(
+    title    = "Swiss inter-industry supply-chain network (2017)",
+    subtitle = "Node size = PageRank | Edges shown: A ≥ 4% | Labels: top 28% by PageRank",
+    caption  = "Source: FSO Swiss IO table 2017. Direction: supplier → buyer."
+  ) +
+  theme_void(base_size = 10) +
+  theme(
+    plot.title      = element_text(face = "bold", size = 11, hjust = 0.5),
+    plot.subtitle   = element_text(color = "grey50", size = 8, hjust = 0.5,
+                                   margin = margin(b = 4)),
+    plot.caption    = element_text(color = "grey50", size = 7, hjust = 0.5),
+    legend.position = "right",
+    plot.margin     = margin(10, 10, 10, 10),
+    plot.background = element_rect(fill = "white", color = NA)
+  )
+```
 
 
 
