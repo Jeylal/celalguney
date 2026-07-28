@@ -18,6 +18,7 @@ library(sjlabelled)
 setwd("~/GitHub/celalguney/posts/votation_allegement_primes2024_vox")
 
 vox2024_allegement_prime <- read_sav("vox2024_allegement_prime.sav")
+write_sav(vox2024_allegement_prime, "datavox2024.sav")
 
 ```
 
