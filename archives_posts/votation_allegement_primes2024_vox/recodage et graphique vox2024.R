@@ -205,4 +205,3 @@ ggplot(decile_weighted,
 
 
 
-
