@@ -8,14 +8,13 @@ bibliography: inflation_switzerland.bib
 
 ## Introduction
 
-With the recurrence of large-scale global supply shocks such as the COVID-19 crisis, the war in Ukraine, and more recently the closure of the Strait of Hormuz, inflation has made a strong return in developed economies. In recent years, the latter have experienced inflation levels not seen since the oil shocks of the 1970s. According to the KOF Economic Institute, inflation reached 8% in the United States and 8.4% in the Eurozone in 2022, before declining to 5.5% and 4.1%, respectively, in 2023. Inflation has not decreased below the target rate of 2% ever since. In Switzerland, inflation rose up to barely 2,8% in 2022 and 2,1% in 2023. Since 2024, inflation is already back to the Swiss National Bank (SNB) target range (0-2%) [@sturm_konjunkturanalyse_2023]. Given the challenge posed for price stability due to the global geopolitical context, the Swiss economy has indeed proved to be very resistant to inflationary pressures.  At the peak of the 2022-2023 global food crisis, food inflation reached almost 20% in March 2023 in the European Union while it reached a maximum of 6,8% in Switzerland (see Food Price Monitoring Tool by Eurostat). Swiss prices are among the most stable in the world since the last two decades, with an average inflation rate of its national consumer price index of only 0,6% between 2000 and 2025. In international comparison, only Japan has experienced lower inflation (0,5%), while average inflation rates usually ranged from 1,5 to 2,5% in developed economies (for instance 2% for the Eurozone and 2,5% for the United States). At the same time, Switzerland has one of the highest price level in the world. Its GDP price index is approximately 60% higher than the European Union (EU) average and final household expenditure prices are higher by 82% [@albouy_swiss_2026]. Switzerland is thus more known as a "high-price island" than for its resistance to inflation and Swiss policy makers are far more preocuppied by the country's high price level than by its rate of increase. 
+With the recurrence of large-scale global supply shocks such as the COVID-19 crisis, the war in Ukraine, and more recently the closure of the Strait of Hormuz, inflation has made a strong return in developed economies. In recent years, the latter have experienced inflation levels not seen since the oil shocks of the 1970s. According to the KOF Economic Institute, inflation reached 8% in the United States and 8.4% in the Eurozone in 2022, before declining to 5.5% and 4.1%, respectively, in 2023. Inflation has not decreased below the target rate of 2% ever since. In Switzerland, inflation rose up to barely 2,8% in 2022 and 2,1% in 2023. Since 2024, inflation is already back to the Swiss National Bank (SNB) target range (0-2%) [@sturm_konjunkturanalyse_2023]. Given the challenge posed for price stability due to the global geopolitical context, the Swiss economy has indeed proved to be very resistant to inflationary pressures. At the peak of the 2022-2023 global food crisis, food inflation reached almost 20% in March 2023 in the European Union while it reached a maximum of 6,8% in Switzerland (see Food Price Monitoring Tool by Eurostat). Swiss prices are among the most stable in the world since the last two decades, with an average inflation rate of its national consumer price index of only 0,6% between 2000 and 2025. In international comparison, only Japan has experienced lower inflation (0,5%), while average inflation rates usually ranged from 1,5 to 2,5% in developed economies (for instance 2% for the Eurozone and 2,5% for the United States). At the same time, Switzerland has one of the highest price level in the world. Its GDP price index is approximately 60% higher than the European Union (EU) average and final household expenditure prices are higher by 82% [@albouy_swiss_2026]. Switzerland is thus more known as a "high-price island" than for its resistance to inflation and Swiss policy makers are far more preocuppied by the country's high price level than by its rate of increase.
 
 What factors lie behind the high price level and relatively low inflation rates in Switzerland ? In the context of overlapping emergencies which make supply shocks more likely to multiply in the future, understanding how and why Switzerland is relatively more resistant to cost-push inflation can shed light on the current debates about the optimal economic policies for economic stabilization. Since monetary policy proved to be powerless against the resurgence of inflation, some economists advocated for less conventional policies such as price controls. The Swiss case is thus an interesting case study to explore what policies and institutions are effective against inflation.
 
 We first review the existing literature on Swiss inflation and price stability, as well as the main economic developments of Switzerland which are relevant to the country's price dynamics. We then turn to a model, which remains undetermined at the present time as Michalis and Guillaume let me do all the work.
 
 ## Literature Review
-
 
 ```{r inflation capture by profit and labor}
 
@@ -52,19 +51,6 @@ inflation_income_decomposition |>
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```{r effective exchange rate snb}
 #| echo: false
 #| message: false
@@ -96,13 +82,6 @@ effective_exch_rate_snb |>
   )
 
 ```
-
-
-
-
-
-
-
 
 ```{r taux directeur}
 #| echo: false
@@ -182,8 +161,6 @@ p2_inset <- p2 + labs(caption = NULL, title = "Taux directeurs") +
 p1 + inset_element(p2_inset, left = 0, bottom = 0.52, right = 0.44, top = 1)
 ```
 
-
-
 ```{r inflation ameco cpi}
 #| echo: false
 #| warning: false
@@ -224,10 +201,7 @@ data_cpi_ameco %>%
 
 ```
 
-
 *Pointer la resistance particuliere en cas de crise en citant rapport ocde, fmi, seco. Voir si resistance plus élevée qu'au japon*
-
-
 
 ```{r growth rate cpi}
 #| echo: false
@@ -241,8 +215,6 @@ data_cpi_ameco |>
   arrange(avg_inflation)
 
 ```
-
-
 
 ```{r hcpi ameco}
 #| echo: false
@@ -273,7 +245,6 @@ data_hcpi_ameco %>%
 
 ```
 
-
 What accounts for Switzerland's remarkable and enduring resilience to inflationary pressures? The literature has advanced several competing hypotheses, each emphasising different structural, institutional, or macroeconomic mechanisms. The most prominent of these are examined in turn below.
 
 ## The Safe-Haven Currency Hypothesis
@@ -286,7 +257,6 @@ A second line of explanation points to the comparatively large share of administ
 
 However, recent empirical evidence suggests that administered prices are not the primary driver of Switzerland's low inflation performance. The vast majority of Swiss administered prices correspond to healthcare goods and services, which are classified as non-administered in several euro area countries, or attributed to the public sector rather than private consumption on account of their public funding. Crucially, not only have administered prices risen less in Switzerland than in the euro area, but so have non-administered prices. @auer_how_2025 show that administered prices account for less than one quarter of the observed inflation differential between Switzerland and the euro area. The dominant share of the differential is therefore explained by subdued price dynamics in the non-administered segment, pointing to deeper structural factors at work.
 
-
 ## The CPI Construction Hypothesis
 
 A third hypothesis holds that Switzerland's low measured inflation is in part a statistical artefact, reflecting the specific structure and expenditure weights of the Swiss CPI basket. Critics point, in particular, to the relatively low weight assigned to energy and to the exclusion of certain major expenditure items, most notably compulsory health insurance premiums, from the standard consumer price index. Some economists have addressed this by re-estimating Swiss inflation using the expenditure weights applied in other countries, such as Germany. Nevertheless, even under these counterfactual weighting schemes, Swiss inflation remains substantially lower than in comparable economies, suggesting that measurement conventions account for only a modest fraction of the observed differential.
@@ -294,9 +264,6 @@ A third hypothesis holds that Switzerland's low measured inflation is in part a 
 ## The Wage-Price Spiral and Sellers' Inflation Hypothesis
 
 A fourth explanation focuses on the limited role played by domestic wage-price dynamics in Switzerland. Given the strongly export-oriented character of Swiss production, increases in unit labour costs tend to be reflected primarily in export prices rather than in domestic consumer prices. Moreover, approximately 40% of the Swiss CPI basket — notably rents and healthcare — lies outside the typical scope of wage-price spiral mechanisms. @leutert_wageprice_2026 find that, once imported inflation and inflation expectations are controlled for, the pass-through from unit labour costs to the CPI is negligible in Switzerland. These authors conclude that Swiss CPI dynamics are driven predominantly by fluctuations in import prices — themselves shaped by movements in oil prices, foreign inflation, the exchange rate, and inflation expectations — rather than by domestic wage-setting processes. This finding is broadly consistent with the sellers' inflation framework developed by @weber_sellers_2023: while the data do not support a significant spiral between wages and domestic consumer prices, the question of whether Swiss firms have exploited supply-side disruptions to expand profit margins warrants closer empirical scrutiny.
-
-
-
 
 ## The Energy Mix Hypothesis
 
@@ -306,7 +273,7 @@ Switzerland's comparatively limited dependence on fossil fuels — owing to its 
 
 *While this explanation is intuitively compelling, it is complicated by the observation that several countries with even greener energy mixes, Iceland, Sweden, Norway, and Finland, nonetheless experienced higher inflation rates than Switzerland. The relevant distinguishing factor appears to be institutional rather than merely technical: Switzerland operates a regulated public energy market that anchors electricity and energy retail prices to domestic production costs. By contrast, the Nordic countries, despite their predominantly renewable generation capacity, are integrated into the European internal energy market, where prices are set at the marginal cost of the most expensive dispatched source, typically imported gas or coal. Their generation is low-carbon, but the price of that energy is nonetheless aligned with fossil fuel benchmarks. Switzerland's institutional insulation from this pricing mechanism provides an additional anti-inflationary buffer that a green energy mix alone cannot replicate.*
 
-*==> est-ce que l'on peut tester cela avec le modele de prix de leontief ?*
+*==\> est-ce que l'on peut tester cela avec le modele de prix de leontief ?*
 
 A further dimension of this hypothesis concerns energy intensity. Switzerland ranks as the advanced economy with the lowest energy intensity of production, consuming exceptionally little energy per unit of gross value added. Low energy intensity implies that supply-side price shocks translate less directly into consumer price inflation and propagate less extensively through domestic value chains. A recent study by the State Secretariat for Economic Affairs (SECO) confirms that this efficiency advantage is pervasive across all sectors of the Swiss economy, agriculture, industry, services, and households alike. Swiss manufacturing, for instance, consumes less than one-third of the energy used in French manufacturing and less than half of that used in German manufacturing per unit of gross value added. This structural advantage has been further reinforced since 2010 by the expansion of the pharmaceutical sector, which is characterised by relatively low energy intensity and whose share of Swiss manufacturing value added rose from 15% to 31% between 2010 and 2019.
 
@@ -343,16 +310,17 @@ df_lc |>
     "Autres pays"    = "#2980b9"
   )) +
   labs(
-    title   = "Part des énergies bas carbone dans la consommation primaire (2024)",
-    x       = "% de l'énergie primaire",
+    title   = "Share of low carbon energy (2024)",
+    x       = "% of primary energy",
     y       = NULL,
     fill    = NULL,
-    caption = "Source : Our World in Data / Energy Institute"
+    caption = "Source : Our World in Data, Energy Institute"
   ) +
   theme_minimal(base_size = 11) +
-  theme(legend.position = "top", panel.grid.major.y = element_blank())
+  theme(legend.position = "none", panel.grid.major.y = element_blank())
 ```
 
+Energy Mix, Share of primary energy by source. Source: Our World in Data, Energy Institute
 ```{r energy mix switzerland}
 #| echo: false
 #| warning: false
@@ -378,7 +346,11 @@ energy_colors <- c(
   "Other Renewables" = "#27ae60"
 )
 
-df %>%
+
+library(ggrepel)
+library(tidyverse)
+
+df_swiss <- df %>%
   filter(entity == "Switzerland") %>%
   pivot_longer(
     cols = ends_with("_pct_equivalent_primary_energy"),
@@ -388,23 +360,41 @@ df %>%
   mutate(source = source %>%
            str_remove("__pct_equivalent_primary_energy") %>%
            str_replace_all("_", " ") %>%
-           str_to_title()) %>%
-  ggplot(aes(x = year, y = share, color = source)) +
+           str_to_title())
+
+df_swiss_labels <- df_swiss %>%
+  group_by(source) %>%
+  slice_max(year, n = 1) %>%
+  ungroup()
+
+ggplot(df_swiss, aes(x = year, y = share, color = source)) +
   geom_line(linewidth = 0.8) +
+  geom_text_repel(
+    data = df_swiss_labels,
+    aes(label = source),
+    direction = "y",
+    nudge_x = 3,
+    hjust = 0,
+    segment.color = NA,
+    size = 3,
+    show.legend = FALSE
+  ) +
   scale_color_manual(values = energy_colors) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.15))) +
   labs(
-    title = "Switzerland: Energy Mix",
-    subtitle = "Share of primary energy by source",
-    x = NULL, y = "% of primary energy",
-    color = NULL,
+    x = NULL, y = "% of total primary energy",
     caption = "Source: Our World in Data, Energy Institute"
   ) +
   theme_minimal(base_size = 11) +
   theme(
-    legend.position   = "right",
+    legend.position   = "none",
     plot.title        = element_text(face = "bold"),
     panel.grid.minor  = element_blank()
-  )
+  ) -> plot_energy_mix
+
+
+plot_energy_mix
+ggsave("plot_energy_mix.png", plot_energy_mix)
 
 ```
 
@@ -429,8 +419,6 @@ data2 %>%
 
 ```
 
-
-
 ```{r admin prices}
 #| echo: false
 #| warning: false
@@ -447,7 +435,6 @@ hicp_admin_prices %>%
   geom_point()+
   facet_wrap(~geo)
 ```
-
 
 ```{r input output analysis}
 #| echo: false
@@ -584,8 +571,6 @@ results |>
   )
 ```
 
-
-
 ```{r input output analysis 2017 ofs}
 #| echo: false
 #| warning: false
@@ -689,8 +674,6 @@ results_2017 |>
     plot.caption       = element_text(colour = "grey50", size = 7)
   )
 ```
-
-
 
 ```{r network analysis io 2017}
 #| echo: false
@@ -885,7 +868,5 @@ ggraph(tg_net, layout = "stress") +
     plot.background = element_rect(fill = "white", color = NA)
   )
 ```
-
-
 
 ## References
