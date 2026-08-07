@@ -83,82 +83,56 @@ effective_exch_rate_snb |>
 
 ```
 
-```{r taux directeur}
+```{r inflation rate graph}
 #| echo: false
 #| warning: false
 #| message: false
 
 library(rdbnomics)
 library(tidyverse)
-library(patchwork)
 
-# --- Import données ---
-hicp_ch_ea <- rdb("Eurostat", "PRC_HICP_MIDX",
-                  dimensions = list(coicop = "CP00", unit = "I05", geo = c("CH", "EA")))
 
-rates_raw <- rdb("BIS", "WS_CBPOL", dimensions = list(REF_AREA = c("CH", "XM")))
+dbnomics_variables = c("CHE.CPI_YTYPCT.Q", "JPN.CPI_YTYPCT.Q", "OECD.CPI_YTYPCT.Q", "USA.CPI_YTYPCT.Q")
+dbnomics_variables_path = "OECD/DSD_EO@DF_EO/"
 
-# --- Mise en forme taux directeurs (mensuel) ---
-rates <- rates_raw |>
-  filter(str_detect(series_name, "Monthly")) |>
-  select(country = REF_AREA, period, value) |>
-  mutate(
-    country = case_when(
-      country == "CH" ~ "BNS (Suisse)",
-      country == "XM" ~ "BCE (Zone euro)"
-    ),
-    period = as.Date(period)
-  ) |>
-  filter(period >= as.Date("2005-01-01"))
 
-# --- Inflation glissement annuel ---
-hicp_yoy <- hicp_ch_ea |>
-  select(geo, period, value) |>
-  mutate(
-    country = if_else(geo == "CH", "Suisse", "Zone euro"),
-    yoy     = (value / lag(value, 12) - 1) * 100,
-    .by = geo
-  ) |>
-  filter(!is.na(yoy), period >= as.Date("2005-01-01"))
+data_inflation <- 
+  dbnomics_variables |> 
+  map_df(
+    ~rdb(paste0(dbnomics_variables_path, .x))
+  ) |> 
+  select(period, `Reference area`, value)
 
-# --- Zone grisée 2008-2015 ---
-shade <- data.frame(
-  xmin = as.Date("2008-09-01"), xmax = as.Date("2015-01-01"),
-  ymin = -Inf, ymax = Inf
-)
+data_inflation |> 
+  filter(period >= "2025-10-01") |> 
+  ggplot(aes(x = period, y = value, color = `Reference area`))+
+  geom_line(
+    data = \(d) filter(d, `Reference area` != "Switzerland"),
+    linewidth = 0.6, alpha = 0.6
+  ) +
+  geom_line(
+    data = \(d) filter(d, `Reference area` == "Switzerland"),
+    linewidth = 1
+  ) +
+  scale_color_manual(values = c(
+    "Switzerland"   = "#c0392b",
+    "Japan"         = "#f39c12",
+    "OECD"          = "#7f8c8d",
+    "United States" = "#27ae60"
+  ))+
+  theme_minimal(base_size = 14)+
+  theme(
+    legend.position = c(0.8,0.8),
+    legend.background = element_rect(),
+    legend.title = element_blank()
+  )+
+  geom_hline(yintercept = 0, linetype = 2)+
+  labs(x = "",
+       y = "Year-on-year change in %") -> inflation_comparison_plot
 
-# --- Graphique 1 : inflation ---
-p1 <- ggplot(hicp_yoy, aes(x = period, y = yoy, colour = country)) +
-  geom_rect(data = shade, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
-            inherit.aes = FALSE, fill = "grey85", alpha = 0.5) +
-  geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey50") +
-  geom_line(linewidth = 0.7) +
-  scale_colour_manual(values = c("Suisse" = "#c0392b", "Zone euro" = "#2980b9")) +
-  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
-  labs(title = "Inflation (HICP, glissement annuel)", y = "%", x = NULL, colour = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "top")
 
-# --- Graphique 2 : taux directeurs ---
-p2 <- ggplot(rates, aes(x = period, y = value, colour = country)) +
-  geom_rect(data = shade, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
-            inherit.aes = FALSE, fill = "grey85", alpha = 0.5) +
-  geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey50") +
-  geom_line(linewidth = 0.7) +
-  scale_colour_manual(values = c("BNS (Suisse)" = "#c0392b", "BCE (Zone euro)" = "#2980b9")) +
-  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
-  labs(title = "Taux directeurs (BNS vs BCE)", y = "%", x = NULL, colour = NULL,
-       caption = "Zone grisée : 2008–2015   |   Source : Eurostat, BIS via DBnomics") +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "top")
+ggsave("inflation_comparison_plot.png", inflation_comparison_plot)
 
-p2_inset <- p2 + labs(caption = NULL, title = "Taux directeurs") +
-  theme(legend.key.size = unit(0.4, "cm"),
-        legend.text = element_text(size = 7),
-        plot.title = element_text(size = 9),
-        axis.text = element_text(size = 7))
-
-p1 + inset_element(p2_inset, left = 0, bottom = 0.52, right = 0.44, top = 1)
 ```
 
 ```{r inflation ameco cpi}
@@ -310,14 +284,16 @@ df_lc |>
     "Autres pays"    = "#2980b9"
   )) +
   labs(
-    title   = "Share of low carbon energy (2024)",
+    title   = "",
     x       = "% of primary energy",
     y       = NULL,
     fill    = NULL,
-    caption = "Source : Our World in Data, Energy Institute"
+    caption = ""
   ) +
   theme_minimal(base_size = 11) +
-  theme(legend.position = "none", panel.grid.major.y = element_blank())
+  theme(legend.position = "none", panel.grid.major.y = element_blank()) -> low_carbon_energy_plot
+
+ggsave("low_carbon_share.png", low_carbon_energy_plot)
 ```
 
 Energy Mix, Share of primary energy by source. Source: Our World in Data, Energy Institute
