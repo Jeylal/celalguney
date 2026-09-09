@@ -5,7 +5,7 @@
 recode_likert <- function(df, labels = c("D'accord" = 1, "Ne sais pas / NA" = 2, "Pas d'accord" = 3)) {
   
   if (length(labels) != 3) {
-    stop("Please provide exactly three labels.")
+    stop("Needs three labels.")
   }
   
   df %>%

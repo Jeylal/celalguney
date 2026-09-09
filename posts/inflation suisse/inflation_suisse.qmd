@@ -14,6 +14,137 @@ What factors lie behind the high price level and relatively low inflation rates 
 
 We first review the existing literature on Swiss inflation and price stability, as well as the main economic developments of Switzerland which are relevant to the country's price dynamics. We then turn to a model, which remains undetermined at the present time as Michalis and Guillaume let me do all the work.
 
+
+```{r inflation hcpi 2020s crisis}
+library(tidyverse)
+library(rdbnomics)
+
+dbnomics_variables = c("M.I15.CP00.CH", "M.I15.CP00.DE", "M.I15.CP00.EU27_2020", "M.I15.CP00.FR", "M.I15.CP00.US")
+dbnomics_variables_path = "Eurostat/PRC_HICP_MIDX/"
+
+data_hcpi_index <- 
+  dbnomics_variables |> 
+  map_df(
+    ~rdb(paste0(dbnomics_variables_path, .x))
+  ) |> 
+  select(geo, period, value)
+
+library(lubridate)
+data_hcpi_index2 <- 
+data_hcpi_index |> 
+  group_by(geo) |> 
+  mutate(
+    index_100_2021 = value/value[period == as_date("2021-01-01")]
+  ) |> ungroup()
+
+
+data_hcpi_index2 |> 
+  filter(period |> between(as_date("2021-01-01"), as_date("2025-09-01"))) |> 
+  ggplot(aes(x = period, y = index_100_2021*100, color = geo, shape = geo)) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()+
+  labs(x = "", y = "January 2021 = 100", title = "HCPI index", caption = "Source: Eurostat")
+
+
+## foodflation graph
+
+dbnomics_variables_food = c("M.I15.CP011.CH", "M.I15.CP011.DE", "M.I15.CP011.FR", "M.I15.CP011.EU27_2020")
+dbnomics_variables_path_food = "Eurostat/PRC_HICP_MIDX/"
+
+data_hcpi_index_food <- 
+  dbnomics_variables_food |> 
+  map_df(
+    ~rdb(paste0(dbnomics_variables_path_food, .x))
+  ) |> 
+  select(geo, period, value)
+
+library(lubridate)
+data_hcpi_index_food2 <- 
+data_hcpi_index_food |> 
+  group_by(geo) |> 
+  mutate(
+    index_100 = value/value[period == as_date("2021-01-01")]
+  ) |> ungroup()
+
+
+
+
+data_hcpi_index_food2 |> 
+  filter(period |> between(as_date("2021-01-01"), as_date("2025-12-01"))) |> 
+  ggplot(aes(x = period, y = index_100*100, color = geo, shape = geo)) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()+
+  labs(x = "", y = "HCPI (food only), January 2021 = 100", title = "Food inflation since the 2021-23 energy crisis", caption = "Source: Eurostat")
+
+```
+
+
+
+```{r}
+## energy inflation graph
+
+dbnomics_variables_energy = c("M.I15.NRG.CH", "M.I15.NRG.FR", "M.I15.NRG.DE", "M.I15.NRG.EU27_2020")
+dbnomics_variables_path_energy = "Eurostat/PRC_HICP_MIDX/"
+
+dbnomics_variables_energy <- 
+  dbnomics_variables_energy |> 
+  map_df(
+    ~rdb(paste0(dbnomics_variables_path_energy, .x))
+  ) |> 
+  select(geo, period, value)
+
+library(lubridate)
+dbnomics_variables_energy2 <- 
+dbnomics_variables_energy |> 
+  group_by(geo) |> 
+  mutate(
+    index_100 = value/value[period == as_date("2021-01-01")]
+  ) |> ungroup()
+
+
+
+
+dbnomics_variables_energy2 |> 
+  filter(period |> between(as_date("2021-01-01"), as_date("2023-12-01"))) |> 
+  ggplot(aes(x = period, y = index_100*100, color = geo, shape = geo)) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()+
+  labs(x = "", y = "HCPI, January 2021 = 100", title = "Energy inflation during the 2021-2023 energy crisis", caption = "Source: Harmonized consumer price index (Eurostat)")
+```
+
+```{r}
+# administered vs not administered prices graph
+
+dbnomics_variables_ap = c("M.I15.AP.CH", "M.I15.AP.EA20", "M.I15.TOT_X_AP.CH", "M.I15.TOT_X_AP.EA20")
+dbnomics_variables_path_ap = "Eurostat/PRC_HICP_MIDX/"
+
+dbnomics_variables_ap <- 
+  dbnomics_variables_ap |> 
+  map_df(
+    ~rdb(paste0(dbnomics_variables_path_ap, .x))
+  )   
+
+
+dbnomics_variables_ap |> 
+  select(geo, value, period, `Classification of individual consumption by purpose (COICOP)`) |> 
+  group_by(geo, `Classification of individual consumption by purpose (COICOP)`) |> 
+  mutate(index100 = value/value[period == as_date("2014-12-01")]) |> 
+  filter(period |> between(as_date("2014-12-01"), as_date("2023-12-01"))) |> 
+  ggplot(aes(x = period, y = index100*100, color = geo))+
+  geom_line()+
+  theme(legend.position = "right",
+        legend.title = element_blank())+
+  facet_wrap(~`Classification of individual consumption by purpose (COICOP)`) +
+  labs(title = "HCPI index", x = "", y = "2014-01 = 100", caption = "Source: Eurostat")
+
+
+```
+
+
+
 ## Literature Review
 
 ```{r inflation capture by profit and labor}
@@ -297,6 +428,7 @@ ggsave("low_carbon_share.png", low_carbon_energy_plot)
 ```
 
 Energy Mix, Share of primary energy by source. Source: Our World in Data, Energy Institute
+
 ```{r energy mix switzerland}
 #| echo: false
 #| warning: false
@@ -406,10 +538,12 @@ hicp_admin_prices <- read_csv("hicp_admin_prices.csv")
 
 hicp_admin_prices %>% 
   filter(geo %in% c("Switzerland", "European Union - 27 countries (from 2020)") & coicop18 %in% c("Administered prices", "Fully administered prices", "Mainly administered prices", "Administered prices - energy and food") & TIME_PERIOD %in% c(2015:2025)) %>% 
-  ggplot(aes(x = TIME_PERIOD, y = OBS_VALUE/10, color = geo, shape = coicop18))+
+  ggplot(aes(x = TIME_PERIOD, y = OBS_VALUE/10, color = coicop18, shape = coicop18))+
   geom_line()+
   geom_point()+
-  facet_wrap(~geo)
+  facet_wrap(~geo)+
+  theme_minimal()+
+  labs(x = "", y = "%", caption = "Source: Eurostat", title = "Share of administered prices in the HCPI basket")
 ```
 
 ```{r input output analysis}
