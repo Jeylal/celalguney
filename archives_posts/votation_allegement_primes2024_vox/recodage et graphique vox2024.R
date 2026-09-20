@@ -204,4 +204,55 @@ ggplot(decile_weighted,
   theme(legend.position = "none")
 
 
+#------- recodage et creation variable datavox2024_3steps7clusters
+library(haven)
+library(tidyverse)
+
+datavox2024_3steps7clusters <- read_sav("~/GitHub/celalguney/archives_posts/votation_allegement_primes2024_vox/datavox2024_3steps7clusters.sav")
+
+datavox2024_3steps7clusters2 <- datavox2024_3steps7clusters |> 
+  mutate(
+    income2 = case_when(
+      INCOME == 1  ~ 1500,
+      INCOME == 2  ~ (2001 + 3000) / 2,
+      INCOME == 3  ~ (3001 + 4000) / 2,
+      INCOME == 4  ~ (4001 + 5000) / 2,
+      INCOME == 5  ~ (5001 + 6000) / 2,
+      INCOME == 6  ~ (6001 + 7000) / 2,
+      INCOME == 7  ~ (7001 + 8000) / 2,
+      INCOME == 8  ~ (8001 + 9000) / 2,
+      INCOME == 9  ~ (9001 + 10000) / 2,
+      INCOME == 10 ~ (10001 + 11000) / 2,
+      INCOME == 11 ~ (11001 + 12000) / 2,
+      INCOME == 12 ~ (12001 + 13000) / 2,
+      INCOME == 13 ~ (13001 + 14000) / 2,
+      INCOME == 14 ~ (14001 + 15000) / 2,
+      INCOME == 15 ~ 15500
+    ),
+    
+    income_decile = ntile(income2, 10),
+    
+    left_rigt = case_when(
+      LRSP %in% c(0:2) ~ "Extrême gauche",
+      LRSP %in% c(3,4) ~ "Gauche",
+      LRSP %in% c(5) ~ "Centre",
+      LRSP %in% c(6, 7) ~ "Droite",
+      LRSP %in% c(8:10) ~ "Extrême droite",
+      LRSP == 98 ~ NA,
+      
+    )
+  )
+
+datavox2024_3steps7clusters2$LRSP[datavox2024_3steps7clusters2$LRSP == 98] <- NA
+
+
+write_sav(data = datavox2024_3steps7clusters2, "datavox_3steps7clusters2.sav")
+
+
+
+
+
+
+
+
 
